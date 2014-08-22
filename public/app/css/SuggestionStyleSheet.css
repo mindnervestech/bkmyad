@@ -1,0 +1,76 @@
+﻿body
+{
+}
+
+.w2bslikebox
+{
+	background: url("../Adsimage/Suggestions.jpg") no-repeat scroll left center transparent !important;
+	display: block;
+	float: right;
+	height:350px;
+	padding: 0 5px 0 30px;
+	width: 290px;
+	z-index: 99999;
+	position: fixed;
+	right: -300px;
+	top: 20%;
+}
+.w2bslikebox div
+{
+	border: none;
+	position: relative;
+	display: block;
+}
+.w2bslikebox span
+{
+	bottom: 12px;
+	font: 8px "lucida grande" ,tahoma,verdana,arial,sans-serif;
+	position: absolute;
+	right: 7px;
+	text-align: right;
+	z-index: 99999;
+}
+.w2bslikebox span a
+{
+	/*color: gray;*/
+	text-decoration: none;
+}
+.w2bslikebox span a:hover
+{
+	text-decoration: underline;
+}
+.pDesc 
+{
+    color: #555;
+    font-size:11px;
+    font-family: Arial,sans-serif;
+    text-decoration: none;
+    text-align:justify;
+}
+.qHeader {
+    color: #000000;
+    font-size:11px;
+    font-weight:bold;
+    font-family: Arial,sans-serif;
+    text-decoration: none;
+    text-align:justify;
+}
+.grey {
+    background: -moz-linear-gradient(center top , #F0F0EA, #D5D7CE) repeat scroll 0 0 transparent;
+    border: 1px solid #BBBBBB;
+}
+.btntext {
+    color: #333333;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.btn {
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    outline: medium none;
+    padding: 3px 10px 4px;
+    text-align: center;
+    text-decoration: none;
+}

@@ -1,0 +1,53 @@
+﻿/***************************************************************************************************************************
+Developed by- Team Cybex
+This Style sheet contains CSS for Default Page (Login) and its related activities.
+
+
+***************************************************************************************************************************/
+#block{width:290px;
+margin:0 auto;
+	padding:0;
+}
+.form{background:url(../image/form.png) repeat-y; margin-top:2px;position:relative;
+	top: 0px;
+	height: 310px;
+    left: 0px;
+}
+.form .login-box{background:url(../image/login-box.png) no-repeat;color:#fff;font-size:13px;font-weight:bold;text-transform:uppercase;
+	width:110px;padding:14px 0 14px 10px;margin-bottom:11px;position:relative;left:-4px;float:left;}
+.form .warning {background:url(../image/key.png) no-repeat; height:35px; padding:10px 0 15px 34px; margin:20px 0px -15px 115px; position:relative; top:15px}
+.form .warning p {color:#c51f00;font-size:11px;height:19px;font-weight:bold;padding:9px 6px 0 0;float:left;}
+.form .warning p.c {text-indent:-1000px;padding:0 0 0 0;height:28px;width:2px;}
+.form .txtbox{background:url(../image/input.png) no-repeat;color:#5d5d5d;font-size:14px;font-style:normal;
+	width:210px;height:43px;padding:0 14px 0 7px;margin:0 0 14px 7px;border:none;clear:left; line-height:43px;}
+.form .login-bt {padding-bottom:0;float:left;}
+.form .login-bt{background:url(../image/p.btn-input.png) no-repeat;color:#fff;font-size:12px;font-weight:bold;text-transform:uppercase;font-style:normal;text-indent:-1000px;
+	width:111px;line-height:43px;padding:0;margin:0 0 0 40px;border:none;cursor:pointer;float:left; height:43px;}
+.form .login-bt:hover{background:url(../image/p.btn-input.hover.png) no-repeat;}
+.form .nav-path{margin-left:162px;}
+.form .nav-path li{line-height:19px;
+	width: 177px;
+}
+.form .nav-path li a{color:#005fa2;font-size:11px;}
+.form .nav-path li a:hover{text-decoration:none;}
+
+.c {background:url(../image/c.html) no-repeat-x;height:28px;width:2px;}
+.c2 {background:url(../image/warning.png) no-repeat top left;position:absolute;top:0;left:50px;height:28px;width:2px;}
+.ctop {background:url(../image/ctop.png) no-repeat;width:289px;height:6px;position:absolute;top:-6px;left:0;}
+.cbottom {background:url(../image/cbottom.png) no-repeat;width:289px;height:6px;position:absolute;bottom:-6px;left:0;}
+img.user{float:right; vertical-align:middle; margin:2px 3px 1px 0;
+	width: 35px;
+	height: 41px;
+}
+
+
+.form .submit-bt {padding-bottom:0;float:left;}
+
+.form .submit-bt{background:url(../image/submit_bt.html) no-repeat;color:#fff;font-size:12px;font-weight:bold;text-transform:uppercase;font-style:normal;text-indent:-1000px;
+	width:111px;line-height:43px;padding:0;margin:0 0 0 40px;border:none;cursor:pointer;float:left; height:43px;}
+	
+.form .submit-bt:hover{background:url(../image/submit_bt_ho.html) no-repeat;}
+
+
+
+

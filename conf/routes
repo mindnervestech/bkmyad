@@ -1,0 +1,39 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Controller
+GET     /                                   controllers.Application.index()
+GET     /Booknewspaperaddonlinee43a.html    controllers.Application.Booknewspaperaddonlinee43a()
+
+# Map static resources from the /public folder to the /assets URL path
+GET /css/*file               controllers.Assets.at(path="/public/app/css", file)
+GET /lib/*file               controllers.Assets.at(path="/public/lib", file)
+GET /NewDesign/*file               controllers.Assets.at(path="/public/app/NewDesign", file)
+GET /images/*file               controllers.Assets.at(path="/public/app/images", file)
+GET /image/*file               controllers.Assets.at(path="/public/app/image", file)
+GET /Adsimage/*file               controllers.Assets.at(path="/public/app/Adsimage", file)
+GET /Category/*file               controllers.Assets.at(path="/public/app/Category", file)
+GET /bower_components/*file		  controllers.Assets.at(path="/public/bower_components", file)
+
+
+#HTML - ONLY FOR STATIC HTMLs, IF HTMLS NEED TO BE TEMPLATIZED MAP it as Controllers
+GET /header.html     controllers.Assets.at(path="/public", file="app/header.html")
+GET /footer.html     controllers.Assets.at(path="/public", file="app/footer.html")
+GET /index.html     controllers.Assets.at(path="/public", file="app/index.html")
+GET /AboutUs.html   controllers.Assets.at(path="/public", file="app/AboutUs.html")
+GET /adddisplay.html     controllers.Assets.at(path="/public", file="app/adddisplay.html")
+GET /Affiliatedlogin.html     controllers.Assets.at(path="/public", file="app/Affiliatedlogin.html")
+GET /Blog.html     controllers.Assets.at(path="/public", file="app/Blog.html")
+GET /Contact.html     controllers.Assets.at(path="/public", file="app/Contact.html")
+GET /Default.html     controllers.Assets.at(path="/public", file="app/Default.html")
+GET /demo.html     controllers.Assets.at(path="/public", file="app/demo.html")
+GET /Disclaimer.html     controllers.Assets.at(path="/public", file="app/Disclaimer.html")
+GET /E-NewsPaper.html     controllers.Assets.at(path="/public", file="app/E-NewsPaper.html")
+GET /Forgotpassword.html     controllers.Assets.at(path="/public", file="app/Forgotpassword.html")
+GET /Help.html     controllers.Assets.at(path="/public", file="app/Help.html")
+GET /OurClient.html     controllers.Assets.at(path="/public", file="app/OurClient.html")
+GET /Paymentoption.html     controllers.Assets.at(path="/public", file="app/Paymentoption.html")
+GET /PrivacyPolicy.html     controllers.Assets.at(path="/public", file="app/PrivacyPolicy.html")
+GET /TermsandConditions.html     controllers.Assets.at(path="/public", file="app/TermsandConditions.html")
+GET /Booknewspaperaddonline.html     controllers.Assets.at(path="/public", file="app/Booknewspaperaddonline.html")

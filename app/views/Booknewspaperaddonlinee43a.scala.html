@@ -1,0 +1,13 @@
+@(beData:String)
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+@main("") {
+	<html xmlns="http://www.w3.org/1999/xhtml" ng-app="adschela" ng-controller="Booknewspaperaddonline" ng-include data-src="'Booknewspaperaddonline.html'"></html>
+}
+
+<script>
+		angular.module('adschela').factory('beData', function(){
+			return @Html(beData);
+		});
+</script>

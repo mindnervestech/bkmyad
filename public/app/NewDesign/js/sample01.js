@@ -1,0 +1,1 @@
+﻿$(document).ready(function(){$('.carousel').carousel({carouselWidth:930,carouselHeight:258,directionNav:true,shadow:true,buttonNav:'bullets',autoplay:true});});

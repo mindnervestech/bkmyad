@@ -1,0 +1,946 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from www.adschela.com/Textiframe.aspx by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 21 Aug 2014 16:12:49 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head id="Head1"><title>
+	Untitled Page
+</title>
+    <!-- Modal PopUp-->
+    <link href="css/layout.css" rel="stylesheet" type="text/css" /><link href="css/modal.css" rel="stylesheet" type="text/css" />
+    <!-- End -->
+    <!-- Translate language -->
+    
+
+    <script type="text/javascript" src="Jquery/jsapi.js"></script>
+
+    <script type="text/javascript">
+
+		  google.load("elements", "1", {
+				packages: "transliteration"
+			  });
+
+		  function onLoad() {
+			var options = {
+			  sourceLanguage: 'en',		 
+			  destinationLanguage: ['hi'],				
+			  transliterationEnabled: true
+			};
+
+			control =
+				new google.elements.transliteration.TransliterationControl(options);
+
+			var ids = [ "desc" ];
+			control.makeTransliteratable(ids);
+
+			control.showControl('translControl');
+			if(document.getElementById('checkboxId').checked)
+			    control.enableTransliteration();
+		    else
+			    control.disableTransliteration();			
+		  }
+		  google.setOnLoadCallback(onLoad);
+
+      function checkboxClickHandler()
+	  {
+		if(document.getElementById('checkboxId').checked)
+			 control.enableTransliteration();
+		else
+			 control.disableTransliteration();
+	  }	
+      
+    </script>
+
+    <!-- End -->
+
+    <script type="text/javascript" language="javascript">
+
+        
+        //for Redirect Iframe
+        function Redirect() 
+        {
+            top.location = "Checkout.html";
+            return false;
+        }
+
+        // End
+        function wordwrap(str, width, brk, cut) {
+            brk = brk || '\n';
+            width = width || 75;
+            cut = cut || false;
+            if (!str) { return str; }
+            var regex = '.{1,' + width + '}(\\s|$)' + (cut ? '|.{' + width + '}|.+$' : '|\\S+?(\\s|$)');
+            return str.match(RegExp(regex, 'g')).join(brk);
+        }
+
+        function LineCount(value) {
+            if (document.getElementById('lbltype').innerHTML == "Line") {
+                var costtl = parseInt(document.getElementById('lbltcost').innerHTML);
+                var lines = parseInt(document.getElementById('lblline').innerHTML);
+
+                if (value == '') {
+                    document.getElementById('chars1').innerHTML = '0';
+                    document.getElementById('est_costextra').innerHTML = '0';
+                    document.getElementById('chars1extra').innerHTML = '0';
+                    document.getElementById('est_cost').innerHTML = '0';
+                }
+                else {
+                    var text;
+                    var lines_totals1;
+                    var len;
+                    var line_count;
+                    var lines_totals2;
+                    var diff_fli;
+                    var totalCost;
+                    var ExtraLine;
+
+                    text = value;
+                    lines_totals1 = Math.ceil(value.length / 23);
+                    len = wordwrap(text, 23, "\n", true);
+                    line_count = len.split("\n");
+                    lines_totals2 = line_count.length;
+                    diff_fli = lines_totals2 - lines_totals1;
+
+                    if (diff_fli > 1) {
+                        lines_totals = Math.ceil((lines_totals2 + lines_totals1) / 2);
+                    }
+                    else {
+                        lines_totals = lines_totals2;
+                    }
+
+                    //              document.getElementById('Line_word').innerHTML = lbltype.Text;
+                    if (0 != '0') {
+                        if (lines_totals > lines) {
+                            var cost = document.getElementById('lblcostextra').innerHTML;
+                            var costt = parseInt(cost, 10);
+                            ExtraLine = lines_totals - lines;
+                            exrebate = 0 + (costt * ExtraLine);
+                            totalCost = exrebate - (exrebate * 0 / 100);
+                        }
+                        else {
+                            totalCost = costtl;
+                        }
+                    }
+                    else {
+                        if (lines_totals > lines) {
+                            var cost = document.getElementById('lblcostextra').innerHTML;
+                            var costt = parseInt(cost, 10);
+                            ExtraLine = lines_totals - lines;
+                            totalCost = costtl + (costt * ExtraLine);
+                            document.getElementById('chars1extra').innerHTML = ExtraLine;
+                    document.getElementById('est_costextra').innerHTML = totalCost-costtl;
+                    document.getElementById('cost_calextra').value = totalCost-costtl;
+                    document.getElementById('count_wextra').value = ExtraLine;
+                        }
+                        else {
+                            totalCost = costtl;
+                            document.getElementById('est_costextra').innerHTML = '0';
+                    document.getElementById('chars1extra').innerHTML = '0';
+                        }
+                    }
+
+                    document.getElementById('chars1').innerHTML = lines_totals;
+                    document.getElementById('est_cost').innerHTML = totalCost;
+                    document.getElementById('cost_cal').value = totalCost;
+                    document.getElementById('count_w').value = lines_totals;
+                }
+            }
+            else if (document.getElementById('lbltype').innerHTML == "Words") {
+                wordcount(value);
+            }
+            else {
+                charcount(value);
+            }
+        }
+
+        function dowork(value) {
+            var v = value.split('');
+            if (value == '') {
+                document.getElementById('desc').value = ''
+            }
+            else {
+                if (value.length == 1)
+                    document.getElementById('chars').innerHTML = 1;
+
+                else if (value.substring(value.length - 2, value.length - 1) == '' && value.substring(value.length - 1, value.length) != '')
+                    document.getElementById('chars').innerHTML = v.length;
+
+                else if (value.substring(value.length - 1, value.length) == '\n' || (value.substring(value.length - 2, value.length - 1) == ' ' && value.substring(value.length - 1, value.length) == ' '))
+                    document.getElementById('desc').value = value.substring(0, value.length - 1);
+            }
+
+            v = document.getElementById('desc').value.split(' ');
+            v[0] = '<b>' + v[0].toUpperCase() + '</b>';
+            var value_new = v.join(' ');
+            document.getElementById('text').innerHTML = value_new;
+        }
+
+        function wordcount(value) {
+            var costtw = parseInt(document.getElementById('lbltcost').innerHTML);
+            var words = parseInt(document.getElementById('lblline').innerHTML);
+
+
+            if (value == '') {
+                document.getElementById('chars1').innerHTML = '0';
+                document.getElementById('est_costextra').innerHTML = '0';
+                document.getElementById('chars1extra').innerHTML = '0';
+                document.getElementById('est_cost').innerHTML = '0';
+            }
+            else {
+                var totalCost;
+                var ExtraWord;
+
+                var andchr = value.trim().split(" & ").length - 1;
+                var char_count = value.trim().length;
+                var fullStr = value + " ";
+
+                //word count for regional language
+                v = value.trim().split(' ');
+                var word_count = v.length;
+                var cheArr = Array('@', '.', '"', "'", '_', '-', '+', '=', ';', '&', '*', '\(', '\)', '{', '}', '[', '}', '|', '\\', '\,', 'index.html');
+                for (i = 0; i <= cheArr.length; i++) {
+                    word_count = word_count + value.split(cheArr[i]).length - 1;
+                }
+
+                //word count for all languages
+//                var initial_whitespace_rExp = /^[^A-Za-z0-9]+/gi;
+//                var left_trimmedStr = fullStr.replace(initial_whitespace_rExp, "");
+//                var non_alphanumerics_rExp = rExp = /[^A-Za-z0-9]+/gi;
+//                var cleanedStr = left_trimmedStr.replace(non_alphanumerics_rExp, " ");
+//                var splitString = cleanedStr.split(" ");
+//                var word_count = (splitString.length - 1) + andchr;
+
+                document.getElementById('chars1').innerHTML = word_count;
+                document.getElementById('count_w').value = word_count;
+                //            document.getElementById('Line_word').innerHTML = lbltype.Text;
+
+                if (0 != '0') {
+                    if (word_count > words) {
+                        var cost = document.getElementById('lblcostextra').innerHTML;
+                        var costt = parseInt(cost, 10);
+                        ExtraWord = word_count - words;
+                        var exrebate = 0 + costt * ExtraWord;
+                        totalCost = exrebate - exrebate * 0 / 100;
+                    }
+                    else {
+                        totalCost = costtw;
+                    }
+                }
+                else {
+                    if (word_count > words) {
+                        var cost = document.getElementById('lblcostextra').innerHTML;
+                        var costt = parseInt(cost, 10);
+                        ExtraWord = word_count - words;
+                        totalCost = costtw + (costt * ExtraWord);
+                        document.getElementById('chars1extra').innerHTML = ExtraWord;
+                    document.getElementById('est_costextra').innerHTML = totalCost-costtw;
+                    document.getElementById('cost_calextra').value = totalCost-costtw;
+                    document.getElementById('count_wextra').value = ExtraWord;
+                    }
+                    else {
+                        totalCost = costtw;
+                        document.getElementById('est_costextra').innerHTML = '0';
+                    document.getElementById('chars1extra').innerHTML = '0';
+                    }
+                }
+                document.getElementById('est_cost').innerHTML = totalCost;
+                document.getElementById('cost_cal').value = totalCost;
+                document.getElementById('count_w').value = word_count;
+            }
+
+        }
+
+
+        function charcount(value) {
+
+            var costtw = parseInt(document.getElementById('lbltcost').innerHTML);
+            var words = parseInt(document.getElementById('lblline').innerHTML);
+
+
+            if (value == '') {
+                document.getElementById('chars1').innerHTML = '0';
+                document.getElementById('est_costextra').innerHTML = '0';
+                document.getElementById('chars1extra').innerHTML = '0';
+                document.getElementById('est_cost').innerHTML = '0';
+            }
+            else {
+                var totalCost;
+                var ExtraWord;
+                value = value.replace(/^\s+|\s+$/g, "");
+                var word_count = value.length;
+
+                document.getElementById('chars1').innerHTML = word_count;
+                document.getElementById('count_w').value = word_count;
+                //            document.getElementById('Line_word').innerHTML=lbltype.Text;
+
+
+                if (0 != '0') {
+                    if (word_count > words) {
+                        var cost = document.getElementById('lblcostextra').innerHTML;
+                        var costt = parseInt(cost, 10);
+                        ExtraWord = word_count - words;
+                        var exrebate = 0 + costt * ExtraWord;
+                        totalCost = exrebate - exrebate * 0 / 100;
+                    }
+                    else {
+                        totalCost = costtw;
+                    }
+                }
+                else {
+                    if (word_count > words) {
+                        var cost = document.getElementById('lblcostextra').innerHTML;
+                        var costt = parseInt(cost, 10);
+                        ExtraWord = word_count - words;
+                        totalCost = costtw + (costt * ExtraWord);
+                        document.getElementById('chars1extra').innerHTML = ExtraWord;
+                    document.getElementById('est_costextra').innerHTML = totalCost-costtw;
+                    document.getElementById('cost_calextra').value = totalCost-costtw;
+                    document.getElementById('count_wextra').value = ExtraWord;
+                    }
+                    else {
+                        totalCost = costtw;
+                        document.getElementById('est_costextra').innerHTML = '0';
+                    document.getElementById('chars1extra').innerHTML = '0';
+                    }
+                }
+                document.getElementById('est_cost').innerHTML = totalCost;
+
+                document.getElementById('cost_cal').value = totalCost;
+                document.getElementById('count_w').value = word_count;
+            }
+        }
+
+
+        function apply_tick() {
+            if (document.getElementById("tick").checked == true) {
+                document.getElementById('pnltick').style.display = "inline";
+            }
+            if (document.getElementById("tick").checked == false) {
+                document.getElementById('pnltick').style.display = "none";
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        .divModalBackground
+        {
+            background-color: #696969;
+            filter: alpha(opacity=40);
+            opacity: 0.7;
+            xindex: -1;
+            zindex: 800;
+            top: 0;
+            left: 0;
+            text-align: center;
+            min-height: 200%;
+            min-width: 100%;
+            position: absolute;
+        }
+        .pnl
+        {
+            border-style: none;
+            border-color: inherit;
+            border-width: 1px;
+            width: 4cm;
+            background-color: white;
+            overflow: inherit;
+            margin: 0 auto;
+            min-height: 300px;
+            font-family: Calibri;
+        }
+        .pnlh
+        {
+            color: #FFFFFF;
+            font-weight: bold;
+            font-size: x-large;
+            width: 150px;
+            margin: 0 auto;
+            word-wrap: break-word;
+        }
+        .style1
+        {
+            font-family: Calibri;
+            font-size: small;
+        }
+        .style2
+        {
+            width: 450px;
+        }
+        .style3
+        {
+            font-family: Calibri;
+            font-size: 10pt;
+            font-weight: bold;
+        }
+        .style4
+        {
+            height: 30px;
+        }
+        .wrap
+        {
+            word-wrap: break-word;
+            word-break: break-all;
+            font-size: 14px;
+        }
+        #translControl
+        {
+            width: 339px;
+        }
+    </style>
+</head>
+<body>
+    <form name="form1" method="post" action="http://www.adschela.com/Textiframe.aspx" id="form1">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJNzE1NjYzMTE1DxYCHgVEYXRlczKCAgABAAAA/////wEAAAAAAAAABAEAAACBAVN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbU3lzdGVtLkRhdGVUaW1lLCBtc2NvcmxpYiwgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODldXQMAAAAGX2l0ZW1zBV9zaXplCF92ZXJzaW9uAwAAEVN5c3RlbS5EYXRlVGltZVtdCAgJAgAAAAEAAAABAAAADwIAAAAEAAAADf+/Y5/jJsorAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACxYCAgQPZBYIAgUPZBYCZg9kFgYCAQ8PFgIeBFRleHQFCkFtYXIgVWphbGFkZAIDDw8WAh8BBQRBZ3JhZGQCBQ9kFgJmD2QWLAIDD2QWAmYPZBYGAg0PDxYCHwEFBVdvcmRzZGQCEQ8PFgIfAQUDODM4ZGQCEw8PFgIfAQUFV29yZHNkZAIJD2QWAgIBDw8WAh8BBQM4MzhkZAIRDw8WAh8BZWRkAhMPDxYEHwEFA1JzLh4HVmlzaWJsZWhkZAIpDxBkZBYBZmQCLw8PFgIfAWVkZAIxDw8WBB8BBQNScy4fAmhkZAI1Dw8WAh8BZWRkAjcPDxYEHwEFA1JzLh8CaGRkAjkPEGRkFgFmZAI7DxBkEBUfATABMQEyATMBNAE1ATYBNwE4ATkCMTACMTECMTICMTMCMTQCMTUCMTYCMTcCMTgCMTkCMjACMjECMjICMjMCMjQCMjUCMjYCMjcCMjgCMjkCMzAVHwEwATEBMgEzATQBNQE2ATcBOAE5AjEwAjExAjEyAjEzAjE0AjE1AjE2AjE3AjE4AjE5AjIwAjIxAjIyAjIzAjI0AjI1AjI2AjI3AjI4AjI5AjMwFCsDH2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2cWAWZkAj0PEGQQFQIULS0tIFNlbGVjdCBPZmZlciAtLS0ETm9uZRUCATAETm9uZRQrAwJnZxYBZmQCPw8QZBAVHgExATIBMwE0ATUBNgE3ATgBOQIxMAIxMQIxMgIxMwIxNAIxNQIxNgIxNwIxOAIxOQIyMAIyMQIyMgIyMwIyNAIyNQIyNgIyNwIyOAIyOQIzMBUeATEBMgEzATQBNQE2ATcBOAE5AjEwAjExAjEyAjEzAjE0AjE1AjE2AjE3AjE4AjE5AjIwAjIxAjIyAjIzAjI0AjI1AjI2AjI3AjI4AjI5AjMwFCsDHmdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZxYBZmQCQQ9kFgJmD2QWAgIBDw8WAh8BBQExZGQCQw9kFgJmD2QWAgIBDzwrAAoBAA8WAh4CU0QWAQYAAPp0GibKK2RkAkUPZBYCZg9kFgICAQ88KwANAGQCTQ8PFgIfAQUCMTVkZAJPDw8WAh8BBQM4MzhkZAJRDw8WAh8BBQpBbWFyIFVqYWxhZGQCUw8PFgIfAQUEQWdyYWRkAlUPDxYCHwEFAjI1ZGQCWQ8PFgIfAQUDODM4ZGQCEw8PFgIfAQUBM2RkAhUPDxYCHwEFAzM2NWRkAhcPDxYCHwEFAzgzOGRkGAIFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYNBQpjaGVja2JveElkBQlsb2dpbl9wb3AFBHRpY2sFBHJibm4FBHJibm4FBHJibnkFBHJibnkFBHJibnAFBHJibnAFBHJibmcFBHJibmcFBHJibnMFBHJibnMFCUdyaWRWaWV3MQ9nZHLb7J/Dpbr8adVZ0OpmpwqH/+hc" />
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="WebResourcebf08.js?d=0ZT2rpU7P4Dz34_vyLHiW6taSAkCIvpNtLOpLcQnpktdtvKZr8A58-Vgp8XJpRBRb8XYyZW8i_wFQJiAxyDLQEF5nR81&amp;t=634605708834856163" type="text/javascript"></script>
+
+
+<script src="ScriptResource373a.js?d=9AZdK95ZsnUMC_rG3YlZEf27d1KDMnTmV6MVXy3NOCYCC-SHDewiHNb639a8LPPeS83aQxgqHm-FeWXINxODGzTYKAoo4OSTmBrbUUEF80-ddAQUDTvW4UKeTTnl56lnwhlatsb2kAQnf68qjdNqlnTmecoVI980d-x6StBpmHI9rlpq0&amp;t=ffffffffed1bad5c" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<input type="hidden" name="__PREVIOUSPAGE" id="__PREVIOUSPAGE" value="tyQ0MjnkoVydaCviEhgo7DDieLPxgJ4WVjC5Tm0Rxd6fZvs7FWKT2lCL-nVmkud7ZNRXzcEBxYlk_ZDCJhYM7ZHVh0s1" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWbwKD9OGWCALK4+XdCQLnnOL/CwLpiqerBALckNjUCwK5nJygDQK/v5fQCgLq1NjoDgKnsI+tBAKdzbDfCwKdzZTFAgKdzZjDDQKdzcySBAKdzdz1CwLIvJydCgKIzqzeCQKq07LyBgLM9PumDwKjioqjBgKm6eXNCgL3jKLTDQKd5I/lCgKSi6WLBgKTi6WLBgKQi6WLBgKRi6WLBgKWi6WLBgKXi6WLBgKUi6WLBgKFi6WLBgKKi6WLBgKSi+WIBgKSi+mIBgKSi+2IBgKSi9GIBgKSi9WIBgKSi9mIBgKSi92IBgKSi8GIBgKSi4WLBgKSi4mLBgKTi+WIBgKTi+mIBgKTi+2IBgKTi9GIBgKTi9WIBgKTi9mIBgKTi92IBgKTi8GIBgKTi4WLBgKTi4mLBgKQi+WIBgK8p/vZCQLLx5LNBwKk3cCdBQLruqBZAuu6nPQJAuu6iK8BAuu65MoKAuu60OUDAuu6zIALAuu6uLwMAuu61IQBAuu6wL8KAsbT08gFAsbTz+MOAsbTu58GAsbTl7oPAsbTg1UCxtP/8AkCxtPrqwECxtPHxgoCxtPzrw8CxtPvSgKh6fHTAwKh6e2OCwKh6dmpDAKh6bXFBQKh6aHgDgKh6Z2bBgKh6Ym2DwKh6eVRAqHpkboFAqHpjdUOApyGn/4JApyGn/4JApyGi5kBApyGi5kBApyG57QKApyG57QKApyG0+8DApyG0+8DApyGz4oLApyGz4oLApyGu6YMApyGu6YMApyGl8EFApyGl8EFApyGg/wOApyGg/wOApyGv8UDApyGv8UDApyGq+AEApyGq+AEAvefvYkGAvefvYkGAvefqaQPAvefqaQPAvefhV8C95+FXwLcu4S2BO0G7wkaaFErHPGRhaCQUhC6fcZA" />
+    
+    <table id="PageUpdateProgress" cellpadding="0" cellspacing="0" border="0" width="100%" style="display:none;"><tr><td>
+	
+            <div id="IMGDIV1" class="divModalBackground">
+                <img src="image/waiting.gif" />
+            </div>
+        
+</td></tr></table>
+    <div>
+        <table border="0" cellpadding="0" cellspacing="0" width="650">
+            <tr>
+                <td width="650" align="left" valign="top">
+                    <table id="UpdatePanel3" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>
+	
+                            <fieldset style="border: 4px double #E6E6E6; width: 650px; height: Auto">
+                                <legend style="color: #FF3300; font-size: 10pt; font-weight: 700; font-family: Calibri;">
+                                    COMPOSE YOUR AD For
+                                    <span id="lblNewspaper" style="font-size: 11pt"><font color="#336600">Amar Ujala</font></span>&nbsp;<span style="font-weight: bold; color: Green;
+                                            font-size: 14px">-(</span><span id="lCity" style="font-size: 11pt"><font color="#336600">Agra</font></span><span style="font-weight: bold; color: Green; font-size: 14px">)</span></legend>
+                                <table id="UpdatePanel2" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>
+		
+                                        <table style="width: 640px; margin: 0 auto; padding: 0px 5px 0px 5px">
+                                            <tr>
+                                                <td style="width: 356px; padding-left: 15px" valign="top">
+                                                    <div style="width: 340px; margin: 0; border: Solid 1px Black; background-color: #8ABE25;
+                                                        font-family: Calibri; color: black; font-weight: bold; font-size: 12px">
+                                                        <span style="display:inline-block;"><input id="checkboxId" type="checkbox" name="checkboxId" onclick="javascript:checkboxClickHandler();" /></span>
+                                                        Please Select to Type in Hindi
+                                                        <div id='translControl' style="float: right; width: 48px; margin: 0; padding: 0;
+                                                            text-align: right; height: 26px; overflow: hidden">
+                                                        </div>
+                                                    </div>
+                                                    <table id="textupnl" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>
+			
+                                                            <textarea name="desc" rows="2" cols="20" onchange="javascript:setTimeout('__doPostBack(\'desc\',\'\')', 0)" id="desc" onkeyup="dowork(this.value);" onpaste="return false" class="adfield" onkeypress="dowork(this.value);" onkeydown="LineCount(this.value);" dir="ltr" oncopy="return false" oncut="return false" style="line-height: 1.5em; font-family: Calibri; font-size: 14px;"></textarea>
+                                                            
+                                                            <br />
+                                                            <span class="style1">Font size in the preview is not as per scale. Actual word/lines
+                                                                may vary based on selected enhancements.<br />
+                                                            </span>&nbsp;<div class="line-n-cost">
+                                                                <input type="hidden" name="count_w" id="count_w" value="25" />
+                                                                <input type="hidden" name="cost_cal" id="cost_cal" value="838" />
+                                                                <input type="hidden" name="count_wextra" id="count_wextra" />
+                                                                <input type="hidden" name="cost_calextra" id="cost_calextra" />
+                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #FF3300">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td style="font-family: Calibri; font-size: 14px; font-weight: 700; color: #000000;
+                                                                                border-bottom: Solid 1px Black">
+                                                                                No. of
+                                                                                <span id="lbltype">Words</span>
+                                                                                Used :
+                                                                                <span id="chars1" style="color: #FFFFFF; font-size: medium;">0</span>
+                                                                            </td>
+                                                                            <td align="right" style="font-family: Calibri; font-size: 14px; font-weight: 700;
+                                                                                color: #000000; border-bottom: Solid 1px Black">
+                                                                                Estimated Cost(Rs.) : <span id="est_costl" style="color: White">
+                                                                                    <span id="est_cost" style="color: #FFFFFF; font-size: medium;">838</span></span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="font-family: Calibri; font-size: 14px; font-weight: 700; color: #000000">
+                                                                                Extra
+                                                                                <span id="lbltypeextra">Words</span>
+                                                                                Used :
+                                                                                <span id="chars1extra" style="color: #FFFFFF; font-size: medium;">0</span>
+                                                                            </td>
+                                                                            <td align="right" style="font-family: Calibri; font-size: 14px; font-weight: 700;
+                                                                                color: #000000">
+                                                                                Extra Cost(Rs.) : <span id="est_costlextra" style="color: White">
+                                                                                    <span id="est_costextra" style="color: #FFFFFF; font-size: medium;">0</span></span>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                        
+		</td></tr></table>
+                                                    </div>
+                                                </td>
+                                                <td valign="top" style="padding-left: 10px">
+                                                    <div class="add-preview">
+                                                        <div class="bdr">
+                                                            <table id="pnlheader" class="pnlh" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>
+			
+                                                                <div style="">
+                                                                    <img alt="" src="images/preview-ad.png" /></div>
+                                                            
+		</td></tr></table>
+                                                            <div class="con" id="mainAddText" style="">
+                                                                <table id="pnldisplay" class="pnl" cellpadding="0" cellspacing="0" width="100%" border="1" style="max-height: 250px"><tr><td>
+			
+                                                                    <div id="addtext" style="">
+                                                                        <table id="pnltick" cellpadding="0" cellspacing="0" border="0" width="100%" style="display: none; float: left; height: 19;
+                                                                            width: 22"><tr><td>
+				
+                                                                            <img src="images/tick.png" id="imgtick" height="19" width="22" border="0" />
+			</td></tr></table>
+                                                                        <span id="text" class="wrap"><b> </b></span></div>
+                                                                
+		</td></tr></table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table style="border-bottom: 1px solid #CCCCCC; font-weight: bold; padding-left: 10px;
+                                                        width: 640px">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td id="tdtc">
+                                                                    Total Cost :&nbsp;<span id="lblgettotalcost"><font color="Red">838</font></span>&nbsp;Rs.
+                                                                </td>
+		
+                                                                <td style="text-align: right">
+                                                                    <input type="image" name="login_pop" id="login_pop" src="images/Preview.png" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;login_pop&quot;, &quot;&quot;, false, &quot;&quot;, &quot;#login_form&quot;, false, false))" border="0" />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" height="20" style="border-bottom: 1px solid #CCCCCC; padding-left: 15px;
+                                                    font-family: Calibri; font-size: 12pt; font-weight: 700; color: #336600;" valign="top">
+                                                    Extra Enhancements.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-bottom: 0px solid #CCCCCC; padding-left: 15px; font-family: Calibri;
+                                                    font-size: 12pt; font-weight: 700; color: #336600;" valign="top" colspan="2"
+                                                    height="30">
+                                                    <strong style="color: #333333">Tick : </strong>
+                                                    <img src="images/tick.png" width="22" height="19" alt="" />
+                                                    <input id="tick" type="checkbox" name="tick" onclick="javascript:apply_tick();setTimeout('__doPostBack(\'tick\',\'\')', 0)" />
+                                                    &nbsp;<span id="lbl5" class="style3">Tick Extra</span>
+                                                    &nbsp;<span id="lblTickrate" class="style3"><font color="Red"></font></span>
+                                                    &nbsp;
+                                                    <br />
+                                                    <br />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-left: 15px" valign="top" colspan="2">
+                                                    <table width="450" border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td align="left" valign="middle" width="450">
+                                                                <div style="width: 200px; height: 70px; float: left; margin: 5px auto; border-radius: 7px;
+                                                                    border: Solid 1px #EBDBAA; background-color: #F0F0F0">
+                                                                    <center>
+                                                                        <table width="180" border="0" cellpadding="0" cellspacing="0">
+                                                                            <tr>
+                                                                                <td width="180" height="20" style="border-bottom: 5px double #666666; font-size: 10pt;
+                                                                                    font-family: Calibri;">
+                                                                                    Select Ad Background Color
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td width="180" style="height: 20px;" align="left" valign="top">
+                                                                                    <table border="0" cellpadding="0" cellspacing="0" width="180">
+                                                                                        <tr>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbnn" type="radio" name="a" value="rbnn" onclick="javascript:setTimeout('__doPostBack(\'rbnn\',\'\')', 0)" /></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbny" type="radio" name="a" value="rbny" onclick="javascript:setTimeout('__doPostBack(\'rbny\',\'\')', 0)" /></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbnp" type="radio" name="a" value="rbnp" onclick="javascript:setTimeout('__doPostBack(\'rbnp\',\'\')', 0)" /></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbng" type="radio" name="a" value="rbng" onclick="javascript:setTimeout('__doPostBack(\'rbng\',\'\')', 0)" /></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbns" type="radio" name="a" value="rbns" onclick="javascript:setTimeout('__doPostBack(\'rbns\',\'\')', 0)" /></span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <table id="Panel5" cellpadding="0" cellspacing="0" border="0" bgcolor="LemonChiffon" height="15" width="15"><tr><td>
+			
+                                                                                                
+		</td></tr></table>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <table id="pnl1" cellpadding="0" cellspacing="0" border="0" bgcolor="Gold" height="15" width="15"><tr><td>
+			
+                                                                                                
+		</td></tr></table>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <table id="Panel2" cellpadding="0" cellspacing="0" border="0" bgcolor="LightPink" height="15" width="15"><tr><td>
+			
+                                                                                                
+		</td></tr></table>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <table id="Panel3" cellpadding="0" cellspacing="0" border="0" bgcolor="DarkKhaki" height="15" width="15"><tr><td>
+			
+                                                                                                
+		</td></tr></table>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <table id="Panel4" cellpadding="0" cellspacing="0" border="0" bgcolor="LightSteelBlue" height="15" width="15"><tr><td>
+			
+                                                                                                
+		</td></tr></table>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </center>
+                                                                </div>
+                                                                <div style="width: 200px; height: 70px; float: right; padding-right: 10px; margin: 5px auto;
+                                                                    border-radius: 7px; border: Solid 1px #EBDBAA; background-color: #F0F0F0">
+                                                                    <center>
+                                                                        <table width="140" border="0" cellpadding="0" cellspacing="0">
+                                                                            <tr>
+                                                                                <td width="140" height="20" style="border-bottom: 5px double #666666; font-size: 9pt;
+                                                                                    font-family: Calibri;">
+                                                                                    Ad Border
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td width="140" height="20">
+                                                                                    <table id="rbnborder" border="0" style="font-family: Calibri; font-size: 9pt">
+			<tr>
+				<td><input id="rbnborder_0" type="radio" name="rbnborder" value="No" checked="checked" /><label for="rbnborder_0">No</label></td><td><input id="rbnborder_1" type="radio" name="rbnborder" value="Yes" onclick="javascript:setTimeout('__doPostBack(\'rbnborder$1\',\'\')', 0)" /><label for="rbnborder_1">Yes</label></td>
+			</tr>
+		</table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </center>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left" valign="middle" width="450">
+                                                                <table border="0" cellpadding="0" cellspacing="0" class="style2">
+                                                                    <tr>
+                                                                        <td align="left" valign="top">
+                                                                            <a id="LinkButton1" href="javascript:__doPostBack('LinkButton1','')" style="font-family: Calibri; font-size: 8pt; color: #FF3300">No Backgrund Color</a>
+                                                                        </td>
+                                                                        <td align="right" valign="top" width="250">
+                                                                            &nbsp;
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="left" valign="top">
+                                                                            <span id="Label2" class="style3">Background Color  Extra</span>
+                                                                            &nbsp;<span id="lblExtracost" class="style3"><font color="Red"></font></span>
+                                                                            &nbsp;
+                                                                            
+                                                                        </td>
+                                                                        <td align="right" valign="top" width="250">
+                                                                            <span id="Label5" class="style3">Border Extra</span>
+                                                                            &nbsp;<span id="lblExtrabordercost" class="style3"><font color="Red"></font></span>
+                                                                            &nbsp;
+                                                                            &nbsp;
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border-bottom: 1px solid #CCCCCC; padding-left: 15px; font-family: Calibri;
+                                                    font-size: 12pt; font-weight: 700; color: #336600;" valign="top" colspan="2"
+                                                    height="20">
+                                                    Select Dates or Offer
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top" colspan="2" style="border-bottom: 1px solid #CCCCCC;">
+                                                    <table style="width: 99%; height: auto; margin: 0 auto;">
+                                                        <tr>
+                                                            <td valign="top">
+                                                                <table id="RadioButtonList1" class="style1" border="0">
+			<tr>
+				<td><input id="RadioButtonList1_0" type="radio" name="RadioButtonList1" value="No. of Ads" checked="checked" /><label for="RadioButtonList1_0">No. of Ads</label></td><td><input id="RadioButtonList1_1" type="radio" name="RadioButtonList1" value="Offer" onclick="javascript:setTimeout('__doPostBack(\'RadioButtonList1$1\',\'\')', 0)" /><label for="RadioButtonList1_1">Offer</label></td>
+			</tr>
+		</table>
+                                                                <span style="text-align: center">
+                                                                    
+                                                                    <br />
+                                                                    
+                                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <select name="DropDownList1" onchange="javascript:setTimeout('__doPostBack(\'DropDownList1\',\'\')', 0)" id="DropDownList1">
+			<option selected="selected" value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20">20</option>
+			<option value="21">21</option>
+			<option value="22">22</option>
+			<option value="23">23</option>
+			<option value="24">24</option>
+			<option value="25">25</option>
+			<option value="26">26</option>
+			<option value="27">27</option>
+			<option value="28">28</option>
+			<option value="29">29</option>
+			<option value="30">30</option>
+
+		</select>
+                                                                </span>
+                                                                <br />
+                                                                <br />
+                                                                <table id="UpdatePanel1" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>
+			
+                                                                        <span style="font-family: Calibri">Total No. of Ads :&nbsp;&nbsp;<span id="lblnofads"><b><font color="Maroon">1</font></b></span></span><br />
+                                                                        <br />
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="btnClearSelection" value="Reset Date" id="btnClearSelection" class="style1" style="cursor: pointer" />
+                                                                    
+		</td></tr></table>
+                                                            </td>
+                                                            <td valign="top">
+                                                                <table id="updpnl" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>
+			
+                                                                        <table id="Calendar1" cellspacing="0" cellpadding="2" title="Calendar" bordercolor="White" border="0" width="170" height="155" bgcolor="#CCF0C8">
+				<tr><td colspan="7" bgcolor="#227E15"><font face="Calibri" color="Black" size="2"><b><table cellspacing="0" border="0" width="100%">
+					<tr><td valign="bottom" width="15%"><font face="Calibri" color="#F5E9CB" size="2"><b><a href="javascript:__doPostBack('Calendar1','V5295')" style="color:#F5E9CB" title="Go to the previous month">Jul</a></b></font></td><td align="center" width="70%"><font face="Calibri" color="White" size="2"><b>August 2014</b></font></td><td align="right" valign="bottom" width="15%"><font face="Calibri" color="#F5E9CB" size="2"><b><a href="javascript:__doPostBack('Calendar1','V5357')" style="color:#F5E9CB" title="Go to the next month">Sep</a></b></font></td></tr>
+				</table></b></font></td></tr><tr><th align="center" abbr="Sunday" scope="col" bgcolor="#B4C86F"><font face="Calibri" color="Black" size="1"><b>Sun</b></font></th><th align="center" abbr="Monday" scope="col" bgcolor="#B4C86F"><font face="Calibri" color="Black" size="1"><b>Mon</b></font></th><th align="center" abbr="Tuesday" scope="col" bgcolor="#B4C86F"><font face="Calibri" color="Black" size="1"><b>Tue</b></font></th><th align="center" abbr="Wednesday" scope="col" bgcolor="#B4C86F"><font face="Calibri" color="Black" size="1"><b>Wed</b></font></th><th align="center" abbr="Thursday" scope="col" bgcolor="#B4C86F"><font face="Calibri" color="Black" size="1"><b>Thu</b></font></th><th align="center" abbr="Friday" scope="col" bgcolor="#B4C86F"><font face="Calibri" color="Black" size="1"><b>Fri</b></font></th><th align="center" abbr="Saturday" scope="col" bgcolor="#B4C86F"><font face="Calibri" color="Black" size="1"><b>Sat</b></font></th></tr><tr><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>27</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>28</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>29</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>30</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>31</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>1</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>2</b></font></td></tr><tr><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>3</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>4</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>5</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>6</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>7</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>8</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>9</b></font></td></tr><tr><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>10</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>11</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>12</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>13</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>14</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>15</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>16</b></font></td></tr><tr><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>17</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>18</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>19</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>20</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>21</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>22</b></font></td><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>23</b></font></td></tr><tr><td align="center" width="14%"><font face="Calibri" color="Gray" size="2"><b>24</b></font></td><td align="center" width="14%"><font face="Calibri" color="Black" size="2"><b><a href="javascript:__doPostBack('Calendar1','5350')" style="color:Black" title="August 25">25</a></b></font></td><td align="center" width="14%"><font face="Calibri" color="Black" size="2"><b><a href="javascript:__doPostBack('Calendar1','5351')" style="color:Black" title="August 26">26</a></b></font></td><td align="center" width="14%"><font face="Calibri" color="Black" size="2"><b><a href="javascript:__doPostBack('Calendar1','5352')" style="color:Black" title="August 27">27</a></b></font></td><td align="center" width="14%"><font face="Calibri" color="Black" size="2"><b><a href="javascript:__doPostBack('Calendar1','5353')" style="color:Black" title="August 28">28</a></b></font></td><td align="center" width="14%"><font face="Calibri" color="Black" size="2"><b><a href="javascript:__doPostBack('Calendar1','5354')" style="color:Black" title="August 29">29</a></b></font></td><td align="center" width="14%"><font face="Calibri" color="Black" size="2"><b><a href="javascript:__doPostBack('Calendar1','5355')" style="color:Black" title="August 30">30</a></b></font></td></tr><tr><td align="center" width="14%"><font face="Calibri" color="Black" size="2"><b><a href="javascript:__doPostBack('Calendar1','5356')" style="color:Black" title="August 31">31</a></b></font></td><td align="center" width="14%"><font face="Calibri" color="#999999" size="2"><b><a href="javascript:__doPostBack('Calendar1','5357')" style="color:#999999" title="September 01">1</a></b></font></td><td align="center" width="14%"><font face="Calibri" color="#999999" size="2"><b><a href="javascript:__doPostBack('Calendar1','5358')" style="color:#999999" title="September 02">2</a></b></font></td><td align="center" width="14%"><font face="Calibri" color="#999999" size="2"><b><a href="javascript:__doPostBack('Calendar1','5359')" style="color:#999999" title="September 03">3</a></b></font></td><td align="center" width="14%"><font face="Calibri" color="#999999" size="2"><b><a href="javascript:__doPostBack('Calendar1','5360')" style="color:#999999" title="September 04">4</a></b></font></td><td align="center" width="14%"><font face="Calibri" color="#999999" size="2"><b><a href="javascript:__doPostBack('Calendar1','5361')" style="color:#999999" title="September 05">5</a></b></font></td><td align="center" width="14%"><font face="Calibri" color="#999999" size="2"><b><a href="javascript:__doPostBack('Calendar1','5362')" style="color:#999999" title="September 06">6</a></b></font></td></tr>
+			</table>
+                                                                        <span id="lblmsg" class="style1"><font color="Red"></font></span>
+                                                                    
+		</td></tr></table>
+                                                            </td>
+                                                            <td style="padding-left: 10px; width: 30%" valign="top">
+                                                                <table id="up1" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>
+			
+                                                                        <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>
+
+			</td></tr></table>
+                                                                        <br />
+                                                                        
+                                                                        <br />
+                                                                        
+                                                                    
+		</td></tr></table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="middle" colspan="2" align="right" class="style4">
+                                                    <table width="540" border="0" cellpadding="0" cellspacing="0" align="right">
+                                                        <tr>
+                                                            <td width="240" align="right" valign="middle" height="30">
+                                                                
+                                                            </td>
+                                                            <td width="300" align="right" valign="middle" height="30">
+                                                                <input type="submit" name="submit" value="Proceed To Checkout" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;submit&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="submit" border="4" style="font-family: Calibri; font-size: 14pt;
+                                                                    cursor: pointer;" />
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <br />
+                                        <br />
+                                        <span id="lblcostextra"><font color="White">15</font></span>
+                                        <span id="lbltcost"><font color="White">838</font></span>
+                                        <span id="lblnews"><font color="White">Amar Ujala</font></span>
+                                        <span id="lblcity"><font color="White">Agra</font></span>
+                                        <span id="lblline"><font color="White">25</font></span>
+                                        <span id="lblID"><font color="White"></font></span>
+                                        <span id="lbltotal"><font color="White">838</font></span>
+                                    
+	</td></tr></table>
+                                <br />
+                            </fieldset>
+                        
+</td></tr></table>
+                    <table id="UPG1" cellpadding="0" cellspacing="0" border="0" width="100%" style="display:none;"><tr><td>
+	
+                            <div style="top: 40%; left: 40%">
+                                <img src="images/loading.gif" /></div>
+                        
+</td></tr></table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- popup form #1 -->
+    <a href="#x" class="overlay" id="login_form"></a>
+    <div class="popup">
+        <center>
+            <table border="0" cellpadding="0" cellspacing="0" width="420">
+                <tr>
+                    <td height="50" width="420" align="center" style="border-bottom-style: dotted; border-bottom-width: 2px;
+                        border-bottom-color: #CCCCCC">
+                        <img id="imgNews" src="images/newspaper.gif" border="0" style="max-height: 30px; max-width: 130px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td height="20" width="420" align="center" style="border-bottom-style: dotted; border-bottom-width: 2px;
+                        border-bottom-color: #CCCCCC">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="210" align="left" valign="middle" height="20">
+                                    <span id="lblcategory"><b><font face="Calibri" size="2">lblcategory</font></b></span>
+                                </td>
+                                <td width="210" align="right" valign="middle" height="20">
+                                    <span id="lblsubcategory"><b><font face="Calibri" size="2">lblsubcategory</font></b></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="420" height="250" align="left" valign="top">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="120" align="left" valign="top" style="font-family: calibri; font-size: 10pt;
+                                    color: #CCCCCC">
+                                    NAIR BOY Atham<br />
+                                    29/178 BE,TL MNC
+                                    <br />
+                                    Bangalore. Parents
+                                    <br />
+                                    Chennai settled seeks
+                                    <br />
+                                    equally Qualified,<br />
+                                    Goodlooking Fair<br />
+                                    Nair Girl from<br />
+                                    Chennai, Bangalore,
+                                    <br />
+                                    North Kerala. Send
+                                    <br />
+                                    BHP to gopalakrishna
+                                    <br />
+                                    .p@gmail.com,<br />
+                                    09940671358
+                                    <br />
+                                    (Published on Dec
+                                    <br />
+                                    9, 2012)
+                                </td>
+                                <td width="10" align="left" valign="top">
+                                </td>
+                                <td width="150" align="left" valign="top" style="font-family: calibri; font-size: 10pt;
+                                    color: Black">
+                                    <table id="Panel1" class="pnl" cellpadding="0" cellspacing="0" width="100%" border="1" style="max-height: 250px"><tr><td>
+	
+                                        <div id="Div1" style="">
+                                            <table id="Panel6" cellpadding="0" cellspacing="0" border="0" width="100%" style="float: left; height: 19; width: 22"><tr><td>
+		
+                                                <img src="images/tick.png" id="img1" height="19" width="22" border="0" />
+	</td></tr></table>
+                                            <span id="lbltext" class="wrap"><b> </b></span></div>
+                                    
+</td></tr></table>
+                                </td>
+                                <td id="yourad" width="30" align="left" valign="top">
+                                </td>
+
+                                <td width="120" align="left" valign="top" style="font-family: calibri; font-size: 10pt;
+                                    color: #CCCCCC">
+                                    Documents uncovered at the Tazreen garment factory in Bangladesh where 112 workers
+                                    died in a fire two weeks ago indicate that not one but two U.S. apparel makers supplying
+                                    goods for
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="420" height="30" style="border-top-style: dotted; border-bottom-style: dotted;
+                        border-top-width: 1px; border-top-color: #CCCCCC; border-bottom-width: 1px; border-bottom-color: #CCCCCC">
+                        <span style="font-family: Calibri; font-size: 8pt; color: Gray">Note: This Ad preview
+                            shown is an indicative preview of the ad text only and will differ from the actual
+                            published advertisement </span>
+                    </td>
+                </tr>
+            </table>
+        </center>
+        
+        
+        
+        <a class="close" href="#close"></a>
+    </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.initialize();
+//]]>
+</script>
+</form>
+</body>
+
+<!-- Mirrored from www.adschela.com/Textiframe.aspx by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 21 Aug 2014 16:12:57 GMT -->
+</html>
