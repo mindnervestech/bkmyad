@@ -1,14 +1,17 @@
 @(message: String)
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="adschela" ng-controller="IndexController" >
 
 @main("") {
-	<html xmlns="http://www.w3.org/1999/xhtml" ng-app="adschela" ng-controller="IndexController" 
-	ng-include data-src="'index.html"></html>
+	@flash.get("login_error")
+	@flash.get("emailid_error")
+	
+	<input id="emailid_error" type="hidden" value="@flash.get("login_error")"></input>
+	<div  ng-include data-src="'index.html'"></div>
 }
 
-
+</html>
     
 
 

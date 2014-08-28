@@ -1,4 +1,196 @@
-<table id="ctl00_pnllogin" cellpadding="0" cellspacing="0" border="0" width="100%" style="display: none"><tr><td>
+	
+<!-- sign in popup begins -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    <div class="modal-content" style="width: 300px;">
+      <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
+        <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          </div>
+    
+      <form name="aspnetForm" method="post" action="/checkSignIn" id="aspnetForm">
+
+      <div class="modal-body">
+       <div style="margin-top: -26px; margin-right: -24px; text-align: right">
+                    <div style="color: #89BD24; font-weight: bold; font-family: Calibri; font-size: 18px;
+                    text-align: center; margin-top: -10px; margin-bottom: 10px">
+                    SignIn Form</div>
+                <fieldset class="textbox" style="padding: 5%;height: 280px;">
+                    <label>
+                        <span>Email Id</span>
+                        <input name="txtUsername" type="text" id="txtUsername" autocomplete="on" placeholder="Email Id" />
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input name="txtpwd" type="password" id="txtpwd" placeholder="Password" />
+              </label>
+                    <br />
+                    <span id="lblerror"><font color="Red"></font></span>
+                    <input type="submit" name="Button1" value="Sign in" onclick=""  class="submit button" style="cursor: pointer" />
+                    <br />
+                    <br />
+                    <a href="Forgotpassword.html"><span style="color: red; text-decoration: underline;
+                        font-size: 11px">Forgot your password?</span></a>
+                    <br />
+                    <br />
+                    <a id="sign" href="#mySignUp" data-toggle="modal" style="color: #939393;"><span style="color: red; text-decoration: underline; font-size:11px">
+                    New User Signup here</span></a>
+                </fieldset>
+            </div>
+        </div>
+
+ </form>
+      </div>
+     
+    </div>
+   
+  </div>
+
+<!--  sign in popUp  end -->
+
+
+<!-- sign up opop up begin -->
+
+
+ <div class="modal fade" id="mySignUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    <div class="modal-content" style="width: 297px;height: 450px">
+      <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
+        <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        
+      </div>
+
+<form name="signUpForm" method="post" action="/saveSignUp" id="signUpForm">
+      <div class="modal-body">
+       <div style="margin-top: -26px; margin-right: -24px; text-align: right">
+                <!--     <input type="image" name="ctl00$ibtnclose1" id="ctl00_ibtnclose1" src="images/close_pop.png" border="0" /> --></div>
+                <div style="color: #89BD24; font-weight: bold; font-family: Calibri; font-size: 18px;
+                    text-align: center; margin-top: -10px; margin-bottom: 10px">
+                    SignUp Form</div>
+                <fieldset class="textboxnew" style="padding: 5%;height: 372px;">
+                    <label>
+                        <span>Full Name</span>
+                        <input name="txtUserids" type="text" id="txtUserids" autocomplete="on" placeholder="Full Name"  required/>
+                        
+                            </label>
+                    <label>
+                        <span>Email</span>
+                        <input name="txtEmail" type="text" id="txtEmail" placeholder="Email"  required/>
+                       
+                        <span id="userEmailIdError" style="display: none;color: green;margin-left: 1%;"> Available  </span>
+                    	<span id="userEmailId" style="display: none;color: red;margin-left: 1%;"> Email Id already exists  </span>
+                   </label>
+                    <label>
+                        <span>Password</span>
+                        <input name="txtpasswords" type="password" id="txtpasswords" placeholder="Password"  required/>
+                        
+           </label>
+                    <label>
+                        <span>Confirm Password</span>
+                        <input name="txtconfirmpassword" type="password" id="txtconfirmpassword" placeholder="Confirm Password" />
+            </label>
+                    <label>
+                        <span>Mobile No</span>
+                        <input name="txtMobileno" type="text" id="txtMobileno" placeholder="Mobile No" autocomplete="on" required />
+            </label>
+                    &nbsp;<span id="ctl00_lblmsg"><font color="Red"></font></span>
+                    <br />
+                    <input type="submit" name="signupform" value="Submit"   style="cursor: pointer" />
+                </fieldset>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+  
+<!--sign up pop up ends  -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+	 jQuery.validator.addMethod("lettersonly", function(value, element){ 
+			
+		   return this.optional(element) || /^[a-z," "]+$/i.test(value);
+
+		}, "Letters and spaces only please");  
+     
+	
+  
+	
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+ $( "#aspnetForm" ).validate({
+			  
+         rules:{
+        	     txtUsername: {
+        	   		email: true,
+		         	required: true
+		  		 },
+	           },
+		messages: {
+			txtUsername: "Please enter email properly"
+		          }   
+		});
+ 
+  $( "#signUpForm" ).validate({
+	  
+     rules:{
+            
+    	 txtUserids: {
+    	 //lettersonly: true,	 
+    	 required: true
+	  		 },
+	  	 txtEmail:{
+	  		 email:true,
+	  		 required:true,
+	  		 remote: function() {  
+	         var r = {  
+	            			
+	         url: '/validateUsernameUnique',  
+	         type: "POST",  
+	         success:function(data) {
+			//alert("alert::   "+data);
+			    if(data)
+				{
+				$("#userEmailId").show();
+				$("#userEmailIdError").hide();
+				}
+				else{
+				$("#userEmailId").hide();
+				$("#userEmailIdError").show();
+					}
+	            }
+	          }   
+	         return r;  
+	              
+	        },
+
+	  	 },
+	  	 txtpasswords: {
+		 required: true
+		    },
+		 txtMobileno: {
+		 required: true,
+         digits: true 
+		       }
+           },
+	 messages: {
+		 txtUserids: "Please enter name properly",
+	     txtMobileno:"Please enter mobile in proper format" ,
+	     txtpasswords:"Please enter Password",
+	     txtEmail:"Please enter email  properly"
+	   }   
+	});
+	
+});
+</script>
+
+<!-- <table id="ctl00_pnllogin" cellpadding="0" cellspacing="0" border="0" width="100%" style="display: none"><tr><td>
 	
             <div id="login-box" class="login-popup">
                 
@@ -124,7 +316,7 @@
         
 </td></tr></table>
 
-  <!-- SuggestionsPage  -->
+  SuggestionsPage 
         <div>
 
             <div class="w2bslikebox">
@@ -199,5 +391,6 @@
                 </table>
             </div>
         </div>
-        <!-- SuggestionsPage End-->
+        SuggestionsPage End
 
+ -->
