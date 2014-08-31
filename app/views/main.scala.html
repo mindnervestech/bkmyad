@@ -6,6 +6,29 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+    google.load("language", "1");
+    /* google.load("elements", "1", {
+        packages: "transliteration"
+      });
+      google.setOnLoadCallback(function() {
+			console.log("in googleTranslate");
+	        var options = {
+	                sourceLanguage:
+	                    google.elements.transliteration.LanguageCode.ENGLISH,
+	                destinationLanguage:
+	                    [google.elements.transliteration.LanguageCode.HINDI],
+	                shortcutKey: 'ctrl+m',
+	                transliterationEnabled: true
+	            };
+	            var control = new google.elements.transliteration.TransliterationControl(options);
+
+	            control.makeTransliteratable(['transliterateTextarea']);
+		}); */
+    </script>
+    
     <!-- Le styles  -->
     <link href="newtheme/assets/css/bootstrap.css" rel="stylesheet"/>
     <link href="newtheme/assets/css/bootstrap-responsive.css" rel="stylesheet"/>
@@ -26,12 +49,31 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="newtheme/assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="newtheme/assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="newtheme/assets/ico/apple-touch-icon-57-precomposed.png">
+    
+	
+	<script src='bower_components/jquery/dist/jquery.min.js'></script>
+	<script src='bower_components/angular/angular.js'></script>
+	<script src='bower_components/angular-resource/angular-resource.js'></script>
+	<script src='bower_components/angular-route/angular-route.js'></script>
+	<script src='bower_components/ng-dialog/js/ngDialog.min.js'></script>
+	<link href="bower_components/ng-dialog/css/ngDialog.min.css" rel="stylesheet"/>
+	<link href="bower_components/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet"/>
+	
+	
+	<!--  For Wizard: Courtesy: http://code.realcrowd.com/the-wonderful-wizard-of-angularjs/ -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-rc/lib/jquery.bootstrap.wizard.js"></script>
+    <script src="bower_components/angular-rc/directives/rcSubmit.js"></script>
+    <script src="bower_components/angular-rc/modules/rcDisabled.js"></script>
+    <script src="bower_components/angular-rc/modules/rcWizard.js"></script>
+    <script src="bower_components/angular-rc/modules/rcForm.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script> 
+	<script src="bower_components/moment/moment.js"></script>
+	
+	
 
-<script src='bower_components/jquery/dist/jquery.min.js'></script>
-<script src='bower_components/angular/angular.js'></script>
-<script src='bower_components/angular-resource/angular-resource.js'></script>
-<script src='bower_components/angular-route/angular-route.js'></script>
-<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script src="assets/js/jquery.js"></script>
 	<script src="assets/js/google-code-prettify/prettify.js"></script>
     <script src="assets/js/application.js"></script>
@@ -50,6 +92,70 @@
     <script src="assets/js/bootstrap-affix.js"></script>
     <script src="assets/js/jquery.lightbox-0.5.js"></script>
 	<script src="assets/js/bootsshoptgl.js"></script>
+	<script src="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<link href="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/datepicker.css" rel="stylesheet"/>	
+	
+	<style>
+		.pillboxes {
+		display: inline;
+		margin-left: 15px;
+		cursor: pointer;
+		border: 1px solid #CCC;
+		margin: 0 10px 10px 0;
+		padding: 0;
+		float: left;
+		font: 16px Arial,Helvetica,sans-serif;
+		color: #4e4e4e;
+		font-weight: bold;
+		position: relative;
+		border-radius: 5px;
+		}
+	</style>
+	
+	<style>
+	.wizard-nav ul li.current:first-child {
+-webkit-box-shadow: inset 2px 0 4px rgba(0, 0, 0, 0.1);
+-moz-box-shadow: inset 2px 0 4px rgba(0, 0, 0, 0.1);
+box-shadow: inset 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.wizard-nav ul li:first-child.current, .wizard-nav ul li:first-child:hover.current {
+background-position: -25px top;
+}
+
+.wizard-nav ul li:first-child {
+background-position: -25px -50px;
+padding-left: 12px;
+}
+
+.wizard-nav ul li {
+float: left;
+list-style: none;
+margin: 0;
+padding: 0 25px;
+cursor: pointer;
+margin-right: -25px;
+background: url(wizard-nav.png) no-repeat left -50px;
+display: block;
+max-height: 50px;
+overflow: hidden;
+}
+
+.wizard-nav ul li a, .wizard-nav ul li span {
+display: block;
+line-height: 50px;
+text-decoration: none;
+padding: 0 16px;
+color: #444;
+}
+
+.wizard-nav ul {
+margin: 0;
+padding: 0;
+float: left;
+}
+	
+	</style>
 	
 </head>    
 @content

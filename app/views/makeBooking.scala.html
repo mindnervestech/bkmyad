@@ -1,0 +1,228 @@
+@(beData:String)
+
+
+<div class="row" ng-init='init(@Html(beData))'>
+
+
+	<div class="span9">
+    <ul class="breadcrumb">
+		<li><a href="#/home.html">Home</a> <span class="divider">/</span></li>
+		<li class="active"> Make-Booking</li>
+    </ul>
+	<hr class="soft"/>
+		
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+          <div rc-wizard="sampleWizard" rc-disabled="rc.firstForm.submitInProgress">
+            
+            <ul class="nav rc-nav-wizard">
+              <li class="active" style="float:left;">
+                <a class="active" href="#first" data-toggle="tab">
+                  <span class="badge">1</span>
+                  <span>Select Category</span>
+                </a>
+              </li>
+              <li style="float:left;">
+                <a href="#second" data-toggle="tab">
+                  <span class="badge">2</span>
+                  <span>Pick Your Package</span>
+                </a>
+              </li>
+              <li style="float:left;">
+                <a href="#last" data-toggle="tab">
+                  <span class="badge">3</span>
+                  <span>Ads Summary</span>
+                </a>
+              </li>
+            </ul>
+            
+            <div class="tab-content">
+              
+              <form class="tab-pane active" id="first" name="firstForm" 
+                     rc-step novalidate>
+                     
+                <div class="tab-pane active" id="blockView">
+				<ul class="thumbnails">
+					<li ng-repeat="cat in bookingRequest.categories" class="span3">
+					  <div class="thumbnail">
+						<a  ng-click="onCatSelected(cat)">
+						<img style="max-width: 35%;" class="img-circle img-thumbnail" src="Category/{{cat}}.jpg" alt=""></a>
+						<div class="caption">
+						  <p> 
+							{{cat}} 
+						  </p>
+						  
+						</div>
+					  </div>
+					</li>
+			     </ul>
+				<hr class="soft">
+				</div>
+              </form>
+              
+              
+              <form class="tab-pane" id="second" name="secondForm"  rc-step>
+                	
+                <tabset>
+			    <tab heading="Select Your Newspaper">
+			    	<select ng-model="bookingState.selectedNewsPaper" ng-change="onNewspaperSelect()">
+			    		<option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option>
+			    		<option value="">--Please Select Newspaper--</option>
+			    	</select>
+			    	<div class="well">
+			    	
+			    	  <tabset>
+			    	   <tab heading="Basic Rate">
+			    		<ul ng-show="rates.length > 0" >
+			    			<li ng-repeat="rate in rates" class="pillboxes">
+			    				<div  style="padding: 8px;">
+			    					 <span >
+        								<input ng-click="rateClicked($event,rate)" style="margin: 1px"  type="checkbox">
+     								 </span>
+     								 <span>{{rate.location}} - Rs {{rate.rate}} /
+			    					{{rate.unit}} </span>
+			    				</div>	
+			    				
+			    			</li>
+			    		</ul>
+			    		<div ng-show="rates.length == 0" class="alert alert-block">
+			    			No Rates Available !
+			    		</div>
+			    	   </tab>
+			    	   <tab heading="Discounted Rate">
+			    		<ul ng-show="drates.length > 0">
+			    			<li ng-repeat="rate in drates" class="pillboxes">
+			    				<div  style="padding: 8px;">
+			    					 <span >
+        								<input style="margin: 1px" ng-model="rate.selected" type="checkbox">
+     								 </span>
+     								 <span>{{rate.city}} - Rs {{rate.amount}} /
+			    					{{rate.unit}} </span>
+			    				</div>	
+			    				
+			    			</li>
+			    		</ul>
+			    		<div ng-show="drates.length == 0" class="alert alert-block">
+			    			No Rates Available !
+			    		</div>
+			    	   </tab>
+			    	  </tabset>
+			    	</div>
+			    	
+			    </tab>
+			    <tab heading="Target by specific City">
+			    	<select ng-model="bookingState.selectedState" ng-change="onStateSelect()">
+			    		<option ng-repeat="state in bookingRequest.states" value="{{state}}">{{state}}</option>
+			    		<option value="">--Please Select State--</option>
+			    	</select>
+			    	<select ng-model="bookingState.selectedCity" ng-change="onCitySelect()">
+			    		<option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+			    		<option value="">--Please Select City--</option>
+			    	</select>
+			    	<img src="http://www.releasemyad.com/images/bg-select-state.gif" alt="">
+			    	
+			    </tab>
+			    
+			  </tabset>
+              </form>
+              <form class="tab-pane" id="last" name="lastForm" rc-submit="completeWizard()" rc-step>
+                <h2>Compose Your Ad</h2>
+                <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>City/Newspaper</th>
+                  <th>Description</th>
+                  <th>To Be Published On</th>
+                  <th>Compose/Update</th>
+				  <th>Price/Unit</th>
+                  <th>Total</th>
+				</tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="c in carts">
+                  <td>{{c.mainCategoty}}</td>
+                  <td>{{c.location}} - {{c.newspaper}}</td>
+                  <td ng-bind="c.description == '' ? 'Not Set' : c.description"></td>
+                  <td>{{c.dates}}</td>
+                  <td><button ng-click='composeAd(c)'>Compose</button></td>
+                  <td>{{c.rate}} / {{c.unitVal}} {{c.unit}}</td>
+                  <td>{{c.total}}</td>
+                </tr>
+				
+				</tbody>
+            </table>
+              </form>
+            </div>
+            <div class="form-group">
+              <div class="pull-right">
+                <a class="btn btn-default" ng-click="rc.sampleWizard.backward()"
+                   ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
+                <a class="btn btn-primary" data-loading-text="Please Wait..." ng-click="rc.sampleWizard.forward()" 
+                   ng-show="rc.sampleWizard.currentIndex < rc.sampleWizard.navigationLength">Continue</a>
+                <a class="btn btn-primary" ng-click="rc.sampleWizard.forward()" 
+                   ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength">Complete</a>
+              </div>
+            </div>
+          </div>
+         </div>
+  	
+            
+					
+	
+	</div>
+	<div ng-include data-src="'sidebar.html'" class="span3">
+	
+	</div>
+</div>
+
+<script type="text/ng-template" id="composeAd"> 
+	<div rc-wizard="composeAdWizard" rc-disabled="rc.firstForm.submitInProgress">
+    	<ul class="nav rc-nav-wizard">
+              <li class="active" style="float:left;">
+                <a class="active" href="#composeText" data-toggle="tab">
+                  <span class="badge">1</span>
+                  <span>Compose Text</span>
+                </a>
+              </li>
+              <li style="float:left;">
+                <a href="#pickToppings" data-toggle="tab">
+                  <span class="badge">2</span>
+                  <span>Pick Toppings</span>
+                </a>
+              </li>
+              <li style="float:left;">
+                <a href="#chooseDates" data-toggle="tab">
+                  <span class="badge">3</span>
+                  <span>Choose Date</span>
+                </a>
+              </li>
+         </ul>
+		<div class="tab-content">
+              
+              <form class="tab-pane active" id="composeText"  
+                     rc-step novalidate>
+                <div class="tab-pane active" id="blockView">
+                	 
+                </div>
+              </form>
+              
+              <form class="tab-pane active" id="pickToppings"  
+                     rc-step novalidate>
+                <div class="tab-pane">
+                </div>
+              </form>
+              
+              <form class="tab-pane active" id="chooseDates"  
+                     rc-step novalidate>
+                <div class="tab-pane">
+                </div>
+              </form>
+         </div>       
+				
+    </div>      
+</script>
+ 
+
+
+
+

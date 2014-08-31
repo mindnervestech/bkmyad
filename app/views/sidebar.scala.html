@@ -1,33 +1,22 @@
 @(beData:String)
 
-<div  id="sidebar" class="span3">	
-	<ul  ng-init='init(@Html(beData))' class="nav nav-list bs-docs-sidenav" style="display: block;" ng-controller="SidebarController">											
-		<li class="subMenu"><a> Text Classified Ad - By Newspaper</a>
-			<ul>
-				<li ng-repeat="np in sideRequest.newspapers"><a href="products.html">{{np}}</a></li>
-			</ul>
-		</li>
-		<li class="subMenu"><a> Text Classified Ad - Location </a>
-			<ul>
-				<li ng-repeat="l in sideRequest.locations"><a href="products.html">{{l}}</a></li>
-			</ul>
-		</li>
-		
+<div  id="sidebar">	
+	<ul class="nav nav-list bs-docs-sidenav" style="display: block;" ng-controller="SidebarController">											
 		<li style="border:0"> &nbsp;</li>						
-		<li> <a href="product_summary.html"><strong>{{sideRequest.cartItems.length}} Ads in your cart  <span class="badge badge-warning pull-right" style="line-height:18px;">{{sideRequest.cartAmount}}</span></strong></a></li>
+		<li> <a href="product_summary.html"><strong>{{carts.length}} Ads in your cart  <span class="badge badge-warning pull-right" style="line-height:18px;"></span></strong></a></li>
 		<li style="border:0"> &nbsp;</li>	
-		<li ng-repeat="cartItem in sideRequest.cartItems">
-		  <div class="thumbnail">
-			<div class="caption">
-			  <h5>{{cartItem.type}}</h5>
-			  <p> 
-				{{cartItem.description}} 
-			  </p>
-			  <h4><a class="btn" href="product_details.html">VIEW</a> 
-			  	<span class="pull-right">Rs. {{cartItem.amount}}</span>
-			  </h4>
-			</div>
-		  </div>
+		<li ng-repeat="cart in carts">
+		  <div class="btn-group">
+  			<button ng-click="updateCartItem(cart)" style="height: 50px;max-width: 85%;min-width: 85%;" 
+  			     ng-class="cart.total == 0 ? 'btn btn-warning btn-large' : 'btn btn-success btn-large'">
+  				<p style="margin:0px; font-size: 13px;">{{cart.newspaper}} - {{cart.location}}</p>
+  				<p ng-show="cart.total == 0" style="margin:0px; font-size: 11px;">(Rs {{cart.rate}} on {{cart.freeUnit}}, Rs {{cart.extra}} extra per {{cart.unitVal}} {{cart.unit}})</p>
+  				<p ng-show="cart.total != 0" style="margin:0px; font-size: 11px;">(Total: Rs {{cart.total}})</p>
+  			</button>
+  			<button ng-click="removeFromCart(cart)"style="height: 50px;" class="btn btn-danger btn-large">
+  				<span><i class="icon-remove"></i></span>
+  			</button>
+  		</div>
 		</li>
 		 
 	  </ul>

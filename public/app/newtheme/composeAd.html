@@ -1,0 +1,189 @@
+<div rc-wizard="composeWizard" rc-disabled="rc.firstForm.submitInProgress">
+	<ul class="nav rc-nav-wizard">
+              <li class="active" style="float:left;">
+                <a class="active" href="#select-text" data-toggle="tab">
+                  <span class="badge">1</span>
+                  <span>Select Text</span>
+                </a>
+              </li>
+              <li style="float:left;">
+                <a href="#extra-toping" data-toggle="tab">
+                  <span class="badge">2</span>
+                  <span>Extra Toping</span>
+                </a>
+              </li>
+              <li style="float:left;">
+                <a href="#select-date" data-toggle="tab">
+                  <span class="badge">3</span>
+                  <span>Select Date</span>
+                </a>
+              </li>
+            </ul>
+            <div class="tab-content" style="height:307px;">
+              
+              <form class="tab-pane active" id="select-text" name="select-textForm" 
+                     rc-step novalidate>
+                	<div class="row">
+						<div class="span3">
+							<label>Type in content in English</label>
+							<textarea ng-google-transliterate on-translation-done="transliterateDone(data)" 	
+							ng-model="selectedCartItemOnPopUp.description" rows="10" cols=""></textarea> 
+						</div>
+						
+						<div  class="span3">
+							<input ng-model="selectedCartItemOnPopUp.isHindi" style="float:left" type="checkbox"> <label> Content in Hindi</label>
+							<textarea disabled="disabled" id="transliterateTextarea" rows="10" cols="" ></textarea>
+						</div>
+					
+					</div>
+              </form>
+              
+              <form class="tab-pane" id="extra-toping" name="extra-topingForm" 
+                     rc-step novalidate>
+                      
+                    <table width="450" border="0" cellpadding="0" cellspacing="0">
+                                                        <tbody><tr>
+                                                            <td align="left" valign="middle" width="450">
+                                                                <div style="width: 200px; height: 70px; float: left; margin: 5px auto; border-radius: 7px;
+                                                                    border: Solid 1px #EBDBAA; background-color: #F0F0F0">
+                                                                    <center>
+                                                                        <table width="180" border="0" cellpadding="0" cellspacing="0">
+                                                                            <tbody><tr>
+                                                                                <td width="180" height="20" style="border-bottom: 5px double #666666; font-size: 10pt;
+                                                                                    font-family: Calibri;">
+                                                                                    Select Ad Background Color
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td width="180" style="height: 20px;" align="left" valign="top">
+                                                                                    <table border="0" cellpadding="0" cellspacing="0" width="180">
+                                                                                        <tbody><tr>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbnn" type="radio" name="a" value="rbnn" onclick="javascript:setTimeout('__doPostBack(\'rbnn\',\'\')', 0)"></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbny" type="radio" name="a" value="rbny" onclick="javascript:setTimeout('__doPostBack(\'rbny\',\'\')', 0)"></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbnp" type="radio" name="a" value="rbnp" onclick="javascript:setTimeout('__doPostBack(\'rbnp\',\'\')', 0)"></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbng" type="radio" name="a" value="rbng" onclick="javascript:setTimeout('__doPostBack(\'rbng\',\'\')', 0)"></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbns" type="radio" name="a" value="rbns" onclick="javascript:setTimeout('__doPostBack(\'rbns\',\'\')', 0)"></span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <div id="Panel5" style="background-color:LemonChiffon;height:15px;width:15px;">
+			
+                                                                                                
+		</div>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <div id="pnl1" style="background-color:Gold;height:15px;width:15px;">
+			
+                                                                                                
+		</div>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <div id="Panel2" style="background-color:LightPink;height:15px;width:15px;">
+			
+                                                                                                
+		</div>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <div id="Panel3" style="background-color:DarkKhaki;height:15px;width:15px;">
+			
+                                                                                                
+		</div>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <div id="Panel4" style="background-color:LightSteelBlue;height:15px;width:15px;">
+			
+                                                                                                
+		</div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody></table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody></table>
+                                                                    </center>
+                                                                </div>
+                                                                <div style="width: 200px; height: 70px; float: right; padding-right: 10px; margin: 5px auto;
+                                                                    border-radius: 7px; border: Solid 1px #EBDBAA; background-color: #F0F0F0">
+                                                                    <center>
+                                                                        <table width="140" border="0" cellpadding="0" cellspacing="0">
+                                                                            <tbody><tr>
+                                                                                <td width="140" height="20" style="border-bottom: 5px double #666666; font-size: 9pt;
+                                                                                    font-family: Calibri;">
+                                                                                    Ad Border
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td width="140" height="20">
+                                                                                    <table id="rbnborder" border="0" style="font-family: Calibri; font-size: 9pt">
+			<tbody><tr>
+				<td><input id="rbnborder_0" type="radio" name="rbnborder" value="No" checked="checked"><label for="rbnborder_0">No</label></td><td><input id="rbnborder_1" type="radio" name="rbnborder" value="Yes" onclick="javascript:setTimeout('__doPostBack(\'rbnborder$1\',\'\')', 0)"><label for="rbnborder_1">Yes</label></td>
+			</tr>
+		</tbody></table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody></table>
+                                                                    </center>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left" valign="middle" width="450">
+                                                                <table border="0" cellpadding="0" cellspacing="0" class="style2">
+                                                                    <tbody><tr>
+                                                                        <td align="left" valign="top">
+                                                                            <a id="LinkButton1" href="javascript:__doPostBack('LinkButton1','')" style="font-family: Calibri; font-size: 8pt; color: #FF3300">No Backgrund Color</a>
+                                                                        </td>
+                                                                        <td align="right" valign="top" width="250">
+                                                                            &nbsp;
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="left" valign="top">
+                                                                            <span id="Label2" class="style3">Background Color  Extra</span>
+                                                                            &nbsp;<span id="lblExtracost" class="style3" style="color:Red;"></span>
+                                                                            &nbsp;
+                                                                            
+                                                                        </td>
+                                                                        <td align="right" valign="top" width="250">
+                                                                            <span id="Label5" class="style3">Border Extra</span>
+                                                                            &nbsp;<span id="lblExtrabordercost" class="style3" style="color:Red;"></span>
+                                                                            &nbsp;
+                                                                            &nbsp;
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody></table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody></table>
+                      
+              </form>
+              
+              <form class="tab-pane" id="select-date" name="select-dateForm" 
+                     rc-step novalidate>
+                      <img src="http://www.releasemyad.com/images/small_straight_arrow.png" id="CatIdImg1" style="vertical-align:middle;" border="0">
+                      <div id="_datepicker"></div>
+              </form>
+            </div>  
+            <div class="form-group">
+              <div class="pull-right">
+                <a class="btn btn-default" ng-click="rc.composeWizard.backward()"
+                   ng-show="rc.composeWizard.currentIndex > rc.composeWizard.firstIndex">Back</a>
+                <a class="btn btn-primary" data-loading-text="Please Wait..." ng-click="onComposeAdStepChange()" 
+                   ng-show="rc.composeWizard.currentIndex < rc.composeWizard.navigationLength">Continue</a>
+                <a class="btn btn-primary" ng-click="onComposeAdDone()" 
+                   ng-show="rc.composeWizard.currentIndex == rc.composeWizard.navigationLength">Complete</a>
+              </div>
+            </div>  
+</div>
+ 
+ 

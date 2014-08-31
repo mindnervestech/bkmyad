@@ -6,7 +6,7 @@ a, a:hover{color:#444;}
 #header a{text-decoration:none; color:#444;}
 #logoM{float:left;}
 .thumbnail img{ max-width:100%}
-.thumbnail:hover{ -webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0; border:1px solid #eee}
+.thumbnail:hover{border: 1px solid #ADA8D1; background: #ADA8D1; -webkit-border-radius: 0;-moz-border-radius: 0;border-radius: 0; }
 .thumbnail h4{line-height:42px}
 hr.soften {margin: 8px 0 4px; background:#ddd;}
 /* Fade in fade out transition  */

@@ -8,6 +8,8 @@ GET 	/home.html							controllers.Application.home()
 GET     /Booknewspaperaddonlinee43a.html    controllers.Application.Booknewspaperaddonlinee43a()
 GET 	/textClassifiedController.html		controllers.TextClassifiedController.index()
 GET		/sidebar.html						controllers.SideBarController.index()
+GET		/make-booking.html					controllers.MakeBookingController.index()
+GET		/getRatesByNewspaper				controllers.MakeBookingController.getRatesByNewspaper()
 
 # Map static resources from the /public folder to the /assets URL path
 GET /css/*file               controllers.Assets.at(path="/public/app/css", file)
