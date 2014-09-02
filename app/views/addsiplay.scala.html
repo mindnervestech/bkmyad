@@ -1,0 +1,388 @@
+
+@(dispadData:String)
+
+<div class="row" ng-init='init(@Html(dispadData))'>
+
+ <div class="banner">
+ <table id="ctl00_ContentPlaceHolder1_UpdatePanel1" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>
+	
+    <div style="width: 1000px; margin: 0px auto; border: Solid 1px #EBDBAA;
+        background-color: #FFFFFF; font-family: Calibri">
+        <div style="height: 4px; background-color: White; margin-top: 5px">
+        </div>
+        <h1 style="margin: 0; padding: 0; color: #246EB5">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fill Details for Your Display Ad</h1>
+        <hr />
+        <div style="min-height: 300px; width: 95%; margin: auto; text-align: justify; font-size: 16px;
+            line-height: 25px;">
+            
+         <form name="dispAddDetails" method="post" action="/savedispAddDetails" id="dispAddDetails" enctype = "multipart/form-data">
+            
+            <table style="border: 1px solid #e6e6e6; border-radius: 7px; font-family: Calibri;
+                font-size: 15px">
+                <tr>
+                    <td id="front">
+                        <b>To book your Color/ Black &amp; White Display Ads, please specify details below and
+                            submit.</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="form">
+                        <table>
+                            <tr>
+                                <td class="fields" valign="top">
+                                    Ad Category
+                                </td>
+                                <td valign="top">
+                                    
+                                </td>
+                                <td class="input" style="width: 289px" valign="top">
+                                <select name="subCatId" id="subCatId" style="width: 250px;"  ng-model="catagoryName" ng-options="cat.cname as cat.cname for cat in resultCategory">
+		<option value="">Select category</option>
+		
+		<!-- <option value="Antiques and Collectibles">Antiques and Collectibles</option>
+		<option value="Astrology">Astrology</option>
+		<option value="Barter">Barter</option>
+		<option value="Books">Books</option>
+		<option value="Business opportunities">Business opportunities</option>
+		<option value="Computers">Computers</option>
+		<option value="Domain Names">Domain Names</option>
+		<option value="Education">Education</option>
+		<option value="Entertainment and Events">Entertainment and Events</option>
+		<option value="Health and Sports">Health and Sports</option>
+		<option value="Hobbies and interest">Hobbies and interest</option>
+		<option value="Jewellery and watches">Jewellery and watches</option>
+		<option value="Legal Notice">Legal Notice</option>
+		<option value="Matrimonial">Matrimonial</option>
+		<option value="Miscellaneous">Miscellaneous</option>
+		<option value="Music">Music</option>
+		<option value="Obituary">Obituary</option>
+		<option value="Others">Others</option>
+		<option value="Personal Services">Personal Services</option>
+		<option value="Pets and animals">Pets and animals</option>
+		<option value="Property">Property</option>
+		<option value="Public Notices and Tenders">Public Notices and Tenders</option>
+		<option value="Real Estate">Real Estate</option>
+		<option value="Recruitment">Recruitment</option>
+		<option value="Remembrance">Remembrance</option>
+		<option value="Retail">Retail</option>
+		<option value="Sales and Bargains">Sales and Bargains</option>
+		<option value="Services">Services</option>
+		<option value="Travels">Travels</option>
+		<option value="Vehicles">Vehicles</option>
+
+ -->	</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fields" valign="top">
+                                    Specify Newspaper
+                                </td>
+                                <td valign="top">
+                                    :
+                                </td>
+                                <td class="input" style="width: 289px" valign="top">
+                                    <select name="ddlnewspaper" id="ddlnewspaper" style="width: 250px;" >
+		<option ng-repeat="scat in resultNewspaperCategory">{{scat}}</option>
+		<!-- <option value="Amar Ujala">Amar Ujala</option>
+		<option value="Arunachal Times">Arunachal Times</option>
+		<option value="Daily Thanthi">Daily Thanthi</option>
+		<option value="Dainik Bhaskar">Dainik Bhaskar</option>
+		<option value="Dainik Jagran">Dainik Jagran</option>
+		<option value="Deccan Herald">Deccan Herald</option>
+		<option value="Dharitri">Dharitri</option>
+		<option value="Dinakaran">Dinakaran</option>
+		<option value="Divya Himachal">Divya Himachal</option>
+		<option value="Divya Marathi">Divya Marathi</option>
+		<option value="Economic Times">Economic Times</option>
+		<option value="Ei-Samay">Ei-Samay</option>
+		<option value="Hindustan">Hindustan</option>
+		<option value="Hindustan Times">Hindustan Times</option>
+		<option value="Inquilab">Inquilab</option>
+		<option value="Maharashtra Times">Maharashtra Times</option>
+		<option value="Malayala Manorama">Malayala Manorama</option>
+		<option value="Mathrubhumi">Mathrubhumi</option>
+		<option value="Mid-day">Mid-day</option>
+		<option value="Mirror">Mirror</option>
+		<option value="Nava Bharat">Nava Bharat</option>
+		<option value="Navbharat Times">Navbharat Times</option>
+		<option value="Prajavani">Prajavani</option>
+		<option value="Punjab Kesri">Punjab Kesri</option>
+		<option value="Punya Nagari">Punya Nagari</option>
+		<option value="Rajasthan Patrika">Rajasthan Patrika</option>
+		<option value="Rashtriya Sahara">Rashtriya Sahara</option>
+		<option value="Sandhya Times">Sandhya Times</option>
+		<option value="The Hindu">The Hindu</option>
+		<option value="Times of India">Times of India</option>
+		<option value="Udayavani">Udayavani</option>
+		<option value="Vijay Karnataka">Vijay Karnataka</option>
+ -->
+	</select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fields" valign="top">
+                                    Release Date(s)
+                                </td>
+                                <td valign="top">
+                                    :
+                                </td>
+                                <td class="input" style="width: 289px; font-size: 9pt; line-height: normal; word-spacing: normal"
+                                    valign="top">
+                                    <input name="Datetxt" type="text" id="Datetxt" border="1" />
+                                    <br />
+                                    Enter Dates with (yyyy-MM-dd) format Only
+                                    <br />
+                                    eg. 2013-04-15 seperated by comma
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="fields" valign="top">
+                                    Expected Size
+                                </td>
+                                <td valign="top">
+                                    :
+                                </td>
+                                <td class="input" style="width: 289px" valign="top">
+                                    <input name="sizetxt" type="text" id="sizetxt" border="1" />
+                                    <span class="style8">(H*W)</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fields" valign="top">
+                                    Budget
+                                </td>
+                                <td valign="top">
+                                    :
+                                </td>
+                                <td class="input" style="width: 289px" valign="top">
+                                    <input name="budgettxt" type="text" id="budgettxt" border="1" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fields" valign="top">
+                                    Ad Matter
+                                </td>
+                                <td valign="top">
+                                    :
+                                </td>
+                                <td class="input" style="width: 289px" valign="top">
+                                    <textarea name="mattertxt" rows="2" cols="20" id="mattertxt"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fields" valign="top">
+                                    <span class="red-text" style="color: #FF0000">*</span><span class="red-text"> </span>
+                                    Special Instruction
+                                </td>
+                                <td valign="top">
+                                    :
+                                </td>
+                                <td class="input" style="width: 289px" valign="top">
+                                    <textarea name="instructiontxt" rows="2" cols="20" id="instructiontxt"></textarea>
+                                    <br />
+                                    &nbsp;
+                                     </td>
+                            </tr>
+                            <tr>
+                                <td class="fields" valign="top">
+                                    <span class="red-text" style="color: #FF0000">*</span><span class="red-text"> </span>
+                                    Name
+                                </td>
+                                <td valign="top">
+                                    :
+                                </td>
+                                <td class="input" style="width: 289px" valign="top">
+                                    <input name="nametxt" type="text" id="nametxt" border="1" />
+                                    <br />
+                                    &nbsp;
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td class="fields" valign="top">
+                                    <span class="red-text" style="color: #FF0000">*</span><span class="red-text"> </span>
+                                    Email
+                                </td>
+                                <td valign="top">
+                                    :
+                                </td>
+                                <td class="input" style="width: 289px" valign="top">
+                                    <input name="emailtxt" type="text" id="emailtxt" border="1" />
+                                    <br />
+                                    &nbsp;
+                                  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fields" valign="top">
+                                    Telephone Number
+                                </td>
+                                <td valign="top">
+                                    :
+                                </td>
+                                <td class="input" style="width: 289px" valign="top">
+                                    <input name="telstdtxt" type="text" id="telstdtxt" border="1" />&nbsp;&nbsp;
+                                    <input name="telnotxt" type="text" id="telnotxt" border="1" />
+                                    <div>
+                                        STD code &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fields" valign="top">
+                                    <span class="red-text" style="color: #FF0000">*</span><span class="red-text"> </span>
+                                    Mobile Number
+                                </td>
+                                <td valign="top">
+                                    :
+                                </td>
+                                <td class="input" style="width: 289px" valign="top">
+                                    <input name="mobtxt" type="text" maxlength="10" id="mobtxt" border="1" />
+                                    <br />
+                                    &nbsp;
+                                          </td>
+                            </tr>
+                            <tr>
+                                <td class="fields" valign="top">
+                                    Upload Ad Document
+                                </td>
+                                <td valign="top">
+                                    :
+                                </td>
+                                
+                                <td class="input" style="width: 289px" valign="top">
+                                    
+                                    <input type="file" name="fupfile" id="fupfile" border="1" />
+                              
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    <p class="style6" style="text-align: right; clear: both;">
+                                        <span class="red-text" style="color: #FF0000">* </span><span style="color: #FF0000">
+                                            Mandatory Fields</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    <input type="submit" name="submit" value="Submit"  style="border-radius: 5px; border: Double 3px Gray;
+                                        font-weight: bold; color: Red; cursor: pointer" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                   
+                   
+                    <td id="add" valign="top">
+                        <div style="height: 630px">
+                            <div style="border: 1px solid #f1e1a8; border-radius: 6px; width: 327px; padding: 10px;">
+                                <div style="font-size: 18px; color: #796933; font-family: Georgia, 'Times New Roman', Times, serif;
+                                    margin: 0 0 0 20px; width: 307px;">
+                                    Also get your <b style="color: #000000; font-size: 20px;">creative made free</b>
+                                    <br />
+                                    <span style="padding: 0 0 0 100px;">for your <b style="font-size: 20px; color: #000000">
+                                        Display Ad</b></span></div>
+                                <img src="images/Online-Classified-Ads-alexsl1.png" alt="Display Ad" style="margin: 40px 0 0 0;
+                                    width: 331px;" /><br />
+                                <div style="padding-top: 10px; width: 300px; margin: 0 0 0 15px;">
+                                    <span style="font: bold 22px trebuchet ms;">Display Ad</span> <span style="font: 12px Arial;">
+                                        available for <b>The Times of India Group, Eenadu , Dehradun Classified, Sandesh, The
+                                            Lokmat Group</b> newspapers only</span><br />
+                                    <div style="font: 14px Arial; color: #707070; padding: 10px 0 0 20px;">
+                                        How display ad is different from other classified ads?</div>
+                                    <div style="font-size: 12px; padding: 2px 0 5px 20px; line-height: 22px;">
+                                        <img src="images/blk_arrow.gif" align="absmiddle" vspace="4" />
+                                        &nbsp;A multi-column print ad for full page, half page, quarter page or other custom
+                                        sizes.<br />
+                                        <img src="images/blk_arrow.gif" align="absmiddle" vspace="4" />
+                                        &nbsp;It supports high resolution creative in colored / black &amp; white format.<br />
+                                        <img src="images/blk_arrow.gif" align="absmiddle" vspace="4" />
+                                        &nbsp;Higher visiblity / enhanced response.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            </form>
+        </div>
+        <div style="height: 4px; background-color: White; margin-bottom: 5px">
+        </div>
+    </div>
+  
+</td></tr></table>
+
+            </div>
+    
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	  jQuery.validator.addMethod("lettersonly", function(value, element){ 
+			
+		   return this.optional(element) || /^[a-z," "]+$/i.test(value);
+
+		}, "Letters and spaces only please");  
+   
+$("#dispAddDetails").validate({
+	  
+     rules:{
+            
+    	 nametxt: {
+    	 lettersonly: true,	 
+    	 required: true
+	  	 },
+	  	 emailtxt:{
+	     email:true,
+	     required:true
+	  	 },
+	  	 instructiontxt: {
+	  	 lettersonly: true,	
+		 required: true
+		 },
+		 sizetxt: {
+		 digits: true 
+		 },
+		 budgettxt:{
+		 digits: true 
+		 },
+		 mattertxt:{
+	    lettersonly: true 
+		 },
+		 telstdtxt: {
+		 digits: true 
+		 },
+		 telnotxt:{
+		 digits: true 
+		 },
+		 mobtxt: {
+		 required: true,
+		 digits: true 
+				}
+           },
+	 messages: {
+		 nametxt: "Please enter name properly",
+		 mobtxt:"Please enter mobile in proper format" ,
+		 instructiontxt:"Please enter instruction text properly",
+	     emailtxt:"Please enter email  properly",
+	     sizetxt:"Enter the size properly",
+	     budgettxt:"Enter the ad budget text properly",
+	     mattertxt:"Enter ad matter text properly",
+	     telstdtxt:"Enter telephone pincode properly ",
+	     telnotxt:"Enter telephone number properly"
+	     
+	   }   
+	});
+	
+});
+</script>
+

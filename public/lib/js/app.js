@@ -15,6 +15,67 @@ angular.module('adschela',
                         	        templateUrl: 'make-booking.html',
                         	        controller: 'MakeBookingController'
                         	      })
+                        	      .when('/aboutUs', {
+                        	        templateUrl: 'AboutUs1.html',
+                        	        controller: 'AboutUsController'
+                        	      })
+                        	      .when('/contactUs', {
+                        	        templateUrl: 'Contact.html',
+                        	        controller: 'ContactUsController'
+                        	      })
+                        	        .when('/ourClient', {
+                        	        templateUrl: 'OurClients.html',
+                        	        controller: 'OurClientController'
+                        	      })
+                        	        
+                        	        .when('/ourServices', {
+                        	        templateUrl: '/',
+                        	        controller: 'OurServicesController'
+                        	      })
+                        	      .when('/ourBlogs', {
+                        	        templateUrl: 'Blog.html',
+                        	        controller: 'BlogController'
+                        	      })
+                        	      
+                        	    
+                        	        .when('/termsAndConditions', {
+                        	        templateUrl: 'TermsandConditions.html',
+                        	         controller: 'TermsandConditionsController'
+                        	      })
+                        	        .when('/privacyPolicy', {
+                        	        templateUrl: 'PrivacyPolicy.html',
+                        	       controller: 'PrivacyPolicyController'
+                        	      })
+                        	        .when('/paymentGateway', {
+                        	        templateUrl: 'Paymentoption.html',
+                        	        controller: 'PaymentoptionController'
+                        	      })
+                        	        .when('/deClaimer', {
+                        	        templateUrl: 'Disclaimer.html',
+                        	        controller: 'DisclaimerController'
+                        	      })
+                        	        .when('/help', {
+                        	        templateUrl: 'Help.html',
+                        	        controller: 'HelpController'
+                        	      })
+                        	        .when('/dispAds', {
+                        	        templateUrl: 'addisplay.html',
+                        	        controller: 'AddisplayController'
+                        	      })
+                        	        .when('/affilatedLogin', {
+                        	        templateUrl: 'Affiliatedlogin.html',
+                        	        controller: 'AffiliatedloginController'
+                        	      })
+                        	      .when('/readENewspaper', {
+                          	        templateUrl: 'E-NewsPaper.html',
+                          	        controller: 'ENewsPaperController'
+                          	      })
+                          	       .when('/dispClassified', {
+                          	        templateUrl: 'dispFrame.html',
+                          	        controller: 'dispclassifiedcontroller'
+                          	      })
+                          	      
+                        	      
                         	}).directive('ngGoogleTransliterate',['$window','$parse', function ($window,$parse) {
     
 						    	return {

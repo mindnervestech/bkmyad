@@ -5,10 +5,10 @@
 
 @main("") {
 	<body>
-			  <div class="navbar navbar-fixed-top">
+			  <div class="navbar navbar-fixed-top" style="width: 85%;margin-left: 7%;">
               <div class="navbar-inner">
                 <div class="container">
-                 <a id="logoM" href="index.html"><img src="assets/img/logo.png" alt="Bootsshop"/></a>
+                 <a id="logoM" href="index.html"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
 					<a data-target="#sidebar" data-toggle="collapse" class="btn btn-navbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -16,49 +16,39 @@
                   </a>
                   <div class="nav-collapse">
                     <ul class="nav">
-					  <li class=""><a href="index.html">Home	</a></li>
-					  <li class=""><a href="special_offer.html">Specials Offer</a></li>
-					  <li class=""><a href="normal.html">Delivery</a></li>
-					  <li class=""><a href="contact.html">Contact</a></li>
-					</ul>
-                    <form action="#" class="navbar-search pull-left">
+					  <li class=""><a href="#">Home	</a></li>
+					 <!--  <li class=""><a href="special_offer.html">Specials Offer</a></li> -->
+					  <li class=""><a href="#/aboutUs">About Us</a></li>
+					  <li class=""><a href="#/contactUs">Contact Us</a></li>
+					
+                    <!-- <form action="#" class="navbar-search pull-left">
                      <input id="srchFld" type="text" placeholder="I'm looking for ..." class="search-query span5"/>
-                    </form>
-                    <ul class="nav pull-right">
-					<li class="dropdown">
-						<a data-toggle="dropdown" class="dropdown-toggle" href="#">Login <b class="caret"></b></a>
-						<div class="dropdown-menu">
-						<form class="form-horizontal loginFrm">
-						  <div class="control-group">								
-							<input type="text" class="span2" id="inputEmail" placeholder="Email">
-						  </div>
-						  <div class="control-group">
-							<input type="password" class="span2" id="inputPassword" placeholder="Password">
-						  </div>
-						  <div class="control-group">
-							<label class="checkbox">
-							<input type="checkbox"> Remember me
-							</label>
-							<button type="submit" class="btn btn-block">Sign in</button>
-						  </div>
-						</form>					
-						</div>
+                    </form> -->
+                   
+					<li >
+						<a   href="#myModal" data-toggle="modal" >Login </a>
+						
+					</li>
+					<li >
+						<a  href="#mySignUp" data-toggle="modal">Register </a>
+						
 					</li>
 					</ul>
+					
                   </div><!-- /.nav-collapse -->
                 </div>
               </div><!-- /navbar-inner -->
             </div>
-			<header id="header">
+			<header id="header" style="width: 86%;margin-left: 6%;">
 				<div class="row">
-				<div class="span12">
-					<a href="index.html"><img src="assets/img/logo.png" alt="Bootsshop"/></a>
+				<div class="span12" style="margin-left:4%">
+					<a href="index.html"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
 				
-				<div class="pull-right"> <br/>
+				<div class="pull-right" style="width: 12%;"> <br/>
 					<a href="product_summary.html"> <span class="btn btn-mini btn-warning"> <i class="icon-shopping-cart icon-white"></i> [ 3 ] </span> </a>
 					<a href="product_summary.html"><span class="btn btn-mini active">$155.00</span></a>
-					<span class="btn btn-mini">&pound;</span>
-					<span class="btn btn-mini">&euro;</span> 
+					<!-- <span class="btn btn-mini">&pound;</span>
+					<span class="btn btn-mini">&euro;</span>  -->
 				</div>
 				</div>
 				</div>
@@ -68,43 +58,46 @@
 	  <div id="mainBody" class="container" ng-view=""></div>
 	  
 	  <!-- Footer ------------------------------------------------------ -->
-<hr class="soft">
+<hr class="soft" style= "width:90%; margin-left:5%">
 <div  id="footerSection">
-	<div class="row">
+	<div class="row" style="margin-left:5%">
 		<div class="span3">
-			<h5>ACCOUNT</h6>
-			<a href="login.html">YOUR ACCOUNT</a>
-			<a href="login.html">PERSONAL INFORMATION</a> 
-			<a href="login.html">ADDRESSES</a> 
-			<a href="login.html">DISCOUNT</a>  
-			<a href="login.html">ORDER HISTORY</a>
+			<h5>HOME</h6>
+			<a href="#/aboutUs">About Us</a>
+			<a href="#/ourClient">Our Client</a> 
+			<a href="#/ourServices">Our Services</a> 
+			<a href="#/contactUs">Contact Us</a>  
+			<a href="#mySignUp" data-toggle="modal">Register</a>
+			<a href="#/ourBlogs">Blog</a>
 		 </div>
 		<div class="span3">
-			<h5>INFORMATION</h5>
-			<a href="contact.html">CONTACT</a>  
-			<a href="register.html">REGISTRATION</a>  
-			<a href="legal_notice.html">LEGAL NOTICE</a>  
-			<a href="tac.html">TERMS AND CONDITIONS</a> 
-			<a href="faq.html">FAQ</a>
+			<h5>SUPPORT</h5>
+			<a href="#/termsAndConditions">Terms and Conditions</a>  
+			<a href="#/privacyPolicy">Privacy Policy </a>  
+			<a href="#/paymentGateway">Payment Gateway </a>  
+			<a href="#/deClaimer">Declaimer</a> 
+			<a href="#/help">How to Book an Ad</a>
 		 </div>
 		<div class="span3">
-			<h5>OUR OFFERS</h5>
-			<a href="#">NEW PRODUCTS</a> 
-			<a href="#">TOP SELLERS</a>  
-			<a href="special_offer.html">SPECIAL OFFERS</a>  
-			<a href="#">MANUFACTURERS</a> 
-			<a href="#">SUPPLIERS</a> 
+			<h5>ONLINE BANKING</h5>
+			<a href="#/textClassifiedAd">Text Classified Ad</a> 
+			<a href="#/dispClassified">Classified Display Ad</a>  
+			<a href="#/dispAds">Display Ads</a>  
+			<a href="#/readENewspaper">Read E News paper</a> 
+			<a href="#/">View Ad Rate In Various Newspapers</a> 
+		    
 		 </div>
-		<div id="socialMedia" class="span3 pull-right">
-			<h5>SOCIAL MEDIA </h5>
-			<a href="#"><img width="60" src="assets/img/facebook.png" title="facebook"/></a>
-			<a href="#"><img width="60" src="assets/img/twitter.png" title="twitter"/></a>
-			<a href="#"><img width="60" src="assets/img/rss.png" title="rss"/></a>
-			<a href="#"><img width="60" src="assets/img/youtube.png" title="youtube"/></a>
+		
+		<div  class="span3 " >
+			<h5>USER LOGIN </h5>
+			<a href="#/affilatedLogin">Afiilated Login</a>
+			<a href="#myModal" data-toggle="modal" >Registered User</a>
+			<a  href="#mySignUp" data-toggle="modal">Guest user</a>
+			
 		 </div> 
 	 </div>
-	 <hr class="soft"/>
-	<p class="pull-right">&copy; Boot'sshop</p>
+	<!--  <hr class="soft" style=" padding-left: -12%;width: 90%;margin-left: 5%;"/>
+	<p class="pull-right">&copy; Boot'sshop</p> -->
 </div>
 
     <!-- Le javascript
@@ -115,9 +108,198 @@
         $('#gallery a').lightBox();
     });
     </script>
+	 
+
+	  
+	
+<!-- sign in popup begins -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 26%;z-index:100000;" >
+  	<div class="modal-dialog">
+    <div class="modal-content" style="">
+      <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
+        <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          </div>
+    
+      <form name="aspnetForm" method="post" action="/checkSignIn" id="aspnetForm">
+
+      <div class="modal-body">
+       <div >
+                    <div style="color: #89BD24; font-weight: bold; font-family: Calibri; font-size: 18px;
+                    text-align: center; margin-top: -10px; margin-bottom: 15px">
+                    SignIn Form</div>
+                <fieldset class="textbox" style="padding: 5%;height: 280px;">
+                    <label>
+                        <span>Email Id</span>
+                        <input name="txtUsername" type="text" id="txtUsername" autocomplete="on" placeholder="Email Id" />
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input name="txtpwd" type="password" id="txtpwd" placeholder="Password" />
+              </label>
+                    <br />
+                    <span id="lblerror"><font color="Red"></font></span>
+                    <input type="submit" name="Button1" value="Sign in" onclick=""  class="submit button" style="cursor: pointer" />
+                    <br />
+                    <br />
+                    <a href="Forgotpassword.html"><span style="color: red; text-decoration: underline;
+                        font-size: 11px">Forgot your password?</span></a>
+                    <br />
+                    <br />
+                    <a id="sign" href="#mySignUp" data-toggle="modal" style="color: #939393;"><span style="color: red; text-decoration: underline; font-size:11px">
+                    New User Signup here</span></a>
+                </fieldset>
+            </div>
+        </div>
+
+ </form>
+      </div>
+     
+    </div>
+   
+  </div>
+
+<!--  sign in popUp  end -->
+
+
+<!-- sign up opop up begin -->
+
+
+ <div class="modal hide" id="mySignUp" style="z-index: 10000;width: 30%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	
+    
+      <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
+        <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        
+      </div>
+
+<form name="signUpForm" method="post" action="/saveSignUp" id="signUpForm">
+      <div class="modal-body" style="overflow: hidden;">
+       <div style="text-align: right">
+                <!--     <input type="image" name="ctl00$ibtnclose1" id="ctl00_ibtnclose1" src="images/close_pop.png" border="0" /> --></div>
+                <div style="color: #89BD24; font-weight: bold; font-family: Calibri; font-size: 18px;
+                    text-align: center; margin-top: -10px; margin-bottom: 10px">
+                    SignUp Form</div>
+                <fieldset class="textboxnew" style="padding-right: 22%;padding-left: 22%;height: 372px;">
+                    <label>
+                        <span>Full Name</span>
+                        <input name="txtUserids" type="text" id="txtUserids" autocomplete="on" placeholder="Full Name"  required/>
+                        
+                            </label>
+                    <label>
+                        <span>Email</span>
+                        <input name="txtEmail" type="text" id="txtEmail" placeholder="Email"  required/>
+                       
+                        <span id="userEmailIdError" style="display: none;color: green;margin-left: 1%;"> Available  </span>
+                    	<span id="userEmailId" style="display: none;color: red;margin-left: 1%;"> Email Id already exists  </span>
+                   </label>
+                    <label>
+                        <span>Password</span>
+                        <input name="txtpasswords" type="password" id="txtpasswords" placeholder="Password"  required/>
+                        
+           </label>
+                    <label>
+                        <span>Confirm Password</span>
+                        <input name="txtconfirmpassword" type="password" id="txtconfirmpassword" placeholder="Confirm Password" />
+            </label>
+                    <label>
+                        <span>Mobile No</span>
+                        <input name="txtMobileno" type="text" id="txtMobileno" placeholder="Mobile No" autocomplete="on" required />
+            </label>
+                    &nbsp;<span id="ctl00_lblmsg"><font color="Red"></font></span>
+                    <br />
+                    <input type="submit" name="signupform" value="Submit"   style="cursor: pointer" />
+                </fieldset>
+            </div>
+      </form>
+    </div>
+ 
+  
+<!--sign up pop up ends  -->
+	  
+	  
+	  
 	  
 </body>	  
 }
+
+<script type="text/javascript">
+$(document).ready(function(){
+ jQuery.validator.addMethod("lettersonly", function(value, element){ 
+			
+ return this.optional(element) || /^[a-z," "]+$/i.test(value);
+
+ }, "Letters and spaces only please");  
+ 
+  $("#aspnetForm").validate({
+			  
+         rules:{
+        	     txtUsername: {
+        	   		email: true,
+		         	required: true
+		  		 },
+	           },
+		messages: {
+			txtUsername: "Please enter email properly"
+		          }   
+		}); 
+ 
+  $( "#signUpForm" ).validate({
+	  
+     rules:{
+            
+    	 txtUserids: {
+    	 lettersonly: true,	 
+    	 required: true
+	  		 },
+	  	 txtEmail:{
+	  		 email:true,
+	  		 required:true,
+	  		 remote: function() {  
+	         var r = {  
+	            			
+	         url: '/validateUsernameUnique',  
+	         type: "POST",  
+	         success:function(data) {
+			//alert("alert::   "+data);
+			    if(data)
+				{
+				$("#userEmailId").show();
+				$("#userEmailIdError").hide();
+				}
+				else{
+				$("#userEmailId").hide();
+				$("#userEmailIdError").show();
+					}
+	            }
+	          }   
+	         return r;  
+	              
+	        },
+
+	  	 },
+	  	 txtpasswords: {
+		 required: true
+		    },
+		 txtMobileno: {
+		 required: true,
+         digits: true 
+        
+		       }
+           },
+	 messages: {
+		 txtUserids: "Please enter name properly",
+	     txtMobileno:"Please enter mobile in proper format" ,
+	     txtpasswords:"Please enter Password",
+	     txtEmail:"Please enter email  properly"
+	   }   
+	});
+	
+});
+</script>
+
 </html>
 
     

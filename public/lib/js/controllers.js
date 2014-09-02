@@ -11,6 +11,57 @@ angular.module('adschela').controller("FooterController",['$scope',function($sco
 angular.module('adschela').controller("IndexController",['$scope',function($scope){
 	
 }]);
+angular.module('adschela').controller("AboutUsController",['$scope',function($scope){
+	
+}]);
+angular.module('adschela').controller("ContactUsController",['$scope',function($scope){
+	
+}]);
+angular.module('adschela').controller("OurClientController",['$scope',function($scope){
+	
+}]);
+angular.module('adschela').controller("OurServicesController",['$scope',function($scope){
+	
+}]);angular.module('adschela').controller("TermsandConditionsController",['$scope',function($scope){
+	
+}]);
+angular.module('adschela').controller("PrivacyPolicyController",['$scope',function($scope){
+	
+}]);
+angular.module('adschela').controller("PaymentoptionController",['$scope',function($scope){
+	
+}]);
+angular.module('adschela').controller("DisclaimerController",['$scope',function($scope){
+	
+}]);
+angular.module('adschela').controller("HelpController",['$scope',function($scope){
+	
+}]);
+
+angular.module('adschela').controller("dispclassifiedcontroller",['$scope',function($scope){
+	
+}]);
+angular.module('adschela').controller("AddisplayController",['$scope',function($scope){
+	    $scope.init = function(dispadData) {
+	//	$scope.sideRequest = dispadData.;
+		$scope.resultCategory=dispadData.categories;
+		$scope.resultNewspaperCategory =dispadData.newspapers;
+	    console.log(dispadData.newspapers);
+	 //   console.log(dispadData.categories);
+		}
+}]);
+
+angular.module('adschela').controller("AffiliatedloginController",['$scope',function($scope){
+	
+}]);
+angular.module('adschela').controller("ENewsPaperController",['$scope',function($scope){
+	
+}]);
+angular.module('adschela').controller("BlogController",['$scope',function($scope){
+	
+}]);
+
+
 
 angular.module('adschela').controller("ComposeAdController",['$scope',function($scope){
 	$scope.selectedCartItemOnPopUp = GetSelectedCartItemOnPopUp();
