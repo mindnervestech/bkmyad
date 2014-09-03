@@ -24,20 +24,21 @@ public class City {
 	
 
 	@Transactional
-	public static List<City> getallcity(String statename)
+	public static List<String> getallcity(String statename)
 	{
-		Query q=JPA.em().createQuery("Select a from City a where a.Statename=?1");
+		System.out.println("******"+statename+"***********");
+		Query q=JPA.em().createQuery("Select a.Cityname from City a where a.Statename=?1");
 		q.setParameter(1, statename);
-		return (List<City>)q.getResultList();
+		return (List<String>)q.getResultList();
 	}
 
 		
-	
+	/*
 	@Transactional	
 	public static List<Adsubcategory> getAllnewspaper(String cname) {
 		Query q = JPA.em().createQuery("Select a from Adsubcategory a where a.cname = ?1");
 		q.setParameter(1, cname);
 		return (List<Adsubcategory>)q.getResultList();
-	}
+	}*/
 	
 }

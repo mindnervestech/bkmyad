@@ -111,7 +111,7 @@
 			    </tab>
 			    <tab heading="Target by specific City">
 			    	<select ng-model="bookingState.selectedState" ng-change="onStateSelect()">
-			    		<option ng-repeat="state in bookingRequest.states" value="{{state}}">{{state}}</option>
+			    		<option ng-repeat="state in bookingRequest.locations" value="{{state}}">{{state}}</option>
 			    		<option value="">--Please Select State--</option>
 			    	</select>
 			    	<select ng-model="bookingState.selectedCity" ng-change="onCitySelect()">
@@ -119,6 +119,46 @@
 			    		<option value="">--Please Select City--</option>
 			    	</select>
 			    	<img src="http://www.releasemyad.com/images/bg-select-state.gif" alt="">
+			    	
+			    	<div class="well">
+			    	
+			    	  <tabset>
+			    	   <tab heading="Basic Rate">
+			    		<ul ng-show="rates.length > 0" >
+			    			<li ng-repeat="rate in rates" class="pillboxes">
+			    				<div  style="padding: 8px;">
+			    					 <span >
+        								<input ng-click="rateClicked1($event,rate)" style="margin: 1px"  type="checkbox">
+     								 </span>
+     								 <span>{{rate.newspaper}} - Rs {{rate.rate}} /
+			    					{{rate.unit}} </span>
+			    				</div>	
+			    				
+			    			</li>
+			    		</ul>
+			    		<div ng-show="rates.length == 0" class="alert alert-block">
+			    			No Rates Available !
+			    		</div>
+			    	   </tab>
+			    	   <tab heading="Discounted Rate">
+			    		<ul ng-show="drates.length > 0">
+			    			<li ng-repeat="rate in drates" class="pillboxes">
+			    				<div  style="padding: 8px;">
+			    					 <span >
+        								<input style="margin: 1px" ng-model="rate.selected" type="checkbox">
+     								 </span>
+     								 <span>{{rate.city}} - Rs {{rate.amount}} /
+			    					{{rate.unit}} </span>
+			    				</div>	
+			    				
+			    			</li>
+			    		</ul>
+			    		<div ng-show="drates.length == 0" class="alert alert-block">
+			    			No Rates Available !
+			    		</div>
+			    	   </tab>
+			    	  </tabset>
+			    	</div>
 			    	
 			    </tab>
 			    
@@ -224,5 +264,13 @@
  
 
 
+<style>
+.span3 {
+	width: 160px !important;
+}
+.caption{
+	min-height: 50px;
+}
+</style>
 
 

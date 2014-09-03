@@ -1,23 +1,22 @@
 @(beData:String)
 
 <div  id="sidebar">	
-	<ul class="nav nav-list bs-docs-sidenav" style="display: block;" ng-controller="SidebarController">											
-		<li style="border:0"> &nbsp;</li>						
-		<li> <a href="product_summary.html"><strong>{{carts.length}} Ads in your cart  <span class="badge badge-warning pull-right" style="line-height:18px;"></span></strong></a></li>
-		<li style="border:0"> &nbsp;</li>	
-		<li ng-repeat="cart in carts">
-		  <div class="btn-group">
-  			<button ng-click="updateCartItem(cart)" style="height: 50px;max-width: 85%;min-width: 85%;" 
-  			     ng-class="cart.total == 0 ? 'btn btn-warning btn-large' : 'btn btn-success btn-large'">
+	<ul class="nav nav-list bs-docs-sidenav" style="display: block;text-align: center;padding-top: 10%;padding-bottom: 5%;background-color: #8BD8FF;" ng-controller="SidebarController">											
+ 		<a href="product_summary.html"><strong>{{carts.length}} Ads in your cart  </strong></a>
+		<li style="border:0"> &nbsp;</li>
+		<div style="width: 100%;width: 95%;margin-left: 3%;background-color: white;">
+		<div ng-repeat="cart in carts" style="padding: 5px;">
+		  <div class="btn-group" style="padding-bottom: 1%;padding-top: 1%;border-bottom: 1px solid rgb(238, 238, 238);">
+  			<a ng-click="updateCartItem(cart)" style="height: 50px;max-width: 90%;min-width: 90%;float: left;">
   				<p style="margin:0px; font-size: 13px;">{{cart.newspaper}} - {{cart.location}}</p>
   				<p ng-show="cart.total == 0" style="margin:0px; font-size: 11px;">(Rs {{cart.rate}} on {{cart.freeUnit}}, Rs {{cart.extra}} extra per {{cart.unitVal}} {{cart.unit}})</p>
   				<p ng-show="cart.total != 0" style="margin:0px; font-size: 11px;">(Total: Rs {{cart.total}})</p>
-  			</button>
-  			<button ng-click="removeFromCart(cart)"style="height: 50px;" class="btn btn-danger btn-large">
+  			</a>
+  			<div ng-click="removeFromCart(cart)"style="height: 50px;" class="">
   				<span><i class="icon-remove"></i></span>
-  			</button>
+  			</div>
   		</div>
-		</li>
-		 
+		</div>
+		</div> 
 	  </ul>
 </div>	  

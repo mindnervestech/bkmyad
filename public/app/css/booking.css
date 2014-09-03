@@ -364,3 +364,11 @@ form.signin input::-webkit-input-placeholder
 	filter: alpha(opacity=50);
 	opacity: 0.5;
 }
+
+.span3 {
+	width: 160px !important;
+}
+.caption{
+	min-height: 50px;
+}
+

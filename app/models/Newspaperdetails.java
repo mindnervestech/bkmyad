@@ -31,10 +31,18 @@ public class Newspaperdetails {
 	
 	@Transactional	
 	public static List<Newspaperdetails> getAllnewspaper() {
-		Query q = JPA.em().createQuery("Select a from Newspaperdetails a order by Nameofthenewspaper Asc");
+		Query q = JPA.em().createQuery("Select a.Nameofthenewspaper from Newspaperdetails a order by Nameofthenewspaper Asc");
 		return (List<Newspaperdetails>)q.getResultList();
 	}
 	
+	@Transactional	
+	public static List<Newspaperdetails> getbeforebookingdate(String nname) {
+		Query q = JPA.em().createQuery("Select a from Newspaperdetails a where a.Nameofthenewspaper = ?1");
+		q.setParameter(1, nname);
+		return (List<Newspaperdetails>)q.getResultList();
+	}
+
+
 	@Transactional	
 	public static List<String> getNameofallenewspaper() {
 		Query q = JPA.em().createQuery("Select a.Nameofthenewspaper from Newspaperdetails a order by Nameofthenewspaper Asc");

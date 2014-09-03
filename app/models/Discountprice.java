@@ -55,6 +55,43 @@ public class Discountprice {
 			
 		}
 		
+	
+		@Transactional	
+		public static List<Object[]> getdiscountednewspaperwise(String cname,String city) {
+			
+			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category  " +
+		            "FROM Discountprice INNER JOIN Newspaperdetails " +
+					"ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
+					"where Discountprice.Category = ?1 and Edition like ?2 "+
+					"order by Edition Asc");
+			
+			q.setParameter(1, cname);
+			q.setParameter(2, "%"+city+"%");
+			List<Object[]> list = (List<Object[]>)q.getResultList();
+			
+			return list;
+						
+		}
+		
+		@Transactional	
+		public static List<Object[]> getdiscountedcity(String cname,String city,String nname) {
+			
+			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category  " +
+		            "FROM Discountprice INNER JOIN Newspaperdetails " +
+					"ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
+					"where Discountprice.Category = ?1 and Edition like ?2 "+
+					"order by Edition Asc");
+			
+			q.setParameter(1, cname);
+			q.setParameter(2, "%"+city+"%");
+			q.setParameter(2, "%"+nname+"%");			
+			List<Object[]> list = (List<Object[]>)q.getResultList();
+			
+			return list;
+						
+		}
+		
+		
 		public static List<Object[]> getyesUPNull(String cname,String city) {
 			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category " +
 					"FROM Discountprice INNER JOIN Newspaperdetails " +

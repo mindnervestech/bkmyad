@@ -10,13 +10,15 @@ GET 	/textClassifiedController.html		   controllers.TextClassifiedController.ind
 GET		/sidebar.html						   controllers.SideBarController.index()
 POST    /saveSignUp                            controllers.Application.SaveSignUp()
 GET		/make-booking.html					   controllers.MakeBookingController.index()
-GET		/getRatesByNewspaper				   controllers.MakeBookingController.getRatesByNewspaper()
+GET		/getRatesByNewspaper/:newspaper/:Category	controllers.MakeBookingController.getRatesByNewspaper(newspaper:String,Category:String)
+GET     /getBasicRateByLocationAndCategory/:Location/:Category   controllers.MakeBookingController.getBasicRateByLocationAndCategory(Location:String,Category:String)
+GET     /getcity/:statename						controllers.MakeBookingController.getcity(statename:String)
 POST    /checkSignIn                           controllers.Application.CheckSignIn()  
 POST    /savedispAddDetails                    controllers.Application.SavedispAddDetails()
 GET     /addisplay.html                        controllers.AdDisplayController.index()    
 POST    /validateUsernameUnique                controllers.UservalidationController.ValidateUsernameUnique()
-GET     /dispFrame.html                        controllers.DispFrameController.index()        
-POST    /submit-cart                            controllers.MakeBookingController.saveComposeyourAd()   
+GET     /dispFrame.html                        controllers.DispFrameController.index()
+#GET     /addisplay.html                                 
                         
 # Map static resources from the /public folder to the /assets URL path
 GET /css/*file                     controllers.Assets.at(path="/public/app/css", file)

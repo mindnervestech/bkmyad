@@ -24,7 +24,7 @@ public class Adcategory {
 		
 	@Transactional	
 	public static List<Adcategory> getAllArticles() {
-		Query q = JPA.em().createQuery("Select a from Adcategory a order by cname Asc");
+		Query q = JPA.em().createQuery("Select a.cname from Adcategory a order by cname Asc");
 		return (List<Adcategory>)q.getResultList();
 	}
 

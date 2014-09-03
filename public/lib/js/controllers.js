@@ -253,8 +253,15 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		$scope.rc.sampleWizard.forward()
 	}
 	
-	$scope.onNewspaperSelect = function() {
-		$http.get("getRatesByNewspaper")
+	$scope.onCitySelect =function(){
+		$http.get("getBasicRateByLocationAndCategory/"+$scope.bookingState.selectedCity+'/'+$scope.bookingState.selectedMainCategoty)
+		.success(function(data){
+			$scope.rates = data.rates;
+		});
+	}
+$scope.onNewspaperSelect = function() {
+		
+		$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
 				.success(function(data){
 					$scope.rates = data.rates;
 				});
@@ -281,9 +288,27 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	    }
 	}
 	
+
+	$scope.onStateSelect = function() {
+		console.log($scope.bookingState.selectedState);
+		$http.get("getcity/"+$scope.bookingState.selectedState)
+		.success(function(data){
+			$scope.cities = data;
+		});
+	}
+	
+	
 	$scope.rateClicked = function(e, rate) {
 		if($(e.target).is(":checked")) {
 			PushToCart(NewCartItem(rate, $scope.bookingState.selectedNewsPaper));
+		} else {
+			DeleteCartItemByRate(rate);
+		}
+	}
+	
+	$scope.rateClicked1 = function(e, rate) {
+		if($(e.target).is(":checked")) {
+			PushToCart(NewCartItem(rate, $scope.bookingState.selectedCity));
 		} else {
 			DeleteCartItemByRate(rate);
 		}

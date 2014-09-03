@@ -7,26 +7,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import models.Adcategory;
+import models.Basicrate;
+import models.City;
+import models.Newspaperdetails;
+import models.State;
 
-import models.ComposedAdSave;
-
-
-import play.data.DynamicForm;
-import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import utils.UtilityQuery;
+import viewmodel.NewspaperVM;
+import viewmodel.Rate;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 
 public class MakeBookingController extends Controller {
-	
+	@Transactional
 	public static Result index() {
 		/*
 		
@@ -38,25 +37,92 @@ public class MakeBookingController extends Controller {
 		
 	}
 	
-	public static Result getRatesByNewspaper() {
-		List<Rate> rates = Lists.newArrayList(
-				Rate
-				.byId(1)
-				.withCityAndNewspaper("Times Of India", "Delhi")
-				.withAmountAndFreeUnit(200f, 20).withOverUnit(25, 2, "Word"),
-				Rate
-				.byId(1)
-				.withCityAndNewspaper("Times Of India", "Mumbai")
-				.withAmountAndFreeUnit(200f, 20).withOverUnit(15, 2, "Line"),
-				Rate
-				.byId(1)
-				.withCityAndNewspaper("Times Of India", "Chandighar")
-				.withAmountAndFreeUnit(200f, 20).withOverUnit(20, 2, "Word"),
-				Rate
-				.byId(1)
-				.withCityAndNewspaper("Times Of India", "Lucknow")
-				.withAmountAndFreeUnit(200f, 20).withOverUnit(15, 1, "Line"));
-				
+		
+	@Transactional
+    public static Result getcity(String statename){
+    	List<String> listallcity = City.getallcity(statename);
+    	    	
+    	if(!listallcity .isEmpty()) {
+    		Iterable<String> subCats = Splitter.on(",").split(listallcity.get(0));
+    		return ok(Json.toJson(subCats));
+    	}
+    	return ok();
+     }
+	
+	 @Transactional
+	    public static Result getBasicRateByLocationAndCategory(String Location,String Category) {
+	    	List<Object[]> rates1 = UtilityQuery.getBasicRateByLocationAndCategory(Location,Category); 
+		 	System.out.println("----------"+Location+"---------"+Category+"----");
+	    	List<Rate> rates = Lists.newArrayList();
+            
+			for(Object[] rs :rates1) {
+        		
+        		String str; 
+            	str=rs[4].toString();
+           	 String number = "";
+                String letter = "";
+            
+                for (int i = 0; i < str.length(); i++) {
+                       char a = str.charAt(i);
+                       if (Character.isDigit(a)) {
+                             number = number + a;
+
+                       } else if (Character.isAlphabetic(a)) {
+                             letter = letter + a;
+
+               }
+                }
+                            		
+                rates.add(Rate.byId(rs[0].toString())
+        				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
+        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
+        				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()) );
+        		
+        		        		
+        	}
+		
+	Map<String,Object> map = new HashMap<String, Object>();
+	map.put("rates", rates);
+	System.out.println(Json.toJson(map));
+	return ok(Json.toJson(map));
+
+	    }
+	
+	
+	@Transactional
+	public static Result getRatesByNewspaper(String newspaper,String Category) {
+		
+		
+		List<Object[]> rates1 = UtilityQuery.getBasicRateByNewspaperAndCategory(newspaper,Category);
+	 	
+		List<Rate> rates = Lists.newArrayList();
+                  
+				for(Object[] rs :rates1) {
+	        		
+	        		String str; 
+	            	str=rs[4].toString();
+	           	 String number = "";
+	                String letter = "";
+	            
+	                for (int i = 0; i < str.length(); i++) {
+	                       char a = str.charAt(i);
+	                       if (Character.isDigit(a)) {
+	                             number = number + a;
+
+	                       } else if (Character.isAlphabetic(a)) {
+	                             letter = letter + a;
+
+	               }
+	                }
+	                            		
+	                rates.add(Rate.byId(rs[0].toString())
+	        				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
+	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
+	        				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()) );
+	        		
+	        		        		
+	        	}
+			
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("rates", rates);
 		return ok(Json.toJson(map));
@@ -64,11 +130,10 @@ public class MakeBookingController extends Controller {
 	
 	
 	private static Map<String,Object>  makeBookingBarFixture() {
-		List<String> newspapers = Lists.newArrayList("Times Of India", "Hindustan", "Hindustan Times", "Danik Jagran", "Amar Ujala","Other");
-		List<String> locations = Lists.newArrayList("Delhi","Mumbai","Chandighar","Lucknow","Other");
-		List<String> categories = Lists.newArrayList("Announcement","Matrimonial","Computers","Education","Others");
-		
-		
+		List<Newspaperdetails> newspapers = Newspaperdetails.getAllnewspaper();
+		List<State> locations=State.getallstate();
+		List<Adcategory> categories = Adcategory.getAllArticles();
+				
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("newspapers", newspapers);
 		map.put("locations", locations);
@@ -80,44 +145,62 @@ public class MakeBookingController extends Controller {
 	// 200 for first 20 words, 15 / 2 words 
 	@JsonIgnoreProperties(ignoreUnknown=true)
 	public static class Rate {
-		public int id;
-		public String location;
-		public String newspaper;
-		public float rate; //200
-		public String unit; //word
-		public int unitVal; //2
-		public int extra; //15
-		public int freeUnit; // 20
-		public DateConfig dateConfig;
-		public ExtraConfig extraConfig;
 		
-		public static Rate byId(int id) {
-			Rate rate = new Rate();
-			rate.id = id;
-			return rate;
-		}
+		/*public DateConfig dateConfig;
+		public ExtraConfig extraConfig;*/
 		
-		public Rate withCityAndNewspaper(String location, String newspaper) {
-			this.newspaper = newspaper;
-			this.location = location;
-			return this;
-		}
-		
-		public Rate withAmountAndFreeUnit(float amount, int freeUnit) {
-			this.freeUnit = freeUnit;
-			this.rate = amount;
-			return this;
-		}
-		
-		public Rate withOverUnit(int extra, int unitVal,String unit) {
-			this.unitVal = unitVal;
-			this.unit = unit;
-			this.extra = extra;
-			return this;
-		}
+		public String id;
+        public String location; //Agra
+        public String newspaper; //Time of India
+        public String rate; //200
+       // public String disRate; // This is for discounted Value
+        public String unit; //word
+        public String unitVal; //2
+        public String extra; //15
+        //public String freeUnit; // 20
+       
+        public String extraFortick;
+        public String extraCostpersqcm;
+        public String cutOfBookingDate;
+        public String extraForBorder;
+        public String extraForBackgroud;
 		
 		
-		public Rate withDateConfig(DateConfig dateConfig) {
+		
+        public static Rate byId(String id) {
+            Rate rate = new Rate();
+            rate.id = id;
+            return rate;
+}
+
+public Rate withCityAndNewspaper(String location, String newspaper) {
+            this.newspaper = newspaper;
+            this.location = location;
+            return this;
+}
+
+public Rate withAmountAndFreeUnit(String amount, String unit,String unitVal) {
+            this.unit = unit;
+            this.unitVal=unitVal;
+            this.rate = amount;
+            return this;
+}
+
+public Rate withOverUnit(String extra,String cutOfBookingDate,String extraForBorder,String extraForBackgroud, String 
+
+extraFortick,String extraCostpersqcm) {
+            this.extra = extra;
+            this.cutOfBookingDate=cutOfBookingDate;
+            this.extraForBorder=extraForBorder;
+            this.extraForBackgroud=extraForBackgroud;
+            this.extraFortick=extraFortick;
+            this.extraCostpersqcm=extraCostpersqcm;
+            return this;
+}
+
+		
+		
+		/*public Rate withDateConfig(DateConfig dateConfig) {
 			this.dateConfig = dateConfig;
 			return this;
 		}
@@ -125,7 +208,7 @@ public class MakeBookingController extends Controller {
 		public Rate withExtraConfig(ExtraConfig extraConfig) {
 			this.extraConfig = extraConfig;
 			return this;
-		}
+		}*/
 		
 	}
 	

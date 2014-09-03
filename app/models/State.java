@@ -25,7 +25,7 @@ public class State {
 	@Transactional
 	public static List<State> getallstate()
 	{
-		Query q=JPA.em().createQuery("Select a from State a");
+		Query q=JPA.em().createQuery("Select a.Statename from State a");
 		return (List<State>)q.getResultList();
 	}
 	
