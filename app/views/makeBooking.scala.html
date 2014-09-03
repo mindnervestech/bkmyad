@@ -159,7 +159,7 @@
                    ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
                 <a class="btn btn-primary" data-loading-text="Please Wait..." ng-click="rc.sampleWizard.forward()" 
                    ng-show="rc.sampleWizard.currentIndex < rc.sampleWizard.navigationLength">Continue</a>
-                <a class="btn btn-primary" ng-click="rc.sampleWizard.forward()" 
+                <a class="btn btn-primary" ng-click="onCartSubmit();closeThisDialog()" 
                    ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength">Complete</a>
               </div>
             </div>

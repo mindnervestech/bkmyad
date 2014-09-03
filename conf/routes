@@ -16,7 +16,7 @@ POST    /savedispAddDetails                    controllers.Application.SavedispA
 GET     /addisplay.html                        controllers.AdDisplayController.index()    
 POST    /validateUsernameUnique                controllers.UservalidationController.ValidateUsernameUnique()
 GET     /dispFrame.html                        controllers.DispFrameController.index()        
-   
+POST    /submit-cart                            controllers.MakeBookingController.saveComposeyourAd()   
                         
 # Map static resources from the /public folder to the /assets URL path
 GET /css/*file                     controllers.Assets.at(path="/public/app/css", file)

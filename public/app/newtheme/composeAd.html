@@ -180,7 +180,7 @@
                    ng-show="rc.composeWizard.currentIndex > rc.composeWizard.firstIndex">Back</a>
                 <a class="btn btn-primary" data-loading-text="Please Wait..." ng-click="onComposeAdStepChange()" 
                    ng-show="rc.composeWizard.currentIndex < rc.composeWizard.navigationLength">Continue</a>
-                <a class="btn btn-primary" ng-click="onComposeAdDone()" 
+                <a class="btn btn-primary" ng-click="onComposeAdDone();closeThisDialog()" 
                    ng-show="rc.composeWizard.currentIndex == rc.composeWizard.navigationLength">Complete</a>
               </div>
             </div>  

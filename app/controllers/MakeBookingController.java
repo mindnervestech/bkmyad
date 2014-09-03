@@ -1,13 +1,28 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+
+import models.ComposedAdSave;
+
+
+import play.data.DynamicForm;
+import play.db.jpa.JPA;
+import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 
 public class MakeBookingController extends Controller {
@@ -63,6 +78,7 @@ public class MakeBookingController extends Controller {
 	}
 	
 	// 200 for first 20 words, 15 / 2 words 
+	@JsonIgnoreProperties(ignoreUnknown=true)
 	public static class Rate {
 		public int id;
 		public String location;
@@ -125,6 +141,7 @@ public class MakeBookingController extends Controller {
 		public int maxAllowedDays;
 	}
 	
+	@JsonIgnoreProperties(ignoreUnknown=true)
 	public static class CartItem {
 		public int id;
 		public String type;
@@ -133,7 +150,14 @@ public class MakeBookingController extends Controller {
 		public String category;
 		public String subcategory;
 		public String newspaper;
+		public float rate; //200
+		public String unit; //word
+		public int unitVal; //2
+		public int extra; //15
+		public int freeUnit; // 20
 		public float amount;
+		
+		public CartItem() {};
 		public CartItem(int id, String type, String location, String category,
 				String subcategory, String newspaper, float amount) {
 			super();
@@ -146,11 +170,50 @@ public class MakeBookingController extends Controller {
 			this.amount = amount;
 			this.description = location + "-" + newspaper + "(" + category + (subcategory==null ? "" : "/" + subcategory) + ")"; 
 		}
-		
-		
-		
-		
-		
-		
+	
 	}
+
+	    @Transactional
+	    public static Result  saveComposeyourAd() {
+	  
+		 JsonNode json = request().body().asJson();
+	     //JsonNode nodes = json.path("data");
+	     System.out.println(" json value :: "+json.toString());
+	     
+	     ObjectMapper objectMapper = new ObjectMapper();
+	     List<CartItem> cartItem ;
+	     try {
+	    	 cartItem = objectMapper.readValue(json.traverse(),new com.fasterxml.jackson.core.type.TypeReference<List<CartItem>>() {});
+		
+	        List<ComposedAdSave> orderListComposeAd=new ArrayList<ComposedAdSave>();
+	        String orderId = UUID.randomUUID().toString();
+	        for(int i=0; i<cartItem.size();i++) {
+	    	  
+	        	ComposedAdSave cds=new ComposedAdSave();
+	          
+	    	   cds.City=cartItem.get(i).newspaper;
+	    	   cds.Adtext=cartItem.get(i).description;
+	    	   cds.Nameofthenewspaper=cartItem.get(i).location;
+	    	   cds.OrderID = orderId;
+	    	 
+	    	   JPA.em().persist(cds);
+	    	
+	      
+	       }
+	     } catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// System.out.println("In makebooking"+nodes);
+		/* System.out.println("\n sub"+subcategory);*/
+		 return ok("");
+	 }
+	    
+	
 }
