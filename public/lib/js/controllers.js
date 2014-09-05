@@ -9,7 +9,22 @@ angular.module('adschela').controller("FooterController",['$scope',function($sco
 }]);
 
 angular.module('adschela').controller("IndexController",['$scope',function($scope){
-	
+	$scope.nplist = [{name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
+	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"},
+	                 {name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
+	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"},
+	                 {name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
+	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"},
+	                 {name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
+	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"},
+	                 {name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
+	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"},
+	                 {name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
+	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"},
+	                 {name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
+	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"},
+	                 {name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
+	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"}];	
 }]);
 angular.module('adschela').controller("AboutUsController",['$scope',function($scope){
 	

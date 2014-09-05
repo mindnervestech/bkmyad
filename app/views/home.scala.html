@@ -2,6 +2,7 @@
 
 		<div id="myCarousel" class="carousel slide homCar" >
             <div class="carousel-inner">
+
               <div class="item active">
                 <img style="width:50%" src="assets/carousel/banner11.jpg" alt=""/>
 				<div class="carousel-caption">
@@ -9,6 +10,7 @@
                       <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
                     </div>
               </div>
+
 			  <div class="item">
                 <img style="width:10%" src="assets/carousel/banner2.jpg" alt=""/>
 					<div class="carousel-caption">
@@ -16,29 +18,15 @@
                       <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
                     </div>
               </div>
+
               <div class="item">
                 <img src="assets/carousel/banner3.jpg" alt=""/>
 				<div class="carousel-caption">
                       <h4>Second Thumbnail label</h4>
                       <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
                     </div>
-                
               </div>
-			  <!--  <div class="item">
-                <img src="assets/carousel/4.jpg" alt=""/>
-				<div class="carousel-caption">
-                      <h4>Second Thumbnail label</h4>
-                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    </div>
-               
-              </div>
-			   <div class="item">
-                <img src="assets/carousel/5.jpg" alt=""/>
-				<div class="carousel-caption">
-                      <h4>Second Thumbnail label</h4>
-                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    </div>
-              </div> -->
+			 
             </div>
 			<!--<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
             <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a> -->
@@ -58,140 +46,18 @@
             <div class="carousel-inner">
               <div class="item active">
 				  <ul class="thumbnails">
-					<li class="span3">
+					
+					<li ng-repeat="np in nplist" class="span3">
 					  <div class="thumbnail">
-					  <a href="#"  src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
+					  	<a href="#/make-booking">
+						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/></a>
 						<div class="caption">
-						  <h5>Amar Ujala</h5>
+						  <h5>{{np.name}}</h5>
 						</div>
+						</a>	
 					  </div>
 					</li>
 					
-					<li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Dainik Jagran</h5>
-						  
-						</div>
-					  </div>
-					</li>
-					
-					<li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Hindustan</h5>
-						  
-						</div>
-					  </div>
-					</li>
-					<li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Vijay Karnataka</h5>
-						  
-						</div>
-					  </div>
-					</li>
-					<li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Sandhya Times</h5>
-						  
-						</div>
-					  </div>
-					</li>
-					
-					</li><li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Maharashtra Times</h5>
-						</div>
-					  </div>
-					</li><li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Mirror</h5>
-						</div>
-					  </div>
-					</li><li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Rashtriya Sahara</h5>
-						</div>
-					  </div>
-					</li><li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>The Hindu</h5>
-						</div>
-					  </div>
-					</li><li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Deccan Herald</h5>
-						</div>
-					  </div>
-					</li><li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Navbharat Times</h5>
-						</div>
-					  </div>
-					</li><li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Economic Times</h5>
-						</div>
-					  </div>
-					</li>
-					<li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Times of India</h5>
-						</div>
-					  </div>
-					</li><li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Prajavani</h5>
-						</div>
-					  </div>
-					</li><li class="span3">
-					  <div class="thumbnail">
-					  <a href="#" class="" src="assets/products/new.png"></a>
-						<a  href="#/make-booking.html"><img src="assets/products/1.jpg" alt=""/></a>
-						<div class="caption">
-						  <h5>Rajasthan Patrika</h5>
-						</div>
-					  </div>
-					</li>
 				  </ul>
 		  		</div>
 		  
