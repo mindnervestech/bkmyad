@@ -240,7 +240,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	
 	$scope.init = function(beData) {
 		$scope.bookingRequest = beData;
-		console.log($scope.bookingRequest);
+		/*console.log($scope.bookingRequest);*/
 	}
 	
 	$scope.bookingState = {
@@ -266,7 +266,7 @@ $scope.onNewspaperSelect = function() {
 					$scope.rates = data.rates;
 				});
 	}
-	
+
 	function NewCartItem(rate) {
 		return cartItem = {
 			hashKey: rate.$$hashKey,	

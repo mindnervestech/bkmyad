@@ -1,22 +1,22 @@
 <div rc-wizard="composeWizard" rc-disabled="rc.firstForm.submitInProgress">
-	<ul class="nav rc-nav-wizard">
+	<ul class="nav rc-nav-wizard" style="background-color: #f9f9f9;margin-bottom: 1%;width: 95%;">
               <li class="active" style="float:left;">
-                <a class="active" href="#select-text" data-toggle="tab">
-                  <span class="badge">1</span>
+                <a class="active" href="#select-text" data-toggle="tab" style="float: left;border: 0px solid black;">
                   <span>Select Text</span>
                 </a>
+                <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a href="#extra-toping" data-toggle="tab">
-                  <span class="badge">2</span>
+                <a href="#extra-toping" data-toggle="tab" style="float: left;border: 0px solid black;">
                   <span>Extra Toping</span>
                 </a>
+                <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a href="#select-date" data-toggle="tab">
-                  <span class="badge">3</span>
+                <a href="#select-date" data-toggle="tab" style="float: left;border: 0px solid black;">
                   <span>Select Date</span>
                 </a>
+                <span class="breadcrumb_arrow"></span>
               </li>
             </ul>
             <div class="tab-content" style="height:307px;">
@@ -24,13 +24,13 @@
               <form class="tab-pane active" id="select-text" name="select-textForm" 
                      rc-step novalidate>
                 	<div class="row">
-						<div class="span3">
+						<div class="span3" style="width: 220px !important;">
 							<label>Type in content in English</label>
 							<textarea ng-google-transliterate on-translation-done="transliterateDone(data)" 	
 							ng-model="selectedCartItemOnPopUp.description" rows="10" cols=""></textarea> 
 						</div>
 						
-						<div  class="span3">
+						<div  class="span3" style="width: 220px !important;">
 							<input ng-model="selectedCartItemOnPopUp.isHindi" style="float:left" type="checkbox"> <label> Content in Hindi</label>
 							<textarea disabled="disabled" id="transliterateTextarea" rows="10" cols="" ></textarea>
 						</div>
@@ -45,7 +45,7 @@
                                                         <tbody><tr>
                                                             <td align="left" valign="middle" width="450">
                                                                 <div style="width: 200px; height: 70px; float: left; margin: 5px auto; border-radius: 7px;
-                                                                    border: Solid 1px #EBDBAA; background-color: #F0F0F0">
+                                                                    border: Solid 1px #65BDDF; background-color: #F0F0F0">
                                                                     <center>
                                                                         <table width="180" border="0" cellpadding="0" cellspacing="0">
                                                                             <tbody><tr>
@@ -113,7 +113,7 @@
                                                                     </center>
                                                                 </div>
                                                                 <div style="width: 200px; height: 70px; float: right; padding-right: 10px; margin: 5px auto;
-                                                                    border-radius: 7px; border: Solid 1px #EBDBAA; background-color: #F0F0F0">
+                                                                    border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
                                                                     <center>
                                                                         <table width="140" border="0" cellpadding="0" cellspacing="0">
                                                                             <tbody><tr>
@@ -149,13 +149,13 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td align="left" valign="top">
-                                                                            <span id="Label2" class="style3">Background Color  Extra</span>
+                                                                            <span id="Label2" class="style3" style="font: bold;font-size: medium;">Background Color  Extra</span>
                                                                             &nbsp;<span id="lblExtracost" class="style3" style="color:Red;"></span>
                                                                             &nbsp;
                                                                             
                                                                         </td>
                                                                         <td align="right" valign="top" width="250">
-                                                                            <span id="Label5" class="style3">Border Extra</span>
+                                                                            <span id="Label5" class="style3" style="font: bold;font-size: medium;">Border Extra</span>
                                                                             &nbsp;<span id="lblExtrabordercost" class="style3" style="color:Red;"></span>
                                                                             &nbsp;
                                                                             &nbsp;
@@ -180,7 +180,7 @@
                    ng-show="rc.composeWizard.currentIndex > rc.composeWizard.firstIndex">Back</a>
                 <a class="btn btn-primary" data-loading-text="Please Wait..." ng-click="onComposeAdStepChange()" 
                    ng-show="rc.composeWizard.currentIndex < rc.composeWizard.navigationLength">Continue</a>
-                <a class="btn btn-primary" ng-click="onComposeAdDone();closeThisDialog()" 
+                <a class="btn btn-primary" ng-click="onComposeAdDone()" 
                    ng-show="rc.composeWizard.currentIndex == rc.composeWizard.navigationLength">Complete</a>
               </div>
             </div>  

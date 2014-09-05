@@ -3,36 +3,47 @@
 
 <div class="row" ng-init='init(@Html(beData))'>
 
-
 	<div class="span9">
-    <ul class="breadcrumb">
+    <!-- <ul class="breadcrumb">
 		<li><a href="#/home.html">Home</a> <span class="divider">/</span></li>
 		<li class="active"> Make-Booking</li>
     </ul>
-	<hr class="soft"/>
+	<hr class="soft"/> --> 
 		
         <div class="col-xs-12 col-sm-6 col-sm-offset-3">
           <div rc-wizard="sampleWizard" rc-disabled="rc.firstForm.submitInProgress">
+           <ul class="nav rc-nav-wizard" style="background-color: #f9f9f9;margin-bottom: 1%;">
             
-            <ul class="nav rc-nav-wizard">
-              <li class="active" style="float:left;">
+             <!-- <li class="active" style="float:left;">
                 <a class="active" href="#first" data-toggle="tab">
-                  <span class="badge">1</span>
+                  <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">1</span>
                   <span>Select Category</span>
+                  <span class="breadcrumb_arrow"></span>
                 </a>
               </li>
+             -->
+            
+              <li class="active" style="float:left;">
+                <a class="active custom-font" href="#first" data-toggle="tab" style="float: left;height: 17px;border: 0px solid black;">
+                  <!-- <span class="badge">1</span> -->
+                  <span >Select Category</span>
+                  
+                </a>
+                <span class="breadcrumb_arrow"></span>
+              </li>
               <li style="float:left;">
-                <a href="#second" data-toggle="tab">
-                  <span class="badge">2</span>
+                <a href="#second" data-toggle="tab" class="custom-font" style="float: left;height: 17px;border: 0px solid black;">
+                 <!--  <span class="badge">2</span> -->
                   <span>Pick Your Package</span>
                 </a>
+                <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a href="#last" data-toggle="tab">
-                  <span class="badge">3</span>
+                <a href="#last" data-toggle="tab" class="custom-font" style="float: left;height: 17px;border: 0px solid black;">
+                 <!--  <span class="badge">3</span> -->
                   <span>Ads Summary</span>
                 </a>
-              </li>
+              </li> 
             </ul>
             
             <div class="tab-content">
@@ -43,8 +54,8 @@
                 <div class="tab-pane active" id="blockView">
 				<ul class="thumbnails">
 					<li ng-repeat="cat in bookingRequest.categories" class="span3">
-					  <div class="thumbnail">
-						<a  ng-click="onCatSelected(cat)">
+					  <div class="thumbnail" ng-click="onCatSelected(cat)">
+						<a  >
 						<img style="max-width: 35%;" class="img-circle img-thumbnail" src="Category/{{cat}}.jpg" alt=""></a>
 						<div class="caption">
 						  <p> 
@@ -64,17 +75,25 @@
                 	
                 <tabset>
 			    <tab heading="Select Your Newspaper">
-			    	<select ng-model="bookingState.selectedNewsPaper" ng-change="onNewspaperSelect()">
+			    	<select style="margin-top: 1%;" ng-model="bookingState.selectedNewsPaper" ng-change="onNewspaperSelect()">
 			    		<option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option>
 			    		<option value="">--Please Select Newspaper--</option>
 			    	</select>
 			    	<div class="well">
 			    	
 			    	  <tabset>
-			    	   <tab heading="Basic Rate">
+			    	   <!-- class="icon-search" -->
+			    	  <tab>
+			    	   <tab-heading>
+                        <i class="icon-tags"></i> Basic Rate
+                     </tab-heading>
+			    	   
+			    	   <div ng-show="rates.length > 0" class="backcolo">
+			    	  
 			    		<ul ng-show="rates.length > 0" >
-			    			<li ng-repeat="rate in rates" class="pillboxes">
-			    				<div  style="padding: 8px;">
+			    		<div class="Internal">
+			    			<li ng-repeat="rate in rates" class="pillboxes custom-pill" >
+			    				<div  style="padding: 1px;">
 			    					 <span >
         								<input ng-click="rateClicked($event,rate)" style="margin: 1px"  type="checkbox">
      								 </span>
@@ -83,15 +102,22 @@
 			    				</div>	
 			    				
 			    			</li>
+			    			</div>
 			    		</ul>
+			    		</div>
 			    		<div ng-show="rates.length == 0" class="alert alert-block">
 			    			No Rates Available !
 			    		</div>
 			    	   </tab>
-			    	   <tab heading="Discounted Rate">
+			    	   <tab>
+			    	   <tab-heading>
+                        <i class="icon-gift"></i> Discounted Rate
+                     </tab-heading>
+			    	   <div ng-show="drates.length > 0" class="backcolo">
 			    		<ul ng-show="drates.length > 0">
-			    			<li ng-repeat="rate in drates" class="pillboxes">
-			    				<div  style="padding: 8px;">
+			    		<div class="Internal">
+			    			<li ng-repeat="rate in drates" class="pillboxes custom-pill">
+			    				<div  style="padding: 1px;">
 			    					 <span >
         								<input style="margin: 1px" ng-model="rate.selected" type="checkbox">
      								 </span>
@@ -100,7 +126,9 @@
 			    				</div>	
 			    				
 			    			</li>
+			    			</div>
 			    		</ul>
+			    		</div>
 			    		<div ng-show="drates.length == 0" class="alert alert-block">
 			    			No Rates Available !
 			    		</div>
@@ -110,11 +138,11 @@
 			    	
 			    </tab>
 			    <tab heading="Target by specific City">
-			    	<select ng-model="bookingState.selectedState" ng-change="onStateSelect()">
+			    	<select style="margin-top: 1%" ng-model="bookingState.selectedState" ng-change="onStateSelect()">
 			    		<option ng-repeat="state in bookingRequest.locations" value="{{state}}">{{state}}</option>
 			    		<option value="">--Please Select State--</option>
 			    	</select>
-			    	<select ng-model="bookingState.selectedCity" ng-change="onCitySelect()">
+			    	<select style="margin-top: 1%" ng-model="bookingState.selectedCity" ng-change="onCitySelect()">
 			    		<option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
 			    		<option value="">--Please Select City--</option>
 			    	</select>
@@ -123,10 +151,15 @@
 			    	<div class="well">
 			    	
 			    	  <tabset>
-			    	   <tab heading="Basic Rate">
+			    	   <tab>
+			    	   <tab-heading>
+                        <i class="icon-tags"></i> Basic Rate
+                     </tab-heading>
+			    	   <div ng-show="rates.length > 0" class="backcolo">
 			    		<ul ng-show="rates.length > 0" >
-			    			<li ng-repeat="rate in rates" class="pillboxes">
-			    				<div  style="padding: 8px;">
+			    		<div class="Internal">
+			    			<li ng-repeat="rate in rates" class="pillboxes custom-pill">
+			    				<div  style="padding: 1px;">
 			    					 <span >
         								<input ng-click="rateClicked1($event,rate)" style="margin: 1px"  type="checkbox">
      								 </span>
@@ -135,15 +168,23 @@
 			    				</div>	
 			    				
 			    			</li>
+			    			</div>
 			    		</ul>
+			    		</div>
 			    		<div ng-show="rates.length == 0" class="alert alert-block">
 			    			No Rates Available !
 			    		</div>
 			    	   </tab>
-			    	   <tab heading="Discounted Rate">
+			    	   <tab>
+			    	   <tab-heading>
+                        <i class="icon-gift"></i> Discounted Rate
+                     </tab-heading>
+			    	  
+			    	   <div ng-show="drates.length > 0" class="backcolo">
 			    		<ul ng-show="drates.length > 0">
-			    			<li ng-repeat="rate in drates" class="pillboxes">
-			    				<div  style="padding: 8px;">
+			    		<div class="Internal">
+			    			<li ng-repeat="rate in drates" class="pillboxes custom-pill">
+			    				<div  style="padding: 1px;">
 			    					 <span >
         								<input style="margin: 1px" ng-model="rate.selected" type="checkbox">
      								 </span>
@@ -152,7 +193,9 @@
 			    				</div>	
 			    				
 			    			</li>
+			    			</div>
 			    		</ul>
+			    		</div>
 			    		<div ng-show="drates.length == 0" class="alert alert-block">
 			    			No Rates Available !
 			    		</div>
@@ -199,7 +242,7 @@
                    ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
                 <a class="btn btn-primary" data-loading-text="Please Wait..." ng-click="rc.sampleWizard.forward()" 
                    ng-show="rc.sampleWizard.currentIndex < rc.sampleWizard.navigationLength">Continue</a>
-                <a class="btn btn-primary" ng-click="onCartSubmit();closeThisDialog()" 
+                <a class="btn btn-primary" ng-click="rc.sampleWizard.forward()" 
                    ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength">Complete</a>
               </div>
             </div>
@@ -271,6 +314,78 @@
 .caption{
 	min-height: 50px;
 }
+
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+color: #ffffff;
+background-color: #fc9a24;
+}
+.thumbnail:hover {
+border: 1px solid #8BD8FF;
+background: #65BDDF;
+}
+
+.nav > li > a:hover >   {
+text-decoration: none;
+background-color: #fbb450;
+
+}
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+background-color: #65BDDF;
+}
+.nav
+{
+margin-bottom: 0px;
+}
+.backcolo
+{
+  background-color: #65BDDF;
+   float: left;
+   padding:0.5%;
+   width: 98%;
+} 
+.Internal{
+    background-color:white; 
+    float: left; 
+    width: 98%;
+    padding-top: 2%;
+	padding-left: 2%;
+}
+ul{
+	margin: 0 0 0px 0px;
+}
+
+.breadcrumb_arrow {
+background: url("images/Quikr_Sprite.1234567891.png") no-repeat transparent -112px 0;
+width: 26px;
+height: 35px;
+float: left;
+}
+.custom-font{
+color: #000000;
+font-weight: bolder;
+font-size: larger;
+}
+
+
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+color: #65BDDF;
+font-weight: bolder;
+font-size: larger;
+background-color: transparent;
+}
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover{
+	border: 1px solid #65BDDF;
+}
+th{
+	background-color: #f9f9f9;
+}
+.custom-pill{
+	padding: 5px;
+	font: 14px Arial,Helvetica,sans-serif;
+	font-weight: bold;
+}
+
 </style>
 
 

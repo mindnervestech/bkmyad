@@ -83,7 +83,10 @@ public class Rate {
                }
                 }
                             		
-        		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()) );
+        		rates.add(Rate.byId(rs[0].toString())
+        				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
+        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
+        				.withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()) );
         		        		
         	}
         	

@@ -1,7 +1,7 @@
 @(beData:String)
 
 <div  id="sidebar">	
-	<ul class="nav nav-list bs-docs-sidenav" style="display: block;text-align: center;padding-top: 10%;padding-bottom: 5%;background-color: #8BD8FF;" ng-controller="SidebarController">											
+	<ul class="nav nav-list bs-docs-sidenav" style="display: block;text-align: center;padding-top: 10%;padding-bottom: 5%;background-color: #fc9a24;" ng-controller="SidebarController">											
  		<a href="product_summary.html"><strong>{{carts.length}} Ads in your cart  </strong></a>
 		<li style="border:0"> &nbsp;</li>
 		<div style="width: 100%;width: 95%;margin-left: 3%;background-color: white;">
@@ -13,7 +13,7 @@
   				<p ng-show="cart.total != 0" style="margin:0px; font-size: 11px;">(Total: Rs {{cart.total}})</p>
   			</a>
   			<div ng-click="removeFromCart(cart)"style="height: 50px;" class="">
-  				<span><i class="icon-remove"></i></span>
+  				<span><i class="icon-remove" style="cursor: pointer;"></i></span>
   			</div>
   		</div>
 		</div>
