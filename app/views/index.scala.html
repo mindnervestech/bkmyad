@@ -46,8 +46,8 @@
 					<a href="index.html"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
 				
 				<div class="pull-right" style="width: 12%;margin-right: 1%;"> <br/>
-					<a href="product_summary.html"> <span class="btn btn-mini btn-warning"> <i class="icon-shopping-cart icon-white"></i> [ 3 ] </span> </a>
-					<a href="product_summary.html"><span class="btn btn-mini active">$155.00</span></a>
+					<a href="product_summary.html"> <span class="btn btn-mini btn-warning"> <i class="icon-shopping-cart icon-white"></i> [ {{carts.length}}  ] </span> </a>
+					<a href="product_summary.html"><span class="btn btn-mini active">Rs 0.00</span></a>
 					<!-- <span class="btn btn-mini">&pound;</span>
 					<span class="btn btn-mini">&euro;</span>  -->
 				</div>
@@ -60,7 +60,7 @@
 	  
 	  <!-- Footer ------------------------------------------------------ -->
 <hr class="soft" style= "width:90%; margin-left:5%">
-<div  id="footerSection">
+<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 10%;width: 94%;margin-left: 3%;">
 	<div class="row" style="margin-left:5%">
 		<div class="span3">
 			<h5>HOME</h6>
@@ -89,9 +89,10 @@
 		    
 		 </div>
 		
-		<div  class="span3 " >
+		<div  class="span3" >
 			<h5>USER LOGIN </h5>
-			<a href="#/affilatedLogin">Afiilated Login</a>
+			<!-- <a href="#/affilatedLogin">Afiilated Login</a> -->
+			<a href="#">Afiilated Login</a>
 			<a href="#myModal" data-toggle="modal" >Registered User</a>
 			<a  href="#mySignUp" data-toggle="modal">Guest user</a>
 			
@@ -115,7 +116,7 @@
 	
 <!-- sign in popup begins -->
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 26%;z-index:100000;" >
+<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 30%;left: 64%;z-index:100000;" >
   	<div class="modal-dialog">
     <div class="modal-content" style="">
       <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
@@ -123,9 +124,9 @@
         <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
           </div>
     
-      <form name="aspnetForm" method="post" action="/checkSignIn" id="aspnetForm">
+      <form name="aspnetForm" method="post" action="/checkSignIn" id="aspnetForm" style="overflow: hidden;width: 100%;">
 
-      <div class="modal-body">
+      <div class="modal-body" style="width: 90%;overflow: hidden;">
        <div >
                     <div style="color: #89BD24; font-weight: bold; font-family: Calibri; font-size: 18px;
                     text-align: center; margin-top: -10px; margin-bottom: 15px">
@@ -167,7 +168,7 @@
 <!-- sign up opop up begin -->
 
 
- <div class="modal hide" id="mySignUp" style="z-index: 10000;width: 30%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal hide" id="mySignUp" style="z-index: 10000;width: 30%;left: 64%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   	
     
       <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
@@ -177,14 +178,13 @@
       </div>
 
 <form name="signUpForm" method="post" action="/saveSignUp" id="signUpForm">
-      <div class="modal-body" style="overflow: hidden;">
+      <div class="modal-body" style="overflow: hidden;left: 64%;width: 90%;">
        <div style="text-align: right">
-       <a href="/saveSignUp">yogesh...</a>
                 <!--     <input type="image" name="ctl00$ibtnclose1" id="ctl00_ibtnclose1" src="images/close_pop.png" border="0" /> --></div>
                 <div style="color: #89BD24; font-weight: bold; font-family: Calibri; font-size: 18px;
                     text-align: center; margin-top: -10px; margin-bottom: 10px">
                     SignUp Form</div>
-                <fieldset class="textboxnew" style="padding-right: 22%;padding-left: 22%;height: 372px;">
+                <fieldset class="textboxnew" style="padding-left: 10%;">
                     <label>
                         <span>Full Name</span>
                         <input name="txtUserids" type="text" id="txtUserids" autocomplete="on" placeholder="Full Name"  required/>
@@ -227,7 +227,7 @@
 </body>	  
 }
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function(){
  jQuery.validator.addMethod("lettersonly", function(value, element){ 
 			
@@ -301,6 +301,15 @@ $(document).ready(function(){
 	
 });
 </script>
+
+<style>
+#footerSection a{
+	padding: 0 0px;
+}
+.span3{
+	margin-left: 0px;
+}
+</style>
 
 </html>
 
