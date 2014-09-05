@@ -56,9 +56,6 @@ import viewmodel.Rate;
 import viewmodel.ResultVM;
 import viewmodel.Rate;
 import views.html.Booknewspaperaddonlinee43a;
-//import views.html.composeadtextclasified45e0;
-//import views.html.textiframe;
-
 import views.html.index;
 
 import com.google.common.base.Splitter;

@@ -10,9 +10,10 @@ import java.util.UUID;
 import models.Adcategory;
 import models.Basicrate;
 import models.City;
+import models.ComposedAdSave;
 import models.Newspaperdetails;
 import models.State;
-
+import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -21,6 +22,11 @@ import utils.UtilityQuery;
 import viewmodel.NewspaperVM;
 import viewmodel.Rate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 

@@ -114,6 +114,8 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
             else {
                 var text = $scope.selectedCartItemOnPopUp.description;
                 var total_unit;
+                var totalCost;
+                var extraUnit;
                 if ($scope.selectedCartItemOnPopUp.unit == "Word") {
                 	total_unit = countWords(text);
                 }
@@ -125,19 +127,26 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
                 if (total_unit > freeUnit) {
                    var cost = $scope.selectedCartItemOnPopUp.extra;
                    var costt = parseInt(cost, 10);
-                   var extraUnit = total_unit - freeUnit;
-                   var totalCost = rate + (costt * (extraUnit/unitLot));
-                   $scope.selectedCartItemOnPopUp.extraUnit = extraUnit;
-                   $scope.selectedCartItemOnPopUp.extraCost = totalCost - rate;
-                   $scope.selectedCartItemOnPopUp.total = totalCost;
+                   extraUnit = total_unit - freeUnit;
+                   totalCost = rate + (costt * (extraUnit/unitLot));
+                   
                 }
                 else {
-                	$scope.selectedCartItemOnPopUp.total = rate;
-                    $scope.selectedCartItemOnPopUp.extraCost = 0;
+                	totalCost = rate;
                 }
-                $scope.selectedCartItemOnPopUp.totalUnit = total_unit;
+                
+                $scope.$apply(function(){
+                	$scope.selectedCartItemOnPopUp.totalUnit = total_unit;
+                	$scope.selectedCartItemOnPopUp.extraCost = totalCost - rate;
+                	$scope.selectedCartItemOnPopUp.total = totalCost;
+                	$scope.selectedCartItemOnPopUp.extraUnit = extraUnit;
+                });
             }
             console.log($scope.selectedCartItemOnPopUp);
+	}
+	
+	$scope.formatDate = function(cd) {
+		return moment(cd).format('DD-MM-YYYY');
 	}
 	
 	
@@ -206,6 +215,10 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		});
 	}
 	
+	$scope.formatDate = function(cd) {
+		return moment(cd).format('DD-MM-YYYY');
+	}
+	
 	InitDatepicker = function() {
 		$("#_datepicker").datepicker({
 			multidate : true,
@@ -213,7 +226,10 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
             todayHighlight : true,
             startDate : $scope.selectedCartItemOnPopUp.startDate
         }).on("changeDate", function(e){
-        	$scope.selectedCartItemOnPopUp.dates = e.dates;
+        	$scope.$apply(function(){
+        		$scope.selectedCartItemOnPopUp.dates = e.dates;
+        	});
+        	
         });
 	}
 	
@@ -266,7 +282,7 @@ $scope.onNewspaperSelect = function() {
 					$scope.rates = data.rates;
 				});
 	}
-
+	
 	function NewCartItem(rate) {
 		return cartItem = {
 			hashKey: rate.$$hashKey,	

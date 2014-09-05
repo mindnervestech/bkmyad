@@ -172,15 +172,23 @@
                      rc-step novalidate>
                       <img src="http://www.releasemyad.com/images/small_straight_arrow.png" id="CatIdImg1" style="vertical-align:middle;" border="0">
                       <div id="_datepicker"></div>
+                      
               </form>
             </div>  
+            
+            <div>
+            	<p>Total: {{selectedCartItemOnPopUp.total}}</p>
+            	<p>{{selectedCartItemOnPopUp.unit}}: {{selectedCartItemOnPopUp.totalUnit}}</p>
+            	<p></p>
+            </div>
+            
             <div class="form-group">
               <div class="pull-right">
                 <a class="btn btn-default" ng-click="rc.composeWizard.backward()"
                    ng-show="rc.composeWizard.currentIndex > rc.composeWizard.firstIndex">Back</a>
                 <a class="btn btn-primary" data-loading-text="Please Wait..." ng-click="onComposeAdStepChange()" 
                    ng-show="rc.composeWizard.currentIndex < rc.composeWizard.navigationLength">Continue</a>
-                <a class="btn btn-primary" ng-click="onComposeAdDone()" 
+                <a class="btn btn-primary" ng-click="onComposeAdDone();closeThisDialog()" 
                    ng-show="rc.composeWizard.currentIndex == rc.composeWizard.navigationLength">Complete</a>
               </div>
             </div>  

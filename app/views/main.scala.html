@@ -1,6 +1,6 @@
 @(title: String)(content: Html)
 <head>
-<meta charset="utf-8">
+	<meta charset="utf-8">
     <title>Adchela</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -10,7 +10,7 @@
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script>
     google.load("language", "1");
-     google.load("elements", "1", {
+     /*google.load("elements", "1", {
         packages: "transliteration"
       });
       google.setOnLoadCallback(function() {
@@ -26,7 +26,7 @@
 	            var control = new google.elements.transliteration.TransliterationControl(options);
 
 	            control.makeTransliteratable(['transliterateTextarea']);
-		}); 
+		});*/ 
     </script>
     
     <!-- Le styles  -->
@@ -61,8 +61,10 @@
 	
 	
 	<!--  For Wizard: Courtesy: http://code.realcrowd.com/the-wonderful-wizard-of-angularjs/ -->
+    <!-- script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script-->
     <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular-rc/lib/jquery.bootstrap.wizard.js"></script>
+    
+	<script src="bower_components/angular-rc/lib/jquery.bootstrap.wizard.js"></script>
     <script src="bower_components/angular-rc/directives/rcSubmit.js"></script>
     <script src="bower_components/angular-rc/modules/rcDisabled.js"></script>
     <script src="bower_components/angular-rc/modules/rcWizard.js"></script>
@@ -157,6 +159,69 @@ margin: 0;
 padding: 0;
 float: left;
 }
+
+.dates-coll{
+	float: left;
+	margin: 1px;
+}
+
+	.mnt-select  {
+		border: 0 !important;
+/* -webkit-appearance: none; */
+	-moz-appearance: none;
+	background: #EFF8F8  no-repeat 90% center;
+	/* width: 100px; */
+	text-indent: 0.01px;
+	text-overflow: "";
+	/* color: #FFF; */
+	border-radius: 10px 0;
+	padding: 5px;
+	box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
+	}
+	
+	.mnt-tab-pane-deco {
+	border: 1px solid;
+	border-color: #65BDDF;
+	/* box-shadow: 64px 58px 20px #8888C4; */
+	border-radius: 1px;
+	}
+	
+	.mnt-shadow-deco {
+		  -moz-box-shadow:    3px 3px 5px 6px #ccc;
+		  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+		  box-shadow:         3px 3px 5px 6px #ccc;
+	}
+	
+	.mnt-container {
+		 -moz-box-shadow:    3px 3px 5px 6px #ccc;
+		  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+		  box-shadow:         3px 3px 5px 6px #ccc;
+		  padding-left: 3%;
+		  padding-right: 4%;
+		  padding-top: 8px;
+		  margin-top: 9px;
+		  background-color: rgba(255, 255, 255, 0.97);
+	}
+	/*TODO: image kept in NewDesign/images/np-bg.png  */
+	.mnt-html {
+	
+		background: url(http://bellepapier.blogs.splitcoaststampers.com/wp-content/imagescaler/83e1745dfa57b190d98b93350325dc00.jpg);
+		background-repeat: repeat;
+	}
+	
+	.mnt-body {
+		background-color: rgba(252, 252, 253, 0);
+	}
+	
+	.mnt-proceed-btn {
+		float: right;
+		margin-right: 13px;
+		cursor: pointer;
+		margin-bottom: 7px;
+	}
+	
+	
+
 	
 	</style>
 	
@@ -165,4 +230,5 @@ float: left;
 
 <script src='lib/js/app.js'></script>
 <script src='lib/js/controllers.js'></script>
+
     

@@ -4,27 +4,13 @@
 <div class="row" ng-init='init(@Html(beData))'>
 
 	<div class="span9">
-    <!-- <ul class="breadcrumb">
-		<li><a href="#/home.html">Home</a> <span class="divider">/</span></li>
-		<li class="active"> Make-Booking</li>
-    </ul>
-	<hr class="soft"/> --> 
 		
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 mnt-shadow-deco">
           <div rc-wizard="sampleWizard" rc-disabled="rc.firstForm.submitInProgress">
            <ul class="nav rc-nav-wizard" style="background-color: #f9f9f9;margin-bottom: 1%;">
             
-             <!-- <li class="active" style="float:left;">
-                <a class="active" href="#first" data-toggle="tab">
-                  <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">1</span>
-                  <span>Select Category</span>
-                  <span class="breadcrumb_arrow"></span>
-                </a>
-              </li>
-             -->
-            
               <li class="active" style="float:left;">
-                <a class="active custom-font" href="#first" data-toggle="tab" style="float: left;height: 17px;border: 0px solid black;">
+                <a class="active custom-font" href="#first" ng-click="rc.sampleWizard.first()" data-toggle="tab" style="float: left;height: 17px;border: 0px solid black;">
                   <!-- <span class="badge">1</span> -->
                   <span >Select Category</span>
                   
@@ -46,7 +32,7 @@
               </li> 
             </ul>
             
-            <div class="tab-content">
+            <div class="tab-content" style="margin-left: 10px;">
               
               <form class="tab-pane active" id="first" name="firstForm" 
                      rc-step novalidate>
@@ -55,7 +41,7 @@
 				<ul class="thumbnails">
 					<li ng-repeat="cat in bookingRequest.categories" class="span3">
 					  <div class="thumbnail" ng-click="onCatSelected(cat)">
-						<a  >
+						<a >
 						<img style="max-width: 35%;" class="img-circle img-thumbnail" src="Category/{{cat}}.jpg" alt=""></a>
 						<div class="caption">
 						  <p> 
@@ -75,10 +61,11 @@
                 	
                 <tabset>
 			    <tab heading="Select Your Newspaper">
-			    	<select style="margin-top: 1%;" ng-model="bookingState.selectedNewsPaper" ng-change="onNewspaperSelect()">
+			    	<select class="mnt-select" style="margin-top: 1%;" ng-model="bookingState.selectedNewsPaper" ng-change="onNewspaperSelect()">
 			    		<option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option>
 			    		<option value="">--Please Select Newspaper--</option>
 			    	</select>
+			    	<img src="/NewDesign/images/np-icon.jpg"/>
 			    	<div class="well">
 			    	
 			    	  <tabset>
@@ -86,7 +73,7 @@
 			    	  <tab>
 			    	   <tab-heading>
                         <i class="icon-tags"></i> Basic Rate
-                     </tab-heading>
+                       </tab-heading>
 			    	   
 			    	   <div ng-show="rates.length > 0" class="backcolo">
 			    	  
@@ -138,15 +125,16 @@
 			    	
 			    </tab>
 			    <tab heading="Target by specific City">
-			    	<select style="margin-top: 1%" ng-model="bookingState.selectedState" ng-change="onStateSelect()">
+			    	<select class="mnt-select" style="margin-top: 1%" ng-model="bookingState.selectedState" ng-change="onStateSelect()">
 			    		<option ng-repeat="state in bookingRequest.locations" value="{{state}}">{{state}}</option>
 			    		<option value="">--Please Select State--</option>
 			    	</select>
-			    	<select style="margin-top: 1%" ng-model="bookingState.selectedCity" ng-change="onCitySelect()">
+			    	<select class="mnt-select" style="margin-top: 1%" ng-model="bookingState.selectedCity" ng-change="onCitySelect()">
 			    		<option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
 			    		<option value="">--Please Select City--</option>
 			    	</select>
-			    	<img src="http://www.releasemyad.com/images/bg-select-state.gif" alt="">
+			    	<!-- TODO: take this image to local -->
+			    	<img style="height: 86px;" src="http://www.clipartbest.com/cliparts/aTq/eyy/aTqeyyyBc.png" alt="">
 			    	
 			    	<div class="well">
 			    	
@@ -206,9 +194,12 @@
 			    </tab>
 			    
 			  </tabset>
+			  <!--TODO: Take image to local  -->
+			  <img data-ng-show="carts.length > 0"  data-ng-click="rc.sampleWizard.forward()" class="mnt-proceed-btn" src="http://3.bp.blogspot.com/-AItqpxuD24g/T7y9T1gcKvI/AAAAAAAAAEA/ujfjeUnB9z8/s1600/proceed-button.png"/>
               </form>
               <form class="tab-pane" id="last" name="lastForm" rc-submit="completeWizard()" rc-step>
-                <h2>Compose Your Ad</h2>
+                <h3 class="pull-left">Compose Your Ad</h3>
+                <img class="pull-left" src="/NewDesign/images/np-compose.jpg" >
                 <table class="table table-bordered">
               <thead>
                 <tr>
@@ -226,8 +217,11 @@
                   <td>{{c.mainCategoty}}</td>
                   <td>{{c.location}} - {{c.newspaper}}</td>
                   <td ng-bind="c.description == '' ? 'Not Set' : c.description"></td>
-                  <td>{{c.dates}}</td>
-                  <td><button ng-click='composeAd(c)'>Compose</button></td>
+                  <td>
+                  	<span ng-repeat="cd in c.dates" class="dates-coll label label-warning" 
+                  	data-ng-bind="formatDate(cd)"></span>
+                  </td>
+                  <td><button class="btn btn-success" ng-click='composeAd(c)'>Compose <i class="icon-edit"></i></button></td>
                   <td>{{c.rate}} / {{c.unitVal}} {{c.unit}}</td>
                   <td>{{c.total}}</td>
                 </tr>
@@ -235,15 +229,17 @@
 				</tbody>
             </table>
               </form>
-            </div>
+             </div>
             <div class="form-group">
               <div class="pull-right">
-                <a class="btn btn-default" ng-click="rc.sampleWizard.backward()"
-                   ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
-                <a class="btn btn-primary" data-loading-text="Please Wait..." ng-click="rc.sampleWizard.forward()" 
-                   ng-show="rc.sampleWizard.currentIndex < rc.sampleWizard.navigationLength">Continue</a>
-                <a class="btn btn-primary" ng-click="rc.sampleWizard.forward()" 
-                   ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength">Complete</a>
+                <!-- <a class="btn btn-default" data-ng-click="rc.sampleWizard.backward()"
+                   data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
+                 -->
+                <!-- <a class="btn btn-primary" data-loading-text="Please Wait..." data-ng-click="rc.sampleWizard.forward()" 
+                   data-ng-show="(rc.sampleWizard.currentIndex != 0 ) && (rc.sampleWizard.currentIndex  < rc.sampleWizard.navigationLength)">Continue</a>
+                 -->
+                <a class="btn btn-primary" data-ng-click="onCartSubmit();closeThisDialog()" 
+                   data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength">Complete</a>
               </div>
             </div>
           </div>
@@ -253,7 +249,7 @@
 					
 	
 	</div>
-	<div ng-include data-src="'sidebar.html'" class="span3">
+	<div data-ng-include data-src="'sidebar.html'" class="span3">
 	
 	</div>
 </div>

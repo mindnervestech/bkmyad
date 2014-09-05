@@ -6,15 +6,17 @@
 		<li style="border:0"> &nbsp;</li>
 		<div style="width: 100%;width: 95%;margin-left: 3%;background-color: white;">
 		<div ng-repeat="cart in carts" style="padding: 5px;">
-		  <div class="btn-group" style="padding-bottom: 1%;padding-top: 1%;border-bottom: 1px solid rgb(238, 238, 238);">
-  			<a ng-click="updateCartItem(cart)" style="height: 50px;max-width: 90%;min-width: 90%;float: left;">
+		  <div class="btn-group" style="box-shadow: -3px 3px 16px -1px #ccc;padding-bottom: 1%;padding-top: 1%;border-bottom: 1px solid rgb(238, 238, 238);">
+  			<div  style="height: 50px;max-width: 90%;min-width: 90%;float: left;">
   				<p style="margin:0px; font-size: 13px;">{{cart.newspaper}} - {{cart.location}}</p>
   				<p ng-show="cart.total == 0" style="margin:0px; font-size: 11px;">(Rs {{cart.rate}} on {{cart.freeUnit}}, Rs {{cart.extra}} extra per {{cart.unitVal}} {{cart.unit}})</p>
   				<p ng-show="cart.total != 0" style="margin:0px; font-size: 11px;">(Total: Rs {{cart.total}})</p>
-  			</a>
-  			<div ng-click="removeFromCart(cart)"style="height: 50px;" class="">
-  				<span><i class="icon-remove" style="cursor: pointer;"></i></span>
   			</div>
+  			<div style="height: 50px;">
+  				<span class="pull-left" ng-click="removeFromCart(cart)"><i class="icon-remove" style="cursor: pointer;"></i></span>
+  				<span class="pull-left" ng-click="updateCartItem(cart)"><i class="icon-edit" style="cursor: pointer;"></i></span>
+  			</div>
+  			
   		</div>
 		</div>
 		</div> 

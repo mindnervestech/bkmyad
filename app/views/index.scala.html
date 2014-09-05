@@ -1,11 +1,12 @@
 @(message: String)
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html ng-app="adschela" ng-controller="ApplicationController" xmlns="http://www.w3.org/1999/xhtml">
+<html class="mnt-html" ng-app="adschela" ng-controller="ApplicationController" xmlns="http://www.w3.org/1999/xhtml">
 
 @main("") {
-	<body>
-			  <div class="navbar navbar-fixed-top" style="width: 95%;margin-left: 3%;">
+	<body class="mnt-body">
+		<div class="container mnt-container">
+			  <div class="navbar navbar-fixed-top" >
               <div class="navbar-inner">
                 <div class="container">
                  <a id="logoM" href="index.html"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
@@ -40,14 +41,14 @@
               </div><!-- /navbar-inner -->
             </div>
          
-			<header id="header" style="width: 94%;margin-left: 3.5%;display: block;">
+			<header id="header" style="width: 100%;display: block;">
 				<div class="row">
-				<div class="span12" style="margin-left:4%">
+				<div class="span12" >
 					<a href="index.html"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
 				
 				<div class="pull-right" style="width: 12%;margin-right: 1%;"> <br/>
-					<a href="product_summary.html"> <span class="btn btn-mini btn-warning"> <i class="icon-shopping-cart icon-white"></i> [ {{carts.length}}  ] </span> </a>
-					<a href="product_summary.html"><span class="btn btn-mini active">Rs 0.00</span></a>
+					<i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </span> </a>
+					<a href="product_summary.html"><span class="btn btn-mini active">Rs.{{carts.ttotal}}</span></a>
 					<!-- <span class="btn btn-mini">&pound;</span>
 					<span class="btn btn-mini">&euro;</span>  -->
 				</div>
@@ -60,7 +61,7 @@
 	  
 	  <!-- Footer ------------------------------------------------------ -->
 <hr class="soft" style= "width:90%; margin-left:5%">
-<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 10%;width: 94%;margin-left: 3%;">
+<div  id="footerSection">
 	<div class="row" style="margin-left:5%">
 		<div class="span3">
 			<h5>HOME</h6>
@@ -89,7 +90,7 @@
 		    
 		 </div>
 		
-		<div  class="span3" >
+		<div  class="span3 " >
 			<h5>USER LOGIN </h5>
 			<!-- <a href="#/affilatedLogin">Afiilated Login</a> -->
 			<a href="#">Afiilated Login</a>
@@ -223,11 +224,11 @@
 	  
 	  
 	  
-	  
+</div>	  
 </body>	  
 }
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 $(document).ready(function(){
  jQuery.validator.addMethod("lettersonly", function(value, element){ 
 			
@@ -301,15 +302,6 @@ $(document).ready(function(){
 	
 });
 </script>
-
-<style>
-#footerSection a{
-	padding: 0 0px;
-}
-.span3{
-	margin-left: 0px;
-}
-</style>
 
 </html>
 

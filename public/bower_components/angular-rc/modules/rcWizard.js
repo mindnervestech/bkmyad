@@ -85,6 +85,10 @@ var rcWizardDirective = {
           wizardElement.bootstrapWizard('previous');
         };
         
+        this.first = function () {
+            wizardElement.bootstrapWizard('first');
+          };
+        
         var onTabChange = function (activeTab, navigation, currentIndex, nextTab) {
           
           self.currentIndex = nextTab;
