@@ -12,6 +12,6 @@ echo "killing previous play PID " $playpid
 kill -9 $playpid
 rm nohup.out RUNNING_PID
 echo "starting play"
-chmod 777 start 
-nohup  ./start -Dhttp.port=5080 &
+nohup /home/bkmyad/target/universal/adschela-1.0-SNAPSHOT/bin/adschela &
+
 
