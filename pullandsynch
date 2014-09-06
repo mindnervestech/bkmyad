@@ -3,7 +3,7 @@ echo "synching git"
 git pull
 echo "preparing build"
 java -Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=384M -jar /opt/play-2.2.3/framework/sbt/sbt-launch.jar -Dsbt.log.noformat=true dist
-cd dist
+cd  /home/bkmyad/target/universal 
 echo "build done..."
 unzip adschela-1.0-SNAPSHOT.zip
 cd adschela-1.0-SNAPSHOT/
