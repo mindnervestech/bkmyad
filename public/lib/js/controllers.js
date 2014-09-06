@@ -25,6 +25,36 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"},
 	                 {name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
 	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"}];	
+	
+	$scope.carousel= {
+			interval : 5000
+	}
+    $scope.slides = [{
+	      	image: '/NewDesign/images/classified-ad.jpg'
+	    	},
+		    {
+			      image: '/NewDesign/images/all-np-1.jpg'
+			},
+	    	{
+		      image: '/NewDesign/images/classified-ad-2.jpg'
+		    },
+		    {
+			      image: '/NewDesign/images/all-np-2.jpg'
+			},
+		    {
+			      image: '/NewDesign/images/classified-ad-3.jpg'
+			},
+		    {
+			      image: '/NewDesign/images/all-np-3.jpg'
+			},
+		    {
+			      image: '/NewDesign/images/classified-ad-4.jpg'
+			},
+		    {
+			      image: '/NewDesign/images/banner11.jpg'
+			}
+		    ];
+	  
 }]);
 angular.module('adschela').controller("AboutUsController",['$scope',function($scope){
 	

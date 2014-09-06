@@ -7,6 +7,7 @@
     <meta name="author" content="">
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<!--TODO : Make it on local  -->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script>
     google.load("language", "1");
@@ -56,6 +57,7 @@
 	<script src='bower_components/angular-resource/angular-resource.js'></script>
 	<script src='bower_components/angular-route/angular-route.js'></script>
 	<script src='bower_components/ng-dialog/js/ngDialog.min.js'></script>
+	<script src='bower_components/angular-animate/angular-animate.min.js'></script>
 	<link href="bower_components/ng-dialog/css/ngDialog.min.css" rel="stylesheet"/>
 	<link href="bower_components/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet"/>
 	
@@ -63,21 +65,24 @@
 	<!--  For Wizard: Courtesy: http://code.realcrowd.com/the-wonderful-wizard-of-angularjs/ -->
     <!-- script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script-->
     <script src="bower_components/bootstrap/js/bootstrap.min.js"></script>
-    
-	<script src="bower_components/angular-rc/lib/jquery.bootstrap.wizard.js"></script>
+    <script src="bower_components/angular-rc/lib/jquery.bootstrap.wizard.js"></script>
     <script src="bower_components/angular-rc/directives/rcSubmit.js"></script>
     <script src="bower_components/angular-rc/modules/rcDisabled.js"></script>
     <script src="bower_components/angular-rc/modules/rcWizard.js"></script>
     <script src="bower_components/angular-rc/modules/rcForm.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script> 
+    
+	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+	
+	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script> 
+	 -->
 	<script src="bower_components/moment/moment.js"></script>
 	
 	
-
+<!--TODO: Take it on local  -->
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    <script src="assets/js/jquery.js"></script>
-    <script src='bower_components/angular/jquery.min.js'></script>
+    <!-- <script src="assets/js/jquery.js"></script>
+    <script src='bower_components/angular/jquery.min.js'></script> -->
     <script src='bower_components/angular/jquery.validate.js'></script>
     <script src='bower_components/angular/jquery.validate.min.js'></script>
 	<script src="assets/js/google-code-prettify/prettify.js"></script>
@@ -92,11 +97,12 @@
     <script src="assets/js/bootstrap-popover.js"></script>
     <script src="assets/js/bootstrap-button.js"></script>
     <script src="assets/js/bootstrap-collapse.js"></script>
-    <script src="assets/js/bootstrap-carousel.js"></script>
+    <!-- <script src="assets/js/bootstrap-carousel.js"></script> -->
     <script src="assets/js/bootstrap-typeahead.js"></script>
     <script src="assets/js/bootstrap-affix.js"></script>
     <script src="assets/js/jquery.lightbox-0.5.js"></script>
 	<script src="assets/js/bootsshoptgl.js"></script>
+	<!--TODO: Take it on local  -->
 	<script src="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 	<link href="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/datepicker.css" rel="stylesheet"/>	
 	
@@ -228,7 +234,9 @@ box-shadow: 3px 2px 19px 9px #FFE1A1;
 	
 	}
 	
-	
+	.carousel-indicators {
+		display: none !important 
+	}
 
 	
 	</style>

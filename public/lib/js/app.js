@@ -1,6 +1,7 @@
 'use strict';
 angular.module('adschela',
-		['ngResource','ngRoute','ngDialog','ui.bootstrap','ui.bootstrap.tpls','rcWizard', 'rcForm', 'rcDisabledBootstrap'])
+		['ngResource','ngRoute','ngDialog','ui.bootstrap','ui.bootstrap.transition','ui.bootstrap.tpls',
+		 'rcWizard', 'rcForm', 'rcDisabledBootstrap'])
                            .config(function ($routeProvider) {
                         	    $routeProvider
                         	      .when('/', {
