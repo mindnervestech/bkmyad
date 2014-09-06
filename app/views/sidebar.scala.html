@@ -7,9 +7,9 @@
 		<div style="width: 100%;width: 95%;margin-left: 3%;background-color: white;">
 		<div ng-repeat="cart in carts" style="padding: 5px;">
 		  <div class="btn-group" style="box-shadow: -3px 3px 16px -1px #ccc;padding-bottom: 1%;padding-top: 1%;border-bottom: 1px solid rgb(238, 238, 238);">
-  			<div  style="height: 50px;max-width: 90%;min-width: 90%;float: left;">
+  			<div  style="height: 50px;max-width: 90%;min-width: 90%;float: left;margin-right: -6%;">
   				<p style="margin:0px; font-size: 13px;">{{cart.newspaper}} - {{cart.location}}</p>
-  				<p ng-show="cart.total == 0" style="margin:0px; font-size: 11px;">(Rs {{cart.rate}} on {{cart.freeUnit}}, Rs {{cart.extra}} extra per {{cart.unitVal}} {{cart.unit}})</p>
+  				<p ng-show="cart.total == 0" style="margin:0px; font-size: 11px;padding-left: 3%;">(Rs {{cart.rate}} on {{cart.freeUnit}}, Rs {{cart.extra}} extra per {{cart.unitVal}} {{cart.unit}})</p>
   				<p ng-show="cart.total != 0" style="margin:0px; font-size: 11px;">(Total: Rs {{cart.total}})</p>
   			</div>
   			<div style="height: 50px;">

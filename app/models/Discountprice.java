@@ -43,9 +43,9 @@ public class Discountprice {
 		
 		public static List<Object[]> getfewdiscount(String nname,String cname) {
 			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category " +
-					"FROM Discountprice INNER JOIN Newspaperdetails " +
-					"ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
-					"where Discountprice.Nameofthenewspaper= ?1 and Discountprice.Category= ?2 " +
+					"FROM discountprice INNER JOIN newspaperdetails " +
+					"ON (discountprice.Nameofthenewspaper=newspaperdetails.Nameofthenewspaper)" +
+					"where discountprice.Nameofthenewspaper= ?1 and discountprice.Category= ?2 " +
 					"order by Edition Asc");
 			q.setParameter(1, nname);
 			q.setParameter(2, cname);
@@ -60,9 +60,9 @@ public class Discountprice {
 		public static List<Object[]> getdiscountednewspaperwise(String cname,String city) {
 			
 			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category  " +
-		            "FROM Discountprice INNER JOIN Newspaperdetails " +
-					"ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
-					"where Discountprice.Category = ?1 and Edition like ?2 "+
+		            "FROM discountprice INNER JOIN newspaperdetails " +
+					"ON (discountprice.Nameofthenewspaper=newspaperdetails.Nameofthenewspaper)" +
+					"where discountprice.Category = ?1 and Edition like ?2 "+
 					"order by Edition Asc");
 			
 			q.setParameter(1, cname);
@@ -77,9 +77,9 @@ public class Discountprice {
 		public static List<Object[]> getdiscountedcity(String cname,String city,String nname) {
 			
 			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category  " +
-		            "FROM Discountprice INNER JOIN Newspaperdetails " +
-					"ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
-					"where Discountprice.Category = ?1 and Edition like ?2 "+
+		            "FROM discountprice INNER JOIN newspaperdetails " +
+					"ON (discountprice.Nameofthenewspaper=newspaperdetails.Nameofthenewspaper)" +
+					"where discountprice.Category = ?1 and Edition like ?2 "+
 					"order by Edition Asc");
 			
 			q.setParameter(1, cname);
@@ -94,10 +94,10 @@ public class Discountprice {
 		
 		public static List<Object[]> getyesUPNull(String cname,String city) {
 			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category " +
-					"FROM Discountprice INNER JOIN Newspaperdetails " +
-					"ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
-					"where Edition like ?2 and Discountprice.Category= ?1 or Edition like '%UP%'"+
-					"and Discountprice.Category= ?1 " +
+					"FROM discountprice INNER JOIN newspaperdetails " +
+					"ON (discountprice.Nameofthenewspaper=newspaperdetails.Nameofthenewspaper)" +
+					"where Edition like ?2 and discountprice.Category= ?1 or Edition like '%UP%'"+
+					"and discountprice.Category= ?1 " +
 					"order by Edition Asc");
 			q.setParameter(1, cname);
 			q.setParameter(2, "%"+city+"%");
@@ -109,10 +109,10 @@ public class Discountprice {
 		
 		public static List<Object[]> getyesUPnotNull(String cname,String city, String state) {
 			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category " +
-					"FROM Discountprice INNER JOIN Newspaperdetails " +
-					"ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
-					"where Edition like ?2 and Discountprice.Category= ?1 or Edition like '%UP%'"+
-					"and Discountprice.Category= ?1 or Edition like ?3  and Discountprice.Category= ?1 "+
+					"FROM discountprice INNER JOIN newspaperdetails " +
+					"ON (discountprice.Nameofthenewspaper=newspaperdetails.Nameofthenewspaper)" +
+					"where Edition like ?2 and discountprice.Category= ?1 or Edition like '%UP%'"+
+					"and discountprice.Category= ?1 or Edition like ?3  and discountprice.Category= ?1 "+
 					"order by Edition Asc");
 			q.setParameter(1, cname);
 			q.setParameter(2, "%"+city+"%");
@@ -125,10 +125,10 @@ public class Discountprice {
 		
 		public static List<Object[]> getnoUPNull(String cname,String city,String state) {
 			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category " +
-					"FROM Discountprice INNER JOIN Newspaperdetails " +
-					"ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
-					"where Edition like ?2 and Discountprice.Category= ?1 or Edition like ?3 "+
-					"and Discountprice.Category= ?1 "+
+					"FROM Discountprice INNER JOIN newspaperdetails " +
+					"ON (discountprice.Nameofthenewspaper=newspaperdetails.Nameofthenewspaper)" +
+					"where Edition like ?2 and discountprice.Category= ?1 or Edition like ?3 "+
+					"and discountprice.Category= ?1 "+
 					"order by Edition Asc");
 			q.setParameter(1, cname);
 			q.setParameter(2, "%"+city+"%");
@@ -142,10 +142,10 @@ public class Discountprice {
 		
 		public static List<Object[]> getnoUPnotNull(String cname,String city,String dstate,String cstate) {
 			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category " +
-					"FROM Discountprice INNER JOIN Newspaperdetails " +
-					"ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
-					"where Edition like ?2 and Discountprice.Category= ?1 or Edition like ?3 "+
-					"and Discountprice.Category= ?1 or Edition like ?4 and Discountprice.Category= ?1 "+
+					"FROM discountprice INNER JOIN newspaperdetails " +
+					"ON (discountprice.Nameofthenewspaper=newspaperdetails.Nameofthenewspaper)" +
+					"where Edition like ?2 and discountprice.Category= ?1 or Edition like ?3 "+
+					"and discountprice.Category= ?1 or Edition like ?4 and discountprice.Category= ?1 "+
 					"order by Edition Asc");
 			q.setParameter(1, cname);
 			q.setParameter(2, "%"+city+"%");

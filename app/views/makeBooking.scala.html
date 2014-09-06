@@ -61,11 +61,86 @@
                 	
                 <tabset>
 			    <tab heading="Select Your Newspaper">
+			    <p>{{checkMatrimonial}}</p>
+			    <div ng-show="checkMatrimonial">
+			     <select class="mnt-select" style="margin-top: 1%;">
+			    		<!-- <option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option> -->
+			    		<option value="">--Select Cast--</option>
+			    		<option selected="selected" value="1">Agarwal</option>
+						<option value="2">Agarwal- Bisa</option>
+		    			<option value="3">Bahai</option>
+						<option value="4">Bari</option>
+						<option value="5">Brahmin</option>
+			    		<option value="6">Chandravanshi Kshatriya</option>
+						<option value="7">Chaurasia</option>
+						<option value="8">Ckp</option>
+						<option value="9">Dhobi</option>
+						<option value="10">Garhwali</option>
+						<option value="11">Gsb</option>
+						<option value="12">Gujar</option>
+					    <option value="13">Gujarati Patidar</option>
+						<option value="14">Gujarati Vaishnav</option>
+						<option value="15">Gurjjar</option>
+						<option value="16">Jain</option>
+						<option value="17">Jaiswal</option>
+						<option value="18">Jaiswal (Raj)</option>
+						<option value="19">Jatav</option>
+						<option value="20">Kashyap</option>
+						<option value="21">Kayastha</option>
+						<option value="22">Khatri</option>
+						<option value="23">Khukhrain</option>
+						<option value="24">Kshatriya</option>
+						<option value="25">Kumauni</option>
+						<option value="26">Kurmi</option>
+						<option value="27">Kutchi</option>
+						<option value="28">Lingayat</option>
+						<option value="29">Mahajan</option>
+						<option value="30">Maheshwari</option>
+						<option value="31">Mallah</option>
+						<option value="32">Maurya</option>
+						<option value="33">Mina</option>
+						<option value="34">Mogaveera</option>
+						<option value="35">Pal</option>
+						<option value="36">Panchar Sutar</option>
+						<option value="37">Pasi</option>
+						<option value="38">Paswan</option>
+						<option value="39">Prajapati</option>
+						<option value="40">Punjabi</option>
+				    	<option value="41">Sahu-Teli</option>
+						<option value="42">Saini</option>
+					    <option value="43">Saryuparin</option>
+						<option value="44">Shivhare</option>
+					    <option value="45">Swarnkar</option>
+						<option value="46">Vaish</option>
+						<option value="47">Varshney</option>
+						<option value="48">Vishwakarma Panchal</option>
+						<option value="49">Yadav</option>
+			    	</select>
+			    	 <select class="mnt-select" style="margin-top: 1%;">
+			    		<!-- <option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option> -->
+			    		<option value="">--Select Age--</option>
+			    		<option selected="selected" value="1">18-21 Age</option>
+		<option value="2">22-29 Age</option>
+		<option value="3">30-39 Age</option>
+		<option value="4">40-49 Age</option>
+		<option value="5">50-59 Age</option>
+		<option value="6">60-69 Age</option>
+		<option value="7">70-79 Age</option>
+		<option value="8">80-89 Age</option>
+			    		
+			    	</select>
+			    	
+			    	</div>
+			    	<select ng-show="resultSubCategory.length != 0" class="mnt-select" style="margin-top: 1%;">
+			    		 <option ng-repeat="scat in resultSubCategory" value="{{newspaper}}">{{scat}}</option> -->
+			    		<option value="">--Please Select Subcategory--</option>
+			    	</select>
+			    	
 			    	<select class="mnt-select" style="margin-top: 1%;" ng-model="bookingState.selectedNewsPaper" ng-change="onNewspaperSelect()">
 			    		<option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option>
 			    		<option value="">--Please Select Newspaper--</option>
 			    	</select>
-			    	<img src="/NewDesign/images/np-icon.jpg"/>
+			    	<img src="/NewDesign/images/np-icon.jpg" style="width: 6%;"/>
 			    	<div class="well">
 			    	
 			    	  <tabset>
@@ -84,7 +159,7 @@
 			    					 <span >
         								<input ng-click="rateClicked($event,rate)" style="margin: 1px"  type="checkbox">
      								 </span>
-     								 <span>{{rate.location}} - Rs {{rate.rate}} /
+     								 <span>{{rate.location}} - Rs {{rate.rate}} {{rate.unitVal}} / 
 			    					{{rate.unit}} </span>
 			    				</div>	
 			    				
@@ -108,7 +183,7 @@
 			    					 <span >
         								<input style="margin: 1px" ng-model="rate.selected" type="checkbox">
      								 </span>
-     								 <span>{{rate.city}} - Rs {{rate.amount}} /
+     								 <span>{{rate.city}} - Rs {{rate.amount}}  {{rate.unitVal}}/
 			    					{{rate.unit}} </span>
 			    				</div>	
 			    				
@@ -134,7 +209,7 @@
 			    		<option value="">--Please Select City--</option>
 			    	</select>
 			    	<!-- TODO: take this image to local -->
-			    	<img style="height: 86px;" src="http://www.clipartbest.com/cliparts/aTq/eyy/aTqeyyyBc.png" alt="">
+			    	<img style="height: 56px;width: 5%;" src="http://www.clipartbest.com/cliparts/aTq/eyy/aTqeyyyBc.png" alt="">
 			    	
 			    	<div class="well">
 			    	
@@ -151,7 +226,7 @@
 			    					 <span >
         								<input ng-click="rateClicked1($event,rate)" style="margin: 1px"  type="checkbox">
      								 </span>
-     								 <span>{{rate.newspaper}} - Rs {{rate.rate}} /
+     								 <span>{{rate.newspaper}} - Rs {{rate.rate}} {{rate.unitVal}}/
 			    					{{rate.unit}} </span>
 			    				</div>	
 			    				
@@ -176,7 +251,7 @@
 			    					 <span >
         								<input style="margin: 1px" ng-model="rate.selected" type="checkbox">
      								 </span>
-     								 <span>{{rate.city}} - Rs {{rate.amount}} /
+     								 <span>{{rate.city}} - Rs {{rate.amount}}&nbps;&nbps;&nbps;&nbps;&nbps;&nbps;{{rate.unitVal}} /
 			    					{{rate.unit}} </span>
 			    				</div>	
 			    				
@@ -347,6 +422,10 @@ margin-bottom: 0px;
     padding-top: 2%;
 	padding-left: 2%;
 }
+.custom-pill:hover { 
+    background-color: #EFF8F8;
+}
+
 ul{
 	margin: 0 0 0px 0px;
 }
@@ -380,6 +459,10 @@ th{
 	padding: 5px;
 	font: 14px Arial,Helvetica,sans-serif;
 	font-weight: bold;
+}
+.thumbnails > li {
+
+margin-left: 15px;
 }
 
 </style>

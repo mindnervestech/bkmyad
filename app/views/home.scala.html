@@ -6,7 +6,7 @@
 		        <img ng-src="{{slide.image}}" style="margin:auto;">
 		      </carousel>
 		  </div>
-		  	<a href="special_offer.html" id="spcialBtn" class="btn btn-large pull-right btn-success" >Special Offer</a> 
+		  	<a href="special_offer.html" id="spcialBtn" class="btn btn-large pull-right btn-success" >Book My Ads</a> 
         
 		  
 	<div class="row">
@@ -23,7 +23,7 @@
               <div class="item active">
 				  <ul class="thumbnails">
 					
-					<li ng-repeat="np in nplist" class="span3">
+					<li ng-repeat="np in nplist" class="span3" style="height: 150px;">
 					  <div class="thumbnail">
 					  	<a href="#/make-booking.html">
 						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/></a>
@@ -52,9 +52,16 @@ right: 0;
 }
 .thumbnail:hover {
 	border: 1px solid #65BDDF;
-	background: #65BDDF;
+	background-color: #65BDDF;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0;
 }
+
+.thumbnail img {
+	max-width: 80%;
+	padding: 5%;
+	background-color: white;
+}
+
 </style>

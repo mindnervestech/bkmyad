@@ -42,9 +42,9 @@ public class Basicrate {
 	@Transactional	
 		public static List<Object[]> getallcity(String cname,String nname) {
 			Query q = JPA.em().createNativeQuery("SELECT BasicRateID,City,Textaddrate,clasifiedadrate,BasicratesperText,BasicratesperClasified,Category " +
-					"FROM Basicrate INNER JOIN Newspaperdetails " +
-					"ON (Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
-					"where Basicrate.Category= ?1 and Basicrate.Nameofthenewspaper= ?2 " +
+					"FROM basicrate INNER JOIN newspaperdetails " +
+					"ON (basicrate.Nameofthenewspaper=newspaperdetails.Nameofthenewspaper)" +
+					"where basicrate.Category= ?1 and basicrate.Nameofthenewspaper= ?2 " +
 					"order by City Asc");
 			q.setParameter(1, cname);
 			q.setParameter(2, nname);
@@ -60,9 +60,9 @@ public class Basicrate {
 		public static List<Object[]> getbasicdatanewspaperwise(String cname,List<String> city) {
 			System.out.println(cname);
 			Query q = JPA.em().createNativeQuery("SELECT BasicRateID,Basicrate.Nameofthenewspaper,City,Textaddrate,clasifiedadrate,BasicratesperText,BasicratesperClasified,Category  " +
-		            "FROM Basicrate INNER JOIN Newspaperdetails " +
-					"ON (Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
-					"where Basicrate.Category = ?1 and Basicrate.City IN ?2 " +
+		            "FROM basicrate INNER JOIN newspaperdetails " +
+					"ON (basicrate.Nameofthenewspaper=newspaperdetails.Nameofthenewspaper)" +
+					"where basicrate.Category = ?1 and basicrate.City IN ?2 " +
 					"order by City Asc");
 			
 			q.setParameter(1, cname);
@@ -77,9 +77,9 @@ public class Basicrate {
 		public static List<Object[]> getbasicdatacitywise(String cname,String[] city,List<String> newspaper) {
 			List<String> c = Arrays.asList(city);
 			Query q = JPA.em().createNativeQuery("SELECT BasicRateID,Basicrate.Nameofthenewspaper,City,Textaddrate,clasifiedadrate,BasicratesperText,BasicratesperClasified,Category  " +
-		            "FROM Basicrate INNER JOIN Newspaperdetails " +
-					"ON (Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
-					"where Basicrate.Category = ?1 and Basicrate.City IN ?2 and Basicrate.Nameofthenewspaper IN ?3 ");
+		            "FROM basicrate INNER JOIN newspaperdetails " +
+					"ON (basicrate.Nameofthenewspaper=newspaperdetails.Nameofthenewspaper)" +
+					"where basicrate.Category = ?1 and basicrate.City IN ?2 and basicrate.Nameofthenewspaper IN ?3 ");
 			
 			q.setParameter(1, cname);
 			q.setParameter(2, c);
@@ -96,9 +96,9 @@ public class Basicrate {
 		@Transactional	
 		public static List<Object[]> getnewspaper(String cname,String city) {
 			Query q = JPA.em().createNativeQuery("SELECT BasicRateID,Basicrate.Nameofthenewspaper,City,Textaddrate,clasifiedadrate,BasicratesperText,BasicratesperClasified,Category  " +
-		            "FROM Basicrate INNER JOIN Newspaperdetails " +
-					"ON (Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper)" +
-					"where Basicrate.Category = ?1 and Basicrate.City= ?2 " +
+		            "FROM basicrate INNER JOIN newspaperdetails " +
+					"ON (basicrate.Nameofthenewspaper=newspaperdetails.Nameofthenewspaper)" +
+					"where basicrate.Category = ?1 and basicrate.City= ?2 " +
 					"order by City Asc");
 			q.setParameter(1, cname);
 			q.setParameter(2, city);

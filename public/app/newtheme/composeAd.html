@@ -19,7 +19,7 @@
                 <span class="breadcrumb_arrow"></span>
               </li>
             </ul>
-            <div class="tab-content" style="height:307px;">
+            <div class="tab-content" style="height:245px;overflow: hidden;">
               
               <form class="tab-pane active" id="select-text" name="select-textForm" 
                      rc-step novalidate>
@@ -176,9 +176,9 @@
               </form>
             </div>  
             
-            <div>
-            	<p>Total: {{selectedCartItemOnPopUp.total}}</p>
-            	<p>{{selectedCartItemOnPopUp.unit}}: {{selectedCartItemOnPopUp.totalUnit}}</p>
+            <div style="border:thin;border-color: #65BDDF;background-color: #ffffff;">
+            	<p style="padding: 1%;">   Total: {{selectedCartItemOnPopUp.total}}</p>
+            	<p style="padding: 1%;">   {{selectedCartItemOnPopUp.unit}}: {{selectedCartItemOnPopUp.totalUnit}}</p>
             	<p></p>
             </div>
             
