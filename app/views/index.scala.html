@@ -47,8 +47,8 @@
 					<a href="index.html"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
 				
 				<div class="pull-right" style="width: 12%;margin-right: 1%;"> <br/>
-					<a><i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </span> </a>
-					<a href="product_summary.html"><span class="btn btn-mini active">Rs.{{carts.ttotal}}</span></a>
+					<a><span class="btn btn-mini btn-warning"><i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </span> </a>
+					<a href="product_summary.html"><span class="btn btn-mini active" style="font-size: 12px;"> &#2352;.{{carts.ttotal}}</span></a>
 					<!-- <span class="btn btn-mini">&pound;</span>
 					<span class="btn btn-mini">&euro;</span>  -->
 				</div>
@@ -61,9 +61,9 @@
 	  
 	  <!-- Footer ------------------------------------------------------ -->
 <hr class="soft" style= "width:90%; margin-left:5%">
-<div  id="footerSection">
+<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 5%;">
 	<div class="row" style="margin-left:5%">
-		<div class="span3">
+		<div class="span3 custom_span">
 			<h5>HOME</h6>
 			<a href="#/aboutUs">About Us</a>
 			<a href="#/ourClient">Our Client</a> 
@@ -72,7 +72,7 @@
 			<a href="#mySignUp" data-toggle="modal">Register</a>
 			<a href="#/ourBlogs">Blog</a>
 		 </div>
-		<div class="span3">
+		<div class="span3 custom_span">
 			<h5>SUPPORT</h5>
 			<a href="#/termsAndConditions">Terms and Conditions</a>  
 			<a href="#/privacyPolicy">Privacy Policy </a>  
@@ -80,8 +80,8 @@
 			<a href="#/deClaimer">Declaimer</a> 
 			<a href="#/help">How to Book an Ad</a>
 		 </div>
-		<div class="span3">
-			<h5>BOOK MY ADS</h5>
+		<div class="span3 custom_span">
+			<h5>ONLINE BANKING</h5>
 			<a href="#/textClassifiedAd">Text Classified Ad</a> 
 			<a href="#/dispClassified">Classified Display Ad</a>  
 			<a href="#/dispAds">Display Ads</a>  
@@ -90,7 +90,7 @@
 		    
 		 </div>
 		
-		<div  class="span3 " >
+		<div  class="span3 custom_span" >
 			<h5>USER LOGIN </h5>
 			<!-- <a href="#/affilatedLogin">Afiilated Login</a> -->
 			<a href="#">Afiilated Login</a>
@@ -111,46 +111,69 @@
         $('#gallery a').lightBox();
     });
     </script>
+	
+<style>
+
+#footerSection a{
+	padding: 0 0px;
+}
+.custom_span{
+	width: 240px;
+}
+.modal-backdrop{
+	background: rgba(0,0,0,0.4);
+}
+.custom-lable{
+	width: 25%;
+	float: left;
+}
+
+.error{
+	color: red;
+	padding-left: 25%;
+}
+
+</style>
 	 
 
 	  
 	
 <!-- sign in popup begins -->
 
-<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 30%;left: 64%;z-index:100000;" >
+<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 30%;left: 58%;z-index:100000;" >
   	<div class="modal-dialog">
-    <div class="modal-content" style="">
+    <div class="modal-content" >
       <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
         <button type="button" class="close" data-dismiss="modal">
-        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
           </div>
     
       <form name="aspnetForm" method="post" action="/checkSignIn" id="aspnetForm" style="overflow: hidden;width: 100%;">
 
       <div class="modal-body" style="width: 90%;overflow: hidden;">
        <div >
-                    <div style="color: #89BD24; font-weight: bold; font-family: Calibri; font-size: 18px;
-                    text-align: center; margin-top: -10px; margin-bottom: 15px">
+                    <div style="color: #65BDDF; font-weight: bold; font-family: Calibri; font-size: 25px;
+                    text-align: center; margin-bottom: 15px">
                     SignIn Form</div>
-                <fieldset class="textbox" style="padding: 5%;height: 280px;">
+                <fieldset class="textbox" style="padding: 5%;">
                     <label>
-                        <span>Email Id</span>
+                        <span style="width: 25%;float: left;">Email Id</span>
                         <input name="txtUsername" type="text" id="txtUsername" autocomplete="on" placeholder="Email Id" />
                     </label>
                     <label>
-                        <span>Password</span>
+                        <span style="width: 25%;float: left;">Password</span>
                         <input name="txtpwd" type="password" id="txtpwd" placeholder="Password" />
               </label>
                     <br />
                     <span id="lblerror"><font color="Red"></font></span>
-                    <input type="submit" name="Button1" value="Sign in" onclick=""  class="submit button" style="cursor: pointer" />
+                    <input type="submit" class="btn btn-success" style="margin-left: 25%;" name="Button1" value="Sign in" onclick=""  class="submit button" style="cursor: pointer" />
                     <br />
                     <br />
-                    <a href="Forgotpassword.html"><span style="color: red; text-decoration: underline;
+                    <a href="Forgotpassword.html" style="margin-left: 25%;"><span style="color: red; text-decoration: underline;
                         font-size: 11px">Forgot your password?</span></a>
                     <br />
                     <br />
-                    <a id="sign" href="#mySignUp" data-toggle="modal" style="color: #939393;"><span style="color: red; text-decoration: underline; font-size:11px">
+                    <a id="sign" style="margin-left: 25%;" href="#mySignUp" data-toggle="modal" style="color: #939393;"><span style="color: red; text-decoration: underline; font-size:11px">
                     New User Signup here</span></a>
                 </fieldset>
             </div>
@@ -169,12 +192,12 @@
 <!-- sign up opop up begin -->
 
 
- <div class="modal hide" id="mySignUp" style="z-index: 10000;width: 30%;left: 64%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal hide" id="mySignUp" style="z-index: 10000;width: 30%;left: 58%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   	
     
       <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
         <button type="button" class="close" data-dismiss="modal">
-        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
         
       </div>
 
@@ -182,38 +205,38 @@
       <div class="modal-body" style="overflow: hidden;left: 64%;width: 90%;">
        <div style="text-align: right">
                 <!--     <input type="image" name="ctl00$ibtnclose1" id="ctl00_ibtnclose1" src="images/close_pop.png" border="0" /> --></div>
-                <div style="color: #89BD24; font-weight: bold; font-family: Calibri; font-size: 18px;
-                    text-align: center; margin-top: -10px; margin-bottom: 10px">
+                <div style="color: #65BDDF; font-weight: bold; font-family: Calibri; font-size: 25px;
+                    text-align: center;margin-bottom: 15px">
                     SignUp Form</div>
                 <fieldset class="textboxnew" style="padding-left: 10%;">
                     <label>
-                        <span>Full Name</span>
+                        <span class="custom-lable">Full Name</span>
                         <input name="txtUserids" type="text" id="txtUserids" autocomplete="on" placeholder="Full Name"  required/>
                         
                             </label>
                     <label>
-                        <span>Email</span>
+                        <span class="custom-lable">Email</span>
                         <input name="txtEmail" type="text" id="txtEmail" placeholder="Email"  required/>
                        
                         <span id="userEmailIdError" style="display: none;color: green;margin-left: 1%;"> Available  </span>
                     	<span id="userEmailId" style="display: none;color: red;margin-left: 1%;"> Email Id already exists  </span>
                    </label>
                     <label>
-                        <span>Password</span>
+                        <span class="custom-lable">Password</span>
                         <input name="txtpasswords" type="password" id="txtpasswords" placeholder="Password"  required/>
                         
            </label>
                     <label>
-                        <span>Confirm Password</span>
+                        <span class="custom-lable">Confirm Password</span>
                         <input name="txtconfirmpassword" type="password" id="txtconfirmpassword" placeholder="Confirm Password" />
             </label>
                     <label>
-                        <span>Mobile No</span>
+                        <span class="custom-lable">Mobile No</span>
                         <input name="txtMobileno" type="text" id="txtMobileno" placeholder="Mobile No" autocomplete="on" required />
             </label>
                     &nbsp;<span id="ctl00_lblmsg"><font color="Red"></font></span>
                     <br />
-                    <input type="submit" name="signupform" value="Submit"   style="cursor: pointer" />
+                    <input type="submit" class="btn btn-success" name="signupform" value="Submit"   style="cursor: pointer;margin-left: 25%;" />
                 </fieldset>
             </div>
       </form>
