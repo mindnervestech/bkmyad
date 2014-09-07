@@ -1,13 +1,21 @@
 
 
-		 <div   class="homCar" style="width: 50%;">
+		 <div   class="homCar pull-left" style="width: 50%;">
             <carousel interval="carousel.interval" >
 		      <slide ng-repeat="slide in slides" active="slide.active">
-		        <img ng-src="{{slide.image}}" style="margin:auto;">
+		        <img class="carousel-img" ng-src="{{slide.image}}" style="margin:auto;">
+		        </slide>
 		      </carousel>
 		  </div>
-		  	<a href="special_offer.html" id="spcialBtn" class="btn btn-large pull-right btn-success" >Book My Ads</a> 
+		  <div style="float: left;margin: 5%;">
+		  	<blockquote>
+		  		<h1>Book Your Ad Today</h1>
+		  		<p class="lead">Its too easy now...</p>
+		  	</blockquote>
+		  	<a href="#/make-booking.html"  class="btn btn-large pull-right btn-success" >Book My Ads</a> 
         
+		  </div>
+		  	
 		  
 	<div class="row">
 	<!-- <div data-ng-include data-src="'sidebar.html'">

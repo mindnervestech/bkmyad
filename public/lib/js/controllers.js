@@ -83,7 +83,7 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 	
 	
 	$scope.carousel= {
-			interval : 5000
+			interval : 6000
 	}
     $scope.slides = [{
 	      	image: '/NewDesign/images/classified-ad.jpg'
