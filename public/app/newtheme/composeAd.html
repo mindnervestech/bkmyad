@@ -32,7 +32,7 @@
 						
 						<div  class="span3" style="width: 220px !important;">
 							<input ng-model="selectedCartItemOnPopUp.isHindi" style="float:left" type="checkbox"> <label> Content in Hindi</label>
-							<textarea disabled="disabled" id="transliterateTextarea" rows="10" cols="" ></textarea>
+							<textarea disabled="disabled" id="transliterateTextarea" rows="10" cols="" ng-model="selectedCartItemOnPopUp.description" ></textarea>
 						</div>
 					
 					</div>
@@ -44,34 +44,40 @@
                     <table width="450" border="0" cellpadding="0" cellspacing="0">
                                                         <tbody><tr>
                                                             <td align="left" valign="middle" width="450">
-                                                                <div style="width: 200px; height: 70px; float: left; margin: 5px auto; border-radius: 7px;
+                                                                <div style="width: 200px; height: 120px; float: left; margin: 5px auto; border-radius: 7px;
                                                                     border: Solid 1px #65BDDF; background-color: #F0F0F0">
                                                                     <center>
                                                                         <table width="180" border="0" cellpadding="0" cellspacing="0">
                                                                             <tbody><tr>
                                                                                 <td width="180" height="20" style="border-bottom: 5px double #666666; font-size: 10pt;
                                                                                     font-family: Calibri;">
-                                                                                    Select Ad Background Color
+                                                                                   <b> Select Ad Background Color</b>
+                                                                                    Background Color  Extra:
+                                                                                    <span>{{selectedCartItemOnPopUp.extraForBackgroud}}</span>
+                                                                                    <br /> <input type="checkbox" name="noBackGroundcolor" ng-checked="true" value="nobgcolor" ng-model="selectedCartItemOnPopUp.nobgColor" ng-change="onNoBgcolorSelected();"> No Backgrund Color
+                                                                                </td>
+                                                                                <td >
+                                                                                    
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td width="180" style="height: 20px;" align="left" valign="top">
+                                                                                <td width="480" style="height: 20px;" align="left" valign="top">
                                                                                     <table border="0" cellpadding="0" cellspacing="0" width="180">
                                                                                         <tbody><tr>
                                                                                             <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbnn" type="radio" name="a" value="rbnn" onclick="javascript:setTimeout('__doPostBack(\'rbnn\',\'\')', 0)"></span>
+                                                                                                <span style="font-size: 8pt"><input id="rbnn" type="radio" name="a" value="rbnn" ng-model="selectedCartItemOnPopUp.onbgColorchange" ></span>
                                                                                             </td>
                                                                                             <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbny" type="radio" name="a" value="rbny" onclick="javascript:setTimeout('__doPostBack(\'rbny\',\'\')', 0)"></span>
+                                                                                                <span style="font-size: 8pt"><input id="rbny" type="radio" name="a" value="rbny" ng-model="selectedCartItemOnPopUp.onbgColorchange" ></span>
                                                                                             </td>
                                                                                             <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbnp" type="radio" name="a" value="rbnp" onclick="javascript:setTimeout('__doPostBack(\'rbnp\',\'\')', 0)"></span>
+                                                                                                <span style="font-size: 8pt"><input id="rbnp" type="radio" name="a" value="rbnp"  ng-model="selectedCartItemOnPopUp.onbgColorchange" ></span>
                                                                                             </td>
                                                                                             <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbng" type="radio" name="a" value="rbng" onclick="javascript:setTimeout('__doPostBack(\'rbng\',\'\')', 0)"></span>
+                                                                                                <span style="font-size: 8pt"><input id="rbng" type="radio" name="a" value="rbng" ng-model="selectedCartItemOnPopUp.onbgColorchange" ></span>
                                                                                             </td>
                                                                                             <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbns" type="radio" name="a" value="rbns" onclick="javascript:setTimeout('__doPostBack(\'rbns\',\'\')', 0)"></span>
+                                                                                                <span style="font-size: 8pt"><input id="rbns" type="radio" name="a" value="rbns" ng-model="selectedCartItemOnPopUp.onbgColorchange" ></span>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
@@ -106,29 +112,34 @@
 		</div>
                                                                                             </td>
                                                                                         </tr>
+                                                                                        <tr>             </tr>
                                                                                     </tbody></table>
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody></table>
                                                                     </center>
                                                                 </div>
-                                                                <div style="width: 200px; height: 70px; float: right; padding-right: 10px; margin: 5px auto;
+                                                                <div style="width: 200px; height: 100px; float: right; padding-right: 10px; margin: 5px auto;
                                                                     border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
                                                                     <center>
                                                                         <table width="140" border="0" cellpadding="0" cellspacing="0">
                                                                             <tbody><tr>
                                                                                 <td width="140" height="20" style="border-bottom: 5px double #666666; font-size: 9pt;
                                                                                     font-family: Calibri;">
-                                                                                    Ad Border
+                                                                                  <b>Select  Ad Border</b><br />
+                                                                                    Border Extra:
+                                                                                    <span>{{selectedCartItemOnPopUp.extraForBorder}}</span>
+                                                                                   
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <td width="140" height="20">
                                                                                     <table id="rbnborder" border="0" style="font-family: Calibri; font-size: 9pt">
-			<tbody><tr>
-				<td><input id="rbnborder_0" type="radio" name="rbnborder" value="No" checked="checked"><label for="rbnborder_0">No</label></td><td><input id="rbnborder_1" type="radio" name="rbnborder" value="Yes" onclick="javascript:setTimeout('__doPostBack(\'rbnborder$1\',\'\')', 0)"><label for="rbnborder_1">Yes</label></td>
-			</tr>
-		</tbody></table>
+			                                                                      <tbody><tr>
+				                                                                   <td><input id="rbnborder_0" type="radio" name="rbnborder" value="No" checked="checked" ng-model="selectedCartItemOnPopUp.onBorderSelected" ng-change="onNoBorderselected();"><label for="rbnborder_0">No</label></td><td>
+				                                                                   <input id="rbnborder_1" type="radio" name="rbnborder" value="Yes" ng-model="selectedCartItemOnPopUp.onBorderSelected" ng-change="onBorderselected();"><label for="rbnborder_1">Yes</label></td>
+			                                                                      </tr>
+		                                                                       </tbody></table>
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody></table>
@@ -140,26 +151,27 @@
                                                             <td align="left" valign="middle" width="450">
                                                                 <table border="0" cellpadding="0" cellspacing="0" class="style2">
                                                                     <tbody><tr>
-                                                                        <td align="left" valign="top">
-                                                                            <a id="LinkButton1" href="javascript:__doPostBack('LinkButton1','')" style="font-family: Calibri; font-size: 8pt; color: #FF3300">No Backgrund Color</a>
-                                                                        </td>
+                                                                        <!-- <td align="left" valign="top">
+                                                                            <input type="checkbox" name="noBackGroundcolor" ng-checked="true" value="nobgcolor" ng-model="selectedCartItemOnPopUp.nobgColor" ng-change="onNoBgcolorSelected();"> No Backgrund Color
+                                                                        </td> -->
                                                                         <td align="right" valign="top" width="250">
                                                                             &nbsp;
                                                                         </td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td align="left" valign="top">
-                                                                            <span id="Label2" class="style3" style="font: bold;font-size: medium;">Background Color  Extra</span>
+                                                                    
+                                                                    <tr><br />
+                                                                       <!--  <td align="left" valign="top">
+                                                                            <span id="Label2" class="style3" style="font: bold;font-size: medium;">Background Color  Extra:</span> &nbsp; <span>{{selectedCartItemOnPopUp.extraForBackgroud}}</span>
                                                                             &nbsp;<span id="lblExtracost" class="style3" style="color:Red;"></span>
-                                                                            &nbsp;
+                                                                            &nbsp;<p></p>
                                                                             
-                                                                        </td>
-                                                                        <td align="right" valign="top" width="250">
-                                                                            <span id="Label5" class="style3" style="font: bold;font-size: medium;">Border Extra</span>
+                                                                        </td> -->
+                                                                       <!--  <td align="right" valign="top" width="250">
+                                                                            <span id="Label5" class="style3" style="font: bold;font-size: medium;">Border Extra:</span> &nbsp; &nbsp;<span>{{selectedCartItemOnPopUp.extraForBorder}}</span>
                                                                             &nbsp;<span id="lblExtrabordercost" class="style3" style="color:Red;"></span>
+                                                                            &nbsp;<p></p>
                                                                             &nbsp;
-                                                                            &nbsp;
-                                                                        </td>
+                                                                        </td> -->
                                                                     </tr>
                                                                 </tbody></table>
                                                             </td>
@@ -168,19 +180,20 @@
                       
               </form>
               
-              <form class="pull-left tab-pane" id="select-date" name="select-dateForm" 
-                     rc-step novalidate>
+              <form class="pull-left tab-pane" id="select-date" name="select-dateForm" rc-step novalidate>
                       <img src="http://www.releasemyad.com/images/small_straight_arrow.png" id="CatIdImg1" style="vertical-align:middle;" border="0">
                       <div id="_datepicker"></div>
                       
               </form>
-              <div class="pull-left price-box" >											
+               <div class="pull-left price-box"  >											
  				
- 						<p style="padding: 1%;">   Total: {{selectedCartItemOnPopUp.total}}</p>
- 					
- 						<p style="padding: 1%;">   {{selectedCartItemOnPopUp.unit}}: {{selectedCartItemOnPopUp.totalUnit}}</p>
+ 				        <p style="padding: 1%; font-size: 13px;">{{selectedCartItemOnPopUp.newspaper}}-{{ selectedCartItemOnPopUp.location}}</p>
+ 				        <p style="padding: 1%; font-size: 13px;">(Rs {{selectedCartItemOnPopUp.rate}} per  {{selectedCartItemOnPopUp.freeUnit}} Words.) <br />(Rs {{selectedCartItemOnPopUp.extra}} Extra per word )</p>
+ 						<p style="padding: 1%;"> Total:{{selectedCartItemOnPopUp.total}}</p>
+ 						<p style="padding: 1%;"> {{selectedCartItemOnPopUp.unit}}: {{selectedCartItemOnPopUp.totalUnit}} </p>
+ 						<p style="padding: 1%;"> Extra Unit:{{selectedCartItemOnPopUp.extraUnit}}</p>
             		 
-	  		  </div>
+	  		   </div>
             </div>  
             
             <div class="form-group">

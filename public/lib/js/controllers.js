@@ -167,6 +167,64 @@ angular.module('adschela').controller("BlogController",['$scope',function($scope
 angular.module('adschela').controller("ComposeAdController",['$scope',function($scope){
 	$scope.selectedCartItemOnPopUp = GetSelectedCartItemOnPopUp();
 	
+	var borderSelected;
+	var totalCost;
+	var borderColor;
+	var backgroundColor;
+	var rate;
+	
+	
+	
+	borderColor=parseInt($scope.selectedCartItemOnPopUp.extraForBorder);
+	backgroundColor=parseInt($scope.selectedCartItemOnPopUp.extraForBackgroud);
+	$scope.onBackgroundColorChange=function(){
+		if(backgroundColor>0){
+		 totalCost= $scope.selectedCartItemOnPopUp.total;
+		 $scope.selectedCartItemOnPopUp.total= totalCost + backgroundColor;
+		}
+	}
+	
+	$scope.onNoBorderselected=function()
+	{ 
+		totalCost= $scope.selectedCartItemOnPopUp.total;
+		if(rate==rate){
+		}else{
+			
+			$scope.selectedCartItemOnPopUp.total= totalCost;
+		}
+	}
+	
+	$scope.onBorderselected=function(){
+        totalCost= $scope.selectedCartItemOnPopUp.total;
+	   if(rate==rate)
+	   {
+	     $scope.selectedCartItemOnPopUp.total= totalCost + borderColor;
+	   }
+	   else
+	   {
+	     $scope.selectedCartItemOnPopUp.total= totalCost;
+       }
+  }
+	
+	$scope.onNoBgcolorSelected=function(){
+		  console.log("Extra Price  for Border::"+$scope.selectedCartItemOnPopUp.nobgColor);
+		  var checkColorSelected=$scope.selectedCartItemOnPopUp.nobgColor;
+		  totalCost= $scope.selectedCartItemOnPopUp.total;
+		
+		  if(checkColorSelected)
+			  {
+		         $scope.selectedCartItemOnPopUp.total= totalCost-backgroundColor;
+			  }
+		  
+		  else{
+			   console.log("Borde r not  Slected :"+backgroundColor);
+			   $scope.selectedCartItemOnPopUp.total= totalCost+backgroundColor;
+		    }
+		
+	}
+	
+	
+	
 	$scope.onComposeAdStepChange = function() {
 		$scope.rc.composeWizard.forward();
 		
@@ -205,8 +263,11 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 	
 	function computeRateByUnit() {
 		
-            var rate = parseInt($scope.selectedCartItemOnPopUp.rate);
+            rate = parseInt($scope.selectedCartItemOnPopUp.rate);
             var freeUnit = parseInt($scope.selectedCartItemOnPopUp.freeUnit);
+            var borderColor=parseInt($scope.selectedCartItemOnPopUp.borderColor);
+            var location=$scope.selectedCartItemOnPopUp.location;
+            var newspaper=$scope.selectedCartItemOnPopUp.newspaper;
             var unitLot = parseInt($scope.selectedCartItemOnPopUp.unitVal);
 
             if ($scope.selectedCartItemOnPopUp.description == '') {
@@ -215,12 +276,10 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
             else {
                 var text = $scope.selectedCartItemOnPopUp.description;
                 var total_unit;
-                var totalCost;
                 var extraUnit;
-                if ($scope.selectedCartItemOnPopUp.unit == "Word") {
+                if ($scope.selectedCartItemOnPopUp.unit == "Words") {
                 	total_unit = countWords(text);
                 }
-                
                 if ($scope.selectedCartItemOnPopUp.unit == "Line") {
                 	total_unit = Math.ceil(text.length / 23);
                 }
@@ -230,18 +289,32 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
                    var costt = parseInt(cost, 10);
                    extraUnit = total_unit - freeUnit;
                    totalCost = rate + (costt * (extraUnit/unitLot));
-                   
+                   //console.log("In addition"+border);
+                   //alert("hi in extra word");
                 }
                 else {
                 	totalCost = rate;
+                	console.log("in totle cost"+totalCost);
                 }
-                
+                if ($scope.selectedCartItemOnPopUp.unit == "Line") {
+                	total_unit = Math.ceil(text.length / 23);
+                }
                 $scope.$apply(function(){
                 	$scope.selectedCartItemOnPopUp.totalUnit = total_unit;
                 	$scope.selectedCartItemOnPopUp.extraCost = totalCost - rate;
                 	$scope.selectedCartItemOnPopUp.total = totalCost;
+                	console.log("cost is"+borderSelected);
                 	$scope.selectedCartItemOnPopUp.extraUnit = extraUnit;
-                });
+                	$scope.selectedCartItemOnPopUp.location=location;
+                    $scope.selectedCartItemOnPopUp.newspaper=newspaper;
+                    $scope.selectedCartItemOnPopUp.rate =rate;
+                    console.log("Newspaper: "+$scope.selectedCartItemOnPopUp.newspaper)
+                	console.log("raTe: "+$scope.selectedCartItemOnPopUp.rate);
+                    $scope.selectedCartItemOnPopUp.unitVal=unitVal;
+        			$scope.selectedCartItemOnPopUp.extra=extra;
+        	        $scope.selectedCartItemOnPopUp.freeUnit=freeUnit;
+        	                     	
+        		 });
             }
             console.log($scope.selectedCartItemOnPopUp);
 	}
@@ -283,6 +356,14 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		fromCart.total=fromScreen.total;
 		fromCart.dates=angular.copy(fromScreen.dates);
 		fromCart.isHindi=fromScreen.isHindi;
+		fromCart.extraCost=fromScreen.extraCost;
+		fromCart.totalUnit=fromScreen.totalUnit;
+		fromCart.rate=fromScreen.rate;
+		fromCart.onbgColorchange=fromScreen.onbgColorchange;
+		fromCart.onBorderSelected=fromScreen.onBorderSelected;
+		fromCart.nobgColor=fromScreen.nobgColor;
+		
+		
 	    
 	}
 	
@@ -318,7 +399,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		SetSelectedCartItemOnPopUp(c);
 		ngDialog.open({
 			template: 'newtheme/composeAd.html',
-			//scope: scope,
+		
 			controller:'ComposeAdController',
 			className: 'ngdialog-theme-default'
 		});
@@ -329,6 +410,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	}
 	
 	InitDatepicker = function() {
+		var costAfterTopping = $scope.selectedCartItemOnPopUp.total;
 		$("#_datepicker").datepicker({
 			multidate : true,
             format : "dd/mm/yyyy", 
@@ -336,10 +418,14 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
             startDate : $scope.selectedCartItemOnPopUp.startDate
         }).on("changeDate", function(e){
         	$scope.$apply(function(){
-        		$scope.selectedCartItemOnPopUp.dates = e.dates;
+        	var NumberOfDate=0;
+        	$scope.selectedCartItemOnPopUp.dates = e.dates;
+        	$scope.selectedCartItemOnPopUp.total = costAfterTopping * $scope.selectedCartItemOnPopUp.dates.length;
         	});
         	
         });
+		
+		$("#_datepicker").datepicker("setDate", $scope.selectedCartItemOnPopUp.dates);
 	}
 	
 	
@@ -364,8 +450,8 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
                                                                function($scope,$http,ngDialog){
 	
 	$scope.init = function(beData) {
-		$scope.bookingRequest = beData;
-		/*console.log($scope.bookingRequest);*/
+	$scope.bookingRequest = beData;
+		
 	}
 	
 	$scope.bookingState = {
@@ -423,13 +509,17 @@ $scope.onNewspaperSelect = function() {
 			unitVal: rate.unitVal,
 			extra: rate.extra,
 			freeUnit: rate.freeUnit,
-			
+			extraForBackgroud:rate.extraForBackgroud,
+			extraForBorder:rate.extraForBorder,
 			description: '',
 			total: 0,
 			noOfImpression: '',
 			dates: [],
 			mainCategoty: $scope.bookingState.selectedMainCategoty,
 			isHindi:false,
+			onbgColorchange:'rbnn',
+			onBorderSelected:'no',
+			nobgColor:'',
 			startDate:moment().add(2, 'days').format("DD/MM/YYYY")
 	    }
 	}
