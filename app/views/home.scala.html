@@ -29,13 +29,12 @@
 		<div id="myCarousel1"  >
             <div class="carousel-inner">
               <div class="item active">
-				  <ul class="thumbnails">
-					
-					<li ng-repeat="np in nplist" class="span3" style="height: 150px;">
-					  <div class="thumbnail">
+				  <ul class="thumbnails">					 
+					<li ng-repeat="np in nplist"  class="span3" style="height: 150px;">
+					  <div class="thumbnail" ng-model="bookingState.selectedNewsPaper" ng-click="onfirestNewspaperSelect(np)">
 					  	<a href="#/make-booking.html">
 						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/></a>
-						<div class="caption">
+						<div class="caption"  value="{{np.name}}">
 						  <h5>{{np.name}}</h5>
 						</div>
 						</a>	

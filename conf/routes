@@ -32,6 +32,7 @@ GET /Category/*file                 controllers.Assets.at(path="/public/app/Cate
 GET /bower_components/*file		    controllers.Assets.at(path="/public/bower_components", file)
 GET /newtheme/*file			     	controllers.Assets.at(path="/public/app/newtheme", file)
 GET /assets/*file			    	controllers.Assets.at(path="/public/app/newtheme/assets", file)
+GET /Jquery/*file			    	controllers.Assets.at(path="/public/app/Jquery", file)
 
 
 #HTML - ONLY FOR STATIC HTMLs, IF HTMLS NEED TO BE TEMPLATIZED MAP it as Controllers

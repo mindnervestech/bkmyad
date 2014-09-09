@@ -88,6 +88,10 @@ var rcWizardDirective = {
         this.first = function () {
             wizardElement.bootstrapWizard('first');
           };
+          
+          this.last = function () {
+              wizardElement.bootstrapWizard('last');
+          };
         
         var onTabChange = function (activeTab, navigation, currentIndex, nextTab) {
           

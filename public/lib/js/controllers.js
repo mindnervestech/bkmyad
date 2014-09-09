@@ -261,6 +261,14 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		$scope.carts.push(c);
 	}
 	
+	$scope.Login = function(){
+		$('#myModal').modal();
+	}
+	
+	$scope.Register = function(){
+		$('#mySignUp').modal();
+	}
+	
 	DeleteCartItemByRate = function(rate){
 		  angular.forEach($scope.carts, function(obj, index){
 		    if ((rate.$$hashKey === obj.hashKey) || (rate.hashKey === obj.hashKey)) {
@@ -363,6 +371,10 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	$scope.bookingState = {
 			selectedMainCategoty: '',
 			selectedNewsPaper:''
+	}
+	
+	$scope.onfirestNewspaperSelect = function(np) {
+		console.log("//////"+$scope.bookingState.selectedNewsPaper+"/////");
 	}
 	
 	$scope.onCatSelected = function(cat) {

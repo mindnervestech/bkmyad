@@ -18,14 +18,14 @@
                 <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a href="#second" data-toggle="tab" class="custom-font" style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#second" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">2</span> -->
                   <span>Pick Your Package</span>
                 </a>
                 <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a href="#last" data-toggle="tab" class="custom-font" style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#last" ng-click="rc.sampleWizard.last()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">3</span> -->
                   <span>Ads Summary</span>
                 </a>
@@ -61,7 +61,7 @@
                 	
                 <tabset>
 			    <tab heading="Select Your Newspaper">
-			    <p>{{checkMatrimonial}}</p>
+			   <!--  <p>{{checkMatrimonial}}</p> -->
 			    <div ng-show="checkMatrimonial">
 			     <select class="mnt-select" style="margin-top: 1%;">
 			    		<!-- <option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option> -->
@@ -132,7 +132,7 @@
 			    	
 			    	</div>
 			    	<select ng-show="resultSubCategory.length != 0" class="mnt-select" style="margin-top: 1%;">
-			    		 <option ng-repeat="scat in resultSubCategory" value="{{newspaper}}">{{scat}}</option> -->
+			    		 <option ng-repeat="scat in resultSubCategory" value="{{newspaper}}">{{scat}}</option>
 			    		<option value="">--Please Select Subcategory--</option>
 			    	</select>
 			    	
@@ -209,7 +209,7 @@
 			    		<option value="">--Please Select City--</option>
 			    	</select>
 			    	<!-- TODO: take this image to local -->
-			    	<img style="height: 56px;width: 5%;" src="http://www.clipartbest.com/cliparts/aTq/eyy/aTqeyyyBc.png" alt="">
+			    	<img style="height: 56px;width: 5%;" src="images/aTqeyyyBc.png" alt="">
 			    	
 			    	<div class="well">
 			    	
@@ -270,11 +270,11 @@
 			    
 			  </tabset>
 			  <!--TODO: Take image to local  -->
-			  <img data-ng-show="carts.length > 0"  data-ng-click="rc.sampleWizard.forward()" class="mnt-proceed-btn" src="http://3.bp.blogspot.com/-AItqpxuD24g/T7y9T1gcKvI/AAAAAAAAAEA/ujfjeUnB9z8/s1600/proceed-button.png"/>
+			  <img data-ng-show="carts.length > 0"  data-ng-click="rc.sampleWizard.forward()" class="mnt-proceed-btn" src="images/proceed-button.png"/>
               </form>
               <form class="tab-pane" id="last" name="lastForm" rc-submit="completeWizard()" rc-step>
                 <h3 class="pull-left">Compose Your Ad</h3>
-                <img class="pull-left" src="/NewDesign/images/np-compose.jpg" >
+                <img class="pull-left" style="width: 4%;" src="/NewDesign/images/np-compose.jpg" >
                 <table class="table table-bordered">
               <thead>
                 <tr>
@@ -291,8 +291,8 @@
                 <tr ng-repeat="c in carts">
                   <td>{{c.mainCategoty}}</td>
                   <td>{{c.location}} - {{c.newspaper}}</td>
-                  <td ng-bind="c.description == '' ? 'Not Set' : c.description"></td>
-                  <td>
+                  <td><span ng-bind="c.description == '' ? 'Not Set' : c.description|limitTo:40"></span><a ng-click="composeAd(c)" style="cursor: pointer;">...</a></td>
+                  <td><!-- <a href="http://www.w3schools.com">Visit W3Schools.com!</a> -->
                   	<span ng-repeat="cd in c.dates" class="dates-coll label label-warning" 
                   	data-ng-bind="formatDate(cd)"></span>
                   </td>
@@ -305,7 +305,7 @@
             </table>
               </form>
              </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-top: 2%;">
               <div class="pull-right">
                 <!-- <a class="btn btn-default" data-ng-click="rc.sampleWizard.backward()"
                    data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
