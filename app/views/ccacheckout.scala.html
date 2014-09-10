@@ -1,0 +1,82 @@
+@(title: String)(ccavenue: viewmodel.CCAvenueDefaultVM)
+
+<html>
+	<head><title>Sub-merchant checkout page</title></head>
+<body>
+<form method="post" action="http://124.153.83.75/shopzone/cc_details.jsp">
+	<input type="hidden" name=Merchant_Id value="@Html(ccavenue.Merchant_Id)">
+	<input type="hidden" name=Amount value="@Html(ccavenue.Amount)">
+	<input type="hidden" name=Order_Id value="@Html(ccavenue.Order_Id)">
+	<input type="hidden" name=Redirect_Url value="@Html(ccavenue.Redirect_Url)">
+	<input type="hidden" name=Checksum value="@Html(ccavenue.Checksum)">
+
+	<table>
+		<tr>
+			<td>Customer Billing Name: </td>
+			<td><input type="text" name="billing_cust_name" size="50" value="@Html(ccavenue.billing_cust_name)"/></td>			
+		</tr>
+		<tr>
+			<td>Customer Address: </td>
+			<td><input type="text" name="billing_cust_address" value="@Html(ccavenue.billing_cust_address)" /></td> <!-- max length 200 -->		
+		</tr>
+		<tr>
+			<td>Customer Tel. No. </td>
+			<td><input type="text" name="billing_cust_tel" size="50" value="@Html(ccavenue.billing_cust_tel)"/></td>				
+		</tr>
+		<tr>
+			<td>Customer email</td>
+			<td><input type="text" name="billing_cust_email" size="50"/ value="@Html(ccavenue.billing_cust_email)"></td>
+		</tr>
+		<tr>
+			<td>Country</td>
+			<td><select name="billing_cust_country">
+				<option value="India">India</option>
+			</select></td>		
+		</tr>
+		<tr>
+			<td>State</td>
+			<td><select name="billing_cust_state">
+				<option value="MH">Maharashtra</option>
+			</select></td>
+		</tr>
+		<tr>
+			<td>City: </td>
+			<td><select name="billing_cust_city">
+				<option value="Pune">Pune</option>
+			</select></td>
+		</tr>
+		<tr>
+			<td>Zip Code</td>
+			<td><input type="text" name="billing_zip_code" size="10" value="@Html(ccavenue.billing_zip)"/></td>
+		</tr>
+		<tr>
+			<td>Notes (optional)</td>
+			<td><input type="text" name="billing_cust_notes" size="50"/></td>
+		</tr>
+		<!-- <tr>
+			<td>Pay type</td>
+			<td><select name="payType">
+				<option value="OTHRDC_Y">OTHRDC_Y</option>
+			</select></td>
+		</tr> -->
+		<tr>
+			<td>Billing Heading</td>
+			<td><input type="text" name="billingPageHeading" value="" /></td>
+		</tr>
+		<tr>
+			<td>
+				<INPUT TYPE="submit" value="submit" onclick="return validateForm()">
+			</td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>
+
+<script>
+	function validateForm() {
+		//check whether all the mandatory details are provided by Customer...
+		console.log("details valid...");
+		return true;
+	}
+</script>

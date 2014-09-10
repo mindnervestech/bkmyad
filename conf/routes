@@ -64,3 +64,6 @@ GET /TermsandConditions.html     controllers.Assets.at(path="/public", file="app
 GET /Booknewspaperaddonline.html     controllers.Assets.at(path="/public", file="app/Booknewspaperaddonline.html")
 GET /manageAnnouncements.html     controllers.Assets.at(path="/public", file="app/manageAnnouncements.html")
 GET /AddBasicRate.html     controllers.Assets.at(path="/public", file="app/AddBasicRate.html")
+
+GET /ccavenue	controllers.CCAvenueController.ccavenue()
+GET /redirect	controllers.CCAvenueController.redirect()
