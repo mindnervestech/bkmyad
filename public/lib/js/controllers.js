@@ -161,69 +161,311 @@ angular.module('adschela').controller("ENewsPaperController",['$scope',function(
 angular.module('adschela').controller("BlogController",['$scope',function($scope){
 	
 }]);
+angular.module('adschela').controller('AddBasicRateController',function($scope, $modal, $http, $filter, BasicRateService, deleteAnnouncementService, announcementIconService){
+	
+	console.log("----------------------");
+	
+	$scope.City = " ";
+	$scope.pageNumber;
+	$scope.pageSize;
+	$scope.formData = "";
+	var currentPage = 1;
+	var totalPages;
+	$scope.isChosen = false;
+	
+	$scope.searchForm= {
+            from : new Date(),
+            to : new Date()
 
+	}
 
+	
+	$scope.announcements = BasicRateService.AnnouncementInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		totalPages = $scope.announcements.totalPages;
+		currentPage = $scope.announcements.currentPage;
+		$scope.pageNumber = $scope.announcements.currentPage;
+		$scope.pageSize = $scope.announcements.totalPages;
+		
+		if(totalPages == 0) {
+			$scope.pageNumber = 0;
+		}
+	});
+	
+	//$scope.locations = LocationService.LocationInfo.get();
+	//console.log($scope.locations);
+		$scope.searchAnnouncements = function(page) {
+		if(angular.isUndefined($scope.City) || $scope.City=="") {
+			console.log('inside function');
+			$scope.title = " ";
+		}
+		currentPage = page;
+		console.log($scope.City);
+		console.log(currentPage);
+		$scope.announcements = BasicRateService.AnnouncementInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			console.log($scope.announcements.totalPages);
+			totalPages = $scope.announcements.totalPages;
+			currentPage = $scope.announcements.currentPage;
+			$scope.pageNumber = $scope.announcements.currentPage;
+			$scope.pageSize = $scope.announcements.totalPages;
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+	    console.log($scope.announcements);
+	};
+	console.log($scope.City);
+	console.log($scope.announcements);
+	console.log('mfjfjfjfjf');
+	
+	
+	
+	
+	$scope.saveAnnouncement = function() {
+		console.log($scope.formData);
+		$http.post('/saveBasicRate').success(function(data){
+			console.log('success');
+			$scope.searchAnnouncements(currentPage);
+			$('#myModal').modal('hide');
+		}).error(function(data, status, headers, config) {
+			console.log('ERROR');
+		});
+	};
+	
+	$scope.setData = function(ancmt) {
+		$('#myModal2').modal();
+		$scope.ancmtData = ancmt;
+		$scope.icon_url = ancmt.ic.url;
+        $scope.icon_name = ancmt.ic.name;
+		$scope.searchForm.from = $filter('date')(new Date(ancmt.fd),'MMMM-dd-yyyy');
+		$scope.searchForm.to = $filter('date')(new  Date(ancmt.td),'MMMM-dd-yyyy');
+		console.log($scope.ancmtData);
+		
+		
+	};
+	$scope.setDates = function() {
+		
+		$scope.searchForm.from = new Date();
+		$scope.searchForm.to = new Date();
+		$scope.icon_id = "";
+        $scope.icon_url = "";
+        $scope.icon_name = "";
+		$scope.formData = "";
+		$scope.isChosen = false;
+		$('#myModal').modal();
+	}
+	$scope.setDeleteId = function(Id) {
+		$scope.deleteId = Id;
+		$('#myModal3').modal();
+	};
+	
+	$scope.updateAnnouncement = function() {
+		$scope.ancmtData.fd = $filter('date')(new Date($scope.searchForm.from),'yyyy-MM-dd');
+		$scope.ancmtData.td = $filter('date')(new Date($scope.searchForm.to),'yyyy-MM-dd');
+		console.log($scope.ancmtData);
+		$http.post('/updateAnnouncement', $scope.ancmtData).success(function(data){
+			console.log('success');
+			$scope.searchAnnouncements(currentPage);
+			$('#myModal2').modal('hide');
+		}).error(function(data, status, headers, config) {
+			console.log('ERROR------------');
+		});
+	};
+	
+	$scope.deleteAnnouncement = function(idData) {
+		console.log(idData);
+		deleteAnnouncementService.DeleteAnnouncement.get({id :idData.id}, function(data){
+			//$scope.announcements.results.splice($scope.announcements.results.indexOf(idData),1);
+			$scope.searchAnnouncements(currentPage);
+            $('#myModal3').modal('hide');
+		});    
+	};
+	
+	
+	
+	$scope.onNext = function() {
+		if(currentPage < totalPages) {
+			currentPage++;
+			$scope.searchAnnouncements(currentPage);
+		}
+	};
+	$scope.onPrev = function() {
+		if(currentPage > 1) {
+			currentPage--;
+			$scope.searchAnnouncements(currentPage);
+		}
+	};
+	
+});
+
+angular.module('adschela').service('BasicRateService',function($resource){
+    this.AnnouncementInfo = $resource(
+            '/getBasicrate/:City/:currentPage',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    );
+});
+
+angular.module('adschela').controller('ShowAnnouncementController',function($scope, $modal, $http, $filter, AnnouncementsService, deleteAnnouncementService, announcementIconService){
+	
+	$scope.title = " ";
+	$scope.pageNumber;
+	$scope.pageSize;
+	$scope.formData = "";
+	var currentPage = 1;
+	var totalPages;
+	$scope.isChosen = false;
+	
+	$scope.searchForm= {
+            from : new Date(),
+            to : new Date()
+
+	}
+
+	$scope.announcements = AnnouncementsService.AnnouncementInfo.get({title:$scope.title,currentPage:currentPage},function(response) {
+		totalPages = $scope.announcements.totalPages;
+		currentPage = $scope.announcements.currentPage;
+		$scope.pageNumber = $scope.announcements.currentPage;
+		$scope.pageSize = $scope.announcements.totalPages;
+		if(totalPages == 0) {
+			$scope.pageNumber = 0;
+		}
+	});
+	
+	//$scope.locations = LocationService.LocationInfo.get();
+	//console.log($scope.locations);
+		$scope.searchAnnouncements = function(page) {
+		if(angular.isUndefined($scope.title) || $scope.title=="") {
+			console.log('inside function');
+			$scope.title = " ";
+		}
+		currentPage = page;
+		console.log($scope.title);
+		console.log(currentPage);
+		$scope.announcements = AnnouncementsService.AnnouncementInfo.get({title:$scope.title,currentPage:currentPage},function(response) {
+			console.log($scope.announcements.totalPages);
+			totalPages = $scope.announcements.totalPages;
+			currentPage = $scope.announcements.currentPage;
+			$scope.pageNumber = $scope.announcements.currentPage;
+			$scope.pageSize = $scope.announcements.totalPages;
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+	    console.log($scope.announcements);
+	};
+	console.log($scope.title);
+	console.log($scope.announcements);
+	console.log('mfjfjfjfjf');
+	
+	$scope.setData = function(ancmt) {
+		$('#myModal2').modal();
+		$scope.ancmtData = ancmt;
+		$scope.icon_url = ancmt.ic.url;
+        $scope.icon_name = ancmt.ic.name;
+		$scope.searchForm.from = $filter('date')(new Date(ancmt.fd),'MMMM-dd-yyyy');
+		$scope.searchForm.to = $filter('date')(new  Date(ancmt.td),'MMMM-dd-yyyy');
+		console.log($scope.ancmtData);
+		
+		
+	};
+	$scope.setDates = function() {
+		
+		$scope.searchForm.from = new Date();
+		$scope.searchForm.to = new Date();
+		$scope.icon_id = "";
+        $scope.icon_url = "";
+        $scope.icon_name = "";
+		$scope.formData = "";
+		$scope.isChosen = false;
+		$('#myModal').modal();
+	}
+	$scope.setDeleteId = function(Id) {
+		$scope.deleteId = Id;
+		$('#myModal3').modal();
+	};
+	$scope.saveAnnouncement = function() {
+		$scope.formData.fromDate = $filter('date')(new Date($scope.searchForm.from),'yyyy-MM-dd');
+		$scope.formData.toDate = $filter('date')(new Date($scope.searchForm.to),'yyyy-MM-dd');
+		console.log($scope.formData);
+		$http.post('/saveAnnouncement', $scope.formData).success(function(data){
+			console.log('success');
+			$scope.searchAnnouncements(currentPage);
+			$('#myModal').modal('hide');
+		}).error(function(data, status, headers, config) {
+			console.log('ERROR');
+		});
+	};
+	
+	$scope.updateAnnouncement = function() {
+		$scope.ancmtData.fd = $filter('date')(new Date($scope.searchForm.from),'yyyy-MM-dd');
+		$scope.ancmtData.td = $filter('date')(new Date($scope.searchForm.to),'yyyy-MM-dd');
+		console.log($scope.ancmtData);
+		$http.post('/updateAnnouncement', $scope.ancmtData).success(function(data){
+			console.log('success');
+			$scope.searchAnnouncements(currentPage);
+			$('#myModal2').modal('hide');
+		}).error(function(data, status, headers, config) {
+			console.log('ERROR------------');
+		});
+	};
+	
+	$scope.deleteAnnouncement = function(idData) {
+		console.log(idData);
+		deleteAnnouncementService.DeleteAnnouncement.get({id :idData.id}, function(data){
+			//$scope.announcements.results.splice($scope.announcements.results.indexOf(idData),1);
+			$scope.searchAnnouncements(currentPage);
+            $('#myModal3').modal('hide');
+		});    
+	};
+	
+	$scope.onNext = function() {
+		if(currentPage < totalPages) {
+			currentPage++;
+			$scope.searchAnnouncements(currentPage);
+		}
+	};
+	$scope.onPrev = function() {
+		if(currentPage > 1) {
+			currentPage--;
+			$scope.searchAnnouncements(currentPage);
+		}
+	};
+	
+});
+angular.module('adschela').service('AnnouncementsService',function($resource){
+    this.AnnouncementInfo = $resource(
+            '/getAnnouncements1/:title/:currentPage',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    );
+});
+
+angular.module('adschela').service('deleteAnnouncementService',function($resource){
+    this.DeleteAnnouncement = $resource(
+            '/deleteAnnouncement/:id',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    );
+});
+
+angular.module('adschela').service('announcementIconService',function($resource){
+    this.getAllIcons = $resource(
+            '/getAllAnnouncementIcons',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get' ,isArray:true}
+            }
+    );
+});
 
 angular.module('adschela').controller("ComposeAdController",['$scope',function($scope){
 	$scope.selectedCartItemOnPopUp = GetSelectedCartItemOnPopUp();
-	
-	var borderSelected;
-	var totalCost;
-	var borderColor;
-	var backgroundColor;
-	var rate;
-	
-	
-	
-	borderColor=parseInt($scope.selectedCartItemOnPopUp.extraForBorder);
-	backgroundColor=parseInt($scope.selectedCartItemOnPopUp.extraForBackgroud);
-	$scope.onBackgroundColorChange=function(){
-		if(backgroundColor>0){
-		 totalCost= $scope.selectedCartItemOnPopUp.total;
-		 $scope.selectedCartItemOnPopUp.total= totalCost + backgroundColor;
-		}
-	}
-	
-	$scope.onNoBorderselected=function()
-	{ 
-		totalCost= $scope.selectedCartItemOnPopUp.total;
-		if(rate==rate){
-		}else{
-			
-			$scope.selectedCartItemOnPopUp.total= totalCost;
-		}
-	}
-	
-	$scope.onBorderselected=function(){
-        totalCost= $scope.selectedCartItemOnPopUp.total;
-	   if(rate==rate)
-	   {
-	     $scope.selectedCartItemOnPopUp.total= totalCost + borderColor;
-	   }
-	   else
-	   {
-	     $scope.selectedCartItemOnPopUp.total= totalCost;
-       }
-  }
-	
-	$scope.onNoBgcolorSelected=function(){
-		  console.log("Extra Price  for Border::"+$scope.selectedCartItemOnPopUp.nobgColor);
-		  var checkColorSelected=$scope.selectedCartItemOnPopUp.nobgColor;
-		  totalCost= $scope.selectedCartItemOnPopUp.total;
-		
-		  if(checkColorSelected)
-			  {
-		         $scope.selectedCartItemOnPopUp.total= totalCost-backgroundColor;
-			  }
-		  
-		  else{
-			   console.log("Borde r not  Slected :"+backgroundColor);
-			   $scope.selectedCartItemOnPopUp.total= totalCost+backgroundColor;
-		    }
-		
-	}
-	
-	
 	
 	$scope.onComposeAdStepChange = function() {
 		$scope.rc.composeWizard.forward();

@@ -2,7 +2,10 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +15,9 @@ import javax.persistence.Query;
 
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
+import play.libs.Json;
+import play.mvc.Result;
+import viewmodel.AnnouncementVM;
 import viewmodel.ResultVM;
 import viewmodel.NewspaperVM;
 
@@ -21,7 +27,7 @@ public class Basicrate {
 
 	public Basicrate() {}
 	
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+		@Id 
 		public String BasicRateID;
 		public String Nameofthenewspaper;
 		public String City;
@@ -37,6 +43,63 @@ public class Basicrate {
 		public String Extrabgper;
 		public String Tickper;
 		public String ExtracostperSqcm;
+		
+				
+		
+		@Transactional
+	    public static long getAllAnnouncementsTotal(String City,  int rowsPerPage) {
+	    	long totalPages = 0, size;
+	    	
+	    	if(City.trim().equals("")) {
+	    		size = (long) JPA.em().createQuery("Select count(*) from Basicrate a").getSingleResult();
+	    	} else {
+	    		Query query = JPA.em().createQuery("Select count(*) from Basicrate a where a.City LIKE ?2");
+	    		query.setParameter(2, "%"+City+"%");
+	    		size= (long) query.getSingleResult();
+	    	}
+	    	
+	    	totalPages = size/rowsPerPage;
+			
+	    	if(size % rowsPerPage > 0) {
+				totalPages++;
+			}
+	    	System.out.println("total pages ::"+totalPages);
+	    	return totalPages;
+	    }
+		
+		 @Transactional
+		    public static List<Basicrate> getAllAnnouncements(String City, int currentPage, int rowsPerPage, long totalPages) {
+		    	int  start=0;
+		    	/*Query q;*/
+		    	String sql="";
+		    	
+		    	System.out.println("------------"+City+"------------");
+		    	if(City.trim().equals("")) {
+		    		sql = "Select a from Basicrate a";
+		    	} else {
+		    		sql ="SelectSelect a from Basicrate a where a.City LIKE ?1";
+		    		
+		    	}
+
+	    		
+		    	
+		    	if(currentPage >= 1 && currentPage <= totalPages) {
+					start = (currentPage*rowsPerPage)-rowsPerPage;
+				}
+				if(currentPage>totalPages && totalPages!=0) {
+					currentPage--;
+					start = (int) ((totalPages*rowsPerPage)-rowsPerPage); 
+				}
+		    	Query q = JPA.em().createQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
+		    	if(!City.trim().equals("")) {
+					q.setParameter(1, "%"+City+"%");
+				}
+				
+			
+				return (List<Basicrate>)q.getResultList();
+				
+				
+		    }
 		
 		
 	@Transactional	
@@ -108,7 +171,27 @@ public class Basicrate {
 			
 		}
 		
-		
+		@Transactional
+	    public void save() {
+			this.BasicRateID = UUID.randomUUID().toString();
+	        JPA.em().persist(this);
+	        JPA.em().flush();     
+	    }
+	      
+	    @Transactional
+	    public void delete() {
+	        JPA.em().remove(this);
+	    }
+	    
+	    @Transactional
+	    public void merge() {
+	        JPA.em().merge(this);
+	    }
+	    
+	    @Transactional
+	    public void refresh() {
+	        JPA.em().refresh(this);
+	    }
 	
 		
 }

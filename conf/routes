@@ -19,6 +19,13 @@ GET     /addisplay.html                        controllers.AdDisplayController.i
 POST    /validateUsernameUnique                controllers.UservalidationController.ValidateUsernameUnique()
 GET     /dispFrame.html                        controllers.DispFrameController.index()
 GET     /getSubCategoty/:cname					controllers.Application.getSubCategoty(cname:String)
+
+GET		/getAnnouncements/:title/:currentPage	controllers.AnnouncementController.getAnnouncements(title :String,currentPage :Integer)
+POST	/saveAnnouncement		               controllers.AnnouncementController.saveAnnouncement
+GET		/deleteAnnouncement/:id		           controllers.AnnouncementController.deleteAnnouncement(id :Long)
+POST	/updateAnnouncement		            controllers.AnnouncementController.updateAnnouncement
+GET		/getBasicrate/:City/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,currentPage :Integer)
+POST	/saveBasicRate		               controllers.AddbasicRateController.saveBasicRate
 #GET     /addisplay.html                                 
                         
 # Map static resources from the /public folder to the /assets URL path
@@ -55,3 +62,5 @@ GET /Paymentoption.html     controllers.Assets.at(path="/public", file="app/Paym
 GET /PrivacyPolicy.html     controllers.Assets.at(path="/public", file="app/PrivacyPolicy.html")
 GET /TermsandConditions.html     controllers.Assets.at(path="/public", file="app/TermsandConditions.html")
 GET /Booknewspaperaddonline.html     controllers.Assets.at(path="/public", file="app/Booknewspaperaddonline.html")
+GET /manageAnnouncements.html     controllers.Assets.at(path="/public", file="app/manageAnnouncements.html")
+GET /AddBasicRate.html     controllers.Assets.at(path="/public", file="app/AddBasicRate.html")

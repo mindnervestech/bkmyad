@@ -1,5 +1,7 @@
 package viewmodel;
 
+import models.Basicrate;
+
 public class NewspaperVM {
 
 	public NewspaperVM(){}

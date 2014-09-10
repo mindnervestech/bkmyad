@@ -37,9 +37,17 @@ angular.module('adschela',
                         	        templateUrl: 'Blog.html',
                         	        controller: 'BlogController'
                         	      })
-                        	      
-                        	    
-                        	        .when('/termsAndConditions', {
+                        	      .when('/manageAnnouncement', {
+                        	        templateUrl: 'manageAnnouncements.html',
+                        	        controller: 'ShowAnnouncementController'
+                        	      })
+                        	                            	      
+                        	      .when('/AddBasicRate', {
+                          	        templateUrl: 'AddBasicRate.html',
+                          	        controller: 'AddBasicRateController'
+                          	      })
+                        	     
+                          	      .when('/termsAndConditions', {
                         	        templateUrl: 'TermsandConditions.html',
                         	         controller: 'TermsandConditionsController'
                         	      })
