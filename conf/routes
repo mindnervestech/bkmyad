@@ -20,14 +20,20 @@ GET     /addisplay.html                        controllers.AdDisplayController.i
 POST    /validateUsernameUnique                controllers.UservalidationController.ValidateUsernameUnique()
 GET     /dispFrame.html                        controllers.DispFrameController.index()
 GET     /getSubCategoty/:cname					controllers.Application.getSubCategoty(cname:String)
-
+GET     /getNewspaper							controllers.AddbasicRateController.getNewspaper()
 GET		/getAnnouncements/:title/:currentPage	controllers.AnnouncementController.getAnnouncements(title :String,currentPage :Integer)
 POST	/saveAnnouncement		               controllers.AnnouncementController.saveAnnouncement
 GET		/deleteAnnouncement/:id		           controllers.AnnouncementController.deleteAnnouncement(id :Long)
 POST	/updateAnnouncement		            controllers.AnnouncementController.updateAnnouncement
 GET		/getBasicrate/:City/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,currentPage :Integer)
 POST	/saveBasicRate		               controllers.AddbasicRateController.saveBasicRate
-#GET     /addisplay.html                                 
+POST	/updateBasicRate	            controllers.AddbasicRateController.updateBasicRate
+GET		/deleteBasicRate/:id		           controllers.AddbasicRateController.deleteBasicRate(id :String)
+GET     /getCategory							controllers.AddbasicRateController.getCategory
+GET     /getStatename							controllers.AddbasicRateController.getStatename
+GET     /getCityname/:state							controllers.AddbasicRateController.getCityname(state:String)
+
+#GET    /addisplay.html                                 
                         
 # Map static resources from the /public folder to the /assets URL path
 GET /css/*file                     controllers.Assets.at(path="/public/app/css", file)

@@ -29,7 +29,12 @@ public class State {
 		return (List<State>)q.getResultList();
 	}
 	
-	
+	@Transactional
+	public static List<String> getallstateString()
+	{
+		Query q=JPA.em().createQuery("Select a.Statename from State a");
+		return (List<String>)q.getResultList();
+	}
 	
 	
 	

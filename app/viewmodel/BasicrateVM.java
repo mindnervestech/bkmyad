@@ -22,6 +22,7 @@ public class BasicrateVM {
      public String Extrabgper;
      public String Tickper;
      public String ExtracostperSqcm;
+     public String Statename;
     
 
     
@@ -42,7 +43,7 @@ public class BasicrateVM {
     	this.Extrabgper=basicrate.Extrabgper;
     	this.Tickper=basicrate.Tickper;
     	this.ExtracostperSqcm=basicrate.ExtracostperSqcm;
-    	    	
+    	this.Statename=basicrate.Statename;
     }
     
 	

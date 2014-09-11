@@ -95,7 +95,7 @@
     <!--container end-->
   </div>
 		  <!-- Create Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="width: 65%;">
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="width: 53%;">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -104,42 +104,33 @@
 		      </div>
 		      <form method="post" ng-submit="saveBasicRate()">
 		      <div class="modal-body">
-		      <table style="font-family: 'Bitter', georgia, serif;">
+		      <table>
 		     
 			         
 			    <tr>
 			        	<td><label>NewsPapers</label></td>
 			        	<td style="height: 60px;">
 			        	
-			        <select name="Newspaper" style="width:100%;" data-ng-model="formData.Nameofthenewspaper" required >
-			    		<option ng-repeat="newspaper in resultNewspaper" value="{{newspaper.newspapers}}">{{newspaper.newspapers}}</option>
+			        <select name="Newspaper" style="width:100%;" required ng-model="bookingState.selectedNewsPaper" >
+			    		<option ng-repeat="newspaper in resultNewspaper" value="{{newspaper}}">{{newspaper}}</option>
 			    		<option value="">--Please Select Newspaper--</option>
 			    	</select>
 			    	</td>
 			        </tr> 
 			         <tr>
-			        	 <td><label>State</label></td>
-			        	<td style="height: 60px;">
-			        		<select name="State" style="width:100%;" data-ng-model="formData.Statename" ng-change="onStateselect()">
-			        			<option ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
-			        			<option value="">--Please Select State--</option>
-			        			
-			        		</select>
-			        	</td>
 			        	<td><label>City</label></td>
 			        	<td style="height: 60px;">
-			        		<select name="City" style="width:100%;" data-ng-model="formData.City" required >
-			        			<option ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
+			        		<select name="City" data-ng-model="formData.City" style="width:100%;" required>
+			        			<option ng-repeat="newspaper in resultNewspaper" value="">--Select--</option>
 			        			<option value="">--Please Select City--</option>
 			        			
 			        		</select>
 			        	</td>
-			        	
 			        	<td><label>Category</label></td>
 			        	<td style="height: 60px;">
-			        		<select name="Category" style="width:100%;" data-ng-model="formData.Category" required>
-			        			<option ng-repeat="cat in resultcname" value="{{cat.cname}}">{{cat.cname}}</option>
-			        			<option value="">--Please Select Category--</option>
+			        		<select name="Category" style="width:100%;" required>
+			        			<option ng-repeat="newspaper in resultCategory" value="{{cname}}">{{cname}}</option>
+			        			<option value="">--Please Select City--</option>
 			        			
 			        		</select>
 			        	</td>
@@ -195,7 +186,7 @@
 		</div>
 		
 		<!-- Update Modal -->
-		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;">
+		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 53%;">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -206,44 +197,27 @@
 		      <div class="modal-body">
 		      <table>
 			        <tr>
-			        	<td><label>NewsPapers</label></td>
+			        	<td><label>Newspaper Name</label></td>
 			        	<td style="height: 60px;">
-			        {{ancmtData.Nameofthenewspaper}}	
-			        <select name="Newspaper" style="width:100%;" data-ng-model="ancmtData.Nameofthenewspaper" required >
-			    		<option ng-selected="ancmtData.Nameofthenewspaper" ng-repeat="newspaper in resultNewspaper"  value="{{newspaper.newspapers}}">
-			    		{{newspaper.newspapers}} </option>
-			    		<option value="">--Please Select Newspaper--</option>
-			    	</select>
-			    	</td>
-			        </tr> 
-			         <tr>
-			        	 <td><label>State</label></td>
-			        	<td style="height: 60px;">
-			        		<select name="State" style="width:100%;" data-ng-model="ancmtData.Statename" ng-change="onStateselect()">
-			        			<option ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
-			        			<option value="">--Please Select State--</option>
-			        			
-			        		</select>
-			        	</td>
-			        	<td><label>City</label></td>
-			        	<td style="height: 60px;">
-			        		<select name="City" style="width:100%;" data-ng-model="ancmtData.City" required >
-			        			<option ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
-			        			<option value="">--Please Select City--</option>
-			        			
-			        		</select>
-			        	</td>
-			        	
-			        	<td><label>Category</label></td>
-			        	<td style="height: 60px;">
-			        		<select name="Category" style="width:100%;" data-ng-model="ancmtData.Category" required>
-			        			<option ng-repeat="cat in resultcname" value="{{cat.cname}}">{{cat.cname}}</option>
-			        			<option value="">--Please Select Category--</option>
-			        			
-			        		</select>
+			        		<select name="Newspaper" style="width:100%;" required >
+			    				<option ng-repeat="newspaper in resultNewspaper" value="{{newspaper}}">{{newspaper}}</option>
+			    				<option value="">--Please Select Newspaper--</option>
+			    			</select>
 			        	</td>
 			        </tr>
-			    <tr>
+			         <tr>
+			        	<td><label>City</label></td>
+			        	<td style="height: 60px;">
+			        		<select name="City" data-ng-model="ancmtData.City" style="width:100%;" required>
+			        			<option disabled="true" value="">--Select--</option>
+			        			<option value="Pune">Pune</option>
+			        			<option value="Mumbai">Mumbai</option>
+			        		</select>
+			        	</td>
+			        	<td><label>Category</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Category" style="width:70%;height: 50%;" data-ng-model="ancmtData.Category" required></textarea></td>
+			        </tr>
+			        <tr>
 			        	<td><label>Textaddrate</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Textaddrate" style="width:70%;height: 50%;" data-ng-model="ancmtData.Textaddrate" required></textarea></td>
 			        	<td><label>Clasifiedad Rate</label></td>

@@ -36,6 +36,12 @@ public class Newspaperdetails {
 	}
 	
 	@Transactional	
+	public static List<String> getAllnewspaperString() {
+		Query q = JPA.em().createQuery("Select a.Nameofthenewspaper from Newspaperdetails a order by Nameofthenewspaper Asc");
+		return (List<String>)q.getResultList();
+	}
+	
+	@Transactional	
 	public static List<Newspaperdetails> getbeforebookingdate(String nname) {
 		Query q = JPA.em().createQuery("Select a from Newspaperdetails a where a.Nameofthenewspaper = ?1");
 		q.setParameter(1, nname);

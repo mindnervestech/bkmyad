@@ -28,6 +28,12 @@ public class Adcategory {
 		return (List<Adcategory>)q.getResultList();
 	}
 
+	@Transactional	
+	public static List<String> getAllArticlesString() {
+		Query q = JPA.em().createQuery("Select a.cname from Adcategory a order by cname Asc");
+		return (List<String>)q.getResultList();
+	}
+	
 	
 	
 	@Transactional	

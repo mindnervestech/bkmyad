@@ -27,7 +27,7 @@ public class Basicrate {
 
 	public Basicrate() {}
 	
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+		@Id 
 		public String BasicRateID;
 		public String Nameofthenewspaper;
 		public String City;
@@ -43,7 +43,7 @@ public class Basicrate {
 		public String Extrabgper;
 		public String Tickper;
 		public String ExtracostperSqcm;
-		
+		public String Statename;
 				
 		
 		@Transactional
@@ -101,7 +101,14 @@ public class Basicrate {
 				
 		    }
 		
-		
+		 public static Basicrate findById(String id) {
+		    	Query query = JPA.em().createQuery("Select a from Basicrate a where a.BasicRateID = ?1");
+				query.setParameter(1, id);
+		    	return (Basicrate) query.getSingleResult();
+		    }
+		 
+		 
+		 
 	@Transactional	
 		public static List<Object[]> getallcity(String cname,String nname) {
 			Query q = JPA.em().createNativeQuery("SELECT BasicRateID,City,Textaddrate,clasifiedadrate,BasicratesperText,BasicratesperClasified,Category " +

@@ -161,7 +161,7 @@ angular.module('adschela').controller("ENewsPaperController",['$scope',function(
 angular.module('adschela').controller("BlogController",['$scope',function($scope){
 	
 }]);
-angular.module('adschela').controller('AddBasicRateController',function($scope, $modal, $http, $filter, BasicRateService, deleteAnnouncementService, announcementIconService){
+angular.module('adschela').controller('AddBasicRateController',function($scope, $modal, $http, $filter, BasicRateService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice, deleteBasicRateService, announcementIconService){
 	
 	console.log("----------------------");
 	
@@ -193,10 +193,10 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	
 	//$scope.locations = LocationService.LocationInfo.get();
 	//console.log($scope.locations);
-		$scope.searchAnnouncements = function(page) {
+		$scope.searchBasicRate = function(page) {
 		if(angular.isUndefined($scope.City) || $scope.City=="") {
 			console.log('inside function');
-			$scope.title = " ";
+			$scope.City = " ";
 		}
 		currentPage = page;
 		console.log($scope.City);
@@ -218,13 +218,11 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	console.log('mfjfjfjfjf');
 	
 	
-	
-	
-	$scope.saveAnnouncement = function() {
+	$scope.saveBasicRate = function() {
 		console.log($scope.formData);
-		$http.post('/saveBasicRate').success(function(data){
+		$http.post('/saveBasicRate', $scope.formData).success(function(data){
 			console.log('success');
-			$scope.searchAnnouncements(currentPage);
+			$scope.searchBasicRate(currentPage);
 			$('#myModal').modal('hide');
 		}).error(function(data, status, headers, config) {
 			console.log('ERROR');
@@ -232,17 +230,36 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	};
 	
 	$scope.setData = function(ancmt) {
-		$('#myModal2').modal();
+		
+		$scope.resultNewspaper = getNewspaperservice.Allnewspaper.get(); 
+		$scope.resultcname = getcnameservice.Allcname.get();
+		$scope.resultstate = getStateNameservice.Allstate.get();
+		console.log("---------");
+		console.log(ancmt);
+		console.log("---------");
 		$scope.ancmtData = ancmt;
-		$scope.icon_url = ancmt.ic.url;
-        $scope.icon_name = ancmt.ic.name;
-		$scope.searchForm.from = $filter('date')(new Date(ancmt.fd),'MMMM-dd-yyyy');
-		$scope.searchForm.to = $filter('date')(new  Date(ancmt.td),'MMMM-dd-yyyy');
+		$('#myModal2').modal();
+		
+		console.log("/////////////////");
 		console.log($scope.ancmtData);
+		console.log("/////////////////");
+		//$scope.icon_url = ancmt.ic.url;
+        //$scope.icon_name = ancmt.ic.name;
 		
 		
 	};
+
+	$scope.onStateselect = function() {
+		alert("State"+$scope.formData.Statename)
+		$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.formData.Statename}); 
+		}
+	
 	$scope.setDates = function() {
+				
+		$scope.resultNewspaper = getNewspaperservice.Allnewspaper.get(); 
+		$scope.resultcname = getcnameservice.Allcname.get();
+		$scope.resultstate = getStateNameservice.Allstate.get();
+		
 		
 		$scope.searchForm.from = new Date();
 		$scope.searchForm.to = new Date();
@@ -254,28 +271,26 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		$('#myModal').modal();
 	}
 	$scope.setDeleteId = function(Id) {
-		$scope.deleteId = Id;
+		$scope.deleteId = Id.BasicRateID;
+		console.log("-**-*-"+$scope.deleteId+"*-*-*-*");
 		$('#myModal3').modal();
 	};
 	
-	$scope.updateAnnouncement = function() {
-		$scope.ancmtData.fd = $filter('date')(new Date($scope.searchForm.from),'yyyy-MM-dd');
-		$scope.ancmtData.td = $filter('date')(new Date($scope.searchForm.to),'yyyy-MM-dd');
+	$scope.updateBasicRate = function() {
 		console.log($scope.ancmtData);
-		$http.post('/updateAnnouncement', $scope.ancmtData).success(function(data){
+		$http.post('/updateBasicRate', $scope.ancmtData).success(function(data){
 			console.log('success');
-			$scope.searchAnnouncements(currentPage);
+			$scope.searchBasicRate(currentPage);
 			$('#myModal2').modal('hide');
 		}).error(function(data, status, headers, config) {
 			console.log('ERROR------------');
 		});
 	};
 	
-	$scope.deleteAnnouncement = function(idData) {
-		console.log(idData);
-		deleteAnnouncementService.DeleteAnnouncement.get({id :idData.id}, function(data){
+	$scope.deleteBasicRate = function() {
+		deleteBasicRateService.DeleteAnnouncement.get({id :$scope.deleteId}, function(data){
 			//$scope.announcements.results.splice($scope.announcements.results.indexOf(idData),1);
-			$scope.searchAnnouncements(currentPage);
+			$scope.searchBasicRate(currentPage);
             $('#myModal3').modal('hide');
 		});    
 	};
@@ -285,17 +300,59 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	$scope.onNext = function() {
 		if(currentPage < totalPages) {
 			currentPage++;
-			$scope.searchAnnouncements(currentPage);
+			$scope.searchBasicRate(currentPage);
 		}
 	};
 	$scope.onPrev = function() {
 		if(currentPage > 1) {
 			currentPage--;
-			$scope.searchAnnouncements(currentPage);
+			$scope.searchBasicRate(currentPage);
 		}
 	};
 	
 });
+
+angular.module('adschela').service('getNewspaperservice',function($resource){
+    this.Allnewspaper = $resource(
+            '/getNewspaper',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get',isArray:true}
+            }
+    );
+});
+
+
+angular.module('adschela').service('getcnameservice',function($resource){
+    this.Allcname = $resource(
+            '/getCategory',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get',isArray:true}
+            }
+    );
+});
+
+angular.module('adschela').service('getStateNameservice',function($resource){
+    this.Allstate = $resource(
+            '/getStatename',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get',isArray:true}
+            }
+    );
+});
+
+angular.module('adschela').service('getCityNameservice',function($resource){
+    this.AllCity = $resource(
+            '/getCityname/:state',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get',isArray:true}
+            }
+    );
+});
+
 
 angular.module('adschela').service('BasicRateService',function($resource){
     this.AnnouncementInfo = $resource(
@@ -306,6 +363,18 @@ angular.module('adschela').service('BasicRateService',function($resource){
             }
     );
 });
+
+angular.module('adschela').service('deleteBasicRateService',function($resource){
+    this.DeleteAnnouncement = $resource(
+            '/deleteBasicRate/:id',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    );
+});
+
+
 
 angular.module('adschela').controller('ShowAnnouncementController',function($scope, $modal, $http, $filter, AnnouncementsService, deleteAnnouncementService, announcementIconService){
 	
@@ -436,7 +505,7 @@ angular.module('adschela').controller('ShowAnnouncementController',function($sco
 });
 angular.module('adschela').service('AnnouncementsService',function($resource){
     this.AnnouncementInfo = $resource(
-            '/getAnnouncements1/:title/:currentPage',
+            '/getAnnouncements/:title/:currentPage',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get'}
