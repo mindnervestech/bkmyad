@@ -1,7 +1,10 @@
 package controllers;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +16,7 @@ import models.City;
 import models.ComposedAdSave;
 import models.Newspaperdetails;
 import models.State;
+import models.User;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
@@ -54,7 +58,24 @@ public class MakeBookingController extends Controller {
     	}
     	return ok();
      }
-	
+	@Transactional
+	public static Result checkUserNameandPassword(String Username,String Password){
+		
+		 User existingUser = User.findByCredentials(Username,Password);
+		   System.out.println("existingUser:: "+existingUser);
+		 if (existingUser != null) {
+		    	return ok("false");
+		    }
+		    else {
+		    	flash("login_error", "Please check your username and password");
+		    	return ok("true");
+		    }
+		 
+		
+		
+		
+		
+	}
 	 @Transactional
 	    public static Result getBasicRateByLocationAndCategory(String Location,String Category) {
 	    	List<Object[]> rates1 = UtilityQuery.getBasicRateByLocationAndCategory(Location,Category); 
@@ -163,7 +184,7 @@ public class MakeBookingController extends Controller {
         public String unit; //word
         public String unitVal; //2
         public String extra; //15
-        //public String freeUnit; // 20
+        public int freeUnit=25; // 20
        
         public String extraFortick;
         public String extraCostpersqcm;
@@ -235,9 +256,9 @@ extraFortick,String extraCostpersqcm) {
 		public int id;
 		public String type;
 		public String description;
-		public String location;
-		public String category;
+		public String mainCategoty;
 		public String subcategory;
+		public String location;
 		public String newspaper;
 		public float rate; //200
 		public String unit; //word
@@ -245,19 +266,27 @@ extraFortick,String extraCostpersqcm) {
 		public int extra; //15
 		public int freeUnit; // 20
 		public float amount;
+		public String onbgColorchange;
+		public String onBorderSelected;
+		public float extraForBorder;
+		public float extraForBackgroud;
+		public int totalUnit;//number of words
+		//public String dates;
+		public float total; 
+		public String  [] dates = {};
 		
 		public CartItem() {};
-		public CartItem(int id, String type, String location, String category,
+		public CartItem(int id, String type, String location, String mainCategoty,
 				String subcategory, String newspaper, float amount) {
 			super();
 			this.id = id;
 			this.type = type;
 			this.location = location;
-			this.category = category;
+			this.mainCategoty = mainCategoty;
 			this.subcategory = subcategory;
 			this.newspaper = newspaper;
 			this.amount = amount;
-			this.description = location + "-" + newspaper + "(" + category + (subcategory==null ? "" : "/" + subcategory) + ")"; 
+			this.description = location + "-" + newspaper + "(" + mainCategoty + (subcategory==null ? "" : "/" + subcategory) + ")"; 
 		}
 	
 	}
@@ -278,17 +307,41 @@ extraFortick,String extraCostpersqcm) {
 	        String orderId = UUID.randomUUID().toString();
 	        for(int i=0; i<cartItem.size();i++) {
 	    	  
-	        	ComposedAdSave cds=new ComposedAdSave();
-	          
-	    	   cds.City=cartItem.get(i).newspaper;
-	    	   cds.Adtext=cartItem.get(i).description;
-	    	   cds.Nameofthenewspaper=cartItem.get(i).location;
-	    	   cds.OrderID = orderId;
+	          ComposedAdSave cds=new ComposedAdSave();
+	          cds.Category=cartItem.get(i).mainCategoty;
+	          cds.Subcategory=cartItem.get(i).subcategory;
+	          cds.Nameofthenewspaper=cartItem.get(i).newspaper;   //location saved here
+	    	  cds.City=cartItem.get(i).location;//paper name saved here
+ 	    	  cds.Adtext=cartItem.get(i).description;
+	    	  cds.TotalCost=cartItem.get(i).total;
+	    	  cds.OrderID = orderId;
+	    	  cds.Bgcolor=cartItem.get(i).onbgColorchange;
+	    	  cds.Border=cartItem.get(i).onBorderSelected;
+	    	  cds.BorderCost=cartItem.get(i).extraForBorder;
+	    	  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
+	    	  System.out.println("cds.TotalCost"+cds.TotalCost);
+	    	 // cds.PublishDate=cartItem.get(i).dates;
+	    	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    	  
+	    	  for(int j =0; j<cartItem.get(i).dates.length; j++){
+	    		 // System.out.println(cds.PublishDate[j]);
+	    		  try {
+					Date dt = sdf.parse(cartItem.get(i).dates[j]);
+                    cds.PublishDate+=cartItem.get(i).dates[j]+",";
+					System.out.println("dates : "+dt);
+					
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    		 // System.out.println(cds.PublishDate[j]);
+	    	  }
 	    	 
-	    	   JPA.em().persist(cds);
-	    	
-	      
-	       }
+	    	 
+	    	  cds.BasicRate=cartItem.get(i).unit;
+	    	  cds.numberOfWords=cartItem.get(i).totalUnit;
+	    	  JPA.em().persist(cds);
+	    	   }
 	     } catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -27,7 +27,7 @@ public class Basicrate {
 
 	public Basicrate() {}
 	
-		@Id 
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 		public String BasicRateID;
 		public String Nameofthenewspaper;
 		public String City;

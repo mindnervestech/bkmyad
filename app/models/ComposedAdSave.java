@@ -21,18 +21,20 @@ public class ComposedAdSave{
 	   public String Tick;
 	   public String TickRate;
 	   public String Bgcolor;
-	   public String BgcolorRate;
+	   public float BgcolorRate;
 	   public String Border;
-	   public String BorderCost;
+	   public float BorderCost;
 	   public String Noofads;
-	   public String  PublishDate;
+	   public String PublishDate;
 	   public String BasicRate;
-	   public String TotalCost;
+	   public float TotalCost;
 	   public String Guid;
 	   public String Extraborderper;
 	   public String Extrabgper;
 	   public String Tickper;
-	 
+	   public String  Category;
+	   public String  Subcategory;
+	   public int numberOfWords;
 	   
 	   public ComposedAdSave() {
 	    }  
@@ -104,19 +106,19 @@ public class ComposedAdSave{
 	public void setBgcolor(String bgcolor) {
 		Bgcolor = bgcolor;
 	}
-	public String getBgcolorRate() {
+	/*public String getBgcolorRate() {
 		return BgcolorRate;
 	}
 	public void setBgcolorRate(String bgcolorRate) {
 		BgcolorRate = bgcolorRate;
-	}
+	}*/
 	public String getBorder() {
 		return Border;
 	}
 	public void setBorder(String border) {
 		Border = border;
 	}
-	public String getBorderCost() {
+	/*public String getBorderCost() {
 		return BorderCost;
 	}
 	public void setBorderCost(String borderCost) {
@@ -124,28 +126,28 @@ public class ComposedAdSave{
 	}
 	public String getNoofads() {
 		return Noofads;
-	}
+	}*/
 	public void setNoofads(String noofads) {
 		Noofads = noofads;
 	}
-	public String getPublishDate() {
+	/*public String getPublishDate() {
 		return PublishDate;
 	}
 	public void setPublishDate(String publishDate) {
 		PublishDate = publishDate;
-	}
+	}*/
 	public String getBasicRate() {
 		return BasicRate;
 	}
 	public void setBasicRate(String basicRate) {
 		BasicRate = basicRate;
 	}
-	public String getTotalCost() {
+	/*public String getTotalCost() {
 		return TotalCost;
 	}
 	public void setTotalCost(String totalCost) {
 		TotalCost = totalCost;
-	}
+	}*/
 	public String getGuid() {
 		return Guid;
 	}

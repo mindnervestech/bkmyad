@@ -12,6 +12,7 @@ POST    /saveSignUp                            controllers.Application.SaveSignU
 GET		/make-booking.html					   controllers.MakeBookingController.index()
 GET		/getRatesByNewspaper/:newspaper/:Category	controllers.MakeBookingController.getRatesByNewspaper(newspaper:String,Category:String)
 GET     /getBasicRateByLocationAndCategory/:Location/:Category   controllers.MakeBookingController.getBasicRateByLocationAndCategory(Location:String,Category:String)
+GET     /checkusercreadientals/:Username/:Password               controllers.MakeBookingController.checkUserNameandPassword(Username:String,Password:String)
 GET     /getcity/:statename						controllers.MakeBookingController.getcity(statename:String)
 POST    /checkSignIn                           controllers.Application.CheckSignIn()  
 POST    /savedispAddDetails                    controllers.Application.SavedispAddDetails()

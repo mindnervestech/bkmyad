@@ -25,17 +25,30 @@
                 <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a class="custom-font" href="#last" ng-click="rc.sampleWizard.last()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#third" ng-click="rc.sampleWizard.forward()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">3</span> -->
                   <span>Ads Summary</span>
                 </a>
               </li> 
+              
+               <li style="float:left;">
+                <a class="custom-font" href="#fourth" ng-click="rc.sampleWizard.forward()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                 <!--  <span class="badge">3</span> -->
+                  <span>Login</span>
+                </a>
+              </li>
+              <li style="float:left;">
+                <a class="custom-font" href="#fifth" ng-click="rc.sampleWizard.last()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                 <!--  <span class="badge">3</span> -->
+                  <span>Payment Details</span>
+                </a>
+              </li>
+             
             </ul>
             
             <div class="tab-content" style="margin-left: 10px;">
               
-              <form class="tab-pane active" id="first" name="firstForm" 
-                     rc-step novalidate>
+              <form class="tab-pane active" id="first" name="firstForm"   rc-step novalidate>
                      
                 <div class="tab-pane active" id="blockView">
 				<ul class="thumbnails">
@@ -272,7 +285,7 @@
 			  <!--TODO: Take image to local  -->
 			  <img data-ng-show="carts.length > 0"  data-ng-click="rc.sampleWizard.forward()" class="mnt-proceed-btn" src="images/proceed-button.png"/>
               </form>
-              <form class="tab-pane" id="last" name="lastForm" rc-submit="completeWizard()" rc-step>
+              <form class="tab-pane" id="third" name="thirdForm" rc-step novalidate >
                 <h3 class="pull-left">Compose Your Ad</h3>
                 <img class="pull-left" style="width: 4%;" src="/NewDesign/images/np-compose.jpg" >
                 <table class="table table-bordered">
@@ -303,7 +316,85 @@
 				
 				</tbody>
             </table>
+            <button data-ng-click="rc.sampleWizard.forward()"> continue</button>
               </form>
+              
+     <form class="tab-pane" id="fourth" name="fourthForm"  rc-step>
+               <!-- messagee shown when user are valid  -->
+              <p ng-show="result" style="color:red">Please enter valid credentials</p>
+              <b>Username:</b>&nbsp;&nbsp;  <input type="text" data-ng-model="userid" name="username">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div ng-show="showFieldsVar" >
+                  <b>Password:</b>&nbsp;&nbsp;   <input type="password" ng-model="userpass" name="password">
+                  <div style="margin-left: 45%;"s>
+                  <input type="checkbox" name="remberuser" value="remember">
+                  <span style="font-size: 9pt;font-family: Calibri;">Remember me</span>&nbsp;&nbsp;&nbsp;
+                  <a href="#" style="font-size: 9pt;font-family: Calibri;">Forgot your password?</a>&nbsp;&nbsp;&nbsp;&nbsp;<br />
+                 </div>
+              </div>
+               <br />
+                  <input type="radio" name="chk" value="withoutpassword" ng-checked="checked" ng-model="userwithoutaccount" ng-click="showfieldsonlyusername();" style="margin-left:7%;"><b >&nbsp;Continue without password</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="radio" name="chk" value="withpassword" ng-model="userwithaccount" ng-click="showfields();"><b>&nbsp;I have Adschela account and passsword </b> <br>
+                  <div>
+                  <span style="font-size: 9pt;font-family: Calibri;margin-left: 12%;">(Don't have account yet)</span>
+                  <span style="font-size: 9pt;font-family: Calibri;margin-left: 25%;">Sign in to your account to get benefits</span><br>
+                  </div><br />
+                 <input class="btn btn-primary" type="submit" value="Continue" data-ng-click="checkForUsernameAndPassword()"style="background-color: #0044cc;margin-left: 7%;"> 
+      </form>
+              
+      <form class="tab-pane" id="fifth" name="fifthForm" rc-submit="completeWizard()" rc-step>
+	     	<div > <input type="radio" name="chk" data-ng-value="cod" data-ng-checked="checked" data-ng-model="cashByHome" data-ng-click="showHomeShipingDetails();" style="margin-left:7%;"><b >&nbsp;Collect cash form home</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   </div>
+                   <div align="center"  ng-show="showHomeshipping" >
+			
+			Pincode *: <input type="pincode" ng-model="address.pincode" name="pincode" />
+ 
+			Full Name *: <input type="text" name="fullname" /><br/>
+ 
+			Shipping Address *: <input type="text" name="shippingaddress" />
+ 
+			Nearest Landmark *: <input type="text" name="nearestlandmark" /><br/>
+ 
+			City *: <input type="text" name="city" />
+ 
+			State/Region/Province *: <input type="text" name="state" /><br/>
+ 
+			Mobile: <input type="text" name="mobile" />
+ 
+			Landline *: <input type="text" name="landline" />
+ 
+			<br/>
+           <input type="submit" value="Submit" />
+		  </div>
+		  
+           <div > <input type="radio" name="chk" data-ng-value="cc" data-ng-checked="checked" data-ng-model="cashbyDebit" ng-click="showDebitShipingDetails();" style="margin-left:7%;"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+	     	 <div align="center"  ng-show="showDebitCardshipping" >
+			
+			Pincode *: <input type="pincode" name="pincode" />
+ 
+			Full Name *: <input type="text" name="fullname" /><br/>
+ 
+			Shipping Address *: <input type="text" name="shippingaddress" />
+ 
+			Nearest Landmark *: <input type="text" name="nearestlandmark" /><br/>
+ 
+			City *: <input type="text" name="city" />
+ 
+			State/Region/Province *: <input type="text" name="state" /><br/>
+ 
+			Mobile: <input type="text" name="mobile" />
+ 
+			Landline *: <input type="text" name="landline" />
+ 
+			<br/>
+           <input type="submit" value="Submit" />
+		  </div>
+		  
+		
+	 </form>
+	 
+	 
              </div>
             <div class="form-group" style="margin-top: 2%;">
               <div class="pull-right">

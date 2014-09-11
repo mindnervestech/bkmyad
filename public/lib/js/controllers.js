@@ -487,6 +487,8 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 	$scope.transliterateDone = function(data) {
 		if($scope.selectedCartItemOnPopUp.isHindi) {
 			$('#transliterateTextarea').val(data);
+			$scope.selectedCartItemOnPopUp.description=data;
+			console.log("hinci chk"+$scope.selectedCartItemOnPopUp.description);
 		} else {
 			$('#transliterateTextarea').val($scope.selectedCartItemOnPopUp.description);
 		}
@@ -549,13 +551,14 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
                 	$scope.selectedCartItemOnPopUp.extraUnit = extraUnit;
                 	$scope.selectedCartItemOnPopUp.location=location;
                     $scope.selectedCartItemOnPopUp.newspaper=newspaper;
-                    $scope.selectedCartItemOnPopUp.rate =rate;
-                    console.log("Newspaper: "+$scope.selectedCartItemOnPopUp.newspaper)
-                	console.log("raTe: "+$scope.selectedCartItemOnPopUp.rate);
-                    $scope.selectedCartItemOnPopUp.unitVal=unitVal;
-        			$scope.selectedCartItemOnPopUp.extra=extra;
-        	        $scope.selectedCartItemOnPopUp.freeUnit=freeUnit;
-        	                     	
+                    $scope.selectedCartItemOnPopUp.rate =totalCost;
+                    $scope.selectedCartItemOnPopUp.nobgColor=savenameofcolorSelected;
+                    dates= $scope.selectedCartItemOnPopUp.dates;
+                   
+                    $scope.selectedCartItemOnPopUp.userid=email;
+                    $scope.selectedCartItemOnPopUp.cashByHome=cashByHome;
+                    
+                    console.log( " $scope.selectedCartItemOnPopUp.cashByHome"+ $scope.selectedCartItemOnPopUp.cashByHome);
         		 });
             }
             console.log($scope.selectedCartItemOnPopUp);
@@ -604,9 +607,11 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		fromCart.onbgColorchange=fromScreen.onbgColorchange;
 		fromCart.onBorderSelected=fromScreen.onBorderSelected;
 		fromCart.nobgColor=fromScreen.nobgColor;
-		
-		
-	    
+		fromCart.userid=fromScreen.userid;
+		fromCart.cashbyDebit=fromScreen.cashbyDebit;
+		fromCart.cashByHome=fromCart.cashByHome;
+		console.log("cashbyDebit: "+fromCart.cashbyDebit);
+		console.log("fromCart.cashByHome"+fromCart.cashByHome);
 	}
 	
 	SaveToCart = function(item) {
@@ -691,6 +696,27 @@ angular.module('adschela').controller("SidebarController",['$scope',function($sc
 angular.module('adschela').controller("MakeBookingController",['$scope','$http','ngDialog',
                                                                function($scope,$http,ngDialog){
 	
+	$scope.address={
+			pincode:'',
+			
+	};
+	$scope.showfieldsonlyusername=function(showfieldstouser)
+	{
+		$scope.showFieldsVar = false;
+	}
+	$scope.showHomeShipingDetails=function(showHomeshipping){
+		$scope.showHomeshipping=true;
+		$scope.showDebitCardshipping=false;
+	}
+	
+	$scope.showDebitShipingDetails=function(showDebitCardshipping){
+		$scope.showHomeshipping=false;
+		$scope.showDebitCardshipping=true;
+	}
+	$scope.showfields=function(showfieldstouser){
+		
+		$scope.showFieldsVar = true;
+	}
 	$scope.init = function(beData) {
 	$scope.bookingRequest = beData;
 		
@@ -726,7 +752,15 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			}
 		});
 	}
-	
+	$scope.checkForUsernameAndPassword =function(){
+		$http.get("checkusercreadientals/"+$scope.userid+'/'+$scope.userpass)
+		 .success(function(data){
+		  $scope.result = data;
+		  if($scope.result=="false") {
+		  $scope.rc.sampleWizard.forward();
+			}
+		});
+	}
 	$scope.onCitySelect =function(){
 		$http.get("getBasicRateByLocationAndCategory/"+$scope.bookingState.selectedCity+'/'+$scope.bookingState.selectedMainCategoty)
 		.success(function(data){
@@ -762,6 +796,9 @@ $scope.onNewspaperSelect = function() {
 			onbgColorchange:'rbnn',
 			onBorderSelected:'no',
 			nobgColor:'',
+			userid:$scope.userid,
+			cashbyDebit:$scope.cashbyDebit,
+			cashByHome:$scope.cashByHome,
 			startDate:moment().add(2, 'days').format("DD/MM/YYYY")
 	    }
 	}
@@ -798,5 +835,12 @@ $scope.onNewspaperSelect = function() {
 		ComposeAd(c,$scope);
 	}
 	
+   $scope.onCartSubmit = function() {
+     	console.log("In submit cart fun");
+		//SubmitCart();
+		$http({method:"POST",url:"/submit-cart",data:$scope.carts}).success(function(){
+				
+			});
+	}
 	 	
 }]);
