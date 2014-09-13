@@ -311,7 +311,7 @@
                   </td>
                   <td><button class="btn btn-success" ng-click='composeAd(c)'>Compose <i class="icon-edit"></i></button></td>
                   <td>{{c.rate}} / {{c.unitVal}} {{c.unit}}</td>
-                  <td>{{c.total}}</td>
+                  <td>{{c.fullTotal}}</td>
                 </tr>
 				
 				</tbody>
@@ -322,7 +322,7 @@
      <form class="tab-pane" id="fourth" name="fourthForm"  rc-step>
                <!-- messagee shown when user are valid  -->
               <p ng-show="result" style="color:red">Please enter valid credentials</p>
-              <b>Username:</b>&nbsp;&nbsp;  <input type="text" data-ng-model="userid" name="username">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>Username:</b>&nbsp;&nbsp;  <input type="text" ng-model="userId" name="username">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <div ng-show="showFieldsVar" >
                   <b>Password:</b>&nbsp;&nbsp;   <input type="password" ng-model="userpass" name="password">
                   <div style="margin-left: 45%;"s>
@@ -343,52 +343,50 @@
       </form>
               
       <form class="tab-pane" id="fifth" name="fifthForm" rc-submit="completeWizard()" rc-step>
-	     	<div > <input type="radio" name="chk" data-ng-value="cod" data-ng-checked="checked" data-ng-model="cashByHome" data-ng-click="showHomeShipingDetails();" style="margin-left:7%;"><b >&nbsp;Collect cash form home</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	     	<div > <input type="radio" name="chk" value="cod" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showHomeShipingDetails();" style="margin-left:7%;"><b >&nbsp;Collect cash form home</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    </div>
                    <div align="center"  ng-show="showHomeshipping" >
 			
-			Pincode *: <input type="pincode" ng-model="address.pincode" name="pincode" />
+			Pincode *: <input type="pincode" ng-model="address.pinCode" name="pinCode" />
  
-			Full Name *: <input type="text" name="fullname" /><br/>
+			Full Name *: <input type="text" ng-model="address.fullName" name="fullName" /><br/>
  
-			Shipping Address *: <input type="text" name="shippingaddress" />
+			Shipping Address *: <input type="text" ng-model="address.shippingAddress" name="shippingAddress" />
  
-			Nearest Landmark *: <input type="text" name="nearestlandmark" /><br/>
+			Nearest Landmark *: <input type="text" ng-model="address.nearestLandmark" name="nearestLandmark" /><br/>
  
-			City *: <input type="text" name="city" />
+			City *: <input type="text" name="city" ng-model="address.city" />
  
-			State/Region/Province *: <input type="text" name="state" /><br/>
+			State/Region/Province *: <input type="text" ng-model="address.state" name="state" /><br/>
  
-			Mobile: <input type="text" name="mobile" />
+			Mobile: <input type="text" ng-model="address.mobile" name="mobile" />
  
-			Landline *: <input type="text" name="landline" />
+			Landline *: <input type="text" ng-model="address.landline" name="landline" />
  
 			<br/>
-           <input type="submit" value="Submit" />
+          
 		  </div>
 		  
-           <div > <input type="radio" name="chk" data-ng-value="cc" data-ng-checked="checked" data-ng-model="cashbyDebit" ng-click="showDebitShipingDetails();" style="margin-left:7%;"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <div > <input type="radio" name="chk"  value="cc" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showDebitShipingDetails();" style="margin-left:7%;"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
 	     	 <div align="center"  ng-show="showDebitCardshipping" >
 			
-			Pincode *: <input type="pincode" name="pincode" />
+			Pincode *: <input type="pincode" ng-model="address.pinCode" name="pinCode" />
  
-			Full Name *: <input type="text" name="fullname" /><br/>
+			Full Name *: <input type="text" ng-model="address.fullName" name="fullName" /><br/>
  
-			Shipping Address *: <input type="text" name="shippingaddress" />
+			Shipping Address *: <input type="text" ng-model="address.shippingAddress" name="shippingAddress" />
  
-			Nearest Landmark *: <input type="text" name="nearestlandmark" /><br/>
+			Nearest Landmark *: <input type="text" ng-model="address.nearestLandmark" name="nearestLandmark" /><br/>
  
-			City *: <input type="text" name="city" />
+			City *: <input type="text" name="city" ng-model="address.city" />
  
-			State/Region/Province *: <input type="text" name="state" /><br/>
+			State/Region/Province *: <input type="text" ng-model="address.state" name="state" /><br/>
  
-			Mobile: <input type="text" name="mobile" />
+			Mobile: <input type="text" ng-model="address.mobile" name="mobile" />
  
-			Landline *: <input type="text" name="landline" />
+			Landline *: <input type="text" ng-model="address.landline" name="landline" />
  
-			<br/>
-           <input type="submit" value="Submit" />
 		  </div>
 		  
 		
@@ -404,8 +402,8 @@
                 <!-- <a class="btn btn-primary" data-loading-text="Please Wait..." data-ng-click="rc.sampleWizard.forward()" 
                    data-ng-show="(rc.sampleWizard.currentIndex != 0 ) && (rc.sampleWizard.currentIndex  < rc.sampleWizard.navigationLength)">Continue</a>
                  -->
-                <a class="btn btn-primary" data-ng-click="onCartSubmit();closeThisDialog()" 
-                   data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength">Complete</a>
+                <a class="btn btn-primary" data-ng-click="onCartSubmit();" 
+                 data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength">Complete</a><!-- " -->
               </div>
             </div>
           </div>

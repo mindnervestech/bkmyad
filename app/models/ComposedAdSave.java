@@ -35,6 +35,8 @@ public class ComposedAdSave{
 	   public String  Category;
 	   public String  Subcategory;
 	   public int numberOfWords;
+	   public String paymentOption;
+	   public String userEmailId;
 	   
 	   public ComposedAdSave() {
 	    }  

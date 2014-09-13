@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import models.Adcategory;
+import models.AddressDetails;
 import models.Basicrate;
 import models.City;
 import models.ComposedAdSave;
@@ -271,8 +272,8 @@ extraFortick,String extraCostpersqcm) {
 		public float extraForBorder;
 		public float extraForBackgroud;
 		public int totalUnit;//number of words
-		//public String dates;
-		public float total; 
+		public float fullTotal; 
+		public String userid;
 		public String  [] dates = {};
 		
 		public CartItem() {};
@@ -291,6 +292,39 @@ extraFortick,String extraCostpersqcm) {
 	
 	}
 
+	@JsonIgnoreProperties(ignoreUnknown=true)
+	public static class Address {
+		public Long id;
+		public String pinCode;
+		public String fullName;
+		public String shippingAddress;
+		public String nearestLandmark;
+		public String city;
+		public String state;
+		public String mobile; 
+		public String landline; 
+		public String userid;
+		
+		
+		public Address() {};
+		public Address(Long id, String  pinCode, String fullName, String shippingAddress,
+				String nearestLandmark, String city, String state,String mobile,String landline,String userid ) {
+			super();
+			this.id = id;
+			this.pinCode=pinCode;
+			this.fullName = fullName;
+			this.shippingAddress = shippingAddress;
+			this.nearestLandmark = nearestLandmark;
+			this.city = city;
+			this.state = state;
+			this.mobile = mobile;
+			this.landline=landline;
+			this.userid=userid;
+		}
+	
+	}
+
+
 	    @Transactional
 	    public static Result  saveComposeyourAd() {
 	  
@@ -300,31 +334,55 @@ extraFortick,String extraCostpersqcm) {
 	     
 	     ObjectMapper objectMapper = new ObjectMapper();
 	     List<CartItem> cartItem ;
+	     Address address;
+	     String emailId= json.get("email").asText();
+	     String modeOfPayment=json.get("modeOfPayment").asText();
 	     try {
-	    	 cartItem = objectMapper.readValue(json.traverse(),new com.fasterxml.jackson.core.type.TypeReference<List<CartItem>>() {});
-		
-	        List<ComposedAdSave> orderListComposeAd=new ArrayList<ComposedAdSave>();
-	        String orderId = UUID.randomUUID().toString();
-	        for(int i=0; i<cartItem.size();i++) {
-	    	  
+			address = objectMapper.readValue(json.get("address").traverse(),Address.class);
+			
+			AddressDetails addressDetails =new AddressDetails();
+	    	addressDetails.pinCode=address.pinCode;
+	    	System.out.println("addressDetails.pinCode:"+addressDetails.pinCode);
+	    	addressDetails.fullName=address.fullName;
+	    	addressDetails.address=address.shippingAddress;
+	    	addressDetails.nearestLandmark=address.nearestLandmark;
+	    	addressDetails.city=address.city;
+	    	addressDetails.state=address.state;
+	    	addressDetails.mobile=address.mobile;
+	    	addressDetails.landLine=address.landline;
+	    	addressDetails.userEmailid=emailId;
+	    	JPA.em().persist(addressDetails);
+		} catch (JsonParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JsonMappingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+ 		
+    	
+	     try {
+	    	 cartItem = objectMapper.readValue(json.get("carts").traverse(),new com.fasterxml.jackson.core.type.TypeReference<List<CartItem>>() {});
+	         List<ComposedAdSave> orderListComposeAd=new ArrayList<ComposedAdSave>();
+	         String orderId = UUID.randomUUID().toString();
+	         for(int i=0; i<cartItem.size();i++) {
 	          ComposedAdSave cds=new ComposedAdSave();
 	          cds.Category=cartItem.get(i).mainCategoty;
 	          cds.Subcategory=cartItem.get(i).subcategory;
 	          cds.Nameofthenewspaper=cartItem.get(i).newspaper;   //location saved here
 	    	  cds.City=cartItem.get(i).location;//paper name saved here
  	    	  cds.Adtext=cartItem.get(i).description;
-	    	  cds.TotalCost=cartItem.get(i).total;
+	    	  cds.TotalCost=cartItem.get(i).fullTotal;
 	    	  cds.OrderID = orderId;
 	    	  cds.Bgcolor=cartItem.get(i).onbgColorchange;
 	    	  cds.Border=cartItem.get(i).onBorderSelected;
 	    	  cds.BorderCost=cartItem.get(i).extraForBorder;
 	    	  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
-	    	  System.out.println("cds.TotalCost"+cds.TotalCost);
-	    	 // cds.PublishDate=cartItem.get(i).dates;
-	    	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	    	  
+	    	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//save dates in DB 
 	    	  for(int j =0; j<cartItem.get(i).dates.length; j++){
-	    		 // System.out.println(cds.PublishDate[j]);
 	    		  try {
 					Date dt = sdf.parse(cartItem.get(i).dates[j]);
                     cds.PublishDate+=cartItem.get(i).dates[j]+",";
@@ -334,12 +392,12 @@ extraFortick,String extraCostpersqcm) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	    		 // System.out.println(cds.PublishDate[j]);
 	    	  }
-	    	 
-	    	 
 	    	  cds.BasicRate=cartItem.get(i).unit;
 	    	  cds.numberOfWords=cartItem.get(i).totalUnit;
+	    	  cds.userEmailId=emailId;
+	    	  cds.paymentOption=modeOfPayment;
+	    	  
 	    	  JPA.em().persist(cds);
 	    	   }
 	     } catch (JsonParseException e) {

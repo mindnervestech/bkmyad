@@ -38,8 +38,7 @@
 					</div>
               </form>
               
-              <form class="pull-left tab-pane" id="extra-toping" name="extra-topingForm" 
-                     rc-step novalidate>
+              <form class="pull-left tab-pane" id="extra-toping" name="extra-topingForm" rc-step novalidate>
                       
                     <table width="450" border="0" cellpadding="0" cellspacing="0">
                                                         <tbody><tr>
@@ -63,19 +62,19 @@
                                                                                     <table border="0" cellpadding="0" cellspacing="0" width="180">
                                                                                         <tbody><tr>
                                                                                             <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbnn" type="radio" name="a" value="rbnn" ng-model="selectedCartItemOnPopUp.onbgColorchange" ng-click="saveColorName();" ></span>
+                                                                                                <span style="font-size: 8pt"><input id="rbnn" type="radio" name="a" value="rbnn" ng-model="selectedCartItemOnPopUp.onbgColorchange"  ></span>
                                                                                             </td>
                                                                                             <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbny" type="radio" name="a" value="rbny" ng-model="selectedCartItemOnPopUp.onbgColorchange"  ng-click="saveColorName();"></span>
+                                                                                                <span style="font-size: 8pt"><input id="rbny" type="radio" name="a" value="rbny" ng-model="selectedCartItemOnPopUp.onbgColorchange"  ></span>
                                                                                             </td>
                                                                                             <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbnp" type="radio" name="a" value="rbnp"  ng-model="selectedCartItemOnPopUp.onbgColorchange" ng-click="saveColorName();" ></span>
+                                                                                                <span style="font-size: 8pt"><input id="rbnp" type="radio" name="a" value="rbnp"  ng-model="selectedCartItemOnPopUp.onbgColorchange"  ></span>
                                                                                             </td>
                                                                                             <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbng" type="radio" name="a" value="rbng" ng-model="selectedCartItemOnPopUp.onbgColorchange" ng-click="saveColorName();" ></span>
+                                                                                                <span style="font-size: 8pt"><input id="rbng" type="radio" name="a" value="rbng" ng-model="selectedCartItemOnPopUp.onbgColorchange"  ></span>
                                                                                             </td>
                                                                                             <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbns" type="radio" name="a" value="rbns" ng-model="selectedCartItemOnPopUp.onbgColorchange"  ng-click="saveColorName();"></span>
+                                                                                                <span style="font-size: 8pt"><input id="rbns" type="radio" name="a" value="rbns" ng-model="selectedCartItemOnPopUp.onbgColorchange" ></span>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
@@ -143,7 +142,7 @@
                                                                                 <td width="140" height="20">
                                                                                     <table id="rbnborder" border="0" style="font-family: Calibri; font-size: 9pt">
 			                                                                      <tbody><tr>
-				                                                                   <td><input id="rbnborder_0" type="radio" name="rbnborder" value="No" ng-checked="checked" ng-model="selectedCartItemOnPopUp.onBorderSelected" ng-change="onNoBorderselected();"><label for="rbnborder_0">No</label></td><td>
+				                                                                   <td><input id="rbnborder_0" type="radio" name="rbnborder"  value="No" ng-model="selectedCartItemOnPopUp.onBorderSelected"ng-change="onBorderselected();"><label for="rbnborder_0">No</label></td><td>
 				                                                                   <input id="rbnborder_1" type="radio" name="rbnborder" value="Yes" ng-model="selectedCartItemOnPopUp.onBorderSelected" ng-change="onBorderselected();"><label for="rbnborder_1">Yes</label></td>
 			                                                                      </tr>
 		                                                                       </tbody></table>
@@ -199,7 +198,7 @@
  				        <p style="padding: 1%; text-align: center;font-size: 9pt;font-family: Calibri;margin: 0 0 0px;">(Rs {{selectedCartItemOnPopUp.rate}} per  {{selectedCartItemOnPopUp.freeUnit}} Words.) <br />(Rs {{selectedCartItemOnPopUp.extra}} Extra per word )</p>
  						</div>
  						<div style="box-shadow: -3px 3px 16px -1px #ccc;padding-bottom: 1%;padding-top: 1%;border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%;width: 96%;margin-left: 2%">
- 						<p style="padding: 1%;text-align: center;margin: 0 0 2px;font-size: 9pt;font-family: Calibri;"> Total:{{selectedCartItemOnPopUp.total}}</p>
+ 						<p style="padding: 1%;text-align: center;margin: 0 0 2px;font-size: 9pt;font-family: Calibri;"> Total:{{selectedCartItemOnPopUp.fullTotal}}</p>
  						<p style="padding: 1%;text-align: center;margin: 0 0 8px;font-size: 9pt;font-family: Calibri;"> {{selectedCartItemOnPopUp.unit}}: {{selectedCartItemOnPopUp.totalUnit}} </p>
  						<p style="padding: 1%;text-align: center;margin: 0 0 6px;font-size: 9pt;font-family: Calibri;"> Extra Unit:{{selectedCartItemOnPopUp.extraUnit}}</p>
             		 </div>

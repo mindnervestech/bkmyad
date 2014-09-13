@@ -20,8 +20,8 @@ GET     /addisplay.html                        controllers.AdDisplayController.i
 POST    /validateUsernameUnique                controllers.UservalidationController.ValidateUsernameUnique()
 GET     /dispFrame.html                        controllers.DispFrameController.index()
 GET     /getSubCategoty/:cname					controllers.Application.getSubCategoty(cname:String)
-GET     /getNewspaper							controllers.AddbasicRateController.getNewspaper()
-GET		/getAnnouncements/:title/:currentPage	controllers.AnnouncementController.getAnnouncements(title :String,currentPage :Integer)
+POST    /submit-cart                            controllers.MakeBookingController.saveComposeyourAd()
+#GET		/getAnnouncements/:title/:currentPage	controllers.AnnouncementController.getAnnouncements(title :String,currentPage :Integer)
 POST	/saveAnnouncement		               controllers.AnnouncementController.saveAnnouncement
 GET		/deleteAnnouncement/:id		           controllers.AnnouncementController.deleteAnnouncement(id :Long)
 POST	/updateAnnouncement		            controllers.AnnouncementController.updateAnnouncement
