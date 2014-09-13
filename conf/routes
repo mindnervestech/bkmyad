@@ -20,8 +20,8 @@ GET     /addisplay.html                        controllers.AdDisplayController.i
 POST    /validateUsernameUnique                controllers.UservalidationController.ValidateUsernameUnique()
 GET     /dispFrame.html                        controllers.DispFrameController.index()
 GET     /getSubCategoty/:cname					controllers.Application.getSubCategoty(cname:String)
-POST    /submit-cart                            controllers.MakeBookingController.saveComposeyourAd()
-#GET		/getAnnouncements/:title/:currentPage	controllers.AnnouncementController.getAnnouncements(title :String,currentPage :Integer)
+GET     /getNewspaper							controllers.AddbasicRateController.getNewspaper()
+GET		/getAnnouncements/:title/:currentPage	controllers.AnnouncementController.getAnnouncements(title :String,currentPage :Integer)
 POST	/saveAnnouncement		               controllers.AnnouncementController.saveAnnouncement
 GET		/deleteAnnouncement/:id		           controllers.AnnouncementController.deleteAnnouncement(id :Long)
 POST	/updateAnnouncement		            controllers.AnnouncementController.updateAnnouncement
@@ -31,7 +31,11 @@ POST	/updateBasicRate	            controllers.AddbasicRateController.updateBasic
 GET		/deleteBasicRate/:id		           controllers.AddbasicRateController.deleteBasicRate(id :String)
 GET     /getCategory							controllers.AddbasicRateController.getCategory
 GET     /getStatename							controllers.AddbasicRateController.getStatename
-GET     /getCityname/:state							controllers.AddbasicRateController.getCityname(state:String)
+GET     /getCityname/:state					    controllers.AddbasicRateController.getCityname(state:String)
+POST    /saveNewpaper                           controllers.AddNewspaperController.saveNewpaper
+POST	/updateNewpaper	                   controllers.AddNewspaperController.updateNewpaper
+GET		/getNewpaper/:Nameofthenewspaper/:currentPage	   controllers.AddNewspaperController.getNewpaper(Nameofthenewspaper :String,currentPage :Integer)
+GET		/deleteNewpaper/:id		           controllers.AddNewspaperController.deleteNewpaper(id :String)
 
 #GET    /addisplay.html                                 
                         
@@ -71,6 +75,4 @@ GET /TermsandConditions.html     controllers.Assets.at(path="/public", file="app
 GET /Booknewspaperaddonline.html     controllers.Assets.at(path="/public", file="app/Booknewspaperaddonline.html")
 GET /manageAnnouncements.html     controllers.Assets.at(path="/public", file="app/manageAnnouncements.html")
 GET /AddBasicRate.html     controllers.Assets.at(path="/public", file="app/AddBasicRate.html")
-
-GET /ccavenue	controllers.CCAvenueController.ccavenue()
-GET /redirect	controllers.CCAvenueController.redirect()
+GET /AddNewspaper.html     controllers.Assets.at(path="/public", file="app/AddNewspaper.html")

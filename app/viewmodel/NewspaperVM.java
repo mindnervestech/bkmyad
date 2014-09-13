@@ -17,6 +17,7 @@ public class NewspaperVM {
 		this.BasicratesperClasified = (String)vm[6];
 		this.Category = (String)vm[7];
 	}
+
 	
 	
 	public String BasicRateID;

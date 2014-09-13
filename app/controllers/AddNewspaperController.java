@@ -1,18 +1,11 @@
 package controllers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.base.Splitter;
-
 import models.Adcategory;
-import models.Adsubcategory;
-import models.Basicrate;
 import models.City;
 import models.Newspaperdetails;
 import models.State;
@@ -21,23 +14,24 @@ import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import viewmodel.BasicrateVM;
+import viewmodel.NewspaperdetailsVM;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.base.Splitter;
 
-public class AddbasicRateController extends Controller{
+public class AddNewspaperController extends Controller{
 
 	@Transactional
-	public static Result getBasicrate(String City,int currentPage) {
-		long totalPages = Basicrate.getAllAnnouncementsTotal(City, 8);
+	public static Result getNewpaper(String Nameofthenewspaper,int currentPage) {
+		long totalPages = Newspaperdetails.getAllnewpaperTotal(Nameofthenewspaper, 4);
 		
-		List<Basicrate> allBasicRate = Basicrate.getAllAnnouncements(City, currentPage, 8, totalPages);
-		List<BasicrateVM> listOfBasicrate = new ArrayList<>();
+		List<Newspaperdetails> allnewspaper = Newspaperdetails.getAllNewspaper(Nameofthenewspaper, currentPage, 4, totalPages);
+		List<NewspaperdetailsVM> listOfNewpaper = new ArrayList<>();
 		
-		System.out.println("++++++++++++++++++++++++++");
-		
-		for (Basicrate basicrateVM: allBasicRate) {
-			BasicrateVM vm = new BasicrateVM(basicrateVM);
-			listOfBasicrate.add(vm);
+			
+		for (Newspaperdetails newspaperdetailsVM: allnewspaper) {
+			NewspaperdetailsVM vm = new NewspaperdetailsVM(newspaperdetailsVM);
+			listOfNewpaper.add(vm);
 		}
 		if(currentPage>totalPages && totalPages!=0) {
 			currentPage--;
@@ -45,69 +39,62 @@ public class AddbasicRateController extends Controller{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("totalPages", totalPages);
 		map.put("currentPage", currentPage);
-		map.put("results", listOfBasicrate);
+		map.put("results", listOfNewpaper);
 		return ok(Json.toJson(map));
 	}
 	
 	@Transactional
-	public static Result saveBasicRate() {
+	public static Result saveNewpaper() {
+		JsonNode json = request().body().asJson();
 		DynamicForm form = DynamicForm.form().bindFromRequest();
+		Json.fromJson(json, Newspaperdetails.class);
+		Newspaperdetails newspaperdetails = Json.fromJson(json, Newspaperdetails.class);
+				
+		/*newspaperdetails.Nameofthenewspaper=form.get("Nameofthenewspaper");
+		newspaperdetails.LogoFileExtention=form.get("LogoFileExtention");
+		newspaperdetails.LogoName=form.get("LogoName");
+		newspaperdetails.Addedition=form.get("Addedition");
+		System.out.println("form.get(NameofCities); :::::::::::: "+form.get("NameofCities[]"));
+		newspaperdetails.NameofCities=form.get("NameofCities");
+		newspaperdetails.BasicratesperText=form.get("BasicratesperText");
+		newspaperdetails.BasicratesperClasified=form.get("BasicratesperClasified");
+		newspaperdetails.Beforebookingdate=form.get("Beforebookingdate");
+		newspaperdetails.Allow=form.get("Allow");*/
 		
-		Basicrate basicrate = new Basicrate();
-		
-		basicrate.Nameofthenewspaper=form.get("Nameofthenewspaper");
-		basicrate.City=form.get("City");
-    	basicrate.Textaddrate=form.get("Textaddrate");
-    	basicrate.clasifiedadrate=form.get("clasifiedadrate");
-    	basicrate.Exstracostperline=form.get("Exstracostperline");
-    	basicrate.Border=form.get("Border");
-    	basicrate.Backcolor=form.get("Backcolor");
-    	basicrate.SpecialDiscount=form.get("SpecialDiscount");
-    	basicrate.Tick=form.get("Tick");
-    	basicrate.Category=form.get("Category");
-    	basicrate.Extraborderper=form.get("Extraborderper");
-    	basicrate.Extrabgper=form.get("Extrabgper");
-    	basicrate.Tickper=form.get("Tickper");
-    	basicrate.ExtracostperSqcm=form.get("ExtracostperSqcm");
-    	basicrate.Statename=form.get("Statename");
-		
-		basicrate.save();
+		newspaperdetails.save();
 		return ok();
 	}
 	
 	@Transactional
-	public static Result deleteBasicRate(String id) {
+	public static Result deleteNewpaper(String id) {
 		System.out.println("/*/*/*/"+id+"/*/*/*");
-		Basicrate basicrate =  Basicrate.findById(id);
+		Newspaperdetails newspaperdetails =  Newspaperdetails.findById(id);
 		System.out.println("/*/*/*/"+id+"/*/*/*");
-		basicrate.delete();
+		newspaperdetails.delete();
 		return ok();
 	}
 	
+	
+	
 	@Transactional
-	public static Result updateBasicRate() {
+	public static Result updateNewpaper() {
 		DynamicForm form = DynamicForm.form().bindFromRequest();
 		
-		Basicrate basicrate = Basicrate.findById(form.get("BasicRateID"));
+		Newspaperdetails newspaperdetails = Newspaperdetails.findById(form.get("NewsId"));
         		
-		basicrate.Nameofthenewspaper=form.get("Nameofthenewspaper");
-		basicrate.City=form.get("City");
-    	basicrate.Textaddrate=form.get("Textaddrate");
-    	basicrate.clasifiedadrate=form.get("clasifiedadrate");
-    	basicrate.Exstracostperline=form.get("Exstracostperline");
-    	basicrate.Border=form.get("Border");
-    	basicrate.Backcolor=form.get("Backcolor");
-    	basicrate.SpecialDiscount=form.get("SpecialDiscount");
-    	basicrate.Tick=form.get("Tick");
-    	basicrate.Category=form.get("Category");
-    	basicrate.Extraborderper=form.get("Extraborderper");
-    	basicrate.Extrabgper=form.get("Extrabgper");
-    	basicrate.Tickper=form.get("Tickper");
-    	basicrate.ExtracostperSqcm=form.get("ExtracostperSqcm");
-    	basicrate.Statename=form.get("Statename");
+		/*newspaperdetails.Nameofthenewspaper=form.get("Nameofthenewspaper");
+		newspaperdetails.LogoFileExtention=form.get("LogoFileExtention");
+		newspaperdetails.LogoName=form.get("LogoName");
+		newspaperdetails.Addedition=form.get("Addedition");
+		newspaperdetails.NameofCities=form.get("NameofCities");
+		newspaperdetails.BasicratesperText=form.get("BasicratesperText");
+		newspaperdetails.BasicratesperClasified=form.get("BasicratesperClasified");
+		newspaperdetails.Beforebookingdate=form.get("Beforebookingdate");
+		newspaperdetails.Allow=form.get("Allow");
+		newspaperdetails.State=form.get("State");*/
     	
     	    	
-    	basicrate.merge();
+		newspaperdetails.merge();
 		/*System.out.println("INSIDE UPDATE"+form.get("ic.id"));*/
 		return ok();
 	}

@@ -161,6 +161,195 @@ angular.module('adschela').controller("ENewsPaperController",['$scope',function(
 angular.module('adschela').controller("BlogController",['$scope',function($scope){
 	
 }]);
+
+
+angular.module('adschela').controller('AddNewspaperController',function($scope, $modal, $http, $filter, NewpaperService,deleteNewpaperService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice,announcementIconService){
+	
+	console.log("----------------------");
+	
+	$scope.Nameofthenewspaper = " ";
+	$scope.pageNumber;
+	$scope.pageSize;
+	$scope.formData = "";
+	var currentPage = 1;
+	var totalPages;
+	$scope.isChosen = false;
+	
+	$scope.searchForm= {
+            from : new Date(),
+            to : new Date()
+
+	}
+
+	
+	$scope.Newspaper = NewpaperService.NewspaperInfo.get({Nameofthenewspaper:$scope.Nameofthenewspaper,currentPage:currentPage},function(response) {
+		totalPages = $scope.Newspaper.totalPages;
+		currentPage = $scope.Newspaper.currentPage;
+		$scope.pageNumber = $scope.Newspaper.currentPage;
+		$scope.pageSize = $scope.Newspaper.totalPages;
+		
+		if(totalPages == 0) {
+			$scope.pageNumber = 0;
+		}
+	});
+	
+	
+		$scope.searchNewspaper = function(page) {
+		if(angular.isUndefined($scope.Nameofthenewspaper) || $scope.Nameofthenewspaper=="") {
+			console.log('inside function');
+			$scope.Nameofthenewspaper = " ";
+		}
+		currentPage = page;
+		
+		$scope.Newspaper = NewpaperService.NewspaperInfo.get({Nameofthenewspaper:$scope.Nameofthenewspaper,currentPage:currentPage},function(response) {
+			console.log($scope.Newspaper.totalPages);
+			totalPages = $scope.Newspaper.totalPages;
+			currentPage = $scope.Newspaper.currentPage;
+			$scope.pageNumber = $scope.Newspaper.currentPage;
+			$scope.pageSize = $scope.Newspaper.totalPages;
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+	};
+		
+	$scope.saveNewspaper = function() {
+		
+		console.log($scope.formData.NameofCities);
+		$scope.formData.BasicratesperText="/"+$scope.formData.Value+" "+$scope.formData.Unit;
+			
+      $http.post('/saveNewpaper', $scope.formData).success(function(data){
+			console.log('success');
+			$scope.searchNewspaper(currentPage);
+			$('#myModal').modal('hide');
+		}).error(function(data, status, headers, config) {
+			console.log('ERROR');
+		});
+	};
+	
+	$scope.setData = function(ancmt) {
+		
+		$scope.resultstate = getStateNameservice.Allstate.get();
+		$scope.ancmtData = ancmt;
+		$('#myModal2').modal();
+				
+	};
+	$scope.onStateselect = function() {
+		alert("State"+$scope.formData.Statename)
+		$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.formData.Statename}); 
+		}
+	
+	
+	$scope.setDates = function() {
+				
+		$scope.resultstate = getStateNameservice.Allstate.get();
+		
+		$scope.searchForm.from = new Date();
+		$scope.searchForm.to = new Date();
+		$scope.icon_id = "";
+        $scope.icon_url = "";
+        $scope.icon_name = "";
+		$scope.formData = "";
+		$scope.isChosen = false;
+		$('#myModal').modal();
+	}
+	$scope.setDeleteId = function(Id) {
+		$scope.deleteId = Id.NewsId;
+		console.log("-**-*-"+$scope.deleteId+"*-*-*-*");
+		$('#myModal3').modal();
+	};
+	
+	$scope.updateNewspaper = function() {
+		console.log($scope.ancmtData);
+		$scope.formData.BasicratesperText="/"+$scope.formData.Value+" "+$scope.formData.Unit;
+		$http.post('/updateNewpaper', $scope.ancmtData).success(function(data){
+			console.log('success');
+			$scope.searchNewspaper(currentPage);
+			$('#myModal2').modal('hide');
+		}).error(function(data, status, headers, config) {
+			console.log('ERROR------------');
+		});
+	};
+	
+	$scope.deleteNewspaper = function() {
+		deleteNewpaperService.Deletenewspaper.get({id :$scope.deleteId}, function(data){
+			$scope.searchNewspaper(currentPage);
+            $('#myModal3').modal('hide');
+		});    
+	};
+	
+	$scope.selectedFiles = [];
+	$scope.dataUrls = [];
+	$scope.tempSelectedFiles = [];
+	$scope.onFileSelect = function($files) {
+		console.log("Hello");
+		if($scope.selectedFiles.length == 0) {
+			$scope.tempSelectedFiles = [];
+		}
+	
+		$scope.selectedFiles.push($files);
+		$scope.tempSelectedFiles.push($files);
+		for ( var i = 0; i < $files.length; i++) {
+			var $file = $files[i];
+			if (window.FileReader && $file.type.indexOf('image') > -1) {
+			var fileReader = new FileReader();
+			fileReader.readAsDataURL($files[i]);
+				var loadFile = function(fileReader, index) {
+					fileReader.onload = function(e) {
+						$timeout(function() {
+							$scope.dataUrls.push(e.target.result);
+						});
+					}
+				}(fileReader, i);
+			}
+		}
+		alert("selectedFile :: "+$scope.selectedFiles.length);
+	};
+	
+	/*$upload.upload({
+        url : '/image/uploadPhoto',
+        method: $scope.httpMethod,
+        data : {
+            newsPaperId : id
+        },
+        file: $scope.commentTempSelectedFiles[i],
+        fileFormDataName: 'photo'
+    });*/
+	
+	$scope.onNext = function() {
+		if(currentPage < totalPages) {
+			currentPage++;
+			$scope.searchNewspaper(currentPage);
+		}
+	};
+	$scope.onPrev = function() {
+		if(currentPage > 1) {
+			currentPage--;
+			$scope.searchNewspaper(currentPage);
+		}
+	};
+	
+});
+angular.module('adschela').service('NewpaperService',function($resource){
+    this.NewspaperInfo = $resource(
+            '/getNewpaper/:Nameofthenewspaper/:currentPage',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    );
+});
+
+angular.module('adschela').service('deleteNewpaperService',function($resource){
+    this.Deletenewspaper = $resource(
+            '/deleteNewpaper/:id',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    );
+});
+
 angular.module('adschela').controller('AddBasicRateController',function($scope, $modal, $http, $filter, BasicRateService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice, deleteBasicRateService, announcementIconService){
 	
 	console.log("----------------------");
@@ -180,11 +369,11 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	}
 
 	
-	$scope.announcements = BasicRateService.AnnouncementInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
-		totalPages = $scope.announcements.totalPages;
-		currentPage = $scope.announcements.currentPage;
-		$scope.pageNumber = $scope.announcements.currentPage;
-		$scope.pageSize = $scope.announcements.totalPages;
+	$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		totalPages = $scope.BasicRate.totalPages;
+		currentPage = $scope.BasicRate.currentPage;
+		$scope.pageNumber = $scope.BasicRate.currentPage;
+		$scope.pageSize = $scope.BasicRate.totalPages;
 		
 		if(totalPages == 0) {
 			$scope.pageNumber = 0;
@@ -201,20 +390,20 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		currentPage = page;
 		console.log($scope.City);
 		console.log(currentPage);
-		$scope.announcements = BasicRateService.AnnouncementInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
-			console.log($scope.announcements.totalPages);
-			totalPages = $scope.announcements.totalPages;
-			currentPage = $scope.announcements.currentPage;
-			$scope.pageNumber = $scope.announcements.currentPage;
-			$scope.pageSize = $scope.announcements.totalPages;
+		$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			console.log($scope.BasicRate.totalPages);
+			totalPages = $scope.BasicRate.totalPages;
+			currentPage = $scope.BasicRate.currentPage;
+			$scope.pageNumber = $scope.BasicRate.currentPage;
+			$scope.pageSize = $scope.BasicRate.totalPages;
 			if(totalPages == 0) {
 				$scope.pageNumber = 0;
 			}
 		});
-	    console.log($scope.announcements);
+	    console.log($scope.BasicRate);
 	};
 	console.log($scope.City);
-	console.log($scope.announcements);
+	console.log($scope.BasicRate);
 	console.log('mfjfjfjfjf');
 	
 	
@@ -288,8 +477,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	};
 	
 	$scope.deleteBasicRate = function() {
-		deleteBasicRateService.DeleteAnnouncement.get({id :$scope.deleteId}, function(data){
-			//$scope.announcements.results.splice($scope.announcements.results.indexOf(idData),1);
+		deleteBasicRateService.Deletebasicrate.get({id :$scope.deleteId}, function(data){
 			$scope.searchBasicRate(currentPage);
             $('#myModal3').modal('hide');
 		});    
@@ -355,7 +543,7 @@ angular.module('adschela').service('getCityNameservice',function($resource){
 
 
 angular.module('adschela').service('BasicRateService',function($resource){
-    this.AnnouncementInfo = $resource(
+    this.BasicRateInfo = $resource(
             '/getBasicrate/:City/:currentPage',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
@@ -365,7 +553,7 @@ angular.module('adschela').service('BasicRateService',function($resource){
 });
 
 angular.module('adschela').service('deleteBasicRateService',function($resource){
-    this.DeleteAnnouncement = $resource(
+    this.Deletebasicrate = $resource(
             '/deleteBasicRate/:id',
             {alt:'json',callback:'JSON_CALLBACK'},
             {

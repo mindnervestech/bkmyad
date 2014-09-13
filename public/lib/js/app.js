@@ -46,6 +46,11 @@ angular.module('adschela',
                           	        templateUrl: 'AddBasicRate.html',
                           	        controller: 'AddBasicRateController'
                           	      })
+                          	      
+                          	      .when('/AddNewspaper', {
+                          	        templateUrl: 'AddNewspaper.html',
+                          	        controller: 'AddNewspaperController'
+                          	      })
                         	     
                           	      .when('/termsAndConditions', {
                         	        templateUrl: 'TermsandConditions.html',
