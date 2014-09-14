@@ -673,7 +673,7 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 		s = s.replace(/(^\s*)|(\s*$)/gi,"");
 		s = s.replace(/[ ]{2,}/gi," ");
 		s = s.replace(/\n /,"\n");
-		return s.split(' ').length + 1;
+		return s.split(' ').length;
 	}
 	
 	function computeRateByUnit() {
