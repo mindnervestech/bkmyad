@@ -1,220 +1,280 @@
-<div rc-wizard="composeWizard" rc-disabled="rc.firstForm.submitInProgress">
-	<ul class="nav rc-nav-wizard" style="background-color: #f9f9f9;margin-bottom: 1%;width: 95%;">
-              <li class="active" style="float:left;">
-                <a class="active" href="#select-text" data-toggle="tab" style="float: left;border: 0px solid black;">
-                  <span>Select Text</span>
-                </a>
-                <span class="breadcrumb_arrow"></span>
-              </li>
-              <li style="float:left;">
-                <a href="#extra-toping" data-toggle="tab" style="float: left;border: 0px solid black;">
-                  <span>Extra Toping</span>
-                </a>
-                <span class="breadcrumb_arrow"></span>
-              </li>
-              <li style="float:left;">
-                <a href="#select-date" data-toggle="tab" style="float: left;border: 0px solid black;">
-                  <span>Select Date</span>
-                </a>
-                <span class="breadcrumb_arrow"></span>
-              </li>
-            </ul>
-            <div class="tab-content" style="height:245px;overflow: hidden;">
-              
-              <form class="pull-left tab-pane active" id="select-text" name="select-textForm" 
-                     rc-step novalidate>
-                	<div class="row">
-						<div class="span3" style="width: 220px !important;">
-							<label>Type in content in English</label>
-							<textarea ng-google-transliterate on-translation-done="transliterateDone(data)" 	
-							ng-model="selectedCartItemOnPopUp.description" rows="10" cols=""></textarea> 
-						</div>
-						
-						<div  class="span3" style="width: 220px !important;">
-							<input ng-model="selectedCartItemOnPopUp.isHindi" style="float:left" type="checkbox"> <label> Content in Hindi</label>
-							<textarea disabled="disabled" id="transliterateTextarea" rows="40" cols="" ng-model="selectedCartItemOnPopUp.description" ></textarea>
-						</div>
-					
-					</div>
-              </form>
-              
-              <form class="pull-left tab-pane" id="extra-toping" name="extra-topingForm" rc-step novalidate>
-                      
-                    <table width="450" border="0" cellpadding="0" cellspacing="0">
-                                                        <tbody><tr>
-                                                            <td align="left" valign="middle" width="450">
-                                                                <div style="width: 200px;  float: left; margin: 5px auto; border-radius: 7px;
-                                                                    border: Solid 1px #65BDDF; background-color: #F0F0F0">
-                                                                    <center>
-                                                                        <table width="180" border="0" cellpadding="0" cellspacing="0">
-                                                                            <tbody><tr>
-                                                                                <td width="180" height="20" style="border-bottom: 5px double #666666; font-size: 10pt;
-                                                                                    font-family: Calibri;">
-                                                                                   <b> Select Ad Background Color</b>
-                                                                                    Background Color  Extra:
-                                                                                    <span>{{selectedCartItemOnPopUp.extraForBackgroud}}</span>
-                                                                                    <br /> <!-- <input type="checkbox" name="noBackGroundcolor" ng-checked="true" value="nobgcolor" ng-model="selectedCartItemOnPopUp.nobgColor" ng-change="onNoBgcolorSelected();"> No Backgrund Color
-                                                                               -->  </td>
-                                                                               
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td width="480" style="height: 20px;" align="left" valign="top">
-                                                                                    <table border="0" cellpadding="0" cellspacing="0" width="180">
-                                                                                        <tbody><tr>
-                                                                                            <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbnn" type="radio" name="a" value="rbnn" ng-model="selectedCartItemOnPopUp.onbgColorchange"  ></span>
-                                                                                            </td>
-                                                                                            <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbny" type="radio" name="a" value="rbny" ng-model="selectedCartItemOnPopUp.onbgColorchange"  ></span>
-                                                                                            </td>
-                                                                                            <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbnp" type="radio" name="a" value="rbnp"  ng-model="selectedCartItemOnPopUp.onbgColorchange"  ></span>
-                                                                                            </td>
-                                                                                            <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbng" type="radio" name="a" value="rbng" ng-model="selectedCartItemOnPopUp.onbgColorchange"  ></span>
-                                                                                            </td>
-                                                                                            <td width="36" height="15" align="center" valign="middle">
-                                                                                                <span style="font-size: 8pt"><input id="rbns" type="radio" name="a" value="rbns" ng-model="selectedCartItemOnPopUp.onbgColorchange" ></span>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td width="36" height="15" align="center" valign="middle">
-                                                                                                <div id="Panel5" style="background-color:LemonChiffon;height:15px;width:15px;">
-			
-                                                                                                
-		</div>
-                                                                                            </td>
-                                                                                            <td width="36" height="15" align="center" valign="middle">
-                                                                                                <div id="pnl1" style="background-color:Gold;height:15px;width:15px;">
-			
-                                                                                                
-		</div>
-                                                                                            </td>
-                                                                                            <td width="36" height="15" align="center" valign="middle">
-                                                                                                <div id="Panel2" style="background-color:LightPink;height:15px;width:15px;">
-			
-                                                                                                
-		</div>
-                                                                                            </td>
-                                                                                            <td width="36" height="15" align="center" valign="middle">
-                                                                                                <div id="Panel3" style="background-color:DarkKhaki;height:15px;width:15px;">
-			
-                                                                                                
-		</div>
-                                                                                            </td>
-                                                                                            <td width="36" height="15" align="center" valign="middle">
-                                                                                                <div id="Panel4" style="background-color:LightSteelBlue;height:15px;width:15px;">
-			
-                                                                                                
-		</div>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        
-                                                                                         <tr>  
-                                                                                         <td colspan="5">
-                                                                                         	<input type="checkbox" name="noBackGroundcolor" ng-checked="true" value="nobgcolor" ng-model="selectedCartItemOnPopUp.nobgColor" ng-change="onNoBgcolorSelected();" ><span style="font-size: 10pt;font-family: Calibri;" > No Backgrund Color</span>          
-                                                                                        </td>
-                                                                                         </tr>
-                                                                                        
-                                                                                        
-                                                                                    </tbody>
-                                                                                    
-                                                                                    </table>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody></table>
-                                                                    </center>
-                                                                </div>
-                                                                <div style="width: 200px; height: 100px; float: right; padding-right: 10px; margin: 5px auto;
-                                                                    border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
-                                                                    <center>
-                                                                        <table width="140" border="0" cellpadding="0" cellspacing="0">
-                                                                            <tbody><tr>
-                                                                                <td width="140" height="20" style="border-bottom: 5px double #666666; font-size: 9pt;
-                                                                                    font-family: Calibri;">
-                                                                                  <b>Select  Ad Border</b><br />
-                                                                                    Border Extra:
-                                                                                    <span>{{selectedCartItemOnPopUp.extraForBorder}}</span>
-                                                                                   
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td width="140" height="20">
-                                                                                    <table id="rbnborder" border="0" style="font-family: Calibri; font-size: 9pt">
-			                                                                      <tbody><tr>
-				                                                                   <td><input id="rbnborder_0" type="radio" name="rbnborder"  value="No" ng-model="selectedCartItemOnPopUp.onBorderSelected"ng-change="onBorderselected();"><label for="rbnborder_0">No</label></td><td>
-				                                                                   <input id="rbnborder_1" type="radio" name="rbnborder" value="Yes" ng-model="selectedCartItemOnPopUp.onBorderSelected" ng-change="onBorderselected();"><label for="rbnborder_1">Yes</label></td>
-			                                                                      </tr>
-		                                                                       </tbody></table>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody></table>
-                                                                    </center>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td align="left" valign="middle" width="450">
-                                                                <table border="0" cellpadding="0" cellspacing="0" class="style2">
-                                                                    <tbody><tr>
-                                                                        <!-- <td align="left" valign="top">
+<div rc-wizard="composeWizard"
+	rc-disabled="rc.firstForm.submitInProgress">
+	<ul class="nav rc-nav-wizard"
+		style="background-color: #f9f9f9; margin-bottom: 1%; width: 95%;">
+		<li class="active" style="float: left;"><a class="active"
+			href="#select-text" data-toggle="tab"
+			style="float: left; border: 0px solid black;"> <span>Select
+					Text</span>
+		</a> <span class="breadcrumb_arrow"></span></li>
+		<li style="float: left;"><a href="#extra-toping"
+			data-toggle="tab" style="float: left; border: 0px solid black;">
+				<span>Extra Toping</span>
+		</a> <span class="breadcrumb_arrow"></span></li>
+		<li style="float: left;"><a href="#select-date" data-toggle="tab"
+			style="float: left; border: 0px solid black;"> <span>Select
+					Date</span>
+		</a> <span class="breadcrumb_arrow"></span></li>
+	</ul>
+	<div class="tab-content" style="height: 245px; overflow: hidden;">
+
+		<form class="pull-left tab-pane active" id="select-text"
+			name="select-textForm" rc-step novalidate>
+			<div class="row">
+				<div class="span3" style="width: 220px !important;">
+					<input data-ng-model="selectedCartItemOnPopUp.isHindi"
+						style="float: left" type="checkbox"> <label>
+						Content in Hindi</label> <label>Type in content in English</label>
+					<textarea ng-google-transliterate
+						on-translation-done="transliterateDone(data)"
+						data-ng-model="selectedCartItemOnPopUp.description" rows="10" cols="" id="translationArea"></textarea>
+				</div>
+
+				<div class="span3" style="width: 220px !important; display: none">
+					<textarea disabled="disabled" id="transliterateTextarea" rows="40"
+						cols="" ng-model="selectedCartItemOnPopUp.hdescription"></textarea>
+				</div>
+
+			</div>
+		</form>
+
+		<form class="pull-left tab-pane" id="extra-toping"
+			name="extra-topingForm" rc-step novalidate>
+			<table width="450" border="0" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td align="left" valign="middle" width="450">
+							<div
+								style="width: 200px; float: left; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
+								<center>
+									<table width="180" border="0" cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td width="180" height="20"
+													style="border-bottom: 5px double #666666; font-size: 10pt; font-family: Calibri;">
+													<b> Select Ad Background Color</b> Background Color Extra:
+													<span>{{selectedCartItemOnPopUp.extraForBackgroud}}</span>
+													<br /> 
+												</td>
+											</tr>
+											<tr>
+												<td width="480" style="height: 20px;" align="left"
+													valign="top">
+													<table border="0" cellpadding="0" cellspacing="0"
+														width="180">
+														<tbody>
+															<tr>
+																<td width="36" height="15" align="center"
+																	valign="middle"><span style="font-size: 8pt"><input
+																		id="rbnn" type="radio" name="a" value="rbnn"
+																		ng-model="selectedCartItemOnPopUp.onbgColorchange"></span>
+																</td>
+																<td width="36" height="15" align="center"
+																	valign="middle"><span style="font-size: 8pt"><input
+																		id="rbny" type="radio" name="a" value="rbny"
+																		ng-model="selectedCartItemOnPopUp.onbgColorchange"></span>
+																</td>
+																<td width="36" height="15" align="center"
+																	valign="middle"><span style="font-size: 8pt"><input
+																		id="rbnp" type="radio" name="a" value="rbnp"
+																		ng-model="selectedCartItemOnPopUp.onbgColorchange"></span>
+																</td>
+																<td width="36" height="15" align="center"
+																	valign="middle"><span style="font-size: 8pt"><input
+																		id="rbng" type="radio" name="a" value="rbng"
+																		ng-model="selectedCartItemOnPopUp.onbgColorchange"></span>
+																</td>
+																<td width="36" height="15" align="center"
+																	valign="middle"><span style="font-size: 8pt"><input
+																		id="rbns" type="radio" name="a" value="rbns"
+																		ng-model="selectedCartItemOnPopUp.onbgColorchange"></span>
+																</td>
+															</tr>
+															<tr>
+																<td width="36" height="15" align="center"
+																	valign="middle">
+																	<div id="Panel5"
+																		style="background-color: LemonChiffon; height: 15px; width: 15px;">
+
+
+																	</div>
+																</td>
+																<td width="36" height="15" align="center"
+																	valign="middle">
+																	<div id="pnl1"
+																		style="background-color: Gold; height: 15px; width: 15px;">
+
+
+																	</div>
+																</td>
+																<td width="36" height="15" align="center"
+																	valign="middle">
+																	<div id="Panel2"
+																		style="background-color: LightPink; height: 15px; width: 15px;">
+
+
+																	</div>
+																</td>
+																<td width="36" height="15" align="center"
+																	valign="middle">
+																	<div id="Panel3"
+																		style="background-color: DarkKhaki; height: 15px; width: 15px;">
+
+
+																	</div>
+																</td>
+																<td width="36" height="15" align="center"
+																	valign="middle">
+																	<div id="Panel4"
+																		style="background-color: LightSteelBlue; height: 15px; width: 15px;">
+
+
+																	</div>
+																</td>
+															</tr>
+
+															<tr>
+																<td colspan="5"><input type="checkbox"
+																	name="noBackGroundcolor"
+																	value="nobgcolor"
+																	ng-model="selectedCartItemOnPopUp.nobgColor"
+																	ng-change="onNoBgcolorSelected();"><span
+																	style="font-size: 10pt; font-family: Calibri;">
+																		No Backgrund Color</span></td>
+															</tr>
+
+
+														</tbody>
+
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</center>
+							</div>
+							<div
+								style="width: 200px; height: 100px; float: right; padding-right: 10px; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
+								<center>
+									<table width="140" border="0" cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td width="140" height="20"
+													style="border-bottom: 5px double #666666; font-size: 9pt; font-family: Calibri;">
+													<b>Select Ad Border</b><br /> Border Extra: <span>{{selectedCartItemOnPopUp.extraForBorder}}</span>
+
+												</td>
+											</tr>
+											<tr>
+												<td width="140" height="20">
+													<table id="rbnborder" border="0"
+														style="font-family: Calibri; font-size: 9pt">
+														<tbody>
+															<tr>
+																<td><input id="rbnborder_0" type="radio"
+																	name="rbnborder" value="No"
+																	ng-model="selectedCartItemOnPopUp.onBorderSelected"
+																	ng-change="onBorderselected();"><label
+																	for="rbnborder_0">No</label></td>
+																<td><input id="rbnborder_1" type="radio"
+																	name="rbnborder" value="Yes"
+																	ng-model="selectedCartItemOnPopUp.onBorderSelected"
+																	ng-change="onBorderselected();"><label
+																	for="rbnborder_1">Yes</label></td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</center>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td align="left" valign="middle" width="450">
+							<table border="0" cellpadding="0" cellspacing="0" class="style2">
+								<tbody>
+									<tr>
+										<!-- <td align="left" valign="top">
                                                                             <input type="checkbox" name="noBackGroundcolor" ng-checked="true" value="nobgcolor" ng-model="selectedCartItemOnPopUp.nobgColor" ng-change="onNoBgcolorSelected();"> No Backgrund Color
                                                                         </td> -->
-                                                                        <td align="right" valign="top" width="250">
-                                                                            &nbsp;
-                                                                        </td>
-                                                                    </tr>
-                                                                    
-                                                                    <tr><br />
-                                                                       <!--  <td align="left" valign="top">
+										<td align="right" valign="top" width="250">&nbsp;</td>
+									</tr>
+
+									<tr>
+										<br />
+										<!--  <td align="left" valign="top">
                                                                             <span id="Label2" class="style3" style="font: bold;font-size: medium;">Background Color  Extra:</span> &nbsp; <span>{{selectedCartItemOnPopUp.extraForBackgroud}}</span>
                                                                             &nbsp;<span id="lblExtracost" class="style3" style="color:Red;"></span>
                                                                             &nbsp;<p></p>
                                                                             
                                                                         </td> -->
-                                                                       <!--  <td align="right" valign="top" width="250">
+										<!--  <td align="right" valign="top" width="250">
                                                                             <span id="Label5" class="style3" style="font: bold;font-size: medium;">Border Extra:</span> &nbsp; &nbsp;<span>{{selectedCartItemOnPopUp.extraForBorder}}</span>
                                                                             &nbsp;<span id="lblExtrabordercost" class="style3" style="color:Red;"></span>
                                                                             &nbsp;<p></p>
                                                                             &nbsp;
                                                                         </td> -->
-                                                                    </tr>
-                                                                </tbody></table>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody></table>
-                      
-              </form>
-              
-              <form class="pull-left tab-pane" id="select-date" name="select-dateForm" rc-step novalidate>
-                      <img src="http://www.releasemyad.com/images/small_straight_arrow.png" id="CatIdImg1" style="vertical-align:middle;" border="0">
-                      <div id="_datepicker"></div>
-                      
-              </form>
-              
-               <div class="pull-left price-box"  style="border: 4px solid #fc9a24;box-shadow: 0px 0px 0px 0px #65BDDF;solid rgb(238, 238, 238);" >											
- 				        <div style="background-color: #fc9a24;">
- 				        <p style="padding: 1%; text-align: center;font-size: 9pt;font-family: Calibri;margin: 0 0 0px;">{{selectedCartItemOnPopUp.newspaper}}-{{ selectedCartItemOnPopUp.location}}</p>
- 				        <p style="padding: 1%; text-align: center;font-size: 9pt;font-family: Calibri;margin: 0 0 0px;">(Rs {{selectedCartItemOnPopUp.rate}} per  {{selectedCartItemOnPopUp.freeUnit}} Words.) <br />(Rs {{selectedCartItemOnPopUp.extra}} Extra per word )</p>
- 						</div>
- 						<div style="box-shadow: -3px 3px 16px -1px #ccc;padding-bottom: 1%;padding-top: 1%;border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%;width: 96%;margin-left: 2%">
- 						<p style="padding: 1%;text-align: center;margin: 0 0 2px;font-size: 9pt;font-family: Calibri;"> Total:{{selectedCartItemOnPopUp.fullTotal}}</p>
- 						<p style="padding: 1%;text-align: center;margin: 0 0 8px;font-size: 9pt;font-family: Calibri;"> {{selectedCartItemOnPopUp.unit}}: {{selectedCartItemOnPopUp.totalUnit}} </p>
- 						<p style="padding: 1%;text-align: center;margin: 0 0 6px;font-size: 9pt;font-family: Calibri;"> Extra Unit:{{selectedCartItemOnPopUp.extraUnit}}</p>
-            		 </div>
-	  		   </div>
-            </div>  
-            
-            <div class="form-group">
-              <div class="pull-right">
-                <a class="btn btn-default" ng-click="rc.composeWizard.backward()"
-                   ng-show="rc.composeWizard.currentIndex > rc.composeWizard.firstIndex">Back</a>
-                <a class="btn btn-primary" data-loading-text="Please Wait..." ng-click="onComposeAdStepChange()" 
-                   ng-show="rc.composeWizard.currentIndex < rc.composeWizard.navigationLength">Continue</a>
-                <a class="btn btn-primary" ng-click="onComposeAdDone();closeThisDialog()" 
-                   ng-show="rc.composeWizard.currentIndex == rc.composeWizard.navigationLength">Complete</a>
-              </div>
-            </div>  
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</form>
+
+		<form class="pull-left tab-pane" id="select-date"
+			name="select-dateForm" rc-step novalidate>
+			<img src="http://www.releasemyad.com/images/small_straight_arrow.png"
+				id="CatIdImg1" style="vertical-align: middle;" border="0">
+			<div id="_datepicker"></div>
+
+		</form>
+
+		<div class="pull-left price-box"
+			style="border: 4px solid #fc9a24; box-shadow: 0px 0px 0px 0px #65BDDF;">
+			<div style="background-color: #fc9a24;">
+				<p
+					style="padding: 1%; text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px;">{{selectedCartItemOnPopUp.newspaper}}-{{
+					selectedCartItemOnPopUp.location}}</p>
+				<p
+					style="padding: 1%; text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px;">
+					(Rs {{selectedCartItemOnPopUp.rate}} per
+					{{selectedCartItemOnPopUp.freeUnit}} Words.) <br />(Rs
+					{{selectedCartItemOnPopUp.extra}} Extra per word )
+				</p>
+			</div>
+			<div
+				style="box-shadow: -3px 3px 16px -1px #ccc; padding-bottom: 1%; padding-top: 1%; border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%; width: 96%; margin-left: 2%">
+				<p
+					style="padding: 1%; text-align: center; margin: 0 0 2px; font-size: 9pt; font-family: Calibri;">
+					Total:{{selectedCartItemOnPopUp.fullTotal}}</p>
+				<p
+					style="padding: 1%; text-align: center; margin: 0 0 8px; font-size: 9pt; font-family: Calibri;">
+					{{selectedCartItemOnPopUp.unit}}:
+					{{selectedCartItemOnPopUp.totalUnit}}</p>
+				<p
+					style="padding: 1%; text-align: center; margin: 0 0 6px; font-size: 9pt; font-family: Calibri;">
+					Extra Unit:{{selectedCartItemOnPopUp.extraUnit}}</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="pull-right">
+			<a class="btn btn-default" ng-click="rc.composeWizard.backward()"
+				ng-show="rc.composeWizard.currentIndex > rc.composeWizard.firstIndex">Back</a>
+			<a class="btn btn-primary" data-loading-text="Please Wait..."
+				ng-click="onComposeAdStepChange()"
+				ng-show="rc.composeWizard.currentIndex < rc.composeWizard.navigationLength">Continue</a>
+			<a class="btn btn-primary"
+				ng-click="onComposeAdDone();closeThisDialog()"
+				ng-show="rc.composeWizard.currentIndex == rc.composeWizard.navigationLength">Complete</a>
+		</div>
+	</div>
 </div>
- 
- 
+

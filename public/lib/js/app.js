@@ -106,7 +106,6 @@ angular.module('adschela',
 								            	google.language.transliterate([lastSep[lastSep.length-1]], "en", "hi", function(result) {
 								          		  if (!result.error) {
 								          		    if (result.transliterations && result.transliterations.length > 0 ) {
-								          		    	console.log(result.transliterations[0].transliteratedWords[0]);
 								          		    	scope.onTranslationDone({data:result.transliterations[0].transliteratedWords[0]});
 								          		    }
 								          		  }
