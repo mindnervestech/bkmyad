@@ -615,23 +615,25 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 	$scope.onNoBgcolorSelected=function(){
 		console.log("onNoBgcolorSelected ");
 		  if($scope.selectedCartItemOnPopUp.nobgColor) { 
-		      $scope.selectedCartItemOnPopUp.totalExtraCost = 
-		    	  $scope.selectedCartItemOnPopUp.totalExtraCost - backgroundColor;
+			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - backgroundColor;
 		  }
 		  else {
-			  $scope.selectedCartItemOnPopUp.totalExtraCost = 
-				  $scope.selectedCartItemOnPopUp.totalExtraCost + backgroundColor;
+			  $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + backgroundColor;
 		  }
-		  ReTotal();
+		  ReTotal(); 
 	}
 	
 	$scope.onComposeAdStepChange = function() {
 		$scope.rc.composeWizard.forward();
+		
 		if($scope.rc.composeWizard.currentIndex === 1) {
+			
 		}
+		
 		if($scope.rc.composeWizard.currentIndex == 2) {
 			InitDatepicker();
 		}
+		
 	}
 	
 	$scope.onComposeAdDone = function() {
@@ -862,6 +864,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
                                                                function($scope,$http,ngDialog){
 	$scope.showFieldsVar = false;
 	$scope.userId;
+	$scope.modeOfPayment;
 	/*$scope.khandobaVar = false;*/
 	console.log("mainCategoty"+$scope.userid);
 	
@@ -933,14 +936,20 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		});
 	}
 	$scope.checkForUsernameAndPassword =function(){
-		$http.get("checkusercreadientals/"+$scope.userid+'/'+$scope.userpass)
+		if($scope.userwithoutaccount){
+			 $scope.rc.sampleWizard.forward();
+		}
+		if($scope.userwithaccount){
+		$http.get("checkusercreadientals/"+$scope.userId+'/'+$scope.userpass)
 		 .success(function(data){
+			 
 		  $scope.result = data;
 		  if($scope.result=="false") {
 		  $scope.rc.sampleWizard.forward();
 			}
 		});
 	}
+ }
 	$scope.onCitySelect =function(){
 		$http.get("getBasicRateByLocationAndCategory/"+$scope.bookingState.selectedCity+'/'+$scope.bookingState.selectedMainCategoty)
 		.success(function(data){

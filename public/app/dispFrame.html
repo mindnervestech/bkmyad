@@ -1,0 +1,220 @@
+
+
+
+
+<head>
+<title>
+	Display
+</title>
+    <!-- Modal PopUp-->
+    <link href="css/modal.css" rel="stylesheet" type="text/css" />
+    <!-- End -->
+
+    
+
+        <link href="css/display.css" rel="stylesheet" type="text/css" />
+
+    
+    <style type="text/css">
+        .divModalBackground
+        {
+            background-color: #696969;
+            filter: alpha(opacity=40);
+            opacity: 0.7;
+            xindex: -1;
+            zindex: 800;
+            top: 0;
+            left: 0;
+            text-align: center;
+            min-height: 100%;
+            min-width: 100%;
+            position: absolute;
+        }
+        .style2
+        {
+            color: red;
+        }
+    </style>
+<link href="/WebResource.axd?d=eELOVr57-x406Xc75zGi2tprCqY3dldlhtntpI7SiWifW2awJvad0Zw_fiz0Owz-B7zVwkz8xQlml33cPpS0PHPymYTskVfDmGrAvFbI-b__PCIB7ITYVBP4PXdUbPaXOJSO6g2&amp;t=635216696627194188" type="text/css" rel="stylesheet" /><link href="/WebResource.axd?d=6D5sCqIWT_1AL4YT4rDd3JfMclNQawjIUJC2rP1IjvGNa5vI2SVvrh4yXZKd_5BOMOIiPxz8Xxd_0beRQJudvR3xv1Ch0isx6BfxOl4IVXZmS-ZQyJKCuB9ve_fsSjP3Gz7HVOd-dsXigyQMoHhsX3m0yVs1&amp;t=635216696627194188" type="text/css" rel="stylesheet" /><link href="/WebResource.axd?d=M-lLY-IZ1ekCIzcitSQ1v993WsqoKOApMnM7fMXUHgU-RrQAZZDSxINPihZd6L6uGu_Ny5hF-QRiDtHP7rdBHhgUCCjTagO_KEMvjGqPqVhQ_XmKoPbyWGsfx0IA7OWQ18Xmkw2&amp;t=635216696627194188" type="text/css" rel="stylesheet" /></head>
+<body>
+    <form name="form1" method="post" action="editdisplayFrame"  id="form1" enctype="multipart/form-data">
+<div>
+<input type="hidden" name="ToolkitScriptManager2_HiddenField" id="ToolkitScriptManager2_HiddenField" value="" />
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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aWVkIHByb2Zlc3Npb25hbHMgYW5kIGV4cGVyaWVuY2VkIGdyYWR1YXRlcyB0byBsZWFkIG91ciBwcm9qZWN0cyBhbGwgb3ZlciBpbmRpYS4gQ2FuZGlkYXRlIHdpbGwgcmVxdWlyZSB0byBtZWV0IHRoZWlyIHdlZWtseSBhbmQgbW9udGhseSB0YXJnZXRzIDxiciAvPjxiciAvPjxiPiBzYWxhcnkgaW5jbHVkZSBmaXhlZCArIHRhcmdldCBwYXk8L2I+ZGQCBQ9kFgICAQ8PFgIfAAUtQy00NixOb2lkYSBockBlbWFpbC5jb20gTW9iaWxlIE5vOiA5MTY1NDU3ODk4ZGQCFQ9kFg4CAQ8QZGQWAWZkAgMPZBYCAgEPEGRkFgFmZAILD2QWAgIBD2QWAmYPDxYCHwFoZGQCDQ9kFgICAQ8PFgIfAAWmAzxzcGFuIHN0eWxlPSdiYWNrZ3JvdW5kLWNvbG9yOlllbGxvdyc+Q2VtZW50IEJ1c2luZXNzIEdyb3VwIENlbnR1cnkgVGV4dGlsZXMgJiBJbmR1c3RyaWVzIExpbWl0ZWQ8L3NwYW4+PGJyIC8+PHNwYW4+UkVRVUlSRTwvc3Bhbj48YnIgLz48YnIgLz48Yj5FeHBlcmllbmNlZCBDaGFydGVkIEFjY29udGFudHM8L2I+PGJyIC8+PGJyIC8+QXR0cmFjdGl2ZSBSZW11bmVyYXRpb24gUGFja2FnZSwgQ29uZHVjdGl2ZSBXb3JrIGFuZCBMaXZpbmcgRW52aXJvbm1lbnQgd2l0aCBGYXN0LVRyYWNrIEdyb3d0aCBPcHBvcnR1bml0aWVzIGZvciBkZXNlcnZpbmcgY2FuZGlkYXRlcy48YnIgLz48YnIgLz48c3Ryb25nPkFQUExZIFdJVEhJTiBGSUZURUVOIERBWVMgV0lUSCBCSU8tREFUQSBBTkQgUEFTU1BPUlQgU0laRSBQSE9UT0dSQVBIPC9zdHJvbmc+ZGQCEQ9kFgICAQ9kFgJmDw8WAh8BaGRkAhMPZBYCAgEPDxYCHwAFKTxiPmhyQGVtYWlsLmNvbSBNb2JpbGUgTm86IDkxNjU0NTc4OTg8L2I+ZGQCGw9kFgYCAQ9kFgICAQ8PFgIfAgUPaW1hZ2UvY29sb3IuanBnZGQCAw9kFgICAQ8PFgIfAAWmAzxzcGFuIHN0eWxlPSdiYWNrZ3JvdW5kLWNvbG9yOlllbGxvdyc+Q2VtZW50IEJ1c2luZXNzIEdyb3VwIENlbnR1cnkgVGV4dGlsZXMgJiBJbmR1c3RyaWVzIExpbWl0ZWQ8L3NwYW4+PGJyIC8+PHNwYW4+UkVRVUlSRTwvc3Bhbj48YnIgLz48YnIgLz48Yj5FeHBlcmllbmNlZCBDaGFydGVkIEFjY29udGFudHM8L2I+PGJyIC8+PGJyIC8+QXR0cmFjdGl2ZSBSZW11bmVyYXRpb24gUGFja2FnZSwgQ29uZHVjdGl2ZSBXb3JrIGFuZCBMaXZpbmcgRW52aXJvbm1lbnQgd2l0aCBGYXN0LVRyYWNrIEdyb3d0aCBPcHBvcnR1bml0aWVzIGZvciBkZXNlcnZpbmcgY2FuZGlkYXRlcy48YnIgLz48YnIgLz48c3Ryb25nPkFQUExZIFdJVEhJTiBGSUZURUVOIERBWVMgV0lUSCBCSU8tREFUQSBBTkQgUEFTU1BPUlQgU0laRSBQSE9UT0dSQVBIPC9zdHJvbmc+ZGQCBQ9kFgICAQ8PFgIfAAUpPGI+aHJAZW1haWwuY29tIE1vYmlsZSBObzogOTE2NTQ1Nzg5ODwvYj5kZAIJDw8WAh8ABQMyMzJkZAILDw8WAh8ABQMyMzJkZAINDw8WAh8ABQExZGQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgUFCGlidXBsb2FkBQVpYmNkMQUFaWJjZDIFBWliY2QzBQVpYmNkNP9nxqUQY4yyHkCi+y/SomQYGYSW" />
+</div>
+
+
+
+
+
+
+<div>
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWCwLl2sfRCgLVmMurAwKM0NOlCAKppteRAwKqwLTPBgKJpJK+AQKKpJK+AQKLpJK+AQKEpJK+AQKZ39m/BwLzl9H7A1N65e1PWsH/ZaC7O0D5Rtf4NonV" />
+</div>
+    
+    <div id="PageUpdateProgress" style="display:none;">
+	
+            <div id="IMGDIV1" class="divModalBackground">
+                <img src="image/waiting.gif" />
+            </div>
+        
+</div>
+    <div>
+        <div>
+            <h2 style="margin: 0; font-size: 19px; margin-left: 15px; margin-top: 15px">
+                Compose Your Ad or&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" name="ibupload" id="ibupload" src="image/upload.png" align="absmiddle" style="border-width:0px;" /></h2>
+        </div>
+        <table border="0" cellpadding="0" cellspacing="0" width="630px">
+            <tr>
+                <td width="635px" align="left" valign="top">
+                    <div id="UpdatePanel3">
+	
+                            <fieldset style="border: 4px double #E6E6E6; width: 635px; height: Auto; margin: 0;
+                                padding: 2px; font-size: 14px">
+                                <legend style="color: #FF3300; font-size: 10pt; font-weight: 700; font-family: Calibri;">
+                                    &nbsp;<span style="font-weight: bold;
+                                            color: Green; font-size: 14px"></span><span style="font-weight: bold;
+                                                    color: Green; font-size: 14px"></span></legend>
+                                <div style="width: 100%; margin: 0 auto; border: Solid 1px Black; background-color: #8ABE25;
+                                    font-family: Calibri">
+                                    <table id="rbndtype" cellspacing="10" border="0" style="color:White;font-weight:bold;">
+		<tr>
+			<td><input id="rbndtype_0" type="radio" name="rbndtype" value="Color Ads" checked="checked" /><label for="rbndtype_0">Color Ads</label></td><td><input id="rbndtype_1" type="radio" name="rbndtype" value="B/W Ads" onclick="javascript:setTimeout('__doPostBack(\'rbndtype$1\',\'\')', 0)" /><label for="rbndtype_1">B/W Ads</label></td>
+		</tr>
+	</table>
+                                </div>
+                                
+                                <span id="lblmsg" style="color:Red;font-family:Calibri;"></span>
+                                <div id="pnlex1">
+		
+                                    <table style="width: 100%; margin: 0 auto">
+                                        <tr>
+                                            <td valign="top">
+                                                <input type="image" name="ibcd1"   src="editdisplayFrame" style="border-width:0px;width: 115px" /><br />
+                                                <img id="Image1" src="image/displayc1.JPG" style="width:115px;border-width:0px;" />
+                                            </td>
+                                            <td valign="top">
+                                                <input type="image" name="ibcd2"  src="editdisplayFrame" style="border-width:0px;width: 115px;" /><br />
+                                                <img id="Image2" src="image/displayc2.JPG" style="border-width:0px;" />
+                                            </td>
+                                            <td valign="top">
+                                                <input type="image" name="ibcd3"  src="editdisplayFrame" style="border-width:0px;width: 115px" /><br />
+                                                <img id="Image3" src="image/displayc3.JPG" style="border-width:0px;" />
+                                            </td>
+                                            <td valign="top">
+                                                <input type="image" name="ibcd4"   src="editdisplayFrame" style="border-width:0px;width: 115px" /><br />
+                                                <img id="Image4" src="image/displayc4.JPG" style="border-width:0px;" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                
+	</div>
+                                
+                                
+                                
+                                
+                                
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                
+                            </fieldset>
+                        
+</div>
+                </td>
+            </tr>
+        </table>
+        <span id="lblcostextra" style="color:White;">232</span>
+        <span id="lbltcost" style="color:White;">232</span>
+        <span id="lblcm" style="color:White;">1</span>
+        <span id="lblID" style="color:White;"></span>
+        <span id="lbltemp" style="color:White;"></span>
+        <input type="hidden" name="hfresult" id="hfresult" />
+        <input type="hidden" name="hfcostcm" id="hfcostcm" />
+    </div>
+    <a href="#x" class="overlay" id="login_form"></a>
+    <div class="popup">
+        <center>
+            <table border="0" cellpadding="0" cellspacing="0" width="420">
+                <tr>
+                    <td width="420" height="225" align="left" valign="top">
+                        <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 15px">
+                            <tr>
+                                <td width="120" align="left" valign="top" style="font-family: calibri; font-size: 10pt;
+                                    color: #CCCCCC">
+                                    NAIR BOY Atham<br />
+                                    29/178 BE,TL MNC
+                                    <br />
+                                    Bangalore. Parents
+                                    <br />
+                                    Chennai settled seeks
+                                    <br />
+                                    equally Qualified,<br />
+                                    Goodlooking Fair<br />
+                                    Nair Girl from<br />
+                                    Chennai, Bangalore,
+                                    <br />
+                                    North Kerala. Send
+                                    <br />
+                                    BHP to gopalakrishna
+                                  <!--   <br />
+                                    .p@gmail.com,<br />
+                                    09940671358
+                                    <br />
+                                    (Published on Dec
+                                    <br />
+                                    9, 2012) -->
+                                </td>
+                                <td width="180" align="left" valign="top">
+                                    <div id="pnlshow" style="width: 180px; height: 350px; overflow: auto;
+                                        border: Solid 1px; margin: 2px; text-align: center; word-wrap: break-word">
+	
+                                        <div id="pnlshow1">
+		
+                                            
+                                            <span id="lblshow1"></span>
+                                        
+	</div>
+                                        <div id="pnlshow2">
+		
+                                            <span id="lblshow2"></span>
+                                        
+	</div>
+                                        <div id="pnlshow3">
+		
+                                            <span id="lblshow3"></span>
+                                        
+	</div>
+                                    
+</div>
+                                </td>
+                                <td width="120" align="left" valign="top" style="font-family: calibri; font-size: 10pt;
+                                    color: #CCCCCC">
+                                    Documents uncovered at the Tazreen garment factory in Bangladesh where 112 workers
+                                    died in a fire two weeks ago indicate that not one but two U.S. apparel makers supplying
+                                    goods for
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="420" height="30" style="border-top-style: dotted; border-bottom-style: dotted;
+                        border-top-width: 1px; border-top-color: #CCCCCC; border-bottom-width: 1px; border-bottom-color: #CCCCCC">
+                        <span style="font-family: Calibri; font-size: 8pt; color: Gray">Note: This Ad preview
+                            shown is an indicative preview of the ad text only and will differ from the actual
+                            published advertisement </span>
+                    </td>
+                </tr>
+            </table>
+        </center>
+        <a class="close" href="#close"></a>
+    </div>
+    
+
+
+</form>
+</body>
+

@@ -21,6 +21,7 @@ POST    /validateUsernameUnique                controllers.UservalidationControl
 GET     /dispFrame.html                        controllers.DispFrameController.index()
 GET     /getSubCategoty/:cname					controllers.Application.getSubCategoty(cname:String)
 GET     /getNewspaper							controllers.AddbasicRateController.getNewspaper()
+POST    /submit-cart                            controllers.MakeBookingController.saveComposeyourAd()
 GET		/getAnnouncements/:title/:currentPage	controllers.AnnouncementController.getAnnouncements(title :String,currentPage :Integer)
 POST	/saveAnnouncement		               controllers.AnnouncementController.saveAnnouncement
 GET		/deleteAnnouncement/:id		           controllers.AnnouncementController.deleteAnnouncement(id :Long)
@@ -34,7 +35,7 @@ GET     /getStatename							controllers.AddbasicRateController.getStatename
 GET     /getCityname/:state					    controllers.AddbasicRateController.getCityname(state:String)
 POST    /saveNewpaper                           controllers.AddNewspaperController.saveNewpaper
 POST	/updateNewpaper	                   controllers.AddNewspaperController.updateNewpaper
-GET		/getNewpaper/:Nameofthenewspaper/:currentPage	   controllers.AddNewspaperController.getNewpaper(Nameofthenewspaper :String,currentPage :Integer)
+#GET		/getNewpaper/:Nameofthenewspaper/:currentPage	   controllers.AddNewspaperController.getNewpaper(Nameofthenewspaper :String,currentPage :Integer)
 GET		/deleteNewpaper/:id		           controllers.AddNewspaperController.deleteNewpaper(id :String)
 
 #GET    /addisplay.html                                 
@@ -75,4 +76,4 @@ GET /TermsandConditions.html     controllers.Assets.at(path="/public", file="app
 GET /Booknewspaperaddonline.html     controllers.Assets.at(path="/public", file="app/Booknewspaperaddonline.html")
 GET /manageAnnouncements.html     controllers.Assets.at(path="/public", file="app/manageAnnouncements.html")
 GET /AddBasicRate.html     controllers.Assets.at(path="/public", file="app/AddBasicRate.html")
-GET /AddNewspaper.html     controllers.Assets.at(path="/public", file="app/AddNewspaper.html")
+#GET /AddNewspaper.html     controllers.Assets.at(path="/public", file="app/AddNewspaper.html")

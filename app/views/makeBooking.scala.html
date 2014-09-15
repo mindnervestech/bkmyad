@@ -321,8 +321,10 @@
               
      <form class="tab-pane" id="fourth" name="fourthForm"  rc-step>
                <!-- messagee shown when user are valid  -->
-              <p ng-show="result" style="color:red">Please enter valid credentials</p>
+            <div style="float: left;">  
               <b>Username:</b>&nbsp;&nbsp;  <input type="text" ng-model="userId" name="username">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <p ng-show="result" style="color:red">Please enter valid credentials</p>
+              </div>
               <div ng-show="showFieldsVar" >
                   <b>Password:</b>&nbsp;&nbsp;   <input type="password" ng-model="userpass" name="password">
                   <div style="margin-left: 45%;"s>
@@ -332,12 +334,13 @@
                  </div>
               </div>
                <br />
-                  <input type="radio" name="chk" value="withoutpassword" ng-checked="checked" ng-model="userwithoutaccount" ng-click="showfieldsonlyusername();" style="margin-left:7%;"><b >&nbsp;Continue without password</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div style="width: 100%;float: left;">    <input type="radio" name="chk" value="withoutpassword" ng-checked="checked" ng-model="userwithoutaccount" ng-click="showfieldsonlyusername();" style="margin-left:7%;"><b >&nbsp;Continue without password</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <input type="radio" name="chk" value="withpassword" ng-model="userwithaccount" ng-click="showfields();"><b>&nbsp;I have Adschela account and passsword </b> <br>
                   <div>
                   <span style="font-size: 9pt;font-family: Calibri;margin-left: 12%;">(Don't have account yet)</span>
                   <span style="font-size: 9pt;font-family: Calibri;margin-left: 25%;">Sign in to your account to get benefits</span><br>
+                 </div>
                   </div><br />
                  <input class="btn btn-primary" type="submit" value="Continue" data-ng-click="checkForUsernameAndPassword()"style="background-color: #0044cc;margin-left: 7%;"> 
       </form>
@@ -345,54 +348,51 @@
       <form class="tab-pane" id="fifth" name="fifthForm" rc-submit="completeWizard()" rc-step>
 	     	<div > <input type="radio" name="chk" value="cod" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showHomeShipingDetails();" style="margin-left:7%;"><b >&nbsp;Collect cash form home</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    </div>
+                     <div  > <input type="radio" name="chk"  value="cc" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showDebitShipingDetails();" style="margin-left:7%;"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
                    <div align="center"  ng-show="showHomeshipping" >
 			
-			Pincode *: <input type="pincode" ng-model="address.pinCode" name="pinCode" />
- 
-			Full Name *: <input type="text" ng-model="address.fullName" name="fullName" /><br/>
- 
-			Shipping Address *: <input type="text" ng-model="address.shippingAddress" name="shippingAddress" />
- 
-			Nearest Landmark *: <input type="text" ng-model="address.nearestLandmark" name="nearestLandmark" /><br/>
- 
-			City *: <input type="text" name="city" ng-model="address.city" />
- 
-			State/Region/Province *: <input type="text" ng-model="address.state" name="state" /><br/>
- 
-			Mobile: <input type="text" ng-model="address.mobile" name="mobile" />
- 
-			Landline *: <input type="text" ng-model="address.landline" name="landline" />
- 
+		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Pincode *:</p> <input type="pincode" ng-model="address.pinCode" name="pinCode" />
+     </div>
+	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Full Name *:</p> <input type="text" ng-model="address.fullName" name="fullName" /><br/>
+      </div>
+	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Shipping Address *:</p> <input type="text" ng-model="address.shippingAddress" name="shippingAddress" />
+      </div>
+		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Nearest Landmark *:</p> <input type="text" ng-model="address.nearestLandmark" name="nearestLandmark" /><br/>
+      </div>
+		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">City *: </p><input type="text" name="city" ng-model="address.city" />
+      </div>
+		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;"> State/Region/Province *: </p><input type="text" ng-model="address.state" name="state" /><br/>
+      </div>
+		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Mobile: </p><input type="text" ng-model="address.mobile" name="mobile" />
+      </div>
+		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Landline *:</p> <input type="text" ng-model="address.landline" name="landline" />
+       </div>
 			<br/>
           
 		  </div>
 		  
-           <div > <input type="radio" name="chk"  value="cc" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showDebitShipingDetails();" style="margin-left:7%;"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </div>
+         
 	     	 <div align="center"  ng-show="showDebitCardshipping" >
 			
-			Pincode *: <input type="pincode" ng-model="address.pinCode" name="pinCode" />
- 
-			Full Name *: <input type="text" ng-model="address.fullName" name="fullName" /><br/>
- 
-			Shipping Address *: <input type="text" ng-model="address.shippingAddress" name="shippingAddress" />
- 
-			Nearest Landmark *: <input type="text" ng-model="address.nearestLandmark" name="nearestLandmark" /><br/>
- 
-			City *: <input type="text" name="city" ng-model="address.city" />
- 
-			State/Region/Province *: <input type="text" ng-model="address.state" name="state" /><br/>
- 
-			Mobile: <input type="text" ng-model="address.mobile" name="mobile" />
- 
-			Landline *: <input type="text" ng-model="address.landline" name="landline" />
- 
+			<div style="width: 45%;float: left"><p style="float: left;width: 35%;text-align: left;">Pincode *: </p><input type="pincode" ng-model="address.pinCode" name="pinCode" />
+ </div>
+			<div style="width: 45%;float: left"><p style="float: left;width: 35%;text-align: left;"> Full Name *:</p> <input type="text" ng-model="address.fullName" name="fullName" /><br/>
+ </div>
+		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Shipping Address *: </p><input type="text" ng-model="address.shippingAddress" name="shippingAddress" />
+ </div>
+		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Nearest Landmark *:</p> <input type="text" ng-model="address.nearestLandmark" name="nearestLandmark" /><br/>
+ </div>
+			<div style="width: 45%;float: left"><p style="float: left;width: 35%;text-align: left;;">City *:</p> <input type="text" name="city" ng-model="address.city" />
+ </div>
+		<div style="width: 45%;float: left"><p style="float: left;width: 35%;text-align: left;">	State/Region/Province *:</p> <input type="text" ng-model="address.state" name="state" /><br/>
+ </div>
+		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Mobile: </p><input type="text" ng-model="address.mobile" name="mobile" />
+ </div>
+	<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Landline *:</p> <input type="text" ng-model="address.landline" name="landline" />
+ </div>
 		  </div>
-		  
-		
 	 </form>
-	 
-	 
              </div>
             <div class="form-group" style="margin-top: 2%;">
               <div class="pull-right">
@@ -408,10 +408,6 @@
             </div>
           </div>
          </div>
-  	
-            
-					
-	
 	</div>
 	<div data-ng-include data-src="'sidebar.html'" class="span3">
 	
