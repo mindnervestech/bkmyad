@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Transient;
 
 
+import models.City;
 import models.Newspaperdetails;
 
 
@@ -17,6 +18,9 @@ public class NewspaperdetailsVM {
 	public String Addedition;
 	@Transient
 	public List<String> NameofCities;
+	
+	@Transient
+	public List<SelectionVM> NameofCitiesVM;
 	
 	@Transient
 	public List<String> Unit;
@@ -47,6 +51,12 @@ public class NewspaperdetailsVM {
     	this.Beforebookingdate = newspaperdetails.Beforebookingdate;
     	this.Allow = newspaperdetails.Allow;
     	this.Statename = newspaperdetails.Statename;
+    	/*
+    	for(String city : City.getallcity(newspaperdetails.Statename)){
+			SelectionVM svm = new SelectionVM(city);
+			svm.isSelect = city.contains(this.Nameofcities);
+			this.NameofCitiesVM.add(svm);
+		}*/
     	    	
     }
     

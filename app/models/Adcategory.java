@@ -1,6 +1,7 @@
 package models;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ public class Adcategory {
 
 	public Adcategory() {}
 	
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
 	public String CID;
 	
 	public String cname;
@@ -42,4 +43,27 @@ public class Adcategory {
 		return (List<String>)q.getResultList();
 	}
 		
+	@Transactional
+    public void save() {
+		this.CID = UUID.randomUUID().toString();
+        JPA.em().persist(this);
+        JPA.em().flush();     
+    }
+      
+    @Transactional
+    public void delete() {
+        JPA.em().remove(this);
+    }
+    
+    @Transactional
+    public void merge() {
+        JPA.em().merge(this);
+    }
+    
+    @Transactional
+    public void refresh() {
+        JPA.em().refresh(this);
+    }
+
+	
 }

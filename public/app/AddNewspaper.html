@@ -12,7 +12,7 @@
 	<link href="css/datetimepicker.css"></script>
 	<script type="text/javascript" src="../assets/app/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
 	<!-- <div data-ng-include data-src="'../assets/app/views/header.html'"></div> -->
-	<ul class="nav nav-tabs" role="tablist" id="myTab">
+	<!-- <ul class="nav nav-tabs" role="tablist" id="myTab">
 		  <li><a href="/#/" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Articles</a></li>
 		  <li class="active"><a href="/#/manageAnnouncement" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Announcements</a></li>
 		  <li><a href="/#/managePosts" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Posts</a></li>
@@ -21,19 +21,19 @@
 		  <li><a href="/#/manageAnswers" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Answers</a></li>
 		  <li><a href="/#/manageCommunities" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Communities</a></li>
 		  <li><a href="/#/manageUsers2" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Users</a></li>
-	</ul>
+	</ul> -->
 </head>
 
 <body ng-init="searchNewspaper()">
    <!--container begin-->
     <section id="container">
     	<section class="contentpanel">
-        	<h4>Manage BasicRate</h4>
+        	<h4>Manage Newspaper</h4>
             <!--Advance search fildes begin-->
         	<section class="dadsrch">
             	<section class="heading"><h2></h2></section>
                 <section class="dadsrchdiv">
-                	<input name="title" type="text" ng-model="title" class="" style="height:1%;" ng-keyup="$event.keyCode == 13 ? searchNewspaper(1) : null"><input name="" type="button" class="btngray" value="Search" ng-click="searchNewspaper(1)">
+                	<input name="title" type="text" ng-model="Nameofthenewspaper" class="" style="height:1%;" ng-keyup="$event.keyCode == 13 ? searchNewspaper(1) : null"><input name="" type="button" class="btngray" value="Search" ng-click="searchNewspaper(1)">
                 </section>
             </section>
             <!--Advance search fildes end-->
@@ -92,7 +92,7 @@
     <!--container end-->
   </div>
 		  <!-- Create Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="width: 65%;">
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="width: 65%;left: 41%;">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -103,6 +103,10 @@
 		      <div class="modal-body">
 		      <table style="font-family: 'Bitter', georgia, serif;">
 		     
+		      <tr>
+			        	<td><label>NewsPapers</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Nameofthenewspaper" style="width:70%;height: 50%;" data-ng-model="formData.Nameofthenewspaper" required></textarea></td>
+			        </tr>
 			         
 			    <tr>
 			        	 <td><label>State</label></td>
@@ -123,10 +127,7 @@
 			        	</td>
 			       </tr>
 			        
-			        <tr>
-			        	<td><label>NewsPapers</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Nameofthenewspaper" style="width:70%;height: 50%;" data-ng-model="formData.Nameofthenewspaper" required></textarea></td>
-			        </tr>
+			       
 			          	<tr>
 			          	
 			          <!-- 	<input id="photo" type="file" ng-model="formData.photo" name="c-photo" />
@@ -193,7 +194,7 @@
 		</div>
 		
 		<!-- Update Modal -->
-		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;">
+		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;left: 41%;">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -205,19 +206,32 @@
 		      <table>
 			        <tr>
 			        	<td><label>NewsPapers</label></td>
-			        	<td style="height: 60px;">
-			        {{ancmtData.Nameofthenewspaper}}	
-			        <select name="Newspaper" style="width:100%;" data-ng-model="ancmtData.Nameofthenewspaper" required >
-			    		<option ng-selected="ancmtData.Nameofthenewspaper" ng-repeat="newspaper in resultNewspaper"  value="{{newspaper.newspapers}}">
-			    		{{newspaper.newspapers}} </option>
-			    		<option value="">--Please Select Newspaper--</option>
-			    	</select>
-			    	</td>
-			        </tr> 
-			          <tr>
-			        	<td><label>NewsPapers</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Nameofthenewspaper" style="width:70%;height: 50%;" data-ng-model="ancmtData.Nameofthenewspaper" required></textarea></td>
 			        </tr>
+			          
+			          <tr>
+			        	 <td><label>State</label></td>
+			        	<td style="height: 60px;">
+			        		<select name="State" style="width:100%;" data-ng-model="ancmtData.Statename" ng-change="onStateselectupdate()">
+			        			<option ng-selected="ancmtData.Statename==state.Statename" ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
+			        			<option value="">--Please Select State--</option>
+			        			
+			        		</select>
+			        		
+			        	</td>
+			        	<td><label>City</label></td>
+			        	<td style="height: 60px;">
+			        	   		<select name="City" style="width:100%;" multiple data-ng-model="ancmtData.NameofCities" required >
+			        			<option ng-selected="ancmtData.NameofCities==city.cityname" ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
+			        			<option value="">--Please Select City--</option>
+			        			
+			        		</select>
+			        	</td>
+			        	
+			        	
+			        	
+			        	
+			       </tr>
 			          
 			        <tr>	
 			        	<td><label>LogoFileExtention</label></td>
@@ -230,23 +244,22 @@
 			        <tr>
 			        	<td><label>Addedition</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Addedition" style="width:70%;height: 50%;" data-ng-model="ancmtData.Addedition" required></textarea></td>
-			        	<td><label>NameofCities</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="NameofCities" style="width:70%;height: 50%;" data-ng-model="ancmtData.NameofCities" required></textarea></td>
+			        	
 			        </tr>
 			       
 			       <tr>
 			             <td><label>BasicratesperText :</label></td>
-			            <td><label>Unit</label></td>
-			        	<td style="height: 60px;">
-			        		<select name="Unit"  style="width:100%;" data-ng-model="formData.Unit" required>
+			            <!-- <td style="height: 60px;"><label>Unit : </label>
+			        	
+			        		<select name="Unit"  style="width:100%;" data-ng-model="ancmtData.Unit" required>
 			        			<option disabled="true" value="">--Select--</option>
 			        			<option value="Line">Line</option>
 			        			<option value="Word">Word</option>
 			        			
 			        		</select>
-			        	</td>
-			            <td><label> Value</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Value" style="width:70%;height: 50%;" data-ng-model="formData.Value" required></textarea></td>
+			        	</td> -->
+			           <!--  <td style="height: 60px;"><label> Value</label></td> -->
+			        	<td style="height: 60px;"><textarea type="text" name="BasicratesperText" style="width:70%;height: 50%;" data-ng-model="ancmtData.BasicratesperText" required></textarea></td>
 			        		 	        	
 			        </tr>
 			        <tr>

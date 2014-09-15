@@ -47,6 +47,17 @@ angular.module('adschela',
                           	        controller: 'AddBasicRateController'
                           	      })
                           	      
+                          	    .when('/AddStateCity', {
+                          	        templateUrl: 'AddStateAndCity.html',
+                          	        controller: 'AddStateCityController'
+                          	      })
+                          	      
+                          	      
+                          	    .when('/AddCat', {
+                          	        templateUrl: 'AddCategoryAndSubCat.html',
+                          	        controller: 'AddCategorySubcatController'
+                          	      })
+                          	      
                           	      .when('/AddNewspaper', {
                           	        templateUrl: 'AddNewspaper.html',
                           	        controller: 'AddNewspaperController'

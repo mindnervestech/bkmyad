@@ -75,7 +75,7 @@ public List<String> NameofCities;
 	    	if(Nameofthenewspaper.trim().equals("")) {
 	    		sql = "Select a from Newspaperdetails a";
 	    	} else {
-	    		sql ="SelectSelect a from Newspaperdetails a where a.Nameofthenewspaper LIKE ?1";
+	    		sql ="Select a from Newspaperdetails a where a.Nameofthenewspaper LIKE ?1";
 	    		
 	    	}
 
@@ -147,6 +147,7 @@ public List<String> NameofCities;
     
     @Transactional
     public void merge() {
+    	this.Nameofcities = this.NameofCities.toString();
         JPA.em().merge(this);
     }
     

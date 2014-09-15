@@ -162,10 +162,248 @@ angular.module('adschela').controller("BlogController",['$scope',function($scope
 	
 }]);
 
+angular.module('adschela').controller('AddCategorySubcatController',function($scope, $modal, $http, $filter, CategoryService){
+	
+	console.log("----------------------");
+	
+	$scope.cname = " ";
+	$scope.pageNumber;
+	$scope.pageSize;
+	$scope.formData = "";
+	var currentPage = 1;
+	var totalPages;
+	$scope.isChosen = false;
+	
+	$scope.searchForm= {
+            from : new Date(),
+            to : new Date()
+
+	}
+
+	
+	$scope.Category = CategoryService.StateCityInfo.get({cname:$scope.cname,currentPage:currentPage},function(response) {
+		totalPages = $scope.Category.totalPages;
+		currentPage = $scope.Category.currentPage;
+		$scope.pageNumber = $scope.Category.currentPage;
+		$scope.pageSize = $scope.Category.totalPages;
+		
+		if(totalPages == 0) {
+			$scope.pageNumber = 0;
+		}
+	});
+	
+	
+		$scope.searchCategory = function(page) {
+		if(angular.isUndefined($scope.cname) || $scope.cname=="") {
+			console.log('inside function');
+			$scope.cname = " ";
+		}
+		currentPage = page;
+		
+		$scope.Category = CategoryService.StateCityInfo.get({cname:$scope.cname,currentPage:currentPage},function(response) {
+			console.log($scope.Category.totalPages);
+			totalPages = $scope.Category.totalPages;
+			currentPage = $scope.Category.currentPage;
+			$scope.pageNumber = $scope.Category.currentPage;
+			$scope.pageSize = $scope.Category.totalPages;
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+	};
+		
+	$scope.saveCategory = function() {
+	
+      $http.post('/saveCategory', $scope.formData).success(function(data){
+			console.log('success');
+			$scope.searchCategory(currentPage);
+			$('#myModal').modal('hide');
+		}).error(function(data, status, headers, config) {
+			console.log('ERROR');
+		});
+	};
+
+	$scope.setData = function(ancmt) {
+		
+		$scope.ancmtData = ancmt;
+		$scope.ancmtData.Sucategory='';
+		$('#myModal2').modal();
+				
+	};
+
+	$scope.setDates = function() {
+				
+				
+		$scope.searchForm.from = new Date();
+		$scope.searchForm.to = new Date();
+		$scope.icon_id = "";
+        $scope.icon_url = "";
+        $scope.icon_name = "";
+		$scope.formData = "";
+		$scope.isChosen = false;
+		$('#myModal').modal();
+	}
+		
+	$scope.updateCategory = function() {
+		
+		$http.post('/updateSucategory', $scope.ancmtData).success(function(data){
+			console.log('success');
+			$scope.searchCategory(currentPage);
+			$('#myModal2').modal('hide');
+		}).error(function(data, status, headers, config) {
+			console.log('ERROR------------');
+		});
+	};
+
+	$scope.onNext = function() {
+		if(currentPage < totalPages) {
+			currentPage++;
+			$scope.searchCategory(currentPage);
+		}
+	};
+	$scope.onPrev = function() {
+		if(currentPage > 1) {
+			currentPage--;
+			$scope.searchCategory(currentPage);
+		}
+	};
+	
+});
+angular.module('adschela').service('CategoryService',function($resource){
+    this.StateCityInfo = $resource(
+            '/getCategory/:cname/:currentPage',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    );
+});
+
+
+
+angular.module('adschela').controller('AddStateCityController',function($scope, $modal, $http, $filter, StateCityService){
+	
+	
+	$scope.Statename = " ";
+	$scope.pageNumber;
+	$scope.pageSize;
+	$scope.formData = "";
+	var currentPage = 1;
+	var totalPages;
+	$scope.isChosen = false;
+	
+	$scope.searchForm= {
+            from : new Date(),
+            to : new Date()
+
+	}
+
+	
+	$scope.State = StateCityService.StateCityInfo.get({Statename:$scope.Statename,currentPage:currentPage},function(response) {
+		totalPages = $scope.State.totalPages;
+		currentPage = $scope.State.currentPage;
+		$scope.pageNumber = $scope.State.currentPage;
+		$scope.pageSize = $scope.State.totalPages;
+		
+		if(totalPages == 0) {
+			$scope.pageNumber = 0;
+		}
+	});
+	
+	
+		$scope.searchState = function(page) {
+			
+		if(angular.isUndefined($scope.Statename) || $scope.Statename=="") {
+			console.log('inside function');
+			$scope.Statename = " ";
+		}
+		currentPage = page;
+		
+		$scope.State = StateCityService.StateCityInfo.get({Statename:$scope.Statename,currentPage:currentPage},function(response) {
+			console.log($scope.State.totalPages);
+			totalPages = $scope.State.totalPages;
+			currentPage = $scope.State.currentPage;
+			$scope.pageNumber = $scope.State.currentPage;
+			$scope.pageSize = $scope.State.totalPages;
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+	};
+		
+	$scope.saveState = function() {
+	
+      
+      $http.post('/saveCity', $scope.formData).success(function(data){
+			console.log('success');
+			$scope.searchState(currentPage);
+			$('#myModal').modal('hide');
+		}).error(function(data, status, headers, config) {
+			console.log('ERROR');
+		});
+	};
+
+	$scope.setData = function(ancmt) {
+		
+		$scope.ancmtData = ancmt;
+		$scope.ancmtData.Cityname='';
+		$('#myModal2').modal();
+				
+	};
+
+	$scope.setDates = function() {
+				
+				
+		$scope.searchForm.from = new Date();
+		$scope.searchForm.to = new Date();
+		$scope.icon_id = "";
+        $scope.icon_url = "";
+        $scope.icon_name = "";
+		$scope.formData = "";
+		$scope.isChosen = false;
+		$('#myModal').modal();
+	}
+		
+	$scope.updateState = function() {
+		
+		$http.post('/updateState', $scope.ancmtData).success(function(data){
+			console.log('success');
+			$scope.searchState(currentPage);
+			$('#myModal2').modal('hide');
+		}).error(function(data, status, headers, config) {
+			console.log('ERROR------------');
+		});
+	};
+
+	$scope.onNext = function() {
+		if(currentPage < totalPages) {
+			currentPage++;
+			$scope.searchState(currentPage);
+		}
+	};
+	$scope.onPrev = function() {
+		if(currentPage > 1) {
+			currentPage--;
+			$scope.searchState(currentPage);
+		}
+	};
+	
+});
+angular.module('adschela').service('StateCityService',function($resource){
+    this.StateCityInfo = $resource(
+            '/getStateName/:Statename/:currentPage',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    );
+});
+
+
+
 
 angular.module('adschela').controller('AddNewspaperController',function($scope, $modal, $http, $filter, NewpaperService,deleteNewpaperService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice,announcementIconService){
 	
-	console.log("----------------------");
 	
 	$scope.Nameofthenewspaper = " ";
 	$scope.pageNumber;
@@ -228,8 +466,11 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 	};
 	
 	$scope.setData = function(ancmt) {
-		
+	
+		 console.log(ancmt);
 		$scope.resultstate = getStateNameservice.Allstate.get();
+		$scope.resultCity = [{cityname:ancmt.Nameofcities}];
+		console.log("------"+$scope.resultCity+"----++");
 		$scope.ancmtData = ancmt;
 		$('#myModal2').modal();
 				
@@ -238,7 +479,10 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 		alert("State"+$scope.formData.Statename)
 		$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.formData.Statename}); 
 		}
-	
+	$scope.onStateselectupdate = function() {
+		alert("State"+$scope.ancmtData.Statename)
+		$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.ancmtData.Statename}); 
+		}
 	
 	$scope.setDates = function() {
 				
@@ -278,7 +522,7 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 		});    
 	};
 	
-	$scope.selectedFiles = [];
+	/*$scope.selectedFiles = [];
 	$scope.dataUrls = [];
 	$scope.tempSelectedFiles = [];
 	$scope.onFileSelect = function($files) {
@@ -304,7 +548,7 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 			}
 		}
 		alert("selectedFile :: "+$scope.selectedFiles.length);
-	};
+	};*/
 	
 	/*$upload.upload({
         url : '/image/uploadPhoto',
@@ -351,9 +595,7 @@ angular.module('adschela').service('deleteNewpaperService',function($resource){
 });
 
 angular.module('adschela').controller('AddBasicRateController',function($scope, $modal, $http, $filter, BasicRateService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice, deleteBasicRateService, announcementIconService){
-	
-	console.log("----------------------");
-	
+
 	$scope.City = " ";
 	$scope.pageNumber;
 	$scope.pageSize;
@@ -423,25 +665,22 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		$scope.resultNewspaper = getNewspaperservice.Allnewspaper.get(); 
 		$scope.resultcname = getcnameservice.Allcname.get();
 		$scope.resultstate = getStateNameservice.Allstate.get();
-		console.log("---------");
-		console.log(ancmt);
-		console.log("---------");
+		$scope.resultCity = [{cityname:ancmt.City}];
 		$scope.ancmtData = ancmt;
 		$('#myModal2').modal();
 		
-		console.log("/////////////////");
-		console.log($scope.ancmtData);
-		console.log("/////////////////");
-		//$scope.icon_url = ancmt.ic.url;
-        //$scope.icon_name = ancmt.ic.name;
-		
-		
+			
 	};
 
 	$scope.onStateselect = function() {
 		alert("State"+$scope.formData.Statename)
 		$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.formData.Statename}); 
 		}
+	$scope.onStateselectupdate = function() {
+		alert("State"+$scope.ancmtData.Statename)
+		$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.ancmtData.Statename}); 
+		}
+	
 	
 	$scope.setDates = function() {
 				

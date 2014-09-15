@@ -77,7 +77,7 @@ public class Basicrate {
 		    	if(City.trim().equals("")) {
 		    		sql = "Select a from Basicrate a";
 		    	} else {
-		    		sql ="SelectSelect a from Basicrate a where a.City LIKE ?1";
+		    		sql ="Select a from Basicrate a where a.City LIKE ?1";
 		    		
 		    	}
 

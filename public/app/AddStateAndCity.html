@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+ 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Rationale' rel='stylesheet' type='text/css'>
+	<link href="css/style-admin.css" rel="stylesheet" type="text/css" />
+	<link href="css/form-element-style.css" rel="stylesheet" type="text/css" /> <!-CSS sheet for designers form element->
+	<link href="css/main-syle.css" rel="stylesheet" type="text/css" />
+	<link href="css/jquery.jscrollpane.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/datetimepicker.css"></script>
+	<script type="text/javascript" src="../assets/app/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+	<!-- <div data-ng-include data-src="'../assets/app/views/header.html'"></div> -->
+	<!-- <ul class="nav nav-tabs" role="tablist" id="myTab">
+		  <li><a href="/#/" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Articles</a></li>
+		  <li class="active"><a href="/#/manageAnnouncement" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Announcements</a></li>
+		  <li><a href="/#/managePosts" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Posts</a></li>
+		  <li><a href="/#/manageComments" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Comments</a></li>
+		  <li><a href="/#/manageQuestions" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Questions</a></li>
+		  <li><a href="/#/manageAnswers" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Answers</a></li>
+		  <li><a href="/#/manageCommunities" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Communities</a></li>
+		  <li><a href="/#/manageUsers2" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Users</a></li>
+	</ul> -->
+</head>
+
+<body ng-init="searchState()">
+   <!--container begin-->
+    <section id="container">
+    	<section class="contentpanel">
+        	<h4>Manage State And City</h4>
+            <!--Advance search fildes begin-->
+        	<section class="dadsrch">
+            	<section class="heading"><h2></h2></section>
+                <section class="dadsrchdiv">
+                	<input name="title" type="text" ng-model="Statename" class="" style="height:1%;" ng-keyup="$event.keyCode == 13 ? searchState(1) : null"><input name="" type="button" class="btngray" value="Search" ng-click="searchState(1)">
+                </section>
+            </section>
+            <!--Advance search fildes end-->
+             <section class="dactperform">
+                <!-- <section class="left">
+             		<input name="" type="button" value="Create" class="btnblue" ng-click="setDates()" data-toggle="modal"  />
+           		</section> -->
+           	</section>	
+            <!--grid begin-->
+        	<section class="dgridinfo dactcln">
+                <table ng-table="tableParams">
+                	<thead>
+                    	<tr>
+                            <th><a>State Name</a></th>
+                            <th><a>City Name</a></th>
+                            <th><a>Update</a></th>
+                            <th><a>Delete</a></th>
+                        <tr>
+                    </thead>
+                	<tbody>
+                    	<tr ng-repeat="ancmt in State.results">
+          					<td>{{ancmt.Statename}}</td>
+                            <td>{{ancmt.Cityname}}</td>
+                                                                                   
+                           
+                            <td> <input name="" type="button" value="Add" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
+                           <!--  <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt)" data-toggle="modal" /></td> -->
+                        </tr>
+                    	</tbody>
+                </table>
+        	</section>
+            <!--grid end-->
+            
+            <section class="dpaging">
+            	 <h4>{{pageNumber}}/{{pageSize}}</h4> 
+            	<span class="dpagingright">
+                	<a href="" class="dpagingprv" ng-click="onPrev()">Prev</a>
+                	<a href="" class="dpagingnxt" ng-click="onNext()">Next</a>
+                </span>
+            </section>
+        </div>     
+        </section>
+    </section>
+    <!--container end-->
+  </div>
+		  <!-- Create Modal -->
+		<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="width: 65%;left: 41%;">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Create NewsPaper</h4>
+		      </div>
+		      <form method="post" ng-submit="saveState()">
+		      <div class="modal-body">
+		      <table style="font-family: 'Bitter', georgia, serif;">
+		     
+		      <tr>
+			        	<td><label>State Name</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="StateName" style="width:70%;height: 50%;" data-ng-model="formData.Statename" required></textarea></td>
+			        </tr>
+			        
+			        <tr>
+			           	<td><label>City Name</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="CityName" style="width:70%;height: 50%;" data-ng-model="formData.Cityname" required></textarea></td>
+			        	
+			        </tr>
+			          
+			        
+		        </table>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Save</button>
+		      </div>
+		     </form>
+		    </div>
+		  </div>
+		</div> -->
+		
+		<!-- Update Modal -->
+		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;left: 41%;">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Add City</h4>
+		      </div>
+		      <form method="post" ng-submit="updateState()">
+		      <div class="modal-body">
+		      <table>
+			        
+			        <tr>
+			           	<td><label>City Name : </label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="CityName" style="width:70%;height: 50%;" data-ng-model="ancmtData.Cityname" required></textarea></td>
+			        	
+			        </tr>
+			        
+			        			      	        
+		        </table>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Update</button>
+		      </div>
+		     </form>
+		    </div>
+		  </div>
+		</div>
+		
+		<!-- Delete Modal -->
+		<!-- <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Newspaper Delete</h4>
+		      </div>
+		      <div class="modal-body" id="deleteArticleBody">
+		        Are you sure you want to delete?
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="button" class="btn btn-primary" data-ng-click="deleteNewspaper(deleteId)">Yes</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+		      </div>
+		    </div>
+		  </div>
+		</div> -->
+		
+  </body>
+  </html>
