@@ -161,8 +161,35 @@ angular.module('adschela').controller("ENewsPaperController",['$scope',function(
 angular.module('adschela').controller("BlogController",['$scope',function($scope){
 	
 }]);
+angular.module('adschela').controller("HomeScreenController",['$scope',function($scope){
+	
+}]);
 
+angular.module('adschela').controller("MyAccountController",['$scope','$http',function($scope, $http,OrderListService){
+	    
+	     $scope.UserId="asd@gmail.com";
+	     console.log("MyAccountController");
+	     $http.get("listInfo/"+$scope.UserId)
+		 .success(function(data){
+		  $scope.orderList = data;
+		  console.log(" $scope.result"+ $scope.orderList);
+		});
+	   
+	     /*$scope.orderList=OrderListService.orderListInfo.get({UserId:$scope.UserId},function(response) {
+		
+		});
+	     console.log("$scope.orderList"+$scope.orderList);*/
+	}]);
 
+    angular.module('adschela').service('OrderListService',function($resource){
+    this.orderListInfo = $resource(
+            '/listInfo/:UserId',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    );
+});
 angular.module('adschela').controller('AddNewspaperController',function($scope, $modal, $http, $filter, NewpaperService,deleteNewpaperService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice,announcementIconService){
 	
 	console.log("----------------------");
@@ -402,6 +429,35 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		});
 	    console.log($scope.BasicRate);
 	};
+	$scope.searchBasicRate = function(page) {
+		if(angular.isUndefined($scope.City) || $scope.City=="") {
+			console.log('inside function');
+			$scope.City = " ";
+		}
+		currentPage = page;
+		console.log($scope.City);
+		console.log(currentPage);
+		$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			console.log($scope.BasicRate.totalPages);
+			totalPages = $scope.BasicRate.totalPages;
+			currentPage = $scope.BasicRate.currentPage;
+			$scope.pageNumber = $scope.BasicRate.currentPage;
+			$scope.pageSize = $scope.BasicRate.totalPages;
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+	    console.log($scope.BasicRate);
+	};
+	angular.module('adschela').service('BasicRateService',function($resource){
+	    this.BasicRateInfo = $resource(
+	            '/getBasicrate/:City/:currentPage',
+	            {alt:'json',callback:'JSON_CALLBACK'},
+	            {
+	                get: {method:'get'}
+	            }
+	    );
+	});
 	console.log($scope.City);
 	console.log($scope.BasicRate);
 	console.log('mfjfjfjfjf');
@@ -709,12 +765,17 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
                 	totalCost = rate;
                 	console.log("in totle cost"+totalCost);
                 }
-            	$scope.selectedCartItemOnPopUp.totalUnit = total_unit;
-            	$scope.selectedCartItemOnPopUp.extraCost = totalCost - rate;
-            	$scope.selectedCartItemOnPopUp.totalUnitCost = totalCost;
-            	$scope.selectedCartItemOnPopUp.extraUnit = extraUnit;
-            	ReTotal();
-
+                if ($scope.selectedCartItemOnPopUp.unit == "Line") {
+                	total_unit = Math.ceil(text.length / 23);
+                }
+              $scope.$apply(function(){
+                	$scope.selectedCartItemOnPopUp.totalUnit = total_unit;
+                	$scope.selectedCartItemOnPopUp.extraCost = totalCost - rate;
+                	$scope.selectedCartItemOnPopUp.totalUnitCost = totalCost;
+                	$scope.selectedCartItemOnPopUp.extraUnit = extraUnit;
+                	ReTotal();
+              });
+               
             }
             console.log($scope.selectedCartItemOnPopUp);
             

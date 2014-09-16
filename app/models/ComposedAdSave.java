@@ -4,6 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Query;
+
+import play.db.jpa.JPA;
+import play.db.jpa.Transactional;
 
 @Entity
 public class ComposedAdSave{
@@ -37,6 +41,10 @@ public class ComposedAdSave{
 	   public int numberOfWords;
 	   public String paymentOption;
 	   public String userEmailId;
+	   public String Offer;
+	   public String Enhancement;
+	 
+	   
 	   
 	   public ComposedAdSave() {
 	    }  
@@ -186,8 +194,27 @@ public class ComposedAdSave{
 	public void setEnhancement(String enhancement) {
 		Enhancement = enhancement;
 	}
-	public String Offer;
-	   public String Enhancement;
-	 
+	
+	/*@Transactional	
+	public static List<ComposedAdSave> getAllorderOfUser() {
+	 String    cname="asd@gmail.com";
+		Query q = JPA.em().createQuery("Select a from ComposedAdSave a where a.userEmailId = ?1");
+		q.setParameter(1, cname);
+		System.out.println("In get all Order db controler method:"+q.getResultList());
+		return (List<ComposedAdSave>)q.getResultList();
+	}*/
+	
+	    @Transactional
+	    public static List<ComposedAdSave> getAllOrderList(String UserId) {
+	    
+	    System.out.println("------------"+UserId+"------------");
+	    Query q = JPA.em().createQuery("Select a from ComposedAdSave a where a.userEmailId = ?1");
+	    q.setParameter(1, UserId);
+	    return (List<ComposedAdSave>)q.getResultList();
+			
+			
+	    }
+	
+	
 }
   

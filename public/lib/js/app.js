@@ -12,6 +12,10 @@ angular.module('adschela',
                         	        templateUrl: 'textClassifiedController.html',
                         	        controller: 'TextClassifiedController'
                         	      })
+                        	      .when('/homeScreen', {
+                        	        templateUrl: '/assets/homescreen.html',
+                        	        controller: 'HomeScreenController'
+                        	      })
                         	      .when('/make-booking.html', {
                         	        templateUrl: 'make-booking.html',
                         	        controller: 'MakeBookingController'
@@ -20,6 +24,11 @@ angular.module('adschela',
                         	        templateUrl: 'AboutUs1.html',
                         	        controller: 'AboutUsController'
                         	      })
+                        	      .when('/myAccount', {
+                        	        templateUrl: '/assets/MyAccount.html',
+                        	        controller: 'MyAccountController'
+                        	      })
+                        	     
                         	      .when('/contactUs', {
                         	        templateUrl: 'Contact.html',
                         	        controller: 'ContactUsController'
@@ -28,7 +37,6 @@ angular.module('adschela',
                         	        templateUrl: 'OurClients.html',
                         	        controller: 'OurClientController'
                         	      })
-                        	        
                         	        .when('/ourServices', {
                         	        templateUrl: '/',
                         	        controller: 'OurServicesController'

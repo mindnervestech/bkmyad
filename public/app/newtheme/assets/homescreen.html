@@ -1,0 +1,76 @@
+
+
+		 <div   class="homCar pull-left" style="width: 50%;">
+            <carousel interval="carousel.interval" >
+		      <slide ng-repeat="slide in slides" active="slide.active">
+		        <img class="carousel-img" ng-src="{{slide.image}}" style="margin:auto;">
+		        </slide>
+		      </carousel>
+		  </div>
+		  <div style="float: left;margin: 5%;">
+		  	<blockquote>
+		  		<h1>Book Your Ad Today</h1>
+		  		<p class="lead">Its too easy now...</p>
+		  	</blockquote>
+		  	<a href="#/make-booking.html"  class="btn btn-large pull-right btn-success" >Book My Ads</a> 
+        
+		  </div>
+		  	
+		  
+	<div class="row">
+	<!-- <div data-ng-include data-src="'sidebar.html'">
+	
+	</div> -->
+	
+	<div class="span12" >
+	<div>
+		<!-- <h3>New Products </h3> -->
+		<div class="row-fluid">
+		<div id="myCarousel1"  >
+            <div class="carousel-inner" style="height: inherit;">
+              <div class="item active">
+				  <ul class="thumbnails">					 
+					<li ng-repeat="np in nplist"  class="span3" style="height: 150px;">
+					  <div class="thumbnail" ng-model="bookingState.selectedNewsPaper" ng-click="onfirestNewspaperSelect(np)">
+					  	<a href="#/make-booking.html">
+						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/></a>
+						<div class="caption"  value="{{np.name}}">
+						  <h5>{{np.name}}</h5>
+						</div>
+						</a>	
+					  </div>
+					</li>
+					
+				  </ul>
+		  	  </div>
+		  </div>
+		 </div>		  
+		</div>
+	</div>
+  </div><!--Span End  -->
+</div><!--Row end  -->
+	
+<style>
+.span3{
+	margin-left: 0px !important;
+}
+.tag{
+right: 0;
+}
+.thumbnail:hover {
+	border: 1px solid #65BDDF;
+	background-color: #65BDDF;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+.thumbnail img {
+	max-width: 80%;
+	padding: 5%;
+	background-color: white;
+	width: 264px;
+	height: 39px;
+}
+
+</style>

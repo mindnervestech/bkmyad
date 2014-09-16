@@ -1,0 +1,318 @@
+
+ <head>
+ 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Rationale' rel='stylesheet' type='text/css'>
+	<link href="css/style-admin.css" rel="stylesheet" type="text/css" />
+	<link href="css/form-element-style.css" rel="stylesheet" type="text/css" /> <!-CSS sheet for designers form element->
+	<link href="css/main-syle.css" rel="stylesheet" type="text/css" />
+	<link href="css/jquery.jscrollpane.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/datetimepicker.css"></script>
+	<script type="text/javascript" src="../assets/app/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+	<!-- <div data-ng-include data-src="'../assets/app/views/header.html'"></div> -->
+	<!-- <ul class="nav nav-tabs" role="tablist" id="myTab">
+		  <li><a href="/#/" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Articles</a></li>
+		  <li class="active"><a href="/#/manageAnnouncement" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Announcements</a></li>
+		  <li><a href="/#/managePosts" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Posts</a></li>
+		  <li><a href="/#/manageComments" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Comments</a></li>
+		  <li><a href="/#/manageQuestions" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Questions</a></li>
+		  <li><a href="/#/manageAnswers" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Answers</a></li>
+		  <li><a href="/#/manageCommunities" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Communities</a></li>
+		  <li><a href="/#/manageUsers2" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Users</a></li>
+	</ul> -->
+</head>
+
+<body  ng-app ="adschela" ng-controller="MyAccountController" >
+   <!--container begin-->
+    <section id="container">
+    	<section class="contentpanel">
+        	<h4>Your Order Details</h4>
+            <!--Advance search fildes begin-->
+        	<section class="dadsrch">
+            	<section class="heading"><h2></h2></section>
+                <section class="dadsrchdiv">
+                	<input name="title" type="text" ng-model="title" class="" style="height:1%;" ng-keyup="$event.keyCode == 13 ? searchBasicRate(1) : null"><input name="" type="button" class="btngray" value="Search" ng-click="searchBasicRate(1)">
+                </section>
+            </section>
+           <!--  <!--Advance search fildes end-->
+             <section class="dactperform">
+                <section class="left">
+             		<input name="" type="button" value="Create" class="btnblue" ng-click="setDates()" data-toggle="modal"  />
+           		</section>
+           	</section>	
+            <!--grid begin-->
+        	<section class="dgridinfo dactcln">
+                <table ng-table="tableParams">
+                	<thead>
+                    	<tr>
+                            <th><a>Nameofthenewspaper</a></th>
+                            <th><a>Adtext</a></th>
+                            <th><a>Category</a></th>
+                            
+                            <th><a>PublishDate</a></th>
+                            <th><a>numberOfWords</a></th>
+                            <th><a>paymentOption</a></th>
+                            <th><a>userEmailId</a></th>
+                            <th><a>TotalCost</a></th>
+                            <th><a>Update</a></th>
+                            <th><a>Delete</a></th>
+                        <tr>
+                    </thead>
+                	<tbody><tr>
+                	
+                	<!-- <td> aksh</td>
+                    	<td> aksh</td>
+                    	<td> aksh</td>
+                    	<td> aksh</td><td> aksh</td>
+                	</tr> -->
+                    	<tr ng-repeat="dataorderList in orderList.results">
+                           <p>{{dataorderList}}</p>
+                    	
+                            <td>{{dataorderList.Nameofthenewspaper}}</td>
+                            <td>{{dataorderList.Adtext}}</td>
+                            <td>{{dataorderList.Category}}</td>
+                            <td>{{dataorderList.PublishDate}}</td>
+                            <td>{{dataorderList.numberOfWords}}</td>
+                            <td>{{dataorderList.paymentOption}}</td>
+                            
+                            <td>{{dataorderList.userEmailId}}</td>
+                            <td>{{dataorderList.TotalCost}}</td>
+                            <td> <input name="" type="button" value="Update" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
+                            <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt)" data-toggle="modal" /></td>
+                        </tr>
+                    	</tbody>
+                </table>
+        	</section>
+            <!--grid end-->
+            
+           <!--  <section class="dpaging">
+            	 <h4>{{pageNumber}}/{{pageSize}}</h4> 
+            	<span class="dpagingright">
+                	<a href="" class="dpagingprv" ng-click="onPrev()">Prev</a>
+                	<a href="" class="dpagingnxt" ng-click="onNext()">Next</a>
+                </span>
+            </section> -->
+        </div>     
+        </section>
+    </section>
+    <!--container end-->
+  </div>
+		  <!-- Create Modal -->
+		<!-- <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="width: 65%;">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Create Basic Rate</h4>
+		      </div>
+		      <form method="post" ng-submit="saveBasicRate()">
+		      <div class="modal-body">
+		      <table style="font-family: 'Bitter', georgia, serif;">
+		     
+			         
+			    <tr>
+			        	<td><label>NewsPapers</label></td>
+			        	<td style="height: 60px;">
+			        	
+			        <select name="Newspaper" style="width:100%;" data-ng-model="formData.Nameofthenewspaper" required >
+			    		<option ng-repeat="newspaper in resultNewspaper" value="{{newspaper.newspapers}}">{{newspaper.newspapers}}</option>
+			    		<option value="">--Please Select Newspaper--</option>
+			    	</select>
+			    	</td>
+			        </tr> 
+			         <tr>
+			        	 <td><label>State</label></td>
+			        	<td style="height: 60px;">
+			        		<select name="State" style="width:100%;" data-ng-model="formData.Statename" ng-change="onStateselect()">
+			        			<option ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
+			        			<option value="">--Please Select State--</option>
+			        			
+			        		</select>
+			        	</td>
+			        	<td><label>City</label></td>
+			        	<td style="height: 60px;">
+			        		<select name="City" style="width:100%;" data-ng-model="formData.City" required >
+			        			<option ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
+			        			<option value="">--Please Select City--</option>
+			        			
+			        		</select>
+			        	</td>
+			        	
+			        	<td><label>Category</label></td>
+			        	<td style="height: 60px;">
+			        		<select name="Category" style="width:100%;" data-ng-model="formData.Category" required>
+			        			<option ng-repeat="cat in resultcname" value="{{cat.cname}}">{{cat.cname}}</option>
+			        			<option value="">--Please Select Category--</option>
+			        			
+			        		</select>
+			        	</td>
+			        </tr>
+			        <tr>
+			        	<td><label>Textaddrate</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Textaddrate" style="width:70%;height: 50%;" data-ng-model="formData.Textaddrate" required></textarea></td>
+			        	<td><label>Clasifiedad Rate</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="clasifiedadrate" style="width:70%;height: 50%;" data-ng-model="formData.clasifiedadrate" required></textarea></td>
+			        	<td><label>Exstracostper line</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Exstracostperline" style="width:70%;height: 50%;" data-ng-model="formData.Exstracostperline" required></textarea></td>
+			        
+			        </tr>
+			         
+			        <tr>
+			        	<td><label>Border</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Border" style="width:70%;height: 50%;" data-ng-model="formData.Border" required></textarea></td>
+			        	<td><label>Backcolor</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Backcolor" style="width:70%;height: 50%;" data-ng-model="formData.Backcolor" required></textarea></td>
+			        </tr>
+			       
+			        <tr>
+			        	<td><label>SpecialDiscount</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="SpecialDiscount" style="width:70%;height: 50%;" data-ng-model="formData.SpecialDiscount" required></textarea></td>
+			        	<td><label>Tick</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Tick" style="width:70%;height: 50%;" data-ng-model="formData.Tick" required></textarea></td>
+			        </tr>
+			        
+			        <tr>
+			        	<td><label>Extrab Order</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Extraborderper" style="width:70%;height: 50%;" data-ng-model="formData.Extraborderper" required></textarea></td>
+			        	<td><label>Extra BG</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Extrabgper" style="width:70%;height: 50%;" data-ng-model="formData.Extrabgper" required></textarea></td>
+			        </tr>
+			        
+			        <tr>
+			        	<td><label>Tickper</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Tickper" style="width:70%;height: 50%;" data-ng-model="formData.Tickper" required></textarea></td>
+			        	<td><label>ExtraCostperSqcm</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="ExtracostperSqcm" style="width:70%;height: 50%;" data-ng-model="formData.ExtracostperSqcm" required></textarea></td>
+			        </tr>
+			        
+			        
+		        </table>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Save</button>
+		      </div>
+		     </form>
+		    </div> -->
+		 <!--  </div>
+		</div> -->
+		<!-- 
+		<!-- Update Modal
+		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Update BasicRate</h4>
+		      </div>
+		      <form method="post" ng-submit="updateBasicRate()">
+		      <div class="modal-body">
+		      <table>
+			        <tr>
+			        	<td><label>NewsPapers</label></td>
+			        	<td style="height: 60px;">
+			        {{ancmtData.Nameofthenewspaper}}	
+			        <select name="Newspaper" style="width:100%;" data-ng-model="ancmtData.Nameofthenewspaper" required >
+			    		<option ng-selected="ancmtData.Nameofthenewspaper" ng-repeat="newspaper in resultNewspaper"  value="{{newspaper.newspapers}}">
+			    		{{newspaper.newspapers}} </option>
+			    		<option value="">--Please Select Newspaper--</option>
+			    	</select>
+			    	</td>
+			        </tr> 
+			         <tr>
+			        	 <td><label>State</label></td>
+			        	<td style="height: 60px;">
+			        		<select name="State" style="width:100%;" data-ng-model="ancmtData.Statename" ng-change="onStateselect()">
+			        			<option ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
+			        			<option value="">--Please Select State--</option>
+			        			
+			        		</select>
+			        	</td>
+			        	<td><label>City</label></td>
+			        	<td style="height: 60px;">
+			        		<select name="City" style="width:100%;" data-ng-model="ancmtData.City" required >
+			        			<option ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
+			        			<option value="">--Please Select City--</option>
+			        			
+			        		</select>
+			        	</td>
+			        	
+			        	<td><label>Category</label></td>
+			        	<td style="height: 60px;">
+			        		<select name="Category" style="width:100%;" data-ng-model="ancmtData.Category" required>
+			        			<option ng-repeat="cat in resultcname" value="{{cat.cname}}">{{cat.cname}}</option>
+			        			<option value="">--Please Select Category--</option>
+			        			
+			        		</select>
+			        	</td>
+			        </tr>
+			    <tr>
+			        	<td><label>Textaddrate</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Textaddrate" style="width:70%;height: 50%;" data-ng-model="ancmtData.Textaddrate" required></textarea></td>
+			        	<td><label>Clasifiedad Rate</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="clasifiedadrate" style="width:70%;height: 50%;" data-ng-model="ancmtData.clasifiedadrate" required></textarea></td>
+			            <td><label>ExstraCostper line</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Exstracostperline" style="width:70%;height: 50%;" data-ng-model="ancmtData.Exstracostperline" required></textarea></td>
+			        </tr>
+			         
+			        <tr>
+			        	<td><label>Border</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Border" style="width:70%;height: 50%;" data-ng-model="ancmtData.Border" required></textarea></td>
+			        	<td><label>Backcolor</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Backcolor" style="width:70%;height: 50%;" data-ng-model="ancmtData.Backcolor" required></textarea></td>
+			        </tr>
+			      
+			        <tr>
+			        	<td><label>SpecialDiscount</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="SpecialDiscount" style="width:70%;height: 50%;" data-ng-model="ancmtData.SpecialDiscount" required></textarea></td>
+			        	<td><label>Tick</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Tick" style="width:70%;height: 50%;" data-ng-model="ancmtData.Tick" required></textarea></td>
+			        </tr>
+			       
+			        <tr>
+			        	<td><label>Extrab Order</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Extraborderper" style="width:70%;height: 50%;" data-ng-model="ancmtData.Extraborderper" required></textarea></td>
+			        	<td><label>Extra BG</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Extrabgper" style="width:70%;height: 50%;" data-ng-model="ancmtData.Extrabgper" required></textarea></td>
+			        </tr>
+			        
+			        <tr>
+			        	<td><label>Tickper</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Tickper" style="width:70%;height: 50%;" data-ng-model="ancmtData.Tickper" required></textarea></td>
+			        	<td><label>Extra Cost Sqcm</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="ExtracostperSqcm" style="width:70%;height: 50%;" data-ng-model="ancmtData.ExtracostperSqcm" required></textarea></td>
+			        </tr>
+			        
+			      	        
+		        </table>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Update</button>
+		      </div>
+		     </form>
+		    </div>
+		  </div>
+		</div>
+		
+		Delete Modal
+		<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Basic Rate Delete</h4>
+		      </div>
+		      <div class="modal-body" id="deleteArticleBody">
+		        Are you sure you want to delete?
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="button" class="btn btn-primary" data-ng-click="deleteBasicRate(deleteId)">Yes</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+		      </div>
+		    </div>
+		  </div>
+		</div> --> 
+		
+  </body>
