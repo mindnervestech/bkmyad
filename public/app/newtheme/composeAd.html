@@ -27,13 +27,17 @@
 						<div class="span3" style="width: 220px !important;">
 							<label>Type in content in English</label>
 							<textarea ng-google-transliterate on-translation-done="transliterateDone(data)" 	
-							ng-model="selectedCartItemOnPopUp.description" rows="10" cols=""></textarea> 
+							ng-model="selectedCartItemOnPopUp.description" rows="10" cols=""></textarea>
+						
+						<label style="position: absolute;color: red;" ng-show="a" >Please Enter Text</label>
 						</div>
 						
 						<div  class="span3" style="width: 220px !important;">
 							<input ng-model="selectedCartItemOnPopUp.isHindi" style="float:left" type="checkbox"> <label> Content in Hindi</label>
 							<textarea disabled="disabled" id="transliterateTextarea" rows="40" cols="" ng-model="selectedCartItemOnPopUp.description" ></textarea>
+							
 						</div>
+						
 					
 					</div>
               </form>
@@ -160,61 +164,81 @@
                                                                         <!-- <td align="left" valign="top">
                                                                             <input type="checkbox" name="noBackGroundcolor" ng-checked="true" value="nobgcolor" ng-model="selectedCartItemOnPopUp.nobgColor" ng-change="onNoBgcolorSelected();"> No Backgrund Color
                                                                         </td> -->
-                                                                        <td align="right" valign="top" width="250">
-                                                                            &nbsp;
-                                                                        </td>
-                                                                    </tr>
-                                                                    
-                                                                    <tr><br />
-                                                                       <!--  <td align="left" valign="top">
+										<td align="right" valign="top" width="250">&nbsp;</td>
+									</tr>
+
+									<tr>
+										<br />
+										<!--  <td align="left" valign="top">
                                                                             <span id="Label2" class="style3" style="font: bold;font-size: medium;">Background Color  Extra:</span> &nbsp; <span>{{selectedCartItemOnPopUp.extraForBackgroud}}</span>
                                                                             &nbsp;<span id="lblExtracost" class="style3" style="color:Red;"></span>
                                                                             &nbsp;<p></p>
                                                                             
                                                                         </td> -->
-                                                                       <!--  <td align="right" valign="top" width="250">
+										<!--  <td align="right" valign="top" width="250">
                                                                             <span id="Label5" class="style3" style="font: bold;font-size: medium;">Border Extra:</span> &nbsp; &nbsp;<span>{{selectedCartItemOnPopUp.extraForBorder}}</span>
                                                                             &nbsp;<span id="lblExtrabordercost" class="style3" style="color:Red;"></span>
                                                                             &nbsp;<p></p>
                                                                             &nbsp;
                                                                         </td> -->
-                                                                    </tr>
-                                                                </tbody></table>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody></table>
-                      
-              </form>
-              
-              <form class="pull-left tab-pane" id="select-date" name="select-dateForm" rc-step novalidate>
-                      <img src="http://www.releasemyad.com/images/small_straight_arrow.png" id="CatIdImg1" style="vertical-align:middle;" border="0">
-                      <div id="_datepicker"></div>
-                      
-              </form>
-              
-               <div class="pull-left price-box"  style="border: 4px solid #fc9a24;box-shadow: 0px 0px 0px 0px #65BDDF;solid rgb(238, 238, 238);" >											
- 				        <div style="background-color: #fc9a24;">
- 				        <p style="padding: 1%; text-align: center;font-size: 9pt;font-family: Calibri;margin: 0 0 0px;">{{selectedCartItemOnPopUp.newspaper}}-{{ selectedCartItemOnPopUp.location}}</p>
- 				        <p style="padding: 1%; text-align: center;font-size: 9pt;font-family: Calibri;margin: 0 0 0px;">(Rs {{selectedCartItemOnPopUp.rate}} per  {{selectedCartItemOnPopUp.freeUnit}} Words.) <br />(Rs {{selectedCartItemOnPopUp.extra}} Extra per word )</p>
- 						</div>
- 						<div style="box-shadow: -3px 3px 16px -1px #ccc;padding-bottom: 1%;padding-top: 1%;border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%;width: 96%;margin-left: 2%">
- 						<p style="padding: 1%;text-align: center;margin: 0 0 2px;font-size: 9pt;font-family: Calibri;"> Total:{{selectedCartItemOnPopUp.fullTotal}}</p>
- 						<p style="padding: 1%;text-align: center;margin: 0 0 8px;font-size: 9pt;font-family: Calibri;"> {{selectedCartItemOnPopUp.unit}}: {{selectedCartItemOnPopUp.totalUnit}} </p>
- 						<p style="padding: 1%;text-align: center;margin: 0 0 6px;font-size: 9pt;font-family: Calibri;"> Extra Unit:{{selectedCartItemOnPopUp.extraUnit}}</p>
-            		 </div>
-	  		   </div>
-            </div>  
-            
-            <div class="form-group">
-              <div class="pull-right">
-                <a class="btn btn-default" ng-click="rc.composeWizard.backward()"
-                   ng-show="rc.composeWizard.currentIndex > rc.composeWizard.firstIndex">Back</a>
-                <a class="btn btn-primary" data-loading-text="Please Wait..." ng-click="onComposeAdStepChange()" 
-                   ng-show="rc.composeWizard.currentIndex < rc.composeWizard.navigationLength">Continue</a>
-                <a class="btn btn-primary" ng-click="onComposeAdDone();closeThisDialog()" 
-                   ng-show="rc.composeWizard.currentIndex == rc.composeWizard.navigationLength">Complete</a>
-              </div>
-            </div>  
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</form>
+
+		<form class="pull-left tab-pane" id="select-date"
+			name="select-dateForm" rc-step novalidate>
+			<img src="http://www.releasemyad.com/images/small_straight_arrow.png"
+				id="CatIdImg1" style="vertical-align: middle;" border="0">
+			<div id="_datepicker"></div>
+
+		</form>
+
+		<div class="pull-left price-box"
+			style="border: 4px solid #fc9a24; box-shadow: 0px 0px 0px 0px #65BDDF;">
+			<div style="background-color: #fc9a24;">
+				<p
+					style="padding: 1%; text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px;">{{selectedCartItemOnPopUp.newspaper}}-{{
+					selectedCartItemOnPopUp.location}}</p>
+				<p
+					style="padding: 1%; text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px;">
+					(Rs {{selectedCartItemOnPopUp.rate}} per
+					{{selectedCartItemOnPopUp.freeUnit}} Words.) <br />(Rs
+					{{selectedCartItemOnPopUp.extra}} Extra per word )
+				</p>
+			</div>
+			<div
+				style="box-shadow: -3px 3px 16px -1px #ccc; padding-bottom: 1%; padding-top: 1%; border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%; width: 96%; margin-left: 2%">
+				<p
+					style="padding: 1%; text-align: center; margin: 0 0 2px; font-size: 9pt; font-family: Calibri;">
+					Total:{{selectedCartItemOnPopUp.fullTotal}}</p>
+				<p
+					style="padding: 1%; text-align: center; margin: 0 0 8px; font-size: 9pt; font-family: Calibri;">
+					{{selectedCartItemOnPopUp.unit}}:
+					{{selectedCartItemOnPopUp.totalUnit}}</p>
+				<p
+					style="padding: 1%; text-align: center; margin: 0 0 6px; font-size: 9pt; font-family: Calibri;">
+					Extra Unit:{{selectedCartItemOnPopUp.extraUnit}}</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="pull-right">
+			<a class="btn btn-default" ng-click="rc.composeWizard.backward()"
+				ng-show="rc.composeWizard.currentIndex > rc.composeWizard.firstIndex">Back</a>
+			<a class="btn btn-primary" data-loading-text="Please Wait..."
+				ng-click="onComposeAdStepChange()"
+				ng-show="rc.composeWizard.currentIndex < rc.composeWizard.navigationLength">Continue</a>
+			<a class="btn btn-primary"
+				ng-click="onComposeAdDone();closeThisDialog()"
+				ng-show="rc.composeWizard.currentIndex == rc.composeWizard.navigationLength">Complete</a>
+		</div>
+	</div>
 </div>
- 
- 
+

@@ -161,7 +161,11 @@ angular.module('adschela').controller("ENewsPaperController",['$scope',function(
 angular.module('adschela').controller("BlogController",['$scope',function($scope){
 	
 }]);
+angular.module('adschela').controller("HomeScreenController",['$scope',function($scope){
+	
+}]);
 
+<<<<<<< HEAD
 angular.module('adschela').controller('AddCategorySubcatController',function($scope, $modal, $http, $filter, CategoryService){
 	
 	console.log("----------------------");
@@ -401,7 +405,33 @@ angular.module('adschela').service('StateCityService',function($resource){
 
 
 
+=======
+angular.module('adschela').controller("MyAccountController",['$scope','$http',function($scope, $http,OrderListService){
+	    
+	     $scope.UserId="asd@gmail.com";
+	     console.log("MyAccountController");
+	     $http.get("listInfo/"+$scope.UserId)
+		 .success(function(data){
+		  $scope.orderList = data;
+		  console.log(" $scope.result"+ $scope.orderList);
+		});
+	   
+	     /*$scope.orderList=OrderListService.orderListInfo.get({UserId:$scope.UserId},function(response) {
+		
+		});
+	     console.log("$scope.orderList"+$scope.orderList);*/
+	}]);
+>>>>>>> c6280db80395a61c77ee844a67dd9d752019b121
 
+    angular.module('adschela').service('OrderListService',function($resource){
+    this.orderListInfo = $resource(
+            '/listInfo/:UserId',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    );
+});
 angular.module('adschela').controller('AddNewspaperController',function($scope, $modal, $http, $filter, NewpaperService,deleteNewpaperService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice,announcementIconService){
 	
 	
@@ -472,6 +502,7 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 		$scope.resultCity = [{cityname:ancmt.Nameofcities}];
 		console.log("------"+$scope.resultCity+"----++");
 		$scope.ancmtData = ancmt;
+		
 		$('#myModal2').modal();
 				
 	};
@@ -504,8 +535,8 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 	};
 	
 	$scope.updateNewspaper = function() {
-		console.log($scope.ancmtData);
-		$scope.formData.BasicratesperText="/"+$scope.formData.Value+" "+$scope.formData.Unit;
+	/*	console.log($scope.ancmtData);
+		$scope.formData.BasicratesperText="/"+$scope.formData.Value+" "+$scope.formData.Unit;*/
 		$http.post('/updateNewpaper', $scope.ancmtData).success(function(data){
 			console.log('success');
 			$scope.searchNewspaper(currentPage);
@@ -534,6 +565,7 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 		$scope.selectedFiles.push($files);
 		$scope.tempSelectedFiles.push($files);
 		for ( var i = 0; i < $files.length; i++) {
+		
 			var $file = $files[i];
 			if (window.FileReader && $file.type.indexOf('image') > -1) {
 			var fileReader = new FileReader();
@@ -644,6 +676,35 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		});
 	    console.log($scope.BasicRate);
 	};
+	$scope.searchBasicRate = function(page) {
+		if(angular.isUndefined($scope.City) || $scope.City=="") {
+			console.log('inside function');
+			$scope.City = " ";
+		}
+		currentPage = page;
+		console.log($scope.City);
+		console.log(currentPage);
+		$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			console.log($scope.BasicRate.totalPages);
+			totalPages = $scope.BasicRate.totalPages;
+			currentPage = $scope.BasicRate.currentPage;
+			$scope.pageNumber = $scope.BasicRate.currentPage;
+			$scope.pageSize = $scope.BasicRate.totalPages;
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+	    console.log($scope.BasicRate);
+	};
+	angular.module('adschela').service('BasicRateService',function($resource){
+	    this.BasicRateInfo = $resource(
+	            '/getBasicrate/:City/:currentPage',
+	            {alt:'json',callback:'JSON_CALLBACK'},
+	            {
+	                get: {method:'get'}
+	            }
+	    );
+	});
 	console.log($scope.City);
 	console.log($scope.BasicRate);
 	console.log('mfjfjfjfjf');
@@ -661,6 +722,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	};
 	
 	$scope.setData = function(ancmt) {
+		
 		
 		$scope.resultNewspaper = getNewspaperservice.Allnewspaper.get(); 
 		$scope.resultcname = getcnameservice.Allcname.get();
@@ -817,7 +879,8 @@ angular.module('adschela').service('deleteBasicRateService',function($resource){
 
 
 
-angular.module('adschela').controller("ComposeAdController",['$scope',function($scope){
+angular.module('adschela').controller("ComposeAdController",['$scope',function($scope, $timeout) {
+	
 	$scope.selectedCartItemOnPopUp = GetSelectedCartItemOnPopUp();
 	var borderSelected;
 	var totalCost;
@@ -826,40 +889,54 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 	var rate;
 	var checkColorSelected;
 	var savenameofcolorSelected;
-        var bgColorSelected=$scope.selectedCartItemOnPopUp.onbgColorchange
-	borderColor=parseInt($scope.selectedCartItemOnPopUp.extraForBorder);
-	 backgroundColor=parseInt($scope.selectedCartItemOnPopUp.extraForBackgroud);
-	 
-	 
-	  
 	
-	$scope.selectedCartItemOnPopUp.onBorderSelected='No';
+    var bgColorSelected=$scope.selectedCartItemOnPopUp.onbgColorchange
+	borderColor=parseInt($scope.selectedCartItemOnPopUp.extraForBorder);
+	backgroundColor=parseInt($scope.selectedCartItemOnPopUp.extraForBackgroud);
+	
+	if ($scope.selectedCartItemOnPopUp.onBorderSelected == null || $scope.selectedCartItemOnPopUp.onBorderSelected == '') {
+		$scope.selectedCartItemOnPopUp.onBorderSelected='No';
+	}
+	
+	$scope.descFocusOut = function(event) {
+		console.log(event);
+	}
+	
 	$scope.onBorderselected = function(){
-		//$scope.selectedCartItemOnPopUp.onBorderSelected='No';
-		console.log($scope.selectedCartItemOnPopUp.onBorderSelected);
 		if($scope.selectedCartItemOnPopUp.onBorderSelected == 'Yes') {
-			$scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + borderColor;
+			$scope.selectedCartItemOnPopUp.totalExtraCost = 
+				$scope.selectedCartItemOnPopUp.totalExtraCost + borderColor;
 		} else {
-			$scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - borderColor;
+			$scope.selectedCartItemOnPopUp.totalExtraCost = 
+				$scope.selectedCartItemOnPopUp.totalExtraCost - borderColor;
 		}
 		ReTotal();
-     }
-
+	}
 	
-	
-	  $scope.onNoBgcolorSelected=function(){
-		//ReTotal();
+	$scope.onNoBgcolorSelected=function(){
+		console.log("onNoBgcolorSelected ");
 		  if($scope.selectedCartItemOnPopUp.nobgColor) { 
-		      $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - backgroundColor;
+			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - backgroundColor;
 		  }
 		  else {
 			  $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + backgroundColor;
 		  }
-		  ReTotal();
+		  ReTotal(); 
 	}
 	
+	$scope.data1;
+	$scope.a=false ;
 	$scope.onComposeAdStepChange = function() {
-		$scope.rc.composeWizard.forward();
+		
+		if($scope.data1 !=null)
+			{
+					$scope.rc.composeWizard.forward();
+					$scope.a=false ;			
+			}
+		else
+			{
+			$scope.a=true;
+			}
 		
 		if($scope.rc.composeWizard.currentIndex === 1) {
 			
@@ -875,52 +952,70 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 		SaveToCart($scope.selectedCartItemOnPopUp);
 	}
 	
+	$('body').on('blur','#translationArea',function(e) {
+		console.log("capture focus out area... ");
+		computeRateByUnit();
+	});
+	
 	$scope.transliterateDone = function(data) {
+		
+		console.log("$scope.selectedCartItemOnPopUp.isHindi " + $scope.selectedCartItemOnPopUp.isHindi);
+		console.log(data);
 		if($scope.selectedCartItemOnPopUp.isHindi) {
-			$('#transliterateTextarea').val(data);
-			$scope.selectedCartItemOnPopUp.description=data;
-			console.log("hinci chk"+$scope.selectedCartItemOnPopUp.description);
-		} else {
-			$('#transliterateTextarea').val($scope.selectedCartItemOnPopUp.description);
+			$scope.$apply(function() {
+				var tokens = $scope.selectedCartItemOnPopUp.description.split(" ");
+				$scope.selectedCartItemOnPopUp.description = "";
+				for(var i=0; i<tokens.length-1;i++) {
+					$scope.selectedCartItemOnPopUp.description = $scope.selectedCartItemOnPopUp.description + tokens[i] + " ";	
+				}
+				$scope.selectedCartItemOnPopUp.description = $scope.selectedCartItemOnPopUp.description + data + " ";
+			});
 		}
 		computeRateByUnit();
 	};
 	
+	$scope.isEmptyOrBlank = function(str) {
+		if (angular.isUndefined(str) || str == null || str == '') {
+			return false;
+		}  
+		return true;
+
+	};
+	   
 	function countWords(){
-		s = $('#transliterateTextarea').val();
+		s = $scope.selectedCartItemOnPopUp.description;
 		s = s.replace(/(^\s*)|(\s*$)/gi,"");
 		s = s.replace(/[ ]{2,}/gi," ");
 		s = s.replace(/\n /,"\n");
 		return s.split(' ').length;
 	}
 	
-	
-	
 	function computeRateByUnit() {
-		
-            rate = parseInt($scope.selectedCartItemOnPopUp.rate);
-            var freeUnit = parseInt($scope.selectedCartItemOnPopUp.freeUnit);
-            var unitLot = parseInt($scope.selectedCartItemOnPopUp.unitVal);
-
-            if ($scope.selectedCartItemOnPopUp.description == '') {
-                
-            }
-            else {
-                var text = $scope.selectedCartItemOnPopUp.description;
+		console.log("calculating count.");
+           
+		rate = parseInt($scope.selectedCartItemOnPopUp.rate); //base rate for ad.
+        var freeUnit = parseInt($scope.selectedCartItemOnPopUp.freeUnit); //total allowed free units.
+        var unitLot = parseInt($scope.selectedCartItemOnPopUp.unitVal); //???
+        var text = $scope.selectedCartItemOnPopUp.description;
+            if (text != '') {
                 var total_unit;
                 var extraUnit;
                 if ($scope.selectedCartItemOnPopUp.unit == "Words") {
+                	console.log("counting workds");
                 	total_unit = countWords(text);
-                }
-                if ($scope.selectedCartItemOnPopUp.unit == "Line") {
-                	total_unit = Math.ceil(text.length / 23);
+                } else {
+                	if ($scope.selectedCartItemOnPopUp.unit == "Line") {
+                    	total_unit = Math.ceil(text.length / 23);
+                    }
                 }
                 
                 if (total_unit > freeUnit) {
-                   var cost = $scope.selectedCartItemOnPopUp.extra;
-                   var costt = parseInt(cost, 10);
+                   //var extraUnitCost = $scope.selectedCartItemOnPopUp.extra;
+                   var costt = parseInt($scope.selectedCartItemOnPopUp.extra);
                    extraUnit = total_unit - freeUnit;
-                   totalCost = rate + (costt * (extraUnit/unitLot));
+                  // totalCost = rate + (costt * (extraUnit/unitLot));
+                   console.log("unitLot " + unitLot)
+                   totalCost = rate + (costt * extraUnit);
                 }
                 else {
                 	totalCost = rate;
@@ -929,14 +1024,14 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
                 if ($scope.selectedCartItemOnPopUp.unit == "Line") {
                 	total_unit = Math.ceil(text.length / 23);
                 }
-                $scope.$apply(function(){
+              $scope.$apply(function(){
                 	$scope.selectedCartItemOnPopUp.totalUnit = total_unit;
                 	$scope.selectedCartItemOnPopUp.extraCost = totalCost - rate;
                 	$scope.selectedCartItemOnPopUp.totalUnitCost = totalCost;
                 	$scope.selectedCartItemOnPopUp.extraUnit = extraUnit;
-                	
                 	ReTotal();
-        		 });
+              });
+               
             }
             console.log($scope.selectedCartItemOnPopUp);
             
@@ -953,8 +1048,12 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
                                                                function($scope,ngDialog){
 	$scope.carts = [];
 	
+	$scope.rate = 0;
+		
 	PushToCart = function(c) {
 		$scope.carts.push(c);
+		$scope.rate = (parseInt($scope.rate) + parseInt(c.rate));
+		
 	}
 	
 	$scope.Login = function(){
@@ -969,7 +1068,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		  angular.forEach($scope.carts, function(obj, index){
 		    if ((rate.$$hashKey === obj.hashKey) || (rate.hashKey === obj.hashKey)) {
 		    	$scope.carts.splice(index, 1);
-		    	return;
+		    	$scope.rate = $scope.rate - obj.rate;
+		       	return;
 		    };
 		  });
 	}
@@ -985,13 +1085,18 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		fromCart.onbgColorchange=fromScreen.onbgColorchange;
 		fromCart.onBorderSelected=fromScreen.onBorderSelected;
 		fromCart.nobgColor=fromScreen.nobgColor;
+		
+		fromCart.totalExtraCost = fromScreen.totalExtraCost;
+		fromCart.totalUnitCost = fromScreen.totalUnitCost;
+		fromCart.noOfImpression = fromScreen.noOfImpression;
+		fromCart.extraUnit = fromScreen.extraUnit;
+		
 	}
 	
 	SaveToCart = function(item) {
 		angular.forEach($scope.carts, function(obj, index){
 		    if ((item.$$hashKey === obj.hashKey) || (item.hashKey === obj.hashKey)) {
 		    	CloneToCartItem($scope.carts[index],item);
-		    	//$scope.carts[index] = angular.copy(item);
 		    	return;
 		    };
 		  });
@@ -1009,6 +1114,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	$scope.selectedCartItemOnPopUp = {};
 	SetSelectedCartItemOnPopUp = function(c) {
 		$scope.selectedCartItemOnPopUp = angular.copy(c);
+		console.log("$scope.selectedCartItemOnPopUp " + JSON.stringify($scope.selectedCartItemOnPopUp));
 	}
 	
 	GetSelectedCartItemOnPopUp = function() {
@@ -1016,10 +1122,10 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	}
 	
 	ComposeAd = function(c, scope) {
+		console.log("ComposeAd  " + c);
 		SetSelectedCartItemOnPopUp(c);
 		ngDialog.open({
 			template: 'newtheme/composeAd.html',
-		
 			controller:'ComposeAdController',
 			className: 'ngdialog-theme-default'
 		});
@@ -1030,6 +1136,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	}
 	
 	ReTotal = function () {
+		console.log("calculating the total.. ");
+		console.log($scope.selectedCartItemOnPopUp.noOfImpression + " " + $scope.selectedCartItemOnPopUp.totalUnitCost + " " + $scope.selectedCartItemOnPopUp.totalExtraCost);
 		$scope.selectedCartItemOnPopUp.fullTotal = $scope.selectedCartItemOnPopUp.noOfImpression * 
 		($scope.selectedCartItemOnPopUp.totalUnitCost + $scope.selectedCartItemOnPopUp.totalExtraCost);
 		console.log($scope.selectedCartItemOnPopUp.fullTotal);
@@ -1078,6 +1186,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
                                                                function($scope,$http,ngDialog){
 	$scope.showFieldsVar = false;
 	$scope.userId;
+	$scope.modeOfPayment;
 	/*$scope.khandobaVar = false;*/
 	console.log("mainCategoty"+$scope.userid);
 	
@@ -1114,7 +1223,12 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		$scope.showFieldsVar = true;
 	}
 	$scope.init = function(beData) {
-	$scope.bookingRequest = beData;
+		
+		
+		$scope.bookingRequest = beData;
+		
+		/*console.log($scope.bookingRequest);*/
+		
 		
 	}
 	
@@ -1149,14 +1263,20 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		});
 	}
 	$scope.checkForUsernameAndPassword =function(){
-		$http.get("checkusercreadientals/"+$scope.userid+'/'+$scope.userpass)
+		if($scope.userwithoutaccount){
+			 $scope.rc.sampleWizard.forward();
+		}
+		if($scope.userwithaccount){
+		$http.get("checkusercreadientals/"+$scope.userId+'/'+$scope.userpass)
 		 .success(function(data){
+			 
 		  $scope.result = data;
 		  if($scope.result=="false") {
 		  $scope.rc.sampleWizard.forward();
 			}
 		});
 	}
+ }
 	$scope.onCitySelect =function(){
 		$http.get("getBasicRateByLocationAndCategory/"+$scope.bookingState.selectedCity+'/'+$scope.bookingState.selectedMainCategoty)
 		.success(function(data){
@@ -1191,10 +1311,10 @@ $scope.onNewspaperSelect = function() {
 			noOfImpression: 1,
 			dates: [],
 			mainCategoty: $scope.bookingState.selectedMainCategoty,
-			isHindi:false,
+			isHindi:true,
 			onbgColorchange:'',
-			onBorderSelected:'Yes',
-			nobgColor:'',
+			onBorderSelected:'No',
+			nobgColor:true,
 			startDate:moment().add(2, 'days').format("DD/MM/YYYY")
 	    }
 	}
@@ -1210,6 +1330,13 @@ $scope.onNewspaperSelect = function() {
 	
 	
 	$scope.rateClicked = function(e, rate) {
+		
+		/*angular.forEach($scope.rates, function(request, key){
+            if(request.id == rate.id) {
+                    request.isSelected = true;
+            }
+		});*/
+		
 		if($(e.target).is(":checked")) {
 			PushToCart(NewCartItem(rate, $scope.bookingState.selectedNewsPaper));
 		} else {

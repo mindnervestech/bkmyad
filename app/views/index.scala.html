@@ -21,6 +21,7 @@
 					 <!--  <li class=""><a href="special_offer.html">Specials Offer</a></li> -->
 					  <li class=""><a href="#/aboutUs">About Us</a></li>
 					  <li class=""><a href="#/contactUs">Contact Us</a></li>
+					   <li class=""><a href="#/myAccount">My Account</a></li>
 					
                     <!-- <form action="#" class="navbar-search pull-left">
                      <input id="srchFld" type="text" placeholder="I'm looking for ..." class="search-query span5"/>
@@ -47,7 +48,7 @@
 				
 				<div class="pull-right" style="width: 12%;margin-right: 1%;"> <br/>
 					<a data-ng-click="rc.sampleWizard.forward()"><span class="btn btn-mini btn-warning" ><i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </span> </a>
-					<a><span class="btn btn-mini active" style="font-size: 12px;"> &#2352;.{{carts.ttotal}}</span></a>
+					<a><span class="btn btn-mini active" style="font-size: 12px;"> &#2352;.{{rate}}</span></a>
 					<!-- <span class="btn btn-mini">&pound;</span>
 					<span class="btn btn-mini">&euro;</span>  -->
 				</div>
@@ -226,6 +227,15 @@
 </div>	  
 </body>	  
 }
+<style>
+
+.loading-id {
+position: absolute;
+z-index: 100;
+top: 50%;
+left: 50%;
+}
+</style>
 
 <script type="text/javascript">
 $(document).ready(function(){

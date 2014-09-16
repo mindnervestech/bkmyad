@@ -192,6 +192,8 @@ public class MakeBookingController extends Controller {
         public String cutOfBookingDate;
         public String extraForBorder;
         public String extraForBackgroud;
+        
+        public Boolean isSelected;
 		
 		
 		
@@ -275,6 +277,8 @@ extraFortick,String extraCostpersqcm) {
 		public float fullTotal; 
 		public String userid;
 		public String  [] dates = {};
+		public float extraUnit;
+		public String nobgColor;
 		
 		public CartItem() {};
 		public CartItem(int id, String type, String location, String mainCategoty,
@@ -375,10 +379,7 @@ extraFortick,String extraCostpersqcm) {
 	          cds.Nameofthenewspaper=cartItem.get(i).newspaper;   //location saved here
 	    	  cds.City=cartItem.get(i).location;//paper name saved here
  	    	  cds.Adtext=cartItem.get(i).description;
-	    	  cds.TotalCost=cartItem.get(i).fullTotal;
 	    	  cds.OrderID = orderId;
-	    	  cds.Bgcolor=cartItem.get(i).onbgColorchange;
-	    	  cds.Border=cartItem.get(i).onBorderSelected;
 	    	  cds.BorderCost=cartItem.get(i).extraForBorder;
 	    	  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
 	    	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//save dates in DB 
@@ -393,11 +394,31 @@ extraFortick,String extraCostpersqcm) {
 					e.printStackTrace();
 				}
 	    	  }
+	    	  
 	    	  cds.BasicRate=cartItem.get(i).unit;
 	    	  cds.numberOfWords=cartItem.get(i).totalUnit;
 	    	  cds.userEmailId=emailId;
 	    	  cds.paymentOption=modeOfPayment;
+	    	  cds.Border=cartItem.get(i).onBorderSelected;
+	    	  cds.Bgcolor=cartItem.get(i).nobgColor;
 	    	  
+	    	  //cartItem.get(i).nobgColor=   'true' means it is not selected ;
+	    	  if( cartItem.get(i).onBorderSelected.equals("No")&&cartItem.get(i).nobgColor.equals("true")) {
+	    		  cds.TotalCost =(cartItem.get(i).rate + ((cartItem.get(i).extra) * (cartItem.get(i).extraUnit))) * cartItem.get(i).dates.length;
+	    		System.out.println("Both NOT selected ");
+	    	  }
+	    	  else if(cartItem.get(i).onBorderSelected.equals("Yes")&&cartItem.get(i).nobgColor.equals("false")){
+	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBackgroud + cartItem.get(i).extraForBorder + ((cartItem.get(i).extra)*(cartItem.get(i).extraUnit)))*cartItem.get(i).dates.length;
+	    		  System.out.println("Both selected ");
+	    	  }
+	    	  else if(cartItem.get(i).onBorderSelected.equals("Yes")&&cartItem.get(i).nobgColor.equals("true")){
+	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBorder + ((cartItem.get(i).extra) * (cartItem.get(i).extraUnit)))*cartItem.get(i).dates.length;
+	    		  System.out.println("Yes border selected ");
+	    	  }else if (cartItem.get(i).onBorderSelected.equals("No")&&cartItem.get(i).nobgColor.equals("false")){
+	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBackgroud+((cartItem.get(i).extra) * (cartItem.get(i).extraUnit))) * cartItem.get(i).dates.length;
+	    		  System.out.println("NO border selected ");
+	    	  }
+	    		 System.out.println("Full total to save into Db:"+cds.TotalCost);
 	    	  JPA.em().persist(cds);
 	    	   }
 	     } catch (JsonParseException e) {

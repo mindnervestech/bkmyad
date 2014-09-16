@@ -21,10 +21,18 @@ POST    /validateUsernameUnique                controllers.UservalidationControl
 GET     /dispFrame.html                        controllers.DispFrameController.index()
 GET     /getSubCategoty/:cname					controllers.Application.getSubCategoty(cname:String)
 GET     /getNewspaper							controllers.AddbasicRateController.getNewspaper()
+<<<<<<< HEAD
 #GET		/getAnnouncements/:title/:currentPage	controllers.AnnouncementController.getAnnouncements(title :String,currentPage :Integer)
 #POST	/saveAnnouncement		               controllers.AnnouncementController.saveAnnouncement
 #GET		/deleteAnnouncement/:id		           controllers.AnnouncementController.deleteAnnouncement(id :Long)
 #POST	/updateAnnouncement		            controllers.AnnouncementController.updateAnnouncement
+=======
+POST    /submit-cart                            controllers.MakeBookingController.saveComposeyourAd()
+GET		/getAnnouncements/:title/:currentPage	controllers.AnnouncementController.getAnnouncements(title :String,currentPage :Integer)
+POST	/saveAnnouncement		               controllers.AnnouncementController.saveAnnouncement
+GET		/deleteAnnouncement/:id		           controllers.AnnouncementController.deleteAnnouncement(id :Long)
+POST	/updateAnnouncement		            controllers.AnnouncementController.updateAnnouncement
+>>>>>>> c6280db80395a61c77ee844a67dd9d752019b121
 GET		/getBasicrate/:City/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,currentPage :Integer)
 POST	/saveBasicRate		               controllers.AddbasicRateController.saveBasicRate
 POST	/updateBasicRate	            controllers.AddbasicRateController.updateBasicRate
@@ -82,6 +90,10 @@ GET /TermsandConditions.html     controllers.Assets.at(path="/public", file="app
 GET /Booknewspaperaddonline.html     controllers.Assets.at(path="/public", file="app/Booknewspaperaddonline.html")
 #GET /manageAnnouncements.html     controllers.Assets.at(path="/public", file="app/manageAnnouncements.html")
 GET /AddBasicRate.html     controllers.Assets.at(path="/public", file="app/AddBasicRate.html")
+<<<<<<< HEAD
 GET /AddNewspaper.html     controllers.Assets.at(path="/public", file="app/AddNewspaper.html")
 GET /AddCategoryAndSubCat.html     controllers.Assets.at(path="/public", file="app/AddCategoryAndSubCat.html")
 GET /AddStateAndCity.html     controllers.Assets.at(path="/public", file="app/AddStateAndCity.html")
+=======
+#GET /AddNewspaper.html     controllers.Assets.at(path="/public", file="app/AddNewspaper.html")
+>>>>>>> c6280db80395a61c77ee844a67dd9d752019b121
