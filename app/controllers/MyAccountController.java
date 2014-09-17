@@ -16,20 +16,21 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import viewmodel.BasicrateVM;
 import viewmodel.OrderListVM;
-import views.html.myaccount;
+//import views.html.myaccount;
 
 
 public class MyAccountController extends Controller {
-	@Transactional
+	/*@Transactional
 	public static Result index() {
 		return ok(myaccount.render());
 		//return ok(myaccount.render(Json.stringify(Json.toJson(makeOrderList()))));
-	}
+	}*/
+	
 	@Transactional
 	public static Result getAllUserOrder(String UserId) {
 		List<ComposedAdSave> allOrderList = ComposedAdSave.getAllOrderList(UserId);
 		List<OrderListVM> listOfOrder = new ArrayList<OrderListVM>();
-		System.out.println("++++++++++++++++++++++++++");
+	
 		for (ComposedAdSave orderlistVM: allOrderList) {
 			OrderListVM vm = new OrderListVM(orderlistVM);
 			listOfOrder.add(vm);

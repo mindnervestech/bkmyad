@@ -48,9 +48,10 @@ public class OrderListVM {
 	    	this.Category=composedAdSave.Category;
 	    	this.Extraborderper=composedAdSave.Extraborderper;
 	    	this.Extrabgper=composedAdSave.Extrabgper;
-	    	this.Tickper=composedAdSave.Tickper;
+	    	
 	    	this.userEmailId=composedAdSave.userEmailId;
-	    	this.City=composedAdSave.City;
-	    	//this.City=composedAdSave.City;
+	    	
+	    	this.TotalCost=composedAdSave.TotalCost;
+	    	this.numberOfWords=composedAdSave.numberOfWords;
 	    }
 }

@@ -7,13 +7,13 @@
 		
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 mnt-shadow-deco">
           <div rc-wizard="sampleWizard" rc-disabled="rc.firstForm.submitInProgress">
+           
            <ul class="nav rc-nav-wizard" style="background-color: #f9f9f9;margin-bottom: 1%;">
-            
+           
               <li class="active" style="float:left;">
                 <a class="active custom-font" href="#first" ng-click="rc.sampleWizard.first()" data-toggle="tab" style="float: left;height: 17px;border: 0px solid black;">
                   <!-- <span class="badge">1</span> -->
                   <span >Select Category</span>
-                  
                 </a>
                 <span class="breadcrumb_arrow"></span>
               </li>
@@ -25,7 +25,7 @@
                 <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a class="custom-font" href="#third" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#third" ng-click="rc.sampleWizard.forward()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">3</span> -->
                   <span>Ads Summary</span>
                 </a>
@@ -33,14 +33,14 @@
               </li> 
               
                <li style="float:left;">
-                <a class="custom-font" href="#fourth" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#fourth" ng-click="rc.sampleWizard.forward()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">3</span> -->
                   <span>Login</span>
                  </a>
                   <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a class="custom-font" href="#fifth" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#fifth" ng-click="rc.sampleWizard.last()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">3</span> -->
                   <span>Payment Details</span>
                 </a>
@@ -287,6 +287,9 @@
 			  <!--TODO: Take image to local  -->
 			  <img data-ng-show="carts.length > 0"  data-ng-click="rc.sampleWizard.forward()" class="mnt-proceed-btn" src="images/proceed-button.png"/>
               </form>
+              <p ng-show="errorDesc" style="color:red">Please compose all your pending Ad before proceding </p>
+              <!--  <p style="color:red">{{errorDesc}}</p> -->
+               <p ng-show="errorDate" style="color:red">Please compose all your pending Ad before proceding </p>
               <form class="tab-pane" id="third" name="thirdForm" rc-step novalidate >
                 <h3 class="pull-left">Compose Your Ad</h3>
                 <img class="pull-left" style="width: 4%;" src="/NewDesign/images/np-compose.jpg" >
@@ -306,19 +309,23 @@
                 <tr ng-repeat="c in carts">
                   <td>{{c.mainCategoty}}</td>
                   <td>{{c.location}} - {{c.newspaper}}</td>
-                  <td><span ng-bind="c.description == '' ? 'Not Set' : c.description|limitTo:40"></span><a ng-click="composeAd(c)" style="cursor: pointer;">...</a></td>
+                  <td><span ng-show="c.description == '' " style="color:red">Not set</span>
+                  <span ng-bind="c.description|limitTo:40"></span><a ng-click="composeAd(c)" style="cursor: pointer;"></a></td>
                   <td><!-- <a href="http://www.w3schools.com">Visit W3Schools.com!</a> -->
+                  	<span ng-show="c.dates.length == 0" style="color:red">Not set</span>
                   	<span ng-repeat="cd in c.dates" class="dates-coll label label-warning" 
-                  	data-ng-bind="formatDate(cd)"></span>
+                       data-ng-bind="formatDate(cd)"></span>
                   </td>
-                  <td><button class="btn btn-success" ng-click='composeAd(c)'>Compose <i class="icon-edit"></i></button></td>
+                  <td>
+              <!--     <span ng-show="" style="color:red;font-size: 11pt;font-family: Calibri;">Click to Compose</span> -->
+                  <button ng-class="c.completenessStatus ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeAd(c)'>Compose <i class="icon-edit"></i></button></td>
                   <td>{{c.rate}} / {{c.unitVal}} {{c.unit}}</td>
                   <td>{{c.fullTotal}}</td>
                 </tr>
 				
 				</tbody>
             </table>
-            <button class="btn btn-primary" data-ng-click="rc.sampleWizard.forward()"> continue</button>
+            <button ng-click="checkForAdDetailsFilled();" class= "btn btn-primary"> continue</button>
               </form>
               
      <form class="tab-pane" id="fourth" name="fourthForm"  rc-step>

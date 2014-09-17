@@ -496,13 +496,9 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 	};
 	
 	$scope.setData = function(ancmt) {
-	
-		 console.log(ancmt);
-		$scope.resultstate = getStateNameservice.Allstate.get();
-		$scope.resultCity = [{cityname:ancmt.Nameofcities}];
-		console.log("------"+$scope.resultCity+"----++");
-		$scope.ancmtData = ancmt;
 		
+		$scope.resultstate = getStateNameservice.Allstate.get();
+		$scope.ancmtData = ancmt;
 		$('#myModal2').modal();
 				
 	};
@@ -1068,13 +1064,14 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		  angular.forEach($scope.carts, function(obj, index){
 		    if ((rate.$$hashKey === obj.hashKey) || (rate.hashKey === obj.hashKey)) {
 		    	$scope.carts.splice(index, 1);
-		    	$scope.rate = $scope.rate - obj.rate;
-		       	return;
+		    	$scope.FinalTotal=  (parseInt($scope.FinalTotal)  - obj.fullTotal);
+		    	return;
 		    };
 		  });
 	}
 	
 	function CloneToCartItem(fromCart, fromScreen) {
+		$scope.FinalTotal=0;
 		fromCart.description=fromScreen.description;
 		fromCart.fullTotal=fromScreen.fullTotal;
 		fromCart.dates=angular.copy(fromScreen.dates);
@@ -1090,16 +1087,28 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		fromCart.totalUnitCost = fromScreen.totalUnitCost;
 		fromCart.noOfImpression = fromScreen.noOfImpression;
 		fromCart.extraUnit = fromScreen.extraUnit;
+		fromCart.completenessStatus=fromScreen.completenessStatus;
 		
+		if(fromCart.dates.length == 0){
+			fromCart.completenessStatus=true;
+		}else if (fromCart.description==''){
+			fromCart.completenessStatus=true;
+		}
+		else {
+		   fromCart.completenessStatus=false;
+		   fromCart.completenessStatus=false;
+		}
 	}
 	
 	SaveToCart = function(item) {
+		var FinalTotal = 0;
 		angular.forEach($scope.carts, function(obj, index){
 		    if ((item.$$hashKey === obj.hashKey) || (item.hashKey === obj.hashKey)) {
 		    	CloneToCartItem($scope.carts[index],item);
-		    	return;
 		    };
+		    FinalTotal = (FinalTotal + obj.fullTotal);
 		  });
+		$scope.FinalTotal = FinalTotal;
 	}
 	
 	$scope.removeFromCart = function (c) {
@@ -1140,7 +1149,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		console.log($scope.selectedCartItemOnPopUp.noOfImpression + " " + $scope.selectedCartItemOnPopUp.totalUnitCost + " " + $scope.selectedCartItemOnPopUp.totalExtraCost);
 		$scope.selectedCartItemOnPopUp.fullTotal = $scope.selectedCartItemOnPopUp.noOfImpression * 
 		($scope.selectedCartItemOnPopUp.totalUnitCost + $scope.selectedCartItemOnPopUp.totalExtraCost);
-		console.log($scope.selectedCartItemOnPopUp.fullTotal);
 	}
 	
 	InitDatepicker = function() {
@@ -1201,6 +1209,26 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			landline:''
 			//userid:$scope.userid
 	};
+	$scope.checkForAdDetailsFilled=function(){
+		$scope.carts;
+		$scope.errorDesc=false;
+		$scope.errorDate=false;
+		angular.forEach($scope.carts, function(value, key) {
+			 
+			if(value.description == '' ){
+				$scope.errorDesc=true;	
+			}
+			else if(value.dates == '' ){
+				 $scope.errorDate=true;
+			}
+	   });
+		if(!$scope.errorDate && !$scope.errorDesc) {
+			$scope.rc.sampleWizard.forward();
+		}
+		
+	
+}
+	
 	$scope.showfieldsonlyusername=function(showfieldstouser)
 	{
 		$scope.showFieldsVar = false;
@@ -1303,6 +1331,7 @@ $scope.onNewspaperSelect = function() {
 			freeUnit: rate.freeUnit,
 			extraForBackgroud:rate.extraForBackgroud,
 			extraForBorder:rate.extraForBorder,
+			completenessStatus:'please fill details',
 			description: '',
 			total: 0,
 			fullTotal: 0,
@@ -1312,7 +1341,7 @@ $scope.onNewspaperSelect = function() {
 			dates: [],
 			mainCategoty: $scope.bookingState.selectedMainCategoty,
 			isHindi:true,
-			onbgColorchange:'',
+			onbgColorchange:'rbnn',
 			onBorderSelected:'No',
 			nobgColor:true,
 			startDate:moment().add(2, 'days').format("DD/MM/YYYY")
@@ -1330,13 +1359,6 @@ $scope.onNewspaperSelect = function() {
 	
 	
 	$scope.rateClicked = function(e, rate) {
-		
-		/*angular.forEach($scope.rates, function(request, key){
-            if(request.id == rate.id) {
-                    request.isSelected = true;
-            }
-		});*/
-		
 		if($(e.target).is(":checked")) {
 			PushToCart(NewCartItem(rate, $scope.bookingState.selectedNewsPaper));
 		} else {

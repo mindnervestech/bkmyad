@@ -34,7 +34,8 @@ GET		/deleteAnnouncement/:id		           controllers.AnnouncementController.dele
 POST	/updateAnnouncement		            controllers.AnnouncementController.updateAnnouncement
 >>>>>>> c6280db80395a61c77ee844a67dd9d752019b121
 GET		/getBasicrate/:City/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,currentPage :Integer)
-POST	/saveBasicRate		               controllers.AddbasicRateController.saveBasicRate
+GET     /listInfo/:UserId              controllers.MyAccountController.getAllUserOrder(UserId :String)
+#POST	/saveBasicRate		               controllers.AddbasicRateController.saveBasicRate()
 POST	/updateBasicRate	            controllers.AddbasicRateController.updateBasicRate
 GET		/deleteBasicRate/:id		           controllers.AddbasicRateController.deleteBasicRate(id :String)
 GET     /getCategory							controllers.AddbasicRateController.getCategory

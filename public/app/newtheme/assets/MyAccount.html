@@ -46,17 +46,19 @@
                 <table ng-table="tableParams">
                 	<thead>
                     	<tr>
-                            <th><a>Nameofthenewspaper</a></th>
-                            <th><a>Adtext</a></th>
-                            <th><a>Category</a></th>
-                            
-                            <th><a>PublishDate</a></th>
-                            <th><a>numberOfWords</a></th>
-                            <th><a>paymentOption</a></th>
-                            <th><a>userEmailId</a></th>
-                            <th><a>TotalCost</a></th>
-                            <th><a>Update</a></th>
-                            <th><a>Delete</a></th>
+                             <th><a>Order ID</a></th>	
+                             <th><a>News paper Name</a></th>
+                              <th><a>City</a></th>
+                             <th><a>Ad Text</a></th>
+                             <th><a>Category</a></th>
+                             <th><a>Border Cost</a></th>
+                             <th><a>Publish Date</a></th>
+                             <th><a>Number Of Words</a></th>
+                             <th><a>EmailId</a></th>
+                             <th><a>Total Cost</a></th>
+                             <th><a>payment Option</a></th>
+                            <!--  <th><a>Update</a></th>
+                             <th><a>Delete</a></th> -->
                         <tr>
                     </thead>
                 	<tbody><tr>
@@ -67,20 +69,22 @@
                     	<td> aksh</td><td> aksh</td>
                 	</tr> -->
                     	<tr ng-repeat="dataorderList in orderList.results">
-                           <p>{{dataorderList}}</p>
-                    	
-                            <td>{{dataorderList.Nameofthenewspaper}}</td>
-                            <td>{{dataorderList.Adtext}}</td>
-                            <td>{{dataorderList.Category}}</td>
-                            <td>{{dataorderList.PublishDate}}</td>
-                            <td>{{dataorderList.numberOfWords}}</td>
-                            <td>{{dataorderList.paymentOption}}</td>
+                        <!--    <p>{{dataorderList}}</p> -->
+                    	     <td>{{dataorderList.OrderID}}</td>
+                             <td>{{dataorderList.Nameofthenewspaper}}</td>
+                             <td>{{dataorderList.City}}</td>
                             
-                            <td>{{dataorderList.userEmailId}}</td>
-                            <td>{{dataorderList.TotalCost}}</td>
-                            <td> <input name="" type="button" value="Update" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
-                            <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt)" data-toggle="modal" /></td>
-                        </tr>
+                             <td>{{dataorderList.Adtext}}</td>
+                             <td>{{dataorderList.Category}}</td>
+                             <td>{{dataorderList.Extraborderper}}</td>
+                              <td>{{dataorderList.PublishDate}}</td>
+                             <td>{{dataorderList.numberOfWords}}</td>
+                             <td>{{dataorderList.userEmailId}}</td>
+                             <td>{{dataorderList.TotalCost}}</td>
+                             <td>{{dataorderList.paymentOption}}</td>
+                             <!-- <td> <input name="" type="button" value="Update" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
+                             <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt)" data-toggle="modal" /></td>
+                        --> </tr>
                     	</tbody>
                 </table>
         	</section>
