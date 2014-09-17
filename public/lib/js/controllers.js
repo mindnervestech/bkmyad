@@ -165,7 +165,7 @@ angular.module('adschela').controller("HomeScreenController",['$scope',function(
 	
 }]);
 
-<<<<<<< HEAD
+
 angular.module('adschela').controller('AddCategorySubcatController',function($scope, $modal, $http, $filter, CategoryService){
 	
 	console.log("----------------------");
