@@ -1,8 +1,9 @@
 @(beData:String)
 
 <div  id="sidebar">	
-	<ul class="nav nav-list bs-docs-sidenav" style="display: block;text-align: center;padding-top: 10%;padding-bottom: 5%;margin-left: 12%;background-color: #fc9a24;" ng-controller="SidebarController">											
- 		<a data-ng-click="rc.sampleWizard.last()" style="cursor: pointer;"><strong>{{carts.length}} Ads in your cart  </strong></a>
+	<ul class="nav nav-list bs-docs-sidenav" style="display: block;text-align: center;padding-top: 10%;padding-bottom: 5%;margin-left: 12%;background-color: #fc9a24;" ng-controller="SidebarController">
+										
+ 		<a data-ng-click="rc.sampleWizard.moveTo(2)"   style="cursor: pointer;"><strong style="color: white;">{{carts.length}} Ads in your cart  </strong></a>
 		<li style="border:0"> &nbsp;</li>
 		<div style="width: 100%;width: 95%;margin-left: 3%;background-color: white;">
 		<div ng-repeat="cart in carts" style="padding: 5px;">

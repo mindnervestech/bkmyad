@@ -79,7 +79,7 @@ public class MakeBookingController extends Controller {
 	}
 	 @Transactional
 	    public static Result getBasicRateByLocationAndCategory(String Location,String Category) {
-	    	List<Object[]> rates1 = UtilityQuery.getBasicRateByLocationAndCategory(Location,Category); 
+	    	List<Object[]> rates1 = UtilityQuery.getBasicRateByLocationAndCategory(Location.trim(),Category.trim()); 
 		 	System.out.println("----------"+Location+"---------"+Category+"----");
 	    	List<Rate> rates = Lists.newArrayList();
             
@@ -121,7 +121,7 @@ public class MakeBookingController extends Controller {
 	public static Result getRatesByNewspaper(String newspaper,String Category) {
 		
 		
-		List<Object[]> rates1 = UtilityQuery.getBasicRateByNewspaperAndCategory(newspaper,Category);
+		List<Object[]> rates1 = UtilityQuery.getBasicRateByNewspaperAndCategory(newspaper.trim(),Category.trim());
 	 	
 		List<Rate> rates = Lists.newArrayList();
                   

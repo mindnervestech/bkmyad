@@ -18,14 +18,14 @@
                 <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a class="custom-font" href="#second" ng-click="rc.sampleWizard.forward()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#second" ng-click="rc.sampleWizard.moveTo(1)" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">2</span> -->
                   <span>Pick Your Package</span>
                 </a>
                 <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a class="custom-font" href="#third" ng-click="rc.sampleWizard.forward()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#third" ng-click="rc.sampleWizard.moveTo(2)" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">3</span> -->
                   <span>Ads Summary</span>
                 </a>
@@ -33,14 +33,14 @@
               </li> 
               
                <li style="float:left;">
-                <a class="custom-font" href="#fourth" ng-click="rc.sampleWizard.forward()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#fourth" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">3</span> -->
                   <span>Login</span>
                  </a>
                   <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a class="custom-font" href="#fifth" ng-click="rc.sampleWizard.last()" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#fifth" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">3</span> -->
                   <span>Payment Details</span>
                 </a>
@@ -214,7 +214,7 @@
 			    	</div>
 			    	
 			    </tab>
-			    <tab heading="Target by specific City">
+			    <tab ng-click="tabchange()" heading="Target by specific City">
 			    	<select class="mnt-select" style="margin-top: 1%" ng-model="bookingState.selectedState" ng-change="onStateSelect()">
 			    		<option ng-repeat="state in bookingRequest.locations" value="{{state}}">{{state}}</option>
 			    		<option value="">--Please Select State--</option>
@@ -233,13 +233,13 @@
 			    	   <tab-heading>
                         <i class="icon-tags"></i> Basic Rate
                      </tab-heading>
-			    	   <div ng-show="rates.length > 0" class="backcolo">
+			    	   <div ng-show="rates.length > 0 " class="backcolo">
 			    		<ul ng-show="rates.length > 0" >
 			    		<div class="Internal">
 			    			<li ng-repeat="rate in rates" class="pillboxes custom-pill">
 			    				<div  style="padding: 1px;">
 			    					 <span >
-        								<input ng-click="rateClicked1($event,rate)" style="margin: 1px"  type="checkbox">
+        								<input ng-click="rateClicked1($event,rate)" ng-model="rate.isSelected" style="margin: 1px"  type="checkbox">
      								 </span>
      								 <span>{{rate.newspaper}} - Rs {{rate.rate}} {{rate.unitVal}}/
 			    					{{rate.unit}} </span>
@@ -309,8 +309,8 @@
                 <tr ng-repeat="c in carts">
                   <td>{{c.mainCategoty}}</td>
                   <td>{{c.location}} - {{c.newspaper}}</td>
-                  <td><span ng-show="c.description == '' " style="color:red">Not set</span>
-                  <span ng-bind="c.description|limitTo:40"></span><a ng-click="composeAd(c)" style="cursor: pointer;"></a></td>
+                  <td><span tooltip="{{description == '' ? 'Not Set' : c.description}}"  ng-bind="c.description == '' ? 'Not Set' : c.description|limitTo:40" style="color:red"></span><a ng-click="composeAd(c)" style="cursor: pointer;">...</a></td>
+                  
                   <td><!-- <a href="http://www.w3schools.com">Visit W3Schools.com!</a> -->
                   	<span ng-show="c.dates.length == 0" style="color:red">Not set</span>
                   	<span ng-repeat="cd in c.dates" class="dates-coll label label-warning" 
@@ -520,6 +520,11 @@ margin-bottom: 0px;
     background-color: #EFF8F8;
 }
 
+.tooltip{
+	background: white !important;
+	color: black !important;
+}
+
 ul{
 	margin: 0 0 0px 0px;
 }
@@ -558,6 +563,15 @@ th{
 
 margin-left: 15px;
 }
+
+
+#loading-id {
+position: absolute;
+z-index: 100;
+top: 50%;
+left: 50%;
+}
+
 
 </style>
 

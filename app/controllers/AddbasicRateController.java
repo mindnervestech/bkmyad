@@ -33,7 +33,6 @@ public class AddbasicRateController extends Controller{
 		List<Basicrate> allBasicRate = Basicrate.getAllAnnouncements(City, currentPage, 8, totalPages);
 		List<BasicrateVM> listOfBasicrate = new ArrayList<>();
 		
-		System.out.println("++++++++++++++++++++++++++");
 		
 		for (Basicrate basicrateVM: allBasicRate) {
 			BasicrateVM vm = new BasicrateVM(basicrateVM);

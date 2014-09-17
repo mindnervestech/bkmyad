@@ -405,7 +405,7 @@ angular.module('adschela').service('StateCityService',function($resource){
 
 
 
-=======
+
 angular.module('adschela').controller("MyAccountController",['$scope','$http',function($scope, $http,OrderListService){
 	    
 	     $scope.UserId="asd@gmail.com";
@@ -421,7 +421,6 @@ angular.module('adschela').controller("MyAccountController",['$scope','$http',fu
 		});
 	     console.log("$scope.orderList"+$scope.orderList);*/
 	}]);
->>>>>>> c6280db80395a61c77ee844a67dd9d752019b121
 
     angular.module('adschela').service('OrderListService',function($resource){
     this.orderListInfo = $resource(
@@ -496,8 +495,11 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 	};
 	
 	$scope.setData = function(ancmt) {
-		
+	
+		 console.log(ancmt);
 		$scope.resultstate = getStateNameservice.Allstate.get();
+		$scope.resultCity = [{cityname:ancmt.Nameofcities}];
+		console.log("------"+$scope.resultCity+"----++");
 		$scope.ancmtData = ancmt;
 		$('#myModal2').modal();
 				
@@ -955,6 +957,7 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 	
 	$scope.transliterateDone = function(data) {
 		
+		$scope.data1=data;
 		console.log("$scope.selectedCartItemOnPopUp.isHindi " + $scope.selectedCartItemOnPopUp.isHindi);
 		console.log(data);
 		if($scope.selectedCartItemOnPopUp.isHindi) {
@@ -1043,6 +1046,24 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 angular.module('adschela').controller("ApplicationController",['$scope','ngDialog',
                                                                function($scope,ngDialog){
 	$scope.carts = [];
+	$scope.rates = [];
+	
+	SetRates = function (rates) {
+		$scope.rates = rates;
+		
+		angular.forEach($scope.carts, function(obj, index){
+		
+	    	angular.forEach($scope.rates, function(request, key){
+	    		
+	    		if(request.id == obj.id) {
+	    			     	   	  request.isSelected = true;
+	            }
+			});
+	       	return;
+	  
+	  });
+		
+	}
 	
 	$scope.rate = 0;
 		
@@ -1194,6 +1215,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
                                                                function($scope,$http,ngDialog){
 	$scope.showFieldsVar = false;
 	$scope.userId;
+	 $scope.rates1 = [];
 	$scope.modeOfPayment;
 	/*$scope.khandobaVar = false;*/
 	console.log("mainCategoty"+$scope.userid);
@@ -1308,19 +1330,21 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	$scope.onCitySelect =function(){
 		$http.get("getBasicRateByLocationAndCategory/"+$scope.bookingState.selectedCity+'/'+$scope.bookingState.selectedMainCategoty)
 		.success(function(data){
-			$scope.rates = data.rates;
+			
+			SetRates(data.rates);
 		});
 	}
 $scope.onNewspaperSelect = function() {
 		
 		$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
 				.success(function(data){
-					$scope.rates = data.rates;
+						SetRates(data.rates);
 				});
 	}
 	
 	function NewCartItem(rate) {
 		return cartItem = {
+			id:rate.id,	
 			hashKey: rate.$$hashKey,	
 			location: rate.location,
 			newspaper: rate.newspaper,

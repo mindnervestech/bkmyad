@@ -92,6 +92,11 @@ var rcWizardDirective = {
           this.last = function () {
               wizardElement.bootstrapWizard('last');
           };
+          
+          this.moveTo = function (index) {
+              wizardElement.bootstrapWizard('show',index);
+          };
+          
         
         var onTabChange = function (activeTab, navigation, currentIndex, nextTab) {
           
