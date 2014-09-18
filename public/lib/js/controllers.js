@@ -513,6 +513,8 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 	$scope.setData = function(ancmt) {
 		
 		$scope.resultstate = getStateNameservice.Allstate.get();
+		$scope.resultCity = [{cityname:ancmt.Nameofcities}];
+		
 		$scope.ancmtData = ancmt;
 		$('#myModal2').modal();
 				
@@ -1083,11 +1085,18 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	}
 	
 	DeleteCartItemByRate = function(rate){
-		  angular.forEach($scope.carts, function(obj, index){
-		    if ((rate.$$hashKey === obj.hashKey) || (rate.hashKey === obj.hashKey)) {
+			
+		 angular.forEach($scope.carts, function(obj, index){
+			 if ((rate.$$id === obj.id) || (rate.id === obj.id)) {
 		    	$scope.carts.splice(index, 1);
 		    	$scope.FinalTotal=  (parseInt($scope.FinalTotal)  - obj.fullTotal);
-		    	return;
+		    			    	
+		    	angular.forEach($scope.rates, function(request, key){
+		    		if(request.id == rate.id) {
+		            	   	  request.isSelected = false;
+		            }
+				});
+		       	return;
 		    };
 		  });
 	}
