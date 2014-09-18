@@ -29,9 +29,7 @@ public class AddStateCityController extends Controller{
 
 	@Transactional
 	public static Result getStateName(String Statename,int currentPage) {
-		System.out.println("/*-*/*/--"+Statename+"*/*-/-*/-*/");
 		long totalPages = City.getAllStatesTotal(Statename, 8);
-		
 		List<City> allBasicRate =City.getAllStates(Statename, currentPage, 8, totalPages);
 		List<StateCityVM> listOfState = new ArrayList<>();
 		

@@ -18,14 +18,14 @@
                 <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a class="custom-font" href="#second" ng-click="rc.sampleWizard.moveTo(1)" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#second" 	 data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">2</span> -->
                   <span>Pick Your Package</span>
                 </a>
                 <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a class="custom-font" href="#third" ng-click="rc.sampleWizard.moveTo(2)" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#third"  data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">3</span> -->
                   <span>Ads Summary</span>
                 </a>
@@ -325,7 +325,9 @@
 				
 				</tbody>
             </table>
-            <button ng-click="checkForAdDetailsFilled();" class= "btn btn-primary"> continue</button>
+            <button ng-click="checkForAdDetailsFilled();" class= "btn btn-primary" style="float: right;/* padding: 0%; */margin: 3%"> continue</button>
+            <a class="btn btn-default" ng-click="rc.composeWizard.backward()"
+				ng-show="rc.composeWizard.currentIndex = rc.composeWizard.firstIndex">Back</a>
               </form>
               
      <form class="tab-pane" id="fourth" name="fourthForm"  rc-step>
@@ -351,64 +353,66 @@
                   <span style="font-size: 9pt;font-family: Calibri;margin-left: 25%;">Sign in to your account to get benefits</span><br>
                  </div>
                   </div><br />
-                 <input class="btn btn-primary" type="submit" value="Continue" data-ng-click="checkForUsernameAndPassword()"style="background-color: #0044cc;margin-left: 7%;"> 
+                 <input class="btn btn-primary" type="submit" value="Continue" data-ng-click="checkForUsernameAndPassword()"style="background-color: #0044cc;margin-left: 7%;margin: 3%;float:right;"> 
       </form>
               
       <form class="tab-pane" id="fifth" name="fifthForm" rc-submit="completeWizard()" rc-step>
-	     	<div > <input type="radio" name="chk" value="cod" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showHomeShipingDetails();" style="margin-left:7%;"><b >&nbsp;Collect cash form home</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	     	<div style="float: left;width: 48%;margin-bottom: 2%;" > <input type="radio" name="chk" value="cod" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showHomeShipingDetails();" style="margin-left:7%;"><b >&nbsp;Collect cash form home</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    </div>
-                     <div  > <input type="radio" name="chk"  value="cc" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showDebitShipingDetails();" style="margin-left:7%;"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <div style="float: left;width: 48%; margin-bottom: 2%;"  > <input type="radio" name="chk"  value="cc" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showDebitShipingDetails();" style="margin-left:7%;"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
                    <div align="center"  ng-show="showHomeshipping" >
 			
-		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Pincode *:</p> <input type="pincode" ng-model="address.pinCode" name="pinCode" />
-     </div>
+		
 	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Full Name *:</p> <input type="text" ng-model="address.fullName" name="fullName" /><br/>
       </div>
-	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Shipping Address *:</p> <input type="text" ng-model="address.shippingAddress" name="shippingAddress" />
+	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Shipping Address *:</p> <textarea ng-model="address.shippingAddress" name="shippingAddress" row ="3"></textarea>   
       </div>
-		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Nearest Landmark *:</p> <input type="text" ng-model="address.nearestLandmark" name="nearestLandmark" /><br/>
+      <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Nearest Landmark *:</p> <input type="text" ng-model="address.nearestLandmark" name="nearestLandmark" /><br/>
       </div>
-		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">City *: </p><input type="text" name="city" ng-model="address.city" />
+      <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;"> State/Region/Province *: </p><input type="text" ng-model="address.state" name="state" /><br/>
       </div>
-		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;"> State/Region/Province *: </p><input type="text" ng-model="address.state" name="state" /><br/>
+      <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">City *: </p><input type="text" name="city" ng-model="address.city" />
       </div>
-		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Mobile: </p><input type="text" ng-model="address.mobile" name="mobile" />
+      <div style="width: 45%;float: left;margin-bottom: 2%;">	<p style="float: left;width: 35%;text-align: left;">Pincode *:</p> <input type="text" ng-model="address.pinCode" name="pinCode" />
+     </div>
+	 <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Mobile: </p><input type="text" ng-model="address.mobile" name="mobile" />
+     </div>
+	<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Landline *:</p> <input type="text" ng-model="address.landline" name="landline" />
       </div>
-		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Landline *:</p> <input type="text" ng-model="address.landline" name="landline" />
-       </div>
 			<br/>
           
 		  </div>
 		  
          
-	     	 <div align="center"  ng-show="showDebitCardshipping" >
+	   <div align="center"  ng-show="showDebitCardshipping" >
 			
-			<div style="width: 45%;float: left"><p style="float: left;width: 35%;text-align: left;">Pincode *: </p><input type="pincode" ng-model="address.pinCode" name="pinCode" />
- </div>
-			<div style="width: 45%;float: left"><p style="float: left;width: 35%;text-align: left;"> Full Name *:</p> <input type="text" ng-model="address.fullName" name="fullName" /><br/>
- </div>
-		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Shipping Address *: </p><input type="text" ng-model="address.shippingAddress" name="shippingAddress" />
- </div>
-		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Nearest Landmark *:</p> <input type="text" ng-model="address.nearestLandmark" name="nearestLandmark" /><br/>
- </div>
-			<div style="width: 45%;float: left"><p style="float: left;width: 35%;text-align: left;;">City *:</p> <input type="text" name="city" ng-model="address.city" />
- </div>
-		<div style="width: 45%;float: left"><p style="float: left;width: 35%;text-align: left;">	State/Region/Province *:</p> <input type="text" ng-model="address.state" name="state" /><br/>
- </div>
-		<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Mobile: </p><input type="text" ng-model="address.mobile" name="mobile" />
- </div>
-	<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Landline *:</p> <input type="text" ng-model="address.landline" name="landline" />
- </div>
+	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Full Name *:</p> <input type="text" ng-model="address.fullName" name="fullName" /><br/>
+      </div>
+	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Shipping Address *:</p> <textarea ng-model="address.shippingAddress" name="shippingAddress" row ="3"></textarea> 
+      </div>
+      <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Nearest Landmark *:</p> <input type="text" ng-model="address.nearestLandmark" name="nearestLandmark" /><br/>
+      </div>
+      <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;"> State/Region/Province *: </p><input type="text" ng-model="address.state" name="state" /><br/>
+      </div>
+      <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">City *: </p><input type="text" name="city" ng-model="address.city" />
+      </div>
+      <div style="width: 45%;float: left;margin-bottom: 2%;">	<p style="float: left;width: 35%;text-align: left;">Pincode *:</p> <input type="text" ng-model="address.pinCode" name="pinCode" />
+     </div>
+	 <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Mobile: </p><input type="text" ng-model="address.mobile" name="mobile" />
+     </div>
+	<div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">Landline *:</p> <input type="text" ng-model="address.landline" name="landline" />
+      </div>
 		  </div>
 	 </form>
              </div>
+             
             <div class="form-group" style="margin-top: 2%;">
               <div class="pull-right">
-                <!-- <a class="btn btn-default" data-ng-click="rc.sampleWizard.backward()"
+                <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward()"
                    data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
-                 -->
-                <!-- <a class="btn btn-primary" data-loading-text="Please Wait..." data-ng-click="rc.sampleWizard.forward()" 
+                 
+                <!-- <a  data-loading-text="Please Wait..." data-ng-click="rc.sampleWizard.forward()" 
                    data-ng-show="(rc.sampleWizard.currentIndex != 0 ) && (rc.sampleWizard.currentIndex  < rc.sampleWizard.navigationLength)">Continue</a>
                  -->
                 <a class="btn btn-primary" data-ng-click="onCartSubmit();" 
