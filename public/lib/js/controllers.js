@@ -1044,7 +1044,7 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 }]);
 
 angular.module('adschela').controller("ApplicationController",['$scope','ngDialog',
-                     var text;                                          function($scope,ngDialog){
+                                                               function($scope,ngDialog){
 	$scope.carts = [];
 	$scope.rates = [];
 	

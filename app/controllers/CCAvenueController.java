@@ -11,9 +11,14 @@ import com.ccavenue.security.AesCryptUtil;
 public class CCAvenueController extends Controller {
 	public static Result ccavenue() {
     	CCAvenueDefaultVM ccAvenueDefaultVo = new CCAvenueDefaultVM();
+    	ccAvenueDefaultVo.Order_Id = "";// Akash to put actual value here
+    	ccAvenueDefaultVo.Amount = "";// Akash to put actual value here
     	ccAvenueDefaultVo.Checksum = getChecksum(
-    			ccAvenueDefaultVo.Merchant_Id, ccAvenueDefaultVo.Order_Id, 
-    			ccAvenueDefaultVo.Amount, ccAvenueDefaultVo.Redirect_Url, ccAvenueDefaultVo.WorkingKey);
+    			ccAvenueDefaultVo.Merchant_Id,
+    			ccAvenueDefaultVo.Order_Id,  
+    			ccAvenueDefaultVo.Amount, 
+    			ccAvenueDefaultVo.Redirect_Url,
+    			ccAvenueDefaultVo.WorkingKey);
         return ok(views.html.ccacheckout.render("Your new application is ready.", ccAvenueDefaultVo));
     }
     
