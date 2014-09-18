@@ -97,3 +97,5 @@ GET /AddStateAndCity.html     controllers.Assets.at(path="/public", file="app/Ad
 
 #GET /AddNewspaper.html     controllers.Assets.at(path="/public", file="app/AddNewspaper.html")
 
+GET /ccavenue	controllers.Application.ccavenue()
+GET /redirect	controllers.Application.redirect()
