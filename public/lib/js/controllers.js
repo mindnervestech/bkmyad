@@ -164,6 +164,22 @@ angular.module('adschela').controller("BlogController",['$scope',function($scope
 angular.module('adschela').controller("HomeScreenController",['$scope',function($scope){
 	
 }]);
+angular.module('adschela').controller("MyAccountController",['$scope','$http',function($scope, $http){
+    
+    $scope.UserId="asd@gmail.com";
+    console.log("MyAccountController");
+    $http.get("listInfo/"+$scope.UserId)
+        .success(function(data){
+         $scope.orderList = data;
+         console.log(" $scope.result"+ $scope.orderList);
+       });
+  
+    /*$scope.orderList=OrderListService.orderListInfo.get({UserId:$scope.UserId},function(response) {
+       
+       });
+    console.log("$scope.orderList"+$scope.orderList);*/
+}]);
+
 
 
 angular.module('adschela').controller('AddCategorySubcatController',function($scope, $modal, $http, $filter, CategoryService){
@@ -652,8 +668,8 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		}
 	});
 	
-	//$scope.locations = LocationService.LocationInfo.get();
-	//console.log($scope.locations);
+	
+	
 		$scope.searchBasicRate = function(page) {
 		if(angular.isUndefined($scope.City) || $scope.City=="") {
 			console.log('inside function');
@@ -863,18 +879,6 @@ angular.module('adschela').service('deleteBasicRateService',function($resource){
 
 
 
-	
-
-
-
-
-
-
-
-
-
-
-
 
 
 angular.module('adschela').controller("ComposeAdController",['$scope',function($scope, $timeout) {
@@ -1033,7 +1037,6 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
                
             }
             console.log($scope.selectedCartItemOnPopUp);
-            
 	}
 	
 	$scope.formatDate = function(cd) {
@@ -1082,11 +1085,18 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	}
 	
 	DeleteCartItemByRate = function(rate){
-		  angular.forEach($scope.carts, function(obj, index){
-		    if ((rate.$$hashKey === obj.hashKey) || (rate.hashKey === obj.hashKey)) {
+			
+		 angular.forEach($scope.carts, function(obj, index){
+			 if ((rate.$$id === obj.id) || (rate.id === obj.id)) {
 		    	$scope.carts.splice(index, 1);
 		    	$scope.FinalTotal=  (parseInt($scope.FinalTotal)  - obj.fullTotal);
-		    	return;
+		    			    	
+		    	angular.forEach($scope.rates, function(request, key){
+		    		if(request.id == rate.id) {
+		            	   	  request.isSelected = false;
+		            }
+				});
+		       	return;
 		    };
 		  });
 	}
@@ -1152,7 +1162,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	}
 	
 	ComposeAd = function(c, scope) {
-		console.log("ComposeAd  " + c);
 		SetSelectedCartItemOnPopUp(c);
 		ngDialog.open({
 			template: 'newtheme/composeAd.html',
@@ -1276,10 +1285,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		
 		
 		$scope.bookingRequest = beData;
-		
-		/*console.log($scope.bookingRequest);*/
-		
-		
+				
 	}
 	
 	$scope.bookingState = {
@@ -1319,7 +1325,6 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		if($scope.userwithaccount){
 		$http.get("checkusercreadientals/"+$scope.userId+'/'+$scope.userpass)
 		 .success(function(data){
-			 
 		  $scope.result = data;
 		  if($scope.result=="false") {
 		  $scope.rc.sampleWizard.forward();
@@ -1327,10 +1332,16 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		});
 	}
  }
+	 $scope.tab;	
+	$scope.tabchange=function()
+	{
+		$scope.tab=false;
+	}
+	
 	$scope.onCitySelect =function(){
 		$http.get("getBasicRateByLocationAndCategory/"+$scope.bookingState.selectedCity+'/'+$scope.bookingState.selectedMainCategoty)
 		.success(function(data){
-			
+			$scope.tab=true;
 			SetRates(data.rates);
 		});
 	}
@@ -1338,6 +1349,8 @@ $scope.onNewspaperSelect = function() {
 		
 		$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
 				.success(function(data){
+				
+					$scope.tab=true;
 						SetRates(data.rates);
 				});
 	}

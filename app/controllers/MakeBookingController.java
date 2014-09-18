@@ -379,6 +379,7 @@ extraFortick,String extraCostpersqcm) {
 	          cds.Nameofthenewspaper=cartItem.get(i).newspaper;   //location saved here
 	    	  cds.City=cartItem.get(i).location;//paper name saved here
  	    	  cds.Adtext=cartItem.get(i).description;
+	    	  cds.TotalCost=cartItem.get(i).fullTotal;
 	    	  cds.OrderID = orderId;
 	    	  cds.BorderCost=cartItem.get(i).extraForBorder;
 	    	  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;

@@ -102,7 +102,7 @@ public class UtilityQuery {
     	        q.setParameter(2, Category);
     	         
     	         List<Object[]> list = (List<Object[]>)q.getResultList();
-    	         return list;
+    	        return list;
  	
    }
      

@@ -47,7 +47,7 @@
               </li>
              
             </ul>
-            <span id="loading-id"><img src="images/loading.gif"/></span>
+            <!-- <span id="loading-id"><img src="images/loading.gif"/></span> -->
             <div class="tab-content" style="margin-left: 10px;">
               
               <form class="tab-pane active" id="first" name="firstForm"   rc-step novalidate>
@@ -75,7 +75,7 @@
               <form class="tab-pane" id="second" name="secondForm"  rc-step>
                 	
                 <tabset>
-			    <tab heading="Select Your Newspaper">
+			    <tab ng-click="tabchange()" heading="Select Your Newspaper">
 			   <!--  <p>{{checkMatrimonial}}</p> -->
 			    <div ng-show="checkMatrimonial">
 			     <select class="mnt-select" style="margin-top: 1%;">
@@ -165,7 +165,7 @@
                         <i class="icon-tags"></i> Basic Rate
                        </tab-heading>
 			    	   
-			    	   <div ng-show="rates.length > 0" class="backcolo">
+			    	   <div ng-show="rates.length > 0 && tab" class="backcolo">
 			    	  
 			    		<ul ng-show="rates.length > 0" >
 			    		<div class="Internal">
@@ -233,7 +233,7 @@
 			    	   <tab-heading>
                         <i class="icon-tags"></i> Basic Rate
                      </tab-heading>
-			    	   <div ng-show="rates.length > 0 " class="backcolo">
+			    	   <div ng-show="rates.length > 0 && tab " class="backcolo">
 			    		<ul ng-show="rates.length > 0" >
 			    		<div class="Internal">
 			    			<li ng-repeat="rate in rates" class="pillboxes custom-pill">
@@ -565,12 +565,6 @@ margin-left: 15px;
 }
 
 
-#loading-id {
-position: absolute;
-z-index: 100;
-top: 50%;
-left: 50%;
-}
 
 
 </style>

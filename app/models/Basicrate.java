@@ -81,9 +81,7 @@ public class Basicrate {
 		    		
 		    	}
 
-	    		
-		    	
-		    	if(currentPage >= 1 && currentPage <= totalPages) {
+	    		if(currentPage >= 1 && currentPage <= totalPages) {
 					start = (currentPage*rowsPerPage)-rowsPerPage;
 				}
 				if(currentPage>totalPages && totalPages!=0) {
