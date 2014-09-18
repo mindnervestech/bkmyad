@@ -6,7 +6,7 @@ public class CCAvenueDefaultVM {
 	public String Merchant_Id = "M_raj28780_28780"; //This id(also User_Id)  available at "Generate Working Key" of "Settings & Options"
 	public String Amount = "10.0"; //your script should substitute the amount here in the quotes provided here
 	public String Order_Id = UUID.randomUUID().toString();//request.getParameter("order_id");  //your script should substitute the unique order description here in the quotes provided here
-	public String Redirect_Url = "http://106.186.119.78:9000/redirect";//your redirect URL where your customer will be redirected after authorisation from CCAvenue
+	public String Redirect_Url = "http://106.186.119.78/redirect";//your redirect URL where your customer will be redirected after authorisation from CCAvenue
 	public String WorkingKey = "3vrz1tf22sk3qcgh4gjvijd1fuqdup0f";   
 	//put in the 32 bit alphanumeric key in the quotes provided here.Please note that get this key login to your CCAvenue merchant account and visit the "Generate Working Key" section at the "Settings & Options" page. 
 	public String Checksum = "";
