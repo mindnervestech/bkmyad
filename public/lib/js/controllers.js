@@ -25,61 +25,59 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 	                 {name:"Prajavani",img:"/NewDesign/np-logos/prajavani.jpg"},
 	                 {name:"udyavani-head",img:"/NewDesign/np-logos/udyavani-head.gif"},
 	                 {name:"Kashmir Times",img:"/NewDesign/np-logos/Kashmir Times Logo.jpg"},
-	                 {name:"dainik sambad",img:"/NewDesign/np-logos/dainik sambad.jpg"},
-	                 {name:"prothom alo logo",img:"/NewDesign/np-logos/prothom alo logo.jpg"},
-	                 {name:"Inquilab logo",img:"/NewDesign/np-logos/Inquilab logo.jpg"},
+	                 {name:"Dainik Sambad",img:"/NewDesign/np-logos/dainik sambad.jpg"},
+	                 {name:"Prothom alo",img:"/NewDesign/np-logos/prothom alo logo.jpg"},
+	                 {name:"Inquilab",img:"/NewDesign/np-logos/Inquilab logo.jpg"},
 	                 {name:"ABP",img:"/NewDesign/np-logos/ABP.png"},
-	                 {name:"deccanchronicle",img:"/NewDesign/np-logos/deccanchronicle.jpg"},
-	                 {name:"assamtribune",img:"/NewDesign/np-logos/assamtribune.jpg"},
-	                 {name:"dailyexcelsior",img:"/NewDesign/np-logos/dailyexcelsior.jpg"},
-	                 {name:"dailystar",img:"/NewDesign/np-logos/dailystar.jpg"},
-	                 {name:"dainikbhaskar",img:"/NewDesign/np-logos/dainikbhaskar.jpg"},
-	                 {name:"dainikjugasankha",img:"/NewDesign/np-logos/dainikjugasankha.jpg"},
-	                 {name:"dharitri",img:"/NewDesign/np-logos/dharitri.jpg"},
-	                 {name:"dinakaran",img:"/NewDesign/np-logos/dinakaran.jpg"},
-	                 {name:"dinamalar",img:"/NewDesign/np-logos/dinamalar.jpg"},
-	                 {name:"dinamani",img:"/NewDesign/np-logos/dinamani.jpg"},
-	                 {name:"divyabhaskar",img:"/NewDesign/np-logos/divyabhaskar.jpg"},
-	                 {name:"dna.jpg",img:"/NewDesign/np-logos/dna.jpg"},
-	                 {name:"easternchronicle",img:"/NewDesign/np-logos/easternchronicle.jpg"},
-	                 {name:"eenadu",img:"/NewDesign/np-logos/eenadu.jpg"},
-	                 {name:"ekdin",img:"/NewDesign/np-logos/ekdin.jpg"},
-	                 {name:"goamessenger",img:"/NewDesign/np-logos/goamessenger.jpg"},
-	                 {name:"himalibela",img:"/NewDesign/np-logos/himalibela.jpg"},
-	                 {name:"janpathsamachar",img:"/NewDesign/np-logos/janpathsamachar.jpg"},
-	                 {name:"jugantor",img:"/NewDesign/np-logos/jugantor.jpg"},
+	                 {name:"Deccan Chronicle",img:"/NewDesign/np-logos/deccanchronicle.jpg"},
+	                 {name:"Assam Tribune",img:"/NewDesign/np-logos/assamtribune.jpg"},
+	                 {name:"Daily Excelsior",img:"/NewDesign/np-logos/dailyexcelsior.jpg"},
+	                 {name:"Daily Star",img:"/NewDesign/np-logos/dailystar.jpg"},
+	                 {name:"Dainikbhaskar",img:"/NewDesign/np-logos/dainikbhaskar.jpg"},
+	                 {name:"Dainikjugasankha",img:"/NewDesign/np-logos/dainikjugasankha.jpg"},
+	                 {name:"Dharitri",img:"/NewDesign/np-logos/dharitri.jpg"},
+	                 {name:"Dinakaran",img:"/NewDesign/np-logos/dinakaran.jpg"},
+	                 {name:"Dinamalar",img:"/NewDesign/np-logos/dinamalar.jpg"},
+	                 {name:"Dinamani",img:"/NewDesign/np-logos/dinamani.jpg"},
+	                 {name:"Divyabhaskar",img:"/NewDesign/np-logos/divyabhaskar.jpg"},
+	                 {name:"DNA.jpg",img:"/NewDesign/np-logos/dna.jpg"},
+	                 {name:"Easternchronicle",img:"/NewDesign/np-logos/easternchronicle.jpg"},
+	                 {name:"Eenadu",img:"/NewDesign/np-logos/eenadu.jpg"},
+	                 {name:"Ekdin",img:"/NewDesign/np-logos/ekdin.jpg"},
+	                 {name:"Goa Messenger",img:"/NewDesign/np-logos/goamessenger.jpg"},
+	                 {name:"Himalibela",img:"/NewDesign/np-logos/himalibela.jpg"},
+	                 {name:"Janpath Samachar",img:"/NewDesign/np-logos/janpathsamachar.jpg"},
+	                 {name:"Jugantor",img:"/NewDesign/np-logos/jugantor.jpg"},
 	                 {name:"kannadaprabha",img:"/NewDesign/np-logos/kannadaprabha.jpg"},
 	                 {name:"lokprabha",img:"/NewDesign/np-logos/lokprabha.jpg"},
 	                 {name:"Lokmat",img:"/NewDesign/np-logos/Lokmat.jpg"},
-	                 {name:"ajit",img:"/NewDesign/np-logos/ajit.png"},	                 	                 
-	                 {name:"dainik-kashmir-times",img:"/NewDesign/np-logos/dainik-kashmir-times.png"},
-	                 {name:"Gujarat Samachar.png",img:"/NewDesign/np-logos/gs-log-big.png"},
-	                 {name:"image",img:"/NewDesign/np-logos/image.gif"},
+	                 {name:"Ajit",img:"/NewDesign/np-logos/ajit.png"},	                 	                 
+	                 {name:"Dainik-Kashmir-Times",img:"/NewDesign/np-logos/dainik-kashmir-times.png"},
+	                 {name:"Gujarat Samachar",img:"/NewDesign/np-logos/gs-log-big.png"},
+	                 {name:"Sanmagra",img:"/NewDesign/np-logos/image.gif"},
 	                 {name:"Divya Marathi",img:"/NewDesign/np-logos/image.jpg"},
-	                 {name:"malayalamanorama",img:"/NewDesign/np-logos/malayalamanorama.jpg"},
-	                 {name:"mathrubhumi",img:"/NewDesign/np-logos/mathrubhumi.jpg"},
-	                 {name:"midday",img:"/NewDesign/np-logos/midday.jpg"},
-	                 {name:"naiduniaepaper",img:"/NewDesign/np-logos/naiduniaepaper.jpg"},
-	                 {name:"Presentation1",img:"/NewDesign/np-logos/Presentation1.pptx"},	                 	                 
-	                 {name:"prothom alo logo",img:"/NewDesign/np-logos/prothom alo logo.jpg"},
-	                 {name:"punjabkesri",img:"/NewDesign/np-logos/punjabkesri.jpg"},
-	                 {name:"punyanagari-big",img:"/NewDesign/np-logos/punyanagari-big.png"},
-	                 {name:"sakal",img:"/NewDesign/np-logos/sakal.jpg"},
-	                 {name:"sakshi",img:"/NewDesign/np-logos/sakshi.jpg"},
-	                 {name:"sambad",img:"/NewDesign/np-logos/sambad.jpg"},
-	                 {name:"sandesh",img:"/NewDesign/np-logos/sandesh.jpg"},
-	                 {name:"sandhyatimes",img:"/NewDesign/np-logos/sandhyatimes.jpg"},
-	                 {name:"thenewindianexpress",img:"/NewDesign/np-logos/thenewindianexpress.jpg"},	                 	                 
+	                 {name:"Malayalamanorama",img:"/NewDesign/np-logos/malayalamanorama.jpg"},
+	                 {name:"Mathrubhumi",img:"/NewDesign/np-logos/mathrubhumi.jpg"},
+	                 {name:"Midday",img:"/NewDesign/np-logos/midday.jpg"},
+	                 {name:"Naiduniaepaper",img:"/NewDesign/np-logos/naiduniaepaper.jpg"},
+	                 {name:"Prothom alo",img:"/NewDesign/np-logos/prothom alo logo.jpg"},
+	                 {name:"Punjab Kesri",img:"/NewDesign/np-logos/punjabkesri.jpg"},
+	                 {name:"Punyanagari-Big",img:"/NewDesign/np-logos/punyanagari-big.png"},
+	                 {name:"Sakal",img:"/NewDesign/np-logos/sakal.jpg"},
+	                 {name:"Sakshi",img:"/NewDesign/np-logos/sakshi.jpg"},
+	                 {name:"Sambad",img:"/NewDesign/np-logos/sambad.jpg"},
+	                 {name:"Sandesh",img:"/NewDesign/np-logos/sandesh.jpg"},
+	                 {name:"Sandhyatimes",img:"/NewDesign/np-logos/sandhyatimes.jpg"},
+	                 {name:"Thenewindianexpress",img:"/NewDesign/np-logos/thenewindianexpress.jpg"},	                 	                 
 	                 {name:"The-Samaj",img:"/NewDesign/np-logos/The-Samaj.png"},
-	                 {name:"thesiasatdaily",img:"/NewDesign/np-logos/thesiasatdaily.jpg"},
-	                 {name:"thestatesman",img:"/NewDesign/np-logos/thestatesman.jpg"},
+	                 {name:"Thesiasatdaily",img:"/NewDesign/np-logos/thesiasatdaily.jpg"},
+	                 {name:"Thestatesman",img:"/NewDesign/np-logos/thestatesman.jpg"},
 	                 {name:"The-Telegraph",img:"/NewDesign/np-logos/The-Telegraph.png"},
 	                 {name:"The-Tribune",img:"/NewDesign/np-logos/The-Tribune.png"},
-	                 {name:"navbharat",img:"/NewDesign/np-logos/navbharat.gif"},
-	                 {name:"navbharattimes",img:"/NewDesign/np-logos/navbharattimes.jpg"},
-	                 {name:"newbline",img:"/NewDesign/np-logos/newbline.png"},	                 	                 
-	                 {name:"prabhatkhabar",img:"/NewDesign/np-logos/prabhatkhabar.jpg"}];
-	
+	                 {name:"Navbharat",img:"/NewDesign/np-logos/navbharat.gif"},
+	                 {name:"Navbharattimes",img:"/NewDesign/np-logos/navbharattimes.jpg"},
+	                 {name:"Newbline",img:"/NewDesign/np-logos/newbline.png"},	                 	                 
+	                 {name:"Prabhatkhabar",img:"/NewDesign/np-logos/prabhatkhabar.jpg"}];
 	
 	
 	$scope.carousel= {
@@ -918,7 +916,6 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 	$scope.onNoBgcolorSelected=function(){
 		console.log("onNoBgcolorSelected ");
 		  if($scope.selectedCartItemOnPopUp.nobgColor) { 
-			  
 			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - backgroundColor;
 			 $scope.selectedCartItemOnPopUp.onbgColorchange='';
 		  }
@@ -1093,10 +1090,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 			 if ((rate.$$id === obj.id) || (rate.id === obj.id)) {
 		    	$scope.carts.splice(index, 1);
 		    	$scope.FinalTotal=  (parseInt($scope.FinalTotal)  - obj.fullTotal);
-
-		    	
-		    	return;
-
 		    			    	
 		    	angular.forEach($scope.rates, function(request, key){
 		    		if(request.id == rate.id) {
@@ -1104,7 +1097,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		            }
 				});
 		       	return;
-
 		    };
 		  });
 	}
@@ -1140,8 +1132,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	
 	SaveToCart = function(item) {
 		var FinalTotal = 0;
-		
-		
 		angular.forEach($scope.carts, function(obj, index){
 		    if ((item.$$hashKey === obj.hashKey) || (item.hashKey === obj.hashKey)) {
 		    	CloneToCartItem($scope.carts[index],item);
@@ -1152,10 +1142,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		  });
 		$scope.FinalTotal=0;
 		$scope.FinalTotal = FinalTotal;
-		
 	}
 	
-  
 	$scope.removeFromCart = function (c) {
 		DeleteCartItemByRate(c);
 	}
@@ -1239,6 +1227,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	$scope.userId;
 	 $scope.rates1 = [];
 	$scope.modeOfPayment;
+	 $scope.tab;
 	/*$scope.khandobaVar = false;*/
 	console.log("mainCategoty"+$scope.userid);
 	
@@ -1297,7 +1286,6 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	}
 	$scope.init = function(beData) {
 		
-		
 		$scope.bookingRequest = beData;
 				
 	}
@@ -1328,7 +1316,6 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		.success(function(data){
 			if(data) {
 				$scope.resultSubCategory = data;
-				
 			} else {
 				$scope.resultSubCategory = [];
 			}
@@ -1341,7 +1328,6 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		if($scope.userwithaccount){
 		$http.get("checkusercreadientals/"+$scope.userId+'/'+$scope.userpass)
 		 .success(function(data){
-			 
 		  $scope.result = data;
 		  if($scope.result=="false") {
 		  $scope.rc.sampleWizard.forward();
@@ -1349,7 +1335,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		});
 	}
  }
-	 $scope.tab;	
+		
 	$scope.tabchange=function()
 	{
 		$scope.tab=false;
