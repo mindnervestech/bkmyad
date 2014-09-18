@@ -24,6 +24,8 @@ public class User {
 	   public String mobileNum;
 	   @Required
 	   public String email;
+	   public String role;
+	   
 	   
 	   
 	public Long getId() {

@@ -93,16 +93,16 @@ public class UtilityQuery {
      
      public static List<Object[]> getBasicRateByLocationAndCategory(String city,String Category) {
        	
-    	 System.out.println("-=-=-"+city+"-=-=-"+Category);
+    	
     	  Query q = JPA.em().createNativeQuery("SELECT BasicRateID,City,Basicrate.Nameofthenewspaper,Textaddrate,BasicratesperText,Exstracostperline,Beforebookingdate,Border,Backcolor,Tick,ExtracostperSqcm " +
     				"FROM Basicrate INNER JOIN Newspaperdetails ON (Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) " +
     				"where Basicrate.City= ?1 and Basicrate.Category= ?2");
     	         
     	         q.setParameter(1, city);
-    	        q.setParameter(2, Category);
+    	         q.setParameter(2, Category);
     	         
     	         List<Object[]> list = (List<Object[]>)q.getResultList();
-    	        return list;
+    	         return list;
  	
    }
      

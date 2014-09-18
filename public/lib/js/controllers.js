@@ -511,11 +511,8 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 	};
 	
 	$scope.setData = function(ancmt) {
-	
-		 console.log(ancmt);
+		
 		$scope.resultstate = getStateNameservice.Allstate.get();
-		$scope.resultCity = [{cityname:ancmt.Nameofcities}];
-		console.log("------"+$scope.resultCity+"----++");
 		$scope.ancmtData = ancmt;
 		$('#myModal2').modal();
 				
@@ -1047,7 +1044,7 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 }]);
 
 angular.module('adschela').controller("ApplicationController",['$scope','ngDialog',
-                                                               function($scope,ngDialog){
+                     var text;                                          function($scope,ngDialog){
 	$scope.carts = [];
 	$scope.rates = [];
 	
@@ -1072,7 +1069,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		
 	PushToCart = function(c) {
 		$scope.carts.push(c);
-		$scope.rate = (parseInt($scope.rate) + parseInt(c.rate));
+	
+		//c.
 		
 	}
 	
@@ -1085,18 +1083,11 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	}
 	
 	DeleteCartItemByRate = function(rate){
-			
-		 angular.forEach($scope.carts, function(obj, index){
-			 if ((rate.$$id === obj.id) || (rate.id === obj.id)) {
+		  angular.forEach($scope.carts, function(obj, index){
+		    if ((rate.$$hashKey === obj.hashKey) || (rate.hashKey === obj.hashKey)) {
 		    	$scope.carts.splice(index, 1);
 		    	$scope.FinalTotal=  (parseInt($scope.FinalTotal)  - obj.fullTotal);
-		    			    	
-		    	angular.forEach($scope.rates, function(request, key){
-		    		if(request.id == rate.id) {
-		            	   	  request.isSelected = false;
-		            }
-				});
-		       	return;
+		    	return;
 		    };
 		  });
 	}

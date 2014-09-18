@@ -26,7 +26,7 @@ public class Newspaperdetails {
 	public String LogoName;
 	public String Addedition;
 	@Transient
-public List<String> NameofCities;
+	public List<String> NameofCities;
 	
 	public String Nameofcities;
 	

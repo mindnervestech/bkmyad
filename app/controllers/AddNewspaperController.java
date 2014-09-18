@@ -31,7 +31,6 @@ public class AddNewspaperController extends Controller{
 		
 			
 		for (Newspaperdetails newspaperdetailsVM: allnewspaper) {
-			/*List<String> list = (List<String>) getCityname(newspaperdetailsVM.Statename);*/
 			NewspaperdetailsVM vm = new NewspaperdetailsVM(newspaperdetailsVM);
 			listOfNewpaper.add(vm);
 		}

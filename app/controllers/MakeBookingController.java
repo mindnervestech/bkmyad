@@ -77,10 +77,10 @@ public class MakeBookingController extends Controller {
 		
 		
 	}
-	 @Transactional
+	    @Transactional
 	    public static Result getBasicRateByLocationAndCategory(String Location,String Category) {
 	    	List<Object[]> rates1 = UtilityQuery.getBasicRateByLocationAndCategory(Location.trim(),Category.trim()); 
-		 	System.out.println("----------"+Location+"---------"+Category+"----");
+		 
 	    	List<Rate> rates = Lists.newArrayList();
             
 			for(Object[] rs :rates1) {
@@ -226,24 +226,9 @@ extraFortick,String extraCostpersqcm) {
             this.extraFortick=extraFortick;
             this.extraCostpersqcm=extraCostpersqcm;
             return this;
+      }
+	
 }
-
-		
-		
-		/*public Rate withDateConfig(DateConfig dateConfig) {
-			this.dateConfig = dateConfig;
-			return this;
-		}
-		
-		public Rate withExtraConfig(ExtraConfig extraConfig) {
-			this.extraConfig = extraConfig;
-			return this;
-		}*/
-		
-	}
-	
-	
-	
 	public class ExtraConfig {
 		public float rate;
 		public String rateOf;
@@ -432,10 +417,6 @@ extraFortick,String extraCostpersqcm) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// System.out.println("In makebooking"+nodes);
-		/* System.out.println("\n sub"+subcategory);*/
 		 return ok("");
 	 }
-	    
-	
 }

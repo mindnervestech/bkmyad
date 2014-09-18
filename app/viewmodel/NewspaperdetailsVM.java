@@ -51,12 +51,6 @@ public class NewspaperdetailsVM {
     	this.Beforebookingdate = newspaperdetails.Beforebookingdate;
     	this.Allow = newspaperdetails.Allow;
     	this.Statename = newspaperdetails.Statename;
-    	/*
-    	for(String city : City.getallcity(newspaperdetails.Statename)){
-			SelectionVM svm = new SelectionVM(city);
-			svm.isSelect = city.contains(this.Nameofcities);
-			this.NameofCitiesVM.add(svm);
-		}*/
     	    	
     }
     
