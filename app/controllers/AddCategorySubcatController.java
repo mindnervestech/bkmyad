@@ -25,8 +25,14 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import viewmodel.CategorySubCatVM;
 
+import views.html.addcatabdsubcat;
 
 public class AddCategorySubcatController extends Controller{
+	
+	 public static Result index() {
+	        return ok(addcatabdsubcat.render());
+	    }
+	    
 
 	@Transactional
 	public static Result getCategory(String cname,int currentPage) {

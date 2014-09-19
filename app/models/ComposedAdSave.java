@@ -207,15 +207,9 @@ public class ComposedAdSave{
 	
 	    @Transactional
 	    public static List<ComposedAdSave> getAllOrderList(String UserId) {
-	    
-	    System.out.println("------------"+UserId+"------------");
 	    Query q = JPA.em().createQuery("Select a from ComposedAdSave a where a.userEmailId = ?1");
 	    q.setParameter(1, UserId);
 	    return (List<ComposedAdSave>)q.getResultList();
-			
-			
 	    }
-	
-	
 }
   

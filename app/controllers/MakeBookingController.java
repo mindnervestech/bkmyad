@@ -63,7 +63,7 @@ public class MakeBookingController extends Controller {
 	public static Result checkUserNameandPassword(String Username,String Password){
 		
 		 User existingUser = User.findByCredentials(Username,Password);
-		   System.out.println("existingUser:: "+existingUser);
+		   
 		 if (existingUser != null) {
 		    	return ok("false");
 		    }
@@ -241,7 +241,7 @@ extraFortick,String extraCostpersqcm) {
 	
 	@JsonIgnoreProperties(ignoreUnknown=true)
 	public static class CartItem {
-		public int id;
+		public Long id;
 		public String type;
 		public String description;
 		public String mainCategoty;
@@ -266,7 +266,8 @@ extraFortick,String extraCostpersqcm) {
 		public String nobgColor;
 		
 		public CartItem() {};
-		public CartItem(int id, String type, String location, String mainCategoty,
+		
+		public CartItem(Long id, String type, String location, String mainCategoty,
 				String subcategory, String newspaper, float amount) {
 			super();
 			this.id = id;
@@ -331,7 +332,6 @@ extraFortick,String extraCostpersqcm) {
 			address = objectMapper.readValue(json.get("address").traverse(),Address.class);
 			
 	    	addressDetails.pinCode=address.pinCode;
-	    	System.out.println("addressDetails.pinCode:"+addressDetails.pinCode);
 	    	addressDetails.fullName=address.fullName;
 	    	addressDetails.address=address.shippingAddress;
 	    	addressDetails.nearestLandmark=address.nearestLandmark;
@@ -391,18 +391,14 @@ extraFortick,String extraCostpersqcm) {
 	    	  //cartItem.get(i).nobgColor=   'true' means it is not selected ;
 	    	  if( cartItem.get(i).onBorderSelected.equals("No")&&cartItem.get(i).nobgColor.equals("true")) {
 	    		  cds.TotalCost =(cartItem.get(i).rate + ((cartItem.get(i).extra) * (cartItem.get(i).extraUnit))) * cartItem.get(i).dates.length;
-	    		System.out.println("Both NOT selected ");
 	    	  }
 	    	  else if(cartItem.get(i).onBorderSelected.equals("Yes")&&cartItem.get(i).nobgColor.equals("false")){
 	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBackgroud + cartItem.get(i).extraForBorder + ((cartItem.get(i).extra)*(cartItem.get(i).extraUnit)))*cartItem.get(i).dates.length;
-	    		  System.out.println("Both selected ");
 	    	  }
 	    	  else if(cartItem.get(i).onBorderSelected.equals("Yes")&&cartItem.get(i).nobgColor.equals("true")){
 	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBorder + ((cartItem.get(i).extra) * (cartItem.get(i).extraUnit)))*cartItem.get(i).dates.length;
-	    		  System.out.println("Yes border selected ");
 	    	  }else if (cartItem.get(i).onBorderSelected.equals("No")&&cartItem.get(i).nobgColor.equals("false")){
 	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBackgroud+((cartItem.get(i).extra) * (cartItem.get(i).extraUnit))) * cartItem.get(i).dates.length;
-	    		  System.out.println("NO border selected ");
 	    	  }
 	    		 System.out.println("Full total to save into Db:"+cds.TotalCost);
 	    	  JPA.em().persist(cds);

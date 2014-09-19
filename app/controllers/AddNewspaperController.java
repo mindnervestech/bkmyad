@@ -16,12 +16,17 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import viewmodel.NewspaperdetailsVM;
 import viewmodel.SelectionVM;
+import views.html.addnewspap;
+
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.Splitter;
 
 public class AddNewspaperController extends Controller{
 
+	 public static Result index() {
+	        return ok(addnewspap.render());
+	    } 
 	@Transactional
 	public static Result getNewpaper(String Nameofthenewspaper,int currentPage) {
 		long totalPages = Newspaperdetails.getAllnewpaperTotal(Nameofthenewspaper, 8);
@@ -57,9 +62,9 @@ public class AddNewspaperController extends Controller{
 	
 	@Transactional
 	public static Result deleteNewpaper(String id) {
-		System.out.println("/*/*/*/"+id+"/*/*/*");
+		
 		Newspaperdetails newspaperdetails =  Newspaperdetails.findById(id);
-		System.out.println("/*/*/*/"+id+"/*/*/*");
+	
 		newspaperdetails.delete();
 		return ok();
 	}
@@ -91,7 +96,7 @@ public class AddNewspaperController extends Controller{
     	
     	
     	newspaperdetailsFromFE.merge();
-		/*System.out.println("INSIDE UPDATE"+form.get("ic.id"));*/
+		
 		return ok();
 	}
 	
@@ -142,17 +147,7 @@ public class AddNewspaperController extends Controller{
     	}
     	return ok();
     }
-    	
-	/*@Transactional
-    public static Result getCityname(String state){
-    	List<String> listcity = City.getallcity(state); 
-    	
-    	if(!listcity.isEmpty()) {
-    		Iterable<String> subCats = Splitter.on(",").split(listcity.get(0));
-    		return ok(Json.toJson(subCats));
-    	}
-    	return ok();
-    }*/
+    
 	
 	
 }

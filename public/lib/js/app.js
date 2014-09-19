@@ -28,7 +28,6 @@ var app = angular.module('adschela',
                         	        templateUrl: '/assets/MyAccount.html',
                         	        controller: 'MyAccountController'
                         	      })
-                        	     
                         	      .when('/contactUs', {
                         	        templateUrl: 'Contact.html',
                         	        controller: 'ContactUsController'
@@ -50,27 +49,6 @@ var app = angular.module('adschela',
                         	        controller: 'ShowAnnouncementController'
                         	      })
                         	                            	      
-                        	      .when('/AddBasicRate', {
-                          	        templateUrl: 'AddBasicRate.html',
-                          	        controller: 'AddBasicRateController'
-                          	      })
-                          	      
-                          	    .when('/AddStateCity', {
-                          	        templateUrl: 'AddStateAndCity.html',
-                          	        controller: 'AddStateCityController'
-                          	      })
-                          	      
-                          	      
-                          	    .when('/AddCat', {
-                          	        templateUrl: 'AddCategoryAndSubCat.html',
-                          	        controller: 'AddCategorySubcatController'
-                          	      })
-                          	      
-                          	      .when('/AddNewspaper', {
-                          	        templateUrl: 'AddNewspaper.html',
-                          	        controller: 'AddNewspaperController'
-                          	      })
-                        	     
                           	      .when('/termsAndConditions', {
                         	        templateUrl: 'TermsandConditions.html',
                         	         controller: 'TermsandConditionsController'
@@ -107,12 +85,8 @@ var app = angular.module('adschela',
                           	        templateUrl: 'dispFrame.html',
                           	        controller: 'dispclassifiedcontroller'
                           	      })
-                          	      
-                        	      
                         	}).directive('ngGoogleTransliterate',['$window','$parse', function ($window,$parse) {
-    
 						    	return {
-						    		
 						    		require: '^ngModel',
 									scope: {
 									      ngModel: '=',

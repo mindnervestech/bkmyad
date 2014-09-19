@@ -22,10 +22,15 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import viewmodel.BasicrateVM;
-
+import views.html.addbasicrate;
 
 public class AddbasicRateController extends Controller{
 
+	//addbasicrate.render()
+	 public static Result index() {
+	        return ok(addbasicrate.render());
+	    }
+	    
 	@Transactional
 	public static Result getBasicrate(String City,int currentPage) {
 		long totalPages = Basicrate.getAllAnnouncementsTotal(City, 8);
@@ -76,9 +81,7 @@ public class AddbasicRateController extends Controller{
 	
 	@Transactional
 	public static Result deleteBasicRate(String id) {
-		System.out.println("/*/*/*/"+id+"/*/*/*");
 		Basicrate basicrate =  Basicrate.findById(id);
-		System.out.println("/*/*/*/"+id+"/*/*/*");
 		basicrate.delete();
 		return ok();
 	}
@@ -107,10 +110,8 @@ public class AddbasicRateController extends Controller{
     	
     	    	
     	basicrate.merge();
-		/*System.out.println("INSIDE UPDATE"+form.get("ic.id"));*/
 		return ok();
 	}
-	
 
     @Transactional
 	public static Result getNewspaper()
@@ -173,17 +174,4 @@ public class AddbasicRateController extends Controller{
     	}
     	return ok();
     }
-    	
-	/*@Transactional
-    public static Result getCityname(String state){
-    	List<String> listcity = City.getallcity(state); 
-    	
-    	if(!listcity.isEmpty()) {
-    		Iterable<String> subCats = Splitter.on(",").split(listcity.get(0));
-    		return ok(Json.toJson(subCats));
-    	}
-    	return ok();
-    }*/
-	
-	
 }

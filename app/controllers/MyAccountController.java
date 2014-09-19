@@ -20,11 +20,7 @@ import viewmodel.OrderListVM;
 
 
 public class MyAccountController extends Controller {
-	/*@Transactional
-	public static Result index() {
-		return ok(myaccount.render());
-		//return ok(myaccount.render(Json.stringify(Json.toJson(makeOrderList()))));
-	}*/
+	
 	
 	@Transactional
 	public static Result getAllUserOrder(String UserId) {

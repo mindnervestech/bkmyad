@@ -310,9 +310,8 @@
                 <tr ng-repeat="c in carts">
                   <td>{{c.mainCategoty}}</td>
                   <td>{{c.location}} - {{c.newspaper}}</td>
-				  <!-- <span ng-show="c.description == '' " style="color:red">Not set</span> -->
-                  <td><span tooltip="{{description == '' ? 'Not Set' : c.description}}"  ng-bind="c.description == '' ? 'Not Set' : c.description|limitTo:40" ></span><a ng-click="composeAd(c)" style="cursor: pointer;">...</a></td>
-                  
+                  <td><span ng-show="c.description == '' " style="color:red">Not set</span>
+                  <span ng-bind="c.description|limitTo:40"></span><a ng-click="composeAd(c)" style="cursor: pointer;"></a></td>
                   <td><!-- <a href="http://www.w3schools.com">Visit W3Schools.com!</a> -->
                   	<span ng-show="c.dates.length == 0" style="color:red">Not set</span>
                   	<span ng-repeat="cd in c.dates" class="dates-coll label label-warning" 

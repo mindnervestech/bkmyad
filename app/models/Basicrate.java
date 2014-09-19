@@ -72,8 +72,6 @@ public class Basicrate {
 		    	int  start=0;
 		    	/*Query q;*/
 		    	String sql="";
-		    	
-		    	System.out.println("------------"+City+"------------");
 		    	if(City.trim().equals("")) {
 		    		sql = "Select a from Basicrate a";
 		    	} else {

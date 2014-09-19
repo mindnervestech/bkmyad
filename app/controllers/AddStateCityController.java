@@ -23,9 +23,15 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import viewmodel.StateCityVM;
+import views.html.stateandcity;
 
 
 public class AddStateCityController extends Controller{
+	
+	 public static Result index() {
+	        return ok(stateandcity.render());
+	    }
+	    
 
 	@Transactional
 	public static Result getStateName(String Statename,int currentPage) {
@@ -49,16 +55,7 @@ public class AddStateCityController extends Controller{
 		return ok(Json.toJson(map));
 	}
 	
-	/*@Transactional
-	public static Result saveState() {
-		DynamicForm form = DynamicForm.form().bindFromRequest();
-		State state = new State();
-		
-		state.Statename=form.get("Statename");
-		
-		state.save();
-		return ok();
-	}*/
+
 	
 	@Transactional
 	public static Result saveCity() {

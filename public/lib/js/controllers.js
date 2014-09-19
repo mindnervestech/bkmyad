@@ -445,7 +445,7 @@ angular.module('adschela').controller("MyAccountController",['$scope','$http',fu
             }
     );
 });
-angular.module('adschela').controller('AddNewspaperController',function($scope, $modal, $http, $filter, NewpaperService,deleteNewpaperService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice,announcementIconService){
+angular.module('adschela').controller('AddNewspaperController',function($scope, $modal, $http, $filter, NewpaperService,deleteNewpaperService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice){
 	
 	
 	$scope.Nameofthenewspaper = " ";
@@ -637,7 +637,7 @@ angular.module('adschela').service('deleteNewpaperService',function($resource){
     );
 });
 
-angular.module('adschela').controller('AddBasicRateController',function($scope, $modal, $http, $filter, BasicRateService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice, deleteBasicRateService, announcementIconService){
+angular.module('adschela').controller('AddBasicRateController',function($scope, $modal, $http, $filter, BasicRateService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice, deleteBasicRateService){
 
 	$scope.City = " ";
 	$scope.pageNumber;
@@ -1306,7 +1306,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		$scope.bookingState.selectedState="";
 		$scope.bookingState.selectedCity="";
 		$scope.bookingState.selectedMainCategoty = cat;
-		$scope.rc.sampleWizard.forward()
+		$scope.rc.sampleWizard.forward();
 		
 		if($scope.bookingState.selectedMainCategoty == "Matrimonial"){
 			$scope.checkMatrimonial = true;
@@ -1326,6 +1326,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		});
 	}
 	$scope.checkForUsernameAndPassword =function(){
+		
 		if($scope.userwithoutaccount){
 			 $scope.rc.sampleWizard.forward();
 		}

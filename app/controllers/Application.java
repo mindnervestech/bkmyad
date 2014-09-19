@@ -391,19 +391,7 @@ public class Application extends Controller {
     	return ok();
     }
     
-    /*@Transactional
-    public static Result getcity(String statename){
-    	List<City> listallcity = City.getallcity(statename);
-    	    	
-    	if(!listallcity .isEmpty()) {
-    		Iterable<String> subCats = Splitter.on(",").split(listallcity.get(0).Cityname);
-    		return ok(Json.toJson(subCats));
-    	}
-    	return ok();
-    	
-    	getDiscountByStateCityAndCategory(state,city,category);
-    }*/
-    
+   
 
 	@Transactional
 	public static Result getallcityName(String cname,String nname){
@@ -582,7 +570,13 @@ public class Application extends Controller {
     	String pass =form.get("txtpwd");
 	    User existingUser = User.findByCredentials(email,pass);
 	    if (existingUser != null) {
-	    	return redirect("/");
+	    	System.out.println("existingUser: "+existingUser.role);
+	    	if(existingUser.role.equalsIgnoreCase("admin"))
+	    	{
+	    		return redirect("/AdminPanelController.html");	
+	    	}else {
+	    		return redirect("/");
+	    	}
 	    }
 	    else {
 	    	flash("login_error", "Please check your username and password");
