@@ -416,8 +416,8 @@
                 <!-- <a  data-loading-text="Please Wait..." data-ng-click="rc.sampleWizard.forward()" 
                    data-ng-show="(rc.sampleWizard.currentIndex != 0 ) && (rc.sampleWizard.currentIndex  < rc.sampleWizard.navigationLength)">Continue</a>
                  -->
-                <a class="btn btn-primary" data-ng-click="onCartSubmit();" 
-                 data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength">Complete</a><!-- " -->
+                <a class="btn btn-primary" ng-bind="modeOfPayment == 'cod' ? 'Submit Order': 'Continue For Payment'" data-ng-click="onCartSubmit();" 
+                 data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength"></a><!-- " -->
               </div>
             </div>
           </div>

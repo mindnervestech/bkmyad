@@ -1443,7 +1443,12 @@ $scope.onNewspaperSelect = function() {
 			}
 		}).success(function(data){
 			console.log(data);
-			});
+			if($scope.modeOfPayment === 'cod') {
+				
+			} else {
+				window.location = data;
+			}
+		});
 	}
 	 	
 }]);

@@ -1,12 +1,11 @@
 package controllers;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.zip.Adler32;
 
-import models.AddressDetails;
+import javax.persistence.criteria.Order;
 
-import play.libs.Json;
+import models.AddressDetails;
+import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
 import viewmodel.CCAvenueDefaultVM;
@@ -14,29 +13,32 @@ import viewmodel.CCAvenueDefaultVM;
 import com.ccavenue.security.AesCryptUtil;
 
 public class CCAvenueController extends Controller {
-	
-	public static Result ccavenue(Long id) {
-		
-		AddressDetails addressDetails = AddressDetails.findById(id);
-		
-    	CCAvenueDefaultVM ccAvenueDefaultVo = new CCAvenueDefaultVM();
-    	//ccAvenueDefaultVo.Merchant_Id=addressDetails.id;
-    	ccAvenueDefaultVo.billing_cust_name=addressDetails.fullName;
-    	ccAvenueDefaultVo.billing_cust_address=addressDetails.address;
-    	ccAvenueDefaultVo.billing_city=addressDetails.city;
-    	ccAvenueDefaultVo.billing_cust_state=addressDetails.state;
-    	ccAvenueDefaultVo.billing_cust_tel=addressDetails.landLine;
-    	ccAvenueDefaultVo.billing_zip=addressDetails.pinCode;
-    	ccAvenueDefaultVo.billing_cust_email=addressDetails.userEmailid;
-    	
-    	ccAvenueDefaultVo.Order_Id = "";// Akash to put actual value here
-    	ccAvenueDefaultVo.Amount = "";// Akash to put actual value here
-    	ccAvenueDefaultVo.Checksum = getChecksum(
-    			ccAvenueDefaultVo.Merchant_Id,
-    			ccAvenueDefaultVo.Order_Id,  
-    			ccAvenueDefaultVo.Amount, 
-    			ccAvenueDefaultVo.Redirect_Url,
-    			ccAvenueDefaultVo.WorkingKey);
+	@Transactional
+	public static Result ccavenue(String orderId) {
+		models.Order o = models.Order.byId(orderId);
+	    	CCAvenueDefaultVM ccAvenueDefaultVo = new CCAvenueDefaultVM();
+	     	ccAvenueDefaultVo.Order_Id = orderId;
+	     	ccAvenueDefaultVo.Amount = o.total + "";
+	     	AddressDetails addressDetails = AddressDetails.findByOrderId(orderId);
+	     	ccAvenueDefaultVo.billing_cust_name = addressDetails.fullName;
+	     	ccAvenueDefaultVo.billing_cust_address = addressDetails.address;
+	     	ccAvenueDefaultVo.billing_cust_country = "India";
+	     	ccAvenueDefaultVo.billing_zip = addressDetails.pinCode;
+	     	ccAvenueDefaultVo.billing_cust_email = o.email;
+	     	ccAvenueDefaultVo.billing_cust_state = addressDetails.state;
+	     	ccAvenueDefaultVo.billing_cust_tel = addressDetails.mobile;
+	     	
+	     	ccAvenueDefaultVo.delivery_cust_name = addressDetails.fullName;
+	     	ccAvenueDefaultVo.delivery_cust_address = addressDetails.address;
+	     	ccAvenueDefaultVo.delivery_cust_country = "India";
+	     	ccAvenueDefaultVo.delivery_zip = addressDetails.pinCode;
+	     	ccAvenueDefaultVo.delivery_cust_state = addressDetails.state;
+	     	ccAvenueDefaultVo.delivery_cust_tel = addressDetails.mobile;
+	     	ccAvenueDefaultVo.billing_cust_city = addressDetails.city;
+	     	ccAvenueDefaultVo.Checksum = getChecksum( ccAvenueDefaultVo.Merchant_Id,
+	     			ccAvenueDefaultVo.Order_Id, ccAvenueDefaultVo.Amount, ccAvenueDefaultVo.Redirect_Url,
+	     			ccAvenueDefaultVo.WorkingKey);
+	    
         return ok(views.html.ccacheckout.render("Your new application is ready.", ccAvenueDefaultVo));
     }
     

@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Query;
 
 import play.data.validation.Constraints.Required;
 import play.db.jpa.JPA;
@@ -24,11 +23,15 @@ public class AddressDetails {
 	   public String  mobile;
 	   public String landLine;
 	   public String userEmailid;
-	   
-	   public static AddressDetails findById(Long id2) {
-	    	Query query = JPA.em().createQuery("Select a from AddressDetails a where a.id = ?1");
-			query.setParameter(1, id2);
-	    	return (AddressDetails) query.getSingleResult();
-	    }
+	   public String orderId;
+	public static AddressDetails findById(String email) {
+		return JPA.em().createQuery("from AddressDetails where email = :email",AddressDetails.class)
+				.setParameter("email", email).getSingleResult();
+	}
+	
+	public static AddressDetails findByOrderId(String orderId) {
+		return JPA.em().createQuery("from AddressDetails where orderId = :orderId",AddressDetails.class)
+				.setParameter("orderId", orderId).getSingleResult();
+	}
 	    
 }

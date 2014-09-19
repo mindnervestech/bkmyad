@@ -15,11 +15,6 @@ import javax.persistence.Query;
 
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
-import play.libs.Json;
-import play.mvc.Result;
-import viewmodel.AnnouncementVM;
-import viewmodel.ResultVM;
-import viewmodel.NewspaperVM;
 
 
 @Entity

@@ -15,7 +15,8 @@ import play.db.jpa.Transactional;
 public class ComposedAdSave{
 
 	   @Id
-	   public long OID;
+	   @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   public Long OID;
 	   public String IpAddress;
 	   public String  OrderID;
 	   public String Nameofthenewspaper;
@@ -210,6 +211,10 @@ public class ComposedAdSave{
 	    Query q = JPA.em().createQuery("Select a from ComposedAdSave a where a.userEmailId = ?1");
 	    q.setParameter(1, UserId);
 	    return (List<ComposedAdSave>)q.getResultList();
+			
+			
 	    }
+	
+	
 }
   

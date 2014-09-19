@@ -570,7 +570,6 @@ public class Application extends Controller {
     	String pass =form.get("txtpwd");
 	    User existingUser = User.findByCredentials(email,pass);
 	    if (existingUser != null) {
-	    	System.out.println("existingUser: "+existingUser.role);
 	    	if(existingUser.role.equalsIgnoreCase("admin"))
 	    	{
 	    		return redirect("/AdminPanelController.html");	

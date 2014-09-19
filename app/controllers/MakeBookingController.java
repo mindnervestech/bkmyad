@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.zip.Adler32;
 
 import models.Adcategory;
 import models.AddressDetails;
@@ -16,6 +17,7 @@ import models.Basicrate;
 import models.City;
 import models.ComposedAdSave;
 import models.Newspaperdetails;
+import models.Order;
 import models.State;
 import models.User;
 import play.db.jpa.JPA;
@@ -24,6 +26,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import utils.UtilityQuery;
+import viewmodel.CCAvenueDefaultVM;
 import viewmodel.NewspaperVM;
 import viewmodel.Rate;
 
@@ -241,7 +244,7 @@ extraFortick,String extraCostpersqcm) {
 	
 	@JsonIgnoreProperties(ignoreUnknown=true)
 	public static class CartItem {
-		public Long id;
+		public String id;
 		public String type;
 		public String description;
 		public String mainCategoty;
@@ -266,8 +269,7 @@ extraFortick,String extraCostpersqcm) {
 		public String nobgColor;
 		
 		public CartItem() {};
-		
-		public CartItem(Long id, String type, String location, String mainCategoty,
+		public CartItem(String id, String type, String location, String mainCategoty,
 				String subcategory, String newspaper, float amount) {
 			super();
 			this.id = id;
@@ -325,39 +327,17 @@ extraFortick,String extraCostpersqcm) {
 	     ObjectMapper objectMapper = new ObjectMapper();
 	     AddressDetails addressDetails =new AddressDetails();
 	     List<CartItem> cartItem ;
-	     Address address;
 	     String emailId= json.get("email").asText();
 	     String modeOfPayment=json.get("modeOfPayment").asText();
+	     String orderId = UUID.randomUUID().toString();
+	     float amount = 0;
+	     List<ComposedAdSave> composedAdSaves = new ArrayList<>();
+         
 	     try {
-			address = objectMapper.readValue(json.get("address").traverse(),Address.class);
-			
-	    	addressDetails.pinCode=address.pinCode;
-	    	addressDetails.fullName=address.fullName;
-	    	addressDetails.address=address.shippingAddress;
-	    	addressDetails.nearestLandmark=address.nearestLandmark;
-	    	addressDetails.city=address.city;
-	    	addressDetails.state=address.state;
-	    	addressDetails.mobile=address.mobile;
-	    	addressDetails.landLine=address.landline;
-	    	addressDetails.userEmailid=emailId;
-	    	JPA.em().persist(addressDetails);
-		} catch (JsonParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (JsonMappingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
- 		
-    	
-	     try {
-	    	 cartItem = objectMapper.readValue(json.get("carts").traverse(),new com.fasterxml.jackson.core.type.TypeReference<List<CartItem>>() {});
-	         List<ComposedAdSave> orderListComposeAd=new ArrayList<ComposedAdSave>();
-	         String orderId = UUID.randomUUID().toString();
-	         for(int i=0; i<cartItem.size();i++) {
+	    	 cartItem = objectMapper.readValue(json.get("carts").traverse(),
+	    			 new com.fasterxml.jackson.core.type.TypeReference<List<CartItem>>() {});
+	         
+	         for(int i=0; i < cartItem.size(); i++) {
 	          ComposedAdSave cds=new ComposedAdSave();
 	          cds.Category=cartItem.get(i).mainCategoty;
 	          cds.Subcategory=cartItem.get(i).subcategory;
@@ -368,15 +348,14 @@ extraFortick,String extraCostpersqcm) {
 	    	  cds.OrderID = orderId;
 	    	  cds.BorderCost=cartItem.get(i).extraForBorder;
 	    	  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
-	    	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//save dates in DB 
-	    	  for(int j =0; j<cartItem.get(i).dates.length; j++){
+	    	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//save dates in DB
+	    	  
+	    	  for( int j =0; j < cartItem.get(i).dates.length; j++){
 	    		  try {
 					Date dt = sdf.parse(cartItem.get(i).dates[j]);
                     cds.PublishDate+=cartItem.get(i).dates[j]+",";
-					System.out.println("dates : "+dt);
 					
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	    	  }
@@ -400,8 +379,9 @@ extraFortick,String extraCostpersqcm) {
 	    	  }else if (cartItem.get(i).onBorderSelected.equals("No")&&cartItem.get(i).nobgColor.equals("false")){
 	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBackgroud+((cartItem.get(i).extra) * (cartItem.get(i).extraUnit))) * cartItem.get(i).dates.length;
 	    	  }
-	    		 System.out.println("Full total to save into Db:"+cds.TotalCost);
-	    	  JPA.em().persist(cds);
+	    	  amount = amount +  cds.TotalCost;
+	    	  composedAdSaves.add(cds);
+	    	  //JPA.em().persist(cds);
 	    	   }
 	     } catch (JsonParseException e) {
 			// TODO Auto-generated catch block
@@ -413,6 +393,43 @@ extraFortick,String extraCostpersqcm) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 return CCAvenueController.ccavenue(addressDetails.id);
+	     
+	     Order o = new Order();
+	     o.orderId = orderId;
+	     o.email = emailId;
+	     o.total = amount;
+	     o.composedAd = composedAdSaves;
+	     JPA.em().persist(o);
+	     
+	     Address address;
+	     try {
+			address = objectMapper.readValue(json.get("address").traverse(),Address.class);
+			
+	    	addressDetails.pinCode=address.pinCode;
+	    	addressDetails.fullName=address.fullName;
+	    	addressDetails.address=address.shippingAddress;
+	    	addressDetails.nearestLandmark=address.nearestLandmark;
+	    	addressDetails.city=address.city;
+	    	addressDetails.state=address.state;
+	    	addressDetails.mobile=address.mobile;
+	    	addressDetails.landLine=address.landline;
+	    	addressDetails.userEmailid=emailId;
+	    	addressDetails.orderId = orderId;
+	    	JPA.em().persist(addressDetails);
+		} catch (JsonParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JsonMappingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	     
+	     if(!modeOfPayment.equalsIgnoreCase("cod")) {
+	    	return ok(routes.CCAvenueController.ccavenue(orderId).url());
+	     }
+		 return ok(orderId);
 	 }
 }

@@ -1,31 +1,22 @@
 package controllers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.google.common.base.Splitter;
 
 import models.Adcategory;
 import models.Adsubcategory;
-import models.Announcement;
-import models.Basicrate;
-import models.City;
-import models.Newspaperdetails;
-import models.State;
 import play.data.DynamicForm;
 import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import viewmodel.CategorySubCatVM;
-
 import views.html.addcatabdsubcat;
+
 
 public class AddCategorySubcatController extends Controller{
 	
