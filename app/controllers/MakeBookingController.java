@@ -322,6 +322,7 @@ extraFortick,String extraCostpersqcm) {
 	     System.out.println(" json value :: "+json.toString());
 	     
 	     ObjectMapper objectMapper = new ObjectMapper();
+	     AddressDetails addressDetails =new AddressDetails();
 	     List<CartItem> cartItem ;
 	     Address address;
 	     String emailId= json.get("email").asText();
@@ -329,7 +330,6 @@ extraFortick,String extraCostpersqcm) {
 	     try {
 			address = objectMapper.readValue(json.get("address").traverse(),Address.class);
 			
-			AddressDetails addressDetails =new AddressDetails();
 	    	addressDetails.pinCode=address.pinCode;
 	    	System.out.println("addressDetails.pinCode:"+addressDetails.pinCode);
 	    	addressDetails.fullName=address.fullName;
@@ -417,6 +417,6 @@ extraFortick,String extraCostpersqcm) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 return ok("");
+		 return CCAvenueController.ccavenue(addressDetails.id);
 	 }
 }

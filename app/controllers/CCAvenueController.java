@@ -1,7 +1,12 @@
 package controllers;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.zip.Adler32;
 
+import models.AddressDetails;
+
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import viewmodel.CCAvenueDefaultVM;
@@ -9,8 +14,21 @@ import viewmodel.CCAvenueDefaultVM;
 import com.ccavenue.security.AesCryptUtil;
 
 public class CCAvenueController extends Controller {
-	public static Result ccavenue() {
+	
+	public static Result ccavenue(Long id) {
+		
+		AddressDetails addressDetails = AddressDetails.findById(id);
+		
     	CCAvenueDefaultVM ccAvenueDefaultVo = new CCAvenueDefaultVM();
+    	//ccAvenueDefaultVo.Merchant_Id=addressDetails.id;
+    	ccAvenueDefaultVo.billing_cust_name=addressDetails.fullName;
+    	ccAvenueDefaultVo.billing_cust_address=addressDetails.address;
+    	ccAvenueDefaultVo.billing_city=addressDetails.city;
+    	ccAvenueDefaultVo.billing_cust_state=addressDetails.state;
+    	ccAvenueDefaultVo.billing_cust_tel=addressDetails.landLine;
+    	ccAvenueDefaultVo.billing_zip=addressDetails.pinCode;
+    	ccAvenueDefaultVo.billing_cust_email=addressDetails.userEmailid;
+    	
     	ccAvenueDefaultVo.Order_Id = "";// Akash to put actual value here
     	ccAvenueDefaultVo.Amount = "";// Akash to put actual value here
     	ccAvenueDefaultVo.Checksum = getChecksum(

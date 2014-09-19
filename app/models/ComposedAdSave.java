@@ -15,8 +15,7 @@ import play.db.jpa.Transactional;
 public class ComposedAdSave{
 
 	   @Id
-	   @GeneratedValue(strategy=GenerationType.IDENTITY)
-	   public Long OID;
+	   public long OID;
 	   public String IpAddress;
 	   public String  OrderID;
 	   public String Nameofthenewspaper;

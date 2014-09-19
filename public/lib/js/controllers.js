@@ -1225,6 +1225,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
                                                                function($scope,$http,ngDialog){
 	$scope.showFieldsVar = false;
 	$scope.userId;
+	$scope.selectedsubCategoty="";
 	 $scope.rates1 = [];
 	$scope.modeOfPayment;
 	 $scope.tab;
@@ -1301,6 +1302,9 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	
 	$scope.onCatSelected = function(cat) {
 		$scope.tab=false;
+		$scope.bookingState.selectedNewsPaper="";
+		$scope.bookingState.selectedState="";
+		$scope.bookingState.selectedCity="";
 		$scope.bookingState.selectedMainCategoty = cat;
 		$scope.rc.sampleWizard.forward()
 		
@@ -1338,6 +1342,11 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		
 	$scope.tabchange=function()
 	{
+		$scope.bookingState.selectedNewsPaper="";
+		$scope.bookingState.selectedState="";
+		$scope.bookingState.selectedCity="";
+	
+	
 		$scope.tab=false;
 	}
 	
@@ -1431,8 +1440,8 @@ $scope.onNewspaperSelect = function() {
 				email:$scope.userId,
 				modeOfPayment:$scope.modeOfPayment
 			}
-		}).success(function(){
-				
+		}).success(function(data){
+			console.log(data);
 			});
 	}
 	 	

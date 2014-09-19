@@ -148,7 +148,7 @@
 			    	
 			    	</div>
 			    	<select ng-show="resultSubCategory.length != 0" class="mnt-select" style="margin-top: 1%;">
-			    		 <option ng-repeat="scat in resultSubCategory" value="{{newspaper}}">{{scat}}</option>
+			    		 <option ng-repeat="scat in resultSubCategory" >{{scat}}</option>
 			    		<option value="">--Please Select Subcategory--</option>
 			    	</select>
 			    	
@@ -310,8 +310,9 @@
                 <tr ng-repeat="c in carts">
                   <td>{{c.mainCategoty}}</td>
                   <td>{{c.location}} - {{c.newspaper}}</td>
-                  <td><span ng-show="c.description == '' " style="color:red">Not set</span>
-                  <span ng-bind="c.description|limitTo:40"></span><a ng-click="composeAd(c)" style="cursor: pointer;"></a></td>
+				  <!-- <span ng-show="c.description == '' " style="color:red">Not set</span> -->
+                  <td><span tooltip="{{description == '' ? 'Not Set' : c.description}}"  ng-bind="c.description == '' ? 'Not Set' : c.description|limitTo:40" ></span><a ng-click="composeAd(c)" style="cursor: pointer;">...</a></td>
+                  
                   <td><!-- <a href="http://www.w3schools.com">Visit W3Schools.com!</a> -->
                   	<span ng-show="c.dates.length == 0" style="color:red">Not set</span>
                   	<span ng-repeat="cd in c.dates" class="dates-coll label label-warning" 

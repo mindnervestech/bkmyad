@@ -11,12 +11,12 @@ public class CCAvenueDefaultVM {
 	//put in the 32 bit alphanumeric key in the quotes provided here.Please note that get this key login to your CCAvenue merchant account and visit the "Generate Working Key" section at the "Settings & Options" page. 
 	public String Checksum = "";
 	
-	public String billing_cust_name="Test";
-	public String billing_cust_address="Test";
+	public String billing_cust_name;
+	public String billing_cust_address;
 	public String billing_cust_country="India";
-	public String billing_cust_tel="9898898898";
-	public String billing_cust_email="test@test.info";
-	public String billing_cust_state="MH";
+	public String billing_cust_tel;
+	public String billing_cust_email;
+	public String billing_cust_state;
 	public String delivery_cust_name="test";
 	public String delivery_cust_address="test";
 	public String delivery_cust_country="India";
@@ -24,8 +24,8 @@ public class CCAvenueDefaultVM {
 	public String delivery_cust_tel="9898989898";
 	public String delivery_cust_notes="No notes";
 	public String Merchant_Param="Test"; 
-	public String billing_city = "Mumbai";
-	public String billing_zip = "400059";
+	public String billing_city;
+	public String billing_zip;
 	public String delivery_city = "Mumbai";
 	public String delivery_zip = "400059";
 }
