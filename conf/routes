@@ -37,6 +37,7 @@ POST	/updateNewpaper	                   controllers.AddNewspaperController.updat
 GET		/getNewpaper/:Nameofthenewspaper/:currentPage	   controllers.AddNewspaperController.getNewpaper(Nameofthenewspaper :String,currentPage :Integer)
 GET		/deleteNewpaper/:id		           controllers.AddNewspaperController.deleteNewpaper(id :String)
 GET		/getStateName/:Statename/:currentPage	controllers.AddStateCityController.getStateName(Statename :String,currentPage :Integer)
+
 POST	/saveCity		               controllers.AddStateCityController.saveCity
 POST	/updateState	            controllers.AddStateCityController.updateState
 GET		/getCategory/:cname/:currentPage	controllers.AddCategorySubcatController.getCategory(cname :String,currentPage :Integer)
@@ -83,12 +84,13 @@ GET /Paymentoption.html     controllers.Assets.at(path="/public", file="app/Paym
 GET /PrivacyPolicy.html     controllers.Assets.at(path="/public", file="app/PrivacyPolicy.html")
 GET /TermsandConditions.html     controllers.Assets.at(path="/public", file="app/TermsandConditions.html")
 GET /Booknewspaperaddonline.html     controllers.Assets.at(path="/public", file="app/Booknewspaperaddonline.html")
+#GET /manageAnnouncements.html     controllers.Assets.at(path="/public", file="app/manageAnnouncements.html")
 GET /AddBasicRate.html     controllers.Assets.at(path="/public", file="app/AddBasicRate.html")
 GET /AddNewspaper.html     controllers.Assets.at(path="/public", file="app/AddNewspaper.html")
 GET /AddCategoryAndSubCat.html     controllers.Assets.at(path="/public", file="app/AddCategoryAndSubCat.html")
 GET /AddStateAndCity.html     controllers.Assets.at(path="/public", file="app/AddStateAndCity.html")
-GET /AdminPanelController.html     controllers.Assets.at(path="/public", file="app/AdminPanel.html")
- 
 
-GET /ccavenue	controllers.CCAvenueController.ccavenue()
+
+
+GET /ccavenue/:orderId	controllers.CCAvenueController.ccavenue(orderId:String)
 GET /redirect	controllers.CCAvenueController.redirect()
