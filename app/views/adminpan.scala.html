@@ -1,0 +1,159 @@
+ 
+   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html class="mnt-html"  xmlns="http://www.w3.org/1999/xhtml">
+    <link href="newtheme/assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="newtheme/assets/css/bootstrap-responsive.css" rel="stylesheet"/>
+	<link href="newtheme/assets/css/docs.css" rel="stylesheet"/>
+    <link href="newtheme/style.css" rel="stylesheet"/>
+	<link href="newtheme/assets/js/google-code-prettify/prettify.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <script src='bower_components/angular/jquery.min.js'></script>
+	<script src='bower_components/angular/angular.js'></script>
+	<script src='bower_components/angular-resource/angular-resource.js'></script>
+	<script src='bower_components/angular-route/angular-route.js'></script>
+	<script src='bower_components/ng-dialog/js/ngDialog.min.js'></script>
+	<script src='bower_components/angular-animate/angular-animate.min.js'></script>
+	<link href="bower_components/ng-dialog/css/ngDialog.min.css" rel="stylesheet"/>
+	<link href="bower_components/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet"/>
+    <script src="bower_components/angular-rc/lib/jquery.bootstrap.wizard.js"></script>
+    <script src="bower_components/angular-rc/directives/rcSubmit.js"></script>
+    <script src="bower_components/angular-rc/modules/rcDisabled.js"></script>
+    <script src="bower_components/angular-rc/modules/rcWizard.js"></script>
+    <script src="bower_components/angular-rc/modules/rcForm.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+	<script src="bower_components/moment/moment.js"></script>
+    <script type="text/javascript" src="Jquery/widgets.js"></script>
+    <script src="assets/js/application.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <!-- <script src="assets/js/bootstrap-carousel.js"></script> -->
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/bootstrap-affix.js"></script>
+    <script src="assets/js/jquery.lightbox-0.5.js"></script>
+	<script src="assets/js/bootsshoptgl.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Rationale' rel='stylesheet' type='text/css'>
+	<link href="css/style-admin.css" rel="stylesheet" type="text/css" />
+	<link href="css/form-element-style.css" rel="stylesheet" type="text/css" /> <!-CSS sheet for designers form element->
+	<link href="css/main-syle.css" rel="stylesheet" type="text/css" />
+	<link href="css/jquery.jscrollpane.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/datetimepicker.css"></script>
+	<body class="mnt-body" ng-app="adschela" ng-controller="ApplicationController">
+	
+		<div class="container mnt-container">
+			  <div class="navbar navbar-fixed-top" >
+              <div class="navbar-inner">
+                <div class="container">
+                 <a id="logoM" href=""><img src="" /></a>
+					<a data-target="#sidebar" data-toggle="collapse" class="btn btn-navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </a>
+                  <div class="nav-collapse">
+                   <!--  <ul class="nav">
+					  <li class=""><a href="#">Home	</a></li>
+					  <li class=""><a href="special_offer.html">Specials Offer</a></li>
+					  <li class=""><a href="/aboutUs">About Us</a></li>
+					  <li class=""><a href="/contactUs">Contact Us</a></li>
+					  <li class=""><a href="/myAccount">My Account</a></li>  
+					  <li class="" ></li>
+					</ul> -->
+                  </div><!-- /.nav-collapse -->
+                </div>
+              </div><!-- /navbar-inner -->
+            </div>
+			<header id="header" style="width: 100%;display: block;">
+				<div class="row">
+				<div class="span12" >
+					<a href="#"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
+					<div style="float: right;margin-right: 9%;">Welcome: 	@session().get("userName")</div>
+				</div>
+				</div>
+				<div class="clr"></div>
+			</header>	 
+	
+	  <div id="mainBody" class="container" ng-view="">
+	 <!-- <div data-ng-include data-src="'..app/header.html'"></div>  -->
+	<ul class="nav nav-tabs" role="tablist" id="myTab">
+		  <li><a href="/addBasicRate" role="tab" data-toggle="tab" style="cursor: pointer;">Ad Basic Rate </a></li>
+		  <li><a href="/addNewspaper" role="tab" data-toggle="tab" style="cursor: pointer;">Add News Paper</a></li>
+		  <li><a href="/addCategoryAndSubCat" role="tab" data-toggle="tab" style="cursor: pointer;">Add Category  And Sub Category</a></li>
+		  <li><a href="/addStateAndCity" role="tab" data-toggle="tab" style="cursor: pointer;">Add State And City</a></li>
+		  <li  style="float: left;width: 42%;text-align: right;"><a href="/logout" role="tab" data-toggle="tab" style="cursor: pointer;">Logout</a></li>
+	</ul> 
+</div>
+	  
+	  <!-- Footer ------------------------------------------------------ -->
+<hr class="soft" style= "width:90%; margin-left:5%">
+<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 5%;">
+	<!-- <div class="row" style="margin-left:5%">
+		<div class="span3 custom_span">
+			<h5>HOME</h6>
+			<a href="#/aboutUs">About Us</a>
+			<a href="#/ourClient">Our Client</a> 
+			<a href="#/ourServices">Our Services</a> 
+			<a href="#/contactUs">Contact Us</a>  
+			<a href="#mySignUp" data-toggle="modal">Register</a>
+			<a href="#/ourBlogs">Blog</a>
+		 </div>
+		<div class="span3 custom_span">
+			<h5>SUPPORT</h5>
+			<a href="#/termsAndConditions">Terms and Conditions</a>  
+			<a href="#/privacyPolicy">Privacy Policy </a>  
+			<a href="#/paymentGateway">Payment Gateway </a>  
+			<a href="#/deClaimer">Declaimer</a> 
+			<a href="#/help">How to Book an Ad</a>
+		 </div>
+		<div class="span3 custom_span">
+			<h5>ONLINE BANKING</h5>
+			<a href="#/textClassifiedAd">Text Classified Ad</a> 
+			<a href="#/dispClassified">Classified Display Ad</a>  
+			<a href="#/dispAds">Display Ads</a>  
+			<a href="#/readENewspaper">Read E News paper</a> 
+			<a href="#/">View Ad Rate In Various Newspapers</a> 
+		    
+		 </div>
+		
+		<div  class="span3 custom_span" >
+			<h5>USER LOGIN </h5>
+			<a href="#/affilatedLogin">Afiilated Login</a>
+				<a href="#myModal" data-toggle="modal" >Registered User</a>
+			<a  href="#mySignUp" data-toggle="modal">Guest user</a>
+			
+		 </div> 
+	 </div> -->
+
+</div>
+
+  
+	
+</div>	  
+</body>	  
+
+<style>
+.loading-id {
+position: absolute;
+z-index: 100;
+top: 50%;
+left: 50%;
+}
+.custom_span{
+	width: 240px;
+}
+</style>
+</html>
+
+    
+
+

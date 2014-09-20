@@ -162,21 +162,6 @@ angular.module('adschela').controller("BlogController",['$scope',function($scope
 angular.module('adschela').controller("HomeScreenController",['$scope',function($scope){
 	
 }]);
-angular.module('adschela').controller("MyAccountController",['$scope','$http',function($scope, $http){
-    
-    $scope.UserId="asd@gmail.com";
-    console.log("MyAccountController");
-    $http.get("listInfo/"+$scope.UserId)
-        .success(function(data){
-         $scope.orderList = data;
-         console.log(" $scope.result"+ $scope.orderList);
-       });
-  
-    /*$scope.orderList=OrderListService.orderListInfo.get({UserId:$scope.UserId},function(response) {
-       
-       });
-    console.log("$scope.orderList"+$scope.orderList);*/
-}]);
 
 
 
@@ -422,7 +407,9 @@ angular.module('adschela').service('StateCityService',function($resource){
 
 angular.module('adschela').controller("MyAccountController",['$scope','$http',function($scope, $http,OrderListService){
 	    
-	     $scope.UserId="asd@gmail.com";
+	     $scope.UserId=$scope.txtUsername;
+	     
+	     console.log("$scope.txtUsername"+$scope.txtUsername);
 	     console.log("MyAccountController");
 	     $http.get("listInfo/"+$scope.UserId)
 		 .success(function(data){
@@ -1344,9 +1331,10 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	}
 	$scope.checkForUsernameAndPassword =function(){
 		if($scope.userwithoutaccount){
-			 $scope.rc.sampleWizard.forward();
-		}
-		if($scope.userwithaccount){
+			console.log("going next step");
+			$scope.rc.sampleWizard.forward();
+		} else if($scope.userwithaccount){
+			console.log("next step with login..");
 		$http.get("checkusercreadientals/"+$scope.userId+'/'+$scope.userpass)
 		 .success(function(data){
 		  $scope.result = data;
@@ -1362,7 +1350,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		$scope.bookingState.selectedNewsPaper="";
 		$scope.bookingState.selectedState="";
 		$scope.bookingState.selectedCity="";
-			
+	
 	
 		$scope.tab=false;
 	}

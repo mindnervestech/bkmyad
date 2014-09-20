@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -349,11 +350,13 @@ extraFortick,String extraCostpersqcm) {
 	    	  cds.BorderCost=cartItem.get(i).extraForBorder;
 	    	  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
 	    	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//save dates in DB
-	    	  
+	    	  Calendar c = Calendar.getInstance();
+	    	  cds.PublishDate="";
 	    	  for( int j =0; j < cartItem.get(i).dates.length; j++){
 	    		  try {
 					Date dt = sdf.parse(cartItem.get(i).dates[j]);
-                    cds.PublishDate+=cartItem.get(i).dates[j]+",";
+					c.setTime(dt);
+					cds.PublishDate+=c.get(Calendar.YEAR)+"/"+(c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.DATE)+",";
 					
 				} catch (ParseException e) {
 					e.printStackTrace();

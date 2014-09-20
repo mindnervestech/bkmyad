@@ -46,8 +46,8 @@ GET    /addBasicRate                    controllers.AddbasicRateController.index
 GET    /addNewspaper                     controllers.AddNewspaperController.index()                            
 GET    /addCategoryAndSubCat              controllers.AddCategorySubcatController.index()
 GET    /addStateAndCity                   controllers.AddStateCityController.index()    
-
-                             
+GET   /adminPanel                         controllers.AdminPanelController.index()   
+GET   /logout                             controllers.Application.Logout()                              
                         
 # Map static resources from the /public folder to the /assets URL path
 GET /css/*file                     controllers.Assets.at(path="/public/app/css", file)

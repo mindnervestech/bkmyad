@@ -12,10 +12,6 @@ var app = angular.module('adschela',
                         	        templateUrl: 'textClassifiedController.html',
                         	        controller: 'TextClassifiedController'
                         	      })
-                        	      .when('/homeScreen', {
-                        	        templateUrl: '/assets/homescreen.html',
-                        	        controller: 'HomeScreenController'
-                        	      })
                         	      .when('/make-booking.html', {
                         	        templateUrl: 'make-booking.html',
                         	        controller: 'MakeBookingController'

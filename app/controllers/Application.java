@@ -571,9 +571,16 @@ public class Application extends Controller {
 	    User existingUser = User.findByCredentials(email,pass);
 	    if (existingUser != null) {
 	    	if(existingUser.role.equalsIgnoreCase("admin"))
-	    	{
-	    		return redirect("/AdminPanelController.html");	
+	    	{   
+	    		session().clear();
+	    		session().put("emailId",existingUser.email );
+	    		session().put("userName", existingUser.name);
+	    		return redirect("/adminPanel");	
 	    	}else {
+	    		System.out.println("in normal user");
+	    		    session().clear();
+		    		session().put("emailId",existingUser.email );
+		    		session().put("userName", existingUser.name);
 	    		return redirect("/");
 	    	}
 	    }
@@ -581,6 +588,11 @@ public class Application extends Controller {
 	    	flash("login_error", "Please check your username and password");
 	    	return redirect("/");
 	    }
+    }
+    @Transactional
+    public static Result  Logout() {
+    	   session().clear();
+	       return redirect("/");	
     }
     
     // save the ad 

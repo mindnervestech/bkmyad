@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
  <head>
  	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
@@ -12,27 +11,36 @@
 	<link href="css/datetimepicker.css"></script>
 	<script type="text/javascript" src="../assets/app/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
 	<!-- <div data-ng-include data-src="'../assets/app/views/header.html'"></div> -->
-
+	<!-- <ul class="nav nav-tabs" role="tablist" id="myTab">
+		  <li><a href="/#/" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Articles</a></li>
+		  <li class="active"><a href="/#/manageAnnouncement" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Announcements</a></li>
+		  <li><a href="/#/managePosts" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Posts</a></li>
+		  <li><a href="/#/manageComments" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Comments</a></li>
+		  <li><a href="/#/manageQuestions" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Questions</a></li>
+		  <li><a href="/#/manageAnswers" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Answers</a></li>
+		  <li><a href="/#/manageCommunities" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Communities</a></li>
+		  <li><a href="/#/manageUsers2" role="tab" data-toggle="tab" style="cursor: pointer;">Manage Users</a></li>
+	</ul> -->
 </head>
 
-<body ng-init="searchBasicRate()">
+<body  ng-app ="adschela" ng-controller="MyAccountController" ng-init="showListOfOrder();">
    <!--container begin-->
     <section id="container">
     	<section class="contentpanel">
-        	<h4>Manage BasicRate</h4>
-        	 <!--Advance search fildes begin-->
+        	<h4>Your Order Details</h4>
+            <!--Advance search fildes begin-->
         	<section class="dadsrch">
             	<section class="heading"><h2></h2></section>
                 <section class="dadsrchdiv">
-                	<input name="title" type="text" ng-model="City" class="" style="height:32px ;" ng-keyup="$event.keyCode == 13 ? searchBasicRate(1) : null"><input name="" type="button" class="btngray" value="Search" ng-click="searchBasicRate(1)">
+                	<input name="title" type="text" ng-model="title" class="" style="height:1%;" ng-keyup="$event.keyCode == 13 ? searchBasicRate(1) : null"><input name="" type="button" class="btngray" value="Search" ng-click="searchBasicRate(1)">
                 </section>
             </section>
-            <!--Advance search fildes end-->
+           <!--  <!--Advance search fildes end-->
              <section class="dactperform">
                 <section class="left">
              		<input name="" type="button" value="Create" class="btnblue" ng-click="setDates()" data-toggle="modal"  />
            		</section>
-           	</section>	
+           	</section>	 -->
             <!--grid begin-->
         	<section class="dgridinfo dactcln">
                 <table ng-table="tableParams">
@@ -52,18 +60,18 @@
                         <tr>
                     </thead>
                 	<tbody>
-                    	<tr ng-repeat="ancmt in BasicRate.results">
+                    	<tr ng-repeat="orderList in orderList">
                     	     
                     	
-                            <td>{{ancmt.Nameofthenewspaper}}/{{ancmt.City}}</td>
-                            <td>{{ancmt.Textaddrate}}</td>
-                            <td>{{ancmt.clasifiedadrate}}</td>
-                            <td>{{ancmt.Exstracostperline}}</td>
-                            <td>{{ancmt.Border}}/{{ancmt.Backcolor}}</td>
-                            <td>{{ancmt.Tick}}</td>
-                            <td>{{ancmt.Category}}</td>
-                            <td>{{ancmt.Extraborderper}}/{{ancmt.Extrabgper}}/{{ancmt.ExtracostperSqcm}}</td>
-                            <td>{{ancmt.Tickper}}</td>
+                            <td>{{orderList.Nameofthenewspaper}}/{{ancmt.City}}</td>
+                            <td>{{orderList.Textaddrate}}</td>
+                            <td>{{orderList.clasifiedadrate}}</td>
+                            <td>{{orderList.Exstracostperline}}</td>
+                            <td>{{orderList.Border}}/{{ancmt.Backcolor}}</td>
+                            <td>{{orderList.Tick}}</td>
+                            <td>{{orderList.Category}}</td>
+                            <td>{{orderList.Extraborderper}}/{{ancmt.Extrabgper}}/{{ancmt.ExtracostperSqcm}}</td>
+                            <td>{{orderList.Tickper}}</td>
                            
                             <td> <input name="" type="button" value="Update" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
                             <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt)" data-toggle="modal" /></td>
@@ -71,23 +79,22 @@
                     	</tbody>
                 </table>
         	</section>
-        	
             <!--grid end-->
             
-            <section class="dpaging">
+           <!--  <section class="dpaging">
             	 <h4>{{pageNumber}}/{{pageSize}}</h4> 
             	<span class="dpagingright">
                 	<a href="" class="dpagingprv" ng-click="onPrev()">Prev</a>
                 	<a href="" class="dpagingnxt" ng-click="onNext()">Next</a>
                 </span>
-            </section>
+            </section> -->
         </div>     
         </section>
     </section>
     <!--container end-->
   </div>
 		  <!-- Create Modal -->
-		<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="width: 65%;left: 41%;">
+		<!-- <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="width: 65%;">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -182,12 +189,12 @@
 		        <button type="submit" class="btn btn-primary">Save</button>
 		      </div>
 		     </form>
-		    </div>
-		  </div>
-		</div>
-		
-		<!-- Update Modal -->
-		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;left: 41%;">
+		    </div> -->
+		 <!--  </div>
+		</div> --> -->
+		<!-- 
+		<!-- Update Modal
+		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -200,9 +207,9 @@
 			        <tr>
 			        	<td><label>NewsPapers</label></td>
 			        	<td style="height: 60px;">
-			       	
+			        {{ancmtData.Nameofthenewspaper}}	
 			        <select name="Newspaper" style="width:100%;" data-ng-model="ancmtData.Nameofthenewspaper" required >
-			    		<option ng-selected="ancmtData.Nameofthenewspaper==newspaper.newspapers" ng-repeat="newspaper in resultNewspaper"  value="{{newspaper.newspapers}}">
+			    		<option ng-selected="ancmtData.Nameofthenewspaper" ng-repeat="newspaper in resultNewspaper"  value="{{newspaper.newspapers}}">
 			    		{{newspaper.newspapers}} </option>
 			    		<option value="">--Please Select Newspaper--</option>
 			    	</select>
@@ -211,17 +218,16 @@
 			         <tr>
 			        	 <td><label>State</label></td>
 			        	<td style="height: 60px;">
-			        		<select name="State" style="width:100%;" data-ng-model="ancmtData.Statename" ng-change="onStateselectupdate()">
-			        			<option ng-selected="ancmtData.Statename==state.Statename" ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
+			        		<select name="State" style="width:100%;" data-ng-model="ancmtData.Statename" ng-change="onStateselect()">
+			        			<option ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
 			        			<option value="">--Please Select State--</option>
 			        			
 			        		</select>
 			        	</td>
 			        	<td><label>City</label></td>
 			        	<td style="height: 60px;">
-			        	
 			        		<select name="City" style="width:100%;" data-ng-model="ancmtData.City" required >
-			        			<option ng-selected="ancmtData.City==city.cityname" ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
+			        			<option ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
 			        			<option value="">--Please Select City--</option>
 			        			
 			        		</select>
@@ -229,9 +235,8 @@
 			        	
 			        	<td><label>Category</label></td>
 			        	<td style="height: 60px;">
-			        	
 			        		<select name="Category" style="width:100%;" data-ng-model="ancmtData.Category" required>
-			        			<option ng-selected="ancmtData.Category==cat.cname" ng-repeat="cat in resultcname" value="{{cat.cname}}">{{cat.cname}}</option>
+			        			<option ng-repeat="cat in resultcname" value="{{cat.cname}}">{{cat.cname}}</option>
 			        			<option value="">--Please Select Category--</option>
 			        			
 			        		</select>
@@ -286,7 +291,7 @@
 		  </div>
 		</div>
 		
-		<!-- Delete Modal -->
+		Delete Modal
 		<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -303,8 +308,6 @@
 		      </div>
 		    </div>
 		  </div>
-		</div>
+		</div> --> -->
 		
   </body>
-  
-  </html>

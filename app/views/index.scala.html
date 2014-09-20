@@ -16,24 +16,22 @@
                     <span class="icon-bar"></span>
                   </a>
                   <div class="nav-collapse">
-                    <ul class="nav">
+                    <ul class="nav" style="width:98%;">
 					  <li class=""><a href="#">Home	</a></li>
 					 <!--  <li class=""><a href="special_offer.html">Specials Offer</a></li> -->
-					  <li class=""><a href="#/aboutUs">About Us</a></li>
-					  <li class=""><a href="#/contactUs">Contact Us</a></li>
-					 <!--  <li class=""><a href="#/myAccount">My Account</a></li>  -->
-					
-                    <!-- <form action="#" class="navbar-search pull-left">
-                     <input id="srchFld" type="text" placeholder="I'm looking for ..." class="search-query span5"/>
-                    </form> -->
-                   
-					<li >
-						<a ng-click="Login()" data-toggle="modal" style="cursor: pointer;" >Login </a>
-						<!-- $('#myModal').modal(); -->
-					</li>
-					<li >
+					  <li class=""><a href="#/aboutUs" >About Us</a></li>
+					  <li class=""><a href="#/contactUs" >Contact Us</a></li>
+					  <li class=""  ng-if='@session().containsKey("userName")'><a href="#/myAccount">My Account</a></li> 
+					  <li class=""  ng-if='@session().containsKey("userName")' style="float: right;"><a href="/logout">Logout</a></li> 
+					  <li  ng-if='!(@session().containsKey("userName"))'  >
+					  <a   ng-click="Login()" data-toggle="modal" style="cursor: pointer;" >Login </a>
+					  </li>
+					 <li  ng-if='!(@session().containsKey("userName"))'>
 						<a  ng-click="Register()" data-toggle="modal" style="cursor: pointer;">Register </a>						
-					</li>
+					 </li>
+					 <li  ng-if='(@session().containsKey("userName"))' style="float: right;/* width: 40%; */padding-top: 1%;">
+						Welcome: 	@session().get("userName")					
+					 </li>
 					</ul>
 					
                   </div><!-- /.nav-collapse -->
@@ -135,7 +133,7 @@
                 <fieldset class="textbox" style="padding: 5%;">
                     <label>
                         <span style="width: 25%;float: left;">Email Id</span>
-                        <input name="txtUsername" type="text" id="txtUsername" autocomplete="on" placeholder="Email Id" />
+                        <input name="txtUsername" type="text" ng-model="txtUsername" id="txtUsername" autocomplete="on" placeholder="Email Id" />
                     </label>
                     <label>
                         <span style="width: 25%;float: left;">Password</span>
