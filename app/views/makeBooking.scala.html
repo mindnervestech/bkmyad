@@ -32,23 +32,17 @@
                 </a>
                 <span class="breadcrumb_arrow"></span>
               </li> 
-               <li style="float:left;">
-                <a class="custom-font" href="#fourth" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
-                 <!--  <span class="badge">3</span> -->
-                  <span>Preview Selected Ads</span>
-                </a>
-                <span class="breadcrumb_arrow"></span>
-              </li> 
+             
               
                <li style="float:left;">
-                <a class="custom-font" href="#fifth" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#fourth" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">3</span> -->
                   <span>Login</span>
                  </a>
                   <span class="breadcrumb_arrow"></span>
               </li>
               <li style="float:left;">
-                <a class="custom-font" href="#six" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
+                <a class="custom-font" href="#fifth" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
                  <!--  <span class="badge">3</span> -->
                   <span>Payment Details</span>
                 </a>
@@ -341,65 +335,9 @@
 				ng-show="rc.composeWizard.currentIndex = rc.composeWizard.firstIndex">Back</a>
               </form>
               
-                          
-               <form class="tab-pane" id="fourth" name="fourthForm" rc-step novalidate >
-                <h3 class="pull-left">Preview Selected Ads</h3>
-                <!-- <img class="pull-left" style="width: 4%;" src="/NewDesign/images/np-compose.jpg" > -->
-                <table class="table table-bordered">
-                <thead>
-                <tr>
-                  <th>Category</th>
-                  <th>City/Newspaper</th>
-                  <th>Description</th>
-                  <th>To Be Published On</th>
-                  <th>Price/Unit</th>
-                  <th>Extra For Backgroud</th>
-                  <th>Extra For Border</th>
-                  <th>Border Selected</th>
-                  <th>BG Color</th>
-                  <th>Start Date</th>
-                  <th>Total ExtraCost</th>
-                  <th>Unit</th>
-                  <th>UnitVal</th>
-                  <th>Total</th>
-				</tr>
-              </thead>
-             
-                <tbody>
-                <tr ng-repeat="c in carts">
-                  <td>{{c.mainCategoty}}</td>
-                  <td>{{c.location}} - {{c.newspaper}}</td>
-				  <td><span tooltip="{{description == '' ? 'Not Set' : c.description}}"  ng-bind="c.description == '' ? 'Not Set' : c.description|limitTo:40" ></span><a ng-click="composeAd(c)" style="cursor: pointer;">...</a></td>
-                  <td>
-                  	<span ng-show="c.dates.length == 0" style="color:red">Not set</span>
-                  	<span ng-repeat="cd in c.dates" class="dates-coll label label-warning" 
-                       data-ng-bind="formatDate(cd)"></span>
-                  </td>
-                                  
-                  <td>{{c.rate}} / {{c.unitVal}} {{c.unit}}</td>
-                  <td>{{c.extraForBackgroud}}</td>
-                  <td>{{c.extraForBorder}}</td>
-                  <td>{{c.onBorderSelected}}</td>
-                  <td>{{c.onbgColorchange}}</td>
-                  <td>{{c.startDate}}</td>
-                  <td>{{c.totalExtraCost}}</td>
-                  <td>{{c.unit}}</td>                
-                  <td>{{c.unitVal}}</td>
-                  <td>{{c.fullTotal}}</td>
-                </tr> 
-              
-               </tbody>
               
               
-              
-            
-            </table>
-            <button ng-click="rc.sampleWizard.forward()" class= "btn btn-primary" style="float: right;/* padding: 0%; */margin: 3%"> continue</button>
-           </form>
-              
-              
-              
-     <form class="tab-pane" id="fifth" name="fifthForm"  rc-step>
+     <form class="tab-pane" id="fourth" name="fourthForm"  rc-step>
                <!-- messagee shown when user are valid  -->
             <div style="float: left;">  
               <b>Username:</b>&nbsp;&nbsp;  <input type="text" ng-model="userId" name="username">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -425,7 +363,7 @@
                  <input class="btn btn-primary" type="submit" value="Continue" data-ng-click="checkForUsernameAndPassword()"style="background-color: #0044cc;margin-left: 7%;margin: 3%;float:right;"> 
       </form>
               
-      <form class="tab-pane" id="six" name="six" rc-submit="completeWizard()" rc-step>
+      <form class="tab-pane" id="fifth" name="fifthForm" rc-submit="completeWizard()" rc-step>
 	     	<div style="float: left;width: 48%;margin-bottom: 2%;" > <input type="radio" name="chk" value="cod" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showHomeShipingDetails();" style="margin-left:7%;"><b >&nbsp;Collect cash form home</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    </div>
                      <div style="float: left;width: 48%; margin-bottom: 2%;"  > <input type="radio" name="chk"  value="cc" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showDebitShipingDetails();" style="margin-left:7%;"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
