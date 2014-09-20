@@ -1163,6 +1163,22 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 		return $scope.selectedCartItemOnPopUp;
 	}
 	
+	
+	$scope.previewAds=function(c,scope){
+		
+		console.log(c);
+	
+		$scope.selectedCart = c.description;
+		$scope.selectBorder=c.onBorderSelected;
+		$scope.selectedcolor=c.onbgColorchange;
+		ngDialog.open({
+			template: 'previewAds',
+			className: 'ngdialog-theme-default',
+			scope: $scope
+				
+		});
+	}
+	
 	ComposeAd = function(c, scope) {
 		SetSelectedCartItemOnPopUp(c);
 		ngDialog.open({
@@ -1226,7 +1242,8 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	$scope.showFieldsVar = false;
 	$scope.userId;
 	$scope.selectedsubCategoty="";
-	 $scope.rates1 = [];
+	$scope.selectedsubCat="";
+	$scope.rates1 = [];
 	$scope.modeOfPayment;
 	 $scope.tab;
 	/*$scope.khandobaVar = false;*/
@@ -1326,7 +1343,6 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		});
 	}
 	$scope.checkForUsernameAndPassword =function(){
-		
 		if($scope.userwithoutaccount){
 			 $scope.rc.sampleWizard.forward();
 		}
@@ -1346,7 +1362,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		$scope.bookingState.selectedNewsPaper="";
 		$scope.bookingState.selectedState="";
 		$scope.bookingState.selectedCity="";
-	
+			
 	
 		$scope.tab=false;
 	}

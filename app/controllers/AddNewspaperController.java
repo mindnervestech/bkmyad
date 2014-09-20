@@ -18,7 +18,6 @@ import viewmodel.NewspaperdetailsVM;
 import viewmodel.SelectionVM;
 import views.html.addnewspap;
 
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.Splitter;
 
