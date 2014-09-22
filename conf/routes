@@ -22,7 +22,7 @@ GET     /dispFrame.html                        controllers.DispFrameController.i
 GET     /getSubCategoty/:cname					controllers.Application.getSubCategoty(cname:String)
 GET     /getNewspaper							controllers.AddbasicRateController.getNewspaper()
 POST    /submit-cart                            controllers.MakeBookingController.saveComposeyourAd()
-
+POST   /sendfeedbacks                          controllers.Application.sendFeedback()
 
 GET		/getBasicrate/:City/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,currentPage :Integer)
 GET     /listInfo/:UserId              controllers.MyAccountController.getAllUserOrder(UserId :String)

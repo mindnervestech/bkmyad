@@ -1,9 +1,8 @@
+   @(dispadData:String)
 
-
-
-
-
-   
+<div class="" ng-init='init(@Html(dispadData))'>
+           
+           
             <div class="banner">
                 
     
@@ -12,6 +11,7 @@
         </div>
         <h1 style="margin: 0; padding: 0; color: #246EB5; text-align:center">Contact Us</h1>
         <hr />
+    <form name="sendfeedback" method="post" action="/sendfeedbacks" id="sendfeedback" enctype = "multipart/form-data">
         <table style="width: 100%; height: auto; margin-bottom: 15px">        
             <tr>
                 <td style="width: 54%;float: left;" valign="top">
@@ -57,9 +57,9 @@
                                     Name:
                                 </td>
                                 <td>
-                                    <input name="ctl00$ContentPlaceHolder1$name" type="text" id="ctl00_ContentPlaceHolder1_name" class="textbox1" />
+                                    <input name="name" type="text" id="name" class="textbox1" />
                                     
-                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$ValidatorCalloutExtender_ClientState" id="ctl00_ContentPlaceHolder1_ValidatorCalloutExtender_ClientState" />
+                                    
                                 </td>
                             </tr>
                             <tr>
@@ -67,23 +67,18 @@
                                     Email:
                                 </td>
                                 <td>
-                                    <input name="ctl00$ContentPlaceHolder1$email" type="text" id="ctl00_ContentPlaceHolder1_email" class="textbox1" />
+                                    <input name="email" type="text" id="email" class="textbox1" />
                                     
-                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$ValidatorCalloutExtender1_ClientState" id="ctl00_ContentPlaceHolder1_ValidatorCalloutExtender1_ClientState" />
-                                    
-                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$ValidatorCalloutExtender8_ClientState" id="ctl00_ContentPlaceHolder1_ValidatorCalloutExtender8_ClientState" />
-                                </td>
+                                                                   </td>
                             </tr>
                             <tr>
                                 <td>
                                     Mobile:
                                 </td>
                                 <td>
-                                    <input name="ctl00$ContentPlaceHolder1$mobile" type="text" id="ctl00_ContentPlaceHolder1_mobile" class="textbox1" />
+                                    <input name="mobile" type="text" id="mobile" class="textbox1" />
                                     
-                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$ValidatorCalloutExtender2_ClientState" id="ctl00_ContentPlaceHolder1_ValidatorCalloutExtender2_ClientState" />
                                     
-                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$ValidatorCalloutE_ClientState" id="ctl00_ContentPlaceHolder1_ValidatorCalloutE_ClientState" />
                                 </td>
                             </tr>
                             <tr>
@@ -91,19 +86,20 @@
                                     Message:
                                 </td>
                                 <td>
-                                    <textarea name="ctl00$ContentPlaceHolder1$message" rows="2" cols="20" id="ctl00_ContentPlaceHolder1_message" class="textbox1" style="resize: none; height: 100px"></textarea>
+                                    <textarea name="message" rows="2" cols="20" id="message" class="textbox1" style="resize: none; height: 100px"></textarea>
                                     
-                                    <input type="hidden" name="ctl00$ContentPlaceHolder1$ValidatorCalloutExtender3_ClientState" id="ctl00_ContentPlaceHolder1_ValidatorCalloutExtender3_ClientState" />
+                                    
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                 </td>
                                 <td>
-                                    <input type="submit" name="ctl00$ContentPlaceHolder1$send" value="Send" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ContentPlaceHolder1$send&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="ctl00_ContentPlaceHolder1_send" class="send" style="cursor: pointer" />
+                                    <input type="submit" name="send" value="Send" class="send" style="cursor: pointer" />
                                 </td>
                             </tr>
                         </table>
+                         </form>
                     </div>
                 </td>
             </tr>

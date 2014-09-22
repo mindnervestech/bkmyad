@@ -3,7 +3,57 @@
 
 @main("") {
 	<body>
-		Response is @cc.toString
+		
+		<table>
+		   <tr>
+		      <td>
+		         bid
+		      </td>
+		      <td>
+		         <input type="text" name="bid" value="@cc.nb_bid"/>
+		      </td>
+		   </tr>
+		   <tr>
+		      <td>
+		        order_no
+		      </td>
+		      <td>
+		         <input type="text" name="order_no" value="@cc.nb_order_no"/>
+		      </td>
+		   </tr>
+		   <tr>
+		      <td>
+		         card_category
+		      </td>
+		      <td>
+		        <input type="text" name="billing_cust_country" value="@cc.card_category"/>
+			      </td>
+		   </tr>
+		   <tr>
+		      <td>
+		         bank_name
+		      </td>
+		      <td>
+		        <input type="text" name="bank_name" value="@cc.bank_name"/>
+		      </td>
+		   </tr>
+		   <tr>
+		      <td>
+		         bankRespCode
+		      </td>
+		      <td>
+		        <input type="text" name="bankRespCode" value="@cc.bankRespCode"/>
+		      </td>
+		   </tr>
+		   <tr>
+		      <td>
+		         bankRespMsg
+		      </td>
+		      <td>
+		         <input type="text" name="bankRespMsg" value="@cc.bankRespMsg"/>
+		      </td>
+		   </tr>
+		</table>
 	</body>
 	}
 </html>

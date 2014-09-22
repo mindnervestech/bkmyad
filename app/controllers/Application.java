@@ -559,6 +559,19 @@ public class Application extends Controller {
 	       return redirect("/");	
     }
     
+      
+    
+    @Transactional
+    public static Result  sendFeedback() throws IOException {
+        DynamicForm form = DynamicForm.form().bindFromRequest();
+        System.out.println("////////////////////////////////");
+       System.out.println(form);
+       System.out.println("////////////////////////////////");     
+         	return redirect("/");
+     }
+    
+    
+   
     // save the ad 
     @Transactional
     public static Result  SavedispAddDetails() throws IOException {
