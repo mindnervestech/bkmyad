@@ -2,6 +2,7 @@
 <html>
  <head>
  	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ 	
     <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Rationale' rel='stylesheet' type='text/css'>
@@ -11,16 +12,14 @@
 	<link href="css/jquery.jscrollpane.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/datetimepicker.css"></script>
 	<script type="text/javascript" src="../assets/app/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
-	<!-- <div data-ng-include data-src="'../assets/app/views/header.html'"></div> -->
-
 </head>
-
 <body ng-init="searchBasicRate()">
    <!--container begin-->
     <section id="container">
     	<section class="contentpanel">
         	<h4>Manage BasicRate</h4>
-        	 <!--Advance search fildes begin-->
+        	 <a href="/logout"  style="cursor: pointer ;float: left;width: 100%;text-align: right;">Logout</a>
+             <!--Advance search fildes begin-->
         	<section class="dadsrch">
             	<section class="heading"><h2></h2></section>
                 <section class="dadsrchdiv">
@@ -53,8 +52,6 @@
                     </thead>
                 	<tbody>
                     	<tr ng-repeat="ancmt in BasicRate.results">
-                    	     
-                    	
                             <td>{{ancmt.Nameofthenewspaper}}/{{ancmt.City}}</td>
                             <td>{{ancmt.Textaddrate}}</td>
                             <td>{{ancmt.clasifiedadrate}}</td>
@@ -64,7 +61,6 @@
                             <td>{{ancmt.Category}}</td>
                             <td>{{ancmt.Extraborderper}}/{{ancmt.Extrabgper}}/{{ancmt.ExtracostperSqcm}}</td>
                             <td>{{ancmt.Tickper}}</td>
-                           
                             <td> <input name="" type="button" value="Update" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
                             <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt)" data-toggle="modal" /></td>
                         </tr>
@@ -97,12 +93,9 @@
 		      <form method="post" ng-submit="saveBasicRate()">
 		      <div class="modal-body">
 		      <table style="font-family: 'Bitter', georgia, serif;">
-		     
-			         
 			    <tr>
 			        	<td><label>NewsPapers</label></td>
 			        	<td style="height: 60px;">
-			        	
 			        <select name="Newspaper" style="width:100%;" data-ng-model="formData.Nameofthenewspaper" required >
 			    		<option ng-repeat="newspaper in resultNewspaper" value="{{newspaper.newspapers}}">{{newspaper.newspapers}}</option>
 			    		<option value="">--Please Select Newspaper--</option>
@@ -273,8 +266,6 @@
 			        	<td><label>Extra Cost Sqcm</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="ExtracostperSqcm" style="width:70%;height: 50%;" data-ng-model="ancmtData.ExtracostperSqcm" required></textarea></td>
 			        </tr>
-			        
-			      	        
 		        </table>
 		      </div>
 		      <div class="modal-footer">
@@ -304,7 +295,5 @@
 		    </div>
 		  </div>
 		</div>
-		
   </body>
-  
   </html>

@@ -327,13 +327,13 @@
 				</tbody>
             </table>
             <button ng-click="checkForAdDetailsFilled();" class= "btn btn-primary" style="float: right;/* padding: 0%; */margin: 3%"> continue</button>
-            <a class="btn btn-default" ng-click="rc.composeWizard.backward()"
+            <a class="btn btn-default" ng-click="rc.sampleWizard.moveTo(2);rc.composeWizard.backward();"
 				ng-show="rc.composeWizard.currentIndex = rc.composeWizard.firstIndex">Back</a>
               </form>
+            
               
               
-              
-     <form class="tab-pane" id="fourth" name="fourthForm"  rc-step>
+     <form class="tab-pane"  id="fourth" name="fourthForm"  rc-step>
                <!-- messagee shown when user are valid  -->
             <div style="float: left;">  
               <b>Username:</b>&nbsp;&nbsp;  <input type="text" ng-model="userId" name="username">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -349,9 +349,9 @@
               </div>
                <br />
               <div style="width: 100%;float: left;">    
-              <input type="radio" name="chk" value="withoutpassword" ng-model="userwithoutaccount" ng-click="showfieldsonlyusername();" style="margin-left:7%;"><b >&nbsp;Continue without password</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="chk" value="No" ng-model="userwithoutaccount" ng-click="showfieldsonlyusername();" style="margin-left:7%;"><b >&nbsp;Continue without password</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="chk" value="withpassword" ng-model="userwithaccount" ng-click="showfields();"><b>&nbsp;I have Adschela account and passsword </b> <br>
+                  <input type="radio" name="chk" value="Yes" ng-model="userwithoutaccount" ng-click="showfields();"><b>&nbsp;I have Adschela account and passsword </b> <br>
                   <div>
                   <span style="font-size: 9pt;font-family: Calibri;margin-left: 12%;">(Don't have account yet)</span>
                   <span style="font-size: 9pt;font-family: Calibri;margin-left: 25%;">Sign in to your account to get benefits</span><br>
@@ -413,7 +413,7 @@
              
             <div class="form-group" style="margin-top: 2%;">
               <div class="pull-right">
-                <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward()"
+                <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward();rc.sampleWizard.moveTo(2);"
                    data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
                  
                 <!-- <a  data-loading-text="Please Wait..." data-ng-click="rc.sampleWizard.forward()" 

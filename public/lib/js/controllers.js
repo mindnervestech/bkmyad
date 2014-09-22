@@ -402,21 +402,17 @@ angular.module('adschela').service('StateCityService',function($resource){
     );
 });
 
-
-
-
-angular.module('adschela').controller("MyAccountController",['$scope','$http',function($scope, $http,OrderListService){
+angular.module('adschela').controller('MyAccountController',['$scope','$http',function($scope, $http,$rootScope,$cookieStore,OrderListService){
 	    
 	     $scope.UserId=$scope.txtUsername;
-	     
 	     console.log("$scope.txtUsername"+$scope.txtUsername);
 	     console.log("MyAccountController");
-	     $http.get("listInfo/"+$scope.UserId)
+	    
+	     $http.get("listInfo/"+$scope.txtUsername)
 		 .success(function(data){
 		  $scope.orderList = data;
 		  console.log(" $scope.result"+ $scope.orderList);
 		});
-	   
 	     /*$scope.orderList=OrderListService.orderListInfo.get({UserId:$scope.UserId},function(response) {
 		
 		});
@@ -433,8 +429,6 @@ angular.module('adschela').controller("MyAccountController",['$scope','$http',fu
     );
 });
 angular.module('adschela').controller('AddNewspaperController',function($scope, $modal, $http, $filter, NewpaperService,deleteNewpaperService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice){
-	
-	
 	$scope.Nameofthenewspaper = " ";
 	$scope.pageNumber;
 	$scope.pageSize;
@@ -442,14 +436,12 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 	var currentPage = 1;
 	var totalPages;
 	$scope.isChosen = false;
-	
 	$scope.searchForm= {
             from : new Date(),
             to : new Date()
 
 	}
 
-	
 	$scope.Newspaper = NewpaperService.NewspaperInfo.get({Nameofthenewspaper:$scope.Nameofthenewspaper,currentPage:currentPage},function(response) {
 		totalPages = $scope.Newspaper.totalPages;
 		currentPage = $scope.Newspaper.currentPage;
@@ -908,12 +900,10 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 		  }
 		  else {
 			  $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + backgroundColor;
-			  $scope.selectedCartItemOnPopUp.onbgColorchange='rbnn';
+			  $scope.selectedCartItemOnPopUp.onbgColorchange='lemonchiffons';
 		  }
 		  ReTotal(); 
 	}
-	
-	
 	$scope.a=false ;
 	$scope.onComposeAdStepChange = function() {
 		
@@ -1330,16 +1320,17 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		});
 	}
 	$scope.checkForUsernameAndPassword =function(){
-		if($scope.userwithoutaccount){
-			console.log("going next step");
-			$scope.rc.sampleWizard.forward();
-		} else if($scope.userwithaccount){
+		if($scope.userwithoutaccount=='No'){
+			$scope.rc.sampleWizard.moveTo(4);
+		} else if($scope.userwithoutaccount=='Yes'){
 			console.log("next step with login..");
 		$http.get("checkusercreadientals/"+$scope.userId+'/'+$scope.userpass)
 		 .success(function(data){
 		  $scope.result = data;
+		
 		  if($scope.result=="false") {
-		  $scope.rc.sampleWizard.forward();
+		
+		  $scope.rc.sampleWizard.moveTo(4);
 			}
 		});
 	}
