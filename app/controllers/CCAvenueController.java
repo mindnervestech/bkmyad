@@ -52,6 +52,11 @@ public class CCAvenueController extends Controller {
     	return ok(views.html.ccaredirect.render(ccAvenueDefaultVM));
     }
     
+    public static Result redirectTest() {
+    	CCAvenueDefaultVM ccAvenueDefaultVo = new CCAvenueDefaultVM();
+    	return ok(views.html.ccaredirect.render(ccAvenueDefaultVo));
+    }
+    
     private static String verifyChecksum(String MerchantId , String OrderId, String Amount, String AuthDesc, String WorkingKey, String CheckSum) throws Exception 	{
     	String str = MerchantId+"|"+OrderId+"|"+Amount+"|"+AuthDesc+"|"+WorkingKey;
     	
