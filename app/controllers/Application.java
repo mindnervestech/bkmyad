@@ -151,43 +151,7 @@ public class Application extends Controller {
     	return ok(/*textiframe.render(Json.stringify(Json.toJson(map)))*/);
     }
     
-    /*@Transactional
-    public static Result composeadtextclasified45e0(){
-    	Form<ComposeTextRequestHolder> form = DynamicForm.form(ComposeTextRequestHolder.class).bindFromRequest();
-    	ComposeTextRequestHolder ComposeTextResultHolder = form.get();
-    	ComposeTextResposeHolder composeTextResposeHolder = new ComposeTextResposeHolder();
-    	composeTextResposeHolder.mainCategory=ComposeTextResultHolder.mainCategory;
-    	composeTextResposeHolder.subCategory =ComposeTextResultHolder.subCategory;
-    	composeTextResposeHolder.adType =ComposeTextResultHolder.adsBy;
-    	composeTextResposeHolder.selectedNewspaper =ComposeTextResultHolder.selectedNewspaper.split(",");
-    	composeTextResposeHolder.basicRates =ComposeTextResultHolder.basicRates;
-    	composeTextResposeHolder.selectedCity =ComposeTextResultHolder.selectedCity.split(",");
-    	composeTextResposeHolder.basicRates2 =ComposeTextResultHolder.basicRate2;
-    	composeTextResposeHolder.discountedRates=ComposeTextResultHolder.discountedRates;
-    	
-    	
-    	List<NewspaperVM> list=new ArrayList<NewspaperVM>();
-    	if(composeTextResposeHolder.basicRates!=null && !composeTextResposeHolder.basicRates.isEmpty())
-    	{
-
-    		list = BasicDatanewspaperwise(composeTextResposeHolder.mainCategory,composeTextResposeHolder.basicRates);
-        	Map<String,Object>  resutlMap = new HashMap<>();
-        	resutlMap.put("composeTextResposeHolder", composeTextResposeHolder);
-        	resutlMap.put("basicdata", list);
-        	return ok(composeadtextclasified45e0.render(Json.stringify(Json.toJson(resutlMap))));
-       
-    	}
-    	else
-    	{
-    		list = BasicDatacitywise(composeTextResposeHolder.mainCategory,composeTextResposeHolder.selectedCity,composeTextResposeHolder.basicRates2);
-        	Map<String,Object>  resutlMap = new HashMap<>();
-        	resutlMap.put("composeTextResposeHolder", composeTextResposeHolder);
-        	resutlMap.put("basicdata", list);
-        	return ok(composeadtextclasified45e0.render(Json.stringify(Json.toJson(resutlMap))));
-    	   		
-    	}
-        	
-    }*/
+    
     
     public static class ComposeTextResposeHolder {
     	public String mainCategory;
@@ -570,7 +534,7 @@ public class Application extends Controller {
     	String pass =form.get("txtpwd");
 	    User existingUser = User.findByCredentials(email,pass);
 	    if (existingUser != null) {
-	    	if(existingUser.role.equalsIgnoreCase("admin"))
+	    	if(("admin").equalsIgnoreCase(existingUser.role))
 	    	{   
 	    		session().clear();
 	    		session().put("emailId",existingUser.email );

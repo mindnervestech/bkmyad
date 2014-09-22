@@ -38,7 +38,7 @@
                 </div>
               </div><!-- /navbar-inner -->
             </div>
-         
+         	<input type="hidden" ng-model="txtUsername" ng-init='txtUsername = "@session().get("emailId")"' value='@session().get("emailId")'/>
 			<header id="header" style="width: 100%;display: block;">
 				<div class="row">
 				<div class="span12" >
@@ -134,51 +134,35 @@
 	
 <!-- sign in popup begins -->
 
-<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 30%;left: 58%;z-index:100000;" >
-  	<div class="modal-dialog">
-    <div class="modal-content" >
-      <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
+<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:100000;" >
+  	  <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
         <button type="button" class="close" data-dismiss="modal">
         <span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
-          </div>
-    
-      <form name="aspnetForm" method="post" action="/checkSignIn" id="aspnetForm" style="overflow: hidden;width: 100%;">
-
-      <div class="modal-body" style="width: 90%;overflow: hidden;">
-       <div >
-                    <div style="color: #65BDDF; font-weight: bold; font-family: Calibri; font-size: 25px;
-                    text-align: center; margin-bottom: 15px">
-                    SignIn Form</div>
-                <fieldset class="textbox" style="padding: 5%;">
-                    <label>
-                        <span style="width: 25%;float: left;">Email Id</span>
-                        <input name="txtUsername" type="text" ng-model="txtUsername" id="txtUsername" autocomplete="on" placeholder="Email Id" />
-                    </label>
-                    <label>
-                        <span style="width: 25%;float: left;">Password</span>
-                        <input name="txtpwd" type="password" id="txtpwd" placeholder="Password" />
-              </label>
-                    <br />
-                    <span id="lblerror"><font color="Red"></font></span>
-                    <input type="submit" class="btn btn-success" style="margin-left: 25%;" name="Button1" value="Sign in" onclick=""  class="submit button" style="cursor: pointer" />
-                    <br />
-                    <br />
-                    <a href="Forgotpassword.html" style="margin-left: 25%;"><span style="color: red; text-decoration: underline;
-                        font-size: 11px">Forgot your password?</span></a>
-                    <br />
-                    <br />
-                    <a id="sign" style="margin-left: 25%;" href="#mySignUp" ng-click="setnewuser()" data-toggle="modal" style="color: #939393;"><span style="color: red; text-decoration: underline; font-size:11px">
-                    New User Signup here</span></a>
-                </fieldset>
-            </div>
-        </div>
-
- </form>
+         <h4>Login </h4>
+         <h6 id="login_error" style="color:red;">Seems you have entered wrong details.</h6>
       </div>
-     
-    </div>
-   
-  </div>
+      
+      <form name="aspnetForm" method="post" action="/checkSignIn" id="aspnetForm" class="form-horizontal">
+       <div class="modal-body" style="overflow: hidden;">
+       <div class="control-group">
+	    <label class="control-label" for="inputEmail">Email</label>
+	    <div class="controls">
+	      <input name="txtUsername" type="text"  id="txtUsername"  placeholder="Email Id" />
+	    </div>
+	   </div>
+	   <div class="control-group">
+	    <label class="control-label" for="inputPassword">Password</label>
+	    <div class="controls">
+	      <input name="txtpwd" type="password" id="txtpwd" placeholder="Password" />
+	    </div>
+	   </div>
+	   </div>
+	   <div class="modal-footer">
+    	<button type="submit" class="btn btn-primary">Login</button>
+  	   </div>
+	</form>
+	
+ </div>
 
 <!--  sign in popUp  end -->
 
@@ -253,6 +237,14 @@ cursor: default;
 
 <script type="text/javascript">
 $(document).ready(function(){
+	
+ @if(flash.contains("login_error")) {
+	 $('#myModal').modal('show');
+	 $('#login_error').show();
+ }else {
+	 $('#login_error').hide();
+ }	
+ 
  jQuery.validator.addMethod("lettersonly", function(value, element){ 
 			
  return this.optional(element) || /^[a-z," "]+$/i.test(value);
