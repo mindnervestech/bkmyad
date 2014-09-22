@@ -407,6 +407,7 @@ extraFortick,String extraCostpersqcm) {
 	     Address address;
 	     try {
 			address = objectMapper.readValue(json.get("address").traverse(),Address.class);
+			
 	    	addressDetails.pinCode=address.pinCode;
 	    	addressDetails.fullName=address.fullName;
 	    	addressDetails.address=address.shippingAddress;
@@ -428,6 +429,7 @@ extraFortick,String extraCostpersqcm) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	     
 	     if(!modeOfPayment.equalsIgnoreCase("cod")) {
 	    	return ok(routes.CCAvenueController.ccavenue(orderId).url());
 	     }

@@ -91,4 +91,4 @@ GET /AddStateAndCity.html     controllers.Assets.at(path="/public", file="app/Ad
 
 
 GET /ccavenue/:orderId	controllers.CCAvenueController.ccavenue(orderId:String)
-GET /redirect	controllers.CCAvenueController.redirect()
+POST /redirect	controllers.CCAvenueController.redirect()

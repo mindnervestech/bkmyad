@@ -402,7 +402,10 @@ angular.module('adschela').service('StateCityService',function($resource){
     );
 });
 
-angular.module('adschela').controller('MyAccountController',['$scope','$http',function($scope, $http,$rootScope,$cookieStore,OrderListService){
+
+
+
+angular.module('adschela').controller("MyAccountController",['$scope','$http',function($scope, $http,OrderListService){
 	    
 	     $scope.UserId=$scope.txtUsername;
 	     console.log("$scope.txtUsername"+$scope.txtUsername);

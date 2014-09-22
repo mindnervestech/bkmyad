@@ -2,6 +2,10 @@ package viewmodel;
 
 import java.util.UUID;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.google.common.base.Objects;
+
 public class CCAvenueDefaultVM {
 	public String Merchant_Id = "M_raj28780_28780"; //This id(also User_Id)  available at "Generate Working Key" of "Settings & Options"
 	public String Amount = "10.0"; //your script should substitute the amount here in the quotes provided here
@@ -28,4 +32,17 @@ public class CCAvenueDefaultVM {
 	public String billing_zip = "400059";
 	public String delivery_city = "Mumbai";
 	public String delivery_zip = "400059";
+	
+	//return code
+	public String nb_bid;
+	public String nb_order_no;
+	public String card_category;
+	public String bank_name;
+	public String bankRespCode;
+	public String bankRespMsg;
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
 }
