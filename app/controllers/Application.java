@@ -577,11 +577,11 @@ public class Application extends Controller {
 	    		session().put("userName", existingUser.name);
 	    		return redirect("/adminPanel");	
 	    	}else {
-	    		System.out.println("in normal user");
+	    	
 	    		    session().clear();
 		    		session().put("emailId",existingUser.email );
 		    		session().put("userName", existingUser.name);
-	    		return redirect("/");
+	    		    return redirect("/");
 	    	}
 	    }
 	    else {

@@ -42,7 +42,7 @@
 		<form class="pull-left tab-pane" id="extra-toping"
 			name="extra-topingForm" rc-step novalidate>
 			<table width="450" border="0" cellpadding="0" cellspacing="0">
-				<tbody>
+				<tbody ng-if='selectedCartItemOnPopUp.extraForBackgroud > 0'>
 					<tr>
 						<td align="left" valign="middle" width="450">
 						<label>Back Ground Color and Ad Border Color will increase Cost</label>
@@ -50,8 +50,8 @@
 								style="width: 200px; float: left; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
 								<center>
 									<table width="180" border="0" cellpadding="0" cellspacing="0">
-										<tbody>
-											<tr>
+										<tbody >
+											<tr >
 												<td width="180" height="20"
 													style="border-bottom: 5px double #666666; font-size: 10pt; font-family: Calibri;">
 													<b> Select Ad Background Color</b> Background Color Extra:
@@ -159,8 +159,8 @@
 								style="width: 200px; height: 100px; float: right; padding-right: 10px; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
 								<center>
 									<table width="140" border="0" cellpadding="0" cellspacing="0">
-										<tbody>
-											<tr>
+										<tbody ng-if='selectedCartItemOnPopUp.extraForBorder > 0'>
+											<tr >
 												<td width="140" height="20"
 													style="border-bottom: 5px double #666666; font-size: 9pt; font-family: Calibri;">
 													<b>Select Ad Border</b><br /> Border Extra: <span>{{selectedCartItemOnPopUp.extraForBorder}}</span>
@@ -199,6 +199,7 @@
 							<table border="0" cellpadding="0" cellspacing="0" class="style2">
 								<tbody>
 									<tr>
+									
 										<!-- <td align="left" valign="top">
                                                                             <input type="checkbox" name="noBackGroundcolor" ng-checked="true" value="nobgcolor" ng-model="selectedCartItemOnPopUp.nobgColor" ng-change="onNoBgcolorSelected();"> No Backgrund Color
                                                                         </td> -->
@@ -226,7 +227,7 @@
 					</tr>
 				</tbody>
 			</table>
-
+        <div  ng-if='selectedCartItemOnPopUp.extraForBorder == 0' style="color:red">No Topping Available </div>
 		</form>
 
 		<form class="pull-left tab-pane" id="select-date"

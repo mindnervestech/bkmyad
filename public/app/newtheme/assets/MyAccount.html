@@ -30,18 +30,18 @@
                              <th><a>Number Of Words</a></th>
                             
                              <th><a>Total Cost</a></th>
-                             <th><a>payment Option</a></th>
+                             <th><a>Payment Option</a></th>
                         <tr>
                     </thead>
-                	<tbody><tr>
+                	<tbody><tr>	
                     	<tr ng-repeat="dataorderList in orderList.results">
                         <!--    <p>{{dataorderList}}</p> -->
                     	     <td>{{dataorderList.OrderID}}</td>
                              <td>{{dataorderList.Nameofthenewspaper}}</td>
                              <td>{{dataorderList.City}}</td>
-                             <td>{{dataorderList.Adtext}|limitTo:14}</td>
+                             <td>{{dataorderList.Adtext | limitTo:14}}</td>
                              <td>{{dataorderList.Category}}</td>
-                             <td>{{dataorderList.Extraborderper}}</td>
+                             <td>{{dataorderList.BorderCost}}</td>
                               <td>{{dataorderList.PublishDate | date:'yyyy/MM/dd'}}</td>
                              <td>{{dataorderList.numberOfWords}}</td>
                              <td>{{dataorderList.TotalCost}}</td>

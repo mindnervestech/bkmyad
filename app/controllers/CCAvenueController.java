@@ -5,6 +5,7 @@ import java.util.zip.Adler32;
 import javax.persistence.criteria.Order;
 
 import models.AddressDetails;
+import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -46,8 +47,14 @@ public class CCAvenueController extends Controller {
     	String WorkingKey = "3vrz1tf22sk3qcgh4gjvijd1fuqdup0f" ; //put in the 32 bit working key in the quotes provided here
     	String encResponse=request().getQueryString("encResponse");
     	AesCryptUtil aesUtil=new AesCryptUtil(WorkingKey);
-    	String ccaResponse=aesUtil.decrypt(encResponse);	
-    	return ok(views.html.ccaredirect.render("Your new application is ready. " + ccaResponse));
+    	String ccaResponse=aesUtil.decrypt(encResponse);
+    	CCAvenueDefaultVM ccAvenueDefaultVM = Form.form(CCAvenueDefaultVM.class).bindFromRequest().get();
+    	return ok(views.html.ccaredirect.render(ccAvenueDefaultVM));
+    }
+    
+    public static Result redirectTest() {
+    	CCAvenueDefaultVM ccAvenueDefaultVo = new CCAvenueDefaultVM();
+    	return ok(views.html.ccaredirect.render(ccAvenueDefaultVo));
     }
     
     private static String verifyChecksum(String MerchantId , String OrderId, String Amount, String AuthDesc, String WorkingKey, String CheckSum) throws Exception 	{

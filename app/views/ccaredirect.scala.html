@@ -1,7 +1,9 @@
-@(message: String)
+@(cc: viewmodel.CCAvenueDefaultVM)
+<html class="mnt-html" ng-app="adschela" ng-controller="ApplicationController" xmlns="http://www.w3.org/1999/xhtml">
 
-<html>
+@main("") {
 	<body>
-		Response is @message
+		Response is @cc.toString
 	</body>
+	}
 </html>
