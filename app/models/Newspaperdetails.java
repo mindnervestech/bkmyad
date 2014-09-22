@@ -108,7 +108,7 @@ public class Newspaperdetails {
 	
 	@Transactional	
 	public static List<Newspaperdetails> getAllnewspaper() {
-		Query q = JPA.em().createQuery("Select a.Nameofthenewspaper from Newspaperdetails a order by Nameofthenewspaper Asc");
+		Query q = JPA.em().createQuery("Select a.Nameofthenewspaper from Newspaperdetails a order by Priority Asc");
 		return (List<Newspaperdetails>)q.getResultList();
 	}
 	

@@ -25,13 +25,13 @@ public class Adcategory {
 		
 	@Transactional	
 	public static List<Adcategory> getAllArticles() {
-		Query q = JPA.em().createQuery("Select a.cname from Adcategory a order by cname Asc");
+		Query q = JPA.em().createQuery("Select a.cname from Adcategory a order by Priority Asc");
 		return (List<Adcategory>)q.getResultList();
 	}
 
 	@Transactional	
 	public static List<String> getAllArticlesString() {
-		Query q = JPA.em().createQuery("Select a.cname from Adcategory a order by cname Asc");
+		Query q = JPA.em().createQuery("Select a.cname from Adcategory a order by Priority Asc");
 		return (List<String>)q.getResultList();
 	}
 	
@@ -39,7 +39,7 @@ public class Adcategory {
 	
 	@Transactional	
 	public static List<String> getArticleName() {
-		Query q = JPA.em().createQuery("Select a.cname from Adcategory a order by cname Asc");
+		Query q = JPA.em().createQuery("Select a.cname from Adcategory a order by Priority Asc");
 		return (List<String>)q.getResultList();
 	}
 		

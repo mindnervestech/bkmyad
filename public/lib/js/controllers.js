@@ -947,6 +947,7 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 		computeRateByUnit();
 	});
 	
+	$scope.selectedCartItemOnPopUp.isHindi=false;
 	$scope.transliterateDone = function(data) {
 		console.log("$scope.selectedCartItemOnPopUp.isHindi " + $scope.selectedCartItemOnPopUp.isHindi);
 		console.log(data);
@@ -1070,6 +1071,12 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	$scope.Register = function(){
 		$('#mySignUp').modal();
 	}
+	$scope.setnewuser = function() {
+	
+		$('#myModal').hide();
+		$('#mySignUp').modal();
+	}
+	
 	
 	DeleteCartItemByRate = function(rate){
 			
