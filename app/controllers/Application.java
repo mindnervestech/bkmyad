@@ -564,9 +564,7 @@ public class Application extends Controller {
     @Transactional
     public static Result  sendFeedback() throws IOException {
         DynamicForm form = DynamicForm.form().bindFromRequest();
-        System.out.println("////////////////////////////////");
        System.out.println(form);
-       System.out.println("////////////////////////////////");     
          	return redirect("/");
      }
     

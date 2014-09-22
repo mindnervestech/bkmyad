@@ -31,11 +31,11 @@ public class Adsubcategory {
     	long totalPages = 0, size;
     	
     	if(cname.trim().equals("")) {
-    		size = (long) JPA.em().createQuery("Select count(*) from Adsubcategory a").getSingleResult();
+    		size = (Long) JPA.em().createQuery("Select count(*) from Adsubcategory a").getSingleResult();
     	} else {
     		Query query = JPA.em().createQuery("Select count(*) from Adsubcategory a where a.cname LIKE ?2");
     		query.setParameter(2, "%"+cname+"%");
-    		size= (long) query.getSingleResult();
+    		size= (Long) query.getSingleResult();
     	}
     	
     	totalPages = size/rowsPerPage;

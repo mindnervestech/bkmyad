@@ -46,6 +46,7 @@ public class ComposedAdSave{
 	   public String userEmailId;
 	   public String Offer;
 	   public String Enhancement;
+	   public String orderDate;
 	 
 	   
 	   

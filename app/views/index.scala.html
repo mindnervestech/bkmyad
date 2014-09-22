@@ -199,13 +199,18 @@
                    </label>
                     <label>
                         <span class="custom-lable">Password</span>
-                        <input name="txtpasswords" type="password" id="txtpasswords" placeholder="Password"  required/>
                         
+                        <input name="txtpasswords" type="password" id="txtpasswords"  ng-model="txtpasswords" ng-required="" placeholder="Password" />
            </label>
                     <label>
                         <span class="custom-lable">Confirm Password</span>
-                        <input name="txtconfirmpassword" type="password" id="txtconfirmpassword" placeholder="Confirm Password" />
-            </label>
+                        <input name="txtconfirmpassword" type="password" id="txtconfirmpassword"  ng-model="txtconfirmpassword" ng-required="" pw-check="txtpasswords" placeholder="Confirm Password" />
+                        
+            </label><div class="msg-block" ng-show="signUpForm.$error">
+	                <span class="msg-error" ng-show="signUpForm.txtconfirmpassword.$error.pwmatch" style="margin-left: 26%; color:red">
+		                 Passwords don't match.
+	                     </span>
+                   </div>
                     <label>
                         <span class="custom-lable">Mobile No</span>
                         <input name="txtMobileno" type="text" id="txtMobileno" placeholder="Mobile No" autocomplete="on" required />

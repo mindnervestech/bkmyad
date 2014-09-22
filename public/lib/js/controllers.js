@@ -9,6 +9,7 @@ angular.module('adschela').controller("FooterController",['$scope',function($sco
 }]);
 
 angular.module('adschela').controller("IndexController",['$scope',function($scope){
+	$scope.txtpasswords = 'password';
 	$scope.nplist = [{name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
 	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"},
 	                 {name:"Hindustan",img:"/NewDesign/np-logos/hindustan.jpg"},
@@ -896,10 +897,10 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 	}
 	
 	$scope.onNoBgcolorSelected=function(){
-		console.log("onNoBgcolorSelected ");
+		
 		  if($scope.selectedCartItemOnPopUp.nobgColor) { 
 			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - backgroundColor;
-			 $scope.selectedCartItemOnPopUp.onbgColorchange='';
+			 $scope.selectedCartItemOnPopUp.onbgColorchange='No';
 		  }
 		  else {
 			  $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + backgroundColor;
@@ -1240,11 +1241,9 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			pinCode:'',
 			fullName:'',
 			shippingAddress:'',
-			nearestLandmark:'',
 			city:'',
 			state:'',
-			mobile:'',
-			landline:''
+			mobile:''
 			//userid:$scope.userid
 	};
 	$scope.checkForAdDetailsFilled=function(){

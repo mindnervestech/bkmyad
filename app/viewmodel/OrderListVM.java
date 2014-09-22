@@ -33,6 +33,7 @@ public class OrderListVM {
 	   public String userEmailId;
 	   public String Offer;
 	   public String Enhancement;
+	   public String orderDate;
 	   public OrderListVM(ComposedAdSave composedAdSave) {
 	    	
 	    	this.OrderID=composedAdSave.OrderID;
@@ -48,9 +49,8 @@ public class OrderListVM {
 	    	this.Category=composedAdSave.Category;
 	    	this.Extraborderper=composedAdSave.Extraborderper;
 	    	this.Extrabgper=composedAdSave.Extrabgper;
-	    	
+	    	this.orderDate=composedAdSave.orderDate;
 	    	this.userEmailId=composedAdSave.userEmailId;
-	    	
 	    	this.TotalCost=composedAdSave.TotalCost;
 	    	this.numberOfWords=composedAdSave.numberOfWords;
 	    }

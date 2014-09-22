@@ -49,11 +49,11 @@ public class Newspaperdetails {
     	long totalPages = 0, size;
     	
     	if(Nameofthenewspaper.trim().equals("")) {
-    		size = (long) JPA.em().createQuery("Select count(*) from Newspaperdetails a").getSingleResult();
+    		size = (Long) JPA.em().createQuery("Select count(*) from Newspaperdetails a").getSingleResult();
     	} else {
     		Query query = JPA.em().createQuery("Select count(*) from Newspaperdetails a where a.Nameofthenewspaper LIKE ?2");
     		query.setParameter(2, "%"+Nameofthenewspaper+"%");
-    		size= (long) query.getSingleResult();
+    		size= (Long) query.getSingleResult();
     	}
     	
     	totalPages = size/rowsPerPage;

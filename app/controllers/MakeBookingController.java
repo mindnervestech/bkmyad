@@ -268,6 +268,7 @@ extraFortick,String extraCostpersqcm) {
 		public String  [] dates = {};
 		public float extraUnit;
 		public String nobgColor;
+		public String startDate;
 		
 		public CartItem() {};
 		public CartItem(String id, String type, String location, String mainCategoty,
@@ -291,27 +292,23 @@ extraFortick,String extraCostpersqcm) {
 		public String pinCode;
 		public String fullName;
 		public String shippingAddress;
-		public String nearestLandmark;
 		public String city;
 		public String state;
 		public String mobile; 
-		public String landline; 
 		public String userid;
 		
 		
 		public Address() {};
 		public Address(Long id, String  pinCode, String fullName, String shippingAddress,
-				String nearestLandmark, String city, String state,String mobile,String landline,String userid ) {
+				 String city, String state,String mobile,String userid ) {
 			super();
 			this.id = id;
 			this.pinCode=pinCode;
 			this.fullName = fullName;
 			this.shippingAddress = shippingAddress;
-			this.nearestLandmark = nearestLandmark;
 			this.city = city;
 			this.state = state;
 			this.mobile = mobile;
-			this.landline=landline;
 			this.userid=userid;
 		}
 	
@@ -368,7 +365,8 @@ extraFortick,String extraCostpersqcm) {
 	    	  cds.userEmailId=emailId;
 	    	  cds.paymentOption=modeOfPayment;
 	    	  cds.Border=cartItem.get(i).onBorderSelected;
-	    	  cds.Bgcolor=cartItem.get(i).nobgColor;
+	    	  cds.Bgcolor=cartItem.get(i).onbgColorchange;
+	    	  cds.orderDate=cartItem.get(i).startDate;
 	    	  
 	    	  //cartItem.get(i).nobgColor=   'true' means it is not selected ;
 	    	  if( cartItem.get(i).onBorderSelected.equals("No")&&cartItem.get(i).nobgColor.equals("true")) {
@@ -407,15 +405,14 @@ extraFortick,String extraCostpersqcm) {
 	     Address address;
 	     try {
 			address = objectMapper.readValue(json.get("address").traverse(),Address.class);
-			
 	    	addressDetails.pinCode=address.pinCode;
 	    	addressDetails.fullName=address.fullName;
 	    	addressDetails.address=address.shippingAddress;
-	    	addressDetails.nearestLandmark=address.nearestLandmark;
+	    //	addressDetails.nearestLandmark=address.nearestLandmark;
 	    	addressDetails.city=address.city;
 	    	addressDetails.state=address.state;
 	    	addressDetails.mobile=address.mobile;
-	    	addressDetails.landLine=address.landline;
+	    //	addressDetails.landLine=address.landline;
 	    	addressDetails.userEmailid=emailId;
 	    	addressDetails.orderId = orderId;
 	    	JPA.em().persist(addressDetails);
@@ -429,7 +426,6 @@ extraFortick,String extraCostpersqcm) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	     
 	     if(!modeOfPayment.equalsIgnoreCase("cod")) {
 	    	return ok(routes.CCAvenueController.ccavenue(orderId).url());
 	     }

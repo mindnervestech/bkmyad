@@ -51,11 +51,11 @@ public class Basicrate {
 	    	long totalPages = 0, size;
 	    	
 	    	if(City.trim().equals("")) {
-	    		size = (long) JPA.em().createQuery("Select count(*) from Basicrate a").getSingleResult();
+	    		size = (Long) JPA.em().createQuery("Select count(*) from Basicrate a").getSingleResult();
 	    	} else {
 	    		Query query = JPA.em().createQuery("Select count(*) from Basicrate a where a.City LIKE ?2");
 	    		query.setParameter(2, "%"+City+"%");
-	    		size= (long) query.getSingleResult();
+	    		size= (Long) query.getSingleResult();
 	    	}
 	    	
 	    	totalPages = size/rowsPerPage;

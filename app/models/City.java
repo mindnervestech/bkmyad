@@ -31,11 +31,11 @@ public class City {
     	long totalPages = 0, size;
     	System.out.println("/*-*/*/--"+Statename+"*/*-/-*/-*/");
     	if(Statename.trim().equals("")) {
-    		size = (long) JPA.em().createQuery("Select count(*) from City a").getSingleResult();
+    		size = (Long) JPA.em().createQuery("Select count(*) from City a").getSingleResult();
     	} else {
     		Query query = JPA.em().createQuery("Select count(*) from City a where a.Statename LIKE ?2");
     		query.setParameter(2, "%"+Statename+"%");
-    		size= (long) query.getSingleResult();
+    		size= (Long) query.getSingleResult();
     	}
     	
     	totalPages = size/rowsPerPage;

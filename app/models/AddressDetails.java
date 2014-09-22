@@ -17,11 +17,11 @@ public class AddressDetails {
 	   public String pinCode;
 	   public String  fullName;
 	   public String address;
-	   public String nearestLandmark;
+	  // public String nearestLandmark;
 	   public String city;
 	   public String state;
 	   public String  mobile;
-	   public String landLine;
+	//   public String landLine;
 	   public String userEmailid;
 	   public String orderId;
 	public static AddressDetails findById(String email) {

@@ -21,31 +21,24 @@
                 	<thead>
                     	<tr>
                              <th><a>Order ID</a></th>	
-                             <th><a>News paper Name</a></th>
-                              <th><a>City</a></th>
+                             <th><a>NewsPaper / City</a></th>
                              <th><a>Ad Text</a></th>
                              <th><a>Category</a></th>
-                             <th><a>Border Cost</a></th>
+                             <th><a>Order Date</a></th>
                              <th><a>Publish Date</a></th>
-                             <th><a>Number Of Words</a></th>
-                            
                              <th><a>Total Cost</a></th>
-                             <th><a>Payment Option</a></th>
                         <tr>
                     </thead>
                 	<tbody><tr>	
                     	<tr ng-repeat="dataorderList in orderList.results">
                         <!--    <p>{{dataorderList}}</p> -->
                     	     <td>{{dataorderList.OrderID}}</td>
-                             <td>{{dataorderList.Nameofthenewspaper}}</td>
-                             <td>{{dataorderList.City}}</td>
-                             <td>{{dataorderList.Adtext | limitTo:14}}</td>
+                             <td>{{dataorderList.Nameofthenewspaper}}/{{dataorderList.City}}</td>
+                             <td>{{dataorderList.Adtext | limitTo:30}}</td>
                              <td>{{dataorderList.Category}}</td>
-                             <td>{{dataorderList.BorderCost}}</td>
-                              <td>{{dataorderList.PublishDate | date:'yyyy/MM/dd'}}</td>
-                             <td>{{dataorderList.numberOfWords}}</td>
+                             <td>{{dataorderList.orderDate}}</td>
+                             <td>{{dataorderList.PublishDate | date:'yyyy/MM/dd'}}</td>
                              <td>{{dataorderList.TotalCost}}</td>
-                             <td>{{dataorderList.paymentOption}}</td>
                              </tr>
                     	</tbody>
                 </table>
