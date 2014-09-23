@@ -325,7 +325,14 @@ extraFortick,String extraCostpersqcm) {
 	     ObjectMapper objectMapper = new ObjectMapper();
 	     AddressDetails addressDetails =new AddressDetails();
 	     List<CartItem> cartItem ;
-	     String emailId= json.get("email").asText();
+	     
+	     String emailId;
+	     if(json.has("email")) {
+	      emailId= json.get("email").asText();
+	     } else {
+	    	 emailId = session().get("emailId"); 
+	     }
+	     
 	     String modeOfPayment=json.get("modeOfPayment").asText();
 	     String orderId = UUID.randomUUID().toString();
 	     float amount = 0;
