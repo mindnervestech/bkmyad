@@ -1231,10 +1231,9 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	$scope.selectedsubCategoty="";
 	$scope.selectedsubCat="";
 	$scope.rates1 = [];
+	$scope.tab;
+	$scope.userwithoutaccount='No';
 	$scope.modeOfPayment='cc';
-	 $scope.tab;
-	/*$scope.khandobaVar = false;*/
-	console.log("mainCategoty"+$scope.userid);
 	
 	$scope.address={
 			pinCode:'',
@@ -1243,7 +1242,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			city:'',
 			state:'',
 			mobile:''
-			//userid:$scope.userid
+		
 	};
 	$scope.checkForAdDetailsFilled=function(){
 		$scope.carts;
@@ -1273,7 +1272,6 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	$scope.showHomeShipingDetails=function(showHomeshipping){
 		$scope.showHomeshipping=true;
 		$scope.cashByHome;
-		console.log("$scope.cashByHome:"+$scope.cashByHome);
 		$scope.showDebitCardshipping=false;
 	}
 	
@@ -1327,30 +1325,32 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			}
 		});
 	}
+	
 	$scope.checkForUsernameAndPassword =function(){
 		if($scope.userwithoutaccount=='No'){
-			$scope.rc.sampleWizard.moveTo(4);
+			var emailVar = $("#username").hasClass("valid");
+			if(emailVar){
+				$scope.rc.sampleWizard.moveTo(4);
+			}
+			
 		} else if($scope.userwithoutaccount=='Yes'){
 			console.log("next step with login..");
-		$http.get("checkusercreadientals/"+$scope.userId+'/'+$scope.userpass)
-		 .success(function(data){
-		  $scope.result = data;
-		
-		  if($scope.result=="false") {
-		
-		  $scope.rc.sampleWizard.moveTo(4);
+			var emailVar = $("#username").hasClass("valid");
+		    if(emailVar && (!$scope.userpass=='')){
+			  $http.get("checkusercreadientals/"+$scope.userId+'/'+$scope.userpass)
+		      .success(function(data){
+		       $scope.result = data;
+		       if($scope.result=="false") {
+		       $scope.rc.sampleWizard.moveTo(4);
 			}
 		});
-	}
+	}}
  }
 		
-	$scope.tabchange=function()
-	{
+	$scope.tabchange=function(){
 		$scope.bookingState.selectedNewsPaper="";
 		$scope.bookingState.selectedState="";
 		$scope.bookingState.selectedCity="";
-	
-	
 		$scope.tab=false;
 	}
 	
@@ -1361,7 +1361,8 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			SetRates(data.rates);
 		});
 	}
-$scope.onNewspaperSelect = function() {
+	
+    $scope.onNewspaperSelect = function() {
 		
 		$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
 				.success(function(data){
@@ -1432,9 +1433,8 @@ $scope.onNewspaperSelect = function() {
 	$scope.composeAd = function(c) {
 		ComposeAd(c,$scope);
 	}
-	
-  
-	 	$scope.onCartSubmit = function() {
+	 
+	$scope.onCartSubmit = function() {
      	console.log("In submit cart fun");
 		//SubmitCart();
 		$http({method:"POST",url:"/submit-cart",
@@ -1453,5 +1453,4 @@ $scope.onNewspaperSelect = function() {
 			}
 		});
 	}
-	 	
 }]);
