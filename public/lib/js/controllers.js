@@ -80,7 +80,6 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 	                 {name:"Newbline",img:"/NewDesign/np-logos/newbline.png"},	                 	                 
 	                 {name:"Prabhatkhabar",img:"/NewDesign/np-logos/prabhatkhabar.jpg"}];
 	
-	
 	$scope.carousel= {
 			interval : 6000
 	}
