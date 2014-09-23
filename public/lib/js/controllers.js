@@ -1231,7 +1231,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	$scope.selectedsubCategoty="";
 	$scope.selectedsubCat="";
 	$scope.rates1 = [];
-	$scope.modeOfPayment;
+	$scope.modeOfPayment='cc';
 	 $scope.tab;
 	/*$scope.khandobaVar = false;*/
 	console.log("mainCategoty"+$scope.userid);
