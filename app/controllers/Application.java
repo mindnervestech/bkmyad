@@ -558,18 +558,68 @@ public class Application extends Controller {
     	   session().clear();
 	       return redirect("/");	
     }
-    
-      
+ 
     
     @Transactional
     public static Result  sendFeedback() throws IOException {
         DynamicForm form = DynamicForm.form().bindFromRequest();
-       System.out.println(form);
+       
+       
+       String name=form.get("name");
+       String email=form.get("email");
+       String mobile=form.get("mobile");
+       String message=form.get("message");
+       
+      
+       final String username = "akashshinde44comp@gmail.com";
+		final String password = "V@ishnavi14";
+       
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+ 
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+ 
+		try {
+ 
+			Message feedback = new MimeMessage(session);
+			feedback.setFrom(new InternetAddress("akashshinde44comp@gmail.com"));
+			feedback.setRecipients(Message.RecipientType.TO,
+			InternetAddress.parse("yogesh_337@yahoo.com"));
+			feedback.setSubject("Your Ad Details ");
+			//message.setText();
+			 
+			 BodyPart messageBodyPart = new MimeBodyPart();
+
+	         // Now set the actual message
+	         messageBodyPart.setText("FeedBack Details-  "+"\n Name: "+name+"\n Email: "+email+"\n Mobile: "+mobile+"\n Message:"+message);
+
+	         // Create a multipar message
+	         Multipart multipart = new MimeMultipart();
+
+	         // Set text message part
+	         multipart.addBodyPart(messageBodyPart);
+
+	                
+            // Send the complete message parts
+	         feedback.setContent(multipart);
+		     Transport.send(feedback);
+     		} catch (MessagingException e) {
+			  throw new RuntimeException(e);
+		}
+       
+       
          	return redirect("/");
      }
     
-    
-   
+  
     // save the ad 
     @Transactional
     public static Result  SavedispAddDetails() throws IOException {
