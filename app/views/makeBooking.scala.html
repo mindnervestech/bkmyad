@@ -424,9 +424,14 @@
 </div>
 
 <script type="text/ng-template" id="previewAds"> 
-	<div ng-class="selectBorder=='Yes' ? 'setborder' :'selectcolor'" style="height: 250px; margin-left: 30%; margin-right: 30%; margin-top: 10%;">
+	<div ng-class="selectBorder=='Yes' ? 'setborder' :'selectcolor'" style="height: 250px; margin-left: 34%; margin-right: 35%; margin-top: 10%;">
     	{{selectedCart}}
-    </div>      
+    </div>
+	<style>
+	.ngdialog-content {
+		width:44% !important;
+	}
+	</style>      
 </script>
 
 <script type="text/javascript">

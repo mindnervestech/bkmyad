@@ -571,8 +571,9 @@ public class Application extends Controller {
        String message=form.get("message");
        
       
-       final String username = "akashshinde44comp@gmail.com";
-		final String password = "V@ishnavi14";
+       final String username=play.Play.application().configuration().getString("username");
+       final String password=play.Play.application().configuration().getString("password");
+      
        
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");

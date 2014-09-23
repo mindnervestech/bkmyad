@@ -42,12 +42,7 @@ import com.google.common.collect.Lists;
 public class MakeBookingController extends Controller {
 	@Transactional
 	public static Result index() {
-		/*
-		
-		
-		
-		
-		*/
+	
 		return ok(views.html.makeBooking.render(Json.stringify(Json.toJson(makeBookingBarFixture()))));
 		
 	}
