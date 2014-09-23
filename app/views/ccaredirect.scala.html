@@ -2,58 +2,384 @@
 <html class="mnt-html" ng-app="adschela" ng-controller="ApplicationController" xmlns="http://www.w3.org/1999/xhtml">
 
 @main("") {
-	<body>
-		
-		<table>
+	<body class="mnt-body">
+		<div class="container mnt-container">
+			  <div class="navbar navbar-fixed-top" >
+              <div class="navbar-inner">
+                <div class="container">
+                 <a id="logoM" href="index.html"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
+					<a data-target="#sidebar" data-toggle="collapse" class="btn btn-navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </a>
+                  <div class="nav-collapse">
+                    <ul class="nav" style="width:98%;">
+					  <li class=""><a href="#">Home	</a></li>
+					 <!--  <li class=""><a href="special_offer.html">Specials Offer</a></li> -->
+					  <li class=""><a href="#/aboutUs" >About Us</a></li>
+					  <li class=""><a href="#/contactUs" >Contact Us</a></li>
+					  <li class=""  ng-if='@session().containsKey("userName")'><a href="#/myAccount">My Account</a></li> 
+					  <li class=""  ng-if='@session().containsKey("userName")' style="float: right;"><a href="/logout">Logout</a></li> 
+					  <li  ng-if='!(@session().containsKey("userName"))'  >
+					  <a   ng-click="Login()" data-toggle="modal" style="cursor: pointer;" >Login </a>
+					  </li>
+					 <li  ng-if='!(@session().containsKey("userName"))'>
+						<a  ng-click="Register()" data-toggle="modal" style="cursor: pointer;">Register </a>						
+					 </li>
+					 <li  ng-if='(@session().containsKey("userName"))' style="float: right;/* width: 40%; */padding-top: 1%;">
+						Welcome: 	@session().get("userName")					
+					 </li>
+					</ul>
+					
+                  </div><!-- /.nav-collapse -->
+                </div>
+              </div><!-- /navbar-inner -->
+            </div>
+         	<input type="hidden" ng-model="txtUsername" ng-init='txtUsername = "@session().get("emailId")"' value='@session().get("emailId")'/>
+			<header id="header" style="width: 100%;display: block;">
+				<div class="row">
+				<div class="span12" >
+					<a href="#"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
+				
+				<div class="pull-right" style="width: 18%;margin-right: 1%;"> 
+				<div style="width: 100%;  float: left;">
+				<table>
+                                        <tr>
+                                        
+                                            
+                                            <td>
+                                                <img alt="" src="Adsimage/phone.png" border="0" /></td>
+                                            <td>
+                                                +91 9456666690
+											</td>
+                                            
+                                             
+                                        </tr>
+                                    </table>
+				</div>
+				<div style="float: right; margin-right: 10%;">
+					<span class="btn btn-mini btn-warning" ><i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </span>
+					<span class="btn btn-mini active" style="font-size: 12px;"> &#2352;.{{FinalTotal}}</span>
+					<!-- <span class="btn btn-mini">&pound;</span>
+					<span class="btn btn-mini">&euro;</span>  -->
+					</div>
+				</div>
+				</div>
+				</div>
+				<div class="clr"></div>
+			</header>	
+	
+	  <div id="mainBody" class="container">
+	  		<table class="table table-striped">
 		   <tr>
 		      <td>
-		         bid
+		         Bid
 		      </td>
 		      <td>
-		         <input type="text" name="bid" value="@cc.nb_bid"/>
+		         @cc.nb_bid
 		      </td>
 		   </tr>
 		   <tr>
 		      <td>
-		        order_no
+		        Order No
 		      </td>
 		      <td>
-		         <input type="text" name="order_no" value="@cc.nb_order_no"/>
+		         @cc.nb_order_no
 		      </td>
 		   </tr>
 		   <tr>
 		      <td>
-		         card_category
+		         Category
 		      </td>
 		      <td>
-		        <input type="text" name="billing_cust_country" value="@cc.card_category"/>
+		        @cc.card_category
 			      </td>
 		   </tr>
 		   <tr>
 		      <td>
-		         bank_name
+		         Bank Name
 		      </td>
 		      <td>
-		        <input type="text" name="bank_name" value="@cc.bank_name"/>
-		      </td>
-		   </tr>
-		   <tr>
-		      <td>
-		         bankRespCode
-		      </td>
-		      <td>
-		        <input type="text" name="bankRespCode" value="@cc.bankRespCode"/>
+		        @cc.bank_name
 		      </td>
 		   </tr>
 		   <tr>
 		      <td>
-		         bankRespMsg
+		         Bank Resp Code
 		      </td>
 		      <td>
-		         <input type="text" name="bankRespMsg" value="@cc.bankRespMsg"/>
+		        @cc.bankRespCode
+		      </td>
+		   </tr>
+		   <tr>
+		      <td>
+		         Bank Resp Msg
+		      </td>
+		      <td>
+		         @cc.bankRespMsg
 		      </td>
 		   </tr>
 		</table>
-	</body>
-	}
+	  </div>
+	  
+	  <!-- Footer ------------------------------------------------------ -->
+<hr class="soft" style= "width:90%; margin-left:5%">
+<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 5%;">
+	<div class="row" style="margin-left:5%">
+		<div class="span3 custom_span">
+			<h5>HOME</h6>
+			<a href="#/aboutUs">About Us</a>
+			<a href="#/ourClient">Our Client</a> 
+			<a href="#/ourServices">Our Services</a> 
+			<a href="#/contactUs">Contact Us</a>  
+			<a href="#mySignUp" data-toggle="modal">Register</a>
+			<a href="#/ourBlogs">Blog</a>
+		 </div>
+		<div class="span3 custom_span">
+			<h5>SUPPORT</h5>
+			<a href="#/termsAndConditions">Terms and Conditions</a>  
+			<a href="#/privacyPolicy">Privacy Policy </a>  
+			<a href="#/paymentGateway">Payment Gateway </a>  
+			<a href="#/deClaimer">Declaimer</a> 
+			<a href="#/help">How to Book an Ad</a>
+		 </div>
+		<div class="span3 custom_span">
+			<h5>ONLINE BANKING</h5>
+			<a href="#/textClassifiedAd">Text Classified Ad</a> 
+			<a href="#/dispClassified">Classified Display Ad</a>  
+			<a href="#/dispAds">Display Ads</a>  
+			<a href="#/readENewspaper">Read E News paper</a> 
+			<a href="#/">View Ad Rate In Various Newspapers</a> 
+		    
+		 </div>
+		
+		<div  class="span3 custom_span" >
+			<h5>USER LOGIN </h5>
+			<!-- <a href="#/affilatedLogin">Afiilated Login</a> -->
+				<a href="#myModal" data-toggle="modal" >Registered User</a>
+			<a  href="#mySignUp" data-toggle="modal">Guest user</a>
+			
+		 </div> 
+	 </div>
+	<!--  <hr class="soft" style=" padding-left: -12%;width: 90%;margin-left: 5%;"/>
+	<p class="pull-right">&copy; Boot'sshop</p> -->
+</div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script type="text/javascript">
+    $(function() {
+        $('#gallery a').lightBox();
+    });
+    </script>
+	
+
+
+	  
+	
+<!-- sign in popup begins -->
+
+<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:100000;" >
+  	  <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
+        <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+         <h4>Login </h4>
+         <h6 id="login_error" style="color:red;">Seems you have entered wrong details.</h6>
+      </div>
+      
+      <form name="aspnetForm" method="post" action="/checkSignIn" id="aspnetForm" class="form-horizontal">
+       <div class="modal-body" style="overflow: hidden;">
+       <div class="control-group">
+	    <label class="control-label" for="inputEmail">Email</label>
+	    <div class="controls">
+	      <input name="txtUsername" type="text"  id="txtUsername"  placeholder="Email Id" />
+	    </div>
+	   </div>
+	   <div class="control-group">
+	    <label class="control-label" for="inputPassword">Password</label>
+	    <div class="controls">
+	      <input name="txtpwd" type="password" id="txtpwd" placeholder="Password" />
+	    </div>
+	   </div>
+	   </div>
+	   <div class="modal-footer">
+    	<button type="submit" class="btn btn-primary">Login</button>
+  	   </div>
+	</form>
+	
+ </div>
+
+<!--  sign in popUp  end -->
+
+
+<!-- sign up opop up begin -->
+
+
+ <div class="modal hide" id="mySignUp" style="z-index: 10000;width: 30%;left: 58%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	
+    
+      <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
+        <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+        
+      </div>
+
+<form name="signUpForm" method="post" action="/saveSignUp" id="signUpForm">
+      <div class="modal-body" style="overflow: hidden;left: 64%;width: 90%;">
+       <div style="text-align: right">
+                <!--     <input type="image" name="ctl00$ibtnclose1" id="ctl00_ibtnclose1" src="images/close_pop.png" border="0" /> --></div>
+                <div style="color: #65BDDF; font-weight: bold; font-family: Calibri; font-size: 25px;
+                    text-align: center;margin-bottom: 15px">
+                    SignUp Form</div>
+                <fieldset class="textboxnew" style="padding-left: 10%;">
+                    <label>
+                        <span class="custom-lable">Full Name</span>
+                        <input name="txtUserids" type="text" id="txtUserids" autocomplete="on" placeholder="Full Name"  required/>
+                        
+                            </label>
+                    <label>
+                        <span class="custom-lable">Email</span>
+                        <input name="txtEmail" type="text" id="txtEmail" placeholder="Email"  required/>
+                       
+                        <span id="userEmailIdError" style="display: none;color: green;margin-left: 1%;"> Available  </span>
+                    	<span id="userEmailId" style="display: none;color: red;margin-left: 1%;"> Email Id already exists  </span>
+                   </label>
+                    <label>
+                        <span class="custom-lable">Password</span>
+                        
+                        <input name="txtpasswords" type="password" id="txtpasswords"  ng-model="txtpasswords" ng-required="" placeholder="Password" />
+           </label>
+                    <label>
+                        <span class="custom-lable">Confirm Password</span>
+                        <input name="txtconfirmpassword" type="password" id="txtconfirmpassword"  ng-model="txtconfirmpassword" ng-required="" pw-check="txtpasswords" placeholder="Confirm Password" />
+                        
+            </label><div class="msg-block" ng-show="signUpForm.$error">
+	                <span class="msg-error" ng-show="signUpForm.txtconfirmpassword.$error.pwmatch" style="margin-left: 26%; color:red">
+		                 Passwords don't match.
+	                     </span>
+                   </div>
+                    <label>
+                        <span class="custom-lable">Mobile No</span>
+                        <input name="txtMobileno" type="text" id="txtMobileno" placeholder="Mobile No" autocomplete="on" required />
+            </label>
+                    &nbsp;<span id="ctl00_lblmsg"><font color="Red"></font></span>
+                    <br />
+                    <input type="submit" class="btn btn-success" name="signupform" value="Submit"   style="cursor: pointer;margin-left: 25%;" />
+                </fieldset>
+            </div>
+      </form>
+    </div>
+ 
+  
+<!--sign up pop up ends  -->
+	  
+	  
+	  
+</div>	  
+</body>	  
+}
+<style>
+
+.btn{
+cursor: default;
+}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+ @if(flash.contains("login_error")) {
+	 $('#myModal').modal('show');
+	 $('#login_error').show();
+ }else {
+	 $('#login_error').hide();
+ }
+ 
+ $('#loading-id').hide();
+ 
+ jQuery.validator.addMethod("lettersonly", function(value, element){ 
+			
+ return this.optional(element) || /^[a-z," "]+$/i.test(value);
+
+ }, "Letters and spaces only please");  
+ 
+  $("#aspnetForm").validate({
+			  
+         rules:{
+        	     txtUsername: {
+        	   		email: true,
+		         	required: true
+		  		 },
+	           },
+		messages: {
+			txtUsername: "Please enter email properly"
+		          }   
+		}); 
+ 
+  $( "#signUpForm" ).validate({
+	  
+     rules:{
+            
+    	 txtUserids: {
+    	 lettersonly: true,	 
+    	 required: true
+	  		 },
+	  	 txtEmail:{
+	  		 email:true,
+	  		 required:true,
+	  		 /*remote: function() {  
+	         var r = {  
+	            			
+	         url: '/validateUsernameUnique',  
+	         type: "POST",  
+	         success:function(data) {
+			//alert("alert::   "+data);
+			    if(data)
+				{
+				$("#userEmailId").show();
+				$("#userEmailIdError").hide();
+				}
+				else{
+				$("#userEmailId").hide();
+				$("#userEmailIdError").show();
+					}
+	            }
+	          }   
+	         return r;  
+	              
+	        }, */
+
+	  	 },
+	  	 txtpasswords: {
+		 required: true
+		    },
+		 txtMobileno: {
+		 required: true,
+         digits: true 
+        
+		       }
+           },
+	 messages: {
+		 txtUserids: "Please enter name properly",
+	     txtMobileno:"Please enter mobile in proper format" ,
+	     txtpasswords:"Please enter Password",
+	     txtEmail:"Please enter email  properly"
+	   }   
+	});
+	
+});
+</script>
+
 </html>
+
+    
+
+
+
+
+
+
+
+

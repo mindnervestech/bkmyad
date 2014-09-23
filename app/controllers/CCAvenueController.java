@@ -6,6 +6,7 @@ import javax.persistence.criteria.Order;
 
 import models.AddressDetails;
 import play.data.Form;
+import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -43,12 +44,19 @@ public class CCAvenueController extends Controller {
         return ok(views.html.ccacheckout.render("Your new application is ready.", ccAvenueDefaultVo));
     }
     
+	@Transactional
     public static Result redirect() {
     	String WorkingKey = "3vrz1tf22sk3qcgh4gjvijd1fuqdup0f" ; //put in the 32 bit working key in the quotes provided here
     	String encResponse=request().getQueryString("encResponse");
     	AesCryptUtil aesUtil=new AesCryptUtil(WorkingKey);
     	String ccaResponse=aesUtil.decrypt(encResponse);
     	CCAvenueDefaultVM ccAvenueDefaultVM = Form.form(CCAvenueDefaultVM.class).bindFromRequest().get();
+    	models.Order o = models.Order.byId(ccAvenueDefaultVM.Order_Id);
+    	o.cc_bid = ccAvenueDefaultVM.nb_bid;
+    	o.cc_orderNo = ccAvenueDefaultVM.nb_order_no;
+    	o.bank_name = ccAvenueDefaultVM.bank_name;
+    	o.bankMsg = ccAvenueDefaultVM.bankRespCode + "|" +ccAvenueDefaultVM.bankRespMsg;
+    	JPA.em().merge(o);
     	return ok(views.html.ccaredirect.render(ccAvenueDefaultVM));
     }
     
