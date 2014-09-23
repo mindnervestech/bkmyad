@@ -403,11 +403,11 @@
      </div>
 	 <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Mobile: </p><input type="text" ng-model="address.mobile"  id="mobile" name="mobile" />
      </div>
-      <div style="float: left;width: 100%;margin: 1%;">
+      <div style="float: left;width: 100%;">
 		  <a class="btn btn-primary" ng-bind="modeOfPayment == 'cod' ? 'Submit Order': 'Continue For Payment'" data-ng-click="onCartSubmit();" 
-                 data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength" style="float:right; margin-right: 3%;"></a>
+                 data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength" style="float:right; margin-right: 3%;margin: 1%;"></a>
 		   <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward();"
-                   data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex" style="float: right; margin-right: 2%;">Back</a>
+                   data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex" style="float: right; margin-right: 2%;margin: 1%;">Back</a>
 		   
                  </div> 
 		  </div>
