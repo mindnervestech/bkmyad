@@ -51,12 +51,18 @@ public class CCAvenueController extends Controller {
     	AesCryptUtil aesUtil=new AesCryptUtil(WorkingKey);
     	String ccaResponse=aesUtil.decrypt(encResponse);
     	CCAvenueDefaultVM ccAvenueDefaultVM = Form.form(CCAvenueDefaultVM.class).bindFromRequest().get();
-    	models.Order o = models.Order.byId(ccAvenueDefaultVM.Order_Id);
-    	o.cc_bid = ccAvenueDefaultVM.nb_bid;
-    	o.cc_orderNo = ccAvenueDefaultVM.nb_order_no;
-    	o.bank_name = ccAvenueDefaultVM.bank_name;
-    	o.bankMsg = ccAvenueDefaultVM.bankRespCode + "|" +ccAvenueDefaultVM.bankRespMsg;
-    	JPA.em().merge(o);
+    	
+    	try{
+    		models.Order o = models.Order.byId(ccAvenueDefaultVM.Order_Id);
+    		o.cc_bid = ccAvenueDefaultVM.nb_bid;
+        	o.cc_orderNo = ccAvenueDefaultVM.nb_order_no;
+        	o.bank_name = ccAvenueDefaultVM.bank_name;
+        	o.bankMsg = ccAvenueDefaultVM.bankRespCode + "|" +ccAvenueDefaultVM.bankRespMsg;
+        	JPA.em().merge(o);
+    	} catch(javax.persistence.NoResultException exception) {
+    		return controllers.Application.index();
+    	}
+    	
     	return ok(views.html.ccaredirect.render(ccAvenueDefaultVM));
     }
     
