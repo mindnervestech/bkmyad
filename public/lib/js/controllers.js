@@ -1193,7 +1193,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 			multidate : true,
             format : "dd/mm/yyyy", 
             todayHighlight : true,
+            daysOfWeekDisabled: '0',
             startDate : $scope.selectedCartItemOnPopUp.startDate
+            
         }).on("changeDate", function(e){
         	// TODO: If we dont put apply function , first time total is not applied on screen
         	$scope.$apply(function(){
@@ -1202,14 +1204,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
         	$scope.selectedCartItemOnPopUp.noOfImpression = $scope.selectedCartItemOnPopUp.dates.length;
         	ReTotal();
         	});
-        	
         });
-		
 		$("#_datepicker").datepicker("setDate", $scope.selectedCartItemOnPopUp.dates);
 	}
-	
-	
-	
 }]);
 
 angular.module('adschela').controller("TextClassifiedController",['$scope',function($scope){
