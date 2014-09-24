@@ -742,8 +742,6 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		$scope.resultNewspaper = getNewspaperservice.Allnewspaper.get(); 
 		$scope.resultcname = getcnameservice.Allcname.get();
 		$scope.resultstate = getStateNameservice.Allstate.get();
-		
-		
 		$scope.searchForm.from = new Date();
 		$scope.searchForm.to = new Date();
 		$scope.icon_id = "";
@@ -984,7 +982,7 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
                 var total_unit;
                 var extraUnit;
                 if ($scope.selectedCartItemOnPopUp.unit == "Words") {
-                	console.log("counting workds");
+                	console.log("counting words");
                 	total_unit = countWords(text);
                 } else {
                 	if ($scope.selectedCartItemOnPopUp.unit == "Line") {
@@ -996,9 +994,13 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
                    //var extraUnitCost = $scope.selectedCartItemOnPopUp.extra;
                    var costt = parseInt($scope.selectedCartItemOnPopUp.extra);
                    extraUnit = total_unit - freeUnit;
-                  // totalCost = rate + (costt * (extraUnit/unitLot));
+                   if(unitLot > 0){
+                     totalCost = rate + (costt * (extraUnit/unitLot));
+                   }
+                   else{
                    console.log("unitLot " + unitLot)
                    totalCost = rate + (costt * extraUnit);
+                   }
                 }
                 else {
                 	totalCost = rate;
@@ -1235,6 +1237,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	$scope.userwithoutaccount='No';
 	$scope.modeOfPayment='cc';
 	
+	
 	$scope.address={
 			pinCode:'',
 			fullName:'',
@@ -1437,7 +1440,17 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	$scope.onCartSubmit = function() {
      	console.log("In submit cart fun");
 		//SubmitCart();
-		$http({method:"POST",url:"/submit-cart",
+        var fullName=$("#fullName").hasClass("valid");
+        var shippingAddress=$("#shippingAddress").hasClass("valid");
+        var state=$("#state").hasClass("valid");
+        var pinCode=$("#pinCode").hasClass("valid"); 
+        var city=$("#city").hasClass("valid");
+     	var mobile = $("#mobile").hasClass("valid");
+     	$scope.checkAllField=false;
+     	
+     	if(fullName==true && shippingAddress == true && state == true && pinCode == true && mobile == true && city == true ){
+     		
+     		$http({method:"POST",url:"/submit-cart",
 			data:{
 				carts: $scope.carts,
 				address:$scope.address,
@@ -1452,5 +1465,8 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 				window.location = data;
 			}
 		});
+	}else{
+		$scope.checkAllField=true;
 	}
+   }
 }]);

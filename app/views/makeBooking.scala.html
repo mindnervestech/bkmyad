@@ -318,14 +318,14 @@
                   <button ng-class="c.completenessStatus ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeAd(c)'>Compose <i class="icon-edit"></i></button></td>
                  <td> <button class="btn btn-success" ng-click='previewAds(c)' style="width: 100px;">Preview <i class="icon-edit"></i></button></td>
                   <td>{{c.rate}} / {{c.unitVal}} {{c.unit}}</td>
-                  <td>{{c.fullTotal}}</td>
+                  <td> र. {{c.fullTotal}}</td>
                 </tr>
 				
 				</tbody>
             </table>
             <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward();"
-                   data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex" style="margin-left: 77%;margin-top: 3%;">Back</a>
-            <button ng-click="checkForAdDetailsFilled();" class= "btn btn-primary" style="float: right;/* padding: 0%; */margin: 3%"> continue</button>
+                   data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex" style="margin-left: 77%;margin-top: 1%;">Back</a>
+            <button ng-click="checkForAdDetailsFilled();" class= "btn btn-primary" style="float: right;/* padding: 0%; */margin: 1%"> Continue</button>
            <!--  <a class="btn btn-default" ng-click="rc.composeWizard.backward();"
 				ng-show="rc.composeWizard.currentIndex = rc.composeWizard.firstIndex">Back</a> -->
               </form>
@@ -356,9 +356,9 @@
                   <span style="font-size: 9pt;font-family: Calibri;margin-left: 25%;">Sign in to your account to get benefits</span><br>
                  </div>
                   </div><br />
-                  <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" ng-click="rc.sampleWizard.moveTo(2)""
-                    style="margin-left: 76%;margin-top: 3%;">Back</a>
-                 <input class="btn btn-primary" type="submit" value="Continue" data-ng-click="checkForUsernameAndPassword()"style="background-color: #0044cc;margin-left: 7%;margin: 3%;float:right;"> 
+                  <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" ng-click="rc.sampleWizard.moveTo(2)"
+                    style="margin-left: 76%;margin-top: 1%;">Back</a>
+                 <input class="btn btn-primary" type="submit" value="Continue" data-ng-click="checkForUsernameAndPassword()"style="background-color: #0044cc;margin-left: 7%;margin: 1%;float:right;"> 
       </form>
               
       <form class="tab-pane" id="fifth" name="fifthForm" rc-submit="completeWizard()" rc-step>
@@ -388,8 +388,9 @@
 			<br/>
           
 		  </div> -->
-         
+
 	   <div align="center"  ng-show="showDebitCardshipping" >
+	   <p ng-show='checkAllField' style="color: red">Please Fill All Details </p>
 	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Full Name *:</p> <input type="text" ng-model="address.fullName" id="fullName" name="fullName" required/><br/>
       </div>
 	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Shipping Address *:</p> <textarea ng-model="address.shippingAddress" id="shippingAddress" name="shippingAddress" row ="3" required></textarea> 
@@ -407,7 +408,6 @@
                  data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength" style="float:right; margin: 1%; margin-right: 3%;"></a>
 		   <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward();"
                    data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex" style="float: right; margin: 1%; margin-right: 2%;">Back</a>
-		   
                  </div> 
 		  </div>
 		  <br/>

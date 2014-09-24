@@ -191,7 +191,6 @@ public class MakeBookingController extends Controller {
         public String cutOfBookingDate;
         public String extraForBorder;
         public String extraForBackgroud;
-        
         public Boolean isSelected;
 		
 		
