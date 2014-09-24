@@ -1154,7 +1154,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	$scope.previewAds=function(c,scope){
 		
 		console.log(c);
-	
+        $scope.selectednewspaper=c.newspaper;
 		$scope.selectedCart = c.description;
 		$scope.selectBorder=c.onBorderSelected;
 		$scope.selectedcolor=c.onbgColorchange;
