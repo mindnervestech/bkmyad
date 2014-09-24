@@ -1327,6 +1327,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	}
 	
 	$scope.checkForUsernameAndPassword =function(){
+		
 		if($scope.userwithoutaccount=='No'){
 			var emailVar = $("#username").hasClass("valid");
 			if(emailVar){
