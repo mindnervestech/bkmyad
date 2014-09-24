@@ -528,6 +528,60 @@ public class Application extends Controller {
     
     // check for Auth 
     @Transactional
+    public static Result forgotpassword(String email){
+    	
+    	User findpassword = User.getpassword(email);
+    
+    	 final String username=play.Play.application().configuration().getString("username");
+         final String password=play.Play.application().configuration().getString("password");
+        
+         
+  		Properties props = new Properties();
+  		props.put("mail.smtp.auth", "true");
+  		props.put("mail.smtp.starttls.enable", "true");
+  		props.put("mail.smtp.host", "smtp.gmail.com");
+  		props.put("mail.smtp.port", "587");
+   
+  		Session session = Session.getInstance(props,
+  		  new javax.mail.Authenticator() {
+  			protected PasswordAuthentication getPasswordAuthentication() {
+  				return new PasswordAuthentication(username, password);
+  			}
+  		  });
+   
+  		try {
+   
+  			Message feedback = new MimeMessage(session);
+  			feedback.setFrom(new InternetAddress(username));
+  			feedback.setRecipients(Message.RecipientType.TO,
+  			InternetAddress.parse(findpassword.getEmail()));
+  			feedback.setSubject("Your Ad Details ");
+  			//message.setText();
+  			 
+  			 BodyPart messageBodyPart = new MimeBodyPart();
+
+  	         // Now set the actual message
+  	         messageBodyPart.setText("\n Mail : "+findpassword.getEmail()+"\n Password: "+findpassword.getPassword());
+
+  	         // Create a multipar message
+  	         Multipart multipart = new MimeMultipart();
+
+  	         // Set text message part
+  	         multipart.addBodyPart(messageBodyPart);
+
+  	                
+              // Send the complete message parts
+  	         feedback.setContent(multipart);
+  		     Transport.send(feedback);
+       		} catch (MessagingException e) {
+  			  throw new RuntimeException(e);
+  		}
+         
+    	
+    	return redirect("/");
+    }
+    
+    @Transactional
     public static Result  CheckSignIn() {
     	DynamicForm form = DynamicForm.form().bindFromRequest();
     	String email = form.get("txtUsername");
@@ -591,7 +645,7 @@ public class Application extends Controller {
 		try {
  
 			Message feedback = new MimeMessage(session);
-			feedback.setFrom(new InternetAddress("akashshinde44comp@gmail.com"));
+			feedback.setFrom(new InternetAddress(username));
 			feedback.setRecipients(Message.RecipientType.TO,
 			InternetAddress.parse("yogesh_337@yahoo.com"));
 			feedback.setSubject("Your Ad Details ");

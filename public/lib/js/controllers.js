@@ -1028,8 +1028,8 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 	
 }]);
 
-angular.module('adschela').controller("ApplicationController",['$scope','ngDialog',
-                                                           function($scope,ngDialog){
+angular.module('adschela').controller("ApplicationController",['$scope','$http','ngDialog',
+                                                           function($scope,$http,ngDialog){
 	$scope.carts = [];
 	$scope.rates = [];
 	
@@ -1048,6 +1048,14 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
 	  
 	  });
 		
+	}
+	
+	$scope.forgotpass=function(email){
+		$scope.Send=false;
+		$http.get("getforgotpass/"+$scope.email)
+		.success(function(){
+			$scope.Send=true;
+		});
 	}
 	
 	$scope.rate = 0;
@@ -1195,7 +1203,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','ngDialo
             todayHighlight : true,
             daysOfWeekDisabled: '0',
             startDate : $scope.selectedCartItemOnPopUp.startDate
-            
         }).on("changeDate", function(e){
         	// TODO: If we dont put apply function , first time total is not applied on screen
         	$scope.$apply(function(){
@@ -1233,7 +1240,6 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	$scope.tab;
 	$scope.userwithoutaccount='No';
 	$scope.modeOfPayment='cc';
-	
 	
 	$scope.address={
 			pinCode:'',
@@ -1327,7 +1333,6 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	}
 	
 	$scope.checkForUsernameAndPassword =function(){
-		
 		if($scope.userwithoutaccount=='No'){
 			var emailVar = $("#username").hasClass("valid");
 			if(emailVar){

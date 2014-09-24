@@ -113,5 +113,15 @@ public class User {
 		
 		
 	}
+
+	public static User getpassword(String email) {
+		Query q = JPA.em().createQuery(
+                "SELECT u FROM User u  where  email = ?1 ");
+        
+        q.setParameter(1, email);
+      
+        return (User) q.getSingleResult();
+	}
+	
  
 }
