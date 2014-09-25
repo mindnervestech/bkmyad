@@ -1441,7 +1441,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	}
 	 
 	$scope.onCartSubmit = function() {
-     	console.log("In submit cart fun");
+     	/*console.log("In submit cart fun");
 		//SubmitCart();
         var fullName=$("#fullName").hasClass("valid");
         var shippingAddress=$("#shippingAddress").hasClass("valid");
@@ -1452,7 +1452,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
      	$scope.checkAllField=false;
      	
      	if(fullName==true && shippingAddress == true && state == true && pinCode == true && mobile == true && city == true ){
-     		
+     	*/	
      		$http({method:"POST",url:"/submit-cart",
 			data:{
 				carts: $scope.carts,
@@ -1468,8 +1468,8 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 				window.location = data;
 			}
 		});
-	}else{
+	/*}else{
 		$scope.checkAllField=true;
-	}
+	}*/
    }
 }]);
