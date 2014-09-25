@@ -6,7 +6,18 @@
 @main("") {
 	<body class="mnt-body">
 		<div class="container mnt-container">
-			  <div class="navbar navbar-fixed-top" >
+			  
+         	<input type="hidden" ng-model="txtUsername" ng-init='txtUsername = "@session().get("emailId")"' value='@session().get("emailId")'/>
+			<header id="header" style="width: 100%;display: block;">
+				<div class="row">
+				<div class="span12" >
+					<a href="#"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
+				
+				
+				</div>
+				</div>
+				<div class="clr"></div>
+				<div class="navbar navbar-fixed-top" >
               <div class="navbar-inner">
                 <div class="container">
                  <a id="logoM" href="index.html"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
@@ -32,20 +43,8 @@
 					 <li  ng-if='(@session().containsKey("userName"))' style="float: right;/* width: 40%; */padding-top: 1%;">
 						Welcome: 	@session().get("userName")					
 					 </li>
-					</ul>
-					
-                  </div><!-- /.nav-collapse -->
-                </div>
-              </div><!-- /navbar-inner -->
-            </div>
-         	<input type="hidden" ng-model="txtUsername" ng-init='txtUsername = "@session().get("emailId")"' value='@session().get("emailId")'/>
-			<header id="header" style="width: 100%;display: block;">
-				<div class="row">
-				<div class="span12" >
-					<a href="#"><img src="assets/img/logo.jpg" alt="Bootsshop"/></a>
-				
-				<div class="pull-right" style="width: 18%;margin-right: 1%;"> 
-				<div style="width: 100%;  float: left;">
+					 <div class="pull-right" style="width: 26%;margin-right: 1%;"> 
+				<div style="width: 65%;  float: left;">
 				<table>
                                         <tr>
                                         
@@ -60,16 +59,19 @@
                                         </tr>
                                     </table>
 				</div>
-				<div style="float: right; margin-right: 10%;">
+				<div style="float: right;">
 					<span class="btn btn-mini btn-warning" ><i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </span>
 					<span class="btn btn-mini active" style="font-size: 12px;"> &#2352;.{{FinalTotal}}</span>
 					<!-- <span class="btn btn-mini">&pound;</span>
 					<span class="btn btn-mini">&euro;</span>  -->
 					</div>
 				</div>
-				</div>
-				</div>
-				<div class="clr"></div>
+					</ul>
+					
+                  </div><!-- /.nav-collapse -->
+                </div>
+              </div><!-- /navbar-inner -->
+            </div>
 			</header>	
 	
 	  <div id="mainBody" class="container" ng-view=""></div>
@@ -82,9 +84,9 @@
 			<h5>HOME</h6>
 			<a href="#/aboutUs">About Us</a>
 			<a href="#/ourClient">Our Client</a> 
-			<a href="#/ourServices">Our Services</a> 
+			<!-- <a href="#/ourServices">Our Services</a>  -->
 			<a href="#/contactUs">Contact Us</a>  
-			<a href="#mySignUp" data-toggle="modal">Register</a>
+			<a ng-click="Register()" data-toggle="modal">Register</a>
 			<a href="#/ourBlogs">Blog</a>
 		 </div>
 		<div class="span3 custom_span">
@@ -97,7 +99,7 @@
 		 </div>
 		<div class="span3 custom_span">
 			<h5>ONLINE BANKING</h5>
-			<a href="#/textClassifiedAd">Text Classified Ad</a> 
+			<!-- <a href="#/textClassifiedAd">Text Classified Ad</a> --> 
 			<a href="#/dispClassified">Classified Display Ad</a>  
 			<a href="#/dispAds">Display Ads</a>  
 			<a href="#/readENewspaper">Read E News paper</a> 
