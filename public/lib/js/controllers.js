@@ -1169,7 +1169,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.selectBorder=c.onBorderSelected;
 		$scope.selectedcolor=c.onbgColorchange;
 		ngDialog.open({
-			template: 'previewAds',
+			template: 'newtheme/previewAds.html',
 			className: 'ngdialog-theme-default',
 			scope: $scope
 				
