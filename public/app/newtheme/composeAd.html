@@ -66,7 +66,7 @@
 													<table border="0" cellpadding="0" cellspacing="0"
 														width="180">
 														<tbody>
-															<tr ng-if='selectedCartItemOnPopUp.nobgColor==false'  >
+															<tr  >
 																<td width="36" height="15" align="center"
 																	valign="middle"><span style="font-size: 8pt"><input
 																		id="rbnn" type="radio" name="a" value="lemonchiffons"
@@ -93,7 +93,7 @@
 																		ng-model="selectedCartItemOnPopUp.onbgColorchange"></span>
 																</td>
 															</tr>
-															<tr ng-if='selectedCartItemOnPopUp.nobgColor==false' >
+															<tr  >
 																<td width="36" height="15" align="center"
 																	valign="middle">
 																	<div id="Panel5"
@@ -134,7 +134,7 @@
 																	ng-model="selectedCartItemOnPopUp.nobgColor"
 																	ng-change="onNoBgcolorSelected();"><span
 																	style="font-size: 10pt; font-family: Calibri;">
-																	No Backgrund Color</span></td>
+																	No Background Color</span></td>
 															</tr>
 														</tbody>
 													</table>
@@ -211,7 +211,7 @@
 			<!-- <img src="http://www.releasemyad.com/images/small_straight_arrow.png"
 				id="CatIdImg1" style="vertical-align: middle;" border="0"> -->
 			<div id="_datepicker"></div>
-
+<div ><p style="color:red ; font-size: 9pt; font-family: Calibri;"> No booking available for Sundays  </p></div>
 		</form>
 
 		<div class="pull-left price-box"
@@ -223,7 +223,7 @@
 				<p
 					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px;color: white; ">
 					(Rs {{selectedCartItemOnPopUp.rate}} per
-					{{selectedCartItemOnPopUp.freeUnit}} {{selectedCartItemOnPopUp.unit}})
+					{{selectedCartItemOnPopUp.unitVal}} {{selectedCartItemOnPopUp.unit}})
 					<div style="font-size: 9pt;text-align: center;font-family: Calibri;line-height: 0.8;padding-bottom: 5%; color: white;"> (Rs
 					{{selectedCartItemOnPopUp.extra}} Extra per {{selectedCartItemOnPopUp.unit}} )
 					</div>
@@ -232,14 +232,14 @@
 			<div
 				style="box-shadow: -3px 3px 16px -1px #ccc; margin-left: 2%;padding-left: 2%; height: 132px; padding-top: 2%; padding-bottom: 1%; padding-top: 1%; border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%; width: 96%; margin-left: 2%">
 				<p
-					style="  margin: 0 0 0px; font-size: 9pt; font-family: Calibri;line-height: 1.2;">
+					style="  margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
 					Total: {{selectedCartItemOnPopUp.fullTotal}}</p>
 				<p
-					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;line-height: 1.2;">
+					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
 					{{selectedCartItemOnPopUp.unit}}: 
 					{{selectedCartItemOnPopUp.totalUnit}}</p>
 				<p
-					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;line-height: 1.2;">
+					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
 					Extra Unit: {{selectedCartItemOnPopUp.extraUnit}}</p>
 			</div>
 		</div>

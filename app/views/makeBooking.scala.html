@@ -365,8 +365,8 @@
       <form class="tab-pane" id="fifth" name="fifthForm" rc-submit="completeWizard()" rc-step>
 	     	<!-- <div style="float: left;width: 48%;margin-bottom: 2%;" > <input type="radio" name="chk" value="cod" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showHomeShipingDetails();" style="margin-left:7%;"><b >&nbsp;Collect cash form home</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    </div> -->
-                     <div style="float: left;width: 100%; margin-bottom: 2%;"  > <input type="radio" name="chk"  value="cc" ng-checked="true" ng-model="modeOfPayment" data-ng-init="showDebitShipingDetails();"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </div>
+                    <!--  <div style="float: left;width: 100%; margin-bottom: 2%;"  > <input type="radio" name="chk"  value="cc" ng-checked="true" ng-model="modeOfPayment" data-ng-init="showDebitShipingDetails();"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div> -->
                   <!--  <div align="center"  ng-show="showHomeshipping" >
 			
 		
@@ -390,19 +390,25 @@
           
 		  </div> -->
 
-	   <div align="center"  ng-show="showDebitCardshipping" >
+	   <div align="center"    data-ng-init="showDebitShipingDetails();" >
 	   <p ng-show='checkAllField' style="color: red">Please Fill All Details </p>
 	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Full Name *:</p> <input type="text" ng-model="address.fullName" id="fullName" name="fullName" required/><br/>
+     <!-- <p ng-show='checkFullName' style="color: red">Please Enter FullName in proper Format </p> -->
       </div>
-	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Shipping Address *:</p> <textarea ng-model="address.shippingAddress" id="shippingAddress" name="shippingAddress" row ="3" required></textarea> 
+	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Shipping Address *:</p> <textarea ng-model="address.shippingAddress" id="shippingAddress" name="shippingAddress" row ="3" required ></textarea> 
+      <!--  <p ng-show='checkShippingAddress' style="color: red">Please Enter ShippingAddress in proper Format </p> -->
       </div>
       <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;"> State/Region/Province *: </p><input type="text" ng-model="address.state" id="state"  name="state"  required/><br/>
+     <!--  <p ng-show='checkState' style="color: red">Please Enter State in proper Format </p> -->
       </div>
-      <div style="width: 45%;float: left;margin-bottom: 2%;">	<p style="float: left;width: 35%;text-align: left;">City *: </p><input type="text" name="city" ng-model="address.city" />
+      <div style="width: 45%;float: left;margin-bottom: 2%;">	<p style="float: left;width: 35%;text-align: left;">City *: </p><input type="text"  id="city" name="city" ng-model="address.city" required  />
+      <!-- <p ng-show='checkCity' style="color: red">Please Enter City in proper Format </p> -->
       </div>
       <div style="width: 45%;float: left;margin-bottom: 2%;">	<p style="float: left;width: 35%;text-align: left;">Pincode *:</p> <input type="text" ng-model="address.pinCode" id="pinCode" name="pinCode"  required />
+    <!--   <p ng-show='checkPincode' style="color: red">Please Enter Pincode in proper Format </p> -->
      </div>
-	 <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Mobile: </p><input type="text" ng-model="address.mobile"  id="mobile" name="mobile" required="required" />
+	 <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Mobile *: </p><input type="text" ng-model="address.mobile"  id="mobile" name="mobile"  required  />
+    <!--  <p ng-show='checkMobile' style="color: red">Please Enter Mobile in proper Format </p> -->
      </div>
       <div style="float: left;width: 100%;">
 		  <a class="btn btn-primary" ng-bind="modeOfPayment == 'cod' ? 'Submit Order': 'Continue For Payment'" data-ng-click="onCartSubmit();" 
@@ -449,25 +455,22 @@ $(document).ready(function(){
   $( "#fifth" ).validate({
 	  
      rules:{
-            
     	 fullName: {
     	 lettersonly: true,	 
     	 required: true
-	  		 },
+	  	 },
 	  	 shippingAddress:{
 	  	 //lettersonly: true,
-	  	 required:true,
+	  	 required: true
 	  	 },
-	  	
-		 state: {
+	     state: {
 		 lettersonly: true,	 
 		 required: true
-		  },
+		 },
 		 city: {
 		 lettersonly: true,	 
 		 required: true
-		  },
-		 
+		 },
 		 mobile: {
 		 required: true,
          digits: true 
@@ -476,10 +479,9 @@ $(document).ready(function(){
 		 required: true,
 		 digits: true 
 		 }      
-		       
      },
 	 messages: {
-		 fullName: "Please enter Name properly",
+		 fullName:"Please enter Name properly",
 		 shippingAddress:"Please enter Address in proper format" ,
 		 state:"Please enter State  properly",
 		 city:"Please enter City  properly",
@@ -496,18 +498,15 @@ $(document).ready(function(){
 			 },
 			 password: {
 		     required: true
-			},	 
+			}	 
 	   },
 	   messages: {
 			username: "Please enter Email  properly",
 			password:"Please enter  Password"
 	   }   
    });
-		
 });
 </script>
-
-
 <script type="text/ng-template" id="composeAd"> 
 	<div rc-wizard="composeAdWizard" rc-disabled="rc.firstForm.submitInProgress">
     	<ul class="nav rc-nav-wizard">

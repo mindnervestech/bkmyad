@@ -84,7 +84,7 @@ public class UtilityQuery {
      				"where Basicrate.Nameofthenewspaper= ?1 and Basicrate.Category= ?2");
      	         
      	         q.setParameter(1, newspaper);
-     	        q.setParameter(2, Category);
+     	         q.setParameter(2, Category);
      	         
      	         List<Object[]> list = (List<Object[]>)q.getResultList();
      	         return list;
