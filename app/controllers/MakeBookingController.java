@@ -367,7 +367,8 @@ extraFortick,String extraCostpersqcm) {
 	    	  cds.paymentOption=modeOfPayment;
 	    	  cds.Border=cartItem.get(i).onBorderSelected;
 	    	  cds.Bgcolor=cartItem.get(i).onbgColorchange;
-	    	  cds.orderDate=cartItem.get(i).startDate;
+	    	  Date date = new Date();
+	    	  cds.orderDate = sdf.format(date);//current date i.e. order date saved here
 	    	  
 	    	  //cartItem.get(i).nobgColor=   'true' means it is not selected ;
 	    	  if( cartItem.get(i).onBorderSelected.equals("No")&&cartItem.get(i).nobgColor.equals("true")) {

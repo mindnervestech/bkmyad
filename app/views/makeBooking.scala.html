@@ -339,8 +339,8 @@
               <b>Email:</b>&nbsp;&nbsp;  <input type="email" ng-model="userId" name="username" id="username"  required="true" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <p ng-show="result" style="color:red">Please enter valid credentials</p>
               </div>
-              <div ng-show="showFieldsVar" >
-                  <b>Password:</b>&nbsp;&nbsp;   <input type="password" name="password" id="password" ng-model="userpass" name="password">
+              <div ng-show="showFieldsVar" > &nbsp;&nbsp;
+                  <b>Password:</b>&nbsp;&nbsp;   <input type="password" name="password" id="password" ng-model="userpass" name="password" required="true">
                   <!-- <div style="margin-left: 45%;"s>
                   <input type="checkbox" name="remberuser" value="remember">
                   <span style="font-size: 9pt;font-family: Calibri;">Remember me</span>&nbsp;&nbsp;&nbsp;
@@ -593,7 +593,7 @@ $(document).ready(function(){
 		 lettersonly: true,	 
 		 required: true
 		  },
-		  city: {
+		 city: {
 		 lettersonly: true,	 
 		 required: true
 		  },
@@ -601,7 +601,7 @@ $(document).ready(function(){
 		 mobile: {
 		 required: true,
          digits: true 
-		       },
+		 },
 		 pinCode: {
 		 required: true,
 		 digits: true 
@@ -623,10 +623,14 @@ $(document).ready(function(){
 	        username: {
 			required: true,
 			email: true
-			 }      
+			 },
+			 password: {
+		     required: true
+			},	 
 	   },
 	   messages: {
-			username: "Please enter Email  properly"
+			username: "Please enter Email  properly",
+			password:"Please enter  Password"
 	   }   
    });
 		
