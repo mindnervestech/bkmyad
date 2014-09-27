@@ -72,8 +72,11 @@
               
               
               <form class="tab-pane" id="second" name="secondForm"  rc-step>
-                	 Category : {{bookingState.selectedMainCategoty}}
+              <div style="margin: 1%;">
+                	 Category : {{bookingState.selectedMainCategoty}} 
+                	      <u><a ng-click="rc.sampleWizard.first()" style="cursor: pointer;margin-left: 5%;color: #65BDDF;"">Change</a></u>
                 	 
+                	 </div>
                 <tabset>
 			    <tab ng-click="tabchange()" heading="Select Your Newspaper">
 			   <!--  <p>{{checkMatrimonial}}</p> -->
@@ -289,13 +292,13 @@
               <form class="tab-pane" id="third" name="thirdForm" rc-step novalidate >
                 <h3 class="pull-left">Compose Your Ad</h3>
                 <img class="pull-left" style="width: 4%;" src="/NewDesign/images/np-compose.jpg" >
-                <table class="table table-bordered">
+                <table class="table table-bordered" style="font-size: 13px;">
               <thead>
                 <tr>
                   <th>Category</th>
                   <th>City/Newspaper</th>
                   <th>Description</th>
-                  <th>To Be Published On</th>
+                  <th>Published Date</th>
                   <th>Compose/Update</th>
                   <th>Preview</th>
 				  <th>Price/Unit</th>
@@ -307,16 +310,16 @@
                   <td>{{c.mainCategoty}}</td>
                   <td>{{c.location}} - {{c.newspaper}}</td>
                   <td><span ng-show="c.description == '' " style="color:red">Not set</span>
-                  <span tooltip="{{c.description}}"  ng-bind="c.description|limitTo:40" ></span><a ng-click="composeAd(c)" style="cursor: pointer;">...</a></td>
+                  <span tooltip="{{c.description}}"  ng-bind="c.description|limitTo:40" ></span><a ng-click="composeAd(c)" style="cursor: pointer;color: blue;">...</a></td>
                                     
                   <td><!-- <a href="http://www.w3schools.com">Visit W3Schools.com!</a> -->
                   	<span ng-show="c.dates.length == 0" style="color:red">Not set</span>
                   	<span ng-repeat="cd in c.dates" class="dates-coll label label-warning" 
                        data-ng-bind="formatDate(cd)"></span>
                   </td>
-                  <td>
+                  <td style="width: 18%;">
               <!--     <span ng-show="" style="color:red;font-size: 11pt;font-family: Calibri;">Click to Compose</span> -->
-                  <button ng-class="c.completenessStatus ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeAd(c)'>Compose <i class="icon-edit"></i></button></td>
+                  <button ng-class="c.completenessStatus ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeAd(c)'>ComposeAds <i class="icon-edit"></i></button></td>
                  <td> <button class="btn btn-success" ng-click='previewAds(c)' style="width: 100px;">Preview <i class="icon-edit"></i></button></td>
                   <td>{{c.rate}} / {{c.unitVal}} {{c.unit}}</td>
                   <td> र. {{c.fullTotal}}</td>
