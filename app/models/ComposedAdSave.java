@@ -31,7 +31,7 @@ public class ComposedAdSave{
 	   public float BgcolorRate;
 	   public String Border;
 	   public float BorderCost;
-	   public String Noofads;
+       public String Noofads;
 	   public String PublishDate;
 	   public String BasicRate;
 	   public float TotalCost;
@@ -47,9 +47,12 @@ public class ComposedAdSave{
 	   public String Offer;
 	   public String Enhancement;
 	   public String orderDate;
-	 
-	   
-	   
+	   public String freeunit;
+	   public float extra;
+	  
+	   /*OID,OrderID,Nameofthenewspaper,City,Adtext,ickRate,Bgcolor,BgcolorRate,Border
+	   BorderCost, PublishDate,BasicRate,TotalCost,Extraborderper, Extrabgper,Category,numberOfWords,orderDate
+	   */
 	   public ComposedAdSave() {
 	    }  
 	   
@@ -108,12 +111,14 @@ public class ComposedAdSave{
 	public void setTick(String tick) {
 		Tick = tick;
 	}
-	/*public String getTickRate() {
-		return TickRate;
-	}
-	public void setTickRate(String tickRate) {
-		TickRate = tickRate;
-	}*/
+	 public float getTickRate() {
+			return TickRate;
+		}
+
+		public void setTickRate(float tickRate) {
+			TickRate = tickRate;
+		}
+
 	public String getBgcolor() {
 		return Bgcolor;
 	}

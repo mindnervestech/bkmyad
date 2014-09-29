@@ -788,73 +788,73 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	
 });
 
-angular.module('adschela').service('getNewspaperservice',function($resource){
-    this.Allnewspaper = $resource(
+	angular.module('adschela').service('getNewspaperservice',function($resource){
+        this.Allnewspaper = $resource(
             '/getNewspaper',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get',isArray:true}
             }
-    );
-});
+    	);
+	});
 
 
-angular.module('adschela').service('getcnameservice',function($resource){
-    this.Allcname = $resource(
+	angular.module('adschela').service('getcnameservice',function($resource){
+        this.Allcname = $resource(
             '/getCategory',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get',isArray:true}
             }
-    );
-});
+    	);
+	});
 
-angular.module('adschela').service('getStateNameservice',function($resource){
-    this.Allstate = $resource(
+	angular.module('adschela').service('getStateNameservice',function($resource){
+        this.Allstate = $resource(
             '/getStatename',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get',isArray:true}
             }
-    );
-});
+    	);
+	});
 
-angular.module('adschela').service('getCityNameservice',function($resource){
-    this.AllCity = $resource(
+	angular.module('adschela').service('getCityNameservice',function($resource){
+         this.AllCity = $resource(
             '/getCityname/:state',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get',isArray:true}
             }
-    );
-});
+    	);
+	});
 
 
-angular.module('adschela').service('BasicRateService',function($resource){
-    this.BasicRateInfo = $resource(
+	angular.module('adschela').service('BasicRateService',function($resource){
+        this.BasicRateInfo = $resource(
             '/getBasicrate/:City/:currentPage',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get'}
             }
-    );
-});
+    	);
+	});
 
-angular.module('adschela').service('deleteBasicRateService',function($resource){
-    this.Deletebasicrate = $resource(
+	angular.module('adschela').service('deleteBasicRateService',function($resource){
+        this.Deletebasicrate = $resource(
             '/deleteBasicRate/:id',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get'}
             }
-    );
-});
+             );
+	});
 
 
 
 
 
-angular.module('adschela').controller("ComposeAdController",['$scope',function($scope, $timeout) {
+	angular.module('adschela').controller("ComposeAdController",['$scope',function($scope, $timeout) {
 	
 	$scope.selectedCartItemOnPopUp = GetSelectedCartItemOnPopUp();
 	var borderSelected;
@@ -1039,8 +1039,6 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 	$scope.formatDate = function(cd) {
 		return moment(cd).format('DD-MM-YYYY');
 	}
-	
-	
 }]);
 
 angular.module('adschela').controller("ApplicationController",['$scope','$http','ngDialog',
@@ -1049,30 +1047,31 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	$scope.rates = [];
 	$scope.discRates = [];
 	$scope.orderListuser = [];
-
-
+	
+	
+	setCancelOrderIdData = function(orderListuser){
+		$scope.orderListuser = orderListuser;
+	    	angular.forEach($scope.orderListuser, function(request, key){
+	    		//$scope.carts = $scope.orderListuser;
+		    	console.log(JSON.stringify(request)+"--"+key);
+	  });
+  }
+	
 	setDiscRates =  function (discRates) {
 		$scope.discRates = discRates;
-		
 		angular.forEach($scope.carts, function(obj, index){
-		
 	    	angular.forEach($scope.discRates, function(request, key){
 	    		if(request.id == obj.id) {
 		     	   	  request.isSelected = true;
               }
-	    		console.log(JSON.stringify(key)+"--"+value);
 			});
 	       return;
-	  
 	  });
-		
 	}
 	
 	SetRates = function (rates) {
 		$scope.rates = rates;
-		
 		angular.forEach($scope.carts, function(obj, index){
-		
 	    	angular.forEach($scope.rates, function(request, key){
 	    		
 	    		if(request.id == obj.id) {
@@ -1080,7 +1079,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	            }
 			});
 	       	return;
-	  
 	  });
 		
 	}
@@ -1240,45 +1238,44 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	}
 }]);
 
-angular.module('adschela').controller("TextClassifiedController",['$scope',function($scope){
+	angular.module('adschela').controller("TextClassifiedController",['$scope',function($scope){
 	$scope.init = function(beData) {
 		$scope.requestScope = beData;
-	} 	
-}]);
+		} 	
+	}]);
 
-angular.module('adschela').controller("SidebarController",['$scope',function($scope){
+	angular.module('adschela').controller("SidebarController",['$scope',function($scope){
 	$scope.init = function(beData) {
 		$scope.sideRequest = beData;
 		console.log($scope.sideRequest);
-	}
-}]);
+		}
+	}]);
 
-angular.module('adschela').controller("MakeBookingController",['$scope','$http','$cookies','$cookieStore','ngDialog',
+	angular.module('adschela').controller("MakeBookingController",['$scope','$http','$cookies','$cookieStore','ngDialog',
                                                                function($scope,$http,$cookies,$cookieStore,ngDialog){
-	$scope.showFieldsVar = false;
-	$scope.userId;
-	$scope.selectedsubCategoty="";
-	$scope.selectedsubCat="";
-	$scope.rates1 = [];
-	$scope.tab;
-	$scope.userwithoutaccount='No';
-	$scope.modeOfPayment='cc';
+		$scope.showFieldsVar = false;
+		$scope.userId;
+		$scope.selectedsubCategoty="";
+		$scope.selectedsubCat="";
+		$scope.rates1 = [];
+		$scope.tab;
+		$scope.userwithoutaccount='No';
+		$scope.modeOfPayment='cc';
+		$scope.orderIdPer = '939f6487-dcb1-4a95-b28b-77c048260814';
 	
-	$scope.address={
+		$scope.address={
 			pinCode:'',
 			fullName:'',
 			shippingAddress:'',
 			city:'',
 			state:'',
 			mobile:''
-		
-	};
-	$scope.checkForAdDetailsFilled=function(){
-		$scope.carts;
-		$scope.errorDesc=false;
-		$scope.errorDate=false;
-		angular.forEach($scope.carts, function(value, key) {
-			 
+		};
+		$scope.checkForAdDetailsFilled=function(){
+			$scope.carts;
+			$scope.errorDesc=false;
+			$scope.errorDate=false;
+			angular.forEach($scope.carts, function(value, key) {
 			if(value.description == '' ){
 				$scope.errorDesc=true;	
 			}
@@ -1286,12 +1283,11 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 				 $scope.errorDate=true;
 			}
 	   });
-		
 		if (! $scope.carts.length ==0){
 		if(!$scope.errorDate && !$scope.errorDesc) {
 	     $scope.rc.sampleWizard.forward();
 		}
-	}
+	 }
    }
 	
 	$scope.showfieldsonlyusername=function(showfieldstouser)
@@ -1390,15 +1386,18 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			SetRates(data.rates);
 		});
 	}
-	
+    if(!($scope.orderIdPer == '') ){
+		$http.get("getOrderDetailsByOrderId/"+$scope.orderIdPer)
+		.success(function(data){
+				setCancelOrderIdData(data.orderListuser);
+				PersistanceOrderItemDetails(data.orderListuser);
+		});
+	}
     $scope.onNewspaperSelect = function() {
-		
 		$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
 				.success(function(data){
-				
 					$scope.tab=true;
 					    setDiscRates(data.discRates);
-						
 					    SetRates(data.rates);
 				});
 	}
@@ -1413,7 +1412,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 				rate: discountRate.dTotalPrice,
 				unit: discountRate.unit,
 				unitVal: discountRate.unitVal,
-				extra: discountRate.extraCostperLine,
+				extra: discountRate.extra,
 				freeUnit: discountRate.freeUnit,
 				extraForBackgroud:discountRate.backColor,
 				extraForBorder:discountRate.border,
@@ -1434,7 +1433,38 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 				startDate:moment().add(2, 'days').format("DD/MM/YYYY")
 		    }
 		}
-    
+    function  PersistanceOrderItem (orderListuser) {
+		return cartItem = {
+				id:orderListuser.id,	
+				hashKey: orderListuser.$$hashKey,	
+				location: orderListuser.location,
+				newspaper: orderListuser.newspaper,
+				rate: orderListuser.fullTotal,
+				unit: orderListuser.unit,
+				unitVal: orderListuser.unitVal,
+				extra: orderListuser.extra,
+				freeUnit: orderListuser.freeunit,
+				extraForBackgroud:orderListuser.extraForBackgroud,
+				extraForBorder:orderListuser.extraForBorder,
+				extraFortick:orderListuser.extraFortick,
+				completenessStatus:'please fill details',
+				description:orderListuser.description,
+				total: 0,
+				fullTotal: orderListuser.fullTotal,
+				totalExtraCost : 0,
+				totalUnitCost:0,
+				noOfImpression:1,
+				dates:orderListuser.dates,
+				mainCategoty:'',
+				isHindi:true,
+				onbgColorchange:'', 
+				onBorderSelected:'No',
+				nobgColor:true,
+				notickforAd: true,
+				startDate:moment().add(2, 'days').format("DD/MM/YYYY")
+		    }
+		}
+
 	function NewCartItem(rate) {
 		return cartItem = {
 			id:rate.id,	
@@ -1482,8 +1512,16 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		} else {
 			DeleteCartItemByRate(discountRate);
 		}
-		
 	}
+	
+	//push the itemto cart if the orderId is present in  cookies
+	PersistanceOrderItemDetails = function(orderListuser){
+		$scope.orderListuser = orderListuser;
+	for(var i =0; i<$scope.orderListuser.length;i++){
+		PushToCart(PersistanceOrderItem($scope.orderListuser[i]));
+	 }
+   }
+	
 	$scope.rateClicked = function(e, rate) {
 		if($(e.target).is(":checked")) {
 			PushToCart(NewCartItem(rate, $scope.bookingState.selectedNewsPaper));
@@ -1533,9 +1571,13 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			} else {
 				window.location = data;
 			}
+			// $cookies.put('myOrderId',orderId);	
+			  // Get cookie
+			  console.log("myOrderId: "+$cookies.get('orderId'));
 		});
-	/*}else{
+	
+           }else{
 		$scope.checkAllField=true;
-	}*/
-   }
+	}
+  }
 }]);

@@ -39,7 +39,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 
-public class MakeBookingController extends Controller {
+    public class MakeBookingController extends Controller {
 	@Transactional
 	public static Result index() {
 		return ok(views.html.makeBooking.render(Json.stringify(Json.toJson(makeBookingBarFixture()))));
@@ -48,25 +48,24 @@ public class MakeBookingController extends Controller {
 	@Transactional
     public static Result getcity(String statename){
     	List<String> listallcity = City.getallcity(statename);
-    	    	
     	if(!listallcity .isEmpty()) {
     		Iterable<String> subCats = Splitter.on(",").split(listallcity.get(0));
     		return ok(Json.toJson(subCats));
     	}
     	return ok();
      }
+	
 	@Transactional
 	public static Result checkUserNameandPassword(String Username,String Password){
+		User existingUser = User.findByCredentials(Username,Password);
 		
-		 User existingUser = User.findByCredentials(Username,Password);
-		   
-		 if (existingUser != null) {
-		    	return ok("false");
-		    }
-		    else {
-		    	flash("login_error", "Please check your username and password");
-		    	return ok("true");
-		    }
+		if (existingUser != null) {
+		     return ok("false");
+		}
+		else {
+		flash("login_error", "Please check your username and password");
+		 return ok("true");
+	   }
 	 }
 	    @Transactional
 	    public static Result getBasicRateByLocationAndCategory(String Location,String Category) {
@@ -106,8 +105,22 @@ public class MakeBookingController extends Controller {
 	return ok(Json.toJson(map));
 
 	    }
-	
-	
+	    
+	    
+	   @Transactional
+	    public static Result getOrderDetailsByOrderId (String orderIdPer) {
+	    	List<Object[]> orde = UtilityQuery.getDetailsByOrderId(orderIdPer); 
+	    	System.out.println("orderList"+orde.toString());
+	    	List<OrderList> orderListuser = Lists.newArrayList();
+	    	for(Object[] ol :orde) {
+                orderListuser.add(OrderList.byId(ol[0].toString())
+                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),ol[10].toString(),ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17]) );
+        	}
+	    	Map<String,Object> map = new HashMap<String, Object>();
+			map.put("orderListuser",orderListuser);
+			return ok(Json.toJson(map));
+	    }
+	    
 	@Transactional
 	public static Result getRatesByNewspaper(String newspaper,String Category) {
 		// get the data for discount
@@ -121,7 +134,7 @@ public class MakeBookingController extends Controller {
 	        		
 	        		String str; 
 	            	str=rs[4].toString();
-	           	 String number = "";
+	           	    String number = "";
 	                String letter = "";
 	            
 	                for (int i = 0; i < str.length(); i++) {
@@ -170,12 +183,10 @@ public class MakeBookingController extends Controller {
 		return ok(Json.toJson(map));
 	}
 	
-	
 	private static Map<String,Object>  makeBookingBarFixture() {
 		List<Newspaperdetails> newspapers = Newspaperdetails.getAllnewspaper();
 		List<State> locations=State.getallstate();
 		List<Adcategory> categories = Adcategory.getAllArticles();
-				
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("newspapers", newspapers);
 		map.put("locations", locations);
@@ -187,7 +198,69 @@ public class MakeBookingController extends Controller {
 	
 	
 	
-
+	@JsonIgnoreProperties(ignoreUnknown=true)
+	public static class OrderList {
+		public String id;
+		
+		public String OrderId;
+		public String newspaper;
+		public String description;
+		public String bgcolor;
+		public String border;
+		public String mainCategoty;
+		public String subcategory;
+		public String location;
+		//public String newspaper;
+		public String unit;
+		public String onbgColorchange;
+		public String onBorderSelected;
+		public String extraForBorder;
+		public String extraForBackgroud;
+		public String totalUnit;//number of words
+		public String  fullTotal; 
+		public String userid;
+	    public String  [] dates = {};
+		public String datesSelected;
+		//public float extraUnit;
+		//public String nobgColor;
+		public String adbookedDate;
+		public String extraFortick;
+		public String notickforAd;
+		public float extra;
+		public String freeunit;
+	//	public String extraForBorder;
+		//public String extraForBackgroud;
+	//  public float	fullTotal;
+		 public static OrderList byId(String id) {
+			 OrderList orderList = new OrderList();
+			 orderList.id = id;
+	         return orderList;
+	        }
+		   public  OrderList cancelOrderDetails(String OrderId,String newspaper,String  location ,String description, String extraFortick , String onbgColorchange ,String extraForBackgroud,
+				   String onBorderSelected , String extraForBorder , String   datesSelected,String unit , String  fullTotal,  String mainCategoty ,  String totalUnit , String adbookedDate,
+				   String freeunit, float extra){
+			   this.OrderId=OrderId;
+			   this.newspaper=newspaper;
+			   this.location=location;
+			   this.description=description;
+			   this.extraFortick = extraFortick;
+			   this.onbgColorchange = onbgColorchange;
+			   this.extraForBackgroud=extraForBackgroud;
+			   this.onBorderSelected =  onBorderSelected;
+			   this.extraForBorder = extraForBorder;
+			   this.datesSelected = datesSelected;
+			   this.unit=unit;
+			   this.mainCategoty = mainCategoty;
+			   this.fullTotal=fullTotal;
+			   this.extraForBorder=extraForBorder;
+			   this.totalUnit=totalUnit;
+			   this.adbookedDate = adbookedDate;
+			   this.extra = extra;
+			   this.freeunit = freeunit;
+			   return this;
+		   }
+	}
+	
 	
 	@JsonIgnoreProperties(ignoreUnknown=true)
 	public static class DiscountRate {
@@ -240,19 +313,14 @@ public class MakeBookingController extends Controller {
         public DiscountRate withOverUnit(String tBasicPrice, String tTotleprice,String dBasicPrice,String extraCostperLine,
         		String border,String backColor,String specialDiscount,String cutOfBookingDate,        	
         		String extraFortick,String extraCostpersqcm) {
-        	this.tBasicPrice = tBasicPrice;
-        	this.tTotleprice = tTotleprice;
-        	this.dBasicPrice = dBasicPrice;
-        	this.extraCostperLine=extraCostperLine;
-        	this.border = border; 
-            this.backColor = backColor;
-            System.out.println("backColor"+backColor);
+        	
+        	this.tBasicPrice = tBasicPrice;//rate
+        	this.tTotleprice = tTotleprice;//
+        	this.dBasicPrice = dBasicPrice;//discount price
+        	this.extraCostperLine=extraCostperLine;//extra for line
+        	this.border = border; //border selected or not 
+            this.backColor = backColor;//bgColor Selected or not
             this.specialDiscount = specialDiscount;
-           /* this.border = border;
-            System.out.println("extraForBorder:"+border);
-            this.cutOfBookingDate = cutOfBookingDate;
-            System.out.println("extraForBackgroud"+backColor);
-            this.backColor = backColor;*/
             this.extraFortick = extraFortick;
             this.extraCostpersqcm = extraCostpersqcm;
             return this;
@@ -260,15 +328,12 @@ public class MakeBookingController extends Controller {
 	
 }
 	
-	
-	
 	// 200 for first 20 words, 15 / 2 words 
 	@JsonIgnoreProperties(ignoreUnknown=true)
 	public static class Rate {
 		
 		/*public DateConfig dateConfig;
 		public ExtraConfig extraConfig;*/
-		
 		public String id;
         public String location; //Agra
         public String newspaper; //Time of India
@@ -285,19 +350,17 @@ public class MakeBookingController extends Controller {
         public String extraForBackgroud;
         public Boolean isSelected;
 		
-		
-		
         public static Rate byId(String id) {
             Rate rate = new Rate();
             rate.id = id;
             return rate;
-}
+        }
 
-public Rate withCityAndNewspaper(String location, String newspaper) {
+        public Rate withCityAndNewspaper(String location, String newspaper) {
             this.newspaper = newspaper;
             this.location = location;
             return this;
-}
+        }
 
         public Rate withAmountAndFreeUnit(String amount, String unit,String  freeUnit) {
         	this.rate = amount;
@@ -306,7 +369,7 @@ public Rate withCityAndNewspaper(String location, String newspaper) {
             return this;
         }
 
-public Rate withOverUnit(String extra,String cutOfBookingDate,String extraForBorder,String extraForBackgroud, String 
+        public Rate withOverUnit(String extra,String cutOfBookingDate,String extraForBorder,String extraForBackgroud, String 
 
         	extraFortick,String extraCostpersqcm) {
             this.extra = extra;
@@ -318,7 +381,7 @@ public Rate withOverUnit(String extra,String cutOfBookingDate,String extraForBor
             return this;
       }
 	
-}
+	}
 	public class ExtraConfig {
 		public float rate;
 		public String rateOf;
@@ -509,6 +572,8 @@ public Rate withOverUnit(String extra,String cutOfBookingDate,String extraForBor
 	    	  cds.Bgcolor=cartItem.get(i).onbgColorchange;
 	    	  cds.TickRate = cartItem.get(i).extraFortick;
 	    	  cds.Tick = cartItem.get(i).notickforAd;
+	    	  cds.extra =  cartItem.get(i).extra;
+	    	  cds.freeunit = cartItem.get(i).freeUnit;
 	    	  Date date = new Date();
 	    	  cds.orderDate = sdf.format(date);//current date i.e. order date saved here
 	    	  
@@ -576,11 +641,9 @@ public Rate withOverUnit(String extra,String cutOfBookingDate,String extraForBor
 	    	addressDetails.pinCode=address.pinCode;
 	    	addressDetails.fullName=address.fullName;
 	    	addressDetails.address=address.shippingAddress;
-	    //	addressDetails.nearestLandmark=address.nearestLandmark;
 	    	addressDetails.city=address.city;
 	    	addressDetails.state=address.state;
 	    	addressDetails.mobile=address.mobile;
-	    //	addressDetails.landLine=address.landline;
 	    	addressDetails.userEmailid=emailId;
 	    	addressDetails.orderId = orderId;
 	    	JPA.em().persist(addressDetails);
