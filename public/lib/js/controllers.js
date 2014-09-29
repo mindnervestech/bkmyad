@@ -1353,7 +1353,6 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			 $http.get("checkAlreadyExitUser/"+$scope.userId)
 			 .success(function(data){
 			  $scope.data=data;
-			  console.log("$scope.data"+$scope.data);
 			  if($scope.data == "true"){
 					 $scope.alreadyRegister=$scope.data;
 				 } 
@@ -1508,13 +1507,19 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	}
 	 
 	$scope.onCartSubmit = function() {
-     	console.log("In submit cart fun");
+     	/*console.log("In submit cart fun");
 		//SubmitCart();
+        var fullName=$("#fullName").hasClass("valid");
+        var shippingAddress=$("#shippingAddress").hasClass("valid");
+        var state=$("#state").hasClass("valid");
+        var pinCode=$("#pinCode").hasClass("valid"); 
+        var city=$("#city").hasClass("valid");
+     	var mobile = $("#mobile").hasClass("valid");
      	$scope.checkAllField=false;
      	
-     	if((!$scope.address.fullName == '') && (!$scope.address.shippingAddress == '') && (!$scope.address.state == '') &&(!$scope.address.pinCode == '') &&(!$scope.address.city == '') &&(!$scope.address.mobile == '')){  
-     	    
-     	    $http({method:"POST",url:"/submit-cart",
+     	if(fullName==true && shippingAddress == true && state == true && pinCode == true && mobile == true && city == true ){
+     	*/	
+     		$http({method:"POST",url:"/submit-cart",
 			data:{
 				carts: $scope.carts,
 				address:$scope.address,
@@ -1528,15 +1533,9 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			} else {
 				window.location = data;
 			}
-			  
-			  
-			 $cookies.put('myOrderId',orderId);	
-			  // Get cookie
-			  console.log("myOrderId: "+$cookies.get('orderId'));
 		});
-	
-           }else{
+	/*}else{
 		$scope.checkAllField=true;
-	}
-  }
+	}*/
+   }
 }]);

@@ -595,7 +595,6 @@ public Rate withOverUnit(String extra,String cutOfBookingDate,String extraForBor
 			e1.printStackTrace();
 		}
 	     response().setCookie("orderId", orderId);
-	     System.out.println("orderId " + orderId);
 	     if(!modeOfPayment.equalsIgnoreCase("cod")) {
 	    	return ok(routes.CCAvenueController.ccavenue(orderId.trim()).url());
 	     }
