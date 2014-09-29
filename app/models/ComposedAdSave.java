@@ -108,12 +108,12 @@ public class ComposedAdSave{
 	public void setTick(String tick) {
 		Tick = tick;
 	}
-	public String getTickRate() {
+	/*public String getTickRate() {
 		return TickRate;
 	}
 	public void setTickRate(String tickRate) {
 		TickRate = tickRate;
-	}
+	}*/
 	public String getBgcolor() {
 		return Bgcolor;
 	}
