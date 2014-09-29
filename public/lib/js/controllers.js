@@ -167,8 +167,7 @@ angular.module('adschela').controller("HomeScreenController",['$scope',function(
 
 angular.module('adschela').controller('AddCategorySubcatController',function($scope, $modal, $http, $filter, CategoryService){
 	
-	console.log("----------------------");
-	
+		
 	$scope.cname = " ";
 	$scope.pageNumber;
 	$scope.pageSize;
@@ -700,8 +699,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	});
 	console.log($scope.City);
 	console.log($scope.BasicRate);
-	console.log('mfjfjfjfjf');
-	
+		
 	
 	$scope.saveBasicRate = function() {
 		console.log($scope.formData);

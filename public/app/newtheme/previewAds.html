@@ -8,7 +8,7 @@
 		{{selectednewspaper}}
  </div>
  <div class="date_day" style="width: 630px;">
-    <div class="f_l" style="padding-top:3px; width:220px;"> <b>Matrimonial </b></div>
+    <div class="f_l" style="padding-top:3px; width:220px;"> </div>
     <span style=" font-size:15px; font-weight:bold; float:left; padding-top:2px; text-align:center "><b style="color:#FF0000; "></b> <b style="color:#OOOOOO">CLASSIFIEDS</b></span>
     <div class="f_r" style="font-size:13px;"><b></b></div>
     <div class="cl"></div>
@@ -35,7 +35,8 @@
 		   <div style="margin-bottom:25px;line-height:16px;" id="adText">
 				<div  id="adText" style="margin:auto; background-color:; ">
                    
-           			      <div ng-class="selectBorder=='Yes' ? 'setborder' :'selectcolor'" style="margin-left: 3%;margin-right: 3%;">
+           			      <div ng-show="selectedCart!=''" ng-class="selectBorder=='Yes' ? 'setborder' :'selectcolor'" style="margin-left: 3%;margin-right: 3%;">
+    	           	           <i class="icon-ok"></i>
     	           	           	{{selectedCart}}
            	        		</div>
                    
