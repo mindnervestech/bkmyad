@@ -1121,7 +1121,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		    		if(request.id == rate.id) {
 		            	   	  request.isSelected = false;
 		            }
-				});
+		    	});
 		       	return;
 		    };
 		  });
@@ -1251,7 +1251,6 @@ angular.module('adschela').controller("SidebarController",['$scope',function($sc
 		$scope.sideRequest = beData;
 		console.log($scope.sideRequest);
 	}
-	 	
 }]);
 
 angular.module('adschela').controller("MakeBookingController",['$scope','$http','$cookies','$cookieStore','ngDialog',
