@@ -42,12 +42,9 @@ import com.google.common.collect.Lists;
 public class MakeBookingController extends Controller {
 	@Transactional
 	public static Result index() {
-	
 		return ok(views.html.makeBooking.render(Json.stringify(Json.toJson(makeBookingBarFixture()))));
-		
 	}
 	
-		
 	@Transactional
     public static Result getcity(String statename){
     	List<String> listallcity = City.getallcity(statename);
@@ -70,12 +67,7 @@ public class MakeBookingController extends Controller {
 		    	flash("login_error", "Please check your username and password");
 		    	return ok("true");
 		    }
-		 
-		
-		
-		
-		
-	}
+	 }
 	    @Transactional
 	    public static Result getBasicRateByLocationAndCategory(String Location,String Category) {
 	    	List<Object[]> rates1 = UtilityQuery.getBasicRateByLocationAndCategory(Location.trim(),Category.trim()); 
@@ -118,10 +110,11 @@ public class MakeBookingController extends Controller {
 	
 	@Transactional
 	public static Result getRatesByNewspaper(String newspaper,String Category) {
-		
-		
+		// get the data for discount
 		List<Object[]> rates1 = UtilityQuery.getBasicRateByNewspaperAndCategory(newspaper.trim(),Category.trim());
-	 	
+		List<Object[]> discountRates = UtilityQuery.getDiscountRateByNewspaperAndCategory(newspaper.trim(),Category.trim());
+		
+		List<DiscountRate> discRates = Lists.newArrayList();
 		List<Rate> rates = Lists.newArrayList();
                   
 				for(Object[] rs :rates1) {
@@ -146,12 +139,34 @@ public class MakeBookingController extends Controller {
 	        				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
 	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
 	        				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()) );
-	        		
-	        		        		
 	        	}
 			
+				for(Object[] discntRate: discountRates ){
+					String str; 
+	            	str=discntRate[4].toString();
+	           	    String number = "";
+	                String letter = "";
+	            
+	                for (int i = 0; i < str.length(); i++) {
+	                       char a = str.charAt(i);
+	                       if (Character.isDigit(a)) {
+	                             number = number + a;
+
+	                       } else if (Character.isAlphabetic(a)) {
+	                             letter = letter + a;
+
+	               }
+	            }
+					
+	             discRates.add(DiscountRate.byId(discntRate[0].toString())
+	        	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
+	        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
+	        	.withOverUnit(discntRate[4].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString(),discntRate[14].toString()) );
+         }
+				
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("rates", rates);
+		map.put("discRates", discRates);
 		return ok(Json.toJson(map));
 	}
 	
@@ -169,6 +184,84 @@ public class MakeBookingController extends Controller {
 		return map;
 	}
 	
+	
+	
+	
+
+	
+	@JsonIgnoreProperties(ignoreUnknown=true)
+	public static class DiscountRate {
+		public String id;
+		public String location; //Agra
+		public String newspaper;//Time of India
+        public String dTotalPrice;
+        public String tBasicPrice; 
+        public String tOffpercentage; 
+        public String tTotleprice;
+        public String dBasicPrice;
+        public String dOffPrice; 
+        public String extraCostperLine;
+        public String border;
+        public String backColor;
+        public String specialDiscount;
+        public String unit; 
+        public String unitVal;
+        public String extra;
+        public String extraFortick;
+        public String extraCostpersqcm;
+        public String cutOfBookingDate;
+      /*  public String extraForBorder;
+        public String extraForBackgroud;*/
+        public Boolean isSelected;
+		 
+        public static DiscountRate byId(String id) {
+        	DiscountRate discountRate = new DiscountRate();
+        	discountRate.id = id;
+            return discountRate;
+        }
+
+        public DiscountRate withCityAndNewspaper(String location, String newspaper) {
+            this.newspaper = newspaper;
+            this.location = location;
+            System.out.println("newspaper"+newspaper);
+            System.out.println("location"+location);
+            return this;
+        }
+
+        public DiscountRate withAmountAndFreeUnit(String dTotalPrice, String unit,String unitVal) {
+        	this.dTotalPrice = dTotalPrice;
+        	this.unit = unit;
+            this.unitVal = unitVal;
+            System.out.println("unit in discunt"+unit);
+            System.out.println("dTotalPrice in discount"+dTotalPrice);
+            return this;
+        }
+
+        public DiscountRate withOverUnit(String tBasicPrice, String tTotleprice,String dBasicPrice,String extraCostperLine,
+        		String border,String backColor,String specialDiscount,String cutOfBookingDate,        	
+        		String extraFortick,String extraCostpersqcm) {
+        	this.tBasicPrice = tBasicPrice;
+        	this.tTotleprice = tTotleprice;
+        	this.dBasicPrice = dBasicPrice;
+        	this.extraCostperLine=extraCostperLine;
+        	this.border = border; 
+            this.backColor = backColor;
+            System.out.println("backColor"+backColor);
+            this.specialDiscount = specialDiscount;
+           /* this.border = border;
+            System.out.println("extraForBorder:"+border);
+            this.cutOfBookingDate = cutOfBookingDate;
+            System.out.println("extraForBackgroud"+backColor);
+            this.backColor = backColor;*/
+            this.extraFortick = extraFortick;
+            this.extraCostpersqcm = extraCostpersqcm;
+            return this;
+      }
+	
+}
+	
+	
+	
 	// 200 for first 20 words, 15 / 2 words 
 	@JsonIgnoreProperties(ignoreUnknown=true)
 	public static class Rate {
@@ -182,10 +275,9 @@ public class MakeBookingController extends Controller {
         public String rate; //200
        // public String disRate; // This is for discounted Value
         public String unit; //word
-        public String unitVal; //2
+        public int  unitVal = 1; //2
         public String extra; //15
-        public int freeUnit=25; // 20
-       
+        public String freeUnit; // 20
         public String extraFortick;
         public String extraCostpersqcm;
         public String cutOfBookingDate;
@@ -207,16 +299,16 @@ public Rate withCityAndNewspaper(String location, String newspaper) {
             return this;
 }
 
-public Rate withAmountAndFreeUnit(String amount, String unit,String unitVal) {
-            this.unit = unit;
-            this.unitVal=unitVal;
-            this.rate = amount;
+        public Rate withAmountAndFreeUnit(String amount, String unit,String  freeUnit) {
+        	this.rate = amount;
+        	this.unit = unit;
+            this.freeUnit=freeUnit;
             return this;
-}
+        }
 
 public Rate withOverUnit(String extra,String cutOfBookingDate,String extraForBorder,String extraForBackgroud, String 
 
-extraFortick,String extraCostpersqcm) {
+        	extraFortick,String extraCostpersqcm) {
             this.extra = extra;
             this.cutOfBookingDate=cutOfBookingDate;
             this.extraForBorder=extraForBorder;
@@ -248,9 +340,9 @@ extraFortick,String extraCostpersqcm) {
 		public String newspaper;
 		public float rate; //200
 		public String unit; //word
-		public int unitVal; //2
+		public int unitVal = 1; //2
 		public int extra; //15
-		public int freeUnit; // 20
+		public String freeUnit; // 20
 		public float amount;
 		public String onbgColorchange;
 		public String onBorderSelected;
@@ -263,6 +355,8 @@ extraFortick,String extraCostpersqcm) {
 		public float extraUnit;
 		public String nobgColor;
 		public String startDate;
+		public float extraFortick;
+		public String notickforAd;
 		
 		public CartItem() {};
 		public CartItem(String id, String type, String location, String mainCategoty,
@@ -280,6 +374,52 @@ extraFortick,String extraCostpersqcm) {
 	
 	}
 
+	@JsonIgnoreProperties(ignoreUnknown=true)
+	public static class DiscountCartItem {
+		public String id;
+		public String type;
+		public String description;
+		public String mainCategoty;
+		public String subcategory;
+		public String location;
+		public String newspaper;
+		public float  dTotalPrice;
+	    public String tBasicPrice; 
+	    public String tOffpercentage; 
+	    public String tTotleprice;
+	    public String dBasicPrice;
+	    public String dOffPrice; 
+	    public String extraCostperLine;
+	    public String border;
+	    public String backColor;
+	    public String specialDiscount;
+	    public String unit; 
+	    public float unitVal;
+	    public float extra;
+	    public String extraFortick;
+	    public String extraCostpersqcm;
+	    public String cutOfBookingDate;
+	    public float extraForBorder;
+	    public float extraForBackgroud;
+	    public Boolean isSelected;
+		
+		public DiscountCartItem() {};
+		public DiscountCartItem(String id, String type, String location, String mainCategoty,
+				String subcategory, String newspaper, float dTotalPrice) {
+			super();
+			this.id = id;
+			this.type = type;
+			this.location = location;
+			this.mainCategoty = mainCategoty;
+			this.subcategory = subcategory;
+			this.newspaper = newspaper;
+			this.dTotalPrice = dTotalPrice;
+			this.description = location + "-" + newspaper + "(" + mainCategoty + (subcategory==null ? "" : "/" + subcategory) + ")"; 
+		}
+	
+	}
+	
+	
 	@JsonIgnoreProperties(ignoreUnknown=true)
 	public static class Address {
 		public Long id;
@@ -367,22 +507,48 @@ extraFortick,String extraCostpersqcm) {
 	    	  cds.paymentOption=modeOfPayment;
 	    	  cds.Border=cartItem.get(i).onBorderSelected;
 	    	  cds.Bgcolor=cartItem.get(i).onbgColorchange;
+	    	  cds.TickRate = cartItem.get(i).extraFortick;
+	    	  cds.Tick = cartItem.get(i).notickforAd;
 	    	  Date date = new Date();
 	    	  cds.orderDate = sdf.format(date);//current date i.e. order date saved here
 	    	  
 	    	  //cartItem.get(i).nobgColor=   'true' means it is not selected ;
-	    	  if( cartItem.get(i).onBorderSelected.equals("No")&&cartItem.get(i).nobgColor.equals("true")) {
+	    	  //cartItem.get(i).notickforAd = 'true' means it is not selected ;
+	    	  
+	    	  if( cartItem.get(i).onBorderSelected.equals("No") && cartItem.get(i).nobgColor.equals("true")  && cartItem.get(i).notickforAd.equals("true") ) {
 	    		  cds.TotalCost =(cartItem.get(i).rate + ((cartItem.get(i).extra) * (cartItem.get(i).extraUnit))) * cartItem.get(i).dates.length;
+	    	    
 	    	  }
-	    	  else if(cartItem.get(i).onBorderSelected.equals("Yes")&&cartItem.get(i).nobgColor.equals("false")){
+	    	  else if( cartItem.get(i).onBorderSelected.equals("No") && cartItem.get(i).nobgColor.equals("true")  && cartItem.get(i).notickforAd.equals("false")){
+	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraFortick + ((cartItem.get(i).extra) * (cartItem.get(i).extraUnit)) ) * cartItem.get(i).dates.length;
+	    	       
+	    	  }
+	    	  else if(cartItem.get(i).onBorderSelected.equals("Yes") && cartItem.get(i).nobgColor.equals("false") && cartItem.get(i).notickforAd.equals("true")){
 	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBackgroud + cartItem.get(i).extraForBorder + ((cartItem.get(i).extra)*(cartItem.get(i).extraUnit)))*cartItem.get(i).dates.length;
+	    	
 	    	  }
-	    	  else if(cartItem.get(i).onBorderSelected.equals("Yes")&&cartItem.get(i).nobgColor.equals("true")){
+	    	  else if(cartItem.get(i).onBorderSelected.equals("Yes") && cartItem.get(i).nobgColor.equals("false") && cartItem.get(i).equals("false") ){
+	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBackgroud + cartItem.get(i).extraForBorder + cartItem.get(i).extraFortick +((cartItem.get(i).extra)*(cartItem.get(i).extraUnit)))*cartItem.get(i).dates.length;
+	    		  
+	    	  }
+	    	  else if(cartItem.get(i).onBorderSelected.equals("Yes") && cartItem.get(i).nobgColor.equals("true") && cartItem.get(i).notickforAd.equals("true")){
 	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBorder + ((cartItem.get(i).extra) * (cartItem.get(i).extraUnit)))*cartItem.get(i).dates.length;
-	    	  }else if (cartItem.get(i).onBorderSelected.equals("No")&&cartItem.get(i).nobgColor.equals("false")){
+	    	    
+	    	  }
+	    	  else if(cartItem.get(i).onBorderSelected.equals("Yes") && cartItem.get(i).nobgColor.equals("true")&& cartItem.get(i).notickforAd.equals("false")){
+	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBorder + cartItem.get(i).extraFortick+((cartItem.get(i).extra) * (cartItem.get(i).extraUnit)))*cartItem.get(i).dates.length;
+	    	     
+	    	  }
+	    	  else if (cartItem.get(i).onBorderSelected.equals("No") && cartItem.get(i).nobgColor.equals("false") && cartItem.get(i).notickforAd.equals("true")){
 	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBackgroud+((cartItem.get(i).extra) * (cartItem.get(i).extraUnit))) * cartItem.get(i).dates.length;
+	    	
+	    	  }
+	    	  else if (cartItem.get(i).onBorderSelected.equals("No") && cartItem.get(i).nobgColor.equals("false") &&   cartItem.get(i).notickforAd.equals("false")){
+	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBackgroud + cartItem.get(i).extraFortick +((cartItem.get(i).extra) * (cartItem.get(i).extraUnit))) * cartItem.get(i).dates.length;
+	    		 
 	    	  }
 	    	  amount = amount +  cds.TotalCost;
+	    	  
 	    	  composedAdSaves.add(cds);
 	    	  //JPA.em().persist(cds);
 	    	   }
@@ -428,8 +594,10 @@ extraFortick,String extraCostpersqcm) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	     response().setCookie("orderId", orderId);
+	     System.out.println("orderId " + orderId);
 	     if(!modeOfPayment.equalsIgnoreCase("cod")) {
-	    	return ok(routes.CCAvenueController.ccavenue(orderId).url());
+	    	return ok(routes.CCAvenueController.ccavenue(orderId.trim()).url());
 	     }
 		 return ok(orderId);
 	 }

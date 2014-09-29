@@ -866,10 +866,12 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 	var rate;
 	var checkColorSelected;
 	var savenameofcolorSelected;
+	var extraFortick;
 	
-    var bgColorSelected=$scope.selectedCartItemOnPopUp.onbgColorchange
-	borderColor=parseInt($scope.selectedCartItemOnPopUp.extraForBorder);
-	backgroundColor=parseInt($scope.selectedCartItemOnPopUp.extraForBackgroud);
+    var bgColorSelected = $scope.selectedCartItemOnPopUp.onbgColorchange
+	borderColor = parseInt($scope.selectedCartItemOnPopUp.extraForBorder);
+	backgroundColor = parseInt($scope.selectedCartItemOnPopUp.extraForBackgroud);
+	extracostFortick =  parseInt($scope.selectedCartItemOnPopUp.extraFortick);
 	
 	if ($scope.selectedCartItemOnPopUp.onBorderSelected == null || $scope.selectedCartItemOnPopUp.onBorderSelected == '') {
 		$scope.selectedCartItemOnPopUp.onBorderSelected='No';
@@ -891,6 +893,22 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 		ReTotal();
 	}
 	
+	$scope.onNoTickSelected = function(){
+		
+		if($scope.selectedCartItemOnPopUp.notickforAd){
+			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - extracostFortick;
+			
+			 console.log(" $scope.selectedCartItemOnPopUp.totalExtraCost:"+ $scope.selectedCartItemOnPopUp.totalExtraCost);
+			 
+			}
+		else{
+			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + extracostFortick;
+			// console.log(" onNoTickSelected in else ");
+			 console.log(" $scope.selectedCartItemOnPopUp.totalExtraCost:"+ $scope.selectedCartItemOnPopUp.totalExtraCost);
+			
+		}
+		ReTotal();
+	}
 	$scope.onNoBgcolorSelected=function(){
 		
 		  if($scope.selectedCartItemOnPopUp.nobgColor) { 
@@ -971,7 +989,8 @@ angular.module('adschela').controller("ComposeAdController",['$scope',function($
 	
 	function computeRateByUnit() {
 		console.log("calculating count.");
-           
+		dTotalPrice = parseInt($scope.selectedCartItemOnPopUp.dTotalPrice);
+		
 		rate = parseInt($scope.selectedCartItemOnPopUp.rate); //base rate for ad.
         var freeUnit = parseInt($scope.selectedCartItemOnPopUp.freeUnit); //total allowed free units.
         var unitLot = parseInt($scope.selectedCartItemOnPopUp.unitVal); //???
@@ -1030,6 +1049,26 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
                                                            function($scope,$http,ngDialog){
 	$scope.carts = [];
 	$scope.rates = [];
+	$scope.discRates = [];
+	$scope.orderListuser = [];
+
+
+	setDiscRates =  function (discRates) {
+		$scope.discRates = discRates;
+		
+		angular.forEach($scope.carts, function(obj, index){
+		
+	    	angular.forEach($scope.discRates, function(request, key){
+	    		if(request.id == obj.id) {
+		     	   	  request.isSelected = true;
+              }
+	    		console.log(JSON.stringify(key)+"--"+value);
+			});
+	       return;
+	  
+	  });
+		
+	}
 	
 	SetRates = function (rates) {
 		$scope.rates = rates;
@@ -1075,11 +1114,10 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	}
 	
 	DeleteCartItemByRate = function(rate){
-			
 		 angular.forEach($scope.carts, function(obj, index){
 			 if ((rate.$$id === obj.id) || (rate.id === obj.id)) {
 		    	$scope.carts.splice(index, 1);
-		    	$scope.FinalTotal=  (parseInt($scope.FinalTotal)  - obj.fullTotal);
+		    	$scope.FinalTotal =  (parseInt($scope.FinalTotal)  - obj.fullTotal);
 		    			    	
 		    	angular.forEach($scope.rates, function(request, key){
 		    		if(request.id == rate.id) {
@@ -1108,6 +1146,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		fromCart.noOfImpression = fromScreen.noOfImpression;
 		fromCart.extraUnit = fromScreen.extraUnit;
 		fromCart.completenessStatus=fromScreen.completenessStatus;
+		fromCart.extraFortick =  fromScreen.extraFortick;
+		fromCart.notickforAd =   fromScreen.notickforAd;
 		
 		if(fromCart.dates.length == 0){
 			fromCart.completenessStatus=true;
@@ -1216,8 +1256,8 @@ angular.module('adschela').controller("SidebarController",['$scope',function($sc
 	 	
 }]);
 
-angular.module('adschela').controller("MakeBookingController",['$scope','$http','ngDialog',
-                                                               function($scope,$http,ngDialog){
+angular.module('adschela').controller("MakeBookingController",['$scope','$http','$cookies','$cookieStore','ngDialog',
+                                                               function($scope,$http,$cookies,$cookieStore,ngDialog){
 	$scope.showFieldsVar = false;
 	$scope.userId;
 	$scope.selectedsubCategoty="";
@@ -1313,10 +1353,21 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		if($scope.userwithoutaccount == 'No'){
 			var emailVar = $("#username").hasClass("valid");
 			if(emailVar){
-				$scope.rc.sampleWizard.moveTo(4);
+			 $http.get("checkAlreadyExitUser/"+$scope.userId)
+			 .success(function(data){
+			  $scope.data=data;
+			  console.log("$scope.data"+$scope.data);
+			  if($scope.data == "true"){
+					 $scope.alreadyRegister=$scope.data;
+				 } 
+				 if ($scope.data == "false"){
+					 $scope.rc.sampleWizard.moveTo(4);
+				 }
+			});
 			}
 		} else if($scope.userwithoutaccount == 'Yes'){
 			console.log("next step with login..");
+			$scope.alreadyRegister=false;
 			var emailVar = $("#username").hasClass("valid");
 		    if(emailVar && (!$scope.userpass == '')){
 			  $http.get("checkusercreadientals/"+$scope.userId+'/'+$scope.userpass)
@@ -1350,10 +1401,44 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 				.success(function(data){
 				
 					$scope.tab=true;
-						SetRates(data.rates);
+					    setDiscRates(data.discRates);
+						
+					    SetRates(data.rates);
 				});
 	}
 	
+    
+    function NewDiscountCartItem(discountRate) {
+		return discountCartItem = {
+				id:discountRate.id,	
+				hashKey: discountRate.$$hashKey,	
+				location: discountRate.location,
+				newspaper: discountRate.newspaper,
+				rate: discountRate.dTotalPrice,
+				unit: discountRate.unit,
+				unitVal: discountRate.unitVal,
+				extra: discountRate.extraCostperLine,
+				freeUnit: discountRate.freeUnit,
+				extraForBackgroud:discountRate.backColor,
+				extraForBorder:discountRate.border,
+				completenessStatus:'please fill details',
+				description: '',
+				total: 0,
+				fullTotal: 0,
+				totalExtraCost : 0,
+				totalUnitCost: 0,
+				noOfImpression: 1,
+				dates: [],
+				mainCategoty: $scope.bookingState.selectedMainCategoty,
+				isHindi:true,
+				onbgColorchange:'',
+				onBorderSelected:'No',
+				nobgColor:true,
+				notickforAd: true,
+				startDate:moment().add(2, 'days').format("DD/MM/YYYY")
+		    }
+		}
+    
 	function NewCartItem(rate) {
 		return cartItem = {
 			id:rate.id,	
@@ -1367,6 +1452,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			freeUnit: rate.freeUnit,
 			extraForBackgroud:rate.extraForBackgroud,
 			extraForBorder:rate.extraForBorder,
+			extraFortick:rate.extraFortick,
 			completenessStatus:'please fill details',
 			description: '',
 			total: 0,
@@ -1380,6 +1466,7 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			onbgColorchange:'',
 			onBorderSelected:'No',
 			nobgColor:true,
+			notickforAd: true,
 			startDate:moment().add(2, 'days').format("DD/MM/YYYY")
 	    }
 	}
@@ -1393,7 +1480,14 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 		});
 	}
 	
-	
+	$scope.discountRateClicked = function( e, discountRate ){
+		if($(e.target).is(":checked")) {
+			PushToCart(NewDiscountCartItem(discountRate, $scope.bookingState.selectedNewsPaper));
+		} else {
+			DeleteCartItemByRate(discountRate);
+		}
+		
+	}
 	$scope.rateClicked = function(e, rate) {
 		if($(e.target).is(":checked")) {
 			PushToCart(NewCartItem(rate, $scope.bookingState.selectedNewsPaper));
@@ -1417,19 +1511,13 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 	}
 	 
 	$scope.onCartSubmit = function() {
-     	/*console.log("In submit cart fun");
+     	console.log("In submit cart fun");
 		//SubmitCart();
-        var fullName=$("#fullName").hasClass("valid");
-        var shippingAddress=$("#shippingAddress").hasClass("valid");
-        var state=$("#state").hasClass("valid");
-        var pinCode=$("#pinCode").hasClass("valid"); 
-        var city=$("#city").hasClass("valid");
-     	var mobile = $("#mobile").hasClass("valid");
      	$scope.checkAllField=false;
      	
-     	if(fullName==true && shippingAddress == true && state == true && pinCode == true && mobile == true && city == true ){
-     	*/	
-     		$http({method:"POST",url:"/submit-cart",
+     	if((!$scope.address.fullName == '') && (!$scope.address.shippingAddress == '') && (!$scope.address.state == '') &&(!$scope.address.pinCode == '') &&(!$scope.address.city == '') &&(!$scope.address.mobile == '')){  
+     	    
+     	    $http({method:"POST",url:"/submit-cart",
 			data:{
 				carts: $scope.carts,
 				address:$scope.address,
@@ -1443,9 +1531,15 @@ angular.module('adschela').controller("MakeBookingController",['$scope','$http',
 			} else {
 				window.location = data;
 			}
+			  
+			  
+			 $cookies.put('myOrderId',orderId);	
+			  // Get cookie
+			  console.log("myOrderId: "+$cookies.get('orderId'));
 		});
-	/*}else{
+	
+           }else{
 		$scope.checkAllField=true;
-	}*/
-   }
+	}
+  }
 }]);

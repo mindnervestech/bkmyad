@@ -170,7 +170,7 @@
 			    					 <span>
         								<input ng-click="rateClicked($event,rate)" ng-model="rate.isSelected" style="margin: 1px"  type="checkbox">
      								 </span>
-     								 <span>{{rate.location}} - Rs {{rate.rate}} {{rate.unitVal}} / 
+     								 <span>{{rate.location}} - Rs {{rate.rate}} {{rate.freeUnit}} / 
 			    					{{rate.unit}} </span>
 			    				</div>	
 			    				
@@ -186,16 +186,16 @@
 			    	   <tab-heading>
                         <i class="icon-gift"></i> Package Rates
                      </tab-heading>
-			    	   <div ng-show="drates.length > 0" class="backcolo">
-			    		<ul ng-show="drates.length > 0">
+			    	   <div ng-show="discRates.length > 0" class="backcolo">
+			    		<ul ng-show="discRates.length > 0">
 			    		<div class="Internal">
-			    			<li ng-repeat="rate in drates" class="pillboxes custom-pill">
+			    			<li ng-repeat="discountRate in discRates" class="pillboxes custom-pill">
 			    				<div  style="padding: 1px;">
 			    					 <span >
-        								<input style="margin: 1px" ng-model="rate.selected" type="checkbox">
+        								<input ng-click="discountRateClicked($event,discountRate)" ng-model="discountRate.isSelected" style="margin: 1px" ng-model="rate.selected" type="checkbox">
      								 </span>
-     								 <span>{{rate.city}} - Rs {{rate.amount}}  {{rate.unitVal}}/
-			    					{{rate.unit}} </span>
+     								 <span>{{discountRate.location}} - Rs {{discountRate.dTotalPrice}}  {{discountRate.unitVal}}/
+			    					{{discountRate.unit}} </span>
 			    				</div>	
 			    				
 			    			</li>
@@ -237,7 +237,7 @@
 			    					 <span >
         								<input ng-click="rateClicked1($event,rate)" ng-model="rate.isSelected" style="margin: 1px"  type="checkbox">
      								 </span>
-     								 <span>{{rate.newspaper}} - Rs {{rate.rate}} {{rate.unitVal}}/
+     								 <span>{{rate.newspaper}} - Rs {{rate.rate}} {{rate.freeUnit}}/
 			    					{{rate.unit}} </span>
 			    				</div>	
 			    				
@@ -262,7 +262,7 @@
 			    					 <span >
         								<input style="margin: 1px" ng-model="rate.selected" type="checkbox">
      								 </span>
-     								 <span>{{rate.city}} - Rs {{rate.amount}}&nbps;&nbps;&nbps;&nbps;&nbps;&nbps;{{rate.unitVal}} /
+     								 <span>{{rate.city}} - Rs {{rate.amount}}&nbps;&nbps;&nbps;&nbps;&nbps;&nbps;{{rate.freeUnit}} /
 			    					{{rate.unit}} </span>
 			    				</div>	
 			    				
@@ -335,8 +335,11 @@
               
      <form class="tab-pane"  id="fourth" name="fourthForm"  rc-step>
                <!-- messagee shown when user are valid  -->
-            <div style="float: left;" >  
+            <div style="float: left;" > 
+             
               <b>Email:</b>&nbsp;&nbsp;  <input type="email" ng-model="userId" name="username" id="username"  required="true" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <p ng-show="alreadyRegister" style="color:red">Already Registered ! Please login with Username And Password </p>
+            
               <p ng-show="result" style="color:red">Please enter valid credentials</p>
               </div>
               <div ng-show="showFieldsVar" > &nbsp;&nbsp;

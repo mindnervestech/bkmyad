@@ -24,4 +24,21 @@ public class UservalidationController extends Controller {
 	    }
 	    return ok("false");
    } 
+
+	    // check for unique email when sign up
+	    @Transactional
+	    public static Result  CheckAlreadyExitUser(String userId) {
+	   
+	    User existingUser = User.ValidateUsernameUnique(userId);
+		   
+	    if (existingUser != null) {
+		return ok("true");
+		} 
+	    else{
+		     
+	    }
+	    return ok("false");
+   } 
+	    
+
 }

@@ -26,7 +26,7 @@ public class ComposedAdSave{
 	   public String TotalNoofline;
 	   public String Linecost;
 	   public String Tick;
-	   public String TickRate;
+	   public float TickRate;
 	   public String Bgcolor;
 	   public float BgcolorRate;
 	   public String Border;
