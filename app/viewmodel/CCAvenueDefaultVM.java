@@ -35,10 +35,10 @@ public class CCAvenueDefaultVM {
 	public String AuthDesc;
 	
 	//return code
-	public String nb_bid = "0651055194"; // To be displayed on UI
-	public String nb_order_no ="CCABI1FHH635"; // To be displayed on UI
-	public String card_category = "NETBANKING"; // To be displayed on UI
-	public String bank_name = "ICIC Bank"; // To be displayed on UI
+	public String nb_bid; // To be displayed on UI
+	public String nb_order_no; // To be displayed on UI
+	public String card_category; // To be displayed on UI
+	public String bank_name; // To be displayed on UI
 	public String bankRespCode; // To be displayed on UI
 	public String bankRespMsg; // To be displayed on UI
 	
