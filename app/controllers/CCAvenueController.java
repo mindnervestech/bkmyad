@@ -48,10 +48,10 @@ public class CCAvenueController extends Controller {
     
 	@Transactional
     public static Result redirect() {
-    	String WorkingKey = "3vrz1tf22sk3qcgh4gjvijd1fuqdup0f" ; //put in the 32 bit working key in the quotes provided here
-    	String encResponse=request().getQueryString("encResponse");
-    	AesCryptUtil aesUtil=new AesCryptUtil(WorkingKey);
-    	String ccaResponse=aesUtil.decrypt(encResponse);
+    	//String WorkingKey = "3vrz1tf22sk3qcgh4gjvijd1fuqdup0f" ; //put in the 32 bit working key in the quotes provided here
+    	//String encResponse=request().getQueryString("encResponse");
+    	//AesCryptUtil aesUtil=new AesCryptUtil(WorkingKey);
+    	//String ccaResponse=aesUtil.decrypt(encResponse);
     	DynamicForm dynamicForm = new DynamicForm().bindFromRequest();
     	System.out.println(dynamicForm.get().getData());
     	CCAvenueDefaultVM ccAvenueDefaultVM = Form.form(CCAvenueDefaultVM.class).bindFromRequest().get();
@@ -61,7 +61,7 @@ public class CCAvenueController extends Controller {
     		o.cc_bid = ccAvenueDefaultVM.nb_bid;
         	o.cc_orderNo = ccAvenueDefaultVM.nb_order_no;
         	o.bank_name = ccAvenueDefaultVM.bank_name;
-        	o.bankMsg = ccAvenueDefaultVM.bankRespCode + "|" +ccAvenueDefaultVM.bankRespMsg;
+        	o.bankMsg = dynamicForm.get().getData().toString();
         	JPA.em().merge(o);
     	} catch(javax.persistence.NoResultException exception) {
     		return controllers.Application.index();

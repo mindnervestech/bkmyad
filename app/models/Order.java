@@ -71,8 +71,9 @@ public class Order {
 	}
 	
 	public static Order byId(String orderId) {
-		return JPA.em().createQuery("from Order where orderId = :orderId",Order.class)
-				.setParameter("orderId", orderId).getSingleResult();
+		System.out.println(orderId);
+		return JPA.em().createQuery("from Order where orderId = ?1",Order.class)
+				.setParameter(1, orderId).getSingleResult();
 		
 	}
 

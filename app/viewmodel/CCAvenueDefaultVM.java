@@ -9,8 +9,8 @@ import com.google.common.base.Objects;
 public class CCAvenueDefaultVM {
 	public String Merchant_Id = "M_raj28780_28780"; 
 	public String Amount = "10.0"; // To be displayed on UI
-	public String Order_Id = UUID.randomUUID().toString(); // To be displayed on UI
-	public String Redirect_Url = "http://96.126.114.115/redirect";
+	public String Order_Id ; // To be displayed on UI
+	public String Redirect_Url = "http://arihantbooking.com/redirect";
 	public String WorkingKey = "3vrz1tf22sk3qcgh4gjvijd1fuqdup0f";   
 	//put in the 32 bit alphanumeric key in the quotes provided here.Please note that get this key login to your CCAvenue merchant account and visit the "Generate Working Key" section at the "Settings & Options" page. 
 	public String Checksum = "";
@@ -32,6 +32,7 @@ public class CCAvenueDefaultVM {
 	public String billing_zip = "400059";
 	public String delivery_city = "Mumbai";
 	public String delivery_zip = "400059";
+	public String AuthDesc;
 	
 	//return code
 	public String nb_bid = "0651055194"; // To be displayed on UI
@@ -44,5 +45,13 @@ public class CCAvenueDefaultVM {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
+	}
+
+	public String getOrder_Id() {
+		return Order_Id;
+	}
+
+	public void setOrder_Id(String order_Id) {
+		Order_Id = order_Id;
 	}
 }
