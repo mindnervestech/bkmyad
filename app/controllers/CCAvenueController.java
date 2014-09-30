@@ -38,7 +38,7 @@ public class CCAvenueController extends Controller {
 	     	ccAvenueDefaultVo.delivery_cust_state = addressDetails.state;
 	     	ccAvenueDefaultVo.delivery_cust_tel = addressDetails.mobile;
 	     	ccAvenueDefaultVo.billing_cust_city = addressDetails.city;
-	     	ccAvenueDefaultVo.Redirect_Url = routes.CCAvenueController.redirect().url();
+	     	ccAvenueDefaultVo.billing_cust_address = routes.CCAvenueController.redirect().url();
 	     	ccAvenueDefaultVo.Checksum = getChecksum( ccAvenueDefaultVo.Merchant_Id,
 	     			ccAvenueDefaultVo.Order_Id, ccAvenueDefaultVo.Amount, ccAvenueDefaultVo.Redirect_Url,
 	     			ccAvenueDefaultVo.WorkingKey);
