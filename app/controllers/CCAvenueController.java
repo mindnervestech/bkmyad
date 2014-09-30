@@ -5,6 +5,7 @@ import java.util.zip.Adler32;
 import javax.persistence.criteria.Order;
 
 import models.AddressDetails;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
@@ -37,6 +38,7 @@ public class CCAvenueController extends Controller {
 	     	ccAvenueDefaultVo.delivery_cust_state = addressDetails.state;
 	     	ccAvenueDefaultVo.delivery_cust_tel = addressDetails.mobile;
 	     	ccAvenueDefaultVo.billing_cust_city = addressDetails.city;
+	     	ccAvenueDefaultVo.Redirect_Url = routes.CCAvenueController.redirect().url();
 	     	ccAvenueDefaultVo.Checksum = getChecksum( ccAvenueDefaultVo.Merchant_Id,
 	     			ccAvenueDefaultVo.Order_Id, ccAvenueDefaultVo.Amount, ccAvenueDefaultVo.Redirect_Url,
 	     			ccAvenueDefaultVo.WorkingKey);
@@ -50,6 +52,8 @@ public class CCAvenueController extends Controller {
     	String encResponse=request().getQueryString("encResponse");
     	AesCryptUtil aesUtil=new AesCryptUtil(WorkingKey);
     	String ccaResponse=aesUtil.decrypt(encResponse);
+    	DynamicForm dynamicForm = new DynamicForm().bindFromRequest();
+    	System.out.println(dynamicForm.get().getData());
     	CCAvenueDefaultVM ccAvenueDefaultVM = Form.form(CCAvenueDefaultVM.class).bindFromRequest().get();
     	
     	try{

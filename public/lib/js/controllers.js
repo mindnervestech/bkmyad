@@ -1571,13 +1571,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			} else {
 				window.location = data;
 			}
-			// $cookies.put('myOrderId',orderId);	
-			  // Get cookie
-			  console.log("myOrderId: "+$cookies.get('orderId'));
 		});
-	
-           }else{
+	/*}else{
 		$scope.checkAllField=true;
-	}
-  }
+	}*/
+   }
 }]);
