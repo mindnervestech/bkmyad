@@ -319,7 +319,7 @@
                   </td>
                   <td style="width: 18%;">
               <!--     <span ng-show="" style="color:red;font-size: 11pt;font-family: Calibri;">Click to Compose</span> -->
-                  <button ng-class="c.completenessStatus ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeAd(c)'>ComposeAds <i class="icon-edit"></i></button></td>
+                  <button ng-class="(c.dates.length == 0 || c.description == '') ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeAd(c)'>ComposeAds <i class="icon-edit"></i></button></td>
                  <td> <button class="btn btn-success" ng-click='previewAds(c)' style="width: 100px;">Preview <i class="icon-edit"></i></button></td>
                   <td>{{c.rate}} / {{c.unitVal}} {{c.unit}}</td>
                   <td> र. {{c.fullTotal}}</td>

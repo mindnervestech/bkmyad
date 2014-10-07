@@ -114,13 +114,12 @@ public class UtilityQuery {
     	         
     	         q.setParameter(1, city);
     	         q.setParameter(2, Category);
-    	         
     	         List<Object[]> list = (List<Object[]>)q.getResultList();
     	         return list;
  	
    }
      public static List<Object[]>  getDetailsByOrderId(String orderIdPer) {
-     	  Query q = JPA.em().createQuery("SELECT OID,OrderID,Nameofthenewspaper,City,Adtext,TickRate,Bgcolor,BgcolorRate,Border,BorderCost,PublishDate,BasicRate,TotalCost,Category,numberOfWords,orderDate,freeunit,extra FROM ComposedAdSave  where OrderId = ?1");
+     	  Query q = JPA.em().createQuery("SELECT OID,OrderID,Nameofthenewspaper,City,Adtext,TickRate,Bgcolor,BgcolorRate,Border,BorderCost,PublishDate,BasicRate,TotalCost,Category,numberOfWords,orderDate,freeunit,extra,totalExtraCost,totalUnitCost,noOfImpression,rate,bgColorSelect,Tick,adbookedId FROM ComposedAdSave  where OrderId = ?1");
      	         q.setParameter(1, orderIdPer);
      	        
      	         List<Object[]> list = (List<Object[]>)q.getResultList();

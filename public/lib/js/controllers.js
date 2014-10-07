@@ -401,9 +401,6 @@ angular.module('adschela').service('StateCityService',function($resource){
     );
 });
 
-
-
-
 angular.module('adschela').controller("MyAccountController",['$scope','$http',function($scope, $http,OrderListService){
 	    
 	     $scope.UserId=$scope.txtUsername;
@@ -786,7 +783,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		}
 	};
 	
-});
+	});
 
 	angular.module('adschela').service('getNewspaperservice',function($resource){
         this.Allnewspaper = $resource(
@@ -851,9 +848,6 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	});
 
 
-
-
-
 	angular.module('adschela').controller("ComposeAdController",['$scope',function($scope, $timeout) {
 	
 	$scope.selectedCartItemOnPopUp = GetSelectedCartItemOnPopUp();
@@ -890,20 +884,17 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		}
 		ReTotal();
 	}
-	
+	$scope.selectedCartItemOnPopUp.notickforAd=$scope.selectedCartItemOnPopUp.notickforAd;
 	$scope.onNoTickSelected = function(){
+	
 		
 		if($scope.selectedCartItemOnPopUp.notickforAd){
 			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - extracostFortick;
-			
 			 console.log(" $scope.selectedCartItemOnPopUp.totalExtraCost:"+ $scope.selectedCartItemOnPopUp.totalExtraCost);
-			 
 			}
 		else{
 			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + extracostFortick;
-			// console.log(" onNoTickSelected in else ");
 			 console.log(" $scope.selectedCartItemOnPopUp.totalExtraCost:"+ $scope.selectedCartItemOnPopUp.totalExtraCost);
-			
 		}
 		ReTotal();
 	}
@@ -922,14 +913,11 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	$scope.a=false ;
 	$scope.onComposeAdStepChange = function() {
 		
-		if($scope.selectedCartItemOnPopUp.description != "")
-
-			{
+		if($scope.selectedCartItemOnPopUp.description != ""){
 					$scope.rc.composeWizard.forward();
 					$scope.a=false ;			
 			}
-		else
-			{
+		else{
 			$scope.a=true;
 			}
 		
@@ -1035,9 +1023,8 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
             }
             console.log($scope.selectedCartItemOnPopUp);
 	}
-	
 	$scope.formatDate = function(cd) {
-		return moment(cd).format('DD-MM-YYYY');
+		return moment(cd).format('DD/MM/YYYY');
 	}
 }]);
 
@@ -1051,18 +1038,22 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	
 	setCancelOrderIdData = function(orderListuser){
 		$scope.orderListuser = orderListuser;
+		angular.forEach($scope.carts, function(obj, index){
 	    	angular.forEach($scope.orderListuser, function(request, key){
-	    		//$scope.carts = $scope.orderListuser;
-		    	console.log(JSON.stringify(request)+"--"+key);
+	    		if(request.id == obj.id) {
+	    		request.isSelected = true;
+            }
+			});
+	       return;
 	  });
-  }
+	}
 	
 	setDiscRates =  function (discRates) {
 		$scope.discRates = discRates;
 		angular.forEach($scope.carts, function(obj, index){
 	    	angular.forEach($scope.discRates, function(request, key){
 	    		if(request.id == obj.id) {
-		     	   	  request.isSelected = true;
+		     	   request.isSelected = true;
               }
 			});
 	       return;
@@ -1075,7 +1066,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	    	angular.forEach($scope.rates, function(request, key){
 	    		
 	    		if(request.id == obj.id) {
-	    			     	   	  request.isSelected = true;
+	    		  request.isSelected = true;
 	            }
 			});
 	       	return;
@@ -1108,22 +1099,71 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$('#myModal').hide();
 		$('#mySignUp').modal();
 	}
+	DeleteCartItemByDiscountRate = function(discountRate){
+		 ///   $scope.FinalTotal = (parseInt($scope.selectedCartItemOnPopUp.FinalTotal));
+			 angular.forEach($scope.carts, function(obj, index){
+				 if ((discountRate.$$id === obj.id) || (discountRate.id === obj.id)) {
+			    	$scope.carts.splice(index, 1);
+			    	if(isNaN($scope.FinalTotal)){
+			    		$scope.FinalTotal = 0;
+			    	}
+			    	
+			    	 $scope.FinalTotal =  (parseInt($scope.FinalTotal)  - obj.fullTotal);
+			    	 angular.forEach($scope.discountRate, function(request, key){
+			    		if(request.id == discountRate.id) {
+			            	request.isSelected = false;
+			            }
+			    	});
+			       	return;
+			    };
+			  });
+		}
 	
 	DeleteCartItemByRate = function(rate){
 		 angular.forEach($scope.carts, function(obj, index){
 			 if ((rate.$$id === obj.id) || (rate.id === obj.id)) {
 		    	$scope.carts.splice(index, 1);
-		    	$scope.FinalTotal =  (parseInt($scope.FinalTotal)  - obj.fullTotal);
-		    			    	
+		    	if(isNaN($scope.FinalTotal)){
+		    		$scope.FinalTotal = 0;
+		    	}
+		    	
+		    	$scope.FinalTotal =  (parseInt($scope.FinalTotal)  - (obj.fullTotal));
+		    	if($scope.FinalTotal < 0){
+		    		     $scope.FinalTotal = 0;
+		    	}
 		    	angular.forEach($scope.rates, function(request, key){
 		    		if(request.id == rate.id) {
-		            	   	  request.isSelected = false;
+		            	request.isSelected = false;
 		            }
 		    	});
+		    	 
 		       	return;
 		    };
+		   
 		  });
+		 
 	}
+	
+	DeleteCartPersistedItem = function(orderListuser){
+		 ///   $scope.FinalTotal = (parseInt($scope.selectedCartItemOnPopUp.FinalTotal));
+			 angular.forEach($scope.carts, function(obj, index){
+				 if ((orderListuser.$$id === obj.id) || (orderListuser.id === obj.id)) {
+			    	$scope.carts.splice(index, 1);
+			    	if(isNaN($scope.FinalTotal)){
+			    	 $scope.FinalTotal = 0;
+			    	}
+			    	$scope.FinalTotal =  (parseInt($scope.FinalTotal)  - obj.fullTotal);
+			    			    	
+			    	angular.forEach($scope.orderListuser, function(request, key){
+			    		if(request.id == orderListuser.id) {
+			    			
+			            	   	  request.isSelected = false;
+			            }
+			    	});
+			       	return;
+			    };
+			  });
+		}
 	
 	function CloneToCartItem(fromCart, fromScreen) {
 		$scope.FinalTotal = 0;
@@ -1144,6 +1184,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		fromCart.completenessStatus=fromScreen.completenessStatus;
 		fromCart.extraFortick =  fromScreen.extraFortick;
 		fromCart.notickforAd =   fromScreen.notickforAd;
+		fromCart.finalTotal = fromScreen.finalTotal;
 		
 		if(fromCart.dates.length == 0){
 			fromCart.completenessStatus=true;
@@ -1159,10 +1200,10 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	SaveToCart = function(item) {
 		var FinalTotal = 0;
 		angular.forEach($scope.carts, function(obj, index){
-		    if ((item.$$hashKey === obj.hashKey) || (item.hashKey === obj.hashKey)) {
+		    if ((item.id === obj.id) || (item.id === obj.id)) {
 		    	CloneToCartItem($scope.carts[index],item);
 		    };
-		    FinalTotal = (FinalTotal + obj.fullTotal);
+		    FinalTotal = ((FinalTotal) + parseInt(obj.fullTotal));
 		    
 		  });
 		$scope.FinalTotal=0;
@@ -1190,6 +1231,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.selectedCart = c.description;
 		$scope.selectBorder=c.onBorderSelected;
 		$scope.selectedcolor=c.onbgColorchange;
+		$scope.isTickSelected = c.notickforAd;
+	
 		ngDialog.open({
 			template: 'newtheme/previewAds.html',
 			className: 'ngdialog-theme-default',
@@ -1228,13 +1271,22 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
         }).on("changeDate", function(e){
         	// TODO: If we dont put apply function , first time total is not applied on screen
         	$scope.$apply(function(){
-        	var NumberOfDate=0;
+        	var NumberOfDate = 0;
         	$scope.selectedCartItemOnPopUp.dates = e.dates;
         	$scope.selectedCartItemOnPopUp.noOfImpression = $scope.selectedCartItemOnPopUp.dates.length;
         	ReTotal();
         	});
         });
-		$("#_datepicker").datepicker("setDate", $scope.selectedCartItemOnPopUp.dates);
+	
+		$scope.dates=[];
+		for(var i=0;i<=($scope.selectedCartItemOnPopUp.dates.length)-1;i++){
+		    $scope.dates[i] = new Date($scope.selectedCartItemOnPopUp.dates[i]);
+		    $scope.dates[i].setHours(0);
+		    $scope.dates[i].setMinutes(0);
+		    $scope.dates[i].setSeconds(0);
+			}
+		   $('#_datepicker').datepicker('setDate',$scope.dates);
+		   console.log("$scope.dates: "+$scope.dates);
 	}
 }]);
 
@@ -1261,8 +1313,13 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.tab;
 		$scope.userwithoutaccount='No';
 		$scope.modeOfPayment='cc';
-		$scope.orderIdPer = '939f6487-dcb1-4a95-b28b-77c048260814';
+		//$scope.isSelected = false;
 	
+		//retriving the cookies value if any cookies values(orderId)  is present on local.
+	
+		$scope.orderIdPer = $cookies.orderId;
+		console.log(" $scope.lastVal"+ $scope.orderIdPer);
+		  
 		$scope.address={
 			pinCode:'',
 			fullName:'',
@@ -1386,13 +1443,18 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			SetRates(data.rates);
 		});
 	}
+	// called if the $scope.orderIdPer is not null/ ' '
+	
     if(!($scope.orderIdPer == '') ){
+    	
 		$http.get("getOrderDetailsByOrderId/"+$scope.orderIdPer)
 		.success(function(data){
+			    $scope.tab=true;
 				setCancelOrderIdData(data.orderListuser);
 				PersistanceOrderItemDetails(data.orderListuser);
 		});
 	}
+    
     $scope.onNewspaperSelect = function() {
 		$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
 				.success(function(data){
@@ -1412,7 +1474,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				rate: discountRate.dTotalPrice,
 				unit: discountRate.unit,
 				unitVal: discountRate.unitVal,
-				extra: discountRate.extra,
+				extra: discountRate.extraCostperLine,
 				freeUnit: discountRate.freeUnit,
 				extraForBackgroud:discountRate.backColor,
 				extraForBorder:discountRate.border,
@@ -1439,7 +1501,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				hashKey: orderListuser.$$hashKey,	
 				location: orderListuser.location,
 				newspaper: orderListuser.newspaper,
-				rate: orderListuser.fullTotal,
+				rate:orderListuser.rate,
 				unit: orderListuser.unit,
 				unitVal: orderListuser.unitVal,
 				extra: orderListuser.extra,
@@ -1451,17 +1513,18 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				description:orderListuser.description,
 				total: 0,
 				fullTotal: orderListuser.fullTotal,
-				totalExtraCost : 0,
-				totalUnitCost:0,
-				noOfImpression:1,
-				dates:orderListuser.dates,
-				mainCategoty:'',
+				totalExtraCost :orderListuser.totalExtraCost ,
+				totalUnitCost:orderListuser.totalUnitCost,
+				noOfImpression:orderListuser.noOfImpression,
+				dates : orderListuser.dates,
+				mainCategoty:orderListuser.mainCategoty,
 				isHindi:true,
-				onbgColorchange:'', 
-				onBorderSelected:'No',
-				nobgColor:true,
-				notickforAd: true,
-				startDate:moment().add(2, 'days').format("DD/MM/YYYY")
+				onbgColorchange:orderListuser.onbgColorchange, 
+				onBorderSelected:orderListuser.onBorderSelected,
+				nobgColor:orderListuser.bgColorSelect,
+				notickforAd:orderListuser.notickforAd,
+			     
+				startDate:moment().add(2,'days').format("DD/MM/YYYY")
 		    }
 		}
 
@@ -1496,7 +1559,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			startDate:moment().add(2, 'days').format("DD/MM/YYYY")
 	    }
 	}
-	
 
 	$scope.onStateSelect = function() {
 		console.log($scope.bookingState.selectedState);
@@ -1509,19 +1571,22 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	$scope.discountRateClicked = function( e, discountRate ){
 		if($(e.target).is(":checked")) {
 			PushToCart(NewDiscountCartItem(discountRate, $scope.bookingState.selectedNewsPaper));
-		} else {
-			DeleteCartItemByRate(discountRate);
+		} else {   
+			DeleteCartItemByDiscountRate(discountRate);
 		}
 	}
 	
-	//push the itemto cart if the orderId is present in  cookies
+	//push the item to cart if the orderId is present in  cookies
 	PersistanceOrderItemDetails = function(orderListuser){
 		$scope.orderListuser = orderListuser;
-	for(var i =0; i<$scope.orderListuser.length;i++){
-		PushToCart(PersistanceOrderItem($scope.orderListuser[i]));
-	 }
-   }
+		for(var i =0; i<$scope.orderListuser.length;i++){
+		 PushToCart(PersistanceOrderItem($scope.orderListuser[i]));
+		 $scope.orderListuser.isSelected = true;
 	
+	}
+	
+ }
+	 
 	$scope.rateClicked = function(e, rate) {
 		if($(e.target).is(":checked")) {
 			PushToCart(NewCartItem(rate, $scope.bookingState.selectedNewsPaper));
@@ -1539,25 +1604,17 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	}
 	
 	$scope.selectedCartItemOnPopUp = {};
-	
 	$scope.composeAd = function(c) {
 		ComposeAd(c,$scope);
 	}
 	 
 	$scope.onCartSubmit = function() {
-     	/*console.log("In submit cart fun");
+     	console.log("In submit cart fun");
 		//SubmitCart();
-        var fullName=$("#fullName").hasClass("valid");
-        var shippingAddress=$("#shippingAddress").hasClass("valid");
-        var state=$("#state").hasClass("valid");
-        var pinCode=$("#pinCode").hasClass("valid"); 
-        var city=$("#city").hasClass("valid");
-     	var mobile = $("#mobile").hasClass("valid");
      	$scope.checkAllField=false;
-     	
-     	if(fullName==true && shippingAddress == true && state == true && pinCode == true && mobile == true && city == true ){
-     	*/	
-     		$http({method:"POST",url:"/submit-cart",
+     	if((!$scope.address.fullName == '') && (!$scope.address.shippingAddress == '') && (!$scope.address.state == '') &&(!$scope.address.pinCode == '') &&(!$scope.address.city == '') &&(!$scope.address.mobile == '')){  
+     	    
+     	    $http({method:"POST",url:"/submit-cart",
 			data:{
 				carts: $scope.carts,
 				address:$scope.address,
@@ -1571,9 +1628,11 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			} else {
 				window.location = data;
 			}
+			
 		});
-	/*}else{
+	
+           }else{
 		$scope.checkAllField=true;
-	}*/
-   }
+	}
+  }
 }]);

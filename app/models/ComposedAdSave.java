@@ -49,13 +49,70 @@ public class ComposedAdSave{
 	   public String orderDate;
 	   public String freeunit;
 	   public float extra;
-	  
+	   public float totalExtraCost;
+	   public float totalUnitCost;
+	   public int noOfImpression;
+	   public float rate;
+	   public String bgColorSelect; 
+	   public String  adbookedId;
+	   
+	   
+	   public String getAdbookedId() {
+		return adbookedId;
+	}
+
+	public void setAdbookedId(String adbookedId) {
+		this.adbookedId = adbookedId;
+	}
+
+	public String getBgColorSelect() {
+		return bgColorSelect;
+	}
+
+	public void setBgColorSelect(String bgColorSelect) {
+		this.bgColorSelect = bgColorSelect;
+	}
+
+	public float getRate() {
+		return rate;
+	}
+
+	public void setRate(float rate) {
+		this.rate = rate;
+	}
+
+	public int getNoOfImpression() {
+		return noOfImpression;
+	}
+
+	public void setNoOfImpression(int noOfImpression) {
+		this.noOfImpression = noOfImpression;
+	}
+
+	public ComposedAdSave() {
+	    }  
+	   
+	   public float getTotalExtraCost() {
+		return totalExtraCost;
+	}
+
+	public void setTotalExtraCost(float totalExtraCost) {
+		this.totalExtraCost = totalExtraCost;
+	}
+
+	public float getTotalUnitCost() {
+		return totalUnitCost;
+	}
+
+	public void setTotalUnitCost(float totalUnitCost) {
+		this.totalUnitCost = totalUnitCost;
+	}
+
+	
 	   /*OID,OrderID,Nameofthenewspaper,City,Adtext,ickRate,Bgcolor,BgcolorRate,Border
 	   BorderCost, PublishDate,BasicRate,TotalCost,Extraborderper, Extrabgper,Category,numberOfWords,orderDate
 	   */
-	   public ComposedAdSave() {
-	    }  
-	   
+	
      public Long getOID() {
 		return OID;
 	   }

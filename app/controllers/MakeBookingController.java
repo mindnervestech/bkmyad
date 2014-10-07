@@ -77,7 +77,7 @@ import com.google.common.collect.Lists;
         		
         		String str; 
             	str=rs[4].toString();
-           	 String number = "";
+             	String number = "";
                 String letter = "";
             
                 for (int i = 0; i < str.length(); i++) {
@@ -90,13 +90,10 @@ import com.google.common.collect.Lists;
 
                }
                 }
-                            		
                 rates.add(Rate.byId(rs[0].toString())
         				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
         				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
         				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()) );
-        		
-        		        		
         	}
 		
 	Map<String,Object> map = new HashMap<String, Object>();
@@ -113,8 +110,13 @@ import com.google.common.collect.Lists;
 	    	System.out.println("orderList"+orde.toString());
 	    	List<OrderList> orderListuser = Lists.newArrayList();
 	    	for(Object[] ol :orde) {
-                orderListuser.add(OrderList.byId(ol[0].toString())
-                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),ol[10].toString(),ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17]) );
+	    		
+	    		
+	    	String str =ol[10].toString();
+           	String dates[] = str.split(",");   
+	    
+                orderListuser.add(OrderList.byId(ol[24].toString())
+                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString())));
         	}
 	    	Map<String,Object> map = new HashMap<String, Object>();
 			map.put("orderListuser",orderListuser);
@@ -206,7 +208,7 @@ import com.google.common.collect.Lists;
 		public String newspaper;
 		public String description;
 		public String bgcolor;
-		public String border;
+		//public String border;
 		public String mainCategoty;
 		public String subcategory;
 		public String location;
@@ -218,16 +220,21 @@ import com.google.common.collect.Lists;
 		public String extraForBackgroud;
 		public String totalUnit;//number of words
 		public String  fullTotal; 
-		public String userid;
-	    public String  [] dates = {};
+		//public String userid;
+	    public String  [] dates;
 		public String datesSelected;
 		//public float extraUnit;
 		//public String nobgColor;
 		public String adbookedDate;
 		public String extraFortick;
-		public String notickforAd;
+		public boolean notickforAd;
 		public float extra;
 		public String freeunit;
+		public float totalExtraCost;
+		public float totalUnitCost;
+		public int noOfImpression;
+		public float rate;
+		public boolean bgColorSelect;
 	//	public String extraForBorder;
 		//public String extraForBackgroud;
 	//  public float	fullTotal;
@@ -237,8 +244,8 @@ import com.google.common.collect.Lists;
 	         return orderList;
 	        }
 		   public  OrderList cancelOrderDetails(String OrderId,String newspaper,String  location ,String description, String extraFortick , String onbgColorchange ,String extraForBackgroud,
-				   String onBorderSelected , String extraForBorder , String   datesSelected,String unit , String  fullTotal,  String mainCategoty ,  String totalUnit , String adbookedDate,
-				   String freeunit, float extra){
+				   String onBorderSelected , String extraForBorder , String []  dates,String unit , String  fullTotal,  String mainCategoty ,  String totalUnit , String adbookedDate,
+				   String freeunit, float extra, float totalExtraCost ,float totalUnitCost, int noOfImpression, float rate, boolean bgColorSelect ,boolean notickforAd){
 			   this.OrderId=OrderId;
 			   this.newspaper=newspaper;
 			   this.location=location;
@@ -248,7 +255,7 @@ import com.google.common.collect.Lists;
 			   this.extraForBackgroud=extraForBackgroud;
 			   this.onBorderSelected =  onBorderSelected;
 			   this.extraForBorder = extraForBorder;
-			   this.datesSelected = datesSelected;
+			   this.dates = dates;
 			   this.unit=unit;
 			   this.mainCategoty = mainCategoty;
 			   this.fullTotal=fullTotal;
@@ -257,6 +264,12 @@ import com.google.common.collect.Lists;
 			   this.adbookedDate = adbookedDate;
 			   this.extra = extra;
 			   this.freeunit = freeunit;
+			   this.totalExtraCost = totalExtraCost;
+			   this.totalUnitCost = totalUnitCost;
+			   this.noOfImpression = noOfImpression;
+			   this.rate = rate;
+			   this.bgColorSelect = bgColorSelect;
+			   this.notickforAd = notickforAd;
 			   return this;
 		   }
 	}
@@ -278,11 +291,12 @@ import com.google.common.collect.Lists;
         public String backColor;
         public String specialDiscount;
         public String unit; 
-        public String unitVal;
+        public int unitVal= 1;
         public String extra;
         public String extraFortick;
         public String extraCostpersqcm;
         public String cutOfBookingDate;
+        public String freeUnit;
       /*  public String extraForBorder;
         public String extraForBackgroud;*/
         public Boolean isSelected;
@@ -301,10 +315,10 @@ import com.google.common.collect.Lists;
             return this;
         }
 
-        public DiscountRate withAmountAndFreeUnit(String dTotalPrice, String unit,String unitVal) {
+        public DiscountRate withAmountAndFreeUnit(String dTotalPrice, String unit,String freeUnit) {
         	this.dTotalPrice = dTotalPrice;
         	this.unit = unit;
-            this.unitVal = unitVal;
+            this.freeUnit = freeUnit;
             System.out.println("unit in discunt"+unit);
             System.out.println("dTotalPrice in discount"+dTotalPrice);
             return this;
@@ -412,7 +426,7 @@ import com.google.common.collect.Lists;
 		public float extraForBorder;
 		public float extraForBackgroud;
 		public int totalUnit;//number of words
-		public float fullTotal; 
+		public float fullTotal=0; 
 		public String userid;
 		public String  [] dates = {};
 		public float extraUnit;
@@ -420,6 +434,11 @@ import com.google.common.collect.Lists;
 		public String startDate;
 		public float extraFortick;
 		public String notickforAd;
+		public float totalExtraCost;
+		public float totalUnitCost;
+		public int noOfImpression;
+		public boolean bgColorSelect;
+	    //public float FinalTotal = 0;
 		
 		public CartItem() {};
 		public CartItem(String id, String type, String location, String mainCategoty,
@@ -557,7 +576,7 @@ import com.google.common.collect.Lists;
 	    		  try {
 					Date dt = sdf.parse(cartItem.get(i).dates[j]);
 					c.setTime(dt);
-					cds.PublishDate+=c.get(Calendar.YEAR)+"/"+(c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.DATE)+",";
+					cds.PublishDate+=c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DATE)+",";
 					
 				} catch (ParseException e) {
 					e.printStackTrace();
@@ -569,11 +588,30 @@ import com.google.common.collect.Lists;
 	    	  cds.userEmailId=emailId;
 	    	  cds.paymentOption=modeOfPayment;
 	    	  cds.Border=cartItem.get(i).onBorderSelected;
-	    	  cds.Bgcolor=cartItem.get(i).onbgColorchange;
+	    	 //to handle  null values
+	    	  if(cartItem.get(i).onbgColorchange == null){
+	    		  cds.Bgcolor= "true";
+	    	  }else{
+	    		  cds.Bgcolor=cartItem.get(i).onbgColorchange;
+	    	  }
+	    	 
+	    	  if(cartItem.get(i).notickforAd == null){
+	    		  cds.Tick = "true";
+	    	  }else{
+	    		  cds.Tick = cartItem.get(i).notickforAd;
+	    	  }
+	    	  
 	    	  cds.TickRate = cartItem.get(i).extraFortick;
-	    	  cds.Tick = cartItem.get(i).notickforAd;
 	    	  cds.extra =  cartItem.get(i).extra;
 	    	  cds.freeunit = cartItem.get(i).freeUnit;
+	    	  cds.totalExtraCost = cartItem.get(i).totalExtraCost;
+	    	  cds.totalUnitCost = cartItem.get(i).totalUnitCost;
+	    	  cds.noOfImpression = cartItem.get(i).noOfImpression;
+	    	  cds.rate = cartItem.get(i).rate;
+	    	  cds.bgColorSelect = cartItem.get(i).nobgColor;
+	    	  cds.adbookedId = cartItem.get(i).id;
+	    			  
+	    	  
 	    	  Date date = new Date();
 	    	  cds.orderDate = sdf.format(date);//current date i.e. order date saved here
 	    	  

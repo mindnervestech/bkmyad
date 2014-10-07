@@ -36,10 +36,9 @@
 				<div  id="adText" style="margin:auto; background-color:; ">
                    
            			      <div ng-show="selectedCart!=''" ng-class="selectBorder=='Yes' ? 'setborder' :'selectcolor'" style="margin-left: 3%;margin-right: 3%;">
-    	           	           <i class="icon-ok"></i>
+    	           	           <i  ng-show="isTickSelected ==  false"  class="icon-ok"></i>
     	           	           	{{selectedCart}}
            	        		</div>
-                   
 				</div>
 		    </div>
             <div class="template_gape" style="border:solid 1px #666666;margin-bottom:0px;">
