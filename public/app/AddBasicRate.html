@@ -105,7 +105,7 @@
 			         <tr>
 			        	 <td><label>State</label></td>
 			        	<td style="height: 60px;">
-			        		<select name="State" style="width:100%;" data-ng-model="formData.Statename" ng-change="onStateselect()">
+			        		<select name="State" style="width:100%;" data-ng-model="formData.Statename" ng-change="onStateselect();">
 			        			<option ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
 			        			<option value="">--Please Select State--</option>
 			        			

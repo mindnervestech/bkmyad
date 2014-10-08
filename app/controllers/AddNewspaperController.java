@@ -77,9 +77,7 @@ public class AddNewspaperController extends Controller{
 		DynamicForm form = DynamicForm.form().bindFromRequest();
 		Json.fromJson(json, Newspaperdetails.class);
 		Newspaperdetails newspaperdetailsFromFE = Json.fromJson(json, Newspaperdetails.class);
-		
 		Newspaperdetails newspaperdetails = Newspaperdetails.findById(form.get("NewsId"));
-        	
 		newspaperdetails.Nameofthenewspaper=newspaperdetailsFromFE.Nameofthenewspaper;
 		newspaperdetails.LogoFileExtention=newspaperdetailsFromFE.LogoFileExtention;
 		newspaperdetails.LogoName=newspaperdetailsFromFE.LogoName;
@@ -90,9 +88,6 @@ public class AddNewspaperController extends Controller{
 		newspaperdetails.Beforebookingdate=newspaperdetailsFromFE.Beforebookingdate;
 		newspaperdetails.Allow=newspaperdetailsFromFE.Allow;
 		newspaperdetails.Statename=newspaperdetailsFromFE.Statename;
-    	System.out.println("---------------");
-    	System.out.println(newspaperdetailsFromFE.NameofCities);
-    	
     	
     	newspaperdetailsFromFE.merge();
 		

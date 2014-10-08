@@ -257,23 +257,23 @@
                         <i class="icon-gift"></i> Package Rates
                      </tab-heading>
 			    	  
-			    	   <div ng-show="drates.length > 0" class="backcolo">
-			    		<ul ng-show="drates.length > 0">
+			    	   <div ng-show="discRates.length > 0" class="backcolo">
+			    		<ul ng-show="discRates.length > 0">
 			    		<div class="Internal">
-			    			<li ng-repeat="rate in drates" class="pillboxes custom-pill">
+			    			<li ng-repeat="discountRate in discRates" class="pillboxes custom-pill">
 			    				<div  style="padding: 1px;">
 			    					 <span >
-        								<input style="margin: 1px" ng-model="rate.selected" type="checkbox">
+        								<input style="margin: 1px" ng-click="discountClicked($event,discountRate)" ng-model="discountRate.selected" type="checkbox">
      								 </span>
-     								 <span>{{rate.city}} - Rs {{rate.amount}}&nbps;&nbps;&nbps;&nbps;&nbps;&nbps;{{rate.freeUnit}} /
-			    					{{rate.unit}} </span>
+     								 <span>{{discountRate.city}} - Rs {{discountRate.amount}}&nbps;&nbps;&nbps;&nbps;&nbps;&nbps;{{discountRate.freeUnit}} /
+			    					{{discountRate.unit}} </span>
 			    				</div>	
 			    				
 			    			</li>
 			    			</div>
 			    		</ul>
 			    		</div>
-			    		<div ng-show="drates.length == 0" class="alert alert-block">
+			    		<div ng-show="discRates.length == 0" class="alert alert-block">
 			    			No Rates Available !
 			    		</div>
 			    	   </tab>
@@ -308,7 +308,7 @@
               <tbody>
                 <tr ng-repeat="c in carts">
                   <td>{{c.mainCategoty}}</td>
-                  <td>{{c.location}} - {{c.newspaper}}</td>
+                  <td>{{c.location |limitTo:15}} - {{c.newspaper}}</td>
                   <td><span ng-show="c.description == '' " style="color:red">Not set</span>
                   <span tooltip="{{c.description}}"  ng-bind="c.description|limitTo:40" ></span><a ng-click="composeAd(c)" style="cursor: pointer;color: blue;">...</a></td>
                                     

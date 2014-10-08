@@ -496,11 +496,11 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 				
 	};
 	$scope.onStateselect = function() {
-		alert("State"+$scope.formData.Statename)
+		console.log("State"+$scope.formData.Statename);
 		$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.formData.Statename}); 
 		}
 	$scope.onStateselectupdate = function() {
-		alert("State"+$scope.ancmtData.Statename)
+		console.log("State"+$scope.ancmtData.Statename)
 		$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.ancmtData.Statename}); 
 		}
 	
@@ -721,7 +721,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	};
 
 	$scope.onStateselect = function() {
-		alert("State"+$scope.formData.Statename)
+		console.log("State"+$scope.formData.Statename);
 		$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.formData.Statename}); 
 		}
 	$scope.onStateselectupdate = function() {
@@ -1028,14 +1028,73 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	}
 }]);
 
-angular.module('adschela').controller("ApplicationController",['$scope','$http','ngDialog',
-                                                           function($scope,$http,ngDialog){
+angular.module('adschela').controller("ApplicationController",['$scope','$http','$cookies','$cookieStore','ngDialog',
+                                                           function($scope,$http,$cookies,$cookieStore,ngDialog){
 	$scope.carts = [];
 	$scope.rates = [];
 	$scope.discRates = [];
 	$scope.orderListuser = [];
-	
-	
+	$scope.orderIdPer = $cookies.orderId;
+	$scope.orderIdStatus = $cookies.orderId;
+	console.log(" $scope.lastVal"+ $scope.orderIdPer);
+	 if(!($scope.orderIdStatus == '') ){
+	    	$http.get("checkforOrderStatus/"+$scope.orderIdStatus)
+			.success(function(data){
+				console.log("$scope.orderIdPer"+$scope.orderIdPer);
+				    $scope.orderStatus = data;
+				    if($scope.orderStatus == 'false'){
+			    		    $http.get("getOrderDetailsByOrderId/"+$scope.orderIdPer)
+			    			.success(function(data){
+			    		     $scope.tab=true;
+			    			 setCancelOrderIdData(data.orderListuser);
+			    			 PersistanceOrderItemDetails(data.orderListuser);
+			    			});
+			    		}
+			});
+	    	
+	    }
+	//push the item to cart if the orderId is present in  cookies
+		PersistanceOrderItemDetails = function(orderListuser){
+			$scope.orderListuser = orderListuser;
+			for(var i =0; i<$scope.orderListuser.length;i++){
+			 PushToCart(PersistanceOrderItem($scope.orderListuser[i]));
+			 $scope.orderListuser.isSelected = true;
+			 //  DeleteCartPersistedItem($scope.orderListuser[i]);
+		}
+		
+	 }
+		 function  PersistanceOrderItem (orderListuser) {
+				return cartItem = {
+						id:orderListuser.id,	
+						hashKey: orderListuser.$$hashKey,	
+						location: orderListuser.location,
+						newspaper: orderListuser.newspaper,
+						rate:orderListuser.rate,
+						unit: orderListuser.unit,
+						unitVal: orderListuser.unitVal,
+						extra: orderListuser.extra,
+						freeUnit: orderListuser.freeunit,
+						extraForBackgroud:orderListuser.extraForBackgroud,
+						extraForBorder:orderListuser.extraForBorder,
+						extraFortick:orderListuser.extraFortick,
+						completenessStatus:'please fill details',
+						description:orderListuser.description,
+						total: 0,
+						fullTotal: orderListuser.fullTotal,
+						totalExtraCost :orderListuser.totalExtraCost ,
+						totalUnitCost:orderListuser.totalUnitCost,
+						noOfImpression:orderListuser.noOfImpression,
+						dates : orderListuser.dates,
+						mainCategoty:orderListuser.mainCategoty,
+						isHindi:true,
+						onbgColorchange:orderListuser.onbgColorchange, 
+						onBorderSelected:orderListuser.onBorderSelected,
+						nobgColor:orderListuser.bgColorSelect,
+						notickforAd:orderListuser.notickforAd,
+					     
+						startDate:moment().add(2,'days').format("DD/MM/YYYY")
+				    }
+				}
 	setCancelOrderIdData = function(orderListuser){
 		$scope.orderListuser = orderListuser;
 		angular.forEach($scope.carts, function(obj, index){
@@ -1251,7 +1310,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	}
 	
 	$scope.formatDate = function(cd) {
-		return moment(cd).format('DD-MM-YYYY');
+		return moment(cd).format('DD/MM/YYYY');
 	}
 	ReTotal = function () {
 		console.log("calculating the total.. ");
@@ -1318,8 +1377,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		//retriving the cookies value if any cookies values(orderId)  is present on local.
 	
 		$scope.orderIdPer = $cookies.orderId;
+		$scope.orderIdStatus = $cookies.orderId;
 		console.log(" $scope.lastVal"+ $scope.orderIdPer);
-		  
+
 		$scope.address={
 			pinCode:'',
 			fullName:'',
@@ -1441,19 +1501,14 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		.success(function(data){
 			$scope.tab=true;
 			SetRates(data.rates);
+			setDiscRates(data.discRates);
 		});
 	}
-	// called if the $scope.orderIdPer is not null/ ' '
+	 $scope.previousOrderId = $cookies.orderId;
+	 console.log("$scope.previousOrderId "+$scope.previousOrderId);
+	 console.log("$scope.orderIdPer"+$scope.orderIdPer);
 	
-    if(!($scope.orderIdPer == '') ){
-    	
-		$http.get("getOrderDetailsByOrderId/"+$scope.orderIdPer)
-		.success(function(data){
-			    $scope.tab=true;
-				setCancelOrderIdData(data.orderListuser);
-				PersistanceOrderItemDetails(data.orderListuser);
-		});
-	}
+   
     
     $scope.onNewspaperSelect = function() {
 		$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
@@ -1464,7 +1519,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				});
 	}
 	
-    
     function NewDiscountCartItem(discountRate) {
 		return discountCartItem = {
 				id:discountRate.id,	
@@ -1493,38 +1547,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				nobgColor:true,
 				notickforAd: true,
 				startDate:moment().add(2, 'days').format("DD/MM/YYYY")
-		    }
-		}
-    function  PersistanceOrderItem (orderListuser) {
-		return cartItem = {
-				id:orderListuser.id,	
-				hashKey: orderListuser.$$hashKey,	
-				location: orderListuser.location,
-				newspaper: orderListuser.newspaper,
-				rate:orderListuser.rate,
-				unit: orderListuser.unit,
-				unitVal: orderListuser.unitVal,
-				extra: orderListuser.extra,
-				freeUnit: orderListuser.freeunit,
-				extraForBackgroud:orderListuser.extraForBackgroud,
-				extraForBorder:orderListuser.extraForBorder,
-				extraFortick:orderListuser.extraFortick,
-				completenessStatus:'please fill details',
-				description:orderListuser.description,
-				total: 0,
-				fullTotal: orderListuser.fullTotal,
-				totalExtraCost :orderListuser.totalExtraCost ,
-				totalUnitCost:orderListuser.totalUnitCost,
-				noOfImpression:orderListuser.noOfImpression,
-				dates : orderListuser.dates,
-				mainCategoty:orderListuser.mainCategoty,
-				isHindi:true,
-				onbgColorchange:orderListuser.onbgColorchange, 
-				onBorderSelected:orderListuser.onBorderSelected,
-				nobgColor:orderListuser.bgColorSelect,
-				notickforAd:orderListuser.notickforAd,
-			     
-				startDate:moment().add(2,'days').format("DD/MM/YYYY")
 		    }
 		}
 
@@ -1576,16 +1598,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		}
 	}
 	
-	//push the item to cart if the orderId is present in  cookies
-	PersistanceOrderItemDetails = function(orderListuser){
-		$scope.orderListuser = orderListuser;
-		for(var i =0; i<$scope.orderListuser.length;i++){
-		 PushToCart(PersistanceOrderItem($scope.orderListuser[i]));
-		 $scope.orderListuser.isSelected = true;
 	
-	}
 	
- }
 	 
 	$scope.rateClicked = function(e, rate) {
 		if($(e.target).is(":checked")) {

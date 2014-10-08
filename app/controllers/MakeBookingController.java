@@ -21,6 +21,7 @@ import models.Newspaperdetails;
 import models.Order;
 import models.State;
 import models.User;
+import play.data.DynamicForm;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
@@ -70,7 +71,8 @@ import com.google.common.collect.Lists;
 	    @Transactional
 	    public static Result getBasicRateByLocationAndCategory(String Location,String Category) {
 	    	List<Object[]> rates1 = UtilityQuery.getBasicRateByLocationAndCategory(Location.trim(),Category.trim()); 
-		 
+	    	List<Object[]> discountRates = UtilityQuery.getDiscountRateByLocationAndCategory(Location.trim(),Category.trim());
+			List<DiscountRate> discRates = Lists.newArrayList();
 	    	List<Rate> rates = Lists.newArrayList();
             
 			for(Object[] rs :rates1) {
@@ -95,9 +97,32 @@ import com.google.common.collect.Lists;
         				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
         				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()) );
         	}
+			for(Object[] discntRate: discountRates ){
+				String str; 
+            	str=discntRate[4].toString();
+           	    String number = "";
+                String letter = "";
+            
+                for (int i = 0; i < str.length(); i++) {
+                       char a = str.charAt(i);
+                       if (Character.isDigit(a)) {
+                             number = number + a;
+
+                       } else if (Character.isAlphabetic(a)) {
+                             letter = letter + a;
+
+               }
+            }
+				
+             discRates.add(DiscountRate.byId(discntRate[0].toString())
+        	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
+        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
+        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString(),discntRate[14].toString()) );
+     }
 		
 	Map<String,Object> map = new HashMap<String, Object>();
 	map.put("rates", rates);
+    map.put("discRates", discRates);
 	System.out.println(Json.toJson(map));
 	return ok(Json.toJson(map));
 
@@ -110,8 +135,6 @@ import com.google.common.collect.Lists;
 	    	System.out.println("orderList"+orde.toString());
 	    	List<OrderList> orderListuser = Lists.newArrayList();
 	    	for(Object[] ol :orde) {
-	    		
-	    		
 	    	String str =ol[10].toString();
            	String dates[] = str.split(",");   
 	    
@@ -184,7 +207,24 @@ import com.google.common.collect.Lists;
 		map.put("discRates", discRates);
 		return ok(Json.toJson(map));
 	}
-	
+	 // check for order Status when page is refreshed.
+    @Transactional
+    public static Result checkforOrderStatus(String orderIdStatus) {
+    System.out.println("orderIdStatus num"+orderIdStatus);
+    Order orderStatus = Order.getOrderStatus(orderIdStatus);
+    System.out.println("orderStatus:::"+orderStatus);
+    
+    	if((orderStatus) == null)
+    	{   
+    		return ok("false");	
+    	}else{
+    	
+    		return ok("true");
+    	}
+    }
+  
+   
+
 	private static Map<String,Object>  makeBookingBarFixture() {
 		List<Newspaperdetails> newspapers = Newspaperdetails.getAllnewspaper();
 		List<State> locations=State.getallstate();
@@ -310,8 +350,6 @@ import com.google.common.collect.Lists;
         public DiscountRate withCityAndNewspaper(String location, String newspaper) {
             this.newspaper = newspaper;
             this.location = location;
-            System.out.println("newspaper"+newspaper);
-            System.out.println("location"+location);
             return this;
         }
 
@@ -319,8 +357,7 @@ import com.google.common.collect.Lists;
         	this.dTotalPrice = dTotalPrice;
         	this.unit = unit;
             this.freeUnit = freeUnit;
-            System.out.println("unit in discunt"+unit);
-            System.out.println("dTotalPrice in discount"+dTotalPrice);
+           
             return this;
         }
 

@@ -7,7 +7,9 @@ import javax.persistence.Column;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NoResultException;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 import javax.persistence.Table;
 
 import play.db.jpa.JPA;
@@ -115,6 +117,24 @@ public class Order {
 
 	public void setBankMsg(String bankMsg) {
 		this.bankMsg = bankMsg;
+	}
+
+	public static Order getOrderStatus(String orderIdStatus) {
+		try {
+            Query q = JPA.em().createNativeQuery(
+                    "SELECT cc_orderNo FROM Orders  where orderId = ?1");
+     	         
+            q.setParameter(1, orderIdStatus);
+            return (Order)q.getSingleResult();
+            
+        } catch (NoResultException e) {
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+		
+		
 	}
 
 }

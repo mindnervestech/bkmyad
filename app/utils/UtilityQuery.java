@@ -94,9 +94,8 @@ public class UtilityQuery {
      public static List<Object[]>  getDiscountRateByNewspaperAndCategory (String newspaper,String Category) {
     	 
     	  Query q = JPA.em().createNativeQuery("SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,Dtotalprice,BasicratesperText,Tbasicprice,Ttotalprice,Dbasicprice,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,Tickper,LastDate,ExtracostperSqcm " +
-   				"FROM Discountprice INNER JOIN Newspaperdetails ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) " +
-   				"where Discountprice.Nameofthenewspaper= ?1 and Discountprice.Category= ?2");
-   	         
+     				"FROM Discountprice INNER JOIN Newspaperdetails ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) " +
+     				"where Discountprice.Nameofthenewspaper= ?1 and Discountprice.Category= ?2");
    	           q.setParameter(1, newspaper);
    	           q.setParameter(2, Category);
    	         
@@ -118,6 +117,19 @@ public class UtilityQuery {
     	         return list;
  	
    }
+     public static List<Object[]> getDiscountRateByLocationAndCategory(String city,String Category) {
+        	
+     	
+   	  Query q = JPA.em().createNativeQuery("SELECT BasicRateID,City,Basicrate.Nameofthenewspaper,Textaddrate,BasicratesperText,Exstracostperline,Beforebookingdate,Border,Backcolor,Tick,ExtracostperSqcm " +
+   				"FROM Basicrate INNER JOIN Newspaperdetails ON (Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) " +
+   				"where Basicrate.City= ?1 and Basicrate.Category= ?2");
+   	         
+   	         q.setParameter(1, city);
+   	         q.setParameter(2, Category);
+   	         List<Object[]> list = (List<Object[]>)q.getResultList();
+   	         return list;
+	
+  }
      public static List<Object[]>  getDetailsByOrderId(String orderIdPer) {
      	  Query q = JPA.em().createQuery("SELECT OID,OrderID,Nameofthenewspaper,City,Adtext,TickRate,Bgcolor,BgcolorRate,Border,BorderCost,PublishDate,BasicRate,TotalCost,Category,numberOfWords,orderDate,freeunit,extra,totalExtraCost,totalUnitCost,noOfImpression,rate,bgColorSelect,Tick,adbookedId FROM ComposedAdSave  where OrderId = ?1");
      	         q.setParameter(1, orderIdPer);
