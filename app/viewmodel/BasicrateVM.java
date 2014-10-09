@@ -18,16 +18,13 @@ public class BasicrateVM {
      public String SpecialDiscount;
      public String Tick;
      public String Category;
-     public String Extraborderper;
-     public String Extrabgper;
-     public String Tickper;
-     public String ExtracostperSqcm;
+   //  public String Extraborderper;
+   //  public String Extrabgper;
+    // public String Tickper;
+    public String ExtracostperSqcm;
      public String Statename;
     
-
-    
     public BasicrateVM(Basicrate basicrate) {
-    	
     	this.BasicRateID=basicrate.BasicRateID;
     	this.Nameofthenewspaper=basicrate.Nameofthenewspaper;
     	this.City=basicrate.City;
@@ -39,9 +36,9 @@ public class BasicrateVM {
     	this.SpecialDiscount=basicrate.SpecialDiscount;
     	this.Tick=basicrate.Tick;
     	this.Category=basicrate.Category;
-    	this.Extraborderper=basicrate.Extraborderper;
-    	this.Extrabgper=basicrate.Extrabgper;
-    	this.Tickper=basicrate.Tickper;
+    //	this.Extraborderper=basicrate.Extraborderper;
+    //	this.Extrabgper=basicrate.Extrabgper;
+    //	this.Tickper=basicrate.Tickper;
     	this.ExtracostperSqcm=basicrate.ExtracostperSqcm;
     	this.Statename=basicrate.Statename;
     }

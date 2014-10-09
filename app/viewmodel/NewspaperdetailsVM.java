@@ -13,14 +13,14 @@ import models.Newspaperdetails;
 public class NewspaperdetailsVM {
 	public String NewsId;
 	public String Nameofthenewspaper;
-	public String LogoFileExtention;
-	public String LogoName;
+	//public String LogoFileExtention;
+//	public String LogoName;
 	public String Addedition;
 	@Transient
 	public List<String> NameofCities;
 	
-	@Transient
-	public List<SelectionVM> NameofCitiesVM;
+	/*@Transient
+	public List<SelectionVM> NameofCitiesVM;*/
 	
 	@Transient
 	public List<String> Unit;
@@ -41,8 +41,8 @@ public class NewspaperdetailsVM {
     	    	
     	this.NewsId = newspaperdetails.NewsId;
     	this.Nameofthenewspaper =newspaperdetails.Nameofthenewspaper; 
-    	this.LogoFileExtention = newspaperdetails.LogoFileExtention;
-    	this.LogoName = newspaperdetails.LogoName;
+    	/*this.LogoFileExtention = newspaperdetails.LogoFileExtention;
+    	this.LogoName = newspaperdetails.LogoName;*/
     	this.Addedition = newspaperdetails.Addedition;
     	this.Nameofcities = newspaperdetails.Nameofcities;
     	

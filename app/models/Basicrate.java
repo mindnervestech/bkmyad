@@ -39,9 +39,9 @@ public class Basicrate {
 		public String SpecialDiscount;
 		public String Tick;
 		public String Category;
-		public String Extraborderper;
-		public String Extrabgper;
-		public String Tickper;
+		//public String Extraborderper;
+	//	public String Extrabgper;
+		//public String Tickper;
 		public String ExtracostperSqcm;
 		public String Statename;
 				
@@ -91,9 +91,7 @@ public class Basicrate {
 					q.setParameter(1, "%"+City+"%");
 				}
 				
-			
 				return (List<Basicrate>)q.getResultList();
-				
 				
 		    }
 		

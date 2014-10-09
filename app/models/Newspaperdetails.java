@@ -22,8 +22,8 @@ public class Newspaperdetails {
 	@Id
 	public String NewsId;
 	public String Nameofthenewspaper;
-	public String LogoFileExtention;
-	public String LogoName;
+	/*public String LogoFileExtention;
+	public String LogoName;*/
 	public String Addedition;
 	@Transient
 	public List<String> NameofCities;
@@ -136,6 +136,8 @@ public class Newspaperdetails {
     public void save() {
 		this.NewsId = UUID.randomUUID().toString();
 		this.Nameofcities = this.NameofCities.toString();
+		this.Nameofcities = this.Nameofcities.replace("[", "");
+		this.Nameofcities = this.Nameofcities.replace("]", "");
         JPA.em().persist(this);
         JPA.em().flush();     
     }
@@ -148,6 +150,8 @@ public class Newspaperdetails {
     @Transactional
     public void merge() {
     	this.Nameofcities = this.NameofCities.toString();
+    	this.Nameofcities = this.Nameofcities.replace("[", "");
+		this.Nameofcities = this.Nameofcities.replace("]", "");
         JPA.em().merge(this);
     }
     

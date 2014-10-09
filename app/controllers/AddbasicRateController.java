@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.Splitter;
 
 import models.Adcategory;
@@ -34,10 +35,8 @@ public class AddbasicRateController extends Controller{
 	@Transactional
 	public static Result getBasicrate(String City,int currentPage) {
 		long totalPages = Basicrate.getAllAnnouncementsTotal(City, 8);
-		
 		List<Basicrate> allBasicRate = Basicrate.getAllAnnouncements(City, currentPage, 8, totalPages);
 		List<BasicrateVM> listOfBasicrate = new ArrayList<>();
-		
 		
 		for (Basicrate basicrateVM: allBasicRate) {
 			BasicrateVM vm = new BasicrateVM(basicrateVM);
@@ -55,10 +54,15 @@ public class AddbasicRateController extends Controller{
 	
 	@Transactional
 	public static Result saveBasicRate() {
+		
+		JsonNode json = request().body().asJson();
+		//get the category list selected on the UI.
+		String category = json.get("Category").toString();
+		String categoryUnique[]=category.split(",");
+		for (int i=0;i<categoryUnique.length;i++){
 		DynamicForm form = DynamicForm.form().bindFromRequest();
 		
 		Basicrate basicrate = new Basicrate();
-		
 		basicrate.Nameofthenewspaper=form.get("Nameofthenewspaper");
 		basicrate.City=form.get("City");
     	basicrate.Textaddrate=form.get("Textaddrate");
@@ -68,14 +72,14 @@ public class AddbasicRateController extends Controller{
     	basicrate.Backcolor=form.get("Backcolor");
     	basicrate.SpecialDiscount=form.get("SpecialDiscount");
     	basicrate.Tick=form.get("Tick");
-    	basicrate.Category=form.get("Category");
-    	basicrate.Extraborderper=form.get("Extraborderper");
-    	basicrate.Extrabgper=form.get("Extrabgper");
-    	basicrate.Tickper=form.get("Tickper");
+    	basicrate.Category=categoryUnique[i].replaceAll("[^\\p{L}\\p{Nd}]+", "");
+   // 	basicrate.Extraborderper=form.get("Extraborderper");
+    //	basicrate.Extrabgper=form.get("Extrabgper");
+   // 	basicrate.Tickper=form.get("Tickper");
     	basicrate.ExtracostperSqcm=form.get("ExtracostperSqcm");
     	basicrate.Statename=form.get("Statename");
-		
 		basicrate.save();
+		}
 		return ok();
 	}
 	
@@ -89,9 +93,7 @@ public class AddbasicRateController extends Controller{
 	@Transactional
 	public static Result updateBasicRate() {
 		DynamicForm form = DynamicForm.form().bindFromRequest();
-		
 		Basicrate basicrate = Basicrate.findById(form.get("BasicRateID"));
-        		
 		basicrate.Nameofthenewspaper=form.get("Nameofthenewspaper");
 		basicrate.City=form.get("City");
     	basicrate.Textaddrate=form.get("Textaddrate");
@@ -102,13 +104,11 @@ public class AddbasicRateController extends Controller{
     	basicrate.SpecialDiscount=form.get("SpecialDiscount");
     	basicrate.Tick=form.get("Tick");
     	basicrate.Category=form.get("Category");
-    	basicrate.Extraborderper=form.get("Extraborderper");
-    	basicrate.Extrabgper=form.get("Extrabgper");
-    	basicrate.Tickper=form.get("Tickper");
+    	//basicrate.Extraborderper=form.get("Extraborderper");
+    	//basicrate.Extrabgper=form.get("Extrabgper");
+    	//basicrate.Tickper=form.get("Tickper");
     	basicrate.ExtracostperSqcm=form.get("ExtracostperSqcm");
     	basicrate.Statename=form.get("Statename");
-    	
-    	    	
     	basicrate.merge();
 		return ok();
 	}
@@ -120,7 +120,7 @@ public class AddbasicRateController extends Controller{
 		List<Map> list = new ArrayList<>();
 		for(String newspaperdetails : listnewspaper){
 			Map<String,String> map = new HashMap<String, String>();
-			System.out.println("NewsPaper :: "+newspaperdetails);
+		
 			map.put("newspapers", newspaperdetails);
 			list.add(map);
 		}
@@ -135,7 +135,7 @@ public class AddbasicRateController extends Controller{
 		List<Map> list = new ArrayList<>();
 		for(String adcategory : listcname){
 			Map<String,String> map = new HashMap<String, String>();
-			System.out.println("cname :: "+adcategory);
+			
 			map.put("cname", adcategory);
 			list.add(map);
 		}
@@ -151,7 +151,7 @@ public class AddbasicRateController extends Controller{
 		List<Map> list = new ArrayList<>();
 		for(String state : listcname){
 			Map<String,String> map = new HashMap<String, String>();
-			System.out.println("Statename :: "+state);
+			
 			map.put("Statename", state);
 			list.add(map);
 		}

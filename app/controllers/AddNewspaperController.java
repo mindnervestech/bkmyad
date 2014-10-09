@@ -29,11 +29,8 @@ public class AddNewspaperController extends Controller{
 	@Transactional
 	public static Result getNewpaper(String Nameofthenewspaper,int currentPage) {
 		long totalPages = Newspaperdetails.getAllnewpaperTotal(Nameofthenewspaper, 8);
-		
 		List<Newspaperdetails> allnewspaper = Newspaperdetails.getAllNewspaper(Nameofthenewspaper, currentPage, 8, totalPages);
 		List<NewspaperdetailsVM> listOfNewpaper = new ArrayList<>();
-		
-			
 		for (Newspaperdetails newspaperdetailsVM: allnewspaper) {
 			NewspaperdetailsVM vm = new NewspaperdetailsVM(newspaperdetailsVM);
 			listOfNewpaper.add(vm);
@@ -79,8 +76,8 @@ public class AddNewspaperController extends Controller{
 		Newspaperdetails newspaperdetailsFromFE = Json.fromJson(json, Newspaperdetails.class);
 		Newspaperdetails newspaperdetails = Newspaperdetails.findById(form.get("NewsId"));
 		newspaperdetails.Nameofthenewspaper=newspaperdetailsFromFE.Nameofthenewspaper;
-		newspaperdetails.LogoFileExtention=newspaperdetailsFromFE.LogoFileExtention;
-		newspaperdetails.LogoName=newspaperdetailsFromFE.LogoName;
+		/*newspaperdetails.LogoFileExtention=newspaperdetailsFromFE.LogoFileExtention;
+		newspaperdetails.LogoName=newspaperdetailsFromFE.LogoName;*/
 		newspaperdetails.Addedition=newspaperdetailsFromFE.Addedition;
 		newspaperdetails.NameofCities=newspaperdetailsFromFE.NameofCities;
 		newspaperdetails.BasicratesperText=newspaperdetailsFromFE.BasicratesperText;
@@ -102,7 +99,7 @@ public class AddNewspaperController extends Controller{
 		List<Map> list = new ArrayList<>();
 		for(String newspaperdetails : listnewspaper){
 			Map<String,String> map = new HashMap<String, String>();
-			System.out.println("NewsPaper :: "+newspaperdetails);
+		
 			map.put("newspapers", newspaperdetails);
 			list.add(map);
 		}
@@ -118,7 +115,7 @@ public class AddNewspaperController extends Controller{
 		List<Map> list = new ArrayList<>();
 		for(String state : listcname){
 			Map<String,String> map = new HashMap<String, String>();
-			System.out.println("Statename :: "+state);
+			
 			map.put("Statename", state);
 			list.add(map);
 		}

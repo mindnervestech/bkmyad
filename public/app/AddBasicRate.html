@@ -39,13 +39,13 @@
                     	<tr>
                             <th><a>Newspaper/City</a></th>
                             <th><a>Textaddrate</a></th>
-                            <th><a>clasifiedadrate</a></th>
+                            <th><a>Clasifiedadrate</a></th>
                             <th><a>Exstracostperline</a></th>
                             <th><a>Style</a></th>
-                            <th><a>Tick</a></th>
+                            <th><a>Tick Rate</a></th>
                             <th><a>Category</a></th>
-                            <th><a>Extra</a></th>
-                            <th><a>Tickper</a></th>
+                           <!--   <th><a>Extra</a></th> -->
+                           <!--  <th><a>Tickper</a></th> -->
                             <th><a>Update</a></th>
                             <th><a>Delete</a></th>
                         <tr>
@@ -59,8 +59,8 @@
                             <td>{{ancmt.Border}}/{{ancmt.Backcolor}}</td>
                             <td>{{ancmt.Tick}}</td>
                             <td>{{ancmt.Category}}</td>
-                            <td>{{ancmt.Extraborderper}}/{{ancmt.Extrabgper}}/{{ancmt.ExtracostperSqcm}}</td>
-                            <td>{{ancmt.Tickper}}</td>
+                          <!--   <td>{{ancmt.ExtracostperSqcm}}</td> -->
+                           <!--  <td>{{ancmt.Tickper}}</td> -->
                             <td> <input name="" type="button" value="Update" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
                             <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt)" data-toggle="modal" /></td>
                         </tr>
@@ -90,41 +90,41 @@
 		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		        <h4 class="modal-title" id="myModalLabel">Create Basic Rate</h4>
 		      </div>
-		      <form method="post" ng-submit="saveBasicRate()">
+		      <form method="post"  data-ng-submit="saveBasicRate(formData)">
 		      <div class="modal-body">
 		      <table style="font-family: 'Bitter', georgia, serif;">
 			    <tr>
 			        	<td><label>NewsPapers</label></td>
 			        	<td style="height: 60px;">
-			        <select name="Newspaper" style="width:100%;" data-ng-model="formData.Nameofthenewspaper" required >
+			        <select name="Newspaper" style="width:90%;" data-ng-model="formData.Nameofthenewspaper" required >
 			    		<option ng-repeat="newspaper in resultNewspaper" value="{{newspaper.newspapers}}">{{newspaper.newspapers}}</option>
-			    		<option value="">--Please Select Newspaper--</option>
+			    		<option value="">Please Select Newspaper</option>
 			    	</select>
 			    	</td>
 			        </tr> 
 			         <tr>
 			        	 <td><label>State</label></td>
 			        	<td style="height: 60px;">
-			        		<select name="State" style="width:100%;" data-ng-model="formData.Statename" ng-change="onStateselect();">
+			        		<select name="State" style="width:90%;" data-ng-model="formData.Statename" ng-change="onStateselect(formData.Statename);">
 			        			<option ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
-			        			<option value="">--Please Select State--</option>
+			        			<option value="">Please Select State</option>
 			        			
 			        		</select>
 			        	</td>
 			        	<td><label>City</label></td>
 			        	<td style="height: 60px;">
-			        		<select name="City" style="width:100%;" data-ng-model="formData.City" required >
+			        		<select name="City" style="width:90%;" data-ng-model="formData.City" required >
 			        			<option ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
-			        			<option value="">--Please Select City--</option>
+			        			<option value="">Please Select City</option>
 			        			
 			        		</select>
 			        	</td>
 			        	
 			        	<td><label>Category</label></td>
 			        	<td style="height: 60px;">
-			        		<select name="Category" style="width:100%;" data-ng-model="formData.Category" required>
+			        		<select multiple name="Category" style="width:90%;" data-ng-model="formData.Category" required>
 			        			<option ng-repeat="cat in resultcname" value="{{cat.cname}}">{{cat.cname}}</option>
-			        			<option value="">--Please Select Category--</option>
+			        			<option value="">Please Select Category</option>
 			        			
 			        		</select>
 			        	</td>
@@ -153,21 +153,20 @@
 			        	<td style="height: 60px;"><textarea type="text" name="Tick" style="width:70%;height: 70%;" data-ng-model="formData.Tick" required></textarea></td>
 			        </tr>
 			        
-			        <tr>
+			        <!-- <tr>
 			        	<td><label>Extrab Order</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Extraborderper" style="width:70%;height: 70%;" data-ng-model="formData.Extraborderper" required></textarea></td>
 			        	<td><label>Extra BG</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Extrabgper" style="width:70%;height: 70%;" data-ng-model="formData.Extrabgper" required></textarea></td>
-			        </tr>
+			        </tr> -->
 			        
 			        <tr>
-			        	<td><label>Tickper</label></td>
+			        	<!-- <td><label>Tickper</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Tickper" style="width:70%;height: 70%;" data-ng-model="formData.Tickper" required></textarea></td>
+			        	 -->
 			        	<td><label>ExtraCostperSqcm</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="ExtracostperSqcm" style="width:70%;height: 70%;" data-ng-model="formData.ExtracostperSqcm" required></textarea></td>
 			        </tr>
-			        
-			        
 		        </table>
 		      </div>
 		      <div class="modal-footer">
@@ -194,28 +193,28 @@
 			        	<td><label>NewsPapers</label></td>
 			        	<td style="height: 60px;">
 			       	
-			        <select name="Newspaper" style="width:100%;" data-ng-model="ancmtData.Nameofthenewspaper" required >
+			        <select name="Newspaper" style="width:90%;" data-ng-model="ancmtData.Nameofthenewspaper" required >
 			    		<option ng-selected="ancmtData.Nameofthenewspaper==newspaper.newspapers" ng-repeat="newspaper in resultNewspaper"  value="{{newspaper.newspapers}}">
 			    		{{newspaper.newspapers}} </option>
-			    		<option value="">--Please Select Newspaper--</option>
+			    		<option value="">Please Select Newspaper</option>
 			    	</select>
 			    	</td>
 			        </tr> 
 			         <tr>
 			        	 <td><label>State</label></td>
 			        	<td style="height: 60px;">
-			        		<select name="State" style="width:100%;" data-ng-model="ancmtData.Statename" ng-change="onStateselectupdate()">
+			        		<select name="State" style="width:90%;" data-ng-model="ancmtData.Statename" ng-change="onStateselectupdate()">
 			        			<option ng-selected="ancmtData.Statename==state.Statename" ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
-			        			<option value="">--Please Select State--</option>
+			        			<option value="">Please Select State</option>
 			        			
 			        		</select>
 			        	</td>
 			        	<td><label>City</label></td>
 			        	<td style="height: 60px;">
 			        	
-			        		<select name="City" style="width:100%;" data-ng-model="ancmtData.City" required >
+			        		<select name="City" style="width:90%;" data-ng-model="ancmtData.City" required >
 			        			<option ng-selected="ancmtData.City==city.cityname" ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
-			        			<option value="">--Please Select City--</option>
+			        			<option value="">Please Select City</option>
 			        			
 			        		</select>
 			        	</td>
@@ -223,9 +222,9 @@
 			        	<td><label>Category</label></td>
 			        	<td style="height: 60px;">
 			        	
-			        		<select name="Category" style="width:100%;" data-ng-model="ancmtData.Category" required>
+			        		<select name="Category" style="width:90%;" data-ng-model="ancmtData.Category" required>
 			        			<option ng-selected="ancmtData.Category==cat.cname" ng-repeat="cat in resultcname" value="{{cat.cname}}">{{cat.cname}}</option>
-			        			<option value="">--Please Select Category--</option>
+			        			<option value="">Please Select Category</option>
 			        			
 			        		</select>
 			        	</td>
@@ -252,17 +251,18 @@
 			        	<td><label>Tick</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Tick" style="width:70%;height: 70%;" data-ng-model="ancmtData.Tick" required></textarea></td>
 			        </tr>
-			       
+			      <!--  
 			        <tr>
 			        	<td><label>Extrab Order</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Extraborderper" style="width:70%;height: 70%;" data-ng-model="ancmtData.Extraborderper" required></textarea></td>
 			        	<td><label>Extra BG</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Extrabgper" style="width:70%;height: 70%;" data-ng-model="ancmtData.Extrabgper" required></textarea></td>
-			        </tr>
+			        </tr> -->
 			        
 			        <tr>
-			        	<td><label>Tickper</label></td>
+			        	<!-- <td><label>Tickper</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Tickper" style="width:70%;height: 70%;" data-ng-model="ancmtData.Tickper" required></textarea></td>
+			        	 -->
 			        	<td><label>Extra Cost Sqcm</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="ExtracostperSqcm" style="width:70%;height: 70%;" data-ng-model="ancmtData.ExtracostperSqcm" required></textarea></td>
 			        </tr>

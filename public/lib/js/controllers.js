@@ -214,9 +214,9 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 		});
 	};
 		
-	$scope.saveCategory = function() {
+	$scope.saveCategory = function(category) {
 	
-      $http.post('/saveCategory', $scope.formData).success(function(data){
+      $http.post('/saveCategory',category).success(function(data){
 			console.log('success');
 			$scope.searchCategory(currentPage);
 			$('#myModal').modal('hide');
@@ -234,7 +234,6 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 	};
 
 	$scope.setDates = function() {
-				
 				
 		$scope.searchForm.from = new Date();
 		$scope.searchForm.to = new Date();
@@ -472,12 +471,9 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 		});
 	};
 		
-	$scope.saveNewspaper = function() {
-		
-		console.log($scope.formData.NameofCities);
-		$scope.formData.BasicratesperText="/"+$scope.formData.Value+" "+$scope.formData.Unit;
-			
-      $http.post('/saveNewpaper', $scope.formData).success(function(data){
+	$scope.saveNewspaper = function(adNewNewsPaper) {
+	  adNewNewsPaper.BasicratesperText="/"+adNewNewsPaper.Value+" "+adNewNewsPaper.Unit;
+      $http.post('/saveNewpaper',adNewNewsPaper).success(function(data){
 			console.log('success');
 			$scope.searchNewspaper(currentPage);
 			$('#myModal').modal('hide');
@@ -495,9 +491,9 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 		$('#myModal2').modal();
 				
 	};
-	$scope.onStateselect = function() {
-		console.log("State"+$scope.formData.Statename);
-		$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.formData.Statename}); 
+	$scope.onStateselect = function(statename) {
+		console.log("State"+statename);
+		$scope.resultCity = getCityNameservice.AllCity.get({state:statename}); 
 		}
 	$scope.onStateselectupdate = function() {
 		console.log("State"+$scope.ancmtData.Statename)
@@ -698,9 +694,11 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	console.log($scope.BasicRate);
 		
 	
-	$scope.saveBasicRate = function() {
-		console.log($scope.formData);
-		$http.post('/saveBasicRate', $scope.formData).success(function(data){
+	$scope.saveBasicRate = function(formData) {
+	
+		
+		console.log($scope.formData.Statename);
+		$http.post('/saveBasicRate',formData).success(function(data){
 			console.log('success');
 			$scope.searchBasicRate(currentPage);
 			$('#myModal').modal('hide');
@@ -720,9 +718,9 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 			
 	};
 
-	$scope.onStateselect = function() {
-		console.log("State"+$scope.formData.Statename);
-		$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.formData.Statename}); 
+	$scope.onStateselect = function(stateName) {
+		console.log("Selected State  : "+stateName);
+		$scope.resultCity = getCityNameservice.AllCity.get({state:stateName}); 
 		}
 	$scope.onStateselectupdate = function() {
 		alert("State"+$scope.ancmtData.Statename)
@@ -1582,9 +1580,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	    }
 	}
 
-	$scope.onStateSelect = function() {
-		console.log($scope.bookingState.selectedState);
-		$http.get("getcity/"+$scope.bookingState.selectedState)
+	$scope.onStateSelect = function(statename) {
+	
+		$http.get("getcity/"+statename)
 		.success(function(data){
 			$scope.cities = data;
 		});
