@@ -15,11 +15,11 @@
                   </a>
                   <div class="nav-collapse">
                     <ul class="nav" style="width:98%;">
-					  <li class=""><a href="#">Home	</a></li>
+					  <li class=""><a href="/#/">Home	</a></li>
 					 <!--  <li class=""><a href="special_offer.html">Specials Offer</a></li> -->
 					  <li class=""><a href="/#/aboutUs" >About Us</a></li>
 					  <li class=""><a href="/#/contactUs" >Contact Us</a></li>
-					  <li class=""  ng-if='@session().containsKey("userName")'><a href="#/myAccount">My Account</a></li> 
+					  <li class=""  ng-if='@session().containsKey("userName")'><a href="/#/myAccount">My Account</a></li> 
 					  <li class=""  ng-if='@session().containsKey("userName")' style="float: right;"><a href="/logout">Logout</a></li> 
 					  <li  ng-if='!(@session().containsKey("userName"))'  >
 					  <a   ng-click="Login()" data-toggle="modal" style="cursor: pointer;" >Login </a>
@@ -58,8 +58,9 @@
                                         </tr>
                                     </table>
 				</div>
-				<div style="float: right; margin-right: 10%;">
-					<span class="btn btn-mini btn-warning" ><i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </span>
+				<div style="float: right; margin-right: 10%;" >
+					<a href="/#/make-booking.html/2" id="cartinheader"  style="cursor: pointer;">
+					<span class="btn btn-mini btn-warning" ><i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </span></a>
 					<span class="btn btn-mini active" style="font-size: 12px;"> &#2352;.{{FinalTotal}}</span>
 					<!-- <span class="btn btn-mini">&pound;</span>
 					<span class="btn btn-mini">&euro;</span>  -->

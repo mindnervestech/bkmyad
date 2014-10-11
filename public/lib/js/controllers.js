@@ -522,7 +522,7 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 	$scope.updateNewspaper = function() {
 	/*	console.log($scope.ancmtData);
 		$scope.formData.BasicratesperText="/"+$scope.formData.Value+" "+$scope.formData.Unit;*/
-		$http.post('/updateNewpaper', $scope.ancmtData).success(function(data){
+		$http.post('/updateNewpaper',$scope.ancmtData).success(function(data){
 			console.log('success');
 			$scope.searchNewspaper(currentPage);
 			$('#myModal2').modal('hide');
@@ -1276,7 +1276,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	$scope.selectedCartItemOnPopUp = {};
 	SetSelectedCartItemOnPopUp = function(c) {
 		$scope.selectedCartItemOnPopUp = angular.copy(c);
-		console.log("$scope.selectedCartItemOnPopUp " + JSON.stringify($scope.selectedCartItemOnPopUp));
+		console.log("$scope.selectedCartItemOnPopUp  " + JSON.stringify($scope.selectedCartItemOnPopUp));
 	}
 	
 	GetSelectedCartItemOnPopUp = function() {
@@ -1360,8 +1360,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		}
 	}]);
 
-	angular.module('adschela').controller("MakeBookingController",['$scope','$http','$cookies','$cookieStore','ngDialog',
-                                                               function($scope,$http,$cookies,$cookieStore,ngDialog){
+	angular.module('adschela').controller("MakeBookingController",['$scope','$http','$cookies','$cookieStore','ngDialog','$routeParams','$timeout',
+                                                               function($scope,$http,$cookies,$cookieStore,ngDialog,$routeParams,$timeout){
 		$scope.showFieldsVar = false;
 		$scope.userId;
 		$scope.selectedsubCategoty="";
@@ -1419,6 +1419,27 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.showHomeshipping=false;
 		$scope.showDebitCardshipping=true;
 		$scope.cashbyDebit;
+		console.log("$scope.userId"+$scope.userId);
+		$scope.showAddressDetails  = function()
+		{
+			$http({method:"GET",url:"/getaddressDetailsofUser"}).success(function(data){
+			
+				$scope.addressDetails=data.addressDetails;
+				if(!(data == '')){
+				 
+				 $scope.address.fullName = data.addressDetails.fullName;
+				 $scope.address.shippingAddress = data.addressDetails.address;
+				 $scope.address.state= data.addressDetails.state;
+				 $scope.address.city= data.addressDetails.city;
+				 $scope.address.pinCode= data.addressDetails.pinCode;
+				 $scope.address.mobile= data.addressDetails.mobile;
+				}
+		});
+		}
+	}
+	$scope.showaddressDetails = function()
+	{
+		
 	}
 	$scope.showfields=function(showfieldstouser){
 		$scope.showFieldsVar = true;
@@ -1647,4 +1668,10 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.checkAllField=true;
 	}
   }
+	
+	if($routeParams.id == 2){
+		$timeout(function() {
+			$scope.rc.sampleWizard.moveTo(2);
+		},500);
+	}
 }]);

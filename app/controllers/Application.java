@@ -609,6 +609,7 @@ public class Application extends Controller {
     }
     @Transactional
     public static Result  Logout() {
+    	   response().discardCookie("orderId");
     	   session().clear();
 	       return redirect("/");	
     }

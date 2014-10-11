@@ -3,7 +3,7 @@
 <div class="row" ng-init='init(@Html(beData))'>
 
 	<div class="span9">
-		
+	
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 mnt-shadow-deco">
           <div rc-wizard="sampleWizard" rc-disabled="rc.firstForm.submitInProgress">
            
@@ -368,7 +368,7 @@
                  <input class="btn btn-primary" type="submit" value="Continue" data-ng-click="checkForUsernameAndPassword()"style="background-color: #0044cc;margin-left: 7%;margin: 1%;float:right;"> 
       </form>
               
-      <form class="tab-pane" id="fifth" name="fifthForm" rc-submit="completeWizard()" rc-step>
+      <form class="tab-pane" id="fifth" name="fifthForm"  rc-submit="completeWizard()" rc-step>
 	     	<!-- <div style="float: left;width: 48%;margin-bottom: 2%;" > <input type="radio" name="chk" value="cod" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showHomeShipingDetails();" style="margin-left:7%;"><b >&nbsp;Collect cash form home</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    </div> -->
                     <!--  <div style="float: left;width: 100%; margin-bottom: 2%;"  > <input type="radio" name="chk"  value="cc" ng-checked="true" ng-model="modeOfPayment" data-ng-init="showDebitShipingDetails();"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -395,8 +395,11 @@
 			<br/>
           
 		  </div> -->
-
-	   <div align="center"    data-ng-init="showDebitShipingDetails();" >
+        
+         
+	   <div align="center"  data-ng-init="showDebitShipingDetails();"  >
+	    <div ng-if='(@session().containsKey("userName"))'	data-ng-init="showAddressDetails()">
+	    </div>
 	   <p ng-show='checkAllField' style="color: red">Please Fill All Details </p>
 	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Full Name *:</p> <input type="text" ng-model="address.fullName" id="fullName" name="fullName" required/><br/>
      <!-- <p ng-show='checkFullName' style="color: red">Please Enter FullName in proper Format </p> -->

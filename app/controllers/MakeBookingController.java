@@ -566,7 +566,7 @@ import com.google.common.collect.Lists;
 		}
 	
 	}
-
+        String  emailId = session().get("emailId"); 
 
 	    @Transactional
 	    public static Result  saveComposeyourAd() {

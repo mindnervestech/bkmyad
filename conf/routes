@@ -28,6 +28,7 @@ POST    /submit-cart                            controllers.MakeBookingControlle
 POST    /sendfeedbacks                          controllers.Application.sendFeedback()
 GET	/getBasicrate/:City/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,currentPage :Integer)
 GET     /listInfo/:UserId              controllers.MyAccountController.getAllUserOrder(UserId :String)
+GET     /getaddressDetailsofUser            controllers.MyAccountController.getaddressDetailsofUser()
 POST	/saveBasicRate		               controllers.AddbasicRateController.saveBasicRate()
 POST	/updateBasicRate	            controllers.AddbasicRateController.updateBasicRate
 GET	/deleteBasicRate/:id		           controllers.AddbasicRateController.deleteBasicRate(id :String)

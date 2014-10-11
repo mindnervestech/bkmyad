@@ -12,7 +12,7 @@ var app = angular.module('adschela',
                         	        templateUrl: 'textClassifiedController.html',
                         	        controller: 'TextClassifiedController'
                         	      })
-                        	      .when('/make-booking.html', {
+                        	      .when('/make-booking.html/:id', {
                         	        templateUrl: 'make-booking.html',
                         	        controller: 'MakeBookingController'
                         	      })

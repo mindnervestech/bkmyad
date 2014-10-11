@@ -40,7 +40,7 @@ public class Basicrate {
 		public String Tick;
 		public String Category;
 		//public String Extraborderper;
-	//	public String Extrabgper;
+	    //public String Extrabgper;
 		//public String Tickper;
 		public String ExtracostperSqcm;
 		public String Statename;
@@ -76,7 +76,6 @@ public class Basicrate {
 		    		sql = "Select a from Basicrate a";
 		    	} else {
 		    		sql ="Select a from Basicrate a where a.City LIKE ?1";
-		    		
 		    	}
 
 	    		if(currentPage >= 1 && currentPage <= totalPages) {

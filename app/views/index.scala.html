@@ -13,7 +13,7 @@
 				<div class="span12" style="margin-bottom: 1%;" >
 					<a href="#"><img src="assets/img/logos.jpg" alt="Bootsshop"/></a>
 				
-								</div>
+				</div>
 				</div>
 				<div class="clr"></div>
 				<div class="navbar navbar-fixed-top" >
@@ -52,13 +52,13 @@
                                             <td>
                                                 +91 9456666690
 											</td>
-                                            
-                                             
                                         </tr>
                                     </table>
 				</div>
 				<div style="float: right;">
-					<span class="btn btn-mini btn-warning" ><i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </span>
+				  	<a href="#/make-booking.html/2" id="cartinheader"  style="cursor: pointer;">
+					<strong class="btn btn-mini btn-warning" >  
+					<i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </strong></a>
 					<span class="btn btn-mini active" style="font-size: 12px;"> &#2352;.{{FinalTotal}}</span>
 					<!-- <span class="btn btn-mini">&pound;</span>
 					<span class="btn btn-mini">&euro;</span>  -->
@@ -242,6 +242,10 @@ cursor: default;
 
 <script type="text/javascript">
 $(document).ready(function(){
+	
+	$("#cartinheader").click(function(){
+		$("#sidebar a").click();
+	});
 	
  @if(flash.contains("login_error")) {
 	 $('#myModal').modal('show');
