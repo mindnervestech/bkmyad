@@ -84,7 +84,7 @@
 			<a href="#/ourClient">Our Client</a> 
 			<!-- <a href="#/ourServices">Our Services</a>  -->
 			<a href="#/contactUs">Contact Us</a>  
-			<a ng-click="Register()" data-toggle="modal">Register</a>
+			<a ng-if='!(@session().containsKey("userName"))' ng-click="Register()" data-toggle="modal">Register</a>
 			<a href="#/ourBlogs">Blog</a>
 		 </div>
 		<div class="span3 custom_span">
@@ -108,8 +108,8 @@
 		<div  class="span3 custom_span" >
 			<h5>USER LOGIN </h5>
 			<!-- <a href="#/affilatedLogin">Afiilated Login</a> -->
-				<a href="#myModal" data-toggle="modal" >Registered User</a>
-			<a  href="#mySignUp" data-toggle="modal">Guest user</a>
+				<a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a>
+			<a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a>
 			
 		 </div> 
 	 </div>
