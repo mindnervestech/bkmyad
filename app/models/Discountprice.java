@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class Discountprice {
 
 	public Discountprice() {}
 	
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	    @Id
 		public String Did;
 		public String Nameofthenewspaper;
 		public String Edition;
@@ -40,6 +41,9 @@ public class Discountprice {
 		public String Tickper;
 		public String LastDate;
 		public String ExtracostperSqcm;
+		public String Cities;
+		//public String packageName;
+		
 		
 		public static List<Object[]> getfewdiscount(String nname,String cname) {
 			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category " +
@@ -156,5 +160,82 @@ public class Discountprice {
 			return list;
 					
 		}
+		//Get all package  rate   
+		@Transactional
+	    public static long getAllAnnouncementsTotal(String City,  int rowsPerPage) {
+	    	long totalPages = 0, size;
+	    	
+	    	if(City.trim().equals("")) {
+	    		size = (Long) JPA.em().createQuery("Select count(*) from Discountprice a").getSingleResult();
+	    	} else {
+	    		Query query = JPA.em().createQuery("Select count(*) from Discountprice a where a.Nameofthenewspaper LIKE ?2");
+	    		query.setParameter(2, "%"+City+"%");
+	    		size= (Long) query.getSingleResult();
+	    	}
+	    	
+	    	totalPages = size/rowsPerPage;
+			
+	    	if(size % rowsPerPage > 0) {
+				totalPages++;
+			}
+	    	System.out.println("total pages ::"+totalPages);
+	    	return totalPages;
+	    }
+		
+		 @Transactional
+		    public static List<Discountprice> getAllAnnouncements(String City, int currentPage, int rowsPerPage, long totalPages) {
+		    	int  start=0;
+		    	/*Query q;*/
+		    	String sql="";
+		    	if(City.trim().equals("")) {
+		    		sql = "Select a from Discountprice a";
+		    	} else {
+		    		sql ="Select a from Discountprice a where a.Nameofthenewspaper LIKE ?1";
+		    	}
+
+	    		if(currentPage >= 1 && currentPage <= totalPages) {
+					start = (currentPage*rowsPerPage)-rowsPerPage;
+				}
+				if(currentPage>totalPages && totalPages!=0) {
+					currentPage--;
+					start = (int) ((totalPages*rowsPerPage)-rowsPerPage); 
+				}
+		    	Query q = JPA.em().createQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
+		    	if(!City.trim().equals("")) {
+					q.setParameter(1, "%"+City+"%");
+				}
+				
+				return (List<Discountprice>)q.getResultList();
+				
+		    }
+
+		 
+
+		 public static Discountprice findById(String id) {
+		    	Query query = JPA.em().createQuery("Select a from Discountprice a where a.Did = ?1");
+				query.setParameter(1, id);
+		    	return (Discountprice) query.getSingleResult();
+		    }
+		 
+		@Transactional
+	    public void save() {
+			this.Did = UUID.randomUUID().toString();
+	        JPA.em().persist(this);
+	        JPA.em().flush();     
+	    }
+
+		 @Transactional
+		  public void merge() {
+			 
+		        JPA.em().merge(this);
+		  }
+		
+	
+		  @Transactional
+		    public void delete() {
+		        JPA.em().remove(this);
+		    }
+		    
+
 		
 }

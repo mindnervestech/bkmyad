@@ -515,6 +515,9 @@ public class Application extends Controller {
         	u.password=passWord;
         	u.mobileNum=mobileNumber;
         	JPA.em().persist(u);
+        	session().clear();
+    		session().put("emailId",email );
+    		session().put("userName",name);
         	return redirect("/");
        
         }

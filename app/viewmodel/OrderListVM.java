@@ -2,56 +2,28 @@ package viewmodel;
 
 import models.Basicrate;
 import models.ComposedAdSave;
+import models.Order;
 
 public class OrderListVM {
-	 public Long OID;
-	   public String IpAddress;
-	   public String  OrderID;
-	   public String Nameofthenewspaper;
-	   public String City;
-	   public String Adtext;
-	   public String TotalNoofline;
-	   public String Linecost;
-	   public String Tick;
-	   public String TickRate;
-	   public String Bgcolor;
-	   public float BgcolorRate;
-	   public String Border;
-	   public float BorderCost;
-	   public String Noofads;
-	   public String PublishDate;
-	   public String BasicRate;
-	   public float TotalCost;
-	   public String Guid;
-	   public String Extraborderper;
-	   public String Extrabgper;
-	   public String Tickper;
-	   public String  Category;
-	   public String  Subcategory;
-	   public int numberOfWords;
-	   public String paymentOption;
-	   public String userEmailId;
-	   public String Offer;
-	   public String Enhancement;
-	   public String orderDate;
-	   public OrderListVM(ComposedAdSave composedAdSave) {
+	 
+    public String orderId;
+	public float total;
+	public String email;
+	public String cc_orderNo;
+	public String cc_bid;
+	public String cc_category;
+	public String bank_name;
+	public String bankMsg;
+	
+	   
+	   public OrderListVM(Order order) {
+	    	this.orderId=order.orderId;
+	    	this.cc_orderNo=order.cc_orderNo;
+	    	this.cc_bid=order.cc_bid;
+	    	this.cc_category=order.cc_category;
+	    	this.bank_name=order.bank_name;
+	    	this.total=order.total;
+	    
 	    	
-	    	this.OrderID=composedAdSave.OrderID;
-	    	this.Nameofthenewspaper=composedAdSave.Nameofthenewspaper;
-	    	this.City=composedAdSave.City;
-	    	this.Adtext=composedAdSave.Adtext;
-	    	this.PublishDate=composedAdSave.PublishDate;
-	    	this.Category=composedAdSave.Category;
-	    	this.Border=composedAdSave.Border;
-	    	this.Subcategory=composedAdSave.Subcategory;
-	    	this.paymentOption=composedAdSave.paymentOption;
-	    	this.Tick=composedAdSave.Tick;
-	    	this.Category=composedAdSave.Category;
-	    	this.Extraborderper=composedAdSave.Extraborderper;
-	    	this.Extrabgper=composedAdSave.Extrabgper;
-	    	this.orderDate=composedAdSave.orderDate;
-	    	this.userEmailId=composedAdSave.userEmailId;
-	    	this.TotalCost=composedAdSave.TotalCost;
-	    	this.numberOfWords=composedAdSave.numberOfWords;
 	    }
 }

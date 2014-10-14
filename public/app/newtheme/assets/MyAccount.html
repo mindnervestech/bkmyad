@@ -21,24 +21,24 @@
                 	<thead>
                     	<tr>
                              <th><a>Order ID</a></th>	
-                             <th><a>NewsPaper / City</a></th>
-                             <th><a>Ad Text</a></th>
-                             <th><a>Category</a></th>
-                             <th><a>Order Date</a></th>
-                             <th><a>Publish Date</a></th>
+                             <th><a>CC Bid</a></th>
+                             <th><a>CC Order No</a></th>
+                             <th><a>CC Category</a></th>
+                             <th><a>Bank Name</a></th>
                              <th><a>Total Cost</a></th>
+                              <th><a>View </a></th>
                         <tr>
                     </thead>
                 	<tbody><tr>	
                     	<tr ng-repeat="dataorderList in orderList.results">
                         <!--    <p>{{dataorderList}}</p> -->
-                    	     <td>{{dataorderList.OrderID}}</td>
-                             <td>{{dataorderList.Nameofthenewspaper}}/{{dataorderList.City}}</td>
-                             <td>{{dataorderList.Adtext | limitTo:30}}</td>
-                             <td>{{dataorderList.Category}}</td>
-                             <td>{{dataorderList.orderDate}}</td>
-                             <td>{{dataorderList.PublishDate | date:'yyyy/MM/dd'}}</td>
-                             <td>{{dataorderList.TotalCost}}</td>
+                    	     <td>{{dataorderList.orderId}}</td>
+                             <td>{{dataorderList.cc_bid}}</td>
+                             <td>{{dataorderList.cc_orderNo}}</td>
+                             <td>{{dataorderList.cc_category}}</td>
+                             <td>{{dataorderList.bank_name}}</td>
+                             <td>{{dataorderList.total}}</td>
+                             <td> <input name="" type="button" value="View" ng-click="setData(dataorderList)" data-toggle="modal"  /></td>
                              </tr>
                     	</tbody>
                 </table>
@@ -46,7 +46,41 @@
         </div>     
         </section>
     </section>
-    
   </div>
-		
+  <div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;left: 41%;">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Order Details</h4>
+		      </div>
+		     
+		      <div class="modal-body">
+		      <table>
+		      <tr>
+			        <tr>
+			       <td><label>Order ID : </label></td><td>{{orderData.orderId}}</td>
+			       </tr>
+			       <tr>
+			       <td><label>CC Bid : </label> </td><td><font ng-if="orderData.cc_bid != null">{{orderData.cc_bid}}</font><font ng-if="orderData.cc_bid == null">Canceled</font></td>
+			       </tr>
+			       <tr>
+			       <td><label>CC Order No :</label>  </td><td><font ng-if="orderData.cc_orderNo != null">{{orderData.cc_orderNo}}</font><font ng-if="orderData.cc_orderNo== null">Canceled</font></td>
+			       </tr>
+			       <tr>
+			       <td><label>CC Category :</label> </td><td> <font ng-if="orderData.cc_orderNo != null">{{orderData.cc_category}}</font><font ng-if="orderData.cc_category == null">Canceled</font></td>
+			       </tr>
+			       <tr>
+			       <td><label>Bank Name :</label> </td><td> <font ng-if="orderData.bank_name != null">{{orderData.bank_name}}</font><font ng-if="orderData.bank_name == null">Canceled</font></td>
+			       </tr>
+			       <tr>
+			       <td><label>Total Cost :</label></td><td> {{orderData.total}}</td>
+			       </tr>
+			     </tr> 
+		        </table>
+		      </div>
+		     
+		    </div>
+		  </div>
+		</div>
   </body>

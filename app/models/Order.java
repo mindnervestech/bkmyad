@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import javax.persistence.Table;
 
 import play.db.jpa.JPA;
+import play.db.jpa.Transactional;
 
 @Entity
 @Table(name="Orders")
@@ -33,12 +34,13 @@ public class Order {
 	public String cc_category;
 	
 	public String bank_name;
+	public String bankMsg;
 	
 	//@Cascade(value={CascadeType.ALL})
 	@OneToMany(cascade={CascadeType.ALL})
 	public List<ComposedAdSave> composedAd;
 
-	public String bankMsg;
+
 
 	public String getOrderId() {
 		return orderId;
@@ -136,5 +138,12 @@ public class Order {
 		
 		
 	}
+	
+	  @Transactional
+	    public static List<Order> getAllOrderList(String UserId) {
+	    Query q = JPA.em().createQuery("Select a from Order a where a.email = ?1");
+	    q.setParameter(1, UserId);
+	    return (List<Order>) q.getResultList();
+	    }
 
 }

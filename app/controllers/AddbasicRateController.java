@@ -154,7 +154,6 @@ public class AddbasicRateController extends Controller{
 		List<Map> list = new ArrayList<>();
 		for(String state : listcname){
 			Map<String,String> map = new HashMap<String, String>();
-			
 			map.put("Statename", state);
 			list.add(map);
 		}

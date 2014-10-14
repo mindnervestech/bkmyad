@@ -171,7 +171,7 @@
 			    			<li ng-repeat="rate in rates" class="pillboxes custom-pill" >
 			    				<div  style="padding: 1px;">
 			    					 <span>
-        								<input ng-click="rateClicked($event,rate)" ng-model="rate.isSelected" style="margin: 1px"  type="checkbox">
+        								<input ng-click="rateClicked($event,rate)" ng-model="rate.isSelected" style="margin: 1px" ng-disable="disableBasicRateChkbox"  type="checkbox">
      								 </span>
      								 <span>{{rate.location}} - Rs {{rate.rate}} {{rate.freeUnit}} / 
 			    					{{rate.unit}} </span>
@@ -187,7 +187,7 @@
 			    	   </tab>
 			    	   <tab>
 			    	   <tab-heading>
-                        <i class="icon-gift"></i> Package Rates
+                       <!--  <i class="icon-gift"></i> Package Rates
                      </tab-heading>
 			    	   <div ng-show="discRates.length > 0" class="backcolo">
 			    		<ul ng-show="discRates.length > 0">
@@ -207,7 +207,45 @@
 			    		</div>
 			    		<div ng-show="drates.length == 0" class="alert alert-block">
 			    			No Rates Available !
+			    		</div> -->
+			    	   </tab>
+			    	  </tabset>
+			    	</div>
+			    	<div>
+			    	<img src="/NewDesign/images/or.gif" style="width: 100%;"/>
+			    	 </div>
+			    		<div class="well">
+			    	
+			    	  <tabset>
+			    	   <!-- class="icon-search" -->
+			    	   
+			    	  <tab>
+			    	   <tab-heading>
+                        <i class="icon-tags"></i> Package Rate 
+                       </tab-heading>
+			    	   <div ng-show="discRates.length > 0" class="backcolo">
+			    		<ul ng-show="discRates.length > 0">
+			    		<div class="Internal">
+			    			<li ng-repeat="discountRate in discRates" class="pillboxes custom-pill">
+			    				<div  style="padding: 1px;">
+			    					 <span >
+        								<input ng-click="discountRateClicked($event,discountRate)" ng-model="discountRate.isSelected" style="margin: 1px" ng-disabled="disablePackageCheckBox" type="checkbox">
+     								 </span>
+     								 <span>{{discountRate.location}} - Rs {{discountRate.dTotalPrice}}  {{discountRate.freeUnit}}/
+			    					  {{discountRate.unit}} </span>
+			    				</div>	
+			    				
+			    			</li>
+			    			</div>
+			    		</ul>
 			    		</div>
+			    		<div ng-show="rates.length == 0" class="alert alert-block">
+			    			No Rates Available !
+			    		</div>
+			    	   </tab>
+			    	   <tab>
+			    	   <tab-heading>
+                   
 			    	   </tab>
 			    	  </tabset>
 			    	</div>
@@ -357,10 +395,10 @@
               <div style="width: 100%;float: left;">    
               <input type="radio" name="chk" value="No" ng-model="userwithoutaccount" ng-click="showfieldsonlyusername();" style="margin-left:7%;"><b >&nbsp;Continue without password</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="chk" value="Yes" ng-model="userwithoutaccount" ng-click="showfields();"><b>&nbsp;I have Adschela account and passsword </b> <br>
+                  <input type="radio" name="chk" value="Yes" ng-model="userwithoutaccount" ng-click="showfields();"><b>&nbsp; I have an arihantbooking acount  </b> <br>
                   <div>
                   <span style="font-size: 9pt;font-family: Calibri;margin-left: 12%;">(Don't have account yet)</span>
-                  <span style="font-size: 9pt;font-family: Calibri;margin-left: 25%;">Sign in to your account to get benefits</span><br>
+                  <span style="font-size: 9pt;font-family: Calibri;margin-left: 25%;"></span><br>
                  </div>
                   </div><br />
                   <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" ng-click="rc.sampleWizard.moveTo(2)"

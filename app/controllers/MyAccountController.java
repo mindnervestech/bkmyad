@@ -10,6 +10,7 @@ import models.AddressDetails;
 import models.Basicrate;
 import models.ComposedAdSave;
 import models.Newspaperdetails;
+import models.Order;
 import models.State;
 import play.db.jpa.Transactional;
 import play.libs.Json;
@@ -23,18 +24,20 @@ import viewmodel.OrderListVM;
 
 public class MyAccountController extends Controller {
 	
-	
+	//get the orderList for current logged in  user
 	@Transactional
 	public static Result getAllUserOrder(String UserId) {
-		List<ComposedAdSave> allOrderList = ComposedAdSave.getAllOrderList(UserId);
+	  List<Order> allOrderList = Order.getAllOrderList(UserId);
+	
 		List<OrderListVM> listOfOrder = new ArrayList<OrderListVM>();
 	
-		for (ComposedAdSave orderlistVM: allOrderList) {
+		for (Order orderlistVM: allOrderList) {
 			OrderListVM vm = new OrderListVM(orderlistVM);
 			listOfOrder.add(vm);
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("results", listOfOrder);
+	
 		return ok(Json.toJson(map));
 	}
 	

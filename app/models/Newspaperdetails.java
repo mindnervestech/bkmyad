@@ -27,15 +27,11 @@ public class Newspaperdetails {
 	public String Addedition;
 	@Transient
 	public List<String> NameofCities;
-	
 	public String Nameofcities;
-	
 	@Transient
 	public String Unit;
-	
 	@Transient
 	public String Value;
-	
 	public String BasicratesperText;
 	public String BasicratesperClasified;
 	public String Beforebookingdate;

@@ -58,13 +58,10 @@ public class AddNewspaperController extends Controller{
 	
 	@Transactional
 	public static Result deleteNewpaper(String id) {
-		
 		Newspaperdetails newspaperdetails =  Newspaperdetails.findById(id);
-	
 		newspaperdetails.delete();
 		return ok();
 	}
-	
 	
 	
 	@Transactional

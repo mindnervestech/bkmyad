@@ -99,6 +99,14 @@ public class City {
 	}
 
 	@Transactional
+	public static List<String> getAllCityName()
+	{
+		
+		Query q=JPA.em().createQuery("Select a.Cityname from City a ");
+		return (List<String>)q.getResultList();
+	}
+
+	@Transactional
     public void save() {
 		this.CID = UUID.randomUUID().toString();
         JPA.em().persist(this);
