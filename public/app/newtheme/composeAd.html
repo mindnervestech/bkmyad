@@ -46,8 +46,8 @@
 					<tr>
 						<td align="left" valign="middle" width="450">
 						<label 
-						 ng-if='!(selectedCartItemOnPopUp.extraForBackgroud == 0 && selectedCartItemOnPopUp.extraForBorder  == 0 || selectedCartItemOnPopUp.extraForBorder == null  && selectedCartItemOnPopUp.extraForBackgroud == null)'>BackGround Color and Ad Border Color will increase Cost</label>
-							<div ng-if='selectedCartItemOnPopUp.extraForBackgroud > 0' 
+						 ng-if='((selectedCartItemOnPopUp.extraForBackgroudInPer > 0 || selectedCartItemOnPopUp.extraForBackgroud > 0) || (selectedCartItemOnPopUp.extraForBorder  > 0 || selectedCartItemOnPopUp.extraForBorderInPer > 0)  )'>BackGround Color and Ad Border Color will increase Cost</label>
+							<div ng-if='selectedCartItemOnPopUp.extraForBackgroud > 0 || selectedCartItemOnPopUp.extraForBackgroudInPer > 0' 
 								style="width: 200px; float: left;margin-right: 7% !important; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
 								<center>
 									<table width="180" border="0" cellpadding="0" cellspacing="0">
@@ -144,7 +144,7 @@
 									</table>
 								</center>
 							</div>
-							<div ng-if='selectedCartItemOnPopUp.extraForBorder > 0'
+							<div ng-if='selectedCartItemOnPopUp.extraForBorder > 0 || selectedCartItemOnPopUp.extraForBorderInPer > 0'
 								style="width: 200px; height: 100px; float: left; padding-right: 10px; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
 								<center>
 									<table width="140" border="0" cellpadding="0" cellspacing="0">
@@ -181,7 +181,7 @@
 									</table>
 								</center>
 							</div>
-							<div ng-if='selectedCartItemOnPopUp.extraFortick> 0'
+							<div ng-if='selectedCartItemOnPopUp.extraFortick > 0 || selectedCartItemOnPopUp.extraFortickInPer > 0'
 								style="width: 200px; height: 100px; float: left; padding-right: 10px; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0; margin-right: 55%;">
 								<center>
 									<table width="140" border="0" cellpadding="0" cellspacing="0">
@@ -205,11 +205,7 @@
 																	ng-change="onNoTickSelected();"><span
 																	style="font-size: 10pt; font-family: Calibri;">
 																	No Tick For Ad</span></td>
-																<!-- <td><input id="rbnborder_1" type="radio"
-																	name="rbnborder" value="Yes"
-																	ng-model="selectedCartItemOnPopUp.onBorderSelected"
-																	ng-change="onBorderselected();"><label
-																	for="rbnborder_1">Yes</label></td> -->
+																
 															</tr>
 														</tbody>
 													</table>
@@ -242,7 +238,7 @@
 					</tr>
 				</tbody>
 			</table>
-        <div  ng-if='selectedCartItemOnPopUp.extraForBackgroud == 0 && selectedCartItemOnPopUp.extraForBorder  == 0 && selectedCartItemOnPopUp.extraFortick == 0 || selectedCartItemOnPopUp.extraForBorder == null  && selectedCartItemOnPopUp.extraForBackgroud == null && selectedCartItemOnPopUp.extraFortick == null ' style="color:red" >No Topping Available </div>
+        <div  ng-if='!((selectedCartItemOnPopUp.extraForBackgroudInPer > 0 || selectedCartItemOnPopUp.extraForBackgroud > 0) || (selectedCartItemOnPopUp.extraForBorder  > 0 || selectedCartItemOnPopUp.extraForBorderInPer > 0)  )' style="color:red" >No Topping Available </div>
 		</form>
 
 		<form class="pull-left tab-pane" id="select-date"

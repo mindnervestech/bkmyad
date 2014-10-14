@@ -851,17 +851,27 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	$scope.selectedCartItemOnPopUp = GetSelectedCartItemOnPopUp();
 	var borderSelected;
 	var totalCost;
+	
 	var borderColor;
 	var backgroundColor;
+	var borderColorInPer;
+	var backgroundColorInPer;
+	var extracostFortick;
+	var extracostFortickInPer;
+	
 	var rate;
 	var checkColorSelected;
 	var savenameofcolorSelected;
-	var extraFortick;
+	var extracostFortick;
 	
     var bgColorSelected = $scope.selectedCartItemOnPopUp.onbgColorchange
 	borderColor = parseInt($scope.selectedCartItemOnPopUp.extraForBorder);
 	backgroundColor = parseInt($scope.selectedCartItemOnPopUp.extraForBackgroud);
 	extracostFortick =  parseInt($scope.selectedCartItemOnPopUp.extraFortick);
+	
+	borderColorInPer = parseInt($scope.selectedCartItemOnPopUp.extraForBorderInPer);
+	backgroundColorInPer = parseInt($scope.selectedCartItemOnPopUp.extraForBackgroudInPer);
+	extracostFortickInPer =  parseInt($scope.selectedCartItemOnPopUp.extraFortickInPer);
 	
 	if ($scope.selectedCartItemOnPopUp.onBorderSelected == null || $scope.selectedCartItemOnPopUp.onBorderSelected == '') {
 		$scope.selectedCartItemOnPopUp.onBorderSelected='No';
@@ -873,41 +883,52 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	
 	$scope.onBorderselected = function(){
 		if($scope.selectedCartItemOnPopUp.onBorderSelected == 'Yes') {
-			$scope.selectedCartItemOnPopUp.totalExtraCost = 
-			$scope.selectedCartItemOnPopUp.totalExtraCost + borderColor;
+			upRate(borderColor,borderColorInPer);
 		} else {
-			
-			$scope.selectedCartItemOnPopUp.totalExtraCost = 
-				$scope.selectedCartItemOnPopUp.totalExtraCost - borderColor;
+			downRate(borderColor,borderColorInPer);
 		}
 		ReTotal();
 	}
 	$scope.selectedCartItemOnPopUp.notickforAd=$scope.selectedCartItemOnPopUp.notickforAd;
 	$scope.onNoTickSelected = function(){
-	
 		
 		if($scope.selectedCartItemOnPopUp.notickforAd){
-			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - extracostFortick;
-			 console.log(" $scope.selectedCartItemOnPopUp.totalExtraCost:"+ $scope.selectedCartItemOnPopUp.totalExtraCost);
-			}
+			downRate(extracostFortick,extracostFortickInPer);
+		}
 		else{
-			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + extracostFortick;
-			 console.log(" $scope.selectedCartItemOnPopUp.totalExtraCost:"+ $scope.selectedCartItemOnPopUp.totalExtraCost);
+			upRate(extracostFortick,extracostFortickInPer);
 		}
 		ReTotal();
 	}
+	
 	$scope.onNoBgcolorSelected=function(){
-		
 		  if($scope.selectedCartItemOnPopUp.nobgColor) { 
-			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - backgroundColor;
+			  downRate(backgroundColor, backgroundColorInPer); 
 			 $scope.selectedCartItemOnPopUp.onbgColorchange='No';
 		  }
 		  else {
-			  $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + backgroundColor;
+			  upRate(backgroundColor, backgroundColorInPer) 
 			  $scope.selectedCartItemOnPopUp.onbgColorchange='lemonchiffons';
 		  }
 		  ReTotal(); 
 	}
+	
+	function downRate(inValue, inPer) {
+		if(inValue != 0) {
+			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - inValue;
+		 } else if (inPer != 0){
+			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - $scope.selectedCartItemOnPopUp.totalUnitCost * ((inPer)/(100));
+		 } 
+	}
+	
+	function upRate(inValue, inPer) {
+		if(inValue != 0) {
+			  $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + backgroundColor;
+		} else if (inPer != 0){
+			$scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + $scope.selectedCartItemOnPopUp.totalUnitCost * ((inPer)/(100));
+		} 
+	}
+	
 	$scope.a=false ;
 	$scope.onComposeAdStepChange = function() {
 		
@@ -1580,9 +1601,14 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			unitVal: rate.unitVal,
 			extra: rate.extra,
 			freeUnit: rate.freeUnit,
+			
 			extraForBackgroud:rate.extraForBackgroud,
 			extraForBorder:rate.extraForBorder,
 			extraFortick:rate.extraFortick,
+			extraForBackgroudInPer:rate.extraForBackgroudInPer,
+			extraForBorderInPer:rate.extraForBorderInPer,
+			extraFortickInPer:rate.extraFortickInPer,
+			
 			completenessStatus:'please fill details',
 			description: '',
 			total: 0,

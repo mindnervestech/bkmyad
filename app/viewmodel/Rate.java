@@ -22,12 +22,16 @@ public class Rate {
         public String extra; //15
         //public String freeUnit; // 20
        
-        public String extraFortick;
         public String extraCostpersqcm;
         public String cutOfBookingDate;
+        
         public String extraForBorder;
         public String extraForBackgroud;
-       
+        public String extraFortick;
+        public String extraForBorderInPer;
+        public String extraForBackgroudInPer;
+        public String extraFortickInPer;
+        
         
         
         public static Rate byId(String id) {
@@ -49,12 +53,21 @@ public class Rate {
                         return this;
         }
        
-        public Rate withOverUnit(String extra,String cutOfBookingDate,String extraForBorder,String extraForBackgroud, String extraFortick,String extraCostpersqcm) {
+        public Rate withOverUnit(String extra,String cutOfBookingDate,
+        		String extraForBorder,String extraForBackgroud, String extraFortick,
+        		String extraForBorderInPer,String extraForBackgroudInPer, String extraFortickInPer,
+        		String extraCostpersqcm) {
                         this.extra = extra;
                         this.cutOfBookingDate=cutOfBookingDate;
+                        
                         this.extraForBorder=extraForBorder;
                         this.extraForBackgroud=extraForBackgroud;
                         this.extraFortick=extraFortick;
+                        
+                        this.extraForBorderInPer=extraForBorderInPer;
+                        this.extraForBackgroudInPer=extraForBackgroudInPer;
+                        this.extraFortickInPer=extraFortickInPer;
+                        
                         this.extraCostpersqcm=extraCostpersqcm;
                         return this;
         }
@@ -86,7 +99,7 @@ public class Rate {
         		rates.add(Rate.byId(rs[0].toString())
         				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
         				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
-        				.withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()) );
+        				.withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()) );
         		        		
         	}
         	
@@ -115,7 +128,7 @@ public class Rate {
                         }
                 }
                       		
-        		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()));
+        		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()));
         		
         	}
         	
@@ -143,7 +156,7 @@ public class Rate {
                     }
             }
          	
-    		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()));
+    		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()));
     		
     	}
     	
@@ -171,7 +184,7 @@ public class Rate {
                     }
             }
          	
-    		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()));
+    		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()));
     		
     	}
     	
@@ -198,7 +211,7 @@ public class Rate {
                     }
             }
          	
-    		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()));
+    		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()));
     		
     	}
     	
@@ -225,7 +238,7 @@ public class Rate {
                     }
             }
          	
-    		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()));
+    		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()));
     		
     	}
     	
@@ -252,7 +265,7 @@ public class Rate {
                     }
             }
          	
-    		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[10].toString()));
+    		rates.add(Rate.byId(rs[0].toString()).withCityAndNewspaper(rs[1].toString(),rs[2].toString()).withAmountAndFreeUnit(rs[3].toString(),letter,number).withOverUnit(rs[5].toString(), rs[6].toString(), rs[7].toString(),rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()));
     		
     	}
     	

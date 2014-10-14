@@ -34,15 +34,15 @@ public class Basicrate {
 		public String Textaddrate;
 		public String clasifiedadrate;
 		public String Exstracostperline;
-		public String Border;
-		public String Backcolor;
+		public String Border="0";
+		public String Backcolor="0";
 		public String SpecialDiscount;
-		public String Tick;
+		public String Tick="0";
 		public String Category;
-		//public String Extraborderper;
-	    //public String Extrabgper;
-		//public String Tickper;
-		public String ExtracostperSqcm;
+		public String Extraborderper="0";
+	    public String Extrabgper="0";
+		public String Tickper="0";
+		public String ExtracostperSqcm="0";
 		public String Statename;
 				
 		
