@@ -75,7 +75,7 @@ public class AddbasicRateController extends Controller{
     	basicrate.Category=categoryUnique[i].trim();//.replaceAll("[^\\p{L}\\p{Nd}]+", "");
     	basicrate.Category = basicrate.Category.replace("[","");
     	basicrate.Category = basicrate.Category.replace("]","");
-    	 	
+    	basicrate.Category = basicrate.Category.replace("\"",""); 	
     	//basicrate.Extraborderper=form.get("Extraborderper");
     //	basicrate.Extrabgper=form.get("Extrabgper");
    // 	basicrate.Tickper=form.get("Tickper");
