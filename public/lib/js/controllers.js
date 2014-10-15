@@ -411,10 +411,15 @@ angular.module('adschela').controller("MyAccountController",['$scope','$http',fu
 		  $scope.orderList = data;
 		  console.log(" $scope.result"+ $scope.orderList);
 		});
-	     /*$scope.orderList=OrderListService.orderListInfo.get({UserId:$scope.UserId},function(response) {
-		
-		});
-	     console.log("$scope.orderList"+$scope.orderList);*/
+	     
+	     
+	     
+	     $scope.setData = function(ancmt) {
+	 		$scope.orderData = ancmt;
+	 		$('#myModal2').modal();
+	 				
+	 	};
+	    
 	}]);
 
     angular.module('adschela').service('OrderListService',function($resource){
@@ -845,6 +850,249 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
              );
 	});
 
+	angular.module('adschela').controller('AddPackageRateController',function($scope, $modal, $http, $filter, BasicRateService,getNewspaperservice,getStateNameservice,getcnameservice, deleteBasicRateService){
+
+		$scope.City = " ";
+		$scope.pageNumber;
+		$scope.pageSize;
+		$scope.formData = "";
+		var currentPage = 1;
+		var totalPages;
+		$scope.isChosen = false;
+		
+		$scope.searchForm= {
+	            from : new Date(),
+	            to : new Date()
+
+		}
+
+		//Pacakge Rate(Discountprice Model ) come in the BasicRateService.
+		//$scope.city=spassing the news paper as parameter from ui.
+		$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			totalPages = $scope.BasicRate.totalPages;
+			currentPage = $scope.BasicRate.currentPage;
+			$scope.pageNumber = $scope.BasicRate.currentPage;
+			$scope.pageSize = $scope.BasicRate.totalPages;
+			
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+		
+		
+		    //used to search the  Package data on newspaper.
+			$scope.searchBasicRate = function(page) {
+			if(angular.isUndefined($scope.City) || $scope.City=="") {
+				console.log('inside function');
+				$scope.City = " ";
+			}
+			currentPage = page;
+			//Pacakge Rate(Discountprice Model ) come in the BasicRateService.
+			$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+				console.log($scope.BasicRate.totalPages);
+				totalPages = $scope.BasicRate.totalPages;
+				currentPage = $scope.BasicRate.currentPage;
+				$scope.pageNumber = $scope.BasicRate.currentPage;
+				$scope.pageSize = $scope.BasicRate.totalPages;
+				if(totalPages == 0) {
+					$scope.pageNumber = 0;
+				}
+			});
+		    console.log($scope.BasicRate);
+		};
+		 //used to search the  Discount data on newspaper.
+		$scope.searchBasicRate = function(page) {
+			if(angular.isUndefined($scope.City) || $scope.City=="") {
+				console.log('inside function');
+				$scope.City = " ";
+			}
+			currentPage = page;
+			//Pacakge Rate(Discountprice Model ) come in the BasicRateService.
+			$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+				console.log($scope.BasicRate.totalPages);
+				totalPages = $scope.BasicRate.totalPages;
+				currentPage = $scope.BasicRate.currentPage;
+				$scope.pageNumber = $scope.BasicRate.currentPage;
+				$scope.pageSize = $scope.BasicRate.totalPages;
+				if(totalPages == 0) {
+					$scope.pageNumber = 0;
+				}
+			});
+		    console.log($scope.BasicRate);
+		}; 
+		//used to get Pacakge Rate  from DiscountPrice model   in the BasicRateService.
+		angular.module('adschela').service('BasicRateService',function($resource){
+		    this.BasicRateInfo = $resource(
+		            '/getDiscountRate/:City/:currentPage',
+		            {alt:'json',callback:'JSON_CALLBACK'},
+		            {
+		                get: {method:'get'}
+		            }
+		    );
+		});
+		
+			
+		//new package saved here
+		$scope.saveNewPackage = function(formData) {
+			console.log($scope.formData.Statename);
+			$http.post('/saveNewPackageRate',formData).success(function(data){
+				console.log('success posted data');
+				$scope.searchBasicRate(currentPage);
+				$('#myModal').modal('hide');
+			}).error(function(data, status, headers, config) {
+				console.log('ERROR');
+			});
+		};
+		//
+		$scope.setData = function(ancmt) {
+			//get newspaper name
+			$scope.resultNewspaper = getNewspaperservice.Allnewspaper.get();
+			//get category from the NewspaperDetails 
+			$scope.resultcname = getcnameservice.Allcname.get();
+			//get state from the NewspaperDetails 
+			$scope.resultstate = getStateNameservice.Allstate.get();
+			console.log("$scope.resultstate"+$scope.resultstate);
+			$scope.resultCity = [{cityname:ancmt.City}];
+			$scope.ancmtData = ancmt;
+			$('#myModal2').modal();
+				
+		};
+
+		$scope.onStateselect = function(stateName) {
+			console.log("Selected State  : "+stateName);
+			//$scope.resultCity = getCityNameservice.AllCity.get({state:stateName}); 
+			}
+		$scope.onStateselectupdate = function() {
+			alert("State"+$scope.ancmtData.Statename)
+			//$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.ancmtData.Statename}); 
+			}
+		
+		//setting data to the model
+		$scope.setDates = function() {
+					
+			$scope.resultNewspaper = getNewspaperservice.Allnewspaper.get(); 
+			$scope.resultcname = getcnameservice.Allcname.get();
+			$scope.resultstate = getStateNameservice.Allstate.get();
+			console.log("$scope.resultstate"+getStateNameservice.Allstate.get());
+			$scope.searchForm.from = new Date();
+			$scope.searchForm.to = new Date();
+			$scope.icon_id = "";
+	        $scope.icon_url = "";
+	        $scope.icon_name = "";
+			$scope.formData = "";
+			$scope.isChosen = false;
+			$('#myModal').modal();
+		}
+		
+		//seting data to the delete model. 
+		$scope.setDeleteId = function(Id) {
+			$scope.deleteId = Id.Did;
+			$('#myModal3').modal();
+			console.log("-**-*-"+$scope.deleteId+"*-*-*-*");
+			
+		};
+		
+		//update the  package rate in DiscountPrice model.
+		$scope.updateBasicRate = function() {
+			console.log($scope.ancmtData);
+			$http.post('/updateDiscountRate', $scope.ancmtData).success(function(data){
+				console.log('success');
+				$scope.searchBasicRate(currentPage);
+				$('#myModal2').modal('hide');
+			}).error(function(data, status, headers, config) {
+				console.log('ERROR------------');
+			});
+		};
+		//delete the package rate from the  package rate(Discount price model ) 
+		$scope.deleteDiscountRate = function() {
+			deleteBasicRateService.Deletebasicrate.get({id :$scope.deleteId}, function(data){
+				$scope.searchBasicRate(currentPage);
+	            $('#myModal3').modal('hide');
+			});    
+		};
+		
+		
+		// goto next page
+		$scope.onNext = function() {
+			if(currentPage < totalPages) {
+				currentPage++;
+				$scope.searchBasicRate(currentPage);
+			}
+		};
+		//goto prevoius result (8 no of result per page )
+		$scope.onPrev = function() {
+			if(currentPage > 1) {
+				currentPage--;
+				$scope.searchBasicRate(currentPage);
+			}
+		};
+		
+		});
+    
+	//get newspaper name here 
+		angular.module('adschela').service('getNewspaperservice',function($resource){
+	        this.Allnewspaper = $resource(
+	            '/getNewspaper',
+	            {alt:'json',callback:'JSON_CALLBACK'},
+	            {
+	                get: {method:'get',isArray:true}
+	            }
+	    	);
+		});
+
+      //get category here
+		angular.module('adschela').service('getcnameservice',function($resource){
+	        this.Allcname = $resource(
+	            '/getCategory',
+	            {alt:'json',callback:'JSON_CALLBACK'},
+	            {
+	                get: {method:'get',isArray:true}
+	            }
+	    	);
+		});
+     //get state 
+		angular.module('adschela').service('getStateNameservice',function($resource){
+	        this.Allstate = $resource(
+	            '/getAllCityOfState',
+	            {alt:'json',callback:'JSON_CALLBACK'},
+	            {
+	                get: {method:'get',isArray:true}
+	            }
+	    	);
+		});
+
+		/*angular.module('adschela').service('getCityNameservice',function($resource){
+	         this.AllCity = $resource(
+	            '/getCityname/:state',
+	            {alt:'json',callback:'JSON_CALLBACK'},
+	            {
+	                get: {method:'get',isArray:true}
+	            }
+	    	);
+		});*/
+
+		//get the package rate from the discount price model
+		angular.module('adschela').service('BasicRateService',function($resource){
+	        this.BasicRateInfo = $resource(
+	            '/getDiscountRate/:City/:currentPage',
+	            {alt:'json',callback:'JSON_CALLBACK'},
+	            {
+	                get: {method:'get'}
+	            }
+	    	);
+		});
+      //delete the package rate.
+		angular.module('adschela').service('deleteBasicRateService',function($resource){
+		console.log("");
+	        this.Deletebasicrate = $resource(
+	            '/deleteDiscountRate/:id',
+	            {alt:'json',callback:'JSON_CALLBACK'},
+	            {
+	                get: {method:'get'}
+	            }
+	             );
+		});
+
 
 	angular.module('adschela').controller("ComposeAdController",['$scope',function($scope, $timeout) {
 	
@@ -1008,7 +1256,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
                 	total_unit = countWords(text);
                 } else {
                 	if ($scope.selectedCartItemOnPopUp.unit == "Line") {
-                    	total_unit = Math.ceil(text.length / 23);
+                    	total_unit = Math.ceil(text.length / 18);
                     }
                 }
                 
@@ -1028,9 +1276,9 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
                 	totalCost = rate;
                 	console.log("in totle cost"+totalCost);
                 }
-                if ($scope.selectedCartItemOnPopUp.unit == "Line") {
+              /*  if ($scope.selectedCartItemOnPopUp.unit == "Line") {
                 	total_unit = Math.ceil(text.length / 23);
-                }
+                }*/
               $scope.$apply(function(){
                 	$scope.selectedCartItemOnPopUp.totalUnit = total_unit;
                 	$scope.selectedCartItemOnPopUp.extraCost = totalCost - rate;
@@ -1222,6 +1470,12 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		 
 	}
 	
+	DeleteAllBasicRateCartItem = function(discountRate){
+		if($scope.carts.length != 0)
+		$scope.carts=[];
+	}
+	
+	
 	DeleteCartPersistedItem = function(orderListuser){
 		 ///   $scope.FinalTotal = (parseInt($scope.selectedCartItemOnPopUp.FinalTotal));
 			 angular.forEach($scope.carts, function(obj, index){
@@ -1344,7 +1598,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			multidate : true,
             format : "dd/mm/yyyy", 
             todayHighlight : true,
-            daysOfWeekDisabled: '0',
+            //daysOfWeekDisabled: '0',
             startDate : $scope.selectedCartItemOnPopUp.startDate
         }).on("changeDate", function(e){
         	// TODO: If we dont put apply function , first time total is not applied on screen
@@ -1391,7 +1645,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.tab;
 		$scope.userwithoutaccount='No';
 		$scope.modeOfPayment='cc';
-		//$scope.isSelected = false;
+		$scope.disablePackageCheckBox=false;
+		$scope.disableBasicRateChkbox=false;
 	
 		//retriving the cookies value if any cookies values(orderId)  is present on local.
 	
@@ -1635,7 +1890,17 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		});
 	}
 	
+	var flag = true;
+	
 	$scope.discountRateClicked = function( e, discountRate ){
+		console.log("discountRateClicked");
+		
+		$scope.disableBasicRateChkbox = true;
+		if(flag == true){
+			flag = false;
+			DeleteAllBasicRateCartItem(discountRate);
+		}
+		
 		if($(e.target).is(":checked")) {
 			PushToCart(NewDiscountCartItem(discountRate, $scope.bookingState.selectedNewsPaper));
 		} else {   
@@ -1647,10 +1912,18 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	
 	 
 	$scope.rateClicked = function(e, rate) {
+	//	$scope.disablePackageCheckBox=true;
+		if(flag == false){
+			flag = true;
+			DeleteAllBasicRateCartItem();
+		}
+		
+		
 		if($(e.target).is(":checked")) {
 			PushToCart(NewCartItem(rate, $scope.bookingState.selectedNewsPaper));
 		} else {
 			DeleteCartItemByRate(rate);
+			$scope.disablePackageCheckBox=false;
 		}
 	}
 	
