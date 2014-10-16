@@ -1848,6 +1848,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				freeUnit: discountRate.freeUnit,
 				extraForBackgroud:discountRate.backColor,
 				extraForBorder:discountRate.border,
+				extraFortick:discountRate.extraFortick,
+				
 				extraForBackgroudInPer:discountRate.extraForBackgroudInPer,
 				extraForBorderInPer:discountRate.extraForBorderInPer,
 				extraFortickInPer:discountRate.extraFortickInPer,
