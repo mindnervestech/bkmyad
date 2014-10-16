@@ -101,7 +101,7 @@ GET /AddNewspaper.html     controllers.Assets.at(path="/public", file="app/AddNe
 GET /AddCategoryAndSubCat.html     controllers.Assets.at(path="/public", file="app/AddCategoryAndSubCat.html")
 GET /AddStateAndCity.html     controllers.Assets.at(path="/public", file="app/AddStateAndCity.html")
 GET /AddPackageRate.html    controllers.Assets.at(path="/public", file="app/AddPackageRate.html")   
-GET /view-all-orders.html   controllers.Assets.at(path="/public", file="app/ViewAllOrders.html") 
+#GET /view-all-orders.html   controllers.Assets.at(path="/public", file="app/ViewAllOrders.html") 
 
 GET /ccavenue/:orderId	controllers.CCAvenueController.ccavenue(orderId:String)
 POST /redirect	controllers.CCAvenueController.redirect()
