@@ -187,8 +187,8 @@
 			        		</select>
 			        	</td>
 			        	<td><label>City</label></td>
-			        	<td style="height: 60px;">
-			        	   		<select name="City" style="width:100%;" multiple data-ng-model="ancmtData.NameofCities" required >
+			        	<td >
+			        	   		<select name="City" style="float:left;" multiple data-ng-model="ancmtData.NameofCities" required >
 			        			<option ng-selected="ancmtData.NameofCities==city.cityname" ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
 			        			<option value="">--Please Select City--</option>
 			        			

@@ -27,13 +27,18 @@ GET     /getNewspaper							controllers.AddbasicRateController.getNewspaper()
 POST    /submit-cart                            controllers.MakeBookingController.saveComposeyourAd()
 POST    /sendfeedbacks                          controllers.Application.sendFeedback()
 GET	/getBasicrate/:City/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,currentPage :Integer)
+GET /getDiscountRate/:City/:currentPage	controllers.AddPackageController.getDiscountRate(City :String,currentPage :Integer)
 GET     /listInfo/:UserId              controllers.MyAccountController.getAllUserOrder(UserId :String)
 GET     /getaddressDetailsofUser            controllers.MyAccountController.getaddressDetailsofUser()
 POST	/saveBasicRate		               controllers.AddbasicRateController.saveBasicRate()
+POST    /saveNewPackageRate                controllers.AddPackageController.saveNewpackageRate()
 POST	/updateBasicRate	            controllers.AddbasicRateController.updateBasicRate
+POST    /updateDiscountRate              controllers.AddPackageController.updateDiscountRate()
 GET	/deleteBasicRate/:id		           controllers.AddbasicRateController.deleteBasicRate(id :String)
+GET  /deleteDiscountRate/:id       controllers.AddPackageController.deleteDiscountRate(id :String)
 GET     /getCategory							controllers.AddbasicRateController.getCategory
 GET     /getStatename							controllers.AddbasicRateController.getStatename
+GET    /getAllCityOfState                     controllers.AddPackageController.getAllCityOfState()
 GET     /getCityname/:state					    controllers.AddbasicRateController.getCityname(state:String)
 POST    /saveNewpaper                           controllers.AddNewspaperController.saveNewpaper
 POST	/updateNewpaper	                   controllers.AddNewspaperController.updateNewpaper
@@ -49,7 +54,8 @@ GET     /addBasicRate                    controllers.AddbasicRateController.inde
 GET     /addNewspaper                     controllers.AddNewspaperController.index()                            
 GET     /addCategoryAndSubCat              controllers.AddCategorySubcatController.index()
 GET     /addStateAndCity                   controllers.AddStateCityController.index()    
-GET     /adminPanel                         controllers.AdminPanelController.index()   
+GET     /adminPanel                         controllers.AdminPanelController.index()  
+GET     /addPackageRate                      controllers.AddPackageController.index() 
 GET     /logout                             controllers.Application.Logout()      
 GET     /getforgotpass/:email                       controllers.Application.forgotpassword(email :String)
                         
@@ -92,7 +98,7 @@ GET /AddBasicRate.html     controllers.Assets.at(path="/public", file="app/AddBa
 GET /AddNewspaper.html     controllers.Assets.at(path="/public", file="app/AddNewspaper.html")
 GET /AddCategoryAndSubCat.html     controllers.Assets.at(path="/public", file="app/AddCategoryAndSubCat.html")
 GET /AddStateAndCity.html     controllers.Assets.at(path="/public", file="app/AddStateAndCity.html")
-
+GET /AddPackageRate.html    controllers.Assets.at(path="/public", file="app/AddPackageRate.html")   
 
 
 GET /ccavenue/:orderId	controllers.CCAvenueController.ccavenue(orderId:String)

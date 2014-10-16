@@ -61,10 +61,53 @@ public class AddPackageController  extends Controller{
 			discountprice.Nameofthenewspaper=form.get("Nameofthenewspaper");
 			discountprice.Dtotalprice=form.get("Textaddrate");
 			discountprice.Exstracostperline=form.get("Exstracostperline");
-			discountprice.Border=form.get("Border");
-			discountprice.Backcolor=form.get("Backcolor");
+			//check for the borderRs
+			if(form.get("borderRs")==null){
+				discountprice.Border = "0";
+			}else{
+				discountprice.Border=form.get("borderRs");
+			}
+			
+			//check for boderPer
+			if(form.get("borderPercentage") == null){
+				discountprice.Extraborderper="0";
+				
+			}else{
+				discountprice.Extraborderper=form.get("borderPercentage");
+			}
+			
+			//check for the BackColor
+			if(form.get("bgRs") == null){
+				discountprice.Backcolor = "0";
+				
+			}else{
+				discountprice.Backcolor=form.get("bgRs");
+			}
+			
+			//check for the extrabgper
+			if(form.get("bgPercentage") == null){
+				
+				discountprice.Extrabgper = "0";
+			}else{
+				discountprice.Extrabgper = form.get("bgPercentage");
+			}
+			
 			discountprice.SpecialDiscount=form.get("SpecialDiscount");
-			discountprice.Tick=form.get("Tick");
+			
+			//check for tick
+			if(form.get("tickRs") == null){
+				
+				discountprice.Tick = "0";
+			}else{
+				discountprice.Tick=form.get("tickRs");
+			}
+			//check for the TickPer
+			if(form.get("tickPercentage") == null){
+				discountprice.Tickper = "0";
+			}else{
+				discountprice.Tickper= form.get("tickPercentage");
+			}
+			
 			discountprice.Category=form.get("Category");
 			discountprice.ExtracostperSqcm=form.get("ExtracostperSqcm");
 			
@@ -124,14 +167,56 @@ public class AddPackageController  extends Controller{
 			discountprice.Nameofthenewspaper=form.get("Nameofthenewspaper");
 			discountprice.Dtotalprice=json.get("Dtotalprice").asText();
 			discountprice.Exstracostperline=form.get("Exstracostperline");
-			discountprice.Border=form.get("Border");
 			String Edition = json.get("Edition").asText();
 			discountprice.Edition = Edition;
-			discountprice.Backcolor=form.get("Backcolor");
-			discountprice.SpecialDiscount=form.get("SpecialDiscount");
-			discountprice.Tick=form.get("Tick");
 			discountprice.Category=form.get("Category");
-			System.out.println("City"+form.get("City"));
+			discountprice.SpecialDiscount=form.get("SpecialDiscount");
+			
+			//check the borderRs for null
+			if(form.get("Border") == null){
+				
+				discountprice.Border = "0";
+			}else{
+				discountprice.Border=form.get("Border");
+			}
+			//Check the BorderPer null form UI
+			if(form.get("Extraborderper") == null){
+				
+				discountprice.Extraborderper  = "0";
+			}else{
+				discountprice.Extraborderper = form.get("Extraborderper");
+				
+			}
+			// check for the BackGround Color Null value 
+			if(form.get("Backcolor") == null){
+				discountprice.Backcolor = "0";
+			}else{
+				discountprice.Backcolor=form.get("Backcolor");
+			}
+			
+			//Check for the BackGround Percentage 
+			if(form.get("Extrabgper") == null){
+				discountprice.Extrabgper= "0";
+				
+			}else{
+				discountprice.Extrabgper = form.get("Extrabgper");
+			}
+			
+			//check for the tick Rs
+             if(form.get("Tick") == null){
+            	 discountprice.Tick = "0";
+             }else{
+            	 discountprice.Tick=form.get("Tick");
+             }
+			
+			//check for the Tick Percenatge
+             if(form.get("Tickper") == null){
+            	 discountprice.Tickper = "0";
+             }else{
+            	 discountprice.Tickper = form.get("Tickper");
+             }
+			
+			
 			JsonNode arrNode = json.get("Cities");
 			String cities = null;
 			if (arrNode.isArray()) {
@@ -143,8 +228,10 @@ public class AddPackageController  extends Controller{
 			    		cities = cities +","+objNode.asText();
 			    	}
 			    }
+			
 			}
 			discountprice.Cities = cities;
+		
 			discountprice.ExtracostperSqcm=form.get("ExtracostperSqcm");
 			discountprice.merge();
 			return ok();

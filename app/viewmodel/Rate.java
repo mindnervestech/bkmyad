@@ -24,7 +24,6 @@ public class Rate {
        
         public String extraCostpersqcm;
         public String cutOfBookingDate;
-        
         public String extraForBorder;
         public String extraForBackgroud;
         public String extraFortick;

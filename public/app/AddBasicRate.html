@@ -141,18 +141,43 @@
 			         
 			        <tr>
 			        	<td><label>Border</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Border" style="width:70%;height: 70%;" data-ng-model="formData.Border" required></textarea></td>
-			        	<td><label>Backcolor</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Backcolor" style="width:70%;height: 70%;" data-ng-model="formData.Backcolor" required></textarea></td>
-			        </tr>
+			        
+						    <td><input type="radio" name="border" data-ng-model="borderOption" value="rs">Border(Rs)
+						    <textarea type="text" name="borderRs" style="width:70%;height: 50%;" data-ng-model="formData.borderRs" ng-disabled="borderOption == '%'" ></textarea>
+						    </td>
+						    <td><input type="radio" name="border" data-ng-model="borderOption" value="%">Border(%)<br>
+						    <textarea type="text" name="borderPer" style="width:70%;height: 50%;" data-ng-model="formData.borderPercentage" ng-disabled="borderOption == 'rs'" ></textarea>
+						    </td>
+			        	<!-- <td style="height: 60px;"><textarea type="text" name="Border" style="width:70%;height: 70%;" data-ng-model="formData.Border" required></textarea></td>
+			         -->	   </tr>
+			       <tr>
+			       <td><label>Backcolor</label></td>
 			       
+			       <td><input type="radio" name="bgcolor" data-ng-model="bgOption" value="rs">BgColor(Rs)
+						    <textarea type="text" name="bgRs" style="width:70%;height: 50%;" data-ng-model="formData.bgRs" ng-disabled="bgOption == '%'" ></textarea>
+						    </td>
+						    <td><input type="radio" name="bgcolor" data-ng-model="bgOption" value="%">BgColor(%)<br>
+						    <textarea type="text" name="bgPer" style="width:70%;height: 50%;" data-ng-model="formData.bgPercentage" ng-disabled="bgOption == 'rs'" ></textarea>
+						    </td>
+			        	<!-- <td style="height: 60px;"><textarea type="text" name="Backcolor" style="width:70%;height: 70%;" data-ng-model="formData.Backcolor" required></textarea></td>
+			      -->
+			       </tr>
 			        <tr>
 			        	<td><label>SpecialDiscount</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="SpecialDiscount" style="width:70%;height: 70%;" data-ng-model="formData.SpecialDiscount" required></textarea></td>
-			        	<td><label>Tick</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Tick" style="width:70%;height: 70%;" data-ng-model="formData.Tick" required></textarea></td>
-			        </tr>
+			        	 </tr>
+			        <tr>
+			        <td><label>Tick</label></td>
+			        	<!-- <td style="height: 60px;"><textarea type="text" name="Tick" style="width:70%;height: 70%;" data-ng-model="formData.Tick" required></textarea></td>
+			        -->
+			        <td><input type="radio" name="ticker" data-ng-model="tickOption" value="rs">Tick(Rs)
+						    <textarea type="text" name="tickRs" style="width:70%;height: 50%;" data-ng-model="formData.tickRs" ng-disabled="tickOption == '%'" ></textarea>
+						    </td>
+						    <td><input type="radio" name="ticker" data-ng-model="tickOption" value="%">Tick(%)<br>
+						    <textarea type="text" name="tickPer" style="width:70%;height: 50%;" data-ng-model="formData.tickPercentage" ng-disabled="tickOption == 'rs'" ></textarea>
+						    </td>
 			        
+			        </tr>
 			        <!-- <tr>
 			        	<td><label>Extrab Order</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Extraborderper" style="width:70%;height: 70%;" data-ng-model="formData.Extraborderper" required></textarea></td>
@@ -240,16 +265,44 @@
 			         
 			        <tr>
 			        	<td><label>Border</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Border" style="width:70%;height: 70%;" data-ng-model="ancmtData.Border" required></textarea></td>
-			        	<td><label>Backcolor</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Backcolor" style="width:70%;height: 70%;" data-ng-model="ancmtData.Backcolor" required></textarea></td>
-			        </tr>
+			        	
+			        	 <td><input type="radio" name="border" data-ng-model="borderOption" value="rs">Border(Rs)
+						    <textarea type="text" name="borderRs" style="width:70%;height: 50%;" data-ng-model="ancmtData.Border" ng-disabled="borderOption == '%'" ></textarea>
+						    </td>
+						    <td><input type="radio" name="border" data-ng-model="borderOption" value="%">Border(%)<br>
+						    <textarea type="text" name="borderPer" style="width:70%;height: 50%;" data-ng-model="ancmtData.Extraborderper" ng-disabled="borderOption == 'rs'" ></textarea>
+						    </td>
+			        	
+			        	<!-- <td style="height: 60px;"><textarea type="text" name="Border" style="width:70%;height: 70%;" data-ng-model="ancmtData.Border" required></textarea></td>
+			        	 -->    </tr>
+			        	 <tr>
+			        	 
+			        	 <td><label>Backcolor</label></td>
+			        	<!-- <td style="height: 60px;"><textarea type="text" name="Backcolor" style="width:70%;height: 70%;" data-ng-model="ancmtData.Backcolor" required></textarea></td>
+			     -->
+			               <td><input type="radio" name="bgcolor" data-ng-model="bgOption" value="rs">BgColor(Rs)
+						    <textarea type="text" name="bgRs" style="width:70%;height: 50%;" data-ng-model="ancmtData.Backcolor" ng-disabled="bgOption == '%'" ></textarea>
+						    </td>
+						    <td><input type="radio" name="bgcolor" data-ng-model="bgOption" value="%">BgColor(%)<br>
+						    <textarea type="text" name="bgPer" style="width:70%;height: 50%;" data-ng-model="ancmtData.Extrabgper" ng-disabled="bgOption == 'rs'" ></textarea>
+						    </td>
+			        	 </tr>
 			      
 			        <tr>
 			        	<td><label>SpecialDiscount</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="SpecialDiscount" style="width:70%;height: 70%;" data-ng-model="ancmtData.SpecialDiscount" required></textarea></td>
-			        	<td><label>Tick</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Tick" style="width:70%;height: 70%;" data-ng-model="ancmtData.Tick" required></textarea></td>
+			        </tr>
+			        <tr>
+			        <td><label>Tick</label></td>
+			        	<!-- <td style="height: 60px;"><textarea type="text" name="Tick" style="width:70%;height: 70%;" data-ng-model="ancmtData.Tick" required></textarea></td>
+			       -->
+			       <td><input type="radio" name="ticker" data-ng-model="tickOption" value="rs">Tick(Rs)
+						    <textarea type="text" name="tickRs" style="width:70%;height: 50%;" data-ng-model="ancmtData.Tick" ng-disabled="tickOption == '%'" ></textarea>
+						    </td>
+						    <td><input type="radio" name="ticker" data-ng-model="tickOption" value="%">Tick(%)<br>
+						    <textarea type="text" name="tickPer" style="width:70%;height: 50%;" data-ng-model="ancmtData.Tickper" ng-disabled="tickOption == 'rs'" ></textarea>
+						    </td>
+			        
 			        </tr>
 			      <!--  
 			        <tr>

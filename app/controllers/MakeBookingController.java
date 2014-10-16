@@ -61,6 +61,11 @@ import com.google.common.collect.Lists;
 		User existingUser = User.findByCredentials(Username,Password);
 		
 		if (existingUser != null) {
+			 //
+			session().clear();
+			String name=existingUser.name;
+    		session().put("emailId",Username );
+    		session().put("userName",name);
 		     return ok("false");
 		}
 		else {
@@ -119,7 +124,7 @@ import com.google.common.collect.Lists;
              discRates.add(DiscountRate.byId(discntRate[0].toString())
         	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
         	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
-        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString(),discntRate[14].toString()) );
+        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
      }
 		
 	Map<String,Object> map = new HashMap<String, Object>();
@@ -202,7 +207,7 @@ import com.google.common.collect.Lists;
 	             discRates.add(DiscountRate.byId(discntRate[0].toString())
 	        	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
 	        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
-	        	.withOverUnit(discntRate[4].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString(),discntRate[14].toString()) );
+	        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
          }
 				
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -340,10 +345,11 @@ import com.google.common.collect.Lists;
         public String extraCostpersqcm;
         public String cutOfBookingDate;
         public String freeUnit;
-      /*  public String extraForBorder;
-        public String extraForBackgroud;*/
+        public String extraForBorderInPer;
+        public String extraForBackgroudInPer;
+        public String extraFortickInPer;
         public Boolean isSelected;
-		 
+       
         public static DiscountRate byId(String id) {
         	DiscountRate discountRate = new DiscountRate();
         	discountRate.id = id;
@@ -364,19 +370,22 @@ import com.google.common.collect.Lists;
             return this;
         }
 
-        public DiscountRate withOverUnit(String tBasicPrice, String tTotleprice,String dBasicPrice,String extraCostperLine,
-        		String border,String backColor,String specialDiscount,String cutOfBookingDate,        	
-        		String extraFortick,String extraCostpersqcm) {
+        public DiscountRate withOverUnit(String extraCostperLine,
+        		String border,String backColor,String specialDiscount,     	
+        		String extraFortick,String extraCostpersqcm,String extraForBackgroudInPer,
+        		String extraForBorderInPer,String extraFortickInPer) {
         	
-        	this.tBasicPrice = tBasicPrice;//rate
-        	this.tTotleprice = tTotleprice;//
-        	this.dBasicPrice = dBasicPrice;//discount price
+        	
         	this.extraCostperLine=extraCostperLine;//extra for line
         	this.border = border; //border selected or not 
             this.backColor = backColor;//bgColor Selected or not
             this.specialDiscount = specialDiscount;
             this.extraFortick = extraFortick;
             this.extraCostpersqcm = extraCostpersqcm;
+            this.extraForBackgroudInPer=extraForBackgroudInPer;
+            this.extraForBorderInPer=extraForBorderInPer;
+            this.extraFortickInPer=extraFortickInPer;
+           
             return this;
       }
 	
@@ -525,11 +534,14 @@ import com.google.common.collect.Lists;
 	    public String unit; 
 	    public float unitVal;
 	    public float extra;
-	    public String extraFortick;
+	   // public String extraFortick;
 	    public String extraCostpersqcm;
 	    public String cutOfBookingDate;
-	    public float extraForBorder;
-	    public float extraForBackgroud;
+	    //public float extraForBorder;
+	   // public float extraForBackgroud;
+	    public String extraForBordeper;
+        public String extraForBackgroudper;
+        public  String tickPer;
 	    public Boolean isSelected;
 		
 		public DiscountCartItem() {};

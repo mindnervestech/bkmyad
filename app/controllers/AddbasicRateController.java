@@ -61,24 +61,57 @@ public class AddbasicRateController extends Controller{
 		String categoryUnique[]=category.split(",");
 		for (int i=0;i<categoryUnique.length;i++){
 		DynamicForm form = DynamicForm.form().bindFromRequest();
-		
+	
 		Basicrate basicrate = new Basicrate();
 		basicrate.Nameofthenewspaper=form.get("Nameofthenewspaper");
 		basicrate.City=form.get("City");
     	basicrate.Textaddrate=form.get("Textaddrate");
     	basicrate.clasifiedadrate=form.get("clasifiedadrate");
     	basicrate.Exstracostperline=form.get("Exstracostperline");
-    	basicrate.Border=form.get("Border");
-    	basicrate.Backcolor=form.get("Backcolor");
-    	basicrate.SpecialDiscount=form.get("SpecialDiscount");
-    	basicrate.Tick=form.get("Tick");
+    	 //check for borderrs	
+       if(form.get("borderRs") == null){
+    	basicrate.Border="0";
+    	}else{
+    		basicrate.Border=form.get("borderRs");
+    	}
+       //check for borderPer	
+    	if(form.get("borderPercentage") == null){
+    		basicrate.Extraborderper="0";
+    	}else{
+    		basicrate.Extraborderper=form.get("borderPercentage");
+    	}
+    	 //check for bgrs	
+    	if(form.get("bgRs") == null){
+    		basicrate.Backcolor="0";
+    	}else{
+    		basicrate.Backcolor=form.get("bgRs");
+    	}
+    	 //check for bgPer	
+    	if(form.get("bgPercentage")==null){
+    		basicrate.Extrabgper = "0";
+    	}else{
+    		basicrate.Extrabgper=form.get("bgPercentage");
+    	}
+    	
+    	 //check for tickrs	
+    	if(form.get("Tick") == null){
+    		basicrate.Tick= "0";
+    	}else{
+    		basicrate.Tick=form.get("Tick");
+    	}
+    	 //check for tickPer	
+        if(form.get("tickPercentage") == null){
+        	basicrate.Tickper ="0";
+        	
+        }else{
+        	basicrate.Tickper=form.get("tickPercentage"); 
+        }
+        
+        basicrate.SpecialDiscount=form.get("SpecialDiscount");
     	basicrate.Category=categoryUnique[i].trim();//.replaceAll("[^\\p{L}\\p{Nd}]+", "");
     	basicrate.Category = basicrate.Category.replace("[","");
     	basicrate.Category = basicrate.Category.replace("]","");
     	basicrate.Category = basicrate.Category.replace("\"",""); 	
-    	//basicrate.Extraborderper=form.get("Extraborderper");
-    //	basicrate.Extrabgper=form.get("Extrabgper");
-   // 	basicrate.Tickper=form.get("Tickper");
     	basicrate.ExtracostperSqcm=form.get("ExtracostperSqcm");
     	basicrate.Statename=form.get("Statename");
 		basicrate.save();
@@ -102,16 +135,50 @@ public class AddbasicRateController extends Controller{
     	basicrate.Textaddrate=form.get("Textaddrate");
     	basicrate.clasifiedadrate=form.get("clasifiedadrate");
     	basicrate.Exstracostperline=form.get("Exstracostperline");
-    	basicrate.Border=form.get("Border");
-    	basicrate.Backcolor=form.get("Backcolor");
-    	basicrate.SpecialDiscount=form.get("SpecialDiscount");
-    	basicrate.Tick=form.get("Tick");
-    	basicrate.Category=form.get("Category");
-    	//basicrate.Extraborderper=form.get("Extraborderper");
-    	//basicrate.Extrabgper=form.get("Extrabgper");
-    	//basicrate.Tickper=form.get("Tickper");
+    	 //check for borderRs	
+    	if(form.get("Border") == null){
+    	basicrate.Border="0";
+    	}else{
+    		basicrate.Border=form.get("Border");
+    	}
+    	 //check for borderPer	
+    	System.out.println("Extraborderper"+form.get("Extraborderper") );
+    	if(form.get("Extraborderper") == null){
+    		basicrate.Extraborderper="0";
+    	}else{
+    		basicrate.Extraborderper=form.get("Extraborderper");
+    	}
+    	 //check for bgRs	
+    	if(form.get("Backcolor") == null){
+    		basicrate.Backcolor="0";
+    	}else{
+    		basicrate.Backcolor=form.get("Backcolor");
+    	}
+        //check for bgPer	
+    	if(form.get("Extrabgper")==null){
+    		basicrate.Extrabgper = "0";
+    	}else{
+    		basicrate.Extrabgper=form.get("Extrabgper");
+    	}
+    	
+    	//check for tickRs
+    	if(form.get("Tick") == null){
+    		basicrate.Tick= "0";
+    	}else{
+    		basicrate.Tick=form.get("Tick");
+    	}
+    	 //check for tickPer	
+        if(form.get("Tickper") == null){
+        	basicrate.Tickper ="0";
+        	
+        }else{
+        	basicrate.Tickper=form.get("Tickper"); 
+        }
+        
+        basicrate.SpecialDiscount=form.get("SpecialDiscount");
     	basicrate.ExtracostperSqcm=form.get("ExtracostperSqcm");
     	basicrate.Statename=form.get("Statename");
+    	basicrate.Category=form.get("Category");
     	basicrate.merge();
 		return ok();
 	}
