@@ -56,7 +56,7 @@
 												<td width="180" height="20"
 													style="border-bottom: 5px double #666666; font-size: 10pt; font-family: Calibri;">
 													<b> Select Ad Background Color</b> Background Color Extra:
-													<span>{{selectedCartItemOnPopUp.extraForBackgroud}}</span>
+													<span>{{selectedCartItemOnPopUp.extraForBackgroud==0?selectedCartItemOnPopUp.extraForBackgroudInPer + "(%)":selectedCartItemOnPopUp.extraForBackgroud}}</span>
 													<br /> 
 												</td>
 											</tr>
@@ -152,7 +152,7 @@
 											<tr >
 												<td width="140" height="20"
 													style="border-bottom: 5px double #666666; font-size: 9pt; font-family: Calibri;">
-													<b>Select Ad Border</b><br /> Border Extra: <span>{{selectedCartItemOnPopUp.extraForBorder}}</span>
+													<b>Select Ad Border</b><br /> Border Extra: <span>{{selectedCartItemOnPopUp.extraForBorder==0?selectedCartItemOnPopUp.extraForBorderInPer + "(%)":selectedCartItemOnPopUp.extraForBorder}}</span>
 
 												</td>
 											</tr>
@@ -189,7 +189,8 @@
 											<tr >
 												<td width="140" height="20"
 													style="border-bottom: 5px double #666666; font-size: 9pt; font-family: Calibri;">
-													<b>Select Tick For Ad </b><br /> Tick Extra: <span>{{selectedCartItemOnPopUp.extraFortick==0?selectedCartItemOnPopUp.extraFortickInPer(%):selectedCartItemOnPopUp.extraFortick}}</span>
+													<b>Select Tick For Ad </b><br /> Tick Extra: 
+													<span>{{selectedCartItemOnPopUp.extraFortick==0?selectedCartItemOnPopUp.extraFortickInPer + "(%)":selectedCartItemOnPopUp.extraFortick}}</span>
 												</td>
 											</tr>
 											<tr>

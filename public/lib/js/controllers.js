@@ -1478,7 +1478,14 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		    	if($scope.FinalTotal < 0){
 		    		     $scope.FinalTotal = 0;
 		    	}
+		    	
 		    	angular.forEach($scope.rates, function(request, key){
+		    		if(request.id == rate.id) {
+		            	request.isSelected = false;
+		            }
+		    	});
+		    	
+		    	angular.forEach($scope.discRates, function(request, key){
 		    		if(request.id == rate.id) {
 		            	request.isSelected = false;
 		            }
@@ -1919,7 +1926,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	var flag = true;
 	
 	$scope.discountRateClicked = function( e, discountRate ){
-		console.log("discountRateClicked");
+		$($('.backcolo')[0]).find('.Internal input:checked').trigger('click');
+		
 		
 		$scope.disableBasicRateChkbox = true;
 		if(flag == true){
@@ -1938,6 +1946,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	
 	 
 	$scope.rateClicked = function(e, rate) {
+		$($('.backcolo')[1]).find('.Internal input:checked').trigger('click');
+		
 	//	$scope.disablePackageCheckBox=true;
 		if(flag == false){
 			flag = true;

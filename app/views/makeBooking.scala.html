@@ -171,7 +171,9 @@
 			    			<li ng-repeat="rate in rates" class="pillboxes custom-pill" >
 			    				<div  style="padding: 1px;">
 			    					 <span>
-        								<input ng-click="rateClicked($event,rate)" ng-model="rate.isSelected" style="margin: 1px" ng-disable="disableBasicRateChkbox"  type="checkbox">
+        								<input ng-click="rateClicked($event,rate)" 
+        								ng-model="rate.isSelected" 
+        								style="margin: 1px" ng-disable="disableBasicRateChkbox"  type="checkbox">
      								 </span>
      								 <span>{{rate.location}} - Rs {{rate.rate}} {{rate.freeUnit}} / 
 			    					{{rate.unit}} </span>
@@ -187,27 +189,7 @@
 			    	   </tab>
 			    	   <tab>
 			    	   <tab-heading>
-                       <!--  <i class="icon-gift"></i> Package Rates
-                     </tab-heading>
-			    	   <div ng-show="discRates.length > 0" class="backcolo">
-			    		<ul ng-show="discRates.length > 0">
-			    		<div class="Internal">
-			    			<li ng-repeat="discountRate in discRates" class="pillboxes custom-pill">
-			    				<div  style="padding: 1px;">
-			    					 <span >
-        								<input ng-click="discountRateClicked($event,discountRate)" ng-model="discountRate.isSelected" style="margin: 1px" ng-model="rate.selected" type="checkbox">
-     								 </span>
-     								 <span>{{discountRate.location}} - Rs {{discountRate.dTotalPrice}}  {{discountRate.unitVal}}/
-			    					{{discountRate.unit}} </span>
-			    				</div>	
-			    				
-			    			</li>
-			    			</div>
-			    		</ul>
-			    		</div>
-			    		<div ng-show="drates.length == 0" class="alert alert-block">
-			    			No Rates Available !
-			    		</div> -->
+                       </tab-heading>
 			    	   </tab>
 			    	  </tabset>
 			    	</div>
@@ -229,7 +211,9 @@
 			    			<li ng-repeat="discountRate in discRates" class="pillboxes custom-pill">
 			    				<div  style="padding: 1px;">
 			    					 <span >
-        								<input ng-click="discountRateClicked($event,discountRate)" ng-model="discountRate.isSelected" style="margin: 1px" ng-disabled="disablePackageCheckBox" type="checkbox">
+        								<input ng-click="discountRateClicked($event,discountRate)" 
+        								ng-model="discountRate.isSelected" style="margin: 1px" 
+        								ng-disabled="disablePackageCheckBox" type="checkbox">
      								 </span>
      								 <span>{{discountRate.location}} - Rs {{discountRate.dTotalPrice}}  {{discountRate.freeUnit}}/
 			    					  {{discountRate.unit}} </span>
