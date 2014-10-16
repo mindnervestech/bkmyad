@@ -1,5 +1,6 @@
 package models;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -146,4 +147,61 @@ public class Order {
 	    return (List<Order>) q.getResultList();
 	    }
 
+	   @Transactional
+	    public static long getAllOrdersTotal(String City,  int rowsPerPage) {
+	    	long totalPages = 0, size;
+	    	BigInteger sizebig;
+	    	
+	    	if(City.trim().equals("")) {
+	    		sizebig = (BigInteger)JPA.em().createNativeQuery("select count(*) from orders_composedadsave").getSingleResult();
+	    	} else {
+	    		Query query = JPA.em().createNativeQuery("select count(*) from orders_composedadsave");
+	    		query.setParameter(2, "%"+City+"%");
+	    		sizebig= (BigInteger) query.getSingleResult();
+	    	}
+	    	//cast to long
+	    	size=sizebig.longValue();
+	    			
+	    	totalPages = size/rowsPerPage;
+			
+	    	if(size % rowsPerPage > 0) {
+				totalPages++;
+			}
+	    	System.out.println("total pages ::"+totalPages);
+	    	return totalPages;
+	    }
+		
+		 @Transactional
+		    public static List<Object[]> getAllOrdersOfUsers(String City, int currentPage, int rowsPerPage, long totalPages) {
+		    	int  start=0;
+		    	/*Query q;*/
+		    	String sql="";
+		    	if(City.trim().equals("")) {
+		    		
+		    		sql = "select * from orders_composedadsave";
+		    	} else {
+		    		sql ="select orders_composedadsave.composedAd_OID,orders_composedadsave.Orders_orderId,composedadsave.city from orders_composedadsave,composedadsave where composedadsave.City like ?1 order by composedadsave.orderDate desc";
+		    	}
+
+	    		if(currentPage >= 1 && currentPage <= totalPages) {
+					start = (currentPage*rowsPerPage)-rowsPerPage;
+				}
+				if(currentPage>totalPages && totalPages!=0) {
+					currentPage--;
+					start = (int) ((totalPages*rowsPerPage)-rowsPerPage); 
+				}
+		    	Query q = JPA.em().createNativeQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
+		    	if(!City.trim().equals("")) {
+					q.setParameter(1, "%"+City+"%");
+				}
+				
+				return (List<Object[]>)q.getResultList();
+				
+		    }
+			 public static Order findById(String id) {
+			    	Query query = JPA.em().createQuery("Select a from Order a where a.orderId = ?1");
+					query.setParameter(1, id);
+			    	return (Order) query.getSingleResult();
+			    }
+	  
 }

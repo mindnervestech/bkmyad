@@ -28,6 +28,7 @@ POST    /submit-cart                            controllers.MakeBookingControlle
 POST    /sendfeedbacks                          controllers.Application.sendFeedback()
 GET	/getBasicrate/:City/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,currentPage :Integer)
 GET /getDiscountRate/:City/:currentPage	controllers.AddPackageController.getDiscountRate(City :String,currentPage :Integer)
+GET  /viewAllOrdersForAdmin/:City/:currentPage	controllers.ViewAllOrdersController.viewAllOrdersForAdmin(City :String,currentPage :Integer)
 GET     /listInfo/:UserId              controllers.MyAccountController.getAllUserOrder(UserId :String)
 GET     /getaddressDetailsofUser            controllers.MyAccountController.getaddressDetailsofUser()
 POST	/saveBasicRate		               controllers.AddbasicRateController.saveBasicRate()
@@ -55,7 +56,8 @@ GET     /addNewspaper                     controllers.AddNewspaperController.ind
 GET     /addCategoryAndSubCat              controllers.AddCategorySubcatController.index()
 GET     /addStateAndCity                   controllers.AddStateCityController.index()    
 GET     /adminPanel                         controllers.AdminPanelController.index()  
-GET     /addPackageRate                      controllers.AddPackageController.index() 
+GET     /addPackageRate                      controllers.AddPackageController.index()
+GET     /viewAllOrders                        controllers.ViewAllOrdersController.index()
 GET     /logout                             controllers.Application.Logout()      
 GET     /getforgotpass/:email                       controllers.Application.forgotpassword(email :String)
                         
@@ -99,7 +101,7 @@ GET /AddNewspaper.html     controllers.Assets.at(path="/public", file="app/AddNe
 GET /AddCategoryAndSubCat.html     controllers.Assets.at(path="/public", file="app/AddCategoryAndSubCat.html")
 GET /AddStateAndCity.html     controllers.Assets.at(path="/public", file="app/AddStateAndCity.html")
 GET /AddPackageRate.html    controllers.Assets.at(path="/public", file="app/AddPackageRate.html")   
-
+GET /ViewAllOrders.html      controllers.Assets.at(path="/public", file="app/ViewAllOrders.html") 
 
 GET /ccavenue/:orderId	controllers.CCAvenueController.ccavenue(orderId:String)
 POST /redirect	controllers.CCAvenueController.redirect()

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+ 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ 	
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Rationale' rel='stylesheet' type='text/css'>
+	<link href="css/style-admin.css" rel="stylesheet" type="text/css" />
+	<link href="css/form-element-style.css" rel="stylesheet" type="text/css" /> <!-CSS sheet for designers form element->
+	<link href="css/main-syle.css" rel="stylesheet" type="text/css" />
+	<link href="css/jquery.jscrollpane.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/datetimepicker.css"></script>
+	<script type="text/javascript" src="../assets/app/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+</head>
+<body ng-init="searchBasicRate()">
+   <!--container begin-->
+    <section id="container">
+    	<section class="contentpanel">
+        	<h4>All users Order Details</h4>
+        	 <a href="/logout"  style="cursor: pointer ;float: left;width: 100%;text-align: right;">Logout</a>
+             <!--Advance search fildes begin-->
+        	<section class="dadsrch">
+            	<section class="heading"><h2></h2></section>
+                <section class="dadsrchdiv">
+                	<input name="title" type="text" ng-model="City" class="" style="height:32px ;" ng-keyup="$event.keyCode == 13 ? searchBasicRate(1) : null"><input name="" type="button" class="btngray" value="Search" ng-click="searchBasicRate(1)">
+                </section>
+            </section>
+            <!--Advance search fildes end-->
+            <!--  <section class="dactperform">
+                <section class="left">
+             		<input name="" type="button" value="Create" class="btnblue" ng-click="setDates()" data-toggle="modal"  />
+           		</section>
+           	</section>	 -->
+            <!--grid begin-->
+         	<section class="dgridinfo dactcln">
+                <table ng-table="tableParams">
+                	<thead>
+                    	<tr>
+                    	     <th><a>Order Date</a></th> 
+                    	      <th><a>Published Date</a></th>
+                              <th><a>Email Id </a></th>
+                              <th><a>Category</a></th> 
+                              <th><a>Newspaper</a></th>
+                             <th><a>Total Cost</a></th>
+                             <th><a>Status</a></th>
+                             <th><a>View Details</a></th>
+                        <tr>
+                    </thead>
+                	<tbody>
+                    	<tr ng-repeat="ancmt in BasicRate.results">
+                    	     <td>{{ancmt.orderDate}}</td> 
+                    	    <td>{{ancmt.PublishDate |limitTo:22}}</td>
+                    	    <td>{{ancmt.userEmailId}}</td>
+                    	    <td>{{ancmt.Category}}</td>
+                    	    <td>{{ancmt.Nameofthenewspaper}}</td>
+                            <td>{{ancmt.TotalCost}}</td>
+                            <td><font ng-if="ancmt.cc_orderNo != null">{{ancmt.cc_orderNo}}</font><font ng-if="ancmt.cc_orderNo == null">Pending</font></td>
+                           <!--   cc_bid,cc_orderNo,cc_category,bank_name,bankMsg -->
+                         
+                            <td> <input name="" type="button" value="View Details" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
+                           </tr>
+                    	</tbody>
+                </table>
+        	</section>
+        	
+           
+            
+            <section class="dpaging">
+            	 <h4>{{pageNumber}}/{{pageSize}}</h4> 
+            	<span class="dpagingright">
+                	<a href="" class="dpagingprv" ng-click="onPrev()">Prev</a>
+                	<a href="" class="dpagingnxt" ng-click="onNext()">Next</a>
+                </span>
+            </section>
+        </div>     
+        </section>
+    </section>
+    
+  </div>
+				
+		 <!-- Update Modal -->
+		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;left: 41%;">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Selected Order Details</h4>
+		      </div>
+		     
+		      <div class="modal-body">
+		      <table>
+			       <!--  <tr>
+			        <td><label>OrderID: </label></td><td>{{ancmtData.OrderID}}</td>
+			        </tr> -->
+			        <!-- <tr>
+			        <td><label>NewsPapers/City: </label></td><td>{{ancmtData.Nameofthenewspaper}}/{{ancmtData.City}}</td>
+			        </tr>	 -->
+		         <tr>
+			        <td><label>Ad Text: </label></td><td>{{ancmtData.Adtext}}</td>
+			        </tr>	
+		        <!--  <tr>
+			        <td><label>Category: </label></td><td>{{ancmtData.Category}}</td>
+			        </tr>	 -->
+		       <!--   <tr>
+		         <tr>
+			        <td><label>Booking Date: </label></td><td>{{ancmtData.orderDate}}</td>
+			        </tr>	
+		         <tr>
+		         <tr>
+			        <td><label>Publish Date: </label></td><td>{{ancmtData.PublishDate | limitTo:22}}</td>
+			        </tr> -->	
+		         <!-- <tr><tr>
+			        <td><label>TotalCost: </label></td><td>{{ancmtData.TotalCost}}</td>
+			        </tr>	 -->
+		         <tr>
+		     
+			        <td><label>Bg Color: </label></td><td>{{ancmtData.Bgcolor}}</td>
+			        </tr>	
+		         <tr>
+			        <td><label>Border: </label></td><td>{{ancmtData.Border}}</td>
+			        </tr>	
+		         <tr>
+			        <td><label>BorderCost: </label></td><td>{{ancmtData.BorderCost}}</td>
+			        </tr>
+			         <tr>
+			        <td><label>Tick: </label></td><td>{{ancmtData.Tick}}</td>
+			        </tr>
+			         <tr>
+			        <td><label>Tick Rate: </label></td><td>{{ancmtData.TickRate}}</td>
+			        </tr>	
+		         <!-- <tr>
+			        <td><label>NewsPapers</label></td><td>{{ancmtData.Nameofthenewspaper}}</td>
+			        </tr> -->	
+		         	
+		        <!--  <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Update</button>
+		      </div>
+		    -->
+		    
+		
+		</table>
+		</div>
+		</div></div></div>
+			
+  </body>
+  </html>

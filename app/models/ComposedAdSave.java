@@ -168,13 +168,13 @@ public class ComposedAdSave{
 	public void setTick(String tick) {
 		Tick = tick;
 	}
-	 public float getTickRate() {
+	/* public float getTickRate() {
 			return TickRate;
 		}
 
 		public void setTickRate(float tickRate) {
 			TickRate = tickRate;
-		}
+		}*/
 
 	public String getBgcolor() {
 		return Bgcolor;
@@ -278,7 +278,13 @@ public class ComposedAdSave{
 			
 			
 	    }
-	
+
+
+	    public static ComposedAdSave findById(Long id) {
+	    	Query query = JPA.em().createQuery("Select a from ComposedAdSave a where a.OID = ?1");
+			query.setParameter(1, id);
+	    	return (ComposedAdSave) query.getSingleResult();
+	    }
 	
 }
   

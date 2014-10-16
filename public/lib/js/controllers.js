@@ -616,6 +616,121 @@ angular.module('adschela').service('deleteNewpaperService',function($resource){
     );
 });
 
+angular.module('adschela').controller('ViewAllOrdersController',function($scope, $modal, $http, $filter, ViewAllOrdersService){
+
+	$scope.City = " ";
+	$scope.pageNumber;
+	$scope.pageSize;
+	$scope.formData = "";
+	var currentPage = 1;
+	var totalPages;
+	$scope.isChosen = false;
+	
+	$scope.searchForm= {
+            from : new Date(),
+            to : new Date()
+
+	}
+
+	
+	$scope.BasicRate = ViewAllOrdersService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		totalPages = $scope.BasicRate.totalPages;
+		currentPage = $scope.BasicRate.currentPage;
+		$scope.pageNumber = $scope.BasicRate.currentPage;
+		$scope.pageSize = $scope.BasicRate.totalPages;
+		
+		if(totalPages == 0) {
+			$scope.pageNumber = 0;
+		}
+	});
+	
+	
+	
+		$scope.searchBasicRate = function(page) {
+		if(angular.isUndefined($scope.City) || $scope.City=="") {
+			console.log('inside function');
+			$scope.City = " ";
+		}
+		currentPage = page;
+		
+		$scope.BasicRate = ViewAllOrdersService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			console.log($scope.BasicRate.totalPages);
+			totalPages = $scope.BasicRate.totalPages;
+			currentPage = $scope.BasicRate.currentPage;
+			$scope.pageNumber = $scope.BasicRate.currentPage;
+			$scope.pageSize = $scope.BasicRate.totalPages;
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+	   
+	};
+	$scope.searchBasicRate = function(page) {
+		if(angular.isUndefined($scope.City) || $scope.City=="") {
+			
+			$scope.City = " ";
+		}
+		currentPage = page;
+		
+		$scope.BasicRate = ViewAllOrdersService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			console.log($scope.BasicRate.totalPages);
+			totalPages = $scope.BasicRate.totalPages;
+			currentPage = $scope.BasicRate.currentPage;
+			$scope.pageNumber = $scope.BasicRate.currentPage;
+			$scope.pageSize = $scope.BasicRate.totalPages;
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+	    
+	};
+	angular.module('adschela').service('ViewAllOrdersService',function($resource){
+	    this.BasicRateInfo = $resource(
+	            '/viewAllOrdersForAdmin/:City/:currentPage',
+	            {alt:'json',callback:'JSON_CALLBACK'},
+	            {
+	                get: {method:'get'}
+	            }
+	    );
+	});
+	
+	
+	$scope.setData = function(ancmt) {
+		$scope.ancmtData = ancmt;
+		$('#myModal2').modal();
+			
+	};
+
+	
+	$scope.onNext = function() {
+		if(currentPage < totalPages) {
+			currentPage++;
+			$scope.searchBasicRate(currentPage);
+		}
+	};
+	$scope.onPrev = function() {
+		if(currentPage > 1) {
+			currentPage--;
+			$scope.searchBasicRate(currentPage);
+		}
+	};
+	
+	});
+
+	
+
+	angular.module('adschela').service('ViewAllOrdersService',function($resource){
+        this.BasicRateInfo = $resource(
+            '/viewAllOrdersForAdmin/:City/:currentPage',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    	);
+	});
+
+	
+
 angular.module('adschela').controller('AddBasicRateController',function($scope, $modal, $http, $filter, BasicRateService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice, deleteBasicRateService){
 
 	$scope.City = " ";
