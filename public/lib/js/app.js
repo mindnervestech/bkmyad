@@ -17,7 +17,7 @@ var app = angular.module('adschela',
                         	        controller: 'MakeBookingController'
                         	      })
                         	      .when('/aboutUs', {
-                        	        templateUrl: 'AboutUs1.html',
+                        	        templateUrl: 'AboutUs.html',
                         	        controller: 'AboutUsController'
                         	      })
                         	      .when('/myAccount', {

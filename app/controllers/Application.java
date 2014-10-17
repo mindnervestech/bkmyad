@@ -515,17 +515,52 @@ public class Application extends Controller {
         	u.password=passWord;
         	u.mobileNum=mobileNumber;
         	JPA.em().persist(u);
+        	
+        	//send a confirmation mail to register user.  
+        	final String username = "support@arihantbooking.com";
+       		final String password = "Adschela@123";
+       		Properties props = new Properties();
+       		props.put("mail.smtp.auth", "true");
+       		props.put("mail.smtp.starttls.enable", "true");
+       		props.put("mail.smtp.host", "smtp.gmail.com");
+       		props.put("mail.smtp.port", "587");
+        
+       		Session session = Session.getInstance(props,
+       		  new javax.mail.Authenticator() {
+       			protected PasswordAuthentication getPasswordAuthentication() {
+       				return new PasswordAuthentication(username, password);
+       			}
+       		  });
+        	
+        	try {
+        	      
+     			Message message = new MimeMessage(session);
+     			message.setFrom(new InternetAddress("support@arihantbooking.com"));
+     			//Add multiple recipients.
+     			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email));
+     			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("rajanjain8aug@gmail.com"));
+     			message.setSubject( "Welcome to Arihant Booking");
+     			//message.setText();
+     			 BodyPart messageBodyPart = new MimeBodyPart();
+     	         // Now set the actual message
+     	         messageBodyPart.setText("Welcome to Arihant Booking.\n \n Please click on following link to verify your account.\n  http://arihantbooking.com/#/  \n\nRegards,\nArihant Booking Support Team");
+     	         // Create a multipar message
+     	         Multipart multipart = new MimeMultipart();
+     	         // Set text message part
+     	         multipart.addBodyPart(messageBodyPart);
+     	         message.setContent(multipart);
+     		     Transport.send(message);
+          		} catch (MessagingException e) {
+     			  throw new RuntimeException(e);
+     		}
         	session().clear();
     		session().put("emailId",email );
     		session().put("userName",name);
         	return redirect("/");
-       
         }
-        else
-        {
+        else{
         	flash("emailid_error", "Email id already Exists ");
 	    	return redirect("/");
-        	
         }
     }
     
@@ -558,7 +593,7 @@ public class Application extends Controller {
   			feedback.setFrom(new InternetAddress(username));
   			feedback.setRecipients(Message.RecipientType.TO,
   			InternetAddress.parse(findpassword.getEmail()));
-  			feedback.setSubject("Your Ad Details ");
+  			feedback.setSubject("Your Password Details ");
   			//message.setText();
   			 
   			 BodyPart messageBodyPart = new MimeBodyPart();

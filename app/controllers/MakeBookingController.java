@@ -146,7 +146,7 @@ import com.google.common.collect.Lists;
            	String dates[] = str.split(",");   
 	    
                 orderListuser.add(OrderList.byId(ol[24].toString())
-                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString())));
+                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString()), ol[25].toString(),ol[26].toString(), ol[27].toString()));
         	}
 	    	Map<String,Object> map = new HashMap<String, Object>();
 			map.put("orderListuser",orderListuser);
@@ -283,17 +283,18 @@ import com.google.common.collect.Lists;
 		public int noOfImpression;
 		public float rate;
 		public boolean bgColorSelect;
-	//	public String extraForBorder;
-		//public String extraForBackgroud;
-	//  public float	fullTotal;
-		 public static OrderList byId(String id) {
+		public String extraForBorderInPer;
+	    public String extraForBackgroudInPer;
+	    public String extraFortickInPer;
+		
+	    public static OrderList byId(String id) {
 			 OrderList orderList = new OrderList();
 			 orderList.id = id;
 	         return orderList;
 	        }
 		   public  OrderList cancelOrderDetails(String OrderId,String newspaper,String  location ,String description, String extraFortick , String onbgColorchange ,String extraForBackgroud,
 				   String onBorderSelected , String extraForBorder , String []  dates,String unit , String  fullTotal,  String mainCategoty ,  String totalUnit , String adbookedDate,
-				   String freeunit, float extra, float totalExtraCost ,float totalUnitCost, int noOfImpression, float rate, boolean bgColorSelect ,boolean notickforAd){
+				   String freeunit, float extra, float totalExtraCost ,float totalUnitCost, int noOfImpression, float rate, boolean bgColorSelect ,boolean notickforAd ,String extraForBorderInPer,String extraForBackgroudInPer,String  extraFortickInPer){
 			   this.OrderId=OrderId;
 			   this.newspaper=newspaper;
 			   this.location=location;
@@ -318,6 +319,10 @@ import com.google.common.collect.Lists;
 			   this.rate = rate;
 			   this.bgColorSelect = bgColorSelect;
 			   this.notickforAd = notickforAd;
+			   this.extraForBorderInPer = extraForBorderInPer;
+			   this.extraForBackgroudInPer = extraForBackgroudInPer;
+			   this.extraFortickInPer = extraFortickInPer;
+			   
 			   return this;
 		   }
 	}
@@ -494,6 +499,11 @@ import com.google.common.collect.Lists;
 		public float totalUnitCost;
 		public int noOfImpression;
 		public boolean bgColorSelect;
+		public String extraForBorderInPer;
+	    public String extraForBackgroudInPer;
+	    public String extraFortickInPer;
+		
+		
 	    //public float FinalTotal = 0;
 		
 		public CartItem() {};
@@ -628,6 +638,10 @@ import com.google.common.collect.Lists;
 	    	  cds.OrderID = orderId;
 	    	  cds.BorderCost=cartItem.get(i).extraForBorder;
 	    	  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
+	    	  
+	    	  cds.Extrabgper = cartItem.get(i).extraForBackgroudInPer;
+	    	  cds.Extraborderper =cartItem.get(i).extraForBorderInPer;
+	    	  cds.Tickper = cartItem.get(i).extraFortickInPer;
 	    	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//save dates in DB
 	    	  Calendar c = Calendar.getInstance();
 	    	  cds.PublishDate="";

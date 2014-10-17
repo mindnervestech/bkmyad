@@ -1494,6 +1494,10 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 						onBorderSelected:orderListuser.onBorderSelected,
 						nobgColor:orderListuser.bgColorSelect,
 						notickforAd:orderListuser.notickforAd,
+						extraForBackgroudInPer:orderListuser.extraForBackgroudInPer,
+						extraForBorderInPer:orderListuser.extraForBorderInPer,
+						extraFortickInPer:orderListuser.extraFortickInPer,
+						
 					     
 						startDate:moment().add(2,'days').format("DD/MM/YYYY")
 				    }
