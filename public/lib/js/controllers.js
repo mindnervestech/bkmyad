@@ -195,7 +195,8 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 	});
 	
 	
-		$scope.searchCategory = function(page) {
+		$scope.searchCategory = function(page,category) {
+			$scope.cname = category;
 		if(angular.isUndefined($scope.cname) || $scope.cname=="") {
 			console.log('inside function');
 			$scope.cname = " ";
@@ -312,8 +313,8 @@ angular.module('adschela').controller('AddStateCityController',function($scope, 
 	});
 	
 	
-		$scope.searchState = function(page) {
-			
+		$scope.searchState = function(page,Statename) {
+			$scope.Statename = Statename;
 		if(angular.isUndefined($scope.Statename) || $scope.Statename=="") {
 			console.log('inside function');
 			$scope.Statename = " ";
@@ -457,7 +458,8 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 	});
 	
 	
-		$scope.searchNewspaper = function(page) {
+		$scope.searchNewspaper = function(page,Nameofthenewspaper) {
+			$scope.Nameofthenewspaper = Nameofthenewspaper;
 		if(angular.isUndefined($scope.Nameofthenewspaper) || $scope.Nameofthenewspaper=="") {
 			console.log('inside function');
 			$scope.Nameofthenewspaper = " ";
@@ -616,7 +618,7 @@ angular.module('adschela').service('deleteNewpaperService',function($resource){
     );
 });
 
-angular.module('adschela').controller('ViewAllOrdersController',function($scope, $modal, $http, $filter, ViewAllOrdersService){
+angular.module('adschela').controller('ViewAllOrdersController',function($scope, $modal, $http, $filter,ViewAllOrdersService){
 
 	$scope.City = " ";
 	$scope.pageNumber;
@@ -633,11 +635,11 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	}
 
 	
-	$scope.BasicRate = ViewAllOrdersService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
-		totalPages = $scope.BasicRate.totalPages;
-		currentPage = $scope.BasicRate.currentPage;
-		$scope.pageNumber = $scope.BasicRate.currentPage;
-		$scope.pageSize = $scope.BasicRate.totalPages;
+	$scope.viewAllOrder = ViewAllOrdersService.ViewAllOrderInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		totalPages = $scope.viewAllOrder.totalPages;
+		currentPage = $scope.viewAllOrder.currentPage;
+		$scope.pageNumber = $scope.viewAllOrder.currentPage;
+		$scope.pageSize = $scope.viewAllOrder.totalPages;
 		
 		if(totalPages == 0) {
 			$scope.pageNumber = 0;
@@ -646,38 +648,40 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	
 	
 	
-		$scope.searchBasicRate = function(page) {
+		$scope.searchViewAllOrderData = function(page,nameOfthenewspaper) {
+			
+			$scope.City = 	nameOfthenewspaper;
 		if(angular.isUndefined($scope.City) || $scope.City=="") {
 			console.log('inside function');
 			$scope.City = " ";
 		}
 		currentPage = page;
 		
-		$scope.BasicRate = ViewAllOrdersService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
-			console.log($scope.BasicRate.totalPages);
-			totalPages = $scope.BasicRate.totalPages;
-			currentPage = $scope.BasicRate.currentPage;
-			$scope.pageNumber = $scope.BasicRate.currentPage;
-			$scope.pageSize = $scope.BasicRate.totalPages;
+		$scope.viewAllOrder = ViewAllOrdersService.ViewAllOrderInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			console.log($scope.viewAllOrder.totalPages);
+			totalPages = $scope.viewAllOrder.totalPages;
+			currentPage = $scope.viewAllOrder.currentPage;
+			$scope.pageNumber = $scope.viewAllOrder.currentPage;
+			$scope.pageSize = $scope.viewAllOrder.totalPages;
 			if(totalPages == 0) {
 				$scope.pageNumber = 0;
 			}
 		});
 	   
 	};
-	$scope.searchBasicRate = function(page) {
+	$scope.searchViewAllOrderData = function(page) {
 		if(angular.isUndefined($scope.City) || $scope.City=="") {
 			
 			$scope.City = " ";
 		}
 		currentPage = page;
 		
-		$scope.BasicRate = ViewAllOrdersService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
-			console.log($scope.BasicRate.totalPages);
-			totalPages = $scope.BasicRate.totalPages;
-			currentPage = $scope.BasicRate.currentPage;
-			$scope.pageNumber = $scope.BasicRate.currentPage;
-			$scope.pageSize = $scope.BasicRate.totalPages;
+		$scope.viewAllOrder = ViewAllOrdersService.ViewAllOrderInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			console.log($scope.viewAllOrder.totalPages);
+			totalPages = $scope.viewAllOrder.totalPages;
+			currentPage = $scope.viewAllOrder.currentPage;
+			$scope.pageNumber = $scope.viewAllOrder.currentPage;
+			$scope.pageSize = $scope.viewAllOrder.totalPages;
 			if(totalPages == 0) {
 				$scope.pageNumber = 0;
 			}
@@ -685,7 +689,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	    
 	};
 	angular.module('adschela').service('ViewAllOrdersService',function($resource){
-	    this.BasicRateInfo = $resource(
+	    this.ViewAllOrderInfo = $resource(
 	            '/viewAllOrdersForAdmin/:City/:currentPage',
 	            {alt:'json',callback:'JSON_CALLBACK'},
 	            {
@@ -705,13 +709,13 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	$scope.onNext = function() {
 		if(currentPage < totalPages) {
 			currentPage++;
-			$scope.searchBasicRate(currentPage);
+			$scope.searchViewAllOrderData(currentPage);
 		}
 	};
 	$scope.onPrev = function() {
 		if(currentPage > 1) {
 			currentPage--;
-			$scope.searchBasicRate(currentPage);
+			$scope.searchViewAllOrderData(currentPage);
 		}
 	};
 	
@@ -720,7 +724,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	
 
 	angular.module('adschela').service('ViewAllOrdersService',function($resource){
-        this.BasicRateInfo = $resource(
+        this.ViewAllOrderInfo = $resource(
             '/viewAllOrdersForAdmin/:City/:currentPage',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
@@ -761,7 +765,10 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	
 	
 	
-		$scope.searchBasicRate = function(page) {
+		$scope.searchBasicRate = function(page,city) {
+			$scope.City = city;
+			console.log("city"+city);
+
 		if(angular.isUndefined($scope.City) || $scope.City=="") {
 			console.log('inside function');
 			$scope.City = " ";
@@ -781,7 +788,8 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		});
 	    console.log($scope.BasicRate);
 	};
-	$scope.searchBasicRate = function(page) {
+	$scope.searchBasicRate = function(page,city) {
+		$scope.City = city;
 		if(angular.isUndefined($scope.City) || $scope.City=="") {
 			console.log('inside function');
 			$scope.City = " ";
@@ -976,7 +984,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
              );
 	});
 
-	angular.module('adschela').controller('AddPackageRateController',function($scope, $modal, $http, $filter, PackageRateService,getNewspaperservice,getPackageStateNameservice,getcnameservice, deletePackageRateService){
+	angular.module('adschela').controller('AddPackageRateController',function($scope, $modal, $http, $filter, PackageRateService,getNewspaperservice,getAllCitiesService,getcnameservice, deletePackageRateService){
 
 		$scope.City = " ";
 		$scope.pageNumber;
@@ -994,11 +1002,11 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 
 		//Pacakge Rate(Discountprice Model ) come in the PackageRateService.
 		//$scope.city=spassing the news paper as parameter from ui.
-		$scope.BasicRate = PackageRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
-			totalPages = $scope.BasicRate.totalPages;
-			currentPage = $scope.BasicRate.currentPage;
-			$scope.pageNumber = $scope.BasicRate.currentPage;
-			$scope.pageSize = $scope.BasicRate.totalPages;
+		$scope.packageRate = PackageRateService.PackageRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			totalPages = $scope.packageRate.totalPages;
+			currentPage = $scope.packageRate.currentPage;
+			$scope.pageNumber = $scope.packageRate.currentPage;
+			$scope.pageSize = $scope.packageRate.totalPages;
 			
 			if(totalPages == 0) {
 				$scope.pageNumber = 0;
@@ -1007,39 +1015,41 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		
 		
 		    //used to search the  Package data on newspaper.
-			$scope.searchBasicRate = function(page) {
+			$scope.searchPackageRate = function(page,packageName) {
+				$scope.City = packageName;
 			if(angular.isUndefined($scope.City) || $scope.City=="") {
 				console.log('inside function');
 				$scope.City = " ";
 			}
 			currentPage = page;
 			//Pacakge Rate(Discountprice Model ) come in the PackageRateService.
-			$scope.BasicRate = PackageRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
-				console.log($scope.BasicRate.totalPages);
-				totalPages = $scope.BasicRate.totalPages;
-				currentPage = $scope.BasicRate.currentPage;
-				$scope.pageNumber = $scope.BasicRate.currentPage;
-				$scope.pageSize = $scope.BasicRate.totalPages;
+			$scope.packageRate = PackageRateService.PackageRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+				console.log($scope.packageRate.totalPages);
+				totalPages = $scope.packageRate.totalPages;
+				currentPage = $scope.packageRate.currentPage;
+				$scope.pageNumber = $scope.packageRate.currentPage;
+				$scope.pageSize = $scope.packageRate.totalPages;
 				if(totalPages == 0) {
 					$scope.pageNumber = 0;
 				}
 			});
-		    console.log($scope.BasicRate);
+		    console.log($scope.packageRate);
 		};
 		 //used to search the  Discount data on newspaper.
-		$scope.searchBasicRate = function(page) {
+		$scope.searchPackageRate = function(page,packageName) {
+			$scope.City = packageName;
 			if(angular.isUndefined($scope.City) || $scope.City=="") {
 				console.log('inside function');
 				$scope.City = " ";
 			}
 			currentPage = page;
 			//Pacakge Rate(Discountprice Model ) come in the PackageRateService.
-			$scope.BasicRate = PackageRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
-				console.log($scope.BasicRate.totalPages);
-				totalPages = $scope.BasicRate.totalPages;
-				currentPage = $scope.BasicRate.currentPage;
-				$scope.pageNumber = $scope.BasicRate.currentPage;
-				$scope.pageSize = $scope.BasicRate.totalPages;
+			$scope.packageRate = PackageRateService.PackageRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+				console.log($scope.packageRate.totalPages);
+				totalPages = $scope.packageRate.totalPages;
+				currentPage = $scope.packageRate.currentPage;
+				$scope.pageNumber = $scope.packageRate.currentPage;
+				$scope.pageSize = $scope.packageRate.totalPages;
 				if(totalPages == 0) {
 					$scope.pageNumber = 0;
 				}
@@ -1048,7 +1058,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		}; 
 		//used to get Pacakge Rate  from DiscountPrice model   in the PackageRateService.
 		angular.module('adschela').service('PackageRateService',function($resource){
-		    this.BasicRateInfo = $resource(
+		    this.PackageRateInfo = $resource(
 		            '/getDiscountRate/:City/:currentPage',
 		            {alt:'json',callback:'JSON_CALLBACK'},
 		            {
@@ -1063,14 +1073,15 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 			console.log($scope.formData.Statename);
 			$http.post('/saveNewPackageRate',formData).success(function(data){
 				console.log('success posted data');
-				$scope.searchBasicRate(currentPage);
+				$scope.searchPackageRate(currentPage);
 				$('#myModal').modal('hide');
 			}).error(function(data, status, headers, config) {
 				console.log('ERROR');
 			});
 		};
 		//
-		$scope.setData = function(ancmt) {
+		$scope.resultstate=[];
+		$scope.updatePackageRate = function(ancmt) {
 			$scope.tickOption = '%';
 			$scope.borderOption = '%';
 			$scope.bgOption = '%';
@@ -1083,33 +1094,25 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 			//get category from the NewspaperDetails 
 			$scope.resultcname = getcnameservice.Allcname.get();
 			//get state from the NewspaperDetails 
-			$scope.resultstate = getPackageStateNameservice.Allstate.get();
-			console.log("$scope.resultstate"+$scope.resultstate);
-			$scope.resultCity = [{cityname:ancmt.City}];
+			$scope.resultCities = getAllCitiesService.AllCities.get();
+			
+			
 			$scope.ancmtData = ancmt;
 			$('#myModal2').modal();
 				
 		};
 
-		$scope.onStateselect = function(stateName) {
-			console.log("Selected State  : "+stateName);
-			//$scope.resultCity = getCityNameservice.AllCity.get({state:stateName}); 
-			}
-		$scope.onStateselectupdate = function() {
-			alert("State"+$scope.ancmtData.Statename)
-			//$scope.resultCity = getCityNameservice.AllCity.get({state:$scope.ancmtData.Statename}); 
-			}
-		
+				
 		//setting data to the model
-		$scope.setDates = function() {
+		$scope.createNewPackage = function() {
 			$scope.borderOption = 'rs';
 			$scope.bgOption = 'rs';
 			$scope.tickOption = 'rs';
 			
 			$scope.resultNewspaper = getNewspaperservice.Allnewspaper.get(); 
 			$scope.resultcname = getcnameservice.Allcname.get();
-			$scope.resultstate = getPackageStateNameservice.Allstate.get();
-			console.log("$scope.resultstate"+getPackageStateNameservice.Allstate.get());
+			$scope.resultCities = getAllCitiesService.AllCities.get();
+			console.log("$scope.resultstate"+getAllCitiesService.AllCities.get());
 			$scope.searchForm.from = new Date();
 			$scope.searchForm.to = new Date();
 			$scope.icon_id = "";
@@ -1121,19 +1124,19 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		}
 		
 		//seting data Id  to the delete model. 
-		$scope.setDeleteId = function(Id) {
+		$scope.setPackageDeleteId = function(Id) {
 			$scope.deleteId = Id.Did;
 			$('#myModal3').modal();
-			console.log("-**-*-"+$scope.deleteId+"*-*-*-*");
+		
 			
 		};
 		
 		//update the  package rate in DiscountPrice model.
-		$scope.updateBasicRate = function() {
+		$scope.updatePackageRateofSelectedPackage = function() {
 			console.log($scope.ancmtData);
 			$http.post('/updateDiscountRate', $scope.ancmtData).success(function(data){
 				console.log('success');
-				$scope.searchBasicRate(currentPage);
+				$scope.searchPackageRate(currentPage);
 				$('#myModal2').modal('hide');
 			}).error(function(data, status, headers, config) {
 				console.log('ERROR------------');
@@ -1142,7 +1145,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		//delete the package rate from the  package rate(Discount price model ) 
 		$scope.deleteDiscountRate = function() {
 			deletePackageRateService.Deletebasicrate.get({id :$scope.deleteId}, function(data){
-				$scope.searchBasicRate(currentPage);
+				$scope.searchPackageRate(currentPage);
 	            $('#myModal3').modal('hide');
 			});    
 		};
@@ -1152,14 +1155,14 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		$scope.onNext = function() {
 			if(currentPage < totalPages) {
 				currentPage++;
-				$scope.searchBasicRate(currentPage);
+				$scope.searchPackageRate(currentPage);
 			}
 		};
 		//goto prevoius result (8 no of result per page )
 		$scope.onPrev = function() {
 			if(currentPage > 1) {
 				currentPage--;
-				$scope.searchBasicRate(currentPage);
+				$scope.searchPackageRate(currentPage);
 			}
 		};
 		
@@ -1187,29 +1190,21 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	    	);
 		});
      //get state 
-		angular.module('adschela').service('getPackageStateNameservice',function($resource){
-	        this.Allstate = $resource(
+		angular.module('adschela').service('getAllCitiesService',function($resource){
+	        this.AllCities = $resource(
 	            '/getAllCityOfState',
 	            {alt:'json',callback:'JSON_CALLBACK'},
 	            {
-	                get: {method:'get',isArray:true}
+	                get: {method:'get'}
 	            }
 	    	);
 		});
 
-		angular.module('adschela').service('getCityNameservice',function($resource){
-	         this.AllCity = $resource(
-	            '/getCityname/:state',
-	            {alt:'json',callback:'JSON_CALLBACK'},
-	            {
-	                get: {method:'get',isArray:true}
-	            }
-	    	);
-		});
+	
 
 		//get the package rate from the discount price model
 		angular.module('adschela').service('PackageRateService',function($resource){
-	        this.BasicRateInfo = $resource(
+	        this.PackageRateInfo = $resource(
 	            '/getDiscountRate/:City/:currentPage',
 	            {alt:'json',callback:'JSON_CALLBACK'},
 	            {

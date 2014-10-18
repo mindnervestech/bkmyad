@@ -27,16 +27,16 @@ public class Newspaperdetails {
 	public String Addedition;
 	@Transient
 	public List<String> NameofCities;
-	public String Nameofcities;
+	public String Nameofcities="a";
 	@Transient
 	public String Unit;
 	@Transient
 	public String Value;
 	public String BasicratesperText;
 	public String BasicratesperClasified;
-	public String Beforebookingdate;
-	public String Allow;
-	public String Statename;
+	public String Beforebookingdate ="0";
+	public String Allow="0";
+	public String Statename="a";
 	
 	
 	
@@ -131,9 +131,11 @@ public class Newspaperdetails {
 	@Transactional
     public void save() {
 		this.NewsId = UUID.randomUUID().toString();
-		this.Nameofcities = this.NameofCities.toString();
+		
+	
+		/*this.Nameofcities = this.NameofCities.toString();
 		this.Nameofcities = this.Nameofcities.replace("[", "");
-		this.Nameofcities = this.Nameofcities.replace("]", "");
+		this.Nameofcities = this.Nameofcities.replace("]", "");*/
         JPA.em().persist(this);
         JPA.em().flush();     
     }
@@ -145,9 +147,9 @@ public class Newspaperdetails {
     
     @Transactional
     public void merge() {
-    	this.Nameofcities = this.NameofCities.toString();
+    	/*this.Nameofcities = this.NameofCities.toString();
     	this.Nameofcities = this.Nameofcities.replace("[", "");
-		this.Nameofcities = this.Nameofcities.replace("]", "");
+		this.Nameofcities = this.Nameofcities.replace("]", "");*/
         JPA.em().merge(this);
     }
     

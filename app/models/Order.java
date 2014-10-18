@@ -178,7 +178,7 @@ public class Order {
 		    	String sql="";
 		    	if(City.trim().equals("")) {
 		    		
-		    		sql = "select * from orders_composedadsave";
+		    		sql = "select orders_composedadsave.Orders_orderId,orders_composedadsave.composedAd_OID from orders_composedadsave,composedadsave  order by  composedadsave.OID  desc";//select * from orders_composedadsave
 		    	} else {
 		    		sql ="select orders_composedadsave.composedAd_OID,orders_composedadsave.Orders_orderId,composedadsave.city from orders_composedadsave,composedadsave where composedadsave.City like ?1 order by composedadsave.orderDate desc";
 		    	}

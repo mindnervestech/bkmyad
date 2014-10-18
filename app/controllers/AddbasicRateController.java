@@ -34,8 +34,8 @@ public class AddbasicRateController extends Controller{
 	    
 	@Transactional
 	public static Result getBasicrate(String City,int currentPage) {
-		long totalPages = Basicrate.getAllAnnouncementsTotal(City, 8);
-		List<Basicrate> allBasicRate = Basicrate.getAllAnnouncements(City, currentPage, 8, totalPages);
+		long totalPages = Basicrate.getAllAnnouncementsTotal(City, 50);
+		List<Basicrate> allBasicRate = Basicrate.getAllAnnouncements(City, currentPage, 50, totalPages);
 		List<BasicrateVM> listOfBasicrate = new ArrayList<>();
 		
 		for (Basicrate basicrateVM: allBasicRate) {
@@ -94,10 +94,10 @@ public class AddbasicRateController extends Controller{
     	}
     	
     	 //check for tickrs	
-    	if(form.get("Tick") == null){
+    	if(form.get("tickRs") == null){
     		basicrate.Tick= "0";
     	}else{
-    		basicrate.Tick=form.get("Tick");
+    		basicrate.Tick=form.get("tickRs");
     	}
     	 //check for tickPer	
         if(form.get("tickPercentage") == null){

@@ -76,12 +76,12 @@ public class AddNewspaperController extends Controller{
 		/*newspaperdetails.LogoFileExtention=newspaperdetailsFromFE.LogoFileExtention;
 		newspaperdetails.LogoName=newspaperdetailsFromFE.LogoName;*/
 		newspaperdetails.Addedition=newspaperdetailsFromFE.Addedition;
-		newspaperdetails.NameofCities=newspaperdetailsFromFE.NameofCities;
+	//	newspaperdetails.NameofCities=newspaperdetailsFromFE.NameofCities;
 		newspaperdetails.BasicratesperText=newspaperdetailsFromFE.BasicratesperText;
-		newspaperdetails.BasicratesperClasified=newspaperdetailsFromFE.BasicratesperClasified;
-		newspaperdetails.Beforebookingdate=newspaperdetailsFromFE.Beforebookingdate;
-		newspaperdetails.Allow=newspaperdetailsFromFE.Allow;
-		newspaperdetails.Statename=newspaperdetailsFromFE.Statename;
+	//	newspaperdetails.BasicratesperClasified=newspaperdetailsFromFE.BasicratesperClasified;
+	//	newspaperdetails.Beforebookingdate=newspaperdetailsFromFE.Beforebookingdate;
+	//	newspaperdetails.Allow=newspaperdetailsFromFE.Allow;
+	//	newspaperdetails.Statename=newspaperdetailsFromFE.Statename;
     	
     	newspaperdetailsFromFE.merge();
 		

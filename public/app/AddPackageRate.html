@@ -13,7 +13,7 @@
 	<link href="css/datetimepicker.css"></script>
 	<script type="text/javascript" src="../assets/app/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
 </head>
-<body ng-init="searchBasicRate()">
+<body ng-init="searchPackageRate()">
    <!--container begin-->
     <section id="container">
     	<section class="contentpanel">
@@ -23,13 +23,13 @@
         	<section class="dadsrch">
             	<section class="heading"><h2></h2></section>
                 <section class="dadsrchdiv">
-                	<input name="title" type="text" ng-model="City" class="" style="height:32px ;" ng-keyup="$event.keyCode == 13 ? searchBasicRate(1) : null"><input name="" type="button" class="btngray" value="Search" ng-click="searchBasicRate(1)">
+                	<input name="title" type="text" ng-model="packageName" class="" style="height:32px ;" ng-keyup="$event.keyCode == 13 ? searchPackageRate(1,packageName) : null"><input name="" type="button" class="btngray" value="Search" ng-click="searchPackageRate(1,packageName)">
                 </section>
             </section>
             <!--Advance search fildes end-->
              <section class="dactperform">
                 <section class="left">
-             		<input name="" type="button" value="Create" class="btnblue" ng-click="setDates()" data-toggle="modal"  />
+             		<input name="" type="button" value="Create" class="btnblue" ng-click="createNewPackage()" data-toggle="modal"  />
            		</section>
            	</section>	
             <!--grid begin-->
@@ -51,7 +51,7 @@
                         <tr>
                     </thead>
                 	<tbody>
-                    	<tr ng-repeat="ancmt in BasicRate.results">
+                    	<tr ng-repeat="ancmt in packageRate.results">
                             <td>{{ancmt.Nameofthenewspaper}}</td>
                             <td>{{ancmt.Dtotalprice}}</td>
                             <td>{{ancmt.Edition | limitTo:16}}</td>
@@ -61,8 +61,8 @@
                             <td>{{ancmt.Tick}}</td>
                             <td>{{ancmt.Category}}</td>
                            <!--  <td>{{ancmt.ExtracostperSqcm}}</td> -->
-                            <td> <input name="" type="button" value="Update" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
-                            <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt)" data-toggle="modal" /></td>
+                            <td> <input name="" type="button" value="Update" ng-click="updatePackageRate(ancmt)" data-toggle="modal"  /></td>
+                            <td><input name="" type="button" value="Delete" ng-click="setPackageDeleteId(ancmt)" data-toggle="modal" /></td>
                         </tr>
                     	</tbody>
                 </table>
@@ -97,7 +97,7 @@
 			        	<td><label>NewsPapers</label></td>
 			        	<td style="height: 60px;">
 			           <select name="Newspaper" style="width:90%;" data-ng-model="formData.Nameofthenewspaper" required >
-			    		<option ng-repeat="newspaper in resultNewspaper" value="{{newspaper.newspapers}}">{{newspaper.newspapers}}</option>
+			    		<option ng-repeat="newspaper in resultNewspaper" value="{{newspaper.newspapers }}">{{newspaper.newspapers}}</option>
 			    		<option value="">Please Select Newspaper</option>
 			    	</select>
 			    	<td><label>Package Name</label></td>
@@ -109,7 +109,7 @@
 			        	 <td><label>Select City </label></td>
 			        	<td style="height: 60px;">
 			        		<select multiple name="City" style="width:90%;" data-ng-model="formData.City" ng-change="">
-			        			<option ng-repeat="City in resultstate" value="{{City.cityname}}">{{City.cityname}}</option>
+			        			<option ng-repeat="City in resultCities.cities" value="{{City}}">{{City}}</option>
 			        			<option value="">Please Select Cities</option>
 			        			
 			        		</select>
@@ -219,7 +219,7 @@
 		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		        <h4 class="modal-title" id="myModalLabel">Update Package Rate</h4>
 		      </div>
-		      <form method="post" ng-submit="updateBasicRate()">
+		      <form method="post" ng-submit="updatePackageRateofSelectedPackage()">
 		      <div class="modal-body">
 		      <table>
 			        <tr>
@@ -241,7 +241,7 @@
 			        	 <td><label>Select City </label></td>
 			        	<td style="height: 60px;">
 			        		<select multiple name="City" style="width:90%;" data-ng-model="ancmtData.Cities" ng-change="">
-			        			<option ng-selected="ancmtData.Cities==cityname.cities" ng-repeat="City in resultstate" value="{{City.cityname}}">{{City.cityname}}</option>
+			        			<option ng-selected="ancmtData.Cities==City" ng-repeat="City in resultCities.cities" value="{{City}}">{{City}}</option>
 			        			<option value="">Please Select Cities</option>
 			        			
 			        		</select>
@@ -290,9 +290,7 @@
 			      <tr>
 			      
 			        <td><label>Backcolor</label></td>
-			        	<!-- <td style="height: 60px;"><textarea type="text" name="Backcolor" style="width:70%;height: 70%;" data-ng-model="ancmtData.Backcolor" required></textarea></td>
-			       -->
-			       
+			        	
 			       <td><input type="radio" name="bgcolor" data-ng-model="bgOption" value="rs">BgColor(Rs)
 						    <textarea type="text" name="bgRs" style="width:70%;height: 50%;" data-ng-model="ancmtData.Backcolor" ng-disabled="bgOption == '%'" ></textarea>
 						    </td>

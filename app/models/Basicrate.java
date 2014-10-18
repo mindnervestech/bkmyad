@@ -53,7 +53,7 @@ public class Basicrate {
 	    	if(City.trim().equals("")) {
 	    		size = (Long) JPA.em().createQuery("Select count(*) from Basicrate a").getSingleResult();
 	    	} else {
-	    		Query query = JPA.em().createQuery("Select count(*) from Basicrate a where a.City LIKE ?2");
+	    		Query query = JPA.em().createQuery("Select count(*) from Basicrate a where a.Nameofthenewspaper LIKE ?2");
 	    		query.setParameter(2, "%"+City+"%");
 	    		size= (Long) query.getSingleResult();
 	    	}
@@ -68,14 +68,14 @@ public class Basicrate {
 	    }
 		
 		 @Transactional
-		    public static List<Basicrate> getAllAnnouncements(String City, int currentPage, int rowsPerPage, long totalPages) {
+		    public static List<Basicrate> getAllAnnouncements(String Nameofthenewspaper, int currentPage, int rowsPerPage, long totalPages) {
 		    	int  start=0;
 		    	/*Query q;*/
 		    	String sql="";
-		    	if(City.trim().equals("")) {
+		    	if(Nameofthenewspaper.trim().equals("")) {
 		    		sql = "Select a from Basicrate a";
 		    	} else {
-		    		sql ="Select a from Basicrate a where a.City LIKE ?1";
+		    		sql ="Select a from Basicrate a where a.Nameofthenewspaper LIKE ?1";
 		    	}
 
 	    		if(currentPage >= 1 && currentPage <= totalPages) {
@@ -86,8 +86,8 @@ public class Basicrate {
 					start = (int) ((totalPages*rowsPerPage)-rowsPerPage); 
 				}
 		    	Query q = JPA.em().createQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
-		    	if(!City.trim().equals("")) {
-					q.setParameter(1, "%"+City+"%");
+		    	if(!Nameofthenewspaper.trim().equals("")) {
+					q.setParameter(1, "%"+Nameofthenewspaper+"%");
 				}
 				
 				return (List<Basicrate>)q.getResultList();

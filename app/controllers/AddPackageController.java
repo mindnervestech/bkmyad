@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 
 import models.City;
@@ -28,20 +30,20 @@ public class AddPackageController  extends Controller{
 	
 	 @Transactional
 	    public static Result getAllCityOfState(){
-	    	List<String> listcity = City.getAllCityName(); 
-	    	List<Map> list = new ArrayList<>();
+		 List<String> listcity = City.getAllCityName(); 
+	    	SortedSet<String> sortedSet = new TreeSet<String >();
 	    	if(!listcity.isEmpty()) {
 	    		for(String string: listcity){
 	    			Iterable<String> subCats = Splitter.on(",").split(string);
 		    		for(String city : subCats){
+		    			sortedSet.add(city.trim());
 		    			
-		    			Map<String,String> map = new HashMap<String, String>();
-		    			map.put("cityname", city);
-		    			list.add(map);
 		    		}
 	    		}
+	    		Map<String,SortedSet<String>> convertedList = new HashMap<>();
+	    		convertedList.put("cities",sortedSet);
 	    		
-	    		return ok(Json.toJson(list));
+	    		return ok(Json.toJson(convertedList));
 	    	}
 	    	return ok();
 	    }
@@ -132,8 +134,8 @@ public class AddPackageController  extends Controller{
 	 
 	    @Transactional
 		public static Result getDiscountRate(String City,int currentPage) {
-			long totalPages = Discountprice.getAllAnnouncementsTotal(City, 8);
-			List<Discountprice> allBasicRate = Discountprice.getAllAnnouncements(City, currentPage, 8, totalPages);
+			long totalPages = Discountprice.getAllAnnouncementsTotal(City, 50);
+			List<Discountprice> allBasicRate = Discountprice.getAllAnnouncements(City, currentPage, 50, totalPages);
 			List<DiscountVM> listOfBasicrate = new ArrayList<>();
 			
 			for (Discountprice basicrateVM: allBasicRate) {
