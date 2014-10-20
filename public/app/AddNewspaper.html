@@ -100,60 +100,29 @@
 			        	<td style="height: 60px;"><textarea type="text" name="Nameofthenewspaper" style="width:70%;height: 70%;" data-ng-model="formData.Nameofthenewspaper" required></textarea></td>
 			        </tr>
 			         
-			  <!--   <tr>
-			        	 <td><label>State</label></td>
-			        	<td style="height: 60px;">
-			        		<select name="State" style="width:100%;" data-ng-model="formData.Statename" ng-change="onStateselect(formData.Statename)">
-			        			<option ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
-			        			<option value="">--Please Select State--</option>
-			        			
-			        		</select>
-			        	</td>
-			        	<td><label>City</label></td>
-			        	<td style="height: 60px;">
-			        		<select name="City" style="width:100%;" multiple data-ng-model="formData.NameofCities" required >
-			        			<option ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
-			        			<option value="">--Please Select City--</option>
-			        			
-			        		</select>
-			        	</td>
-			       </tr> -->
-			          	<!-- <tr>
-                            <input id="comment-photo-id" type="file" name="comment-photo" ng-file-select="onFileSelect($files)"/> 
-                     <!--   </tr>  -->    
-			         <!-- <tr>	
-			        	<td><label>LogoFileExtention</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="LogoFileExtention" style="width:70%;height: 70%;" data-ng-model="formData.LogoFileExtention" required></textarea></td>
-			        	<td><label>LogoName</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="LogoName" style="width:70%;height: 70%;" data-ng-model="formData.LogoName" required></textarea></td>
-			        </tr> --> 
+			 
 			        <tr>
-			        	<td><label>Addedition</label></td>
+			        	<td><label>Addition</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Addedition" style="width:70%;height: 70%;" data-ng-model="formData.Addedition" required></textarea></td>
 			        	  </tr>
 			        <tr>
-			            
+			           
 			            <td><label>Unit</label></td>
 			        	<td style="height: 60px;">
-			        		<select name="Unit"  style="width:100%;"  data-ng-model="formData.Unit" >
-			        			<option value="" >Word</option>
-			        			<option value="Word" >Word</option>
-			        			<option  value="Line">Line</option>
-			        			
+			        		<select name="Unit"  style="width:100%;" data-ng-model="formData.Unit" >
+			        		 
+			        			<option ng-selected="formData.Unit== 'Words'" value="Words">Words</option>
+			        			<option ng-selected="formData.Unit== 'Line'" value="Line">Line</option>
 			        		</select>
 			        		
-			        		     	</td>
+			         </td>
 			            <td><label> Value</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Value" style="width:70%;height: 70%;" data-ng-model="formData.Value" required></textarea></td>
 			        </tr>
 			        <tr>
 			        <td><label>BasicratesperClasified</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="BasicratesperClasified" style="width:70%;height: 70%;" data-ng-model="formData.BasicratesperClasified" required></textarea></td>
-			           <!--   <td><label>Beforebookingdate</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Beforebookingdate" style="width:70%;height: 70%;" data-ng-model="formData.Beforebookingdate" required></textarea></td>
-			        	 --><!-- <td><label>Allow</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Allow" style="width:70%;height: 50%;" data-ng-model="formData.Allow" required></textarea></td>
-			     -->    </tr>
+			             </tr>
 		        </table>
 		      </div>
 		      <div class="modal-footer">
@@ -181,28 +150,7 @@
 			        	<td style="height: 60px;"><textarea type="text" name="Nameofthenewspaper" style="width:70%;height: 70%;" data-ng-model="ancmtData.Nameofthenewspaper" required></textarea></td>
 			        </tr>
 			          <tr>
-			        	<!--  <td><label>State</label></td>
-			        	<td style="height: 60px;">
-			        		<select name="State" style="width:100%;" data-ng-model="ancmtData.Statename" ng-change="onStateselectupdate()">
-			        			<option ng-selected="ancmtData.Statename==state.Statename" ng-repeat="state in resultstate" value="{{state.Statename}}">{{state.Statename}}</option>
-			        			<option value="">--Please Select State--</option>
-			        		</select>
-			        	</td>
-			        	<td><label>City</label></td>
-			        	<td >
-			        	   		<select name="City" style="float:left;" multiple data-ng-model="ancmtData.NameofCities" required >
-			        			<option ng-selected="ancmtData.NameofCities==city.cityname" ng-repeat="city in resultCity" value="{{city.cityname}}">{{city.cityname}}</option>
-			        			<option value="">--Please Select City--</option>
-			        			
-			        		</select>
-			        	</td>
-			       </tr> -->
-			       <!--  <tr>	
-			        	<td><label>LogoFileExtention</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="LogoFileExtention" style="width:70%;height: 70%;" data-ng-model="ancmtData.LogoFileExtention" required></textarea></td>
-			        	<td><label>LogoName</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="LogoName" style="width:70%;height: 70%;" data-ng-model="ancmtData.LogoName" required></textarea></td>
-			        </tr> -->
+			        	
 			        <tr>
 			        	<td><label>Addedition</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Addedition" style="width:70%;height: 70%;" data-ng-model="ancmtData.Addedition" required></textarea></td>
@@ -212,16 +160,7 @@
 			             <td><label>BasicratesperText :</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="BasicratesperText" style="width:70%;height: 70%;" data-ng-model="ancmtData.BasicratesperText" required></textarea></td>
 			         </tr>
-			        <!--  <tr>
-			             <td><label>BasicratesperClasified</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="BasicratesperClasified" style="width:70%;height: 70%;" data-ng-model="ancmtData.BasicratesperClasified" required></textarea></td>
-			        </tr>
-			        <tr>
-			           <td><label>Beforebookingdate</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Beforebookingdate" style="width:70%;height: 70%;" data-ng-model="ancmtData.Beforebookingdate" required></textarea></td>
-			        	<td><label>Allow</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="Allow" style="width:70%;height: 70%;" data-ng-model="ancmtData.Allow" required></textarea></td>
-			        </tr> -->
+			      
 		        </table>
 		      </div>
 		      <div class="modal-footer">

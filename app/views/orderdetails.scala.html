@@ -1,0 +1,37 @@
+@(email: String,orderDate: String,category: String,border: String,bgcolor: String,tick: String,adtext: String,paymentOption: String,total: String,PublishDate: String,declaimer: String)
+
+<br />
+<br />
+<p>
+<img src="/assets/img/Logo Arihant Booking.jpg"   style="float:left"alt="Bootsshop"/>
+ <table border="1" width="800" >
+<tr>
+   <td height="50px" width="50%"><font style="font-size:16px"><font style="font-weight: bold;">Order Date </font>:@orderDate</font></td>         
+   <td height="50px" width="50%"><font style="font-size:16px"><font style="font-weight: bold;">Publish Date :</font>@PublishDate</font></td>
+</tr>
+  <tr>
+   <td height="50px" width="50%"><font style="font-size:16px"><font style="font-weight: bold;">Client Name:</font> @email </font> </td>
+   <td height="50px" width="50%"><font style="font-size:16px"><font style="font-weight: bold;">Mode Of Payment :</font> @paymentOption </font> </td>
+</tr>
+   <tr>
+   <td height="50px"width="50%"> <font style="font-size:16px"><font style="font-weight: bold;">Category: </font>@category</font></td>  
+   <td  height="50px" width="50%"> <font style="font-size:16px"><font style="font-weight: bold;">Border: </font>@border</font></td>  
+</tr>
+	<tr>
+ 		
+ 		<td height="50px" width="50%"> <font style="font-size:16px"><font style="font-weight: bold;">Color:</font> @bgcolor</font></td>   
+  		<td height="50px" width="50%"> <font style="font-size:16px"><font style="font-weight: bold;">Tick:</font> @tick</font></td>
+  		
+	</tr>
+<tr>
+  	<td height="150px" colspan="2"> <font style="font-size:16px"><div><span style="width:34% ;float: left;"><font style="font-weight: bold;">Adtext:</font> @adtext</span></div></font></td>
+</tr>
+<tr>
+<td height="50px" colspan="2"> <font style="font-size:16px"><font style="font-weight: bold;">Total : </font> @total</font></td>
+</tr>
+	<tr>
+	
+  	<td height="50px" colspan="2"> <font style="font-size:16px"> @declaimer</font></td>
+</tr>
+</table>
+	</p>

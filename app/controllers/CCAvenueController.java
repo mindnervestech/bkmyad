@@ -11,6 +11,7 @@ import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
+import utils.SendMailUtility;
 import viewmodel.CCAvenueDefaultVM;
 
 import com.ccavenue.security.AesCryptUtil;
@@ -62,13 +63,18 @@ public class CCAvenueController extends Controller {
         	o.cc_orderNo = ccAvenueDefaultVM.nb_order_no;
         	o.bank_name = ccAvenueDefaultVM.bank_name;
         	o.bankMsg = dynamicForm.get().getData().toString();
-        	JPA.em().merge(o);
+        	//send mail utility 
+        	SendMailUtility sendMail = new SendMailUtility();
+            sendMail.sendMailAboutOrder(o.orderId,o.email,o.cc_orderNo);
+            JPA.em().merge(o);
+            
     	} catch(javax.persistence.NoResultException exception) {
     		return controllers.Application.index();
     	}
     	
     	return ok(views.html.ccaredirect.render(ccAvenueDefaultVM));
-    }
+    
+	}
     
     public static Result redirectTest() {
     	CCAvenueDefaultVM ccAvenueDefaultVo = new CCAvenueDefaultVM();

@@ -1,5 +1,8 @@
 package models;
 
+import java.math.BigInteger;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,13 +12,13 @@ import javax.persistence.Query;
 
 import play.data.validation.Constraints.Required;
 import play.db.jpa.JPA;
+import play.db.jpa.Transactional;
 
 @Entity
 public class User {
 	   @Id
 	   @GeneratedValue(strategy=GenerationType.IDENTITY)
 	   public Long id;
-	   
 	   @Required
 	   public String name;
 	   @Required
@@ -26,7 +29,7 @@ public class User {
 	   public String email;
 	   public String role;
 	   
-	   
+	  
 	   
 	public Long getId() {
 		return id;
@@ -122,6 +125,57 @@ public class User {
       
         return (User) q.getSingleResult();
 	}
-	
+	 @Transactional
+	    public static long getAllRegisteredUserTotal(String City,  int rowsPerPage) {
+	    	long totalPages = 0, size;
+	    	BigInteger sizebig;
+	    	
+	    	if(City.trim().equals("")) {
+	    		sizebig = (BigInteger)JPA.em().createNativeQuery("select count(*) from User").getSingleResult();
+	    	} else {
+	    		Query query = JPA.em().createNativeQuery("select count(*) from User where User.email like ?1");
+	    		query.setParameter(1, "%"+City+"%");
+	    		sizebig= (BigInteger) query.getSingleResult();
+	    	}
+	    	//cast to long
+	    	size=sizebig.longValue();
+	    			
+	    	totalPages = size/rowsPerPage;
+			
+	    	if(size % rowsPerPage > 0) {
+				totalPages++;
+			}
+	    	System.out.println("total pages ::"+totalPages);
+	    	return totalPages;
+	    }
+		
+		 @Transactional
+		    public static List<Object[]> getAllRegisteredUsers(String City, int currentPage, int rowsPerPage, long totalPages) {
+		    	int  start=0;
+		    	System.out.println("City selected is "+City);
+		    	/*Query q;*/
+		    	String sql="";
+		    	if(City.trim().equals("")) {
+		    		
+		    		sql = "select * from User";//
+		    	} else {
+		    		sql ="select from User where User.email like ?1";
+		    	}
+
+	    		if(currentPage >= 1 && currentPage <= totalPages) {
+					start = (currentPage*rowsPerPage)-rowsPerPage;
+				}
+				if(currentPage>totalPages && totalPages!=0) {
+					currentPage--;
+					start = (int) ((totalPages*rowsPerPage)-rowsPerPage); 
+				}
+		    	Query q = JPA.em().createNativeQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
+		    	if(!City.trim().equals("")) {
+					q.setParameter(1, "%"+City+"%");
+				}
+				
+				return (List<Object[]>)q.getResultList();
+				
+		    }
  
 }

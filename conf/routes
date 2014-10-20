@@ -29,6 +29,7 @@ POST    /sendfeedbacks                          controllers.Application.sendFeed
 GET	/getBasicrate/:City/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,currentPage :Integer)
 GET /getDiscountRate/:City/:currentPage	controllers.AddPackageController.getDiscountRate(City :String,currentPage :Integer)
 GET  /viewAllOrdersForAdmin/:City/:currentPage	controllers.ViewAllOrdersController.viewAllOrdersForAdmin(City :String,currentPage :Integer)
+GET  /viewAllRegisteredUserForAdmin/:City/:currentPage	controllers.ViewAllRegisteredUserController.viewAllRegisteredUserForAdmin(City :String,currentPage :Integer)
 GET     /listInfo/:UserId              controllers.MyAccountController.getAllUserOrder(UserId :String)
 GET     /getaddressDetailsofUser            controllers.MyAccountController.getaddressDetailsofUser()
 POST	/saveBasicRate		               controllers.AddbasicRateController.saveBasicRate()
@@ -58,6 +59,7 @@ GET     /addStateAndCity                   controllers.AddStateCityController.in
 GET     /adminPanel                         controllers.AdminPanelController.index()  
 GET     /addPackageRate                      controllers.AddPackageController.index()
 GET     /viewAllOrders                        controllers.ViewAllOrdersController.index()
+GET     /viewAllRegisteredUser                 controllers.ViewAllRegisteredUserController.index()
 GET     /logout                             controllers.Application.Logout()      
 GET     /getforgotpass/:email                       controllers.Application.forgotpassword(email :String)
                         
@@ -101,6 +103,7 @@ GET /AddCategoryAndSubCat.html     controllers.Assets.at(path="/public", file="a
 GET /AddStateAndCity.html     controllers.Assets.at(path="/public", file="app/AddStateAndCity.html")
 GET /AddPackageRate.html    controllers.Assets.at(path="/public", file="app/AddPackageRate.html")   
 GET /view-all-orders.html   controllers.Assets.at(path="/public", file="app/ViewAllOrders.html") 
+GET  /view-all-registeruser.html    controllers.Assets.at(path="/public", file="app/ViewAllRegisteredUser.html") 
 
 GET /ccavenue/:orderId	controllers.CCAvenueController.ccavenue(orderId:String)
 POST /redirect	controllers.CCAvenueController.redirect()

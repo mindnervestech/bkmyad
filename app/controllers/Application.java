@@ -535,7 +535,7 @@ public class Application extends Controller {
         	try {
         	      
      			Message message = new MimeMessage(session);
-     			message.setFrom(new InternetAddress("support@arihantbooking.com"));
+     			message.setFrom(new InternetAddress("Rajan_Jain"));
      			//Add multiple recipients.
      			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email));
      			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("rajanjain8aug@gmail.com"));
@@ -570,8 +570,8 @@ public class Application extends Controller {
     	
     	User findpassword = User.getpassword(email);
     
-    	 final String username=play.Play.application().configuration().getString("username");
-         final String password=play.Play.application().configuration().getString("password");
+    	 final String username="support@arihantbooking.com";
+         final String password="Adschela@123";
         
          
   		Properties props = new Properties();
@@ -595,27 +595,19 @@ public class Application extends Controller {
   			InternetAddress.parse(findpassword.getEmail()));
   			feedback.setSubject("Your Password Details ");
   			//message.setText();
-  			 
   			 BodyPart messageBodyPart = new MimeBodyPart();
-
   	         // Now set the actual message
   	         messageBodyPart.setText("\n Mail : "+findpassword.getEmail()+"\n Password: "+findpassword.getPassword());
-
   	         // Create a multipar message
   	         Multipart multipart = new MimeMultipart();
-
   	         // Set text message part
   	         multipart.addBodyPart(messageBodyPart);
-
-  	                
               // Send the complete message parts
   	         feedback.setContent(multipart);
   		     Transport.send(feedback);
        		} catch (MessagingException e) {
   			  throw new RuntimeException(e);
   		}
-         
-    	
     	return redirect("/");
     }
     
@@ -765,8 +757,8 @@ public class Application extends Controller {
              
              
              // send mail
-            final String username = "akashshinde44comp@gmail.com";
-     		final String password = "V@ishnavi14";
+            final String username = "support@arihantbooking.com";
+     		final String password = "Adschela@123";
       
      		Properties props = new Properties();
      		props.put("mail.smtp.auth", "true");
@@ -784,7 +776,7 @@ public class Application extends Controller {
      		try {
       
      			Message message = new MimeMessage(session);
-     			message.setFrom(new InternetAddress("akashshinde44comp@gmail.com"));
+     			message.setFrom(new InternetAddress("Rajan_Jain"));
      			message.setRecipients(Message.RecipientType.TO,
      			InternetAddress.parse(email));
      			message.setSubject("Your Ad Details ");

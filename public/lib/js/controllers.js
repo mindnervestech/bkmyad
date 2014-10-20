@@ -438,6 +438,7 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 	$scope.pageSize;
 	$scope.formData = "";
 	var currentPage = 1;
+	$scope.formData = {Unit: "Words"};
 	var totalPages;
 	$scope.isChosen = false;
 	$scope.searchForm= {
@@ -490,10 +491,8 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 	};
 	
 	$scope.setData = function(ancmt) {
-		
 		$scope.resultstate = getStateNameservice.Allstate.get();
 		$scope.resultCity = [{cityname:ancmt.Nameofcities}];
-		
 		$scope.ancmtData = ancmt;
 		$('#myModal2').modal();
 				
@@ -617,6 +616,122 @@ angular.module('adschela').service('deleteNewpaperService',function($resource){
             }
     );
 });
+
+
+
+angular.module('adschela').controller('ViewAllRegisterUserController',function($scope, $modal, $http, $filter,ViewAllRegisteredUserService){
+
+	$scope.City = " ";
+	$scope.pageNumber;
+	$scope.pageSize;
+	$scope.formData = "";
+	var currentPage = 1;
+	var totalPages;
+	$scope.isChosen = false;
+	
+	$scope.searchForm= {
+            from : new Date(),
+            to : new Date()
+
+	}
+
+	
+	$scope.ViewAllRegisterUserController = ViewAllRegisteredUserService.ViewAllRegisteredUserInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		totalPages = $scope.ViewAllRegisterUserController.totalPages;
+		currentPage = $scope.ViewAllRegisterUserController.currentPage;
+		$scope.pageNumber = $scope.ViewAllRegisterUserController.currentPage;
+		$scope.pageSize = $scope.ViewAllRegisterUserController.totalPages;
+		
+		if(totalPages == 0) {
+			$scope.pageNumber = 0;
+		}
+	});
+	
+	
+	
+		$scope.searchViewAllRegisteredUser = function(page,cityName) {
+			
+			$scope.City = cityName;
+			console.log("$scope.City"+$scope.City);
+			
+		if(angular.isUndefined($scope.City) || $scope.City=="") {
+			console.log('inside function');
+			$scope.City = " ";
+		}
+		currentPage = page;
+		
+		$scope.ViewAllRegisterUserController = ViewAllRegisteredUserService.ViewAllRegisteredUserInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			console.log($scope.ViewAllRegisterUserController.totalPages);
+			totalPages = $scope.ViewAllRegisterUserController.totalPages;
+			currentPage = $scope.ViewAllRegisterUserController.currentPage;
+			$scope.pageNumber = $scope.ViewAllRegisterUserController.currentPage;
+			$scope.pageSize = $scope.ViewAllRegisterUserController.totalPages;
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+	   
+	};
+	$scope.searchViewAllRegisteredUser = function(page,cityName) {
+		$scope.City = cityName;
+		console.log("$scope.City: "+$scope.City);
+		if(angular.isUndefined($scope.City) || $scope.City=="") {
+			
+			$scope.City = " ";
+		}
+		currentPage = page;
+		
+		$scope.ViewAllRegisterUserController = ViewAllRegisteredUserService.ViewAllRegisteredUserInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			console.log($scope.ViewAllRegisterUserController.totalPages);
+			totalPages = $scope.ViewAllRegisterUserController.totalPages;
+			currentPage = $scope.ViewAllRegisterUserController.currentPage;
+			$scope.pageNumber = $scope.ViewAllRegisterUserController.currentPage;
+			$scope.pageSize = $scope.ViewAllRegisterUserController.totalPages;
+			if(totalPages == 0) {
+				$scope.pageNumber = 0;
+			}
+		});
+	    
+	};
+	angular.module('adschela').service('ViewAllRegisteredUserService',function($resource){
+	    this.ViewAllRegisteredUserInfo = $resource(
+	            '/viewAllRegisteredUserForAdmin/:City/:currentPage',
+	            {alt:'json',callback:'JSON_CALLBACK'},
+	            {
+	                get: {method:'get'}
+	            }
+	    );
+	});
+	
+	
+	
+	$scope.onNext = function() {
+		if(currentPage < totalPages) {
+			currentPage++;
+			$scope.searchViewAllRegisteredUser(currentPage);
+		}
+	};
+	$scope.onPrev = function() {
+		if(currentPage > 1) {
+			currentPage--;
+			$scope.searchViewAllRegisteredUser(currentPage);
+		}
+	};
+	
+	});
+
+	
+
+	angular.module('adschela').service('ViewAllRegisteredUserService',function($resource){
+        this.ViewAllRegisteredUserInfo = $resource(
+            '/viewAllRegisteredUserForAdmin/:City/:currentPage',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    	);
+	});
+
 
 angular.module('adschela').controller('ViewAllOrdersController',function($scope, $modal, $http, $filter,ViewAllOrdersService){
 
@@ -1335,6 +1450,14 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	
 	$scope.onComposeAdDone = function() {
 		SaveToCart($scope.selectedCartItemOnPopUp);
+		if($scope.selectedCartItemOnPopUp.dates == "")
+			{
+			alert("Please select date");
+			}
+		else{
+				//used to close the opened Dialog
+				closeDialog();
+			}
 	}
 	
 	$('body').on('blur','#translationArea',function(e) {
@@ -1726,6 +1849,11 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			controller:'ComposeAdController',
 			className: 'ngdialog-theme-default'
 		});
+	}
+	
+	//close the ng-dialog
+	closeDialog =function(){
+		ngDialog.close();
 	}
 	
 	$scope.formatDate = function(cd) {

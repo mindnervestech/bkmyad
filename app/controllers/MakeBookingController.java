@@ -620,15 +620,16 @@ import com.google.common.collect.Lists;
 	     
 	     String modeOfPayment=json.get("modeOfPayment").asText();
 	     String orderId = UUID.randomUUID().toString();
+	     orderId = orderId.substring(orderId.lastIndexOf("-") + 1);
 	     float amount = 0;
 	     List<ComposedAdSave> composedAdSaves = new ArrayList<>();
          
 	     try {
 	    	 cartItem = objectMapper.readValue(json.get("carts").traverse(),
 	    			 new com.fasterxml.jackson.core.type.TypeReference<List<CartItem>>() {});
-	         
+	      
 	         for(int i=0; i < cartItem.size(); i++) {
-	          ComposedAdSave cds=new ComposedAdSave();
+	        	 ComposedAdSave cds=new ComposedAdSave();
 	          cds.Category=cartItem.get(i).mainCategoty;
 	          cds.Subcategory=cartItem.get(i).subcategory;
 	          cds.Nameofthenewspaper=cartItem.get(i).newspaper;   //location saved here
