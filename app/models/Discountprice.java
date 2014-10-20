@@ -162,14 +162,14 @@ public class Discountprice {
 		}
 		//Get all package  rate   
 		@Transactional
-	    public static long getAllAnnouncementsTotal(String City,  int rowsPerPage) {
+	    public static long getAllPackageRateTotal(String newsPaper,  int rowsPerPage) {
 	    	long totalPages = 0, size;
 	    	
-	    	if(City.trim().equals("")) {
+	    	if(newsPaper.trim().equals("")) {
 	    		size = (Long) JPA.em().createQuery("Select count(*) from Discountprice a").getSingleResult();
 	    	} else {
 	    		Query query = JPA.em().createQuery("Select count(*) from Discountprice a where a.Nameofthenewspaper LIKE ?2");
-	    		query.setParameter(2, "%"+City+"%");
+	    		query.setParameter(2, "%"+newsPaper+"%");
 	    		size= (Long) query.getSingleResult();
 	    	}
 	    	
@@ -183,11 +183,11 @@ public class Discountprice {
 	    }
 		
 		 @Transactional
-		    public static List<Discountprice> getAllAnnouncements(String City, int currentPage, int rowsPerPage, long totalPages) {
+		    public static List<Discountprice> getAllPackageRate(String newsPaper, int currentPage, int rowsPerPage, long totalPages) {
 		    	int  start=0;
 		    	/*Query q;*/
 		    	String sql="";
-		    	if(City.trim().equals("")) {
+		    	if(newsPaper.trim().equals("")) {
 		    		sql = "Select a from Discountprice a";
 		    	} else {
 		    		sql ="Select a from Discountprice a where a.Nameofthenewspaper LIKE ?1";
@@ -201,8 +201,8 @@ public class Discountprice {
 					start = (int) ((totalPages*rowsPerPage)-rowsPerPage); 
 				}
 		    	Query q = JPA.em().createQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
-		    	if(!City.trim().equals("")) {
-					q.setParameter(1, "%"+City+"%");
+		    	if(!newsPaper.trim().equals("")) {
+					q.setParameter(1, "%"+newsPaper+"%");
 				}
 				
 				return (List<Discountprice>)q.getResultList();

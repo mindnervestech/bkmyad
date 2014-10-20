@@ -648,9 +648,11 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	
 	
 	
-		$scope.searchViewAllOrderData = function(page,nameOfthenewspaper) {
+		$scope.searchViewAllOrderData = function(page,cityName) {
 			
-			$scope.City = 	nameOfthenewspaper;
+			$scope.City = cityName;
+			console.log("$scope.City"+$scope.City);
+			
 		if(angular.isUndefined($scope.City) || $scope.City=="") {
 			console.log('inside function');
 			$scope.City = " ";
@@ -669,7 +671,9 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 		});
 	   
 	};
-	$scope.searchViewAllOrderData = function(page) {
+	$scope.searchViewAllOrderData = function(page,cityName) {
+		$scope.City = cityName;
+		console.log("$scope.City: "+$scope.City);
 		if(angular.isUndefined($scope.City) || $scope.City=="") {
 			
 			$scope.City = " ";
@@ -986,7 +990,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 
 	angular.module('adschela').controller('AddPackageRateController',function($scope, $modal, $http, $filter, PackageRateService,getNewspaperservice,getAllCitiesService,getcnameservice, deletePackageRateService){
 
-		$scope.City = " ";
+		$scope.newsPaper = " ";
 		$scope.pageNumber;
 		$scope.pageSize;
 		$scope.formData = "";
@@ -1001,8 +1005,8 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		}
 
 		//Pacakge Rate(Discountprice Model ) come in the PackageRateService.
-		//$scope.city=spassing the news paper as parameter from ui.
-		$scope.packageRate = PackageRateService.PackageRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		//$scope.newsPaper =spassing the news paper as parameter from ui.
+		$scope.packageRate = PackageRateService.PackageRateInfo.get({newsPaperName:$scope.newsPaper,currentPage:currentPage},function(response) {
 			totalPages = $scope.packageRate.totalPages;
 			currentPage = $scope.packageRate.currentPage;
 			$scope.pageNumber = $scope.packageRate.currentPage;
@@ -1016,14 +1020,14 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		
 		    //used to search the  Package data on newspaper.
 			$scope.searchPackageRate = function(page,packageName) {
-				$scope.City = packageName;
-			if(angular.isUndefined($scope.City) || $scope.City=="") {
+				$scope.newsPaper = packageName;
+			if(angular.isUndefined($scope.newsPaper) || $scope.newsPaper=="") {
 				console.log('inside function');
-				$scope.City = " ";
+				$scope.newsPaper= " ";
 			}
 			currentPage = page;
 			//Pacakge Rate(Discountprice Model ) come in the PackageRateService.
-			$scope.packageRate = PackageRateService.PackageRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			$scope.packageRate = PackageRateService.PackageRateInfo.get({newsPaperName:$scope.newsPaper ,currentPage:currentPage},function(response) {
 				console.log($scope.packageRate.totalPages);
 				totalPages = $scope.packageRate.totalPages;
 				currentPage = $scope.packageRate.currentPage;
@@ -1037,14 +1041,14 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		};
 		 //used to search the  Discount data on newspaper.
 		$scope.searchPackageRate = function(page,packageName) {
-			$scope.City = packageName;
-			if(angular.isUndefined($scope.City) || $scope.City=="") {
+			$scope.newsPaper = packageName;
+			if(angular.isUndefined($scope.newsPaper) || $scope.newsPaper =="") {
 				console.log('inside function');
-				$scope.City = " ";
+				$scope.newsPaper= " ";
 			}
 			currentPage = page;
 			//Pacakge Rate(Discountprice Model ) come in the PackageRateService.
-			$scope.packageRate = PackageRateService.PackageRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+			$scope.packageRate = PackageRateService.PackageRateInfo.get({newsPaperName:$scope.newsPaper,currentPage:currentPage},function(response) {
 				console.log($scope.packageRate.totalPages);
 				totalPages = $scope.packageRate.totalPages;
 				currentPage = $scope.packageRate.currentPage;
@@ -1059,7 +1063,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		//used to get Pacakge Rate  from DiscountPrice model   in the PackageRateService.
 		angular.module('adschela').service('PackageRateService',function($resource){
 		    this.PackageRateInfo = $resource(
-		            '/getDiscountRate/:City/:currentPage',
+		            '/getDiscountRate/:newsPaperName/:currentPage',
 		            {alt:'json',callback:'JSON_CALLBACK'},
 		            {
 		                get: {method:'get'}
@@ -1205,7 +1209,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		//get the package rate from the discount price model
 		angular.module('adschela').service('PackageRateService',function($resource){
 	        this.PackageRateInfo = $resource(
-	            '/getDiscountRate/:City/:currentPage',
+	            '/getDiscountRate/:newsPaperName/:currentPage',
 	            {alt:'json',callback:'JSON_CALLBACK'},
 	            {
 	                get: {method:'get'}

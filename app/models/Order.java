@@ -153,10 +153,10 @@ public class Order {
 	    	BigInteger sizebig;
 	    	
 	    	if(City.trim().equals("")) {
-	    		sizebig = (BigInteger)JPA.em().createNativeQuery("select count(*) from orders_composedadsave").getSingleResult();
+	    		sizebig = (BigInteger)JPA.em().createNativeQuery("select count(*) from Orders_ComposedAdSave").getSingleResult();
 	    	} else {
-	    		Query query = JPA.em().createNativeQuery("select count(*) from orders_composedadsave");
-	    		query.setParameter(2, "%"+City+"%");
+	    		Query query = JPA.em().createNativeQuery("select count(*) from Orders_ComposedAdSave,ComposedAdSave where  ComposedAdSave.City like ?1 AND   Orders_ComposedAdSave.Orders_orderId = ComposedAdSave.OrderID");
+	    		query.setParameter(1, "%"+City+"%");
 	    		sizebig= (BigInteger) query.getSingleResult();
 	    	}
 	    	//cast to long
@@ -178,9 +178,9 @@ public class Order {
 		    	String sql="";
 		    	if(City.trim().equals("")) {
 		    		
-		    		sql = "select orders_composedadsave.Orders_orderId,orders_composedadsave.composedAd_OID from orders_composedadsave,composedadsave  order by  composedadsave.OID  desc";//select * from orders_composedadsave
+		    		sql = "select Orders_ComposedAdSave.Orders_orderId,Orders_ComposedAdSave.composedAd_OID from Orders_ComposedAdSave,ComposedAdSave  order by  ComposedAdSave.OID  desc";//
 		    	} else {
-		    		sql ="select orders_composedadsave.composedAd_OID,orders_composedadsave.Orders_orderId,composedadsave.city from orders_composedadsave,composedadsave where composedadsave.City like ?1 order by composedadsave.orderDate desc";
+		    		sql ="select Orders_ComposedAdSave.Orders_orderId,Orders_ComposedAdSave.composedAd_OID,ComposedAdSave.city from Orders_ComposedAdSave,ComposedAdSave where ComposedAdSave.City like ?1 AND Orders_ComposedAdSave.Orders_orderId = ComposedAdSave.OrderID";
 		    	}
 
 	    		if(currentPage >= 1 && currentPage <= totalPages) {

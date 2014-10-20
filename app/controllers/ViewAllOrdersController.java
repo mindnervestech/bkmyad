@@ -28,8 +28,8 @@ public class ViewAllOrdersController   extends Controller{
 		@Transactional
 		public static Result viewAllOrdersForAdmin(String City,int currentPage) {
 		
-			long totalPages = Order.getAllOrdersTotal(City, 8);
-			List<Object[]> allUsersOrders = Order.getAllOrdersOfUsers(City, currentPage, 8, totalPages);
+			long totalPages = Order.getAllOrdersTotal(City, 50);
+			List<Object[]> allUsersOrders = Order.getAllOrdersOfUsers(City, currentPage, 50, totalPages);
 			List<ComposedAdSaveVM> listallUsersOrders = new ArrayList<>();
 			
 			for (Object[] composedAdSaveVM: allUsersOrders) {

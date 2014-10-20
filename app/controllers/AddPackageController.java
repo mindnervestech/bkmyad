@@ -133,14 +133,14 @@ public class AddPackageController  extends Controller{
 		}
 	 
 	    @Transactional
-		public static Result getDiscountRate(String City,int currentPage) {
-			long totalPages = Discountprice.getAllAnnouncementsTotal(City, 50);
-			List<Discountprice> allBasicRate = Discountprice.getAllAnnouncements(City, currentPage, 50, totalPages);
-			List<DiscountVM> listOfBasicrate = new ArrayList<>();
+		public static Result getDiscountRate(String newsPaper,int currentPage) {
+			long totalPages = Discountprice.getAllPackageRateTotal(newsPaper, 50);
+			List<Discountprice> allPackgeRate = Discountprice.getAllPackageRate(newsPaper, currentPage, 50, totalPages);
+			List<DiscountVM> listOfPackagerRate = new ArrayList<>();
 			
-			for (Discountprice basicrateVM: allBasicRate) {
-				DiscountVM vm = new DiscountVM (basicrateVM);
-				listOfBasicrate.add(vm);
+			for (Discountprice discountrateVM:  allPackgeRate) {
+				DiscountVM vm = new DiscountVM (discountrateVM);
+				listOfPackagerRate.add(vm);
 			}
 			if(currentPage>totalPages && totalPages!=0) {
 				currentPage--;
@@ -148,7 +148,7 @@ public class AddPackageController  extends Controller{
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("totalPages", totalPages);
 			map.put("currentPage", currentPage);
-			map.put("results", listOfBasicrate);
+			map.put("results", listOfPackagerRate);
 			return ok(Json.toJson(map));
 		}
 	    

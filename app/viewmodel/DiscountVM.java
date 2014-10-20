@@ -16,6 +16,9 @@ public class DiscountVM {
 	public String Category;
     public String ExtracostperSqcm;
 	public String Cities;
+	public String Extraborderper="0";
+	public String Extrabgper="0";
+	public String Tickper="0";
 	
 	  public DiscountVM(Discountprice discountprice) {
 	    	this.Did=discountprice.Did;
@@ -29,6 +32,10 @@ public class DiscountVM {
 	    	this.SpecialDiscount=discountprice.SpecialDiscount;
 	    	this.Tick=discountprice.Tick;
 	    	this.Category=discountprice.Category;
+	    	this.Extraborderper =discountprice.Extraborderper;
+	    	this.Extrabgper=discountprice.Extrabgper;
+	    	this.Tickper = discountprice.Tickper;
+	    	
 	    	this.ExtracostperSqcm=discountprice.ExtracostperSqcm;
 	    }
 
