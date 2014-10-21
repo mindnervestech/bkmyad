@@ -19,7 +19,7 @@ public class DiscountVM {
 	public String Extraborderper="0";
 	public String Extrabgper="0";
 	public String Tickper="0";
-	
+	public String notes="Not Set";
 	  public DiscountVM(Discountprice discountprice) {
 	    	this.Did=discountprice.Did;
 	    	this.Nameofthenewspaper=discountprice.Nameofthenewspaper;
@@ -35,8 +35,8 @@ public class DiscountVM {
 	    	this.Extraborderper =discountprice.Extraborderper;
 	    	this.Extrabgper=discountprice.Extrabgper;
 	    	this.Tickper = discountprice.Tickper;
-	    	
 	    	this.ExtracostperSqcm=discountprice.ExtracostperSqcm;
+	    	this.notes = discountprice.notes;
 	    }
 
 }

@@ -43,6 +43,7 @@ public class Discountprice {
 		public String ExtracostperSqcm;
 		public String Cities;
 		//public String packageName;
+		public String notes= "Not Set";
 		
 		
 		public static List<Object[]> getfewdiscount(String nname,String cname) {

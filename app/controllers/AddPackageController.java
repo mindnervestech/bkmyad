@@ -128,6 +128,13 @@ public class AddPackageController  extends Controller{
 		
 			discountprice.Cities = cities;
 			discountprice.Edition=form.get("packageName");
+		//for notes 
+			if(form.get("notes") == null){
+				discountprice.notes = "Not Set";
+			}else{
+				discountprice.notes = form.get("notes");
+			}
+			System.out.println("Notes form Ui"+form.get("notes"));
 			discountprice.save();
 			return ok();
 		}
@@ -233,8 +240,14 @@ public class AddPackageController  extends Controller{
 			
 			}
 			discountprice.Cities = cities;
-		
 			discountprice.ExtracostperSqcm=form.get("ExtracostperSqcm");
+
+			if(form.get("notes") == null){
+            	discountprice.notes = "Not Set";
+            }else{
+            	discountprice.notes = form.get("notes");
+            }		
+			System.out.println("discountprice.notes"+discountprice.notes);
 			discountprice.merge();
 			return ok();
 		}
