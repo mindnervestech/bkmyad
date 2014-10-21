@@ -6,8 +6,7 @@
 @main("") {
 	<body class="mnt-body">
 		<div class="container mnt-container">
-			  
-         	<input type="hidden" ng-model="txtUsername" ng-init='txtUsername = "@session().get("emailId")"' value='@session().get("emailId")'/>
+         	<input type="hidden" ng-model="txtUsername" ng-init='setSession("@session().get("userName")")' value='@session().get("emailId")'/>
 			<header id="header" style="width: 100%;display: block;">
 				<div class="row">
 				<div class="span12" style="margin-bottom: 1%;" >
@@ -41,16 +40,16 @@
 					 <!--  <li class=""><a href="special_offer.html">Specials Offer</a></li> -->
 					  <li class=""><a href="#/aboutUs" >About Us</a></li>
 					  <li class=""><a href="#/contactUs" >Contact Us</a></li>
-					  <li class=""  ng-if='@session().containsKey("userName")'><a href="#/myAccount">My Account</a></li> 
-					  <li class=""  ng-if='@session().containsKey("userName")' style="float: right;"><a href="/logout">Logout</a></li> 
-					  <li  ng-if='!(@session().containsKey("userName"))'  >
+					  <li class=""  ng-show="name != ''"><a href="#/myAccount">My Account</a></li> 
+					  <li class=""  ng-show="name != ''" style="float: right;"><a href="/logout">Logout</a></li> 
+					  <li ng-show="name == ''"  >
 					  <a   ng-click="Login()" data-toggle="modal" style="cursor: pointer;" >Login </a>
 					  </li>
-					 <li  ng-if='!(@session().containsKey("userName"))'>
+					 <li ng-show="name == ''">
 						<a  ng-click="Register()" data-toggle="modal" style="cursor: pointer;">Register </a>						
 					 </li>
-					 <li  ng-if='(@session().containsKey("userName"))' style="float: right;/* width: 40%; */padding-top: 1%;">
-						Welcome: 	@session().get("userName")					
+					 <li  ng-show="name != ''" style="float: right;/* width: 40%; */padding-top: 1%;">
+						Welcome: 	{{name}}					
 					 </li>
 					 <div class="pull-right" style="width: 26%;margin-right: 1%;"> 
 				<!-- <div style="width: 65%;  float: left;">

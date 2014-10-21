@@ -1564,6 +1564,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	$scope.orderListuser = [];
 	$scope.orderIdPer = $cookies.orderId;
 	$scope.orderIdStatus = $cookies.orderId;
+	$scope.name;
 	console.log(" $scope.lastVal"+ $scope.orderIdPer);
 	 if(!($scope.orderIdStatus == '') ){
 	    	$http.get("checkforOrderStatus/"+$scope.orderIdStatus)
@@ -1672,6 +1673,11 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			$scope.Send=true;
 		});
 	}
+
+	$scope.setSession = function(d){
+		console.log(d);
+		$scope.name = d;
+	} 
 	
 	$scope.rate = 0;
 		
@@ -2054,12 +2060,13 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			  $http.get("checkusercreadientals/"+$scope.userId+'/'+$scope.userpass)
 		      .success(function(data){
 		      $scope.result = data;
-		      if($scope.result == "false") {
-		      $scope.rc.sampleWizard.moveTo(4);
-			}
-		});
-	}}
- }
+		      if($scope.result != "true") {
+		    	  $scope.rc.sampleWizard.moveTo(4);
+		    	  $scope.setSession(data);
+		      }
+		    });
+		}}
+	}
 		
 	$scope.tabchange=function(){
 		$scope.bookingState.selectedNewsPaper="";

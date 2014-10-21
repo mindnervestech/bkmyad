@@ -66,7 +66,7 @@ import com.google.common.collect.Lists;
 			String name=existingUser.name;
     		session().put("emailId",Username );
     		session().put("userName",name);
-		     return ok("false");
+		    return ok(existingUser.name+"");
 		}
 		else {
 		flash("login_error", "Please check your username and password");
