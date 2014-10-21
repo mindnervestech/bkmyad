@@ -238,7 +238,7 @@
 			    	
 			    </tab>
 			    <tab ng-click="tabchange()" heading="Target by specific City">
-			    	<select class="mnt-select" style="margin-top: 1%" ng-model="bookingState.selectedState" ng-change="onStateSelect()">
+			    	<select class="mnt-select" style="margin-top: 1%" ng-model="bookingState.selectedState" ng-change="onStateSelect(bookingState.selectedState)">
 			    		<option ng-repeat="state in bookingRequest.locations" value="{{state}}">{{state}}</option>
 			    		<option value="">--Please Select State--</option>
 			    	</select>
