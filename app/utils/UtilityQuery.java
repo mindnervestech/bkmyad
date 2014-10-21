@@ -145,13 +145,12 @@ public class UtilityQuery {
  	
    }
      public static List<Object[]> getDiscountRateByLocationAndCategory(String city,String Category) {
-        	
-     	
-   	  Query q = JPA.em().createNativeQuery(QUERY2 +
-   				"FROM Basicrate INNER JOIN Newspaperdetails ON (Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) " +
-   				"where Basicrate.City= ?1 and Basicrate.Category= ?2");
-   	         
-   	         q.setParameter(1, city);
+       
+   	  Query q = JPA.em().createNativeQuery("SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,Dtotalprice,BasicratesperText,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,ExtracostperSqcm,Extrabgper,Extraborderper,Tickper " +
+     				"FROM Discountprice INNER JOIN Newspaperdetails ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) " +
+     			    "where Discountprice.Cities like ?1 and Discountprice.Category = ?2");
+   
+   	         q.setParameter(1, "%"+city+"%");
    	         q.setParameter(2, Category);
    	         List<Object[]> list = (List<Object[]>)q.getResultList();
    	         return list;

@@ -2227,6 +2227,15 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		}
 	}
 	
+	$scope.discountRateTargetByCityClicked = function(e, discountRate ){
+		console.log("in discountRateTargetByCityClicked ");
+		if($(e.target).is(":checked")) {
+			PushToCart(NewDiscountCartItem(discountRate, $scope.bookingState.selectedNewsPaper));
+		} else {   
+			DeleteCartItemByDiscountRate(discountRate);
+		}
+	}
+	
 	$scope.selectedCartItemOnPopUp = {};
 	$scope.composeAd = function(c) {
 		ComposeAd(c,$scope);

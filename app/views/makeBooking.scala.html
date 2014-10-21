@@ -254,7 +254,7 @@
 			    	  <tabset>
 			    	   <tab>
 			    	   <tab-heading>
-                        <i class="icon-tags"></i> Basic Rate
+			    	   <i class="icon-tags"></i> Basic Rate
                      </tab-heading>
 			    	   <div ng-show="rates.length > 0 && tab " class="backcolo">
 			    		<ul ng-show="rates.length > 0" >
@@ -287,9 +287,9 @@
 			    			<li ng-repeat="discountRate in discRates" class="pillboxes custom-pill">
 			    				<div  style="padding: 1px;">
 			    					 <span >
-        								<input style="margin: 1px" ng-click="discountClicked($event,discountRate)" ng-model="discountRate.selected" type="checkbox">
+        								<input style="margin: 1px" ng-click="discountRateTargetByCityClicked($event,discountRate)" ng-model="discountRate.selected" type="checkbox">
      								 </span>
-     								 <span>{{discountRate.city}} - Rs {{discountRate.amount}}&nbps;&nbps;&nbps;&nbps;&nbps;&nbps;{{discountRate.freeUnit}} /
+     								 <span>{{discountRate.location}} - Rs {{discountRate.dTotalPrice}} {{discountRate.freeUnit}} /
 			    					{{discountRate.unit}} </span>
 			    				</div>	
 			    				
