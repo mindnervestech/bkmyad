@@ -2037,7 +2037,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		});
 	}
 	
-	$scope.checkForUsernameAndPassword =function(){
+	$scope.checkForUsernameAndPassword = function(){
+		$scope.showIframe = false;
+		$("#ccIframe").html("");
 		if($scope.userwithoutaccount == 'No'){
 			var emailVar = $("#username").hasClass("valid");
 			if(emailVar){
@@ -2053,7 +2055,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			});
 			}
 		} else if($scope.userwithoutaccount == 'Yes'){
-			console.log("next step with login..");
 			$scope.alreadyRegister=false;
 			var emailVar = $("#username").hasClass("valid");
 		    if(emailVar && (!$scope.userpass == '')){
@@ -2242,8 +2243,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	}
 	 
 	$scope.onCartSubmit = function() {
-     	console.log("In submit cart fun");
-		//SubmitCart();
+     	//SubmitCart();
      	$scope.checkAllField=false;
      	if((!$scope.address.fullName == '') && (!$scope.address.shippingAddress == '') && (!$scope.address.state == '') &&(!$scope.address.pinCode == '') &&(!$scope.address.city == '') &&(!$scope.address.mobile == '')){  
      	    
@@ -2255,12 +2255,14 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				modeOfPayment:$scope.modeOfPayment
 			}
 		}).success(function(data){
-			console.log(data);
-			if($scope.modeOfPayment === 'cod') {
+			
+			$scope.showIframe = true;
+			$("#ccIframe").html(data);
+			/*if($scope.modeOfPayment === 'cod') {
 				
 			} else {
 				window.location = data;
-			}
+			}*/
 			
 		});
 	

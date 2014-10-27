@@ -771,7 +771,8 @@ import com.google.common.collect.Lists;
 		}
 	     response().setCookie("orderId", orderId);
 	     if(!modeOfPayment.equalsIgnoreCase("cod")) {
-	    	return ok(routes.CCAvenueController.ccavenue(orderId.trim()).url());
+			//return ok(routes.CCAvenueController.ccavenue(orderId.trim()).url());
+	    	return redirect(routes.CCAvenueController.ccavenue(orderId.trim()));
 	     }
 		 return ok(orderId);
 	 }

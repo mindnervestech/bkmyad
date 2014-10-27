@@ -5,6 +5,7 @@ import java.util.zip.Adler32;
 import javax.persistence.criteria.Order;
 
 import models.AddressDetails;
+import models.CCConfig;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.db.jpa.JPA;
@@ -19,9 +20,13 @@ import com.ccavenue.security.AesCryptUtil;
 public class CCAvenueController extends Controller {
 	@Transactional
 	public static Result ccavenue(String orderId) {
+		CCConfig config = CCConfig.byId(1);
 		models.Order o = models.Order.byId(orderId);
 	    	CCAvenueDefaultVM ccAvenueDefaultVo = new CCAvenueDefaultVM();
-	     	ccAvenueDefaultVo.Order_Id = orderId;
+	    	ccAvenueDefaultVo.accessCode= config.getAccessCode();
+	    	ccAvenueDefaultVo.Merchant_Id = config.getMerchant_Id();
+	    	ccAvenueDefaultVo.WorkingKey = config.getWorkingKey();
+	    	ccAvenueDefaultVo.Order_Id = orderId;
 	     	ccAvenueDefaultVo.Amount = o.total + "";
 	     	AddressDetails addressDetails = AddressDetails.findByOrderId(orderId);
 	     	ccAvenueDefaultVo.billing_cust_name = addressDetails.fullName;
@@ -41,10 +46,11 @@ public class CCAvenueController extends Controller {
 	     	ccAvenueDefaultVo.billing_cust_city = addressDetails.city;
 	     	//ccAvenueDefaultVo.billing_cust_address = routes.CCAvenueController.redirect().url();
 	     	ccAvenueDefaultVo.Checksum = getChecksum( ccAvenueDefaultVo.Merchant_Id,
-	     			ccAvenueDefaultVo.Order_Id, ccAvenueDefaultVo.Amount, ccAvenueDefaultVo.Redirect_Url,
-	     			ccAvenueDefaultVo.WorkingKey);
-	    
-        return ok(views.html.ccacheckout.render("Your new application is ready.", ccAvenueDefaultVo));
+	     	ccAvenueDefaultVo.Order_Id, ccAvenueDefaultVo.Amount, ccAvenueDefaultVo.Redirect_Url,
+	   		ccAvenueDefaultVo.WorkingKey);
+	     	
+	     	ccAvenueDefaultVo.ccaRequest = ccAvenueDefaultVo.buildRequest();
+        return ok(views.html.ccacheckoutiframe/*ccacheckout*/.render("Your new application is ready.", ccAvenueDefaultVo));
     }
     
 	@Transactional
