@@ -1,0 +1,16 @@
+@(title: String)(ccavenue: viewmodel.CCAvenueDefaultVM)
+
+
+	<iframe  width="482" height="500" scrolling="No" frameborder="0"  id="paymentFrame" src="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction&merchant_id=@ccavenue.Merchant_Id&encRequest=@ccavenue.ccaRequest&access_code=@ccavenue.accessCode">
+	  	</iframe>
+	</center>
+	
+	<script type="text/javascript">
+    	$(document).ready(function(){
+    		$('iframe#paymentFrame').load(function() {
+				 window.addEventListener('message', function(e) {
+			    	 $("#paymentFrame").css("height",e.data['newHeight']+'px'); 	 
+			 	 }, false);
+			 }); 
+    	});
+	</script>

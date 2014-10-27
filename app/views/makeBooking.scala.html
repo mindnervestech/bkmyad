@@ -448,7 +448,9 @@
                  data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength" style="float:right; margin: 1%; margin-right: 3%;"></a>
 		   <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward();"
                    data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex" style="float: right; margin: 1%; margin-right: 2%;">Back</a>
-                 </div> 
+      </div>
+      <div id="ccIframe" data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength || showIframe">
+      </div> 
 		  </div>
 		  <br/>
 		  
