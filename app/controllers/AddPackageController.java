@@ -51,6 +51,13 @@ public class AddPackageController  extends Controller{
 	 @Transactional
 		public static Result saveNewpackageRate() {
 			JsonNode json = request().body().asJson();
+		
+			//get the category list selected on the UI.
+			String category = json.get("Category").toString();
+			System.out.println("category"+category);
+			String categoryUnique[]=category.split(",");
+			for (int i=0;i<categoryUnique.length;i++){
+			
 			DynamicForm form = DynamicForm.form().bindFromRequest();
 			Discountprice discountprice = new Discountprice();
 			discountprice.Tbasicprice ="0";
@@ -110,7 +117,12 @@ public class AddPackageController  extends Controller{
 				discountprice.Tickper= form.get("tickPercentage");
 			}
 			
-			discountprice.Category=form.get("Category");
+			//discountprice.Category=form.get("Category");
+			discountprice.Category=categoryUnique[i].trim();
+			discountprice.Category = discountprice.Category.replace("[","");
+			discountprice.Category = discountprice.Category.replace("]","");
+			discountprice.Category = discountprice.Category.replace("\"",""); 
+			
 			discountprice.ExtracostperSqcm=form.get("ExtracostperSqcm");
 			
 			JsonNode arrNode = json.get("City");
@@ -136,6 +148,7 @@ public class AddPackageController  extends Controller{
 			}
 			System.out.println("Notes form Ui"+form.get("notes"));
 			discountprice.save();
+			}
 			return ok();
 		}
 	 

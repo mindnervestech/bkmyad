@@ -125,11 +125,7 @@ public class SendMailUtility {
 			//Add multiple recipients.
 		//	message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email));
 			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("support@arihantbooking.com"));
-		
-			
-			
 			final String text = getEmailTemplate("views.html.orderdetails",userEmailId,orderDate,category,border,bgcolor,tick,adtext,paymentOption,total,PublishDate,declaimer);
-		
 		     message.setSubject( "Your Ad Order Details");
 			//message.setText();
 			 BodyPart messageBodyPart = new MimeBodyPart();
@@ -137,7 +133,6 @@ public class SendMailUtility {
 			 messageBodyPart.setContent(text, "text/html");
 	        // messageBodyPart.setText(text);
 	      //   messageBodyPart.
-	         
 	         // Create a multipar message
 	         Multipart multipart = new MimeMultipart();
 	         // Set text message part

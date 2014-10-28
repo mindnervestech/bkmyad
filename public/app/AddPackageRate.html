@@ -126,7 +126,7 @@
 			        	 -->
 			        	<td><label>Category</label></td>
 			        	<td style="height: 60px;">
-			        		<select  name="Category" style="width:90%;" data-ng-model="formData.Category" required>
+			        		<select  multiple name="Category" style="width:90%;" data-ng-model="formData.Category" required>
 			        			<option ng-repeat="cat in resultcname" value="{{cat.cname}}">{{cat.cname}}</option>
 			        			<option value="">Please Select Category</option>
 			        			

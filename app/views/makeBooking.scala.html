@@ -422,7 +422,7 @@
         
          
 	   <div align="center"  data-ng-init="showDebitShipingDetails();"  >
-	    <div ng-if='(@session().containsKey("userName"))'	data-ng-init="showAddressDetails()">
+	    <div ng-if= "name != ''"	data-ng-init="showAddressDetails()">
 	    </div>
 	   <p ng-show='checkAllField' style="color: red">Please Fill All Details </p>
 	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Full Name *:</p> <input type="text" ng-model="address.fullName" id="fullName" name="fullName" required/><br/>

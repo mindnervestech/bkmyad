@@ -36,7 +36,6 @@ public class CCAvenueController extends Controller {
 	     	ccAvenueDefaultVo.billing_cust_email = o.email;
 	     	ccAvenueDefaultVo.billing_cust_state = addressDetails.state;
 	     	ccAvenueDefaultVo.billing_cust_tel = addressDetails.mobile;
-	     	
 	     	ccAvenueDefaultVo.delivery_cust_name = addressDetails.fullName;
 	     	ccAvenueDefaultVo.delivery_cust_address = addressDetails.address;
 	     	ccAvenueDefaultVo.delivery_cust_country = "India";
@@ -102,7 +101,6 @@ public class CCAvenueController extends Controller {
 
     private static String getChecksum(String MerchantId, String OrderId, String Amount, String redirectUrl, String WorkingKey)  {
     	String str = MerchantId + "|" + OrderId + "|" + Amount + "|" + redirectUrl + "|" + WorkingKey;
-
     	Adler32  adl = new Adler32();
     	adl.update(str.getBytes());
     	return String.valueOf(adl.getValue());
