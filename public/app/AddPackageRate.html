@@ -23,13 +23,15 @@
         	<section class="dadsrch">
             	<section class="heading"><h2></h2></section>
                 <section class="dadsrchdiv">
-                	<input name="title" type="text" ng-model="newspaperName" class="" style="height:32px ;"
+                <lable  style="float: left;margin-right: 2%;font-weight: bold;">Newspaper</lable>
+                	<input name="title" type="text" ng-model="newspaperName" class="" style="height:32px ;  width: 20%;"
                 	 ng-keyup="$event.keyCode == 13 ? searchPackageRate(1,newspaperName,category) : null">
-                	<input name=""  style="width: 20%;" type="button" class="btngray" value="Newspaper Search" ng-click="searchPackageRate(1,newspaperName,category)">
-                     
-                     <input name="title" type="text" ng-model="category" class="" style="height:32px ;"
+                	<!-- <input name=""  style="width: 10%;" type="button" class="btngray" value="Newspaper Search" ng-click="searchPackageRate(1,newspaperName,category)">
+                     --> 
+                     <lable style="float: left; margin-left: 2%;margin-right: 2%;font-weight: bold;">Category</lable>
+                     <input name="title" type="text" ng-model="category" class="" style="height:32px ;  width: 20%;"
                 	 ng-keyup="$event.keyCode == 13 ? searchPackageRate(1,newspaperName,category) : null">
-                	<input name=""  style="width: 20%;"  type="button" class="btngray" value="Category Search" ng-click="searchPackageRate(1,newspaperName,category)">
+                	<input name=""  style="width: 10%;"  type="button" class="btngray" value="Search" ng-click="searchPackageRate(1,newspaperName,category)">
                      
                      
                    <!--   <input name="title" type="text" ng-model="category" class="" style="height:32px ;" ng-keyup="$event.keyCode == 13 ? searchPackageRate(1,,newspaperName,category) : null">

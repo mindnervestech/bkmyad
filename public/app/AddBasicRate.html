@@ -23,14 +23,15 @@
         	<section class="dadsrch">
             	<section class="heading"><h2></h2></section>
                 <section class="dadsrchdiv">
-            <!--     <lable>News Paper Search</lable> -->
-              	<input name="title" type="text" ng-model="nameOfTheNewspaper" class="" style="height:32px ;" 
+             <lable style="float:left;margin-right: 2%;font-weight: bold;">News Paper </lable>&nbsp;&nbsp;&nbsp; 
+              	<input  name="title" type="text" ng-model="nameOfTheNewspaper" class="" style="height:32px ; width: 20%;" 
               	ng-keyup="$event.keyCode == 13 ? searchBasicRate(1,nameOfTheNewspaper,category) : null">
-               <input name=""  style="width: 20%;" type="button" class="btngray" value="News Paper Search" ng-click="searchBasicRate(1,nameOfTheNewspaper,category)">
-                 
-                <input name="title" type="text" ng-model="category" class="" style="height:32px ;" 
+             <!--   <input name=""  style="width: 20%;" type="button" class="btngray" value="News Paper Search" ng-click="searchBasicRate(1,nameOfTheNewspaper,category)">
+              -->    
+              <lable style="float:left ;margin-left: 2%;margin-right: 2%;font-weight: bold;">Category </lable>&nbsp;&nbsp;&nbsp;
+                <input   name="title" type="text" ng-model="category" class="" style="height:32px ; width: 20%;" 
               	ng-keyup="$event.keyCode == 13 ? searchBasicRate(1,nameOfTheNewspaper,category) : null">
-               <input name="" style="width: 20%;" type="button" class="btngray" value="Category Search" ng-click="searchBasicRate(1,nameOfTheNewspaper,category)">
+               <input  name="" style="width: 10%;" type="button" class="btngray" value="Search" ng-click="searchBasicRate(1,nameOfTheNewspaper,category)">
                
                 
                 </section>

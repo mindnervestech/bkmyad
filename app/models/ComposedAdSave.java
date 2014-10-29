@@ -2,7 +2,6 @@ package models;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -271,10 +270,7 @@ public class ComposedAdSave{
 	    Query q = JPA.em().createQuery("Select a from ComposedAdSave a where a.userEmailId = ?1");
 	    q.setParameter(1, UserId);
 	    return (List<ComposedAdSave>)q.getResultList();
-			
-			
 	    }
-
 
 	    public static ComposedAdSave findById(Long id) {
 	    	Query query = JPA.em().createQuery("Select a from ComposedAdSave a where a.OID = ?1");
@@ -282,13 +278,9 @@ public class ComposedAdSave{
 	    	return (ComposedAdSave) query.getSingleResult();
 	    }
 	    
-
 		@Transactional	
 		public static List<ComposedAdSave> getInvoiceOrderDetails(String orderId) {
-			
-			
 			//String or="4f4a286a-962f-4271-8884-d41933962e9b";
-			
 			Query q = JPA.em().createQuery("Select a from ComposedAdSave a where a.OrderID = ?1");
 			q.setParameter(1, orderId);
 			return (List<ComposedAdSave>)q.getResultList();

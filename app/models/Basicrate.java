@@ -48,17 +48,22 @@ public class Basicrate {
 		
 		@Transactional
 	    public static long getAllAnnouncementsTotal(String City, String Category, int rowsPerPage) {
-	    	long totalPages = 0, size;
+	    	long totalPages = 0, size = 0;
 	    	
 	    	if(City.trim().equals("") && Category.trim().equals("")) {
 	    		size = (Long) JPA.em().createQuery("Select count(*) from Basicrate a").getSingleResult();
-	    	} else if(!(City.trim().equals(""))) {
-	    		Query query = JPA.em().createQuery("Select count(*) from Basicrate a where a.Nameofthenewspaper LIKE ?1");
+	    	}else if(!(City.trim().equals("")) && !(Category.trim().equals("")) ) {
+	    		Query query = JPA.em().createQuery("Select count(*) from Basicrate a where a.Nameofthenewspaper LIKE ?1 and  a.Category LIKE ?2");
 	    		query.setParameter(1, "%"+City+"%");
+	    		query.setParameter(2, "%"+Category+"%");
 	    		size= (Long) query.getSingleResult();
-	    	}else{
+	    	}else if (!(Category.trim().equals(""))){
 	    		Query query = JPA.em().createQuery("Select count(*) from Basicrate a where a.Category LIKE ?2");
 	    		query.setParameter(2, "%"+Category+"%");
+	    		size= (Long) query.getSingleResult();
+	    	}else if(!(City.trim().equals(""))){
+	    		Query query = JPA.em().createQuery("Select count(*) from Basicrate a where a.Nameofthenewspaper LIKE ?1");
+	    		query.setParameter(1, "%"+City+"%");
 	    		size= (Long) query.getSingleResult();
 	    	}
 	    	
@@ -77,12 +82,13 @@ public class Basicrate {
 		    	/*Query q;*/
 		    	String sql="";
 		    	if(Nameofthenewspaper.trim().equals("") && Category.trim().equals("") ) {
-		    		
 		    		sql = "Select a from Basicrate a";
-		    	} else  if (!(Nameofthenewspaper.trim().equals(""))){
+		    	} else  if (!(Nameofthenewspaper.trim().equals("")) && !(Category.trim().equals(""))){
+		    		sql ="Select a from Basicrate a where a.Nameofthenewspaper LIKE ?1 and a.Category LIKE ?2";
+		    		
+		    	}else if (!(Nameofthenewspaper.trim().equals(""))){
 		    		sql ="Select a from Basicrate a where a.Nameofthenewspaper LIKE ?1";
 		    	}else{
-		    		
 		    		sql ="Select a from Basicrate a where a.Category LIKE ?2";
 		    	}
 
@@ -94,9 +100,12 @@ public class Basicrate {
 					start = (int) ((totalPages*rowsPerPage)-rowsPerPage); 
 				}
 		    	Query q = JPA.em().createQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
-		    	if(!Nameofthenewspaper.trim().equals("")) {
+		    	if(!Nameofthenewspaper.trim().equals("") && !Category.trim().equals("")) {
 					q.setParameter(1, "%"+Nameofthenewspaper+"%");
-				}else if(!Category.trim().equals("")){
+					q.setParameter(2, "%"+Category+"%");
+				}else if(!Nameofthenewspaper.trim().equals("")){
+					q.setParameter(1, "%"+Nameofthenewspaper+"%");
+				}else if (!Category.trim().equals("")){
 					q.setParameter(2, "%"+Category+"%");
 				}
 				return (List<Basicrate>)q.getResultList();
