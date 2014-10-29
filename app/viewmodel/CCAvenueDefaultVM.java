@@ -55,7 +55,7 @@ public class CCAvenueDefaultVM {
 			ccaRequest = ccaRequest + "amount" + "=" + URLEncoder.encode(Amount,"UTF-8") + "&";
 			ccaRequest = ccaRequest + "cancel_url" + "=" + URLEncoder.encode(cancel_url,"UTF-8") + "&";
 			
-			ccaRequest = ccaRequest + "order_Id" + "=" + URLEncoder.encode(Order_Id,"UTF-8") + "&";
+			ccaRequest = ccaRequest + "order_id" + "=" + URLEncoder.encode(Order_Id,"UTF-8") + "&";
 			ccaRequest = ccaRequest + "redirect_url" + "=" + URLEncoder.encode(Redirect_Url,"UTF-8") + "&";
 			ccaRequest = ccaRequest + "currency" + "=" + URLEncoder.encode(currency,"UTF-8") + "&";
 			ccaRequest = ccaRequest + "language" + "=" + URLEncoder.encode(language,"UTF-8") + "&";
@@ -66,7 +66,8 @@ public class CCAvenueDefaultVM {
 			ccaRequest = ccaRequest + "billing_zip" + "=" + URLEncoder.encode(billing_zip,"UTF-8") + "&";
 			ccaRequest = ccaRequest + "billing_country" + "=" + URLEncoder.encode(billing_cust_country,"UTF-8") + "&";
 			ccaRequest = ccaRequest + "billing_tel" + "=" + URLEncoder.encode(billing_cust_tel,"UTF-8") + "&";
-			ccaRequest = ccaRequest + "billing_email" + "=" + URLEncoder.encode(billing_cust_email,"UTF-8");
+			ccaRequest = ccaRequest + "billing_email" + "=" + URLEncoder.encode(billing_cust_email,"UTF-8") + "&";
+			ccaRequest = ccaRequest + "integration_type" + "=" + URLEncoder.encode("iframe_normal","UTF-8");
 			AesCryptUtil aesUtil=new AesCryptUtil(WorkingKey);
 			return  aesUtil.encrypt(ccaRequest);
 		} catch (UnsupportedEncodingException e) {
