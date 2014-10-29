@@ -401,13 +401,14 @@ angular.module('adschela').service('StateCityService',function($resource){
     );
 });
 
-angular.module('adschela').controller("MyAccountController",['$scope','$http',function($scope, $http,OrderListService){
+angular.module('adschela').controller("MyAccountController",['$scope','$http','ngDialog',function($scope, $http,OrderListService,ngDialog){
 	    
 	     $scope.UserId=$scope.txtUsername;
-	     console.log("$scope.txtUsername"+$scope.txtUsername);
+	     console.log("$scope.txtUsername"+$scope.UserId);
 	     console.log("MyAccountController");
-	    
-	     $http.get("listInfo/"+$scope.txtUsername)
+	     
+	 
+	     $http.get("listInfo/"+$scope.UserId)
 		 .success(function(data){
 		  $scope.orderList = data;
 		  console.log(" $scope.result"+ $scope.orderList);
@@ -415,8 +416,36 @@ angular.module('adschela').controller("MyAccountController",['$scope','$http',fu
 	     
 	     
 	     
-	     $scope.setData = function(ancmt) {
-	 		$scope.orderData = ancmt;
+	    $scope.setInvoiceData = function(invoiceData) {
+	    	$scope.grantTotal = 0;
+	  
+	 
+	    $scope.orderId=invoiceData.orderId;
+	    console.log(" $scope.orderId"+ $scope.orderId);
+	  
+	    //get the invoice Details
+	    $http.get("getInvoiceOrderDetails/"+$scope.orderId)
+		 .success(function(data){
+			 if(data.results.length>0) {
+				 $scope.orderData = data.results;
+				 for(var i=0;i<data.results.length;i++){
+					 $scope.grantTotal += (parseInt(data.results[i].TotalCost));
+					 console.log("$scope.grantTotal"+$scope.grantTotal);
+				 }
+				 $scope.inVoiceHeader = data.results[0];
+			 }
+		  console.log(" $scope.result invoice"+JSON.stringify($scope.orderData));
+		});
+	    
+	   //get the adderess to  show on the invoice
+	    $http.get("getaddressDetailsofUser")
+		 .success(function(data){
+				 $scope.addressDetails = data.addressDetails;
+		         console.log(" $scope.result invoice"+JSON.stringify($scope.addressDetails));
+		});
+	    
+	   // $scope.invoiceDetails( $scope.orderData,$scope.inVoiceHeader,$scope.addressDetails);
+	 		
 	 		$('#myModal2').modal();
 	 				
 	 	};
@@ -1623,8 +1652,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 						extraForBackgroudInPer:orderListuser.extraForBackgroudInPer,
 						extraForBorderInPer:orderListuser.extraForBorderInPer,
 						extraFortickInPer:orderListuser.extraFortickInPer,
-						
-					     
 						startDate:moment().add(2,'days').format("DD/MM/YYYY")
 				    }
 				}
@@ -1766,8 +1793,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			    			    	
 			    	angular.forEach($scope.orderListuser, function(request, key){
 			    		if(request.id == orderListuser.id) {
-			    			
-			            	   	  request.isSelected = false;
+			            request.isSelected = false;
 			            }
 			    	});
 			       	return;
@@ -2113,11 +2139,11 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				extraForBackgroud:discountRate.backColor,
 				extraForBorder:discountRate.border,
 				extraFortick:discountRate.extraFortick,
-				
 				extraForBackgroudInPer:discountRate.extraForBackgroudInPer,
 				extraForBorderInPer:discountRate.extraForBorderInPer,
 				extraFortickInPer:discountRate.extraFortickInPer,
 				completenessStatus:'please fill details',
+				packageSelected:discountRate.packageSelected,
 				description: '',
 				total: 0, 
 				fullTotal: 0,
@@ -2153,7 +2179,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			extraForBackgroudInPer:rate.extraForBackgroudInPer,
 			extraForBorderInPer:rate.extraForBorderInPer,
 			extraFortickInPer:rate.extraFortickInPer,
-			
+			packageSelected:rate.packageSelected,
 			completenessStatus:'please fill details',
 			description: '',
 			total: 0,
@@ -2199,9 +2225,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		}
 	}
 	
-	
-	
-	 
 	$scope.rateClicked = function(e, rate) {
 		$($('.backcolo')[1]).find('.Internal input:checked').trigger('click');
 		
@@ -2210,7 +2233,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			flag = true;
 			DeleteAllBasicRateCartItem();
 		}
-		
 		
 		if($(e.target).is(":checked")) {
 			PushToCart(NewCartItem(rate, $scope.bookingState.selectedNewsPaper));

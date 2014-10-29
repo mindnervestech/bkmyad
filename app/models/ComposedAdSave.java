@@ -55,7 +55,7 @@ public class ComposedAdSave{
 	   public float rate;
 	   public String bgColorSelect; 
 	   public String  adbookedId;
-	   
+	   public String packageType ="";
 	   
 	   public String getAdbookedId() {
 		return adbookedId;
@@ -108,10 +108,6 @@ public class ComposedAdSave{
 		this.totalUnitCost = totalUnitCost;
 	}
 
-	
-	   /*OID,OrderID,Nameofthenewspaper,City,Adtext,ickRate,Bgcolor,BgcolorRate,Border
-	   BorderCost, PublishDate,BasicRate,TotalCost,Extraborderper, Extrabgper,Category,numberOfWords,orderDate
-	   */
 	
      public Long getOID() {
 		return OID;
@@ -285,6 +281,18 @@ public class ComposedAdSave{
 			query.setParameter(1, id);
 	    	return (ComposedAdSave) query.getSingleResult();
 	    }
-	
+	    
+
+		@Transactional	
+		public static List<ComposedAdSave> getInvoiceOrderDetails(String orderId) {
+			
+			
+			//String or="4f4a286a-962f-4271-8884-d41933962e9b";
+			
+			Query q = JPA.em().createQuery("Select a from ComposedAdSave a where a.OrderID = ?1");
+			q.setParameter(1, orderId);
+			return (List<ComposedAdSave>)q.getResultList();
+		}
+	    
 }
   

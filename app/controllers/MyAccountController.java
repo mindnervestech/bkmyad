@@ -18,6 +18,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import viewmodel.AddressDetailsVM;
 import viewmodel.BasicrateVM;
+import viewmodel.ComposedAdSaveVMInvoice;
 import viewmodel.OrderListVM;
 //import views.html.myaccount;
 
@@ -26,7 +27,8 @@ public class MyAccountController extends Controller {
 	
 	//get the orderList for current logged in  user
 	@Transactional
-	public static Result getAllUserOrder(String UserId) {
+	public static Result getAllUserOrder(String User) {
+		String  UserId = session().get("emailId"); 
 	  List<Order> allOrderList = Order.getAllOrderList(UserId);
 	
 		List<OrderListVM> listOfOrder = new ArrayList<OrderListVM>();
@@ -57,5 +59,19 @@ public class MyAccountController extends Controller {
 			return ok();
 		}
 	}
+	@Transactional
+	public static Result getInvoiceOrderDetails(String orderId) {
+	  List<ComposedAdSave> allInvoice = ComposedAdSave.getInvoiceOrderDetails(orderId);
 	
+		List<ComposedAdSaveVMInvoice> listOfOrder = new ArrayList<ComposedAdSaveVMInvoice>();
+	
+		for (ComposedAdSave orderlistVM: allInvoice) {
+			ComposedAdSaveVMInvoice vm = new ComposedAdSaveVMInvoice(orderlistVM);
+			listOfOrder.add(vm);
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("results", listOfOrder);
+	
+		return ok(Json.toJson(map));
+	}
 }

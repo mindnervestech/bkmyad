@@ -31,6 +31,7 @@ GET /getDiscountRate/:City/:currentPage	controllers.AddPackageController.getDisc
 GET  /viewAllOrdersForAdmin/:City/:currentPage	controllers.ViewAllOrdersController.viewAllOrdersForAdmin(City :String,currentPage :Integer)
 GET  /viewAllRegisteredUserForAdmin/:City/:currentPage	controllers.ViewAllRegisteredUserController.viewAllRegisteredUserForAdmin(City :String,currentPage :Integer)
 GET     /listInfo/:UserId              controllers.MyAccountController.getAllUserOrder(UserId :String)
+GET    /getInvoiceOrderDetails/:orderId    controllers.MyAccountController.getInvoiceOrderDetails(orderId :String)
 GET     /getaddressDetailsofUser            controllers.MyAccountController.getaddressDetailsofUser()
 POST	/saveBasicRate		               controllers.AddbasicRateController.saveBasicRate()
 POST    /saveNewPackageRate                controllers.AddPackageController.saveNewpackageRate()

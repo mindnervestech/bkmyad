@@ -354,6 +354,7 @@ import com.google.common.collect.Lists;
         public String extraForBackgroudInPer;
         public String extraFortickInPer;
         public Boolean isSelected;
+        public String  packageSelected = "P";
        
         public static DiscountRate byId(String id) {
         	DiscountRate discountRate = new DiscountRate();
@@ -420,6 +421,7 @@ import com.google.common.collect.Lists;
         public String extraForBackgroudInPer;
         public String extraFortickInPer;
         public Boolean isSelected;
+        public String  packageSelected = "B";
 		
         public static Rate byId(String id) {
             Rate rate = new Rate();
@@ -502,6 +504,7 @@ import com.google.common.collect.Lists;
 		public String extraForBorderInPer;
 	    public String extraForBackgroudInPer;
 	    public String extraFortickInPer;
+	    public String  packageSelected;
 		
 		
 	    //public float FinalTotal = 0;
@@ -684,6 +687,7 @@ import com.google.common.collect.Lists;
 	    	  cds.rate = cartItem.get(i).rate;
 	    	  cds.bgColorSelect = cartItem.get(i).nobgColor;
 	    	  cds.adbookedId = cartItem.get(i).id;
+	    	  cds.packageType = cartItem.get(i).packageSelected;
 	    			  
 	    	  
 	    	  Date date = new Date();

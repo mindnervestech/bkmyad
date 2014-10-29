@@ -26,7 +26,7 @@
                              <th><a>CC Category</a></th>
                              <th><a>Bank Name</a></th>
                              <th><a>Total Cost</a></th>
-                              <th><a>View </a></th>
+                              <th><a>Invoice </a></th>
                         <tr>
                     </thead>
                 	<tbody><tr>	
@@ -38,7 +38,7 @@
                              <td>{{dataorderList.cc_category}}</td>
                              <td>{{dataorderList.bank_name}}</td>
                              <td>{{dataorderList.total}}</td>
-                             <td> <input name="" type="button" value="View" ng-click="setData(dataorderList)" data-toggle="modal"  /></td>
+                             <td> <input name="" type="button" value="Invoice" ng-click="setInvoiceData(dataorderList)" data-toggle="modal"  /></td>
                              </tr>
                     	</tbody>
                 </table>
@@ -47,40 +47,85 @@
         </section>
     </section>
   </div>
-  <div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;left: 41%;">
+  
+  <div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false"  style="width: 65%;left: 41%; height: 459px !important;  overflow:scroll !important;">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Order Details</h4>
+		        <h4 class="modal-title" id="myModalLabel">Invoice Details</h4>
 		      </div>
-		     
-		      <div class="modal-body">
-		      <table>
+       <div>
+     <img src="assets/img/Logo Arihant Booking.jpg" />
+		     <table style="margin-left: 2%;">
 		      <tr>
-			        <tr>
-			       <td><label>Order ID : </label></td><td>{{orderData.orderId}}</td>
-			       </tr>
-			       <tr>
-			       <td><label>CC Bid : </label> </td><td><font ng-if="orderData.cc_bid != null">{{orderData.cc_bid}}</font><font ng-if="orderData.cc_bid == null">Canceled</font></td>
-			       </tr>
-			       <tr>
-			       <td><label>CC Order No :</label>  </td><td><font ng-if="orderData.cc_orderNo != null">{{orderData.cc_orderNo}}</font><font ng-if="orderData.cc_orderNo== null">Canceled</font></td>
-			       </tr>
-			       <tr>
-			       <td><label>CC Category :</label> </td><td> <font ng-if="orderData.cc_category != null">{{orderData.cc_category}}</font><font ng-if="orderData.cc_category == null">Canceled</font></td>
-			       </tr>
-			       <tr>
-			       <td><label>Bank Name :</label> </td><td> <font ng-if="orderData.bank_name != null">{{orderData.bank_name}}</font><font ng-if="orderData.bank_name == null">Canceled</font></td>
-			       </tr>
-			       <tr>
-			       <td><label>Total Cost :</label></td><td> {{orderData.total}}</td>
-			       </tr>
-			     </tr> 
-		        </table>
-		      </div>
+			       <td><label style="color:blue">Order ID : </label></td><td><span style="font-weight:bold">{{inVoiceHeader.OrderID}}</span></td>
+			       <td><label style="color:blue">Order Date: </label> </td><td><span style="font-weight:bold">{{inVoiceHeader.orderDate}}</span></td>
+			  </tr>
+			   <tr><!-- Nameofthenewspaper ,TotalCost,Bgcolor,,numberOfWords, -->
+			        <td><label style="color:blue">Client Name :</label> </td><td> <span style="font-weight:bold">{{inVoiceHeader.userEmailId}}</span></td>
+			       <td><label style="color:blue"> Payment Mode :</label>  </td><td><span style="font-weight:bold" ng-if="inVoiceHeader.paymentOption == 'cc'">Online</span></td>
+			  </tr>
+			  <tr>
+			  <td><label style="color:blue">Address:</label> </td>
+			  <td><span style="font-weight:bold">{{addressDetails.fullName}},{{addressDetails.address}} , {{addressDetails.city}} ,{{addressDetails.state}} ,{{addressDetails.pinCode}}</span></td>
+			  
+			  </tr>
+		 </table>
+     </div>
 		     
+		      <div class="modal-body" data ng-repeat="invoice in orderData">
+		      <table border="1" style="width: 900px;float: left; ">
+		      <tr>
+		         <td><label style="color:blue ;width: 40%;" > NewsPaper/Category/City: </label> </td>
+		         <td><label style="color:blue;width: 40%;" >Ad Text:</label> </td>
+		         <td><label style="color:blue;width: 40%;">Published Date: </label> </td>
+		         <td><label style="color:blue;width: 50%;">Total Cost :</label></td>
+			   </tr>
+			   <tr style="height: 140px";>
+			       <td>{{invoice.Nameofthenewspaper}}/{{invoice.Category}}/ <br/>{{invoice.City}}</lable></td>
+			       <td style="width: 20%;"> {{invoice.Adtext}}</lable></td>
+			       
+			  <!-- <tr>
+			      <td><label>BgColor Selected : </label></td>
+			      <td> {{invoice.Bgcolor}}</td>
+			       <td><label>Border Selected: </label> </td>
+			       <td>{{invoice.Border}}
+			      </td>
+			  </tr> -->
+			  
+			      <!--  <td><label>Tick Selected: </label> </td>
+			       <td> {{invoice.Tick}} </td> -->
+			       <td> {{invoice.PublishDate}} </lable></td>
+			       <td> {{invoice.TotalCost}} </lable></td>
+			</span>
+			 </tr>
+			
+		        </table>
+		       
+		      </div>
 		    </div>
+		     <table  border="1" style="margin-left: 86%;">
+		         <tr>
+			 <td>
+			 <label style="color:blue" >Grand Total :</label>
+			 </td> <td>
+			 {{grantTotal}}
+			 </td>
+			 </tr>
+		        </table>
 		  </div>
 		</div>
+		  <script type="text/javascript">
+    $(function(){
+      $('#myModal2').slimScroll({
+          color: 'red'
+      });
+    });
+</script>
+<style>
+	.ngdialog-content {
+		width:53% !important;
+	}
+	</style>      
   </body>
