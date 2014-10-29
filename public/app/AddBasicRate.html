@@ -23,13 +23,22 @@
         	<section class="dadsrch">
             	<section class="heading"><h2></h2></section>
                 <section class="dadsrchdiv">
-                	<input name="title" type="text" ng-model="City" class="" style="height:32px ;" ng-keyup="$event.keyCode == 13 ? searchBasicRate(1,City) : null"><input name="" type="button" class="btngray" value="Search" ng-click="searchBasicRate(1,City)">
+            <!--     <lable>News Paper Search</lable> -->
+              	<input name="title" type="text" ng-model="nameOfTheNewspaper" class="" style="height:32px ;" 
+              	ng-keyup="$event.keyCode == 13 ? searchBasicRate(1,nameOfTheNewspaper,category) : null">
+               <input name=""  style="width: 20%;" type="button" class="btngray" value="News Paper Search" ng-click="searchBasicRate(1,nameOfTheNewspaper,category)">
+                 
+                <input name="title" type="text" ng-model="category" class="" style="height:32px ;" 
+              	ng-keyup="$event.keyCode == 13 ? searchBasicRate(1,nameOfTheNewspaper,category) : null">
+               <input name="" style="width: 20%;" type="button" class="btngray" value="Category Search" ng-click="searchBasicRate(1,nameOfTheNewspaper,category)">
+               
+                
                 </section>
             </section>
             <!--Advance search fildes end-->
              <section class="dactperform">
                 <section class="left">
-             		<input name="" type="button" value="Create" class="btnblue" ng-click="setDates()" data-toggle="modal"  />
+             		<input name="" type="button" value="Create" class="btnblue" ng-click="createNewBasicRate()" data-toggle="modal"  />
            		</section>
            	</section>	
             <!--grid begin-->
@@ -73,8 +82,8 @@
             <section class="dpaging">
             	 <h4>{{pageNumber}}/{{pageSize}}</h4> 
             	<span class="dpagingright">
-                	<a href="" class="dpagingprv" ng-click="onPrev()">Prev</a>
-                	<a href="" class="dpagingnxt" ng-click="onNext()">Next</a>
+                	<a href="" class="dpagingprv" ng-click="onPrev(nameOfTheNewspaper,category)">Prev</a>
+                	<a href="" class="dpagingnxt" ng-click="onNext(nameOfTheNewspaper,category)">Next</a>
                 </span>
             </section>
         </div>     

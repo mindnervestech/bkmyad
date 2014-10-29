@@ -33,9 +33,9 @@ public class AddbasicRateController extends Controller{
 	    }
 	    
 	@Transactional
-	public static Result getBasicrate(String City,int currentPage) {
-		long totalPages = Basicrate.getAllAnnouncementsTotal(City, 50);
-		List<Basicrate> allBasicRate = Basicrate.getAllAnnouncements(City, currentPage, 50, totalPages);
+	public static Result getBasicrate(String City, String Category ,int currentPage) {
+		long totalPages = Basicrate.getAllAnnouncementsTotal(City,Category, 50);
+		List<Basicrate> allBasicRate = Basicrate.getAllAnnouncements(City,Category, currentPage, 50, totalPages);
 		List<BasicrateVM> listOfBasicrate = new ArrayList<>();
 		
 		for (Basicrate basicrateVM: allBasicRate) {

@@ -257,16 +257,16 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 		});
 	};
 
-	$scope.onNext = function() {
+	$scope.onNext = function(cname) {
 		if(currentPage < totalPages) {
 			currentPage++;
-			$scope.searchCategory(currentPage);
+			$scope.searchCategory(currentPage,cname);
 		}
 	};
-	$scope.onPrev = function() {
+	$scope.onPrev = function(cname) {
 		if(currentPage > 1) {
 			currentPage--;
-			$scope.searchCategory(currentPage);
+			$scope.searchCategory(currentPage,cname);
 		}
 	};
 	
@@ -377,16 +377,16 @@ angular.module('adschela').controller('AddStateCityController',function($scope, 
 		});
 	};
 
-	$scope.onNext = function() {
+	$scope.onNext = function(Statename) {
 		if(currentPage < totalPages) {
 			currentPage++;
-			$scope.searchState(currentPage);
+			$scope.searchState(currentPage,Statename);
 		}
 	};
-	$scope.onPrev = function() {
+	$scope.onPrev = function(Statename) {
 		if(currentPage > 1) {
 			currentPage--;
-			$scope.searchState(currentPage);
+			$scope.searchState(currentPage,Statename);
 		}
 	};
 	
@@ -612,16 +612,16 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
         fileFormDataName: 'photo'
     });*/
 	
-	$scope.onNext = function() {
+	$scope.onNext = function(Nameofthenewspaper) {
 		if(currentPage < totalPages) {
 			currentPage++;
-			$scope.searchNewspaper(currentPage);
+			$scope.searchNewspaper(currentPage,Nameofthenewspaper);
 		}
 	};
-	$scope.onPrev = function() {
+	$scope.onPrev = function(Nameofthenewspaper) {
 		if(currentPage > 1) {
 			currentPage--;
-			$scope.searchNewspaper(currentPage);
+			$scope.searchNewspaper(currentPage,Nameofthenewspaper);
 		}
 	};
 	
@@ -650,7 +650,7 @@ angular.module('adschela').service('deleteNewpaperService',function($resource){
 
 angular.module('adschela').controller('ViewAllRegisterUserController',function($scope, $modal, $http, $filter,ViewAllRegisteredUserService){
 
-	$scope.City = " ";
+	$scope.userName = " ";
 	$scope.pageNumber;
 	$scope.pageSize;
 	$scope.formData = "";
@@ -665,7 +665,7 @@ angular.module('adschela').controller('ViewAllRegisterUserController',function($
 	}
 
 	
-	$scope.ViewAllRegisterUserController = ViewAllRegisteredUserService.ViewAllRegisteredUserInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+	$scope.ViewAllRegisterUserController = ViewAllRegisteredUserService.ViewAllRegisteredUserInfo.get({userName:$scope.userName,currentPage:currentPage},function(response) {
 		totalPages = $scope.ViewAllRegisterUserController.totalPages;
 		currentPage = $scope.ViewAllRegisterUserController.currentPage;
 		$scope.pageNumber = $scope.ViewAllRegisterUserController.currentPage;
@@ -678,18 +678,18 @@ angular.module('adschela').controller('ViewAllRegisterUserController',function($
 	
 	
 	
-		$scope.searchViewAllRegisteredUser = function(page,cityName) {
+		$scope.searchViewAllRegisteredUser = function(page,userName) {
 			
-			$scope.City = cityName;
-			console.log("$scope.City"+$scope.City);
+			$scope.userName = userName;
+			console.log("$scope.userName"+$$scope.userName);
 			
-		if(angular.isUndefined($scope.City) || $scope.City=="") {
+		if(angular.isUndefined($scope.userName) || $scope.userName=="") {
 			console.log('inside function');
-			$scope.City = " ";
+			$scope.userName = " ";
 		}
 		currentPage = page;
 		
-		$scope.ViewAllRegisterUserController = ViewAllRegisteredUserService.ViewAllRegisteredUserInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		$scope.ViewAllRegisterUserController = ViewAllRegisteredUserService.ViewAllRegisteredUserInfo.get({userName:$scope.userName,currentPage:currentPage},function(response) {
 			console.log($scope.ViewAllRegisterUserController.totalPages);
 			totalPages = $scope.ViewAllRegisterUserController.totalPages;
 			currentPage = $scope.ViewAllRegisterUserController.currentPage;
@@ -701,16 +701,16 @@ angular.module('adschela').controller('ViewAllRegisterUserController',function($
 		});
 	   
 	};
-	$scope.searchViewAllRegisteredUser = function(page,cityName) {
-		$scope.City = cityName;
-		console.log("$scope.City: "+$scope.City);
-		if(angular.isUndefined($scope.City) || $scope.City=="") {
+	$scope.searchViewAllRegisteredUser = function(page,userName) {
+		$scope.userName = userName;
+		
+		if(angular.isUndefined($scope.userName) || $scope.userName=="") {
 			
-			$scope.City = " ";
+			$scope.userName = " ";
 		}
 		currentPage = page;
 		
-		$scope.ViewAllRegisterUserController = ViewAllRegisteredUserService.ViewAllRegisteredUserInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		$scope.ViewAllRegisterUserController = ViewAllRegisteredUserService.ViewAllRegisteredUserInfo.get({userName:$scope.userName,currentPage:currentPage},function(response) {
 			console.log($scope.ViewAllRegisterUserController.totalPages);
 			totalPages = $scope.ViewAllRegisterUserController.totalPages;
 			currentPage = $scope.ViewAllRegisterUserController.currentPage;
@@ -724,7 +724,7 @@ angular.module('adschela').controller('ViewAllRegisterUserController',function($
 	};
 	angular.module('adschela').service('ViewAllRegisteredUserService',function($resource){
 	    this.ViewAllRegisteredUserInfo = $resource(
-	            '/viewAllRegisteredUserForAdmin/:City/:currentPage',
+	            '/viewAllRegisteredUserForAdmin/:userName/:currentPage',
 	            {alt:'json',callback:'JSON_CALLBACK'},
 	            {
 	                get: {method:'get'}
@@ -734,16 +734,17 @@ angular.module('adschela').controller('ViewAllRegisterUserController',function($
 	
 	
 	
-	$scope.onNext = function() {
+	$scope.onNext = function(userName) {
 		if(currentPage < totalPages) {
 			currentPage++;
-			$scope.searchViewAllRegisteredUser(currentPage);
+			$scope.searchViewAllRegisteredUser(currentPage,userName);
 		}
 	};
-	$scope.onPrev = function() {
+	$scope.onPrev = function(userName) {
+		
 		if(currentPage > 1) {
 			currentPage--;
-			$scope.searchViewAllRegisteredUser(currentPage);
+			$scope.searchViewAllRegisteredUser(currentPage,userName);
 		}
 	};
 	
@@ -753,7 +754,7 @@ angular.module('adschela').controller('ViewAllRegisterUserController',function($
 
 	angular.module('adschela').service('ViewAllRegisteredUserService',function($resource){
         this.ViewAllRegisteredUserInfo = $resource(
-            '/viewAllRegisteredUserForAdmin/:City/:currentPage',
+            '/viewAllRegisteredUserForAdmin/:userName/:currentPage',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get'}
@@ -854,16 +855,16 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	};
 
 	
-	$scope.onNext = function() {
+	$scope.onNext = function(nameOfthenewspaper) {
 		if(currentPage < totalPages) {
 			currentPage++;
-			$scope.searchViewAllOrderData(currentPage);
+			$scope.searchViewAllOrderData(currentPage,nameOfthenewspaper);
 		}
 	};
-	$scope.onPrev = function() {
+	$scope.onPrev = function(nameOfthenewspaper) {
 		if(currentPage > 1) {
 			currentPage--;
-			$scope.searchViewAllOrderData(currentPage);
+			$scope.searchViewAllOrderData(currentPage,nameOfthenewspaper);
 		}
 	};
 	
@@ -886,6 +887,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 angular.module('adschela').controller('AddBasicRateController',function($scope, $modal, $http, $filter, BasicRateService,getNewspaperservice,getCityNameservice,getStateNameservice,getcnameservice, deleteBasicRateService){
 
 	$scope.City = " ";
+	$scope.category = " ";
 	$scope.pageNumber;
 	$scope.pageSize;
 	$scope.formData = "";
@@ -900,7 +902,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	}
 
 	
-	$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+	$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,Category:$scope.category,currentPage:currentPage},function(response) {
 		totalPages = $scope.BasicRate.totalPages;
 		currentPage = $scope.BasicRate.currentPage;
 		$scope.pageNumber = $scope.BasicRate.currentPage;
@@ -913,18 +915,23 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	
 	
 	
-		$scope.searchBasicRate = function(page,city) {
-			$scope.City = city;
-			console.log("city"+city);
+		$scope.searchBasicRate = function(page,nameOfNewspaper,category) {
+			$scope.City = nameOfNewspaper;
+			$scope.category = category;
+			console.log("nameOfNewspaper"+nameOfNewspaper);
 
 		if(angular.isUndefined($scope.City) || $scope.City=="") {
 			console.log('inside function');
 			$scope.City = " ";
 		}
+
+		if(angular.isUndefined($scope.category) || $scope.category == ""){
+			$scope.category =" ";
+		}
 		currentPage = page;
 		console.log($scope.City);
 		console.log(currentPage);
-		$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,Category:$scope.category,currentPage:currentPage},function(response) {
 			console.log($scope.BasicRate.totalPages);
 			totalPages = $scope.BasicRate.totalPages;
 			currentPage = $scope.BasicRate.currentPage;
@@ -936,16 +943,28 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		});
 	    console.log($scope.BasicRate);
 	};
-	$scope.searchBasicRate = function(page,city) {
+	$scope.searchBasicRate = function(page,city,category) {
 		$scope.City = city;
-		if(angular.isUndefined($scope.City) || $scope.City=="") {
-			console.log('inside function');
+		$scope.category = category;
+		console.log("$scope.City"+$scope.City);
+		
+		
+		console.log("$scope.Category"+$scope.category);
+		if(angular.isUndefined($scope.City) || $scope.City=="" ) {
+			console.log('inside function city' );
 			$scope.City = " ";
 		}
+		
+		if(angular.isUndefined($scope.category) || $scope.category=="") {
+			console.log('inside function category');
+			$scope.category = " ";
+		}
+
+		
 		currentPage = page;
 		console.log($scope.City);
 		console.log(currentPage);
-		$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,Category:$scope.category,currentPage:currentPage},function(response) {
 			console.log($scope.BasicRate.totalPages);
 			totalPages = $scope.BasicRate.totalPages;
 			currentPage = $scope.BasicRate.currentPage;
@@ -959,7 +978,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	};
 	angular.module('adschela').service('BasicRateService',function($resource){
 	    this.BasicRateInfo = $resource(
-	            '/getBasicrate/:City/:currentPage',
+	            '/getBasicrate/:City/:Category/:currentPage',
 	            {alt:'json',callback:'JSON_CALLBACK'},
 	            {
 	                get: {method:'get'}
@@ -971,8 +990,6 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		
 	
 	$scope.saveBasicRate = function(formData) {
-	
-		
 		console.log($scope.formData.Statename);
 		$http.post('/saveBasicRate',formData).success(function(data){
 			console.log('success');
@@ -1011,7 +1028,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		}
 	
 	
-	$scope.setDates = function() {
+	$scope.createNewBasicRate = function() {
 
 		$scope.borderOption = 'rs';
 		$scope.bgOption = 'rs';
@@ -1055,16 +1072,16 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	
 	
 	
-	$scope.onNext = function() {
+	$scope.onNext = function(nameOfTheNewspaper,category) {
 		if(currentPage < totalPages) {
 			currentPage++;
-			$scope.searchBasicRate(currentPage);
+			$scope.searchBasicRate(currentPage,nameOfTheNewspaper,category);
 		}
 	};
-	$scope.onPrev = function() {
+	$scope.onPrev = function(nameOfTheNewspaper,category) {
 		if(currentPage > 1) {
 			currentPage--;
-			$scope.searchBasicRate(currentPage);
+			$scope.searchBasicRate(currentPage,nameOfTheNewspaper,category);
 		}
 	};
 	
@@ -1114,7 +1131,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 
 	angular.module('adschela').service('BasicRateService',function($resource){
         this.BasicRateInfo = $resource(
-            '/getBasicrate/:City/:currentPage',
+            '/getBasicrate/:City/:Category/:currentPage',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get'}
@@ -1135,6 +1152,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	angular.module('adschela').controller('AddPackageRateController',function($scope, $modal, $http, $filter, PackageRateService,getNewspaperservice,getAllCitiesService,getcnameservice, deletePackageRateService){
 
 		$scope.newsPaper = " ";
+		$scope.category = " ";
 		$scope.pageNumber;
 		$scope.pageSize;
 		$scope.formData = "";
@@ -1150,7 +1168,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 
 		//Pacakge Rate(Discountprice Model ) come in the PackageRateService.
 		//$scope.newsPaper =spassing the news paper as parameter from ui.
-		$scope.packageRate = PackageRateService.PackageRateInfo.get({newsPaperName:$scope.newsPaper,currentPage:currentPage},function(response) {
+		$scope.packageRate = PackageRateService.PackageRateInfo.get({newsPaperName:$scope.newsPaper,category:$scope.category,currentPage:currentPage},function(response) {
 			totalPages = $scope.packageRate.totalPages;
 			currentPage = $scope.packageRate.currentPage;
 			$scope.pageNumber = $scope.packageRate.currentPage;
@@ -1163,15 +1181,21 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		
 		
 		    //used to search the  Package data on newspaper.
-			$scope.searchPackageRate = function(page,packageName) {
-				$scope.newsPaper = packageName;
+			$scope.searchPackageRate = function(page,newsPaperName,category) {
+				$scope.newsPaper = newsPaperName;
+				$scope.category  = category;
 			if(angular.isUndefined($scope.newsPaper) || $scope.newsPaper=="") {
 				console.log('inside function');
 				$scope.newsPaper= " ";
 			}
+			if(angular.isUndefined($scope.category) || $scope.category=="") {
+				console.log('inside function');
+				$scope.category= " ";
+			}
+			
 			currentPage = page;
 			//Pacakge Rate(Discountprice Model ) come in the PackageRateService.
-			$scope.packageRate = PackageRateService.PackageRateInfo.get({newsPaperName:$scope.newsPaper ,currentPage:currentPage},function(response) {
+			$scope.packageRate = PackageRateService.PackageRateInfo.get({newsPaperName:$scope.newsPaper, category:$scope.category,currentPage:currentPage},function(response) {
 				console.log($scope.packageRate.totalPages);
 				totalPages = $scope.packageRate.totalPages;
 				currentPage = $scope.packageRate.currentPage;
@@ -1183,7 +1207,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 			});
 		    console.log($scope.packageRate);
 		};
-		 //used to search the  Discount data on newspaper.
+		/* //used to search the  Discount data on newspaper.
 		$scope.searchPackageRate = function(page,packageName) {
 			$scope.newsPaper = packageName;
 			if(angular.isUndefined($scope.newsPaper) || $scope.newsPaper =="") {
@@ -1203,11 +1227,11 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 				}
 			});
 		    console.log($scope.BasicRate);
-		}; 
+		}; */
 		//used to get Pacakge Rate  from DiscountPrice model   in the PackageRateService.
 		angular.module('adschela').service('PackageRateService',function($resource){
 		    this.PackageRateInfo = $resource(
-		            '/getDiscountRate/:newsPaperName/:currentPage',
+		            '/getDiscountRate/:newsPaperName/:category/:currentPage',
 		            {alt:'json',callback:'JSON_CALLBACK'},
 		            {
 		                get: {method:'get'}
@@ -1300,17 +1324,17 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		
 		
 		// goto next page
-		$scope.onNext = function() {
+		$scope.onNext = function(newspaperName,category) {
 			if(currentPage < totalPages) {
 				currentPage++;
-				$scope.searchPackageRate(currentPage);
+				$scope.searchPackageRate(currentPage,newspaperName,category);
 			}
 		};
 		//goto prevoius result (8 no of result per page )
-		$scope.onPrev = function() {
+		$scope.onPrev = function(newspaperName,category) {
 			if(currentPage > 1) {
 				currentPage--;
-				$scope.searchPackageRate(currentPage);
+				$scope.searchPackageRate(currentPage,newspaperName,category);
 			}
 		};
 		
@@ -1353,7 +1377,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		//get the package rate from the discount price model
 		angular.module('adschela').service('PackageRateService',function($resource){
 	        this.PackageRateInfo = $resource(
-	            '/getDiscountRate/:newsPaperName/:currentPage',
+	            '/getDiscountRate/:newsPaperName/:category/:currentPage',
 	            {alt:'json',callback:'JSON_CALLBACK'},
 	            {
 	                get: {method:'get'}

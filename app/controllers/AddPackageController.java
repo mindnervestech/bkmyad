@@ -153,9 +153,9 @@ public class AddPackageController  extends Controller{
 		}
 	 
 	    @Transactional
-		public static Result getDiscountRate(String newsPaper,int currentPage) {
-			long totalPages = Discountprice.getAllPackageRateTotal(newsPaper, 50);
-			List<Discountprice> allPackgeRate = Discountprice.getAllPackageRate(newsPaper, currentPage, 50, totalPages);
+		public static Result getDiscountRate(String newsPaper,String Category,int currentPage) {
+			long totalPages = Discountprice.getAllPackageRateTotal(newsPaper,Category,50);
+			List<Discountprice> allPackgeRate = Discountprice.getAllPackageRate(newsPaper,Category,currentPage, 50, totalPages);
 			List<DiscountVM> listOfPackagerRate = new ArrayList<>();
 			
 			for (Discountprice discountrateVM:  allPackgeRate) {

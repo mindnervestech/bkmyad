@@ -163,14 +163,19 @@ public class Discountprice {
 		}
 		//Get all package  rate   
 		@Transactional
-	    public static long getAllPackageRateTotal(String newsPaper,  int rowsPerPage) {
+	    public static long getAllPackageRateTotal(String newsPaper, String Category ,int rowsPerPage) {
 	    	long totalPages = 0, size;
 	    	
-	    	if(newsPaper.trim().equals("")) {
+	    	if(newsPaper.trim().equals("") && Category.trim().equals("") ) {
 	    		size = (Long) JPA.em().createQuery("Select count(*) from Discountprice a").getSingleResult();
-	    	} else {
-	    		Query query = JPA.em().createQuery("Select count(*) from Discountprice a where a.Nameofthenewspaper LIKE ?2");
-	    		query.setParameter(2, "%"+newsPaper+"%");
+	    	} else if(! newsPaper.trim().equals("")) {
+	    		Query query = JPA.em().createQuery("Select count(*) from Discountprice a where a.Nameofthenewspaper LIKE ?1");
+	    		query.setParameter(1, "%"+newsPaper+"%");
+	    		size= (Long) query.getSingleResult();
+	    	}else{
+	    		
+	    		Query query = JPA.em().createQuery("Select count(*) from Discountprice a where a.Category LIKE ?2");
+	    		query.setParameter(2, "%"+Category+"%");
 	    		size= (Long) query.getSingleResult();
 	    	}
 	    	
@@ -184,14 +189,17 @@ public class Discountprice {
 	    }
 		
 		 @Transactional
-		    public static List<Discountprice> getAllPackageRate(String newsPaper, int currentPage, int rowsPerPage, long totalPages) {
+		    public static List<Discountprice> getAllPackageRate(String newsPaper, String Category, int currentPage, int rowsPerPage, long totalPages) {
 		    	int  start=0;
 		    	/*Query q;*/
 		    	String sql="";
-		    	if(newsPaper.trim().equals("")) {
+		    	if(newsPaper.trim().equals("") && Category.trim().equals("")) {
 		    		sql = "Select a from Discountprice a";
-		    	} else {
+		    	} else if(!(newsPaper.trim().equals(""))){
 		    		sql ="Select a from Discountprice a where a.Nameofthenewspaper LIKE ?1";
+		    	}else{
+		    		sql ="Select a from Discountprice a where a.Category LIKE ?2";
+		    		
 		    	}
 
 	    		if(currentPage >= 1 && currentPage <= totalPages) {
@@ -204,6 +212,10 @@ public class Discountprice {
 		    	Query q = JPA.em().createQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
 		    	if(!newsPaper.trim().equals("")) {
 					q.setParameter(1, "%"+newsPaper+"%");
+				}
+		    	
+		    	if(!Category.trim().equals("")) {
+					q.setParameter(2, "%"+Category+"%");
 				}
 				
 				return (List<Discountprice>)q.getResultList();

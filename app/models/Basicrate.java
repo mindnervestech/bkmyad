@@ -47,14 +47,18 @@ public class Basicrate {
 				
 		
 		@Transactional
-	    public static long getAllAnnouncementsTotal(String City,  int rowsPerPage) {
+	    public static long getAllAnnouncementsTotal(String City, String Category, int rowsPerPage) {
 	    	long totalPages = 0, size;
 	    	
-	    	if(City.trim().equals("")) {
+	    	if(City.trim().equals("") && Category.trim().equals("")) {
 	    		size = (Long) JPA.em().createQuery("Select count(*) from Basicrate a").getSingleResult();
-	    	} else {
-	    		Query query = JPA.em().createQuery("Select count(*) from Basicrate a where a.Nameofthenewspaper LIKE ?2");
-	    		query.setParameter(2, "%"+City+"%");
+	    	} else if(!(City.trim().equals(""))) {
+	    		Query query = JPA.em().createQuery("Select count(*) from Basicrate a where a.Nameofthenewspaper LIKE ?1");
+	    		query.setParameter(1, "%"+City+"%");
+	    		size= (Long) query.getSingleResult();
+	    	}else{
+	    		Query query = JPA.em().createQuery("Select count(*) from Basicrate a where a.Category LIKE ?2");
+	    		query.setParameter(2, "%"+Category+"%");
 	    		size= (Long) query.getSingleResult();
 	    	}
 	    	
@@ -68,14 +72,18 @@ public class Basicrate {
 	    }
 		
 		 @Transactional
-		    public static List<Basicrate> getAllAnnouncements(String Nameofthenewspaper, int currentPage, int rowsPerPage, long totalPages) {
+		    public static List<Basicrate> getAllAnnouncements(String Nameofthenewspaper,String Category, int currentPage, int rowsPerPage, long totalPages) {
 		    	int  start=0;
 		    	/*Query q;*/
 		    	String sql="";
-		    	if(Nameofthenewspaper.trim().equals("")) {
+		    	if(Nameofthenewspaper.trim().equals("") && Category.trim().equals("") ) {
+		    		
 		    		sql = "Select a from Basicrate a";
-		    	} else {
+		    	} else  if (!(Nameofthenewspaper.trim().equals(""))){
 		    		sql ="Select a from Basicrate a where a.Nameofthenewspaper LIKE ?1";
+		    	}else{
+		    		
+		    		sql ="Select a from Basicrate a where a.Category LIKE ?2";
 		    	}
 
 	    		if(currentPage >= 1 && currentPage <= totalPages) {
@@ -88,8 +96,9 @@ public class Basicrate {
 		    	Query q = JPA.em().createQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
 		    	if(!Nameofthenewspaper.trim().equals("")) {
 					q.setParameter(1, "%"+Nameofthenewspaper+"%");
+				}else if(!Category.trim().equals("")){
+					q.setParameter(2, "%"+Category+"%");
 				}
-				
 				return (List<Basicrate>)q.getResultList();
 				
 		    }

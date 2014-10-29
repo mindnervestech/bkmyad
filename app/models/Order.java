@@ -161,9 +161,7 @@ public class Order {
 	    	}
 	    	//cast to long
 	    	size=sizebig.longValue();
-	    			
 	    	totalPages = size/rowsPerPage;
-			
 	    	if(size % rowsPerPage > 0) {
 				totalPages++;
 			}

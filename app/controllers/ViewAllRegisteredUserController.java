@@ -22,10 +22,10 @@ public class ViewAllRegisteredUserController  extends Controller{
 	 public ViewAllRegisteredUserController(){} 
 	 
 		@Transactional
-		public static Result viewAllRegisteredUserForAdmin(String City,int currentPage) {
+		public static Result viewAllRegisteredUserForAdmin(String name,int currentPage) {
 		
-			long totalPages = User.getAllRegisteredUserTotal(City, 50);
-			List<Object[]> allRegisteredUsers = User.getAllRegisteredUsers(City, currentPage, 50, totalPages);
+			long totalPages = User.getAllRegisteredUserTotal(name, 50);
+			List<Object[]> allRegisteredUsers = User.getAllRegisteredUsers(name, currentPage, 50, totalPages);
 			List<RegisteredUserListVM> listallRegisteredUsers = new ArrayList<>();
 			
 			for (Object[] registeredUserListVM: allRegisteredUsers) {

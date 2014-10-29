@@ -126,15 +126,15 @@ public class User {
         return (User) q.getSingleResult();
 	}
 	 @Transactional
-	    public static long getAllRegisteredUserTotal(String City,  int rowsPerPage) {
+	    public static long getAllRegisteredUserTotal(String name,  int rowsPerPage) {
 	    	long totalPages = 0, size;
 	    	BigInteger sizebig;
 	    	
-	    	if(City.trim().equals("")) {
+	    	if(name.trim().equals("")) {
 	    		sizebig = (BigInteger)JPA.em().createNativeQuery("select count(*) from User").getSingleResult();
 	    	} else {
-	    		Query query = JPA.em().createNativeQuery("select count(*) from User where User.email like ?1");
-	    		query.setParameter(1, "%"+City+"%");
+	    		Query query = JPA.em().createNativeQuery("select count(*) from User where User.name like ?1");
+	    		query.setParameter(1, "%"+name+"%");
 	    		sizebig= (BigInteger) query.getSingleResult();
 	    	}
 	    	//cast to long
@@ -150,16 +150,16 @@ public class User {
 	    }
 		
 		 @Transactional
-		    public static List<Object[]> getAllRegisteredUsers(String City, int currentPage, int rowsPerPage, long totalPages) {
+		    public static List<Object[]> getAllRegisteredUsers(String name, int currentPage, int rowsPerPage, long totalPages) {
 		    	int  start=0;
-		    	System.out.println("City selected is "+City);
+		    	System.out.println("City selected is "+name);
 		    	/*Query q;*/
 		    	String sql="";
-		    	if(City.trim().equals("")) {
+		    	if(name.trim().equals("")) {
 		    		
 		    		sql = "select * from User";//
 		    	} else {
-		    		sql ="select from User where User.email like ?1";
+		    		sql ="select * from User where User.name like ?1";
 		    	}
 
 	    		if(currentPage >= 1 && currentPage <= totalPages) {
@@ -170,8 +170,8 @@ public class User {
 					start = (int) ((totalPages*rowsPerPage)-rowsPerPage); 
 				}
 		    	Query q = JPA.em().createNativeQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
-		    	if(!City.trim().equals("")) {
-					q.setParameter(1, "%"+City+"%");
+		    	if(!name.trim().equals("")) {
+					q.setParameter(1, "%"+name+"%");
 				}
 				
 				return (List<Object[]>)q.getResultList();
