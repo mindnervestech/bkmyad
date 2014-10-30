@@ -26,7 +26,7 @@ public class Discountprice {
 		public String Edition;
 		public String Tbasicprice;
 		public String Toffpercentage;
-		public String Ttotalprice;
+		public String ClasifiedadRate;
 		public String Dbasicprice;
 		public String Doffprice;
 		public String Dtotalprice;

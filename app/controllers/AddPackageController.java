@@ -69,7 +69,7 @@ public class AddPackageController  extends Controller{
 			discountprice.Tickper="0";
 			discountprice.Nameofthenewspaper = form.get("Nameofthenewspaper");
 			discountprice.Dtotalprice = form.get("Textaddrate");
-			discountprice.Ttotalprice = form.get("clasifiedadrate");
+			discountprice.ClasifiedadRate = form.get("clasifiedadrate");
 			discountprice.Exstracostperline=form.get("Exstracostperline");
 			//check for the borderRs
 			if(form.get("borderRs")==null || form.get("borderRs")== ""){
@@ -189,7 +189,7 @@ public class AddPackageController  extends Controller{
 			discountprice.Tickper="0";
 			discountprice.Nameofthenewspaper=form.get("Nameofthenewspaper");
 			discountprice.Dtotalprice=json.get("Dtotalprice").asText();
-			discountprice.Ttotalprice = json.get("Ttotalprice").asText();
+			discountprice.ClasifiedadRate = json.get("ClasifiedadRate").asText();
 			discountprice.Exstracostperline=form.get("Exstracostperline");
 			String Edition = json.get("Edition").asText();
 			discountprice.Edition = Edition;

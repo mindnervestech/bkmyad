@@ -69,7 +69,7 @@
                     	<tr ng-repeat="ancmt in packageRate.results">
                             <td>{{ancmt.Nameofthenewspaper}}</td>
                             <td>{{ancmt.Dtotalprice}}</td>
-                            <td>{{ancmt.Ttotalprice}}</td>
+                            <td>{{ancmt.ClasifiedadRate}}</td>
                             <td>{{ancmt.Edition | limitTo:16}}</td>
                             <td>{{ancmt.Cities | limitTo:16}}</td>
                             <td>{{ancmt.Exstracostperline}}</td>
@@ -289,7 +289,7 @@
 			        	<td><label>Textaddrate</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Textaddrate" style="width:70%;height: 70%;" data-ng-model="ancmtData.Dtotalprice" required></textarea></td>
 			        	 <td><label>Clasifiedad Rate</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="clasifiedadrate" style="width:70%;height: 70%;" data-ng-model="ancmtData.Ttotalprice" required></textarea></td>
+			        	<td style="height: 60px;"><textarea type="text" name="clasifiedadrate" style="width:70%;height: 70%;" data-ng-model="ancmtData.ClasifiedadRate" required></textarea></td>
 			            <td><label>ExstraCostper line/Word</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Exstracostperline" style="width:70%;height: 70%;" data-ng-model="ancmtData.Exstracostperline" required></textarea></td>
 			        </tr>

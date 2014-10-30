@@ -20,7 +20,7 @@ public class DiscountVM {
 	public String Extrabgper="0";
 	public String Tickper="0";
 	public String notes="Not Set";
-	public String Ttotalprice;
+	public String ClasifiedadRate;
 	
 	  public DiscountVM(Discountprice discountprice) {
 	    	this.Did=discountprice.Did;
@@ -39,7 +39,7 @@ public class DiscountVM {
 	    	this.Tickper = discountprice.Tickper;
 	    	this.ExtracostperSqcm=discountprice.ExtracostperSqcm;
 	    	this.notes = discountprice.notes;
-	    	this.Ttotalprice = discountprice.Ttotalprice;
+	    	this.ClasifiedadRate = discountprice.ClasifiedadRate;
 	    }
 
 }
