@@ -53,6 +53,7 @@
                     	<tr>
                             <th><a>Newspaper</a></th>
                             <th><a>Discount Price</a></th>
+                            <th><a>Calssified Rate</a></th>
                             <th><a>Package Name</a></th>
                             <th><a>Cities</a></th>
                             <th><a>Extra Cost Per Line/Word</a></th>
@@ -68,6 +69,7 @@
                     	<tr ng-repeat="ancmt in packageRate.results">
                             <td>{{ancmt.Nameofthenewspaper}}</td>
                             <td>{{ancmt.Dtotalprice}}</td>
+                            <td>{{ancmt.Ttotalprice}}</td>
                             <td>{{ancmt.Edition | limitTo:16}}</td>
                             <td>{{ancmt.Cities | limitTo:16}}</td>
                             <td>{{ancmt.Exstracostperline}}</td>
@@ -150,9 +152,9 @@
 			        <tr>
 			        	<td><label>Textaddrate</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Textaddrate" style="width:70%;height: 70%;" data-ng-model="formData.Textaddrate" required></textarea></td>
-			        	<!-- <td><label>Clasifiedad Rate</label></td>
+			        	<td><label>Clasifiedad Rate</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="clasifiedadrate" style="width:70%;height: 70%;" data-ng-model="formData.clasifiedadrate" required></textarea></td>
-			         -->	<td><label>Exstracostper line/Word</label></td>
+			         	<td><label>Exstracostper line/Word</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Exstracostperline" style="width:70%;height: 70%;" data-ng-model="formData.Exstracostperline" required></textarea></td>
 			        
 			        </tr>
@@ -286,9 +288,9 @@
 			    <tr>
 			        	<td><label>Textaddrate</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Textaddrate" style="width:70%;height: 70%;" data-ng-model="ancmtData.Dtotalprice" required></textarea></td>
-			        	<!-- <td><label>Clasifiedad Rate</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="clasifiedadrate" style="width:70%;height: 70%;" data-ng-model="ancmtData.clasifiedadrate" required></textarea></td>
-			            --> <td><label>ExstraCostper line/Word</label></td>
+			        	 <td><label>Clasifiedad Rate</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="clasifiedadrate" style="width:70%;height: 70%;" data-ng-model="ancmtData.Ttotalprice" required></textarea></td>
+			            <td><label>ExstraCostper line/Word</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="Exstracostperline" style="width:70%;height: 70%;" data-ng-model="ancmtData.Exstracostperline" required></textarea></td>
 			        </tr>
 			         

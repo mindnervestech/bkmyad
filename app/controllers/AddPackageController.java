@@ -62,13 +62,14 @@ public class AddPackageController  extends Controller{
 			Discountprice discountprice = new Discountprice();
 			discountprice.Tbasicprice ="0";
 			discountprice.Toffpercentage= "0";
-			discountprice.Ttotalprice="0";
+			//discountprice.Ttotalprice="0";
 			discountprice.Doffprice="0";
 			discountprice.Dbasicprice="0";
 			discountprice.LastDate="0";
 			discountprice.Tickper="0";
-			discountprice.Nameofthenewspaper=form.get("Nameofthenewspaper");
-			discountprice.Dtotalprice=form.get("Textaddrate");
+			discountprice.Nameofthenewspaper = form.get("Nameofthenewspaper");
+			discountprice.Dtotalprice = form.get("Textaddrate");
+			discountprice.Ttotalprice = form.get("clasifiedadrate");
 			discountprice.Exstracostperline=form.get("Exstracostperline");
 			//check for the borderRs
 			if(form.get("borderRs")==null || form.get("borderRs")== ""){
@@ -181,13 +182,14 @@ public class AddPackageController  extends Controller{
 			Discountprice discountprice = Discountprice.findById(form.get("Did"));
 			discountprice.Tbasicprice ="0";
 			discountprice.Toffpercentage= "0";
-			discountprice.Ttotalprice="0";
+			//discountprice.Ttotalprice="0";
 			discountprice.Doffprice="0";
 			discountprice.Dbasicprice="0";
 			discountprice.LastDate="0";
 			discountprice.Tickper="0";
 			discountprice.Nameofthenewspaper=form.get("Nameofthenewspaper");
 			discountprice.Dtotalprice=json.get("Dtotalprice").asText();
+			discountprice.Ttotalprice = json.get("Ttotalprice").asText();
 			discountprice.Exstracostperline=form.get("Exstracostperline");
 			String Edition = json.get("Edition").asText();
 			discountprice.Edition = Edition;

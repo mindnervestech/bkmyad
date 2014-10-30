@@ -72,8 +72,6 @@ public class AddStateCityController extends Controller{
 		
 		city.save();
 		return ok();
-		
-		
 	}
 		
 	

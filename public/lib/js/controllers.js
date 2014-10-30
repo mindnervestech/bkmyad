@@ -1511,7 +1511,8 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	
 	function upRate(inValue, inPer) {
 		if(inValue != 0) {
-			  $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + backgroundColor;
+		
+			  $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + inValue;
 		} else if (inPer != 0){
 			$scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + $scope.selectedCartItemOnPopUp.totalUnitCost * ((inPer)/(100));
 		} 
