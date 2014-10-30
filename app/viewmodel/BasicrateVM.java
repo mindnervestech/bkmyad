@@ -18,10 +18,10 @@ public class BasicrateVM {
      public String SpecialDiscount;
      public String Tick;
      public String Category;
-    public String Extraborderper;
-    public String Extrabgper;
+     public String Extraborderper;
+     public String Extrabgper;
      public String Tickper;
-    public String ExtracostperSqcm;
+     public String ExtracostperSqcm;
      public String Statename;
     
     public BasicrateVM(Basicrate basicrate) {
@@ -41,6 +41,10 @@ public class BasicrateVM {
         this.Tickper=basicrate.Tickper;
     	this.ExtracostperSqcm=basicrate.ExtracostperSqcm;
     	this.Statename=basicrate.Statename;
+    	this.Extrabgper = basicrate.Extrabgper;
+    	this.Extraborderper = basicrate.Extraborderper;
+    	this.Tickper = basicrate.Tickper;
+    	
     }
     
     

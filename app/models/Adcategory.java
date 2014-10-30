@@ -18,7 +18,7 @@ public class Adcategory {
 
 	public Adcategory() {}
 	
-	@Id
+	@Id 
 	public String CID;
 	
 	public String cname;
@@ -35,6 +35,11 @@ public class Adcategory {
 		return (List<String>)q.getResultList();
 	}
 	
+	 public static Adcategory findById(String id) {
+	    	Query query = JPA.em().createQuery("Select a from Adcategory a where a.CID = ?1");
+			query.setParameter(1, id);
+	    	return (Adcategory) query.getSingleResult();
+	    }
 	
 	
 	@Transactional	

@@ -55,8 +55,13 @@ public class AddStateCityController extends Controller{
 		return ok(Json.toJson(map));
 	}
 	
-
 	
+	@Transactional
+	public static Result deleteStateAndCities(String id) {
+		City city =  City.findById(id);
+		city.delete();
+		return ok();
+	}
 	@Transactional
 	public static Result saveCity() {
 		
@@ -79,21 +84,16 @@ public class AddStateCityController extends Controller{
 		DynamicForm form = DynamicForm.form().bindFromRequest();
 		Json.fromJson(json, City.class);
 		City cityform = Json.fromJson(json, City.class);
-		
-		
+	
 		City city = City.findById(form.get("CID"));
-		
-		city.Cityname =city.Cityname+","+cityform.Cityname;
-    	    	
+		if(city.Cityname != null){
+			city.Cityname =cityform.Cityname;
+		}else{
+			city.Cityname =cityform.Cityname;
+		}
+		//city.Cityname =city.Cityname+","+cityform.Cityname;
 		city.merge();
-		
 		return ok();
 		
-		
 	}
-	
-
-   
-	
-	
 }

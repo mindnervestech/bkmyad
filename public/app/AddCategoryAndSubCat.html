@@ -28,7 +28,7 @@
             <!--Advance search fildes end-->
              <section class="dactperform">
                 <section class="left">
-             		<input name="" type="button" value="Add Main Category" class="btnblue" ng-click="setDates()" data-toggle="modal"  />
+             		<input name="" type="button" value="Add Main Category" class="btnblue" ng-click="addNewCategory()" data-toggle="modal"  />
            		</section>
            	</section>	
             <!--grid begin-->
@@ -39,7 +39,7 @@
                             <th><a>Category Name</a></th>
                             <th><a>SubCategory Name</a></th>
                             <th><a>Update</a></th>
-                           <!--  <th><a>Delete</a></th> -->
+                           <th><a>Delete</a></th>
                         </tr>
                     </thead>
                 	<tbody>
@@ -47,8 +47,8 @@
           					<td>{{ancmt.cname}}</td>
                             <td>{{ancmt.Sucategory}}</td>
                             
-                            <td> <input name="" type="button" value="Add SubCategory" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
-                            <!-- <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt)" data-toggle="modal" /></td> -->
+                            <td> <input name="" type="button" value="Add SubCategory" ng-click="updateSubcategory(ancmt)" data-toggle="modal"  /></td>
+                            <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt)" data-toggle="modal" /></td> 
                         </tr>
                     	</tbody>
                 </table>
@@ -109,8 +109,11 @@
 		      <div class="modal-body">
 		      <table>
 			         <tr>
+			           <!--  <td><label>Category Name</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="CategoryName" style="width: 60%;height:80%;" data-ng-model="ancmtData.cname" required></textarea></td>
+			       -->
 			        	<td><label>Sub Category Name</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="SubCategoryName" style="width:100%;height:80%;" data-ng-model="ancmtData.Sucategory" required></textarea></td>
+			        	<td style="height: 60px;"><textarea type="text" name="SubCategoryName" style="width: 360%;height:80%;" data-ng-model="ancmtData.Sucategory" required></textarea></td>
 			        </tr>
 			        <tr>
 			           <label style="color: #0085b0;">Please Enter Your Value Separated By Comma</label>
@@ -122,6 +125,24 @@
 		        <button type="submit" class="btn btn-primary">Update</button>
 		      </div>
 		     </form>
+		    </div>
+		  </div>
+		</div>
+		<!-- Delete Modal -->
+		<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Newspaper Delete</h4>
+		      </div>
+		      <div class="modal-body" id="deleteArticleBody">
+		        Are you sure you want to delete?
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="button" class="btn btn-primary" data-ng-click="deleteSubCategory(deleteId)">Yes</button>
+		        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+		      </div>
 		    </div>
 		  </div>
 		</div>

@@ -165,7 +165,7 @@ angular.module('adschela').controller("HomeScreenController",['$scope',function(
 
 
 
-angular.module('adschela').controller('AddCategorySubcatController',function($scope, $modal, $http, $filter, CategoryService){
+angular.module('adschela').controller('AddCategorySubcatController',function($scope, $modal, $http, $filter, CategoryService,deleteSubCategoryService){
 	
 		
 	$scope.cname = " ";
@@ -181,7 +181,13 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
             to : new Date()
 
 	}
-
+	
+	$scope.deleteSubCategory = function() {
+		deleteSubCategoryService.DeleteSubCategory.get({id :$scope.deleteId}, function(data){
+			$scope.searchCategory(currentPage);
+	        $('#myModal3').modal('hide');
+		});    
+	};
 	
 	$scope.Category = CategoryService.StateCityInfo.get({cname:$scope.cname,currentPage:currentPage},function(response) {
 		totalPages = $scope.Category.totalPages;
@@ -226,15 +232,14 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 		});
 	};
 
-	$scope.setData = function(ancmt) {
-		
+	$scope.updateSubcategory = function(ancmt) {
 		$scope.ancmtData = ancmt;
-		$scope.ancmtData.Sucategory='';
+	//	$scope.ancmtData.Sucategory='';
 		$('#myModal2').modal();
 				
 	};
 
-	$scope.setDates = function() {
+	$scope.addNewCategory = function() {
 				
 		$scope.searchForm.from = new Date();
 		$scope.searchForm.to = new Date();
@@ -256,7 +261,11 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 			console.log('ERROR------------');
 		});
 	};
-
+	$scope.setDeleteId = function(Id) {
+		$scope.deleteId = Id.CSID;
+		console.log("-**-*-"+$scope.deleteId+"*-*-*-*");
+		$('#myModal3').modal();
+	};
 	$scope.onNext = function(cname) {
 		if(currentPage < totalPages) {
 			currentPage++;
@@ -270,8 +279,8 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 		}
 	};
 	
-});
-angular.module('adschela').service('CategoryService',function($resource){
+ });
+  angular.module('adschela').service('CategoryService',function($resource){
     this.StateCityInfo = $resource(
             '/getCategory/:cname/:currentPage',
             {alt:'json',callback:'JSON_CALLBACK'},
@@ -279,11 +288,20 @@ angular.module('adschela').service('CategoryService',function($resource){
                 get: {method:'get'}
             }
     );
-});
+ });
+ angular.module('adschela').service('deleteSubCategoryService',function($resource){
+    this.DeleteSubCategory = $resource(
+            '/deleteMainAndSubcategory/:id',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    );
+ });
 
 
 
-angular.module('adschela').controller('AddStateCityController',function($scope, $modal, $http, $filter, StateCityService){
+angular.module('adschela').controller('AddStateCityController',function($scope, $modal, $http, $filter, StateCityService,deleteStateAndCitiesService){
 	
 	
 	$scope.Statename = " ";
@@ -348,14 +366,12 @@ angular.module('adschela').controller('AddStateCityController',function($scope, 
 	$scope.setData = function(ancmt) {
 		
 		$scope.ancmtData = ancmt;
-		$scope.ancmtData.Cityname='';
+	//	$scope.ancmtData.Cityname='';
 		$('#myModal2').modal();
 				
 	};
 
 	$scope.setDates = function() {
-				
-				
 		$scope.searchForm.from = new Date();
 		$scope.searchForm.to = new Date();
 		$scope.icon_id = "";
@@ -365,9 +381,20 @@ angular.module('adschela').controller('AddStateCityController',function($scope, 
 		$scope.isChosen = false;
 		$('#myModal').modal();
 	}
-		
+
+	$scope.setDeleteId = function(Id) {
+		$scope.deleteId = Id.CID;
+		console.log("-**-*-"+$scope.deleteId+"*-*-*-*");
+		$('#myModal3').modal();
+	};
+	
+	$scope.deleteStateAndCities = function() {
+		deleteStateAndCitiesService.DeleteStateAndCities.get({id :$scope.deleteId}, function(data){
+			$scope.searchState(currentPage);
+	        $('#myModal3').modal('hide');
+		});    
+	};
 	$scope.updateState = function() {
-		
 		$http.post('/updateState', $scope.ancmtData).success(function(data){
 			console.log('success');
 			$scope.searchState(currentPage);
@@ -390,16 +417,26 @@ angular.module('adschela').controller('AddStateCityController',function($scope, 
 		}
 	};
 	
-});
-angular.module('adschela').service('StateCityService',function($resource){
+	});
+	angular.module('adschela').service('StateCityService',function($resource){
     this.StateCityInfo = $resource(
             '/getStateName/:Statename/:currentPage',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get'}
             }
-    );
-});
+    	);
+	});
+
+	angular.module('adschela').service('deleteStateAndCitiesService',function($resource){
+    this.DeleteStateAndCities = $resource(
+            '/deleteStateAndCities/:id',
+            {alt:'json',callback:'JSON_CALLBACK'},
+            {
+                get: {method:'get'}
+            }
+    	);
+	});
 
 angular.module('adschela').controller("MyAccountController",['$scope','$http','ngDialog',function($scope, $http,OrderListService,ngDialog){
 	    

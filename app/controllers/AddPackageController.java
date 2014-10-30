@@ -71,14 +71,14 @@ public class AddPackageController  extends Controller{
 			discountprice.Dtotalprice=form.get("Textaddrate");
 			discountprice.Exstracostperline=form.get("Exstracostperline");
 			//check for the borderRs
-			if(form.get("borderRs")==null){
+			if(form.get("borderRs")==null || form.get("borderRs")== ""){
 				discountprice.Border = "0";
 			}else{
 				discountprice.Border=form.get("borderRs");
 			}
 			
 			//check for boderPer
-			if(form.get("borderPercentage") == null){
+			if(form.get("borderPercentage") == null || form.get("borderPercentage") == "" ){
 				discountprice.Extraborderper="0";
 				
 			}else{
@@ -86,7 +86,7 @@ public class AddPackageController  extends Controller{
 			}
 			
 			//check for the BackColor
-			if(form.get("bgRs") == null){
+			if(form.get("bgRs") == null || form.get("bgRs") == "" ){
 				discountprice.Backcolor = "0";
 				
 			}else{
@@ -94,7 +94,7 @@ public class AddPackageController  extends Controller{
 			}
 			
 			//check for the extrabgper
-			if(form.get("bgPercentage") == null){
+			if(form.get("bgPercentage") == null || form.get("bgPercentage") == ""){
 				
 				discountprice.Extrabgper = "0";
 			}else{
@@ -104,14 +104,14 @@ public class AddPackageController  extends Controller{
 			discountprice.SpecialDiscount=form.get("SpecialDiscount");
 			
 			//check for tick
-			if(form.get("tickRs") == null){
+			if(form.get("tickRs") == null || form.get("tickRs") == ""){
 				
 				discountprice.Tick = "0";
 			}else{
 				discountprice.Tick=form.get("tickRs");
 			}
 			//check for the TickPer
-			if(form.get("tickPercentage") == null){
+			if(form.get("tickPercentage") == null || form.get("tickPercentage") == ""){
 				discountprice.Tickper = "0";
 			}else{
 				discountprice.Tickper= form.get("tickPercentage");
@@ -195,14 +195,14 @@ public class AddPackageController  extends Controller{
 			discountprice.SpecialDiscount=form.get("SpecialDiscount");
 			
 			//check the borderRs for null
-			if(form.get("Border") == null){
+			if(form.get("Border") == null || form.get("Border") == ""){
 				
 				discountprice.Border = "0";
 			}else{
 				discountprice.Border=form.get("Border");
 			}
 			//Check the BorderPer null form UI
-			if(form.get("Extraborderper") == null){
+			if(form.get("Extraborderper") == null || form.get("Extraborderper") == ""){
 				
 				discountprice.Extraborderper  = "0";
 			}else{
@@ -210,14 +210,14 @@ public class AddPackageController  extends Controller{
 				
 			}
 			// check for the BackGround Color Null value 
-			if(form.get("Backcolor") == null){
+			if(form.get("Backcolor") == null || form.get("Backcolor") == ""){
 				discountprice.Backcolor = "0";
 			}else{
 				discountprice.Backcolor=form.get("Backcolor");
 			}
 			
 			//Check for the BackGround Percentage 
-			if(form.get("Extrabgper") == null){
+			if(form.get("Extrabgper") == null || form.get("Extrabgper") == "" ){
 				discountprice.Extrabgper= "0";
 				
 			}else{
@@ -225,14 +225,14 @@ public class AddPackageController  extends Controller{
 			}
 			
 			//check for the tick Rs
-             if(form.get("Tick") == null){
+             if(form.get("Tick") == null || form.get("Tick") == ""){
             	 discountprice.Tick = "0";
              }else{
             	 discountprice.Tick=form.get("Tick");
              }
 			
 			//check for the Tick Percenatge
-             if(form.get("Tickper") == null){
+             if(form.get("Tickper") == null || form.get("Tickper") == ""){
             	 discountprice.Tickper = "0";
              }else{
             	 discountprice.Tickper = form.get("Tickper");

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import models.Adcategory;
 import models.Adsubcategory;
+import models.Newspaperdetails;
 import play.data.DynamicForm;
 import play.db.jpa.Transactional;
 import play.libs.Json;
@@ -76,24 +77,35 @@ public class AddCategorySubcatController extends Controller{
 		DynamicForm form = DynamicForm.form().bindFromRequest();
 		Json.fromJson(json, Adsubcategory.class);
 		Adsubcategory SubCatform = Json.fromJson(json, Adsubcategory.class);
-		
-		
 		Adsubcategory subcat = Adsubcategory.findById(form.get("CSID"));
-		if(subcat.Sucategory!= null)
-		{
-			subcat.Sucategory =subcat.Sucategory+","+SubCatform.Sucategory;
+
+	//	Adcategory  adCategory = Adcategory.findById(form.get("CSID"));
+		
+		/*if(subcat.cname != null ){
+			subcat.cname = SubCatform.cname;
+			adCategory.cname = SubCatform.cname;
+		}else{
+			subcat.cname = SubCatform.cname;
+			adCategory.cname = SubCatform.cname;
+		}*/
+		if(subcat.Sucategory != null){   
+			subcat.Sucategory = SubCatform.Sucategory;
+			//subcat.Sucategory =subcat.Sucategory+","+SubCatform.Sucategory;
 	    }else{
 	    	subcat.Sucategory = SubCatform.Sucategory;
 	    }
-		
-		    	
 		subcat.merge();
-		
+		//adCategory.merge();
 		return ok();
 	}
 	
-
-   
+	
+	@Transactional
+	public static Result deleteMainAndSubcategory(String id) {
+		Adsubcategory adsubcategory =  Adsubcategory.findById(id);
+		adsubcategory.delete();
+		return ok();
+	}
 	
 	
 }

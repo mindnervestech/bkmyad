@@ -41,8 +41,6 @@ public class Order {
 	@OneToMany(cascade={CascadeType.ALL})
 	public List<ComposedAdSave> composedAd;
 
-
-
 	public String getOrderId() {
 		return orderId;
 	}

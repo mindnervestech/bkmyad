@@ -69,38 +69,39 @@ public class AddbasicRateController extends Controller{
     	basicrate.clasifiedadrate=form.get("clasifiedadrate");
     	basicrate.Exstracostperline=form.get("Exstracostperline");
     	 //check for borderrs	
-       if(form.get("borderRs") == null){
+       if(form.get("borderRs") == null || form.get("borderRs") == ""){
     	basicrate.Border="0";
     	}else{
     		basicrate.Border=form.get("borderRs");
     	}
        //check for borderPer	
-    	if(form.get("borderPercentage") == null){
+      
+    	if(form.get("borderPercentage") == null || form.get("borderPercentage") == "" ){
     		basicrate.Extraborderper="0";
     	}else{
     		basicrate.Extraborderper=form.get("borderPercentage");
     	}
     	 //check for bgrs	
-    	if(form.get("bgRs") == null){
+    	if(form.get("bgRs") == null || form.get("bgRs") == ""){
     		basicrate.Backcolor="0";
     	}else{
     		basicrate.Backcolor=form.get("bgRs");
     	}
     	 //check for bgPer	
-    	if(form.get("bgPercentage")==null){
+    	if(form.get("bgPercentage")==null || form.get("bgPercentage")== ""){
     		basicrate.Extrabgper = "0";
     	}else{
     		basicrate.Extrabgper=form.get("bgPercentage");
     	}
     	
     	 //check for tickrs	
-    	if(form.get("tickRs") == null){
+    	if(form.get("tickRs") == null || form.get("tickRs") == "" ){
     		basicrate.Tick= "0";
     	}else{
     		basicrate.Tick=form.get("tickRs");
     	}
     	 //check for tickPer	
-        if(form.get("tickPercentage") == null){
+        if(form.get("tickPercentage") == null || form.get("tickPercentage") == ""){
         	basicrate.Tickper ="0";
         	
         }else{
@@ -136,39 +137,39 @@ public class AddbasicRateController extends Controller{
     	basicrate.clasifiedadrate=form.get("clasifiedadrate");
     	basicrate.Exstracostperline=form.get("Exstracostperline");
     	 //check for borderRs	
-    	if(form.get("Border") == null){
+    	if(form.get("Border") == null || form.get("Border") == ""){
     	basicrate.Border="0";
     	}else{
     		basicrate.Border=form.get("Border");
     	}
     	 //check for borderPer	
     	System.out.println("Extraborderper"+form.get("Extraborderper") );
-    	if(form.get("Extraborderper") == null){
+    	if(form.get("Extraborderper") == null || form.get("Extraborderper") == ""){
     		basicrate.Extraborderper="0";
     	}else{
     		basicrate.Extraborderper=form.get("Extraborderper");
     	}
     	 //check for bgRs	
-    	if(form.get("Backcolor") == null){
+    	if(form.get("Backcolor") == null ||  form.get("Backcolor") == ""){
     		basicrate.Backcolor="0";
     	}else{
     		basicrate.Backcolor=form.get("Backcolor");
     	}
         //check for bgPer	
-    	if(form.get("Extrabgper")==null){
+    	if(form.get("Extrabgper")== null || form.get("Extrabgper")== ""){
     		basicrate.Extrabgper = "0";
     	}else{
     		basicrate.Extrabgper=form.get("Extrabgper");
     	}
     	
     	//check for tickRs
-    	if(form.get("Tick") == null){
+    	if(form.get("Tick") == null || form.get("Tick") == ""){
     		basicrate.Tick= "0";
     	}else{
     		basicrate.Tick=form.get("Tick");
     	}
     	 //check for tickPer	
-        if(form.get("Tickper") == null){
+        if(form.get("Tickper") == null || form.get("Tickper") == ""){
         	basicrate.Tickper ="0";
         	
         }else{
