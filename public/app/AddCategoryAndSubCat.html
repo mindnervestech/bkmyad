@@ -43,12 +43,12 @@
                         </tr>
                     </thead>
                 	<tbody>
-                    	<tr ng-repeat="ancmt in Category.results">
-          					<td>{{ancmt.cname}}</td>
-                            <td>{{ancmt.Sucategory}}</td>
+                    	<tr ng-repeat="category in Category.results">
+          					<td>{{category.cname}}</td>
+                            <td>{{category.Sucategory}}</td>
                             
-                            <td> <input name="" type="button" value="Add SubCategory" ng-click="updateSubcategory(ancmt)" data-toggle="modal"  /></td>
-                            <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt)" data-toggle="modal" /></td> 
+                            <td> <input name="" type="button" value="Add SubCategory" ng-click="updateSubcategory(category)" data-toggle="modal"  /></td>
+                            <td><input name="" type="button" value="Delete" ng-click="setDeleteId(category)" data-toggle="modal" /></td> 
                         </tr>
                     	</tbody>
                 </table>
@@ -109,9 +109,9 @@
 		      <div class="modal-body">
 		      <table>
 			         <tr>
-			           <!--  <td><label>Category Name</label></td>
+			           <td><label>Category Name</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="CategoryName" style="width: 60%;height:80%;" data-ng-model="ancmtData.cname" required></textarea></td>
-			       -->
+			       
 			        	<td><label>Sub Category Name</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="SubCategoryName" style="width: 360%;height:80%;" data-ng-model="ancmtData.Sucategory" required></textarea></td>
 			        </tr>
@@ -140,7 +140,7 @@
 		        Are you sure you want to delete?
 		      </div>
 		      <div class="modal-footer">
-		      	<button type="button" class="btn btn-primary" data-ng-click="deleteSubCategory(deleteId)">Yes</button>
+		      	<button type="button" class="btn btn-primary" data-ng-click="deleteSubCategory(deleteId,deletedCID)">Yes</button>
 		        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
 		      </div>
 		    </div>

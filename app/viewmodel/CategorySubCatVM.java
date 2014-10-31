@@ -8,17 +8,19 @@ import models.Adsubcategory;
 
 public class CategorySubCatVM {
      public String CSID;
+     public String CID;
      public String cname;
      public String Sucategory;
     
 
     
-    public CategorySubCatVM(Adsubcategory adsubcategory) {
+    public CategorySubCatVM(Object[] categorySubCatVM) {
     	
-    	this.CSID=adsubcategory.CSID;
-       	this.cname=adsubcategory.cname;
-    	this.Sucategory=adsubcategory.Sucategory;
+    	this.CID=(String)categorySubCatVM[0];
+       	this.cname=(String)categorySubCatVM[1];
+       	this.CSID = (String)categorySubCatVM[3];
+    	this.Sucategory=(String)categorySubCatVM[2];
     }
-    
+   
 	
 }

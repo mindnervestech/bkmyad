@@ -446,9 +446,14 @@
       <div style="float: left;width: 100%;">
 		  <a class="btn btn-primary" ng-bind="modeOfPayment == 'cod' ? 'Submit Order': 'Continue For Payment'" data-ng-click="onCartSubmit();" 
                  data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength" style="float:right; margin: 1%; margin-right: 3%;"></a>
+              <a class="btn btn-primary" data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength" class="btn btn-success" ng-click='previewInvoiceAd(carts)' style="width: 154px;px; float: right;margin-top: 1%;">Order Preview <i class="icon-edit"></i></a>
+      
 		   <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward();"
                    data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex" style="float: right; margin: 1%; margin-right: 2%;">Back</a>
       </div>
+     <!--  <div>
+         <button data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength" class="btn btn-success" ng-click='previewInvoiceAd(carts)' style="width: 100px;">Preview <i class="icon-edit"></i></button>
+      </div> -->
       <div id="ccIframe" data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength || showIframe">
       </div> 
 		  </div>

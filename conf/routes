@@ -47,7 +47,7 @@ POST    /saveNewpaper                           controllers.AddNewspaperControll
 POST	/updateNewpaper	                   controllers.AddNewspaperController.updateNewpaper
 GET	/getNewpaper/:Nameofthenewspaper/:currentPage	   controllers.AddNewspaperController.getNewpaper(Nameofthenewspaper :String,currentPage :Integer)
 GET	/deleteNewpaper/:id		           controllers.AddNewspaperController.deleteNewpaper(id :String)
-GET /deleteMainAndSubcategory/:id       controllers.AddCategorySubcatController.deleteMainAndSubcategory(id:String)
+GET /deleteMainAndSubcategory/:id/:deletedCID       controllers.AddCategorySubcatController.deleteMainAndSubcategory(id:String, deletedCID :String)
 GET  /deleteStateAndCities/:id           controllers.AddStateCityController.deleteStateAndCities(id:String)
 GET	/getStateName/:Statename/:currentPage	controllers.AddStateCityController.getStateName(Statename :String,currentPage :Integer)
 POST	/saveCity		               controllers.AddStateCityController.saveCity

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body id ="myModal2" >
+ <div style="margin-bottom:25px;line-height:16px;" id="adText">
+			
+			
+       <div>
+     <img src="assets/img/Logo Arihant Booking.jpg" />
+		     <table style="margin-left: 2%;">
+		      <tr>
+			      <!--  <td><label style="color:blue">Order ID : </label></td><td><span style="font-weight:bold">{{headerItem.OrderID}}</span></td> -->
+			       <td><label style="color:blue">Order Date: </label> </td><td><span style="font-weight:bold">{{orderdate |date:'MM/dd/yyyy'}}</span></td>
+			  </tr>
+			   <tr><!-- Nameofthenewspaper ,TotalCost,Bgcolor,,numberOfWords, -->
+			        <td><label style="color:blue" >Client Name :</label> </td><td > <span ng-if="name != ''" style="font-weight:bold">{{name}}</span><span ng-if="name == ''" style="font-weight:bold"> Not Available</span></td>
+			       <td><label style="color:blue"> Payment Mode :</label>  </td><td><span style="font-weight:bold" >Online</span></td>
+			  </tr>
+			  <tr>
+			  <td><label style="color:blue">Address:</label> </td>
+			  <td ><span style="font-weight:bold" ng-if="name != ''">{{addressDetails.fullName}},{{addressDetails.address}} , {{addressDetails.city}} ,{{addressDetails.state}} ,{{addressDetails.pinCode}}</span><span ng-if="name == ''" style="font-weight:bold">Not Available</span></td>
+			  
+			  </tr>
+		 </table>
+		 <div class="ngdialog-close" style="right: 20px;top: 20px;"></div>
+     </div>
+      
+		      <div ng-repeat="c in cartsItem">
+		      <div>
+		      <table border="1" style="width: 800px;float: left; ">
+		      <tr>
+		         <td><label style="color:blue ; width: 40%;" > NewsPaper/Category/City: </label> </td>
+		         <td><label style="color:blue; width: 40%;" >Ad Text:</label> </td>
+		         <td><label style="color:blue; width: 40%;">Published Date: </label> </td>
+		         <td><label style="color:blue; width: 40%;">Total Cost :</label></td>
+			   </tr>
+
+			   <tr style="height: 140px";>
+			       <td style="width: 40%;">{{c.newspaper}}/{{c.mainCategoty}}/ <br/>{{c.location}}</lable></td>
+			       <td style="width: 40%;"> {{c.description}}</lable></td>
+			       
+			  <!-- <tr>
+			      <td><label>BgColor Selected : </label></td>
+			      <td> {{invoice.Bgcolor}}</td>
+			       <td><label>Border Selected: </label> </td>
+			       <td>{{invoice.Border}}
+			      </td>
+			  </tr> -->
+			  
+			      <!--  <td><label>Tick Selected: </label> </td>
+			       <td> {{invoice.Tick}} </td> -->
+			       
+			       <td><span  ng-repeat="dateUI in c.dates">{{dateUI |date:'MM/dd/yyyy'}} </span><br/></td>
+			       </div>
+			       <td> ?. {{c.fullTotal}} </lable></td>
+		     	
+			 </tr>
+		<!-- 	<tr><td>{{grantTotal}}</td></tr> -->
+		       </table>
+		       
+		 </div>
+     
+				
+</div>
+<table  border="1" style="margin-left: 86%;">
+		  <tr>
+			 <td><label style="color:blue" >Grand Total :</label></td> 
+			 <td>?.{{grantTotal}}</td>
+		 </tr>
+    </table>
+<style>
+	.ngdialog-content{
+	position: absolute !important;
+	left: 18% !important;
+	float: left !important;
+	 width: auto !important;
+     overflow: scroll;
+     overflow-x:hidden;
+	}
+	</style>
+	
+	<script type="text/javascript">
+    $(function(){
+      $('#myModal2').slimScroll({
+          color: 'red'
+      });
+    });
+</script>
+</body>
+	
+ <!-- <style>
+	.ngdialog-content {
+		width:53% !important;
+	}
+	</style>  -->    
+</html

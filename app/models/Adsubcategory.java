@@ -31,7 +31,7 @@ public class Adsubcategory {
     	long totalPages = 0, size;
     	
     	if(cname.trim().equals("")) {
-    		size = (Long) JPA.em().createQuery("Select count(*) from Adsubcategory a").getSingleResult();
+    		size = (Long) JPA.em().createQuery("Select count(*) from Adcategory a").getSingleResult();
     	} else {
     		Query query = JPA.em().createQuery("Select count(*) from Adsubcategory a where a.cname LIKE ?2");
     		query.setParameter(2, "%"+cname+"%");
@@ -48,17 +48,15 @@ public class Adsubcategory {
     }
 	
 	 @Transactional
-	    public static List<Adsubcategory> getAllcategory(String cname, int currentPage, int rowsPerPage, long totalPages) {
+	    public static List<Object[]> getAllcategory(String cname, int currentPage, int rowsPerPage, long totalPages) {
 	    	int  start=0;
 	    	/*Query q;*/
 	    	String sql="";
 	    	
-	    	System.out.println("------------"+cname+"------------");
 	    	if(cname.trim().equals("")) {
-	    		sql = "Select a from Adsubcategory a";
+	    		sql = "SELECT Adcategory.CID,Adcategory.cname,Adsubcategory.Sucategory,Adsubcategory.CSID FROM Adcategory LEFT JOIN Adsubcategory ON Adcategory.cname = Adsubcategory.cname UNION SELECT Adcategory.CID,Adcategory.cname,Adsubcategory.Sucategory,Adsubcategory.CSID FROM Adcategory RIGHT JOIN Adsubcategory ON Adcategory.cname = Adsubcategory.cname";
 	    	} else {
-	    		sql ="Select a from Adsubcategory a where a.cname LIKE ?1";
-	    		
+	    		sql ="SELECT Adcategory.CID,Adcategory.cname,Adsubcategory.Sucategory,Adsubcategory.CSID FROM  Adcategory ,adsubcategory  where Adcategory.cname = adsubcategory.cname AND  Adcategory.cname LIKE ?1";
 	    	}
 
     		if(currentPage >= 1 && currentPage <= totalPages) {
@@ -68,13 +66,13 @@ public class Adsubcategory {
 				currentPage--;
 				start = (int) ((totalPages*rowsPerPage)-rowsPerPage); 
 			}
-	    	Query q = JPA.em().createQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
+	    	Query q = JPA.em().createNativeQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
 	    	if(!cname.trim().equals("")) {
 				q.setParameter(1, "%"+cname+"%");
 			}
 			
 		
-			return (List<Adsubcategory>)q.getResultList();
+			return (List<Object[]>)q.getResultList();
 			
 			
 	    }

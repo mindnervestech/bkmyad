@@ -77,14 +77,14 @@
 		      <div class="modal-body" data ng-repeat="invoice in orderData">
 		      <table border="1" style="width: 900px;float: left; ">
 		      <tr>
-		         <td><label style="color:blue ;width: 40%;" > NewsPaper/Category/City: </label> </td>
-		         <td><label style="color:blue;width: 40%;" >Ad Text:</label> </td>
-		         <td><label style="color:blue;width: 40%;">Published Date: </label> </td>
-		         <td><label style="color:blue;width: 50%;">Total Cost :</label></td>
+		         <td style="width: 40%;"><label style="width: 40%;color:blue ;" > NewsPaper/Category/City: </label> </td>
+		         <td style="width: 40%;"><label style="color:blue;width: 40%;" >Ad Text:</label> </td>
+		         <td style="width: 40%;"><label style="color:blue;width: 40%;">Published Date: </label> </td>
+		         <td style="width: 40%;"><label style="color:blue;width: 40%;">Total Cost :</label></td>
 			   </tr>
 			   <tr style="height: 140px";>
-			       <td>{{invoice.Nameofthenewspaper}}/{{invoice.Category}}/ <br/>{{invoice.City}}</lable></td>
-			       <td style="width: 20%;"> {{invoice.Adtext}}</lable></td>
+			       <td style="width: 40%;" >{{invoice.Nameofthenewspaper}}/{{invoice.Category}}/ <br/>{{invoice.City}}</lable></td>
+			       <td style="width: 40%;" > {{invoice.Adtext}}</lable></td>
 			       
 			  <!-- <tr>
 			      <td><label>BgColor Selected : </label></td>
@@ -96,8 +96,8 @@
 			  
 			      <!--  <td><label>Tick Selected: </label> </td>
 			       <td> {{invoice.Tick}} </td> -->
-			       <td> {{invoice.PublishDate}} </lable></td>
-			       <td> {{invoice.TotalCost}} </lable></td>
+			       <td style="width: 40%;"> {{invoice.PublishDate}} </lable></td>
+			       <td style="width: 40%;"> ?.{{invoice.TotalCost}} </lable></td>
 			</span>
 			 </tr>
 			
@@ -110,7 +110,7 @@
 			 <td>
 			 <label style="color:blue" >Grand Total :</label>
 			 </td> <td>
-			 {{grantTotal}}
+			 ?.{{grantTotal}}
 			 </td>
 			 </tr>
 		        </table>

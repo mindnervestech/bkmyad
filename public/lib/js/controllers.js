@@ -183,7 +183,7 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 	}
 	
 	$scope.deleteSubCategory = function() {
-		deleteSubCategoryService.DeleteSubCategory.get({id :$scope.deleteId}, function(data){
+		deleteSubCategoryService.DeleteSubCategory.get({id :$scope.deleteId,deletedCID :$scope.deletedCID}, function(data){
 			$scope.searchCategory(currentPage);
 	        $('#myModal3').modal('hide');
 		});    
@@ -263,7 +263,8 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 	};
 	$scope.setDeleteId = function(Id) {
 		$scope.deleteId = Id.CSID;
-		console.log("-**-*-"+$scope.deleteId+"*-*-*-*");
+		$scope.deletedCID = Id.CID;
+	
 		$('#myModal3').modal();
 	};
 	$scope.onNext = function(cname) {
@@ -291,7 +292,7 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
  });
  angular.module('adschela').service('deleteSubCategoryService',function($resource){
     this.DeleteSubCategory = $resource(
-            '/deleteMainAndSubcategory/:id',
+            '/deleteMainAndSubcategory/:id/:deletedCID',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get'}
@@ -1938,7 +1939,51 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				
 		});
 	}
-	
+	$scope.previewInvoiceAd=function(c,scope){
+		//console.log(c);
+		$scope.cartsItem  = {};
+		$scope.cartsItem = c;
+		$scope.grantTotal = 0;
+		console.log("$scope.cartsItem"+JSON.stringify($scope.cartsItem));
+        //set the header data to invoice 		
+		for(var i=0;i<$scope.cartsItem.length;i++){
+			$scope.headerItem = $scope.cartsItem[0];
+			// $scope.grantTotal += (parseInt(cartsItem[i].fullTotal));
+		}
+		//set the body part and the grantTotal of the Invoice Data
+		for(var i=0;i<$scope.cartsItem.length;i++){
+			 $scope.grantTotal += (parseInt( $scope.cartsItem[i].fullTotal));
+		}''
+		//Display the order Placed Date on InvoiceAD before proceding  to payment.  
+		var order = new Date()
+		$scope.orderdate = order;
+		 //set the address details to current logged In user, who is placing order
+		$http.get("getaddressDetailsofUser")
+		 .success(function(data){
+				 $scope.addressDetails = data.addressDetails;
+		         console.log(" $scope.result invoice"+JSON.stringify($scope.addressDetails));
+		});
+       /* $scope.selectednewspaper=c.newspaper;
+		$scope.selectedCart = c.description;
+		$scope.selectBorder=c.onBorderSelected;
+		$scope.selectedcolor=c.onbgColorchange;
+		$scope.isTickSelected = c.notickforAd;
+		$scope.fullTotal = c.fullTotal;
+	//	$scope.newspaper = c.newspaper;
+		$scope.startDate  = c.startDate;
+		$scope.dates = c.dates;
+		$scope.location = c.location;
+		$scope.mainCategoty = c.mainCategoty;
+		*/
+		
+		ngDialog.open({
+			template: 'newtheme/previewInvoiceAds.html',
+			className: 'ngdialog-theme-default',
+			scope: $scope
+				
+		});
+	}
+	 
 	ComposeAd = function(c, scope) {
 		SetSelectedCartItemOnPopUp(c);
 		ngDialog.open({
