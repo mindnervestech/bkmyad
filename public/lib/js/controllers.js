@@ -2164,10 +2164,27 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		.success(function(data){
 			if(data) {
 				$scope.resultSubCategory = data;
+				console.log("$scope.resultSubCategory :"+$scope.resultSubCategory);
+				console.log("sub cat"+$scope.selectedsubCat);
 			} else {
 				$scope.resultSubCategory = [];
 			}
 		});
+
+		$scope.onSubcategorySelect = function(selectedsubCat){
+			$scope.subcategory = selectedsubCat;
+			console.log("selectedsubCat: "+$scope.subcategory);
+		}
+		$scope.checkForSubCategorySelect = function(){
+			console.log("in check sub cate");
+			console.log("$scope.subcategory"+$scope.subcategory);
+			if($scope.subcategory == "" || angular.isUndefined($scope.subcategory)){
+				alert("Please Select Sub-Category ");
+			}else{
+				$scope.rc.sampleWizard.forward();
+			}
+		}	
+	
 	}
 	
 	$scope.checkForUsernameAndPassword = function(){
@@ -2259,6 +2276,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				noOfImpression: 1,
 				dates: [],
 				mainCategoty: $scope.bookingState.selectedMainCategoty,
+				subcategory : $scope.subcategory,
 				isHindi:true,
 				onbgColorchange:'',
 				onBorderSelected:'No',
@@ -2296,6 +2314,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			noOfImpression: 1,
 			dates: [],
 			mainCategoty: $scope.bookingState.selectedMainCategoty,
+			subcategory : $scope.subcategory,
 			isHindi:true,
 			onbgColorchange:'',
 			onBorderSelected:'No',
@@ -2304,7 +2323,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			startDate:moment().add(2, 'days').format("DD/MM/YYYY")
 	    }
 	}
-
+	
 	$scope.onStateSelect = function(statename) {
 	
 		$http.get("getcity/"+statename)

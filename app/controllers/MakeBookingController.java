@@ -222,16 +222,13 @@ import com.google.common.collect.Lists;
     Order orderStatus = Order.getOrderStatus(orderIdStatus);
     System.out.println("orderStatus:::"+orderStatus);
     
-    	if((orderStatus) == null)
-    	{   
+    	if((orderStatus) == null){   
     		return ok("false");	
     	}else{
-    	
     		return ok("true");
     	}
     }
   
-   
 
 	private static Map<String,Object>  makeBookingBarFixture() {
 		List<Newspaperdetails> newspapers = Newspaperdetails.getAllnewspaper();
@@ -322,7 +319,6 @@ import com.google.common.collect.Lists;
 			   this.extraForBorderInPer = extraForBorderInPer;
 			   this.extraForBackgroudInPer = extraForBackgroudInPer;
 			   this.extraFortickInPer = extraFortickInPer;
-			   
 			   return this;
 		   }
 	}
@@ -422,7 +418,7 @@ import com.google.common.collect.Lists;
         public String extraFortickInPer;
         public Boolean isSelected;
         public String  packageSelected = "B";
-		
+	     public String subcategory;	
         public static Rate byId(String id) {
             Rate rate = new Rate();
             rate.id = id;
@@ -626,11 +622,9 @@ import com.google.common.collect.Lists;
 	     orderId = orderId.substring(orderId.lastIndexOf("-") + 1);
 	     float amount = 0;
 	     List<ComposedAdSave> composedAdSaves = new ArrayList<>();
-         
 	     try {
 	    	 cartItem = objectMapper.readValue(json.get("carts").traverse(),
 	    			 new com.fasterxml.jackson.core.type.TypeReference<List<CartItem>>() {});
-	      
 	         for(int i=0; i < cartItem.size(); i++) {
 	        	 ComposedAdSave cds=new ComposedAdSave();
 	          cds.Category=cartItem.get(i).mainCategoty;
@@ -642,7 +636,6 @@ import com.google.common.collect.Lists;
 	    	  cds.OrderID = orderId;
 	    	  cds.BorderCost=cartItem.get(i).extraForBorder;
 	    	  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
-	    	  
 	    	  cds.Extrabgper = cartItem.get(i).extraForBackgroudInPer;
 	    	  cds.Extraborderper =cartItem.get(i).extraForBorderInPer;
 	    	  cds.Tickper = cartItem.get(i).extraFortickInPer;

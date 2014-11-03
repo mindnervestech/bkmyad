@@ -30,9 +30,9 @@ public class AddCategorySubcatController extends Controller{
 
 	@Transactional
 	public static Result getCategory(String cname,int currentPage) {
-		long totalPages = Adsubcategory.getAllcategoryTotal(cname, 4);
+		long totalPages = Adsubcategory.getAllcategoryTotal(cname, 30);
 		
-		List<Object[]> allcategory =Adsubcategory.getAllcategory(cname, currentPage, 4, totalPages);
+		List<Object[]> allcategory =Adsubcategory.getAllcategory(cname, currentPage, 30, totalPages);
 		List<CategorySubCatVM> listOfCat = new ArrayList<>();
 		
 		

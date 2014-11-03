@@ -47,7 +47,7 @@
           					<td>{{category.cname}}</td>
                             <td>{{category.Sucategory}}</td>
                             
-                            <td> <input name="" type="button" value="Add SubCategory" ng-click="updateSubcategory(category)" data-toggle="modal"  /></td>
+                            <td> <input name="" type="button" value="Update" ng-click="updateSubcategory(category)" data-toggle="modal"  /></td>
                             <td><input name="" type="button" value="Delete" ng-click="setDeleteId(category)" data-toggle="modal" /></td> 
                         </tr>
                     	</tbody>
@@ -113,7 +113,7 @@
 			        	<td style="height: 60px;"><textarea type="text" name="CategoryName" style="width: 60%;height:80%;" data-ng-model="ancmtData.cname" required></textarea></td>
 			       
 			        	<td><label>Sub Category Name</label></td>
-			        	<td style="height: 60px;"><textarea type="text" name="SubCategoryName" style="width: 360%;height:80%;" data-ng-model="ancmtData.Sucategory" required></textarea></td>
+			        	<td style="height: 60px;"><textarea type="text" name="SubCategoryName" style="width: 360%;height:80%;" data-ng-model="ancmtData.Sucategory" ></textarea></td>
 			        </tr>
 			        <tr>
 			           <label style="color: #0085b0;">Please Enter Your Value Separated By Comma</label>

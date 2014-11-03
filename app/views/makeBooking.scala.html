@@ -145,7 +145,7 @@
 		
 			    	</select>
 			    	</div>
-			    	<select ng-show="resultSubCategory.length != 0" ng-model="selectedsubCat" class="mnt-select" style="margin-top: 1%;">
+			    	<select ng-show="resultSubCategory.length != 0" ng-model="selectedsubCat" ng-change = "onSubcategorySelect(selectedsubCat)"class="mnt-select" style="margin-top: 1%;">
 			    		 <option ng-repeat="scat in resultSubCategory" >{{scat}}</option>
 			    		<option value="">--Please Select Subcategory--</option>
 			    	</select>
@@ -160,7 +160,7 @@
 			    	  <tabset>
 			    	   <!-- class="icon-search" -->
 			    	  <tab>
-			    	<img data-ng-show="carts.length > 0"  data-ng-click="rc.sampleWizard.forward()" class="mnt-proceed-btn" src="images/proceed-button.png"/>
+			    	<img data-ng-show="carts.length > 0"  data-ng-click="checkForSubCategorySelect()" class="mnt-proceed-btn" src="images/proceed-button.png"/>
             
 			    	   <tab-heading>
                         <i class="icon-tags"></i> Basic Rate
@@ -308,7 +308,8 @@
 			    
 			  </tabset>
 			  <!--TODO: Take image to local  -->
-			  <img data-ng-show="carts.length > 0"  data-ng-click="rc.sampleWizard.forward()" class="mnt-proceed-btn" src="images/proceed-button.png"/>
+		<!-- 	  rc.sampleWizard.forward() -->
+			  <img data-ng-show="carts.length > 0"  data-ng-click="checkForSubCategorySelect()" class="mnt-proceed-btn" src="images/proceed-button.png"/>
               </form>
               <p ng-show="errorDesc" style="color:red">Please compose all your pending Ad before proceding </p>
               <!--  <p style="color:red">{{errorDesc}}</p> -->
