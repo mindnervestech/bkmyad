@@ -58,6 +58,12 @@ public class ComposedAdSaveVMInvoice {
 	    	this.Tick = composedAdSave.Tick;
 	    	this.Category = composedAdSave.Category;
 	    	this.City = composedAdSave.City;
+	    	this.Subcategory = composedAdSave.Subcategory;
+	    	
+	    	this.totalExtraCost = composedAdSave.totalExtraCost;
+	    	this.numberOfWords = composedAdSave.numberOfWords;
+	    	
+	    	System.out.println("this.Subcategory"+this.Subcategory);
 	    	System.out.println("this.paymentOption"+this.paymentOption);
 	        
 	    	

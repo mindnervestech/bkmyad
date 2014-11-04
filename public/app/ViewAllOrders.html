@@ -58,7 +58,7 @@
                             <td><font ng-if="ancmt.cc_orderNo != null">{{ancmt.cc_orderNo}}</font><font ng-if="ancmt.cc_orderNo == null">Pending</font></td>
                            <!--   cc_bid,cc_orderNo,cc_category,bank_name,bankMsg -->
                          
-                            <td> <input name="" type="button" value="View Details" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
+                            <td> <input name="" type="button" value="View Details" ng-click="setInvoiceData(ancmt)" data-toggle="modal"  /></td>
                            </tr>
                     	</tbody>
                 </table>
@@ -79,7 +79,8 @@
     
   </div>
 				
-		 <!-- Update Modal -->
+		  <!-- Update Modal -->
+		<!--
 		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;left: 41%;">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -90,29 +91,29 @@
 		     
 		      <div class="modal-body">
 		      <table>
-			       <!--  <tr>
+			        <tr>
 			        <td><label>OrderID: </label></td><td>{{ancmtData.OrderID}}</td>
-			        </tr> -->
-			        <!-- <tr>
+			        </tr>
+			        <tr>
 			        <td><label>NewsPapers/City: </label></td><td>{{ancmtData.Nameofthenewspaper}}/{{ancmtData.City}}</td>
-			        </tr>	 -->
+			        </tr>	
 		         <tr>
 			        <td><label>Ad Text: </label></td><td>{{ancmtData.Adtext}}</td>
 			        </tr>	
-		        <!--  <tr>
+		         <tr>
 			        <td><label>Category: </label></td><td>{{ancmtData.Category}}</td>
-			        </tr>	 -->
-		       <!--   <tr>
+			        </tr>	
+		         <tr>
 		         <tr>
 			        <td><label>Booking Date: </label></td><td>{{ancmtData.orderDate}}</td>
 			        </tr>	
 		         <tr>
 		         <tr>
 			        <td><label>Publish Date: </label></td><td>{{ancmtData.PublishDate | limitTo:22}}</td>
-			        </tr> -->	
-		         <!-- <tr><tr>
+			        </tr>	
+		         <tr><tr>
 			        <td><label>TotalCost: </label></td><td>{{ancmtData.TotalCost}}</td>
-			        </tr>	 -->
+			        </tr>	
 		         <tr>
 		     
 			        <td><label>Bg Color: </label></td><td>{{ancmtData.Bgcolor}}</td>
@@ -129,20 +130,104 @@
 			         <tr>
 			        <td><label>Tick Rate: </label></td><td>{{ancmtData.TickRate}}</td>
 			        </tr>	
-		         <!-- <tr>
+		         <tr>
 			        <td><label>NewsPapers</label></td><td>{{ancmtData.Nameofthenewspaper}}</td>
-			        </tr> -->	
+			        </tr>	
 		         	
-		        <!--  <div class="modal-footer">
+		         <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		        <button type="submit" class="btn btn-primary">Update</button>
 		      </div>
-		    -->
+		   
 		    
 		
 		</table>
 		</div>
-		</div></div></div>
+		</div></div></div> -->
+		
+		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false"  style="width: 65%;left: 41%; height: 459px !important;  overflow:scroll !important;">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Invoice Details</h4>
+		      </div>
+       <div>
+     <img src="assets/img/Logo Arihant Booking.jpg" />
+		     <table style="margin-left: 2%;">
+		      <tr>
+			       <td><label style="color:blue">Order ID  </label></td><td><span style="font-weight:bold">{{inVoiceHeader.OrderID}}</span></td>
+			       <td><label style="color:blue">Order Date </label> </td><td><span style="font-weight:bold">{{inVoiceHeader.orderDate}}</span></td>
+			  </tr>
+			   <tr><!-- Nameofthenewspaper ,TotalCost,Bgcolor,,numberOfWords, -->
+			        <td><label style="color:blue">Client Name </label> </td><td> <span style="font-weight:bold">{{inVoiceHeader.userEmailId}}</span></td>
+			       <td><label style="color:blue"> Payment Mode </label>  </td><td><span style="font-weight:bold" ng-if="inVoiceHeader.paymentOption == 'cc'">Online</span></td>
+			  </tr>
+			  <tr>
+			  <td><label style="color:blue">Address </label> </td>
+			  <td><span style="font-weight:bold">{{addressDetails.fullName}},{{addressDetails.address}} , {{addressDetails.city}} ,{{addressDetails.state}} ,{{addressDetails.pinCode}}</span></td>
+			  
+			  </tr>
+		 </table>
+     </div>
+		     
+		      <div class="modal-body" data ng-repeat="invoice in orderData">
+		      <table border="1" style="width: 900px;float: left; ">
+		      <tr>
+		         <td style="width: 22%;color:blue;"><label> <center>NewsPaper/Category/Sub Category/City</center> </label> </td>
+		         <td style="width: 24%%;color:blue"><center><label>Ad Text</label></center> </td>
+		         <td style="width: 22%;color:blue;"><label><center>Published Date</center></label> </td>
+		         <td style="width: 22%;color:blue;"><label><center>Enhancements</center></label> </td>
+		         <td style="width: 22%;color:blue;"><label><center>Total Cost </center></label></td>
+			   </tr>
+			   <tr style="height: 140px";>
+			       <td >{{invoice.Nameofthenewspaper}}/{{invoice.Category}}/ <font ng-if= "invoice.Subcategory == null ">Not Selected</font><font ng-if= "invoice.Subcategory != ''">{{invoice.Subcategory}}</font>/<br/>{{invoice.City}}</lable></td>
+			       <td > {{invoice.Adtext}}</lable></td>
+			       
+			  <!-- <tr>
+			      <td><label>BgColor Selected : </label></td>
+			      <td> {{invoice.Bgcolor}}</td>
+			       <td><label>Border Selected: </label> </td>
+			       <td>{{invoice.Border}}
+			      </td>
+			  </tr> -->
+			  
+			      <!--  <td><label>Tick Selected: </label> </td>
+			       <td> {{invoice.Tick}} </td> -->
+			       <td> {{invoice.PublishDate}} </lable></td>
+			       <td>BgColor: <font ng-if="invoice.Bgcolor == ''">No</font><font ng-if="invoice.Bgcolor != ''">{{invoice.Bgcolor}}</font> <br> Border: {{invoice.Border}}<br>Tick: <font ng-if="invoice.Tick == 'true'">No</font><font  ng-if="invoice.Tick == 'false'">Yes</font> <br>Number Of Words/Line :{{invoice.numberOfWords}}<br>Total Extra Cost:{{invoice.totalExtraCost}}</lable></td>
+			       <td> र.{{invoice.TotalCost}} </lable></td>
+			</span>
+			 </tr>
+			
+		        </table>
+		       
+		      </div>
+		    </div>
+		     <table  border="1" style="float: right;margin-right: 2%;">
+		         <tr>
+			 		<td style="width:38%;">
+			 		<label style="color:blue" >Grand Total :</label>
+			 		</td> <td style="width:38%;">
+			 		र.{{grantTotal}}
+			 		</td>
+			 </tr>
+		        </table>
+		  </div>
+		</div>
+		  <script type="text/javascript">
+    $(function(){
+      $('#myModal2').slimScroll({
+          color: 'red'
+      });
+    });
+</script>
+<style>
+	.ngdialog-content {
+		width:53% !important;
+	}
+	</style>  
+		
 			
   </body>
   </html>

@@ -885,12 +885,46 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	    );
 	});
 	
-	
-	$scope.setData = function(ancmt) {
+	  $scope.setInvoiceData = function(invoiceData) {
+	    	$scope.grantTotal = 0;
+	  
+	 
+	    $scope.orderId=invoiceData.OrderID;
+	    console.log(" $scope.orderId"+ $scope.orderId);
+	  
+	    //get the invoice Details
+	    $http.get("getInvoiceOrderDetails/"+$scope.orderId)
+		 .success(function(data){
+			 if(data.results.length>0) {
+				 $scope.orderData = data.results;
+				 for(var i=0;i<data.results.length;i++){
+					 $scope.grantTotal += (parseInt(data.results[i].TotalCost));
+					 console.log("$scope.grantTotal"+$scope.grantTotal);
+				 }
+				 $scope.inVoiceHeader = data.results[0];
+			 }
+		  console.log(" $scope.result invoice"+JSON.stringify($scope.orderData));
+		});
+	    
+	   //get the adderess to  show on the invoice
+	    $scope.userEmailId = invoiceData.userEmailId;
+	    console.log(" $scope.userEmailId: "+ $scope.userEmailId);
+	    	$http.get("getaddressDetailsofUserForAdmin/"+$scope.userEmailId)
+		 .success(function(data){
+				 $scope.addressDetails = data.addressDetails;
+		         console.log(" $scope.result invoice address"+JSON.stringify($scope.addressDetails));
+		});
+	    
+	   // $scope.invoiceDetails( $scope.orderData,$scope.inVoiceHeader,$scope.addressDetails);
+	 		
+	 		$('#myModal2').modal();
+	 				
+	 	};
+	/*$scope.setData = function(ancmt) {
 		$scope.ancmtData = ancmt;
 		$('#myModal2').modal();
 			
-	};
+	};*/
 
 	
 	$scope.onNext = function(nameOfthenewspaper) {
@@ -1084,7 +1118,9 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		$scope.isChosen = false;
 		$('#myModal').modal();
 	}
-	$scope.setDeleteId = function(Id) {
+	$scope.setDeleteId = function(Id,nameOfTheNewspaper,category) {
+		$scope.nameOfTheNewspaper= nameOfTheNewspaper;
+		$scope.category = category;
 		$scope.deleteId = Id.BasicRateID;
 		console.log("-**-*-"+$scope.deleteId+"*-*-*-*");
 		$('#myModal3').modal();
@@ -1102,8 +1138,9 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	};
 	
 	$scope.deleteBasicRate = function() {
+	
 		deleteBasicRateService.Deletebasicrate.get({id :$scope.deleteId}, function(data){
-			$scope.searchBasicRate(currentPage);
+			$scope.searchBasicRate(currentPage,$scope.nameOfTheNewspaper,$scope.category);
             $('#myModal3').modal('hide');
 		});    
 	};
@@ -1111,6 +1148,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	
 	
 	$scope.onNext = function(nameOfTheNewspaper,category) {
+		
 		if(currentPage < totalPages) {
 			currentPage++;
 			$scope.searchBasicRate(currentPage,nameOfTheNewspaper,category);
@@ -1707,6 +1745,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 						noOfImpression:orderListuser.noOfImpression,
 						dates : orderListuser.dates,
 						mainCategoty:orderListuser.mainCategoty,
+						subcategory : orderListuser.subcategory,
+						numberOfWords:orderListuser.numberOfWords,
 						isHindi:true,
 						onbgColorchange:orderListuser.onbgColorchange, 
 						onBorderSelected:orderListuser.onBorderSelected,
@@ -2164,7 +2204,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		.success(function(data){
 			if(data) {
 				$scope.resultSubCategory = data;
-				console.log("$scope.resultSubCategory :"+$scope.resultSubCategory);
+				console.log("$scope.resultSubCategory length:"+$scope.resultSubCategory.length);
 				console.log("sub cat"+$scope.selectedsubCat);
 			} else {
 				$scope.resultSubCategory = [];
@@ -2178,9 +2218,16 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.checkForSubCategorySelect = function(){
 			console.log("in check sub cate");
 			console.log("$scope.subcategory"+$scope.subcategory);
-			if($scope.subcategory == "" || angular.isUndefined($scope.subcategory)){
+			console.log("length: sub category"+$scope.resultSubCategory.length);
+			//angular.isUndefined($scope.subcategory)
+			//$scope.subcategory == "" ||
+			if($scope.resultSubCategory.length != 0){
+				if($scope.subcategory == "" || angular.isUndefined($scope.subcategory)){
 				alert("Please Select Sub-Category ");
-			}else{
+				}else{
+					$scope.rc.sampleWizard.forward();
+				}
+			}else if($scope.resultSubCategory.length == 0 ){
 				$scope.rc.sampleWizard.forward();
 			}
 		}	

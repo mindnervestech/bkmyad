@@ -59,15 +59,15 @@
      <img src="assets/img/Logo Arihant Booking.jpg" />
 		     <table style="margin-left: 2%;">
 		      <tr>
-			       <td><label style="color:blue">Order ID : </label></td><td><span style="font-weight:bold">{{inVoiceHeader.OrderID}}</span></td>
-			       <td><label style="color:blue">Order Date: </label> </td><td><span style="font-weight:bold">{{inVoiceHeader.orderDate}}</span></td>
+			       <td><label style="color:blue">Order ID  </label></td><td><span style="font-weight:bold">{{inVoiceHeader.OrderID}}</span></td>
+			       <td><label style="color:blue">Order Date </label> </td><td><span style="font-weight:bold">{{inVoiceHeader.orderDate}}</span></td>
 			  </tr>
 			   <tr><!-- Nameofthenewspaper ,TotalCost,Bgcolor,,numberOfWords, -->
-			        <td><label style="color:blue">Client Name :</label> </td><td> <span style="font-weight:bold">{{inVoiceHeader.userEmailId}}</span></td>
-			       <td><label style="color:blue"> Payment Mode :</label>  </td><td><span style="font-weight:bold" ng-if="inVoiceHeader.paymentOption == 'cc'">Online</span></td>
+			        <td><label style="color:blue">Client Name </label> </td><td> <span style="font-weight:bold">{{inVoiceHeader.userEmailId}}</span></td>
+			       <td><label style="color:blue"> Payment Mode </label>  </td><td><span style="font-weight:bold" ng-if="inVoiceHeader.paymentOption == 'cc'">Online</span></td>
 			  </tr>
 			  <tr>
-			  <td><label style="color:blue">Address:</label> </td>
+			  <td><label style="color:blue">Address </label> </td>
 			  <td><span style="font-weight:bold">{{addressDetails.fullName}},{{addressDetails.address}} , {{addressDetails.city}} ,{{addressDetails.state}} ,{{addressDetails.pinCode}}</span></td>
 			  
 			  </tr>
@@ -77,14 +77,15 @@
 		      <div class="modal-body" data ng-repeat="invoice in orderData">
 		      <table border="1" style="width: 900px;float: left; ">
 		      <tr>
-		         <td style="width: 40%;"><label style="width: 40%;color:blue ;" > NewsPaper/Category/City: </label> </td>
-		         <td style="width: 40%;"><label style="color:blue;width: 40%;" >Ad Text:</label> </td>
-		         <td style="width: 40%;"><label style="color:blue;width: 40%;">Published Date: </label> </td>
-		         <td style="width: 40%;"><label style="color:blue;width: 40%;">Total Cost :</label></td>
+		         <td style="width: 22%;color:blue;"><label> <center>NewsPaper/Category/Sub Category/City</center> </label> </td>
+		         <td style="width: 24%%;color:blue"><center><label>Ad Text</label></center> </td>
+		         <td style="width: 22%;color:blue;"><label><center>Published Date</center></label> </td>
+		         <td style="width: 22%;color:blue;"><label><center>Enhancements</center></label> </td>
+		         <td style="width: 22%;color:blue;"><label><center>Total Cost </center></label></td>
 			   </tr>
 			   <tr style="height: 140px";>
-			       <td style="width: 40%;" >{{invoice.Nameofthenewspaper}}/{{invoice.Category}}/ <br/>{{invoice.City}}</lable></td>
-			       <td style="width: 40%;" > {{invoice.Adtext}}</lable></td>
+			       <td >{{invoice.Nameofthenewspaper}}/{{invoice.Category}}/ {{invoice.Subcategory}}/<br/>{{invoice.City}}</lable></td>
+			       <td > {{invoice.Adtext}}</lable></td>
 			       
 			  <!-- <tr>
 			      <td><label>BgColor Selected : </label></td>
@@ -96,8 +97,9 @@
 			  
 			      <!--  <td><label>Tick Selected: </label> </td>
 			       <td> {{invoice.Tick}} </td> -->
-			       <td style="width: 40%;"> {{invoice.PublishDate}} </lable></td>
-			       <td style="width: 40%;"> र.{{invoice.TotalCost}} </lable></td>
+			       <td> {{invoice.PublishDate}} </lable></td>
+			       <td>BgColor: <font ng-if="invoice.Bgcolor == ''">No</font><font ng-if="invoice.Bgcolor != ''">{{invoice.Bgcolor}}</font> <br> Border: {{invoice.Border}}<br>Tick: <font ng-if="invoice.Tick == 'true' ">No</font><font  ng-if="invoice.Tick == 'false' ">Yes</font> <br>Number Of Words/Line  {{invoice.numberOfWords}}<br>Total Extra Cost:{{invoice.totalExtraCost}}</lable></td>
+			       <td> र.{{invoice.TotalCost}} </lable></td>
 			</span>
 			 </tr>
 			
@@ -105,13 +107,13 @@
 		       
 		      </div>
 		    </div>
-		     <table  border="1" style="margin-left: 86%;">
+		     <table  border="1" style="float: right;margin-right: 2%;">
 		         <tr>
-			 <td>
-			 <label style="color:blue" >Grand Total :</label>
-			 </td> <td>
-			 र.{{grantTotal}}
-			 </td>
+			 		<td style="width:38%;">
+			 		<label style="color:blue" >Grand Total :</label>
+			 		</td> <td style="width:38%;">
+			 		र.{{grantTotal}}
+			 		</td>
 			 </tr>
 		        </table>
 		  </div>

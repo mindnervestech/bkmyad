@@ -347,10 +347,12 @@ public class Application extends Controller {
     @Transactional
     public static Result getSubCategoty(String cname){
     	List<Adsubcategory> listnewspaper = Adsubcategory.getSubcategotBy(cname);
-    	
+    
     	if(!listnewspaper.isEmpty()) {
-    		Iterable<String> subCats = Splitter.on(",").split(listnewspaper.get(0).Sucategory);
-    		return ok(Json.toJson(subCats));
+    		if(!(listnewspaper.get(0).Sucategory == null)){
+    			Iterable<String> subCats = Splitter.on(",").split(listnewspaper.get(0).Sucategory);
+        		return ok(Json.toJson(subCats));
+    		}
     	}
     	return ok();
     }

@@ -33,6 +33,7 @@ GET  /viewAllRegisteredUserForAdmin/:City/:currentPage	controllers.ViewAllRegist
 GET     /listInfo/:UserId              controllers.MyAccountController.getAllUserOrder(UserId :String)
 GET    /getInvoiceOrderDetails/:orderId    controllers.MyAccountController.getInvoiceOrderDetails(orderId :String)
 GET     /getaddressDetailsofUser            controllers.MyAccountController.getaddressDetailsofUser()
+GET    /getaddressDetailsofUserForAdmin/:userEmailId       controllers.MyAccountController.getaddressDetailsofUserForAdmin(userEmailId :String)
 POST	/saveBasicRate		               controllers.AddbasicRateController.saveBasicRate()
 POST    /saveNewPackageRate                controllers.AddPackageController.saveNewpackageRate()
 POST	/updateBasicRate	            controllers.AddbasicRateController.updateBasicRate

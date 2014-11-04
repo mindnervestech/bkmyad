@@ -59,6 +59,25 @@ public class MyAccountController extends Controller {
 			return ok();
 		}
 	}
+	
+	
+	@Transactional
+	public static Result getaddressDetailsofUserForAdmin(String userEmailId) {
+	//String  emailId = session().get("emailId"); 
+	System.out.println("session emailid "+userEmailId);
+	AddressDetails address = AddressDetails.getAddressDetails(userEmailId);
+	System.out.println("address Form query"+address);
+	if(!(address == null)){
+	List<AddressDetailsVM> addressDetails = new ArrayList<AddressDetailsVM>();
+	Map<String, Object> map = new HashMap<String, Object>();
+	map.put("addressDetails", address);
+	return ok(Json.toJson(map));
+	}
+	else{
+		return ok();
+	}
+}
+	
 	@Transactional
 	public static Result getInvoiceOrderDetails(String orderId) {
 	  List<ComposedAdSave> allInvoice = ComposedAdSave.getInvoiceOrderDetails(orderId);

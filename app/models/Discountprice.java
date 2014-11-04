@@ -229,7 +229,7 @@ public class Discountprice {
 		    }
 
 		 
-
+		
 		 public static Discountprice findById(String id) {
 		    	Query query = JPA.em().createQuery("Select a from Discountprice a where a.Did = ?1");
 				query.setParameter(1, id);

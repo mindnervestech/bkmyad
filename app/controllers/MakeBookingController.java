@@ -146,7 +146,7 @@ import com.google.common.collect.Lists;
            	String dates[] = str.split(",");   
 	    
                 orderListuser.add(OrderList.byId(ol[24].toString())
-                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString()), ol[25].toString(),ol[26].toString(), ol[27].toString()));
+                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString()), ol[25].toString(),ol[26].toString(), ol[27].toString(),ol[28].toString(),(int) ol[29]));
         	}
 	    	Map<String,Object> map = new HashMap<String, Object>();
 			map.put("orderListuser",orderListuser);
@@ -283,6 +283,7 @@ import com.google.common.collect.Lists;
 		public String extraForBorderInPer;
 	    public String extraForBackgroudInPer;
 	    public String extraFortickInPer;
+	    public int numberOfWords;
 		
 	    public static OrderList byId(String id) {
 			 OrderList orderList = new OrderList();
@@ -291,7 +292,7 @@ import com.google.common.collect.Lists;
 	        }
 		   public  OrderList cancelOrderDetails(String OrderId,String newspaper,String  location ,String description, String extraFortick , String onbgColorchange ,String extraForBackgroud,
 				   String onBorderSelected , String extraForBorder , String []  dates,String unit , String  fullTotal,  String mainCategoty ,  String totalUnit , String adbookedDate,
-				   String freeunit, float extra, float totalExtraCost ,float totalUnitCost, int noOfImpression, float rate, boolean bgColorSelect ,boolean notickforAd ,String extraForBorderInPer,String extraForBackgroudInPer,String  extraFortickInPer){
+				   String freeunit, float extra, float totalExtraCost ,float totalUnitCost, int noOfImpression, float rate, boolean bgColorSelect ,boolean notickforAd ,String extraForBorderInPer,String extraForBackgroudInPer,String  extraFortickInPer, String subcategory, int  numberOfWords){
 			   this.OrderId=OrderId;
 			   this.newspaper=newspaper;
 			   this.location=location;
@@ -319,6 +320,8 @@ import com.google.common.collect.Lists;
 			   this.extraForBorderInPer = extraForBorderInPer;
 			   this.extraForBackgroudInPer = extraForBackgroudInPer;
 			   this.extraFortickInPer = extraFortickInPer;
+			   this.subcategory = subcategory;
+			   this.numberOfWords = numberOfWords;
 			   return this;
 		   }
 	}
@@ -351,6 +354,7 @@ import com.google.common.collect.Lists;
         public String extraFortickInPer;
         public Boolean isSelected;
         public String  packageSelected = "P";
+        public int numberOfWords;
        
         public static DiscountRate byId(String id) {
         	DiscountRate discountRate = new DiscountRate();
@@ -552,6 +556,7 @@ import com.google.common.collect.Lists;
         public String extraForBackgroudper;
         public  String tickPer;
 	    public Boolean isSelected;
+	    public int numberOfWords;
 		
 		public DiscountCartItem() {};
 		public DiscountCartItem(String id, String type, String location, String mainCategoty,

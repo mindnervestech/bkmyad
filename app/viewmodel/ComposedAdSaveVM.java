@@ -63,6 +63,7 @@ public class ComposedAdSaveVM {
 		   this.cc_category=order.cc_category;
 		   this.bank_name=order.bank_name;
 		   this.bankMsg=order.bankMsg;
+		   this.numberOfWords = composedAdSave.numberOfWords;
 		   this.userEmailId =composedAdSave.userEmailId;
 		  
 	   }
