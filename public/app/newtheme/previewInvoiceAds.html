@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body id ="myModal2" >
+<body id ="myModal2"  >
  <div style="margin-bottom:25px;line-height:16px;" id="adText">
 			
 			
@@ -16,8 +16,8 @@
 			       <td><label style="color:blue">Order Date </label> </td><td><span style="font-weight:bold">{{orderdate |date:'MM/dd/yyyy'}}</span></td>
 			  </tr>
 			   <tr><!-- Nameofthenewspaper ,TotalCost,Bgcolor,,numberOfWords, -->
-			        <td><label style="color:blue" >Client Name  </label> </td><td > <span ng-if="name != ''" style="font-weight:bold">{{name}}</span><span ng-if="name == ''" style="font-weight:bold"> Not Available</span></td>
-			       <td><label style="color:blue"> Payment Mode </label>  </td><td><span style="font-weight:bold" >Online</span></td>
+			        <td><label style="color:blue" >Client Name  </label> </td><td > &nbsp;&nbsp;<span ng-if="name != ''" style="font-weight:bold">{{name}}</span><span ng-if="name == ''" style="font-weight:bold"> Not Available</span></td>
+			       <td><label style="color:blue"> Payment Mode </label>  </td><td>&nbsp;&nbsp;<span style="font-weight:bold" >Online</span></td>
 			  </tr>
 			  <tr>
 			  <td><label style="color:blue">Address </label> </td>
@@ -66,8 +66,8 @@
 		 </div>
      
 				
-</div>
-<table  border="1" style="float: right;width: 23%;">
+</div><br /><br />
+<table  border="1" style="float: right;width: 23%; margin-top: 1%;">
 		  <tr>
 			 <td><label style="color:blue" >Grand Total :</label></td> 
 			 <td>र.{{grantTotal}}</td>
@@ -81,6 +81,7 @@
 	 width: auto !important;
      overflow: scroll;
      overflow-x:hidden;
+     height: 525px !important;
 	}
 	</style>
 	

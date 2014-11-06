@@ -541,11 +541,11 @@ public class Application extends Controller {
      			//Add multiple recipients.
      			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email));
      			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("rajanjain8aug@gmail.com"));
-     			message.setSubject( "Welcome to Arihant Booking");
+     			message.setSubject("Successful registration mail");
      			//message.setText();
      			 BodyPart messageBodyPart = new MimeBodyPart();
      	         // Now set the actual message
-     	         messageBodyPart.setText("Welcome to Arihant Booking.\n \n Please click on following link to verify your account.\n  http://arihantbooking.com/#/  \n\nRegards,\nArihant Booking Support Team");
+     	         messageBodyPart.setText("We are glad to see you at Arihantbooking.com , now you can seamlessly book newspaper classifieds in any Indian Newspaper .\n \n Please click on the below link to verify you email address.\n  http://arihantbooking.com/#/  \n\nThanks for choosing us \n\nTeam ArihantBooking\n\n\n\n\nRegards\nRajan Jain\nwww.ArihantBooking.com\n9410261090");
      	         // Create a multipar message
      	         Multipart multipart = new MimeMultipart();
      	         // Set text message part

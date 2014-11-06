@@ -121,7 +121,7 @@ public class SendMailUtility {
 	try {
 	      
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("Rajan Jain"));
+			message.setFrom(new InternetAddress("RajanJain"));
 			//Add multiple recipients.
 		//	message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email));
 			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("support@arihantbooking.com"));

@@ -56,7 +56,7 @@ public class Adsubcategory {
 	    	if(cname.trim().equals("")) {
 	    		sql = "SELECT Adcategory.CID,Adcategory.cname,Adsubcategory.Sucategory,Adsubcategory.CSID FROM Adcategory LEFT JOIN Adsubcategory ON Adcategory.cname = Adsubcategory.cname UNION SELECT Adcategory.CID,Adcategory.cname,Adsubcategory.Sucategory,Adsubcategory.CSID FROM Adcategory RIGHT JOIN Adsubcategory ON Adcategory.cname = Adsubcategory.cname";
 	    	} else {
-	    		sql ="SELECT Adcategory.CID,Adcategory.cname,Adsubcategory.Sucategory,Adsubcategory.CSID FROM  Adcategory ,adsubcategory  where Adcategory.cname = adsubcategory.cname AND  Adcategory.cname LIKE ?1";
+	    		sql ="SELECT Adcategory.CID,Adcategory.cname,Adsubcategory.Sucategory,Adsubcategory.CSID FROM  Adcategory ,Adsubcategory  where Adcategory.cname = Adsubcategory.cname AND  Adcategory.cname LIKE ?1";
 	    	}
 
     		if(currentPage >= 1 && currentPage <= totalPages) {

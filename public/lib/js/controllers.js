@@ -1372,11 +1372,11 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		}
 		
 		//seting data Id  to the delete model. 
-		$scope.setPackageDeleteId = function(Id) {
+		$scope.setPackageDeleteId = function(Id,newspaperName,category) {
 			$scope.deleteId = Id.Did;
+			$scope.newspaperName = newspaperName;
+			$scope.category = category;
 			$('#myModal3').modal();
-		
-			
 		};
 		
 		//update the  package rate in DiscountPrice model.
@@ -1393,7 +1393,8 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		//delete the package rate from the  package rate(Discount price model ) 
 		$scope.deleteDiscountRate = function() {
 			deletePackageRateService.Deletebasicrate.get({id :$scope.deleteId}, function(data){
-				$scope.searchPackageRate(currentPage);
+				console.log("$scope.category"+$scope.category);
+				$scope.searchPackageRate(currentPage,$scope.newspaperName,$scope.category);
 	            $('#myModal3').modal('hide');
 			});    
 		};
@@ -2105,7 +2106,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.disableBasicRateChkbox=false;
 	
 		//retriving the cookies value if any cookies values(orderId)  is present on local.
-	
 		$scope.orderIdPer = $cookies.orderId;
 		$scope.orderIdStatus = $cookies.orderId;
 		console.log(" $scope.lastVal"+ $scope.orderIdPer);
@@ -2284,10 +2284,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	 $scope.previousOrderId = $cookies.orderId;
 	 console.log("$scope.previousOrderId "+$scope.previousOrderId);
 	 console.log("$scope.orderIdPer"+$scope.orderIdPer);
-	
-   
-    
-    $scope.onNewspaperSelect = function() {
+
+	 $scope.onNewspaperSelect = function() {
 		$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
 				.success(function(data){
 					$scope.tab=true;

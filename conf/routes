@@ -67,7 +67,6 @@ GET     /viewAllRegisteredUser                 controllers.ViewAllRegisteredUser
 GET     /logout                             controllers.Application.Logout()      
 GET     /getforgotpass/:email                       controllers.Application.forgotpassword(email :String)
                         
-                        
 # Map static resources from the /public folder to the /assets URL path
 GET /css/*file                     controllers.Assets.at(path="/public/app/css", file)
 GET /lib/*file                     controllers.Assets.at(path="/public/lib", file)
@@ -75,7 +74,7 @@ GET /NewDesign/*file               controllers.Assets.at(path="/public/app/NewDe
 GET /images/*file                  controllers.Assets.at(path="/public/app/images", file)
 GET /image/*file                   controllers.Assets.at(path="/public/app/image", file)
 GET /Adsimage/*file                 controllers.Assets.at(path="/public/app/Adsimage", file)
-GET /Category/*file                 controllers.Assets.at(path="/public/app/Category", file)
+GET /Category/*file               	  controllers.Assets.at(path="/public/app/Category", file)
 GET /bower_components/*file		    controllers.Assets.at(path="/public/bower_components", file)
 GET /newtheme/*file			     	controllers.Assets.at(path="/public/app/newtheme", file)
 GET /assets/*file			    	controllers.Assets.at(path="/public/app/newtheme/assets", file)
