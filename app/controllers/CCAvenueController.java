@@ -56,7 +56,6 @@ public class CCAvenueController extends Controller {
     public static Result redirect() {
 		DynamicForm form = new DynamicForm().bindFromRequest();
     	String encResponse=form.get("encResp");
-    	System.out.println("========" + encResponse);
 		CCConfig config = CCConfig.byId(1);
     	AesCryptUtil aesUtil=new AesCryptUtil(config.WorkingKey);
     	String ccaResponse=aesUtil.decrypt(encResponse);
@@ -73,7 +72,9 @@ public class CCAvenueController extends Controller {
 					pname=(String)strTok.nextToken();
 					if(strTok.hasMoreTokens())
 						pvalue=(String)strTok.nextToken();
-					hs.put(pname, pvalue);
+					if(pvalue != null && pvalue.length() !=0) {
+						hs.put(pname.replace("_", " ").toUpperCase(), pvalue);
+					}
 				}
 			}
 		}
