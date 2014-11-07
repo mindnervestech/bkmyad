@@ -54,12 +54,12 @@ public class CCAvenueController extends Controller {
     
 	@Transactional
     public static Result redirect() {
-    	//String WorkingKey = "3vrz1tf22sk3qcgh4gjvijd1fuqdup0f" ; //put in the 32 bit working key in the quotes provided here
     	String encResponse=request().getQueryString("encResp");
+    	System.out.println("========" + encResponse);
 		CCConfig config = CCConfig.byId(1);
     	AesCryptUtil aesUtil=new AesCryptUtil(config.WorkingKey);
     	String ccaResponse=aesUtil.decrypt(encResponse);
-    	System.out.println(ccaResponse);
+    	System.out.println("====++++++====" + ccaResponse);
     	StringTokenizer tokenizer = new StringTokenizer(ccaResponse, "&");
 		HashMap<String,String> hs=new HashMap<String,String>();
 		String pair=null, pname=null, pvalue=null;
