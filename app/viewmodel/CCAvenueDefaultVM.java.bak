@@ -51,7 +51,7 @@ public class CCAvenueDefaultVM {
 		
 		 
 		try {
-			ccaRequest = ccaRequest + "merchant_id" + "=" + URLEncoder.encode(Merchant_Id,"UTF-8") + "&";
+			ccaRequest = ccaRequest + "merchant_Id" + "=" + URLEncoder.encode(Merchant_Id,"UTF-8") + "&";
 			ccaRequest = ccaRequest + "amount" + "=" + URLEncoder.encode(Amount,"UTF-8") + "&";
 			ccaRequest = ccaRequest + "cancel_url" + "=" + URLEncoder.encode(cancel_url,"UTF-8") + "&";
 			
