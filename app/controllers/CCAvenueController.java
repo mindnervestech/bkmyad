@@ -1,8 +1,8 @@
 package controllers;
 
+import java.util.HashMap;
+import java.util.StringTokenizer;
 import java.util.zip.Adler32;
-
-import javax.persistence.criteria.Order;
 
 import models.AddressDetails;
 import models.CCConfig;
@@ -55,19 +55,32 @@ public class CCAvenueController extends Controller {
 	@Transactional
     public static Result redirect() {
     	//String WorkingKey = "3vrz1tf22sk3qcgh4gjvijd1fuqdup0f" ; //put in the 32 bit working key in the quotes provided here
-    	//String encResponse=request().getQueryString("encResponse");
-    	//AesCryptUtil aesUtil=new AesCryptUtil(WorkingKey);
-    	//String ccaResponse=aesUtil.decrypt(encResponse);
-    	DynamicForm dynamicForm = new DynamicForm().bindFromRequest();
-    	System.out.println(dynamicForm.get().getData());
-    	CCAvenueDefaultVM ccAvenueDefaultVM = Form.form(CCAvenueDefaultVM.class).bindFromRequest().get();
-    	
+    	String encResponse=request().getQueryString("encResp");
+		CCConfig config = CCConfig.byId(1);
+    	AesCryptUtil aesUtil=new AesCryptUtil(config.WorkingKey);
+    	String ccaResponse=aesUtil.decrypt(encResponse);
+    	StringTokenizer tokenizer = new StringTokenizer(ccaResponse, "&");
+		HashMap<String,String> hs=new HashMap<String,String>();
+		String pair=null, pname=null, pvalue=null;
+		while (tokenizer.hasMoreTokens()) {
+			pair = (String)tokenizer.nextToken();
+			if(pair!=null) {
+				StringTokenizer strTok=new StringTokenizer(pair, "=");
+				pname=""; pvalue="";
+				if(strTok.hasMoreTokens()) {
+					pname=(String)strTok.nextToken();
+					if(strTok.hasMoreTokens())
+						pvalue=(String)strTok.nextToken();
+					hs.put(pname, pvalue);
+				}
+			}
+		}
+    	System.out.println(hs);
+    	CCAvenueDefaultVM ccAvenueDefaultVM = new CCAvenueDefaultVM();
+    	ccAvenueDefaultVM.Order_Id = hs.get("order_id");
     	try{
     		models.Order o = models.Order.byId(ccAvenueDefaultVM.Order_Id);
-    		o.cc_bid = ccAvenueDefaultVM.nb_bid;
-        	o.cc_orderNo = ccAvenueDefaultVM.nb_order_no;
-        	o.bank_name = ccAvenueDefaultVM.bank_name;
-        	o.bankMsg = dynamicForm.get().getData().toString();
+    		o.bankMsg = hs.toString();
         	//send mail utility 
         	SendMailUtility sendMail = new SendMailUtility();
             sendMail.sendMailAboutOrder(o.orderId,o.email,o.cc_orderNo);
