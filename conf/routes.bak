@@ -97,7 +97,7 @@ GET /Disclaimer.html     controllers.Assets.at(path="/public", file="app/Disclai
 #GET /E-NewsPaper.html     controllers.Assets.at(path="/public", file="app/E-NewsPaper.html")
 GET /Forgotpassword.html     controllers.Assets.at(path="/public", file="app/Forgotpassword.html")
 GET /Help.html     controllers.Assets.at(path="/public", file="app/Help.html")
-#GET /OurClients.html     controllers.Assets.at(path="/public", file="app/OurClients.html")
+GET /OurClients.html     controllers.Assets.at(path="/public", file="app/OurClients.html")
 GET /Paymentoption.html     controllers.Assets.at(path="/public", file="app/Paymentoption.html")
 GET /PrivacyPolicy.html     controllers.Assets.at(path="/public", file="app/PrivacyPolicy.html")
 GET /TermsandConditions.html     controllers.Assets.at(path="/public", file="app/TermsandConditions.html")
