@@ -80,7 +80,7 @@ public class CCAvenueController extends Controller {
 		}
     	System.out.println(hs);
     	CCAvenueDefaultVM ccAvenueDefaultVM = new CCAvenueDefaultVM();
-    	ccAvenueDefaultVM.Order_Id = hs.get("order_id");
+    	ccAvenueDefaultVM.Order_Id = hs.get("ORDER ID");
     	try{
     		models.Order o = models.Order.byId(ccAvenueDefaultVM.Order_Id);
     		ccAvenueDefaultVM.bankRespMsg = hs.toString(); 
