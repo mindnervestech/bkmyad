@@ -157,16 +157,17 @@
 		     <table style="margin-left: 2%;">
 		      <tr>
 			       <td><label style="color:blue">Order ID  </label></td><td><span style="font-weight:bold">{{inVoiceHeader.OrderID}}</span></td>
-			       <td><label style="color:blue">Order Date </label> </td><td><span style="font-weight:bold">{{inVoiceHeader.orderDate}}</span></td>
+			       <td><label style="color:blue;margin-left: 80px;">Order Date </label> </td><td><span style="font-weight:bold">{{inVoiceHeader.orderDate}}</span></td>
 			  </tr>
 			   <tr><!-- Nameofthenewspaper ,TotalCost,Bgcolor,,numberOfWords, -->
 			        <td><label style="color:blue">Client Name  </label> </td><td>&nbsp;&nbsp; <span style="font-weight:bold">{{inVoiceHeader.userEmailId}}</span></td>
-			       <td><label style="color:blue"> Payment Mode </label>  </td><td>&nbsp;&nbsp;<span style="font-weight:bold" ng-if="inVoiceHeader.paymentOption == 'cc'">Online</span></td>
+			       <td><label style="color:blue;margin-left: 80px;"> Payment Mode </label>  </td><td>&nbsp;&nbsp;<span style="font-weight:bold" ng-if="inVoiceHeader.paymentOption == 'cc'">Online</span></td>
 			  </tr>
 			  <tr>
 			  <td><label style="color:blue">Address </label> </td>
-			  <td><span style="font-weight:bold">{{addressDetails.fullName}},{{addressDetails.address}} , {{addressDetails.city}} ,{{addressDetails.state}} ,{{addressDetails.pinCode}}</span></td>
-			  
+			  <td><span style="font-weight:bold">{{addressDetails.fullName}},{{addressDetails.address}} , {{addressDetails.city}} ,{{addressDetails.state}} ,{{addressDetails.pinCode}} </span></td>
+			  <td><label style="color:blue;margin-left: 80px;">Mobile Number </label> </td>
+			   <td><span style="font-weight:bold">&nbsp;&nbsp;{{addressDetails.mobile}}</span></td>
 			  </tr>
 		 </table>
      </div>
@@ -195,7 +196,7 @@
 			      <!--  <td><label>Tick Selected: </label> </td>
 			       <td> {{invoice.Tick}} </td> -->
 			       <td> {{invoice.PublishDate}} </lable></td>
-			       <td>BgColor: <font ng-if="invoice.Bgcolor == ''">No</font><font ng-if="invoice.Bgcolor != ''">{{invoice.Bgcolor}}</font> <br> Border: {{invoice.Border}}<br>Tick: <font ng-if="invoice.Tick == 'true'">No</font><font  ng-if="invoice.Tick == 'false'">Yes</font> <br>Number Of Words/Line :{{invoice.numberOfWords}}<br>Total Extra Cost:{{invoice.totalExtraCost}}</lable></td>
+			       <td>BgColor: <font ng-if="invoice.Bgcolor == ''">No</font><font ng-if="invoice.Bgcolor != ''">{{invoice.Bgcolor}}</font> <br> Border: {{invoice.Border}}<br>Tick: <font ng-if="invoice.Tick == 'true'">No</font><font  ng-if="invoice.Tick == 'false'">Yes</font> <br>No Of Words/Line :{{invoice.numberOfWords}}<br>Total Extra Cost:{{invoice.totalExtraCost + invoice.totalUnitCost}}</lable></td>
 			       <td> र.{{invoice.TotalCost}} </lable></td>
 			</span>
 			 </tr>

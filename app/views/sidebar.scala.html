@@ -13,9 +13,9 @@
   				<p ng-show="cart.total == 0" style="margin:0px; font-size: 11px;padding-left: 3%;">({{cart.rate}} on Rs {{cart.freeUnit}} {{cart.unit}} , Total Rs  {{cart.fullTotal}} )</p>
   				<p ng-show="cart.total != 0" style="margin:0px; font-size: 11px;">(Total: Rs{{cart.total}})</p>
   			</div>
-  			<div style="height: 50px;">
-  				<span class="pull-left" ng-click="removeFromCart(cart)"><i class="icon-remove" style="cursor: pointer;"></i></span>
-  				<span class="pull-left" ng-click="updateCartItem(cart)"><i class="icon-edit" style="cursor: pointer;"></i></span>
+  			<div style="height: 50px;" >
+  				<span ng-if = 'rc.sampleWizard.currentIndex != 3 ' class="pull-left" ng-click="removeFromCart(cart)"><i class="icon-remove" style="cursor: pointer;"></i></span>
+  				<span ng-if = 'rc.sampleWizard.currentIndex != 3 ' class="pull-left" ng-click="updateCartItem(cart)"><i class="icon-edit" style="cursor: pointer;"></i></span>
   			</div>
   		</div>
 		</div>

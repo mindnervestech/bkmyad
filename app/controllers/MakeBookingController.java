@@ -624,7 +624,13 @@ import com.google.common.collect.Lists;
 	     
 	     String modeOfPayment=json.get("modeOfPayment").asText();
 	     String orderId = UUID.randomUUID().toString();
-	     orderId = orderId.substring(orderId.lastIndexOf("-") + 1);
+	    
+	     long order =  orderId.hashCode();
+	     //orderId = orderId.substring(orderId.lastIndexOf("-") + 1);
+         order = Math.abs(order);//convert to positive if hashcode is obtained  negitive.
+	     orderId = Long.toString(order);//convert order id to String. 
+	    // System.out.println("orderId::"+orderId);
+	    
 	     float amount = 0;
 	     List<ComposedAdSave> composedAdSaves = new ArrayList<>();
 	     try {

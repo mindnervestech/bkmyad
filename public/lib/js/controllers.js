@@ -451,12 +451,10 @@ angular.module('adschela').controller("MyAccountController",['$scope','$http','n
 		  $scope.orderList = data;
 		  console.log(" $scope.result"+ $scope.orderList);
 		});
-	     
-	     
-	     
-	    $scope.setInvoiceData = function(invoiceData) {
+
+	     $scope.setInvoiceData = function(invoiceData) {
 	    	$scope.grantTotal = 0;
-	  
+	        
 	 
 	    $scope.orderId=invoiceData.orderId;
 	    console.log(" $scope.orderId"+ $scope.orderId);
@@ -906,7 +904,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 		  console.log(" $scope.result invoice"+JSON.stringify($scope.orderData));
 		});
 	    
-	   //get the adderess to  show on the invoice
+	   //get the addeess to  show on the invoice.
 	    $scope.userEmailId = invoiceData.userEmailId;
 	    console.log(" $scope.userEmailId: "+ $scope.userEmailId);
 	    	$http.get("getaddressDetailsofUserForAdmin/"+$scope.userEmailId)
@@ -2173,6 +2171,12 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	{
 		
 	}
+	$scope.onChangeCetegory = function(){
+	//	$scope.subcategory = "";
+		$scope.rc.sampleWizard.first();
+	//	$scope.selectedsubCat = "";
+	}
+	
 	$scope.showfields=function(showfieldstouser){
 		$scope.showFieldsVar = true;
 	}
