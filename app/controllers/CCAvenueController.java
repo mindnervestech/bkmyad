@@ -59,6 +59,7 @@ public class CCAvenueController extends Controller {
 		CCConfig config = CCConfig.byId(1);
     	AesCryptUtil aesUtil=new AesCryptUtil(config.WorkingKey);
     	String ccaResponse=aesUtil.decrypt(encResponse);
+    	System.out.println("========"+ccaResponse);
     	StringTokenizer tokenizer = new StringTokenizer(ccaResponse, "&");
 		HashMap<String,String> hs=new HashMap<String,String>();
 		String pair=null, pname=null, pvalue=null;
