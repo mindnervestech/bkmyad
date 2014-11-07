@@ -54,7 +54,8 @@ public class CCAvenueController extends Controller {
     
 	@Transactional
     public static Result redirect() {
-    	String encResponse=request().getQueryString("encResp");
+		DynamicForm form = new DynamicForm().bindFromRequest();
+    	String encResponse=form.get("encResp");
     	System.out.println("========" + encResponse);
 		CCConfig config = CCConfig.byId(1);
     	AesCryptUtil aesUtil=new AesCryptUtil(config.WorkingKey);
