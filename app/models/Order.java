@@ -173,7 +173,6 @@ public class Order {
 		    	/*Query q;*/
 		    	String sql="";
 		    	if(City.trim().equals("")) {
-		    		
 		    		sql = "select Orders_ComposedAdSave.Orders_orderId,Orders_ComposedAdSave.composedAd_OID from Orders_ComposedAdSave,ComposedAdSave  order by  ComposedAdSave.OID  desc";//
 		    	} else {
 		    		sql ="select Orders_ComposedAdSave.Orders_orderId,Orders_ComposedAdSave.composedAd_OID,ComposedAdSave.city from Orders_ComposedAdSave,ComposedAdSave where ComposedAdSave.City like ?1 AND Orders_ComposedAdSave.Orders_orderId = ComposedAdSave.OrderID";

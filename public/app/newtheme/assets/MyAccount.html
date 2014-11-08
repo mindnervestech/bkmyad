@@ -21,24 +21,24 @@
                 	<thead>
                     	<tr>
                              <th><a>Order ID</a></th>	
-                             <th><a>CC Bid</a></th>
-                             <th><a>CC Order No</a></th>
-                             <th><a>CC Category</a></th>
+                             <!-- <th><a>CC Bid</a></th> -->
+                             <th><a>Order Status</a></th>
+                           <!--   <th><a>CC Category</a></th> -->
                              <th><a>Bank Name</a></th>
                              <th><a>Total Cost</a></th>
-                              <th><a>Invoice </a></th>
+                              <th><a>Order Details </a></th>
                         <tr>
                     </thead>
                 	<tbody><tr>	
                     	<tr ng-repeat="dataorderList in orderList.results">
                         <!--    <p>{{dataorderList}}</p> -->
                     	     <td>{{dataorderList.orderId}}</td>
-                             <td>{{dataorderList.cc_bid}}</td>
-                             <td>{{dataorderList.cc_orderNo}}</td>
-                             <td>{{dataorderList.cc_category}}</td>
+                            <!--  <td>{{dataorderList.cc_bid}}</td> -->
+                             <td><font ng-if ='dataorderList.cc_orderNo == null '> Pending</font><font ng-if ='dataorderList.cc_orderNo != null '>{{dataorderList.cc_orderNo}}</font></td>
+                           <!--   <td>{{dataorderList.cc_category}}</td> -->
                              <td>{{dataorderList.bank_name}}</td>
                              <td>{{dataorderList.total}}</td>
-                             <td> <input name="" type="button" value="Invoice" ng-click="setInvoiceData(dataorderList)" data-toggle="modal"  /></td>
+                             <td> <input name="" type="button" value="Order Details" ng-click="setInvoiceData(dataorderList)" data-toggle="modal"  /></td>
                              </tr>
                     	</tbody>
                 </table>

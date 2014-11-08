@@ -46,6 +46,9 @@ public class CCAvenueDefaultVM {
 	public String bank_name; // To be displayed on UI
 	public String bankRespCode; // To be displayed on UI
 	public String bankRespMsg; // To be displayed on UI
+	public String orderStatus;
+	public String trackingId;
+	public String bankReferenceNumber;
 	
 	public String buildRequest() {
 		

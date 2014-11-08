@@ -83,13 +83,32 @@ public class CCAvenueController extends Controller {
     	System.out.println(hs);
     	CCAvenueDefaultVM ccAvenueDefaultVM = new CCAvenueDefaultVM();
     	ccAvenueDefaultVM.Order_Id = hs.get("ORDER ID");
+    	String orderStatus = hs.get("ORDER STATUS");
+    	
     	try{
     		models.Order o = models.Order.byId(ccAvenueDefaultVM.Order_Id);
-    		ccAvenueDefaultVM.bankRespMsg = hs.toString(); 
+    		//sendOrderDetailMail(o); 
+    		ccAvenueDefaultVM.bankRespMsg = hs.toString();
+    		ccAvenueDefaultVM.orderStatus = orderStatus; 
+    		ccAvenueDefaultVM.trackingId = hs.get("TRACKING ID");
+    		ccAvenueDefaultVM.bankReferenceNumber = hs.get("BANK REF NO");
+    		
+    		if("Success".equalsIgnoreCase(orderStatus)) {
+    			o.cc_orderNo =hs.get("TRACKING ID");
+    		} else {
+    			o.cc_orderNo = null;
+    		}
     		o.bankMsg = hs.toString();
         	//send mail utility 
-        	SendMailUtility sendMail = new SendMailUtility();
-            sendMail.sendMailAboutOrder(o.orderId,o.email,o.cc_orderNo);
+        	/*System.out.println("ccAvenueDefaultVM.Order_Id"+ccAvenueDefaultVM.Order_Id);
+        	if(o.cc_orderNo == null){
+        		response().setCookie("orderId", ccAvenueDefaultVM.Order_Id);
+        	}*/
+        	SendMailUtility sendMailutility = new SendMailUtility();
+        	//sendMail.sendOrderDetailMail();
+            sendMailutility.sendMail(o.orderId,o.email,o.cc_orderNo);
+            
+            
             JPA.em().merge(o);
             
     	} catch(javax.persistence.NoResultException exception) {

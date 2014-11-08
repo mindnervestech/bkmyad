@@ -1,10 +1,15 @@
 package utils;
 
 import java.text.Format;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -17,7 +22,10 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import play.mvc.Result;
+import viewmodel.ComposedAdSaveVMInvoice;
 
+import controllers.MyAccountController;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.InvocationTargetException;
@@ -48,11 +56,15 @@ public class SendMailUtility {
 	     	//send a  order order confirmation  mail to Admin,registered(currently order placed user)  user.
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("Rajan_Jain"));
+			MyAccountController mc=new MyAccountController();
+			Result ordedrdata= mc.getInvoiceOrderDetails(orderId);
+			
 
 			if(cc_orderNo != null){
 			    //Add multiple recipients. including Admin
 				message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("rajanjain8aug@gmail.com"));
 				message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email));
+				message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("support@arihantbooking.com"));
 				//set msg text body
 				 message.setSubject( "Your Ad Order Details");
 				 BodyPart messageBodyPart = new MimeBodyPart();
@@ -75,6 +87,7 @@ public class SendMailUtility {
 			
 				//add receipts (Admin mail id )
 				 message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("rajanjain8aug@gmail.com"));
+				 message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("support@arihantbooking.com"));
 				 message.setSubject( "Redarding order placed by some user.");
 				 BodyPart messageBodyPart = new MimeBodyPart();
 				 // Now set the actual message
@@ -92,17 +105,18 @@ public class SendMailUtility {
 			     Transport.send(message);
 			}
 			
-  		} catch (MessagingException e) {
+  		} catch (Exception e) {
+  			e.printStackTrace();
 			  throw new RuntimeException(e);
 		}
 	}
 	
 	
 	  //send a  order confirmation mail to register user. 
-	  public void  sendMail(String orderDate, String userEmailId, String category, String border, String bgcolor, String tick, String adtext,String paymentOption,float TotalCost,String PublishDate){
-	  
+	  public void  sendMail(String OrderID, String email, String cc_orderNo){
+	  // OrderID = "1048001412";
 	   String declaimer= "This is a computer generated Invoice and does not require any authorised signatory.\n If you have any problem with your order, please call us at or send us a message at \n support@arihantbooking.com.";
-	   String total = String.valueOf(TotalCost );
+	 //  String total = String.valueOf(TotalCost );
 	   final String username = "support@arihantbooking.com";
 		final String password = "Adschela@123";
 		Properties props = new Properties();
@@ -119,33 +133,60 @@ public class SendMailUtility {
 		  });
 	
 	try {
-	      
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("RajanJain"));
 			//Add multiple recipients.
-		//	message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email));
+			//message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email));
+			if(cc_orderNo != null){
+			 //Add multiple recipients. including Admin
+			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("rajanjain8aug@gmail.com"));
+			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse(email));
 			message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("support@arihantbooking.com"));
-			final String text = getEmailTemplate("views.html.orderdetails",userEmailId,orderDate,category,border,bgcolor,tick,adtext,paymentOption,total,PublishDate,declaimer);
+			MyAccountController mc=new MyAccountController();
+			List<ComposedAdSaveVMInvoice> ordedrdata= mc.getInvoiceOrderDetailsEmail(OrderID);
+			/*System.out.println("ordedrdata size: "+ordedrdata.size());
+			for (int i = 0; i < ordedrdata.size(); i++) {
+				System.out.println("border Cost: in email"+ordedrdata.get(i).BorderCost);
+			}
+			*/
+			final String text = getEmailTemplate("views.html.orderdetails",ordedrdata);
 		     message.setSubject( "Your Ad Order Details");
-			//message.setText();
 			 BodyPart messageBodyPart = new MimeBodyPart();
 	         // Now set the actual message
 			 messageBodyPart.setContent(text, "text/html");
-	        // messageBodyPart.setText(text);
-	      //   messageBodyPart.
 	         // Create a multipar message
 	         Multipart multipart = new MimeMultipart();
 	         // Set text message part
 	         multipart.addBodyPart(messageBodyPart);
 	         message.setContent(multipart);
 		     Transport.send(message);
-  		} catch (MessagingException e) {
+		     } else{
+		    	 message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("rajanjain8aug@gmail.com"));
+				 message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("support@arihantbooking.com"));
+				 message.setSubject( "Redarding order placed by some user.");
+				 BodyPart messageBodyPart = new MimeBodyPart();
+				 // Now set the actual message
+				 Date todaysDate = new Date();
+				 Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+				 String dateToSend = formatter.format(todaysDate);
+	             //set the msg body text.	 
+				 messageBodyPart.setText("Some user placed the order but he cancled it  .\n Below are the Order Details \n Order id is: "+OrderID+"\nEmail id is : "+email+"\nDate of Order is: "+dateToSend);
+		         // Create a multipart message
+		         Multipart multipart = new MimeMultipart();
+		         // Set text message part
+		         multipart.addBodyPart(messageBodyPart);
+		         message.setContent(multipart);
+		         //send a  order cancled mail to Admin user. 
+			     Transport.send(message);
+  		}
+	}catch (Exception e) {
+  			e.printStackTrace();
 			  throw new RuntimeException(e);
 		}
 
 	}
 	
-	protected String getEmailTemplate(final String template, final String email,final String orderDate,final String category,final String border,final String bgcolor,final String tick,final String adtext,final String paymentOption,final String total,final String PublishDate,final String declaimer) {
+	protected String getEmailTemplate(final String template, List<ComposedAdSaveVMInvoice> ordedrdata) {
 		Class<?> cls = null;
 		String ret = null;                                                                                                                                                                                                                         
 		try {
@@ -166,8 +207,8 @@ public class SendMailUtility {
 		if (cls != null) {
 			Method htmlRender = null;
 			try {
-				htmlRender = cls.getMethod("render", String.class, String.class,String.class,String.class,String.class,String.class,String.class,String.class,String.class,String.class,String.class);
-				ret = htmlRender.invoke(null,email,orderDate,category,border,bgcolor,tick,adtext,paymentOption,total,PublishDate,declaimer)
+				htmlRender = cls.getMethod("render",List.class);
+				ret = htmlRender.invoke(null,ordedrdata)
 						.toString();
 
 			} catch (NoSuchMethodException e) {

@@ -893,7 +893,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	    //get the invoice Details
 	    $http.get("getInvoiceOrderDetails/"+$scope.orderId)
 		 .success(function(data){
-			 if(data.results.length>0) {
+			 if(data.results.length > 0) {
 				 $scope.orderData = data.results;
 				 for(var i=0;i<data.results.length;i++){
 					 $scope.grantTotal += (parseInt(data.results[i].TotalCost));

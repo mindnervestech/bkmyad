@@ -93,4 +93,20 @@ public class MyAccountController extends Controller {
 	
 		return ok(Json.toJson(map));
 	}
+	
+	@Transactional
+	public static List<ComposedAdSaveVMInvoice> getInvoiceOrderDetailsEmail(String orderId) {
+	  List<ComposedAdSave> allInvoice = ComposedAdSave.getInvoiceOrderDetails(orderId);
+	
+		List<ComposedAdSaveVMInvoice> listOfOrder = new ArrayList<ComposedAdSaveVMInvoice>();
+	
+		for (ComposedAdSave orderlistVM: allInvoice) {
+			ComposedAdSaveVMInvoice vm = new ComposedAdSaveVMInvoice(orderlistVM);
+			listOfOrder.add(vm);
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		//map.put("results", listOfOrder);
+	    return listOfOrder;
+		//return ok(Json.toJson(map));
+	}
 }

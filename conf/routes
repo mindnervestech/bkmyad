@@ -26,7 +26,6 @@ GET     /getSubCategoty/:cname					controllers.Application.getSubCategoty(cname:
 GET     /getNewspaper							controllers.AddbasicRateController.getNewspaper()
 POST    /submit-cart                            controllers.MakeBookingController.saveComposeyourAd()
 POST    /sendfeedbacks                          controllers.Application.sendFeedback()
-
 GET	   /getBasicrate/:City/:Category/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,Category :String,currentPage :Integer)
 GET /getDiscountRate/:City/:Category/:currentPage	controllers.AddPackageController.getDiscountRate(City :String,Category :String, currentPage :Integer)
 GET  /viewAllOrdersForAdmin/:City/:currentPage	controllers.ViewAllOrdersController.viewAllOrdersForAdmin(City :String,currentPage :Integer)
