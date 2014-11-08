@@ -801,7 +801,7 @@ angular.module('adschela').controller('ViewAllRegisterUserController',function($
 
 angular.module('adschela').controller('ViewAllOrdersController',function($scope, $modal, $http, $filter,ViewAllOrdersService){
 
-	$scope.City = " ";
+	$scope.orderId = " ";
 	$scope.pageNumber;
 	$scope.pageSize;
 	$scope.formData = "";
@@ -816,7 +816,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	}
 
 	
-	$scope.viewAllOrder = ViewAllOrdersService.ViewAllOrderInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+	$scope.viewAllOrder = ViewAllOrdersService.ViewAllOrderInfo.get({orderId:$scope.orderId ,currentPage:currentPage},function(response) {
 		totalPages = $scope.viewAllOrder.totalPages;
 		currentPage = $scope.viewAllOrder.currentPage;
 		$scope.pageNumber = $scope.viewAllOrder.currentPage;
@@ -829,18 +829,18 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	
 	
 	
-		$scope.searchViewAllOrderData = function(page,cityName) {
+		$scope.searchViewAllOrderData = function(page,orderId) {
 			
-			$scope.City = cityName;
-			console.log("$scope.City"+$scope.City);
+			$scope.orderId  = orderId;
+			console.log("$scope.orderId "+$scope.orderId );
 			
-		if(angular.isUndefined($scope.City) || $scope.City=="") {
+		if(angular.isUndefined($scope.orderId ) || $scope.orderId =="") {
 			console.log('inside function');
-			$scope.City = " ";
+			$scope.orderId  = " ";
 		}
 		currentPage = page;
 		
-		$scope.viewAllOrder = ViewAllOrdersService.ViewAllOrderInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		$scope.viewAllOrder = ViewAllOrdersService.ViewAllOrderInfo.get({orderId:$scope.orderId ,currentPage:currentPage},function(response) {
 			console.log($scope.viewAllOrder.totalPages);
 			totalPages = $scope.viewAllOrder.totalPages;
 			currentPage = $scope.viewAllOrder.currentPage;
@@ -852,16 +852,16 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 		});
 	   
 	};
-	$scope.searchViewAllOrderData = function(page,cityName) {
-		$scope.City = cityName;
-		console.log("$scope.City: "+$scope.City);
-		if(angular.isUndefined($scope.City) || $scope.City=="") {
+	$scope.searchViewAllOrderData = function(page,orderId) {
+		$scope.orderId  = orderId;
+		console.log("$scope.orderId : "+$scope.orderId );
+		if(angular.isUndefined($scope.orderId ) || $scope.orderId =="") {
 			
-			$scope.City = " ";
+			$scope.orderId = " ";
 		}
 		currentPage = page;
 		
-		$scope.viewAllOrder = ViewAllOrdersService.ViewAllOrderInfo.get({City:$scope.City,currentPage:currentPage},function(response) {
+		$scope.viewAllOrder = ViewAllOrdersService.ViewAllOrderInfo.get({orderId:$scope.orderId ,currentPage:currentPage},function(response) {
 			console.log($scope.viewAllOrder.totalPages);
 			totalPages = $scope.viewAllOrder.totalPages;
 			currentPage = $scope.viewAllOrder.currentPage;
@@ -875,7 +875,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	};
 	angular.module('adschela').service('ViewAllOrdersService',function($resource){
 	    this.ViewAllOrderInfo = $resource(
-	            '/viewAllOrdersForAdmin/:City/:currentPage',
+	            '/viewAllOrdersForAdmin/:orderId/:currentPage',
 	            {alt:'json',callback:'JSON_CALLBACK'},
 	            {
 	                get: {method:'get'}
@@ -944,7 +944,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 
 	angular.module('adschela').service('ViewAllOrdersService',function($resource){
         this.ViewAllOrderInfo = $resource(
-            '/viewAllOrdersForAdmin/:City/:currentPage',
+            '/viewAllOrdersForAdmin/:orderId/:currentPage',
             {alt:'json',callback:'JSON_CALLBACK'},
             {
                 get: {method:'get'}
@@ -2221,6 +2221,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		}
 		$scope.checkForSubCategorySelect = function(){
 			console.log("in check sub cate");
+			console.log("selectedsubCat: "+$scope.selectedsubCat);
 			console.log("$scope.subcategory"+$scope.subcategory);
 			console.log("length: sub category"+$scope.resultSubCategory.length);
 			//angular.isUndefined($scope.subcategory)

@@ -604,7 +604,6 @@ import com.google.common.collect.Lists;
 	
 	}
         String  emailId = session().get("emailId"); 
-
 	    @Transactional
 	    public static Result  saveComposeyourAd() {
 	  
@@ -753,6 +752,7 @@ import com.google.common.collect.Lists;
 	     o.orderId = orderId;
 	     o.email = emailId;
 	     o.total = amount;
+	     o.orderDate = new Date();
 	     o.composedAd = composedAdSaves;
 	     JPA.em().persist(o);
 	     

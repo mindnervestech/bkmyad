@@ -37,11 +37,12 @@
                 <table ng-table="tableParams">
                 	<thead>
                     	<tr>
+                    	     <th><a>Order Id</a></th> 
                     	     <th><a>Order Date</a></th> 
-                    	      <th><a>Published Date</a></th>
+                    	    <!--   <th><a>Published Date</a></th> -->
                               <th><a>Email Id </a></th>
-                              <th><a>Category</a></th> 
-                              <th><a>Newspaper</a></th>
+                             <!--  <th><a>Category</a></th> 
+                              <th><a>Newspaper</a></th> -->
                              <th><a>Total Cost</a></th>
                              <th><a>Status</a></th>
                              <th><a>View Details</a></th>
@@ -49,11 +50,12 @@
                     </thead>
                 	<tbody>
                     	<tr ng-repeat="ancmt in viewAllOrder.results">
-                    	     <td>{{ancmt.orderDate}}</td> 
-                    	    <td>{{ancmt.PublishDate |limitTo:22}}</td>
+                    	<td>{{ancmt.OrderID}}</td> 
+                    	     <td>{{ancmt.orderDate |  date:'MM/dd/yyyy'}}</td> 
+                    	  <!--   <td>{{ancmt.PublishDate |limitTo:22}}</td> -->
                     	    <td>{{ancmt.userEmailId}}</td>
-                    	    <td>{{ancmt.Category}}</td>
-                    	    <td>{{ancmt.Nameofthenewspaper}}</td>
+                    	   <!--  <td>{{ancmt.Category}}</td>
+                    	    <td>{{ancmt.Nameofthenewspaper}}</td> -->
                             <td>{{ancmt.TotalCost}}</td>
                             <td><font ng-if="ancmt.cc_orderNo != null">{{ancmt.cc_orderNo}}</font><font ng-if="ancmt.cc_orderNo == null">Pending</font></td>
                            <!--   cc_bid,cc_orderNo,cc_category,bank_name,bankMsg -->

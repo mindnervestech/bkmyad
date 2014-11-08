@@ -1,5 +1,7 @@
 package viewmodel;
 
+import java.util.Date;
+
 import models.Basicrate;
 import models.ComposedAdSave;
 import models.Order;
@@ -7,43 +9,29 @@ import models.Order;
 public class ComposedAdSaveVM {
 
 	   public String  OrderID;
-	   public String Nameofthenewspaper;
-	   public String City;
-	   public String Adtext;
-	   public String Tick;
-	   public float TickRate = 0;
-	   public String Bgcolor;
-	   public float BgcolorRate;
-	   public String Border;
-	   public float BorderCost;
-	   public String PublishDate;
-	   public String BasicRate;
-	   public float TotalCost;
-	   public String Extraborderper;
-	   public String Extrabgper;
-	   public String Tickper;
-	   public String  Category;
-	   public String  Subcategory;
-	   public int numberOfWords;
-	   public String paymentOption;
-	   public String userEmailId;
-	   public String orderDate;
-	   public String freeunit;
-	   public float extra;
-	   public float totalExtraCost;
-	   public float totalUnitCost;
-	   public int noOfImpression;
-	   public float rate;
-	   public String bgColorSelect; 
-	   public String  adbookedId;
 	   public String  cc_bid;
 	   public String  cc_orderNo;
 	   public String   cc_category;
 	   public String  bank_name;
 	   public String bankMsg;
+	   public float TotalCost;
+	   public String userEmailId;
+	   public Date orderDate;
 	   
-	    
-	   public ComposedAdSaveVM(Order order, ComposedAdSave composedAdSave) {
+	   public ComposedAdSaveVM(Object[] composedAdSaveVM) {
+		   this.OrderID =(String)composedAdSaveVM[0];
+		   this.userEmailId =(String)composedAdSaveVM[1];
+		   this.cc_category =(String)composedAdSaveVM[6];		   
+		   this.TotalCost =(float)composedAdSaveVM[2];
+		   this.bankMsg =(String)composedAdSaveVM[3];
+		   this.bank_name =(String)composedAdSaveVM[4];
+		   this.cc_bid =(String)composedAdSaveVM[5];
+		   this.cc_orderNo  = (String)composedAdSaveVM[6];
+		 //  this.orderDate = (Date)composedAdSaveVM[7];
+	   
+	   }
+	   
+	  /* public ComposedAdSaveVM(Order order, ComposedAdSave composedAdSave) {
 		   this.OrderID=composedAdSave.OrderID;
 		   this.Nameofthenewspaper=composedAdSave.Nameofthenewspaper;
 		   this.City=composedAdSave.City;
@@ -67,6 +55,6 @@ public class ComposedAdSaveVM {
 		   this.userEmailId =composedAdSave.userEmailId;
 		  
 	   }
-	   
+	   */
 	
 }

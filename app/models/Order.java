@@ -1,6 +1,7 @@
 package models;
 
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,6 +26,8 @@ public class Order {
 	public String orderId;
 	
 	public float total;
+	
+	public Date orderDate;
 	
 	public String email;
 	
@@ -146,15 +149,15 @@ public class Order {
 	    }
 
 	   @Transactional
-	    public static long getAllOrdersTotal(String City,  int rowsPerPage) {
+	    public static long getAllOrdersTotal(String OrderID,  int rowsPerPage) {
 	    	long totalPages = 0, size;
 	    	BigInteger sizebig;
 	    	
-	    	if(City.trim().equals("")) {
+	    	if(OrderID.trim().equals("")) {
 	    		sizebig = (BigInteger)JPA.em().createNativeQuery("select count(*) from Orders_ComposedAdSave").getSingleResult();
 	    	} else {
-	    		Query query = JPA.em().createNativeQuery("select count(*) from Orders_ComposedAdSave,ComposedAdSave where  ComposedAdSave.City like ?1 AND   Orders_ComposedAdSave.Orders_orderId = ComposedAdSave.OrderID");
-	    		query.setParameter(1, "%"+City+"%");
+	    		Query query = JPA.em().createNativeQuery("select count(*) from Orders_ComposedAdSave,ComposedAdSave where  ComposedAdSave.OrderID like ?1 AND   Orders_ComposedAdSave.Orders_orderId = ComposedAdSave.OrderID");
+	    		query.setParameter(1, "%"+OrderID+"%");
 	    		sizebig= (BigInteger) query.getSingleResult();
 	    	}
 	    	//cast to long
@@ -168,14 +171,14 @@ public class Order {
 	    }
 		
 		 @Transactional
-		    public static List<Object[]> getAllOrdersOfUsers(String City, int currentPage, int rowsPerPage, long totalPages) {
+		    public static List<Object[]> getAllOrdersOfUsers(String orderId, int currentPage, int rowsPerPage, long totalPages) {
 		    	int  start=0;
 		    	/*Query q;*/
 		    	String sql="";
-		    	if(City.trim().equals("")) {
-		    		sql = "select Orders_ComposedAdSave.Orders_orderId,Orders_ComposedAdSave.composedAd_OID from Orders_ComposedAdSave,ComposedAdSave  order by  ComposedAdSave.OID  desc";//
+		    	if(orderId.trim().equals("")) {
+		    		sql = "select * from Orders   order by  orderDate  desc";//
 		    	} else {
-		    		sql ="select Orders_ComposedAdSave.Orders_orderId,Orders_ComposedAdSave.composedAd_OID,ComposedAdSave.city from Orders_ComposedAdSave,ComposedAdSave where ComposedAdSave.City like ?1 AND Orders_ComposedAdSave.Orders_orderId = ComposedAdSave.OrderID";
+		    		sql ="select * from Orders where orderId like ?1 order by  orderDate  desc ";
 		    	}
 
 	    		if(currentPage >= 1 && currentPage <= totalPages) {
@@ -186,8 +189,8 @@ public class Order {
 					start = (int) ((totalPages*rowsPerPage)-rowsPerPage); 
 				}
 		    	Query q = JPA.em().createNativeQuery(sql).setFirstResult(start).setMaxResults(rowsPerPage);
-		    	if(!City.trim().equals("")) {
-					q.setParameter(1, "%"+City+"%");
+		    	if(!orderId.trim().equals("")) {
+					q.setParameter(1, "%"+orderId+"%");
 				}
 				
 				return (List<Object[]>)q.getResultList();
