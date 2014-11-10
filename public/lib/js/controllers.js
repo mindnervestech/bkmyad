@@ -8,6 +8,7 @@ angular.module('adschela').controller("HeaderController",['$scope',function($sco
 angular.module('adschela').controller("FooterController",['$scope',function($scope){
 }]);
 
+
 angular.module('adschela').controller("IndexController",['$scope',function($scope){
 	$scope.txtpasswords = 'password';
 	$scope.nplist = [{name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
@@ -1342,12 +1343,10 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 			//get state from the NewspaperDetails 
 			$scope.resultCities = getAllCitiesService.AllCities.get();
 			
-			
 			$scope.ancmtData = ancmt;
 			$('#myModal2').modal();
 				
 		};
-
 				
 		//setting data to the model
 		$scope.createNewPackage = function() {

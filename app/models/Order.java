@@ -154,9 +154,9 @@ public class Order {
 	    	BigInteger sizebig;
 	    	
 	    	if(OrderID.trim().equals("")) {
-	    		sizebig = (BigInteger)JPA.em().createNativeQuery("select count(*) from Orders_ComposedAdSave").getSingleResult();
+	    		sizebig = (BigInteger)JPA.em().createNativeQuery("select count(*) from Orders   order by  orderDate  desc").getSingleResult();
 	    	} else {
-	    		Query query = JPA.em().createNativeQuery("select count(*) from Orders_ComposedAdSave,ComposedAdSave where  ComposedAdSave.OrderID like ?1 AND   Orders_ComposedAdSave.Orders_orderId = ComposedAdSave.OrderID");
+	    		Query query = JPA.em().createNativeQuery("select count(*)  from Orders where orderId like ?1 order by  orderDate  desc");
 	    		query.setParameter(1, "%"+OrderID+"%");
 	    		sizebig= (BigInteger) query.getSingleResult();
 	    	}

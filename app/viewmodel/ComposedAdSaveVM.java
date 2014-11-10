@@ -26,9 +26,9 @@ public class ComposedAdSaveVM {
 		   this.bankMsg =(String)composedAdSaveVM[3];
 		   this.bank_name =(String)composedAdSaveVM[4];
 		   this.cc_bid =(String)composedAdSaveVM[5];
-		   this.cc_orderNo  = (String)composedAdSaveVM[6];
-		 //  this.orderDate = (Date)composedAdSaveVM[7];
-	   
+		   this.cc_orderNo  = (String)composedAdSaveVM[7];
+		   this.orderDate = (Date) composedAdSaveVM[8];
+	 
 	   }
 	   
 	  /* public ComposedAdSaveVM(Order order, ComposedAdSave composedAdSave) {
