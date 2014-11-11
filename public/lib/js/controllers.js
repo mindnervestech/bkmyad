@@ -22,7 +22,7 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 	                 {name:"The Hindu",img:"/NewDesign/np-logos/Hindu.png"},
 	                 {name:"Mirror",img:"/NewDesign/np-logos/Mirror.jpg"},
 	                 {name:"Deccan Herald",img:"/NewDesign/np-logos/Deccan-Herald.png"},
-	                 {name:"Navbharat Times",img:"/NewDesign/np-logos/Navbharat.jpg"},
+	               /*  {name:"Navbharat Times",img:"/NewDesign/np-logos/navbharattimes.jpg"},*/
 	                 {name:"Rajasthan Patrika",img:"/NewDesign/np-logos/rajasthanpatrika.jpg"},
 	                 {name:"Prajavani",img:"/NewDesign/np-logos/prajavani.jpg"},
 	                 {name:"udyavani-head",img:"/NewDesign/np-logos/udyavani-head.jpg"},
@@ -79,7 +79,7 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 	                 {name:"Thestatesman",img:"/NewDesign/np-logos/thestatesman.jpg"},
 	                 {name:"The-Telegraph",img:"/NewDesign/np-logos/The-Telegraph.png"},
 	                 {name:"The-Tribune",img:"/NewDesign/np-logos/The-Tribune.png"},
-	                 {name:"Navbharat",img:"/NewDesign/np-logos/Navbharat.jpg"},
+	                /* {name:"Navbharat",img:"/NewDesign/np-logos/Navbharat.jpg"},*/
 	                 {name:"Navbharattimes",img:"/NewDesign/np-logos/navbharattimes.jpg"},
 	                 {name:"Newbline",img:"/NewDesign/np-logos/newbline.png"},	                 	                 
 	                 {name:"Prabhatkhabar",img:"/NewDesign/np-logos/prabhatkhabar.jpg"}];
