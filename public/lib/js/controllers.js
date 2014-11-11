@@ -20,12 +20,12 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 	                 {name:"Times of India",img:"/NewDesign/np-logos/toi.jpg"},
 	                 {name:"Economic Times",img:"/NewDesign/np-logos/The-Economic-Times.png"},
 	                 {name:"The Hindu",img:"/NewDesign/np-logos/Hindu.png"},
-	                 {name:"Mirror",img:"/NewDesign/np-logos/MUMBAi MIRROR LOGO.jpg"},
+	                 {name:"Mirror",img:"/NewDesign/np-logos/Mirror.jpg"},
 	                 {name:"Deccan Herald",img:"/NewDesign/np-logos/Deccan-Herald.png"},
-	                 {name:"Navbharat Times",img:"/NewDesign/np-logos/navbharat.gif"},
+	                 {name:"Navbharat Times",img:"/NewDesign/np-logos/Navbharat.jpg"},
 	                 {name:"Rajasthan Patrika",img:"/NewDesign/np-logos/rajasthanpatrika.jpg"},
 	                 {name:"Prajavani",img:"/NewDesign/np-logos/prajavani.jpg"},
-	                 {name:"udyavani-head",img:"/NewDesign/np-logos/udyavani-head.gif"},
+	                 {name:"udyavani-head",img:"/NewDesign/np-logos/udyavani-head.jpg"},
 	                 {name:"Kashmir Times",img:"/NewDesign/np-logos/Kashmir Times Logo.jpg"},
 	                 {name:"Dainik Sambad",img:"/NewDesign/np-logos/dainik sambad.jpg"},
 	                 {name:"Prothom alo",img:"/NewDesign/np-logos/prothom alo logo.jpg"},
@@ -56,7 +56,7 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 	                 {name:"Ajit",img:"/NewDesign/np-logos/ajit.png"},	                 	                 
 	                 {name:"Dainik-Kashmir-Times",img:"/NewDesign/np-logos/dainik-kashmir-times.png"},
 	                 {name:"Gujarat Samachar",img:"/NewDesign/np-logos/gs-log-big.png"},
-	                 {name:"Sanmagra",img:"/NewDesign/np-logos/image.gif"},
+	               /*  {name:"Sanmagra",img:"/NewDesign/np-logos/image.gif"},*/
 	                 {name:"Divya Marathi",img:"/NewDesign/np-logos/image.jpg"},
 	                 {name:"Malayalamanorama",img:"/NewDesign/np-logos/malayalamanorama.jpg"},
 	                 {name:"Mathrubhumi",img:"/NewDesign/np-logos/mathrubhumi.jpg"},
@@ -76,7 +76,7 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 	                 {name:"Thestatesman",img:"/NewDesign/np-logos/thestatesman.jpg"},
 	                 {name:"The-Telegraph",img:"/NewDesign/np-logos/The-Telegraph.png"},
 	                 {name:"The-Tribune",img:"/NewDesign/np-logos/The-Tribune.png"},
-	                 {name:"Navbharat",img:"/NewDesign/np-logos/navbharat.gif"},
+	                 {name:"Navbharat",img:"/NewDesign/np-logos/Navbharat.jpg"},
 	                 {name:"Navbharattimes",img:"/NewDesign/np-logos/navbharattimes.jpg"},
 	                 {name:"Newbline",img:"/NewDesign/np-logos/newbline.png"},	                 	                 
 	                 {name:"Prabhatkhabar",img:"/NewDesign/np-logos/prabhatkhabar.jpg"}];
@@ -90,7 +90,7 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 		    {
 			      image: '/NewDesign/images/all-np-1.jpg'
 			},
-	    	{
+	    	/*{
 		      image: '/NewDesign/images/classified-ad-2.jpg'
 		    },
 		    {
@@ -104,7 +104,7 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 			},
 		    {
 			      image: '/NewDesign/images/classified-ad-4.jpg'
-			},
+			},*/
 		    {
 			      image: '/NewDesign/images/banner11.jpg'
 			}
@@ -143,11 +143,9 @@ angular.module('adschela').controller("dispclassifiedcontroller",['$scope',funct
 }]);
 angular.module('adschela').controller("AddisplayController",['$scope',function($scope){
 	    $scope.init = function(dispadData) {
-	//	$scope.sideRequest = dispadData.;
 		$scope.resultCategory=dispadData.categories;
 		$scope.resultNewspaperCategory =dispadData.newspapers;
 	    console.log(dispadData.newspapers);
-	 //   console.log(dispadData.categories);
 		}
 }]);
 
@@ -822,25 +820,19 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 		currentPage = $scope.viewAllOrder.currentPage;
 		$scope.pageNumber = $scope.viewAllOrder.currentPage;
 		$scope.pageSize = $scope.viewAllOrder.totalPages;
-		
 		if(totalPages == 0) {
 			$scope.pageNumber = 0;
 		}
 	});
 	
-	
-	
 		$scope.searchViewAllOrderData = function(page,orderId) {
-			
 			$scope.orderId  = orderId;
-			console.log("$scope.orderId "+$scope.orderId );
-			
+		//	console.log("$scope.orderId "+$scope.orderId );
 		if(angular.isUndefined($scope.orderId ) || $scope.orderId =="") {
-			console.log('inside function');
+			//console.log('inside function');
 			$scope.orderId  = " ";
 		}
 		currentPage = page;
-		
 		$scope.viewAllOrder = ViewAllOrdersService.ViewAllOrderInfo.get({orderId:$scope.orderId ,currentPage:currentPage},function(response) {
 			console.log($scope.viewAllOrder.totalPages);
 			totalPages = $scope.viewAllOrder.totalPages;
@@ -855,7 +847,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	};
 	$scope.searchViewAllOrderData = function(page,orderId) {
 		$scope.orderId  = orderId;
-		console.log("$scope.orderId : "+$scope.orderId );
+	//	console.log("$scope.orderId : "+$scope.orderId );
 		if(angular.isUndefined($scope.orderId ) || $scope.orderId =="") {
 			
 			$scope.orderId = " ";
@@ -889,7 +881,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	  
 	 
 	    $scope.orderId=invoiceData.OrderID;
-	    console.log(" $scope.orderId"+ $scope.orderId);
+//	    console.log(" $scope.orderId"+ $scope.orderId);
 	  
 	    //get the invoice Details
 	    $http.get("getInvoiceOrderDetails/"+$scope.orderId)
@@ -898,11 +890,11 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 				 $scope.orderData = data.results;
 				 for(var i=0;i<data.results.length;i++){
 					 $scope.grantTotal += (parseInt(data.results[i].TotalCost));
-					 console.log("$scope.grantTotal"+$scope.grantTotal);
+				//	 console.log("$scope.grantTotal"+$scope.grantTotal);
 				 }
 				 $scope.inVoiceHeader = data.results[0];
 			 }
-		  console.log(" $scope.result invoice"+JSON.stringify($scope.orderData));
+//		  console.log(" $scope.result invoice"+JSON.stringify($scope.orderData));
 		});
 	    
 	   //get the addeess to  show on the invoice.
@@ -1017,17 +1009,17 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 	$scope.searchBasicRate = function(page,city,category) {
 		$scope.City = city;
 		$scope.category = category;
-		console.log("$scope.City"+$scope.City);
+    	//console.log("$scope.City"+$scope.City);
 		
 		
 		console.log("$scope.Category"+$scope.category);
 		if(angular.isUndefined($scope.City) || $scope.City=="" ) {
-			console.log('inside function city' );
+			//console.log('inside function city' );
 			$scope.City = " ";
 		}
 		
 		if(angular.isUndefined($scope.category) || $scope.category=="") {
-			console.log('inside function category');
+			//console.log('inside function category');
 			$scope.category = " ";
 		}
 
@@ -1045,7 +1037,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 				$scope.pageNumber = 0;
 			}
 		});
-	    console.log($scope.BasicRate);
+	    //console.log($scope.BasicRate);
 	};
 	angular.module('adschela').service('BasicRateService',function($resource){
 	    this.BasicRateInfo = $resource(
@@ -1260,11 +1252,11 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 				$scope.newsPaper = newsPaperName;
 				$scope.category  = category;
 			if(angular.isUndefined($scope.newsPaper) || $scope.newsPaper=="") {
-				console.log('inside function');
+		//		console.log('inside function');
 				$scope.newsPaper= " ";
 			}
 			if(angular.isUndefined($scope.category) || $scope.category=="") {
-				console.log('inside function');
+	//			console.log('inside function');
 				$scope.category= " ";
 			}
 			
@@ -1282,27 +1274,8 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 			});
 		    console.log($scope.packageRate);
 		};
-		/* //used to search the  Discount data on newspaper.
-		$scope.searchPackageRate = function(page,packageName) {
-			$scope.newsPaper = packageName;
-			if(angular.isUndefined($scope.newsPaper) || $scope.newsPaper =="") {
-				console.log('inside function');
-				$scope.newsPaper= " ";
-			}
-			currentPage = page;
-			//Pacakge Rate(Discountprice Model ) come in the PackageRateService.
-			$scope.packageRate = PackageRateService.PackageRateInfo.get({newsPaperName:$scope.newsPaper,currentPage:currentPage},function(response) {
-				console.log($scope.packageRate.totalPages);
-				totalPages = $scope.packageRate.totalPages;
-				currentPage = $scope.packageRate.currentPage;
-				$scope.pageNumber = $scope.packageRate.currentPage;
-				$scope.pageSize = $scope.packageRate.totalPages;
-				if(totalPages == 0) {
-					$scope.pageNumber = 0;
-				}
-			});
-		    console.log($scope.BasicRate);
-		}; */
+		
+		
 		//used to get Pacakge Rate  from DiscountPrice model   in the PackageRateService.
 		angular.module('adschela').service('PackageRateService',function($resource){
 		    this.PackageRateInfo = $resource(
@@ -1357,7 +1330,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 			$scope.resultNewspaper = getNewspaperservice.Allnewspaper.get(); 
 			$scope.resultcname = getcnameservice.Allcname.get();
 			$scope.resultCities = getAllCitiesService.AllCities.get();
-			console.log("$scope.resultstate"+getAllCitiesService.AllCities.get());
+//			console.log("$scope.resultstate"+getAllCitiesService.AllCities.get());
 			$scope.searchForm.from = new Date();
 			$scope.searchForm.to = new Date();
 			$scope.icon_id = "";
@@ -2171,9 +2144,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		
 	}
 	$scope.onChangeCetegory = function(){
-	//	$scope.subcategory = "";
+		$scope.subcategory = "";
 		$scope.rc.sampleWizard.first();
-	//	$scope.selectedsubCat = "";
+		$scope.selectedsubCat = " ";
 	}
 	
 	$scope.showfields=function(showfieldstouser){
@@ -2225,8 +2198,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			console.log("length: sub category"+$scope.resultSubCategory.length);
 			//angular.isUndefined($scope.subcategory)
 			//$scope.subcategory == "" ||
+			
 			if($scope.resultSubCategory.length != 0){
-				if($scope.subcategory == "" || angular.isUndefined($scope.subcategory)){
+				if($scope.selectedsubCat == " " || angular.isUndefined($scope.subcategory)){
 				alert("Please Select Sub-Category ");
 				}else{
 					$scope.rc.sampleWizard.forward();

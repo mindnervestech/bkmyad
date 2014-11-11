@@ -10,17 +10,11 @@
 			<header id="header" style="width: 100%;display: block;">
 				<div class="row">
 				<div class="span12" style="margin-bottom: 1%;" >
-					<a href="#"><img src="assets/img/Logo Arihant Booking.jpg"   style="float:left"alt="Bootsshop"/></a>
-				<div style="width: 65%;  float: left; margin-top: 4%;">
-				<table>
-                                        <tr>
-                                            <td> 
-                                            <font style="font-size: 18px;font-family: inherit;font-weight: bold;">  Call Us :</font>  <img alt="" src="Adsimage/phone.png" border="0" /></td>
-                                            <td>
-                                          <font style="font-size: 36px;font-family: inherit;font-weight: bold;"> 1800 270 5575</font>
-											</td>
-                                        </tr>
-                                    </table>
+					<a href="#"><img src="assets/img/New_logo.gif"   style="float:left"alt="Bootsshop"/></a>
+				<div>
+			
+					<a href="#"><img src="assets/img/Fone-Number.gif"   style="float:left"alt="Bootsshop"/></a>
+				
 				</div>
 				</div>
 				</div>
@@ -99,40 +93,49 @@
 <hr class="soft" style= "width:90%; margin-left:5%">
 <div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 5%;">
 	<div class="row" style="margin-left:5%">
-		<div class="span3 custom_span">
+		<!-- <div class="span3 custom_span">
 			<h5>HOME</h6>
 			<a href="#/aboutUs">About Us</a>
 			<a href="#/ourClient">Our Client</a> 
-			<!-- <a href="#/ourServices">Our Services</a>  -->
+			<a href="#/ourServices">Our Services</a> 
 			<a href="#/contactUs">Contact Us</a>  
 			<a ng-if='!(@session().containsKey("userName"))' ng-click="Register()" data-toggle="modal">Register</a>
 			<a href="#/ourBlogs">Blog</a>
-		 </div>
+		 </div> -->
 		<div class="span3 custom_span">
 			<h5>SUPPORT</h5>
+			<a href="#/">Advertising Policy</a>
+			<a href="#/privacyPolicy">Privacy Policy </a> 
+				 <a href="#/deClaimer">Disclaimer</a> 
 			<a href="#/termsAndConditions">Terms and Conditions</a>  
-			<a href="#/privacyPolicy">Privacy Policy </a>  
-			<a href="#/paymentGateway">Payment Gateway </a>  
-			<a href="#/deClaimer">Disclaimer</a> 
-			<a href="#/help">How to Book an Ad</a>
+		
+		<!-- 	<a href="#/paymentGateway">Payment Gateway </a>  
+			 -->
+				<a href="#/">FAQ's </a>
+					<a href="#/">Feedback </a>  
+		<!-- 	<a href="#/help">How to Book an Ad</a> -->
+			<a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a>
+			<a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a>
+	<!-- 		<a href="#/help">How to Book an Ad</a> -->
+			<a href="#/ourBlogs">Blog</a>
 		 </div>
-		<div class="span3 custom_span">
+		<!-- <div class="span3 custom_span">
 			<h5>ONLINE BANKING</h5>
-			<!-- <a href="#/textClassifiedAd">Text Classified Ad</a> --> 
+			<a href="#/textClassifiedAd">Text Classified Ad</a> 
 			<a href="#/dispClassified">Classified Display Ad</a>  
 			<a href="#/dispAds">Display Ads</a>  
 			<a href="#/readENewspaper">Read E News paper</a> 
 			<a href="#/">View Ad Rate In Various Newspapers</a> 
 		    
-		 </div>
+		 </div> -->
 		
-		<div  class="span3 custom_span" >
+		<!-- <div  class="span3 custom_span" >
 			<h5>USER LOGIN </h5>
-			<!-- <a href="#/affilatedLogin">Afiilated Login</a> -->
+			<a href="#/affilatedLogin">Afiilated Login</a>
 				<a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a>
 			<a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a>
 			
-		 </div> 
+		 </div>  -->
 	 </div>
 	<!--  <hr class="soft" style=" padding-left: -12%;width: 90%;margin-left: 5%;"/>
 	<p class="pull-right">&copy; Boot'sshop</p> -->
