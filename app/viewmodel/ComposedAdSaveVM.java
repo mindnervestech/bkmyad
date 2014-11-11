@@ -31,30 +31,5 @@ public class ComposedAdSaveVM {
 	 
 	   }
 	   
-	  /* public ComposedAdSaveVM(Order order, ComposedAdSave composedAdSave) {
-		   this.OrderID=composedAdSave.OrderID;
-		   this.Nameofthenewspaper=composedAdSave.Nameofthenewspaper;
-		   this.City=composedAdSave.City;
-		   this.Adtext=composedAdSave.Adtext;
-		   this.Tick=composedAdSave.Tick;
-		   this.TickRate=composedAdSave.TickRate;
-		   this.Category=composedAdSave.Category;
-		   this.bgColorSelect=composedAdSave.bgColorSelect;
-		   this.Bgcolor = composedAdSave.Bgcolor;
-		   this.Border=composedAdSave.Border;
-		   this.BorderCost=composedAdSave.BorderCost;
-		   this.orderDate=composedAdSave.orderDate;
-		   this.PublishDate=composedAdSave.PublishDate;
-		   this.TotalCost=composedAdSave.TotalCost;
-		   this.cc_bid = order.cc_bid;
-		   this.cc_orderNo=order.cc_orderNo;
-		   this.cc_category=order.cc_category;
-		   this.bank_name=order.bank_name;
-		   this.bankMsg=order.bankMsg;
-		   this.numberOfWords = composedAdSave.numberOfWords;
-		   this.userEmailId =composedAdSave.userEmailId;
-		  
-	   }
-	   */
-	
+	 	
 }
