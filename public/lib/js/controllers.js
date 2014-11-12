@@ -11,15 +11,21 @@ angular.module('adschela').controller("FooterController",['$scope',function($sco
 
 angular.module('adschela').controller("IndexController",['$scope',function($scope){
 	$scope.txtpasswords = 'password';
-	$scope.nplist = [{name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
+	$scope.nplist = [
+	                 {name:"Times of India",img:"/NewDesign/np-logos/toi.jpg"},
+	                 {name:"Hindustan Times",img:"/NewDesign/np-logos/hindustantimes.jpg"},
+	                 {name:"The Hindu",img:"/NewDesign/np-logos/Hindu.png"},
+	                 {name:"Daily Thanthi",img:"/NewDesign/np-logos/Daily Thanthi.jpg"},
+	                 {name:"Amar Ujala",img:"/NewDesign/np-logos/amarujala.jpg"},
 	                 {name:"Danik Jagaran",img:"/NewDesign/np-logos/dainikjagaran.png"},
+	                 {name:"The-Telegraph",img:"/NewDesign/np-logos/The-Telegraph.png"},
 	                 {name:"Hindustan",img:"/NewDesign/np-logos/hindustan.jpg"},
 	                 {name:"Sandhya Times",img:"/NewDesign/np-logos/sandhyatimes.jpg"},
 	                 {name:"Maharashtra Times",img:"/NewDesign/np-logos/maharashtratimes.jpg"},
 	                 {name:"Vijay Karnataka",img:"/NewDesign/np-logos/vijaykarnataka.jpg"},
-	                 {name:"Times of India",img:"/NewDesign/np-logos/toi.jpg"},
+	              /*   {name:"Times of India",img:"/NewDesign/np-logos/toi.jpg"},*/
 	                 {name:"Economic Times",img:"/NewDesign/np-logos/The-Economic-Times.png"},
-	                 {name:"The Hindu",img:"/NewDesign/np-logos/Hindu.png"},
+	                 /*{name:"The Hindu",img:"/NewDesign/np-logos/Hindu.png"},*/
 	                 {name:"Mirror",img:"/NewDesign/np-logos/Mirror.jpg"},
 	                 {name:"Deccan Herald",img:"/NewDesign/np-logos/Deccan-Herald.png"},
 	               /*  {name:"Navbharat Times",img:"/NewDesign/np-logos/navbharattimes.jpg"},*/
@@ -77,7 +83,7 @@ angular.module('adschela').controller("IndexController",['$scope',function($scop
 	                 {name:"The-Samaj",img:"/NewDesign/np-logos/The-Samaj.png"},
 	                 {name:"Thesiasatdaily",img:"/NewDesign/np-logos/thesiasatdaily.jpg"},
 	                 {name:"Thestatesman",img:"/NewDesign/np-logos/thestatesman.jpg"},
-	                 {name:"The-Telegraph",img:"/NewDesign/np-logos/The-Telegraph.png"},
+	                 
 	                 {name:"The-Tribune",img:"/NewDesign/np-logos/The-Tribune.png"},
 	                /* {name:"Navbharat",img:"/NewDesign/np-logos/Navbharat.jpg"},*/
 	                 {name:"Navbharattimes",img:"/NewDesign/np-logos/navbharattimes.jpg"},
@@ -140,6 +146,12 @@ angular.module('adschela').controller("DisclaimerController",['$scope',function(
 angular.module('adschela').controller("HelpController",['$scope',function($scope){
 	
 }]);
+
+
+
+
+
+
 
 angular.module('adschela').controller("dispclassifiedcontroller",['$scope',function($scope){
 	

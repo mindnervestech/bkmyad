@@ -37,6 +37,7 @@ public class Newspaperdetails {
 	public String Beforebookingdate ="0";
 	public String Allow="0";
 	public String Statename="a";
+	public int Priority;
 	
 	
 	
@@ -110,7 +111,7 @@ public class Newspaperdetails {
 	
 	@Transactional	
 	public static List<String> getAllnewspaperString() {
-		Query q = JPA.em().createQuery("Select a.Nameofthenewspaper from Newspaperdetails a order by Nameofthenewspaper Asc");
+		Query q = JPA.em().createQuery("Select a.Nameofthenewspaper from Newspaperdetails a order by Priority Asc");
 		return (List<String>)q.getResultList();
 	}
 	
