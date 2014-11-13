@@ -2184,7 +2184,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.bookingState.selectedCity="";
 		$scope.bookingState.selectedMainCategoty = cat;
 		$scope.rc.sampleWizard.forward();
-		
+		$scope.resultSubCategory = " ";
+		$scope.selectedsubCat = " ";
+		$scope.subcategory = "";
 		if($scope.bookingState.selectedMainCategoty == "Matrimonial"){
 			$scope.checkMatrimonial = true;
 				
