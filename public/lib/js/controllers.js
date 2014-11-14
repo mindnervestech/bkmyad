@@ -2236,7 +2236,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.showIframe = false;
 		$("#ccIframe").html("");
 		if($scope.userwithoutaccount == 'No'){
-			var emailVar = $("#username").hasClass("valid");
+			var emailVar = $("#username").hasClass("ng-valid");
 			if(emailVar){
 			 $http.get("checkAlreadyExitUser/"+$scope.userId)
 			 .success(function(data){
@@ -2251,8 +2251,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			}
 		} else if($scope.userwithoutaccount == 'Yes'){
 			$scope.alreadyRegister=false;
-			var emailVar = $("#username").hasClass("valid");
-		    if(emailVar && (!$scope.userpass == '')){
+			var emailVar = $("#username").hasClass("ng-valid");
+		    if(emailVar  && (!$scope.userpass == '')){
 			  $http.get("checkusercreadientals/"+$scope.userId+'/'+$scope.userpass)
 		      .success(function(data){
 		      $scope.result = data;
