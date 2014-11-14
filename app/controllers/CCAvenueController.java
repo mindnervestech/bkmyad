@@ -84,12 +84,18 @@ public class CCAvenueController extends Controller {
     	CCAvenueDefaultVM ccAvenueDefaultVM = new CCAvenueDefaultVM();
     	ccAvenueDefaultVM.Order_Id = hs.get("ORDER ID");
     	String orderStatus = hs.get("ORDER STATUS");
-    	
+    	String orderSuccessMsg  = "Thanks for booking ad with Arihantbooking.com,we will send another email once your ad gets published in the Newspaper.";
     	try{
     		models.Order o = models.Order.byId(ccAvenueDefaultVM.Order_Id);
     		//sendOrderDetailMail(o); 
     		ccAvenueDefaultVM.bankRespMsg = hs.toString();
     		ccAvenueDefaultVM.orderStatus = orderStatus; 
+    		if("Success".equalsIgnoreCase(orderStatus)){
+    			ccAvenueDefaultVM.orderStatusMsg = orderSuccessMsg;
+    		}else{
+    			ccAvenueDefaultVM.orderStatusMsg = "";
+    		}
+    		
     		ccAvenueDefaultVM.trackingId = hs.get("TRACKING ID");
     		ccAvenueDefaultVM.bankReferenceNumber = hs.get("BANK REF NO");
     		

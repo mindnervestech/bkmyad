@@ -49,7 +49,7 @@ public class CCAvenueDefaultVM {
 	public String orderStatus;
 	public String trackingId;
 	public String bankReferenceNumber;
-	
+	public String orderStatusMsg;
 	public String buildRequest() {
 		
 		 
