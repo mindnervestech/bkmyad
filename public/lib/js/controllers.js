@@ -2206,9 +2206,32 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				$scope.resultSubCategory = [];
 			}
 		});
-
+        
+		if($scope.bookingState.selectedNewsPaper == "" || angular.isUndefined($scope.bookingState.selectedNewsPaper)){
+		
+		/*	$http.get('getAllNewsPaper')
+			.success(function(data){
+				if(data) {
+					$scope.resultAllNewspaper = data;
+					console.log("In AllNewsPapers");
+					console.log(JSON.stringify($scope.resultAllNewspaper));
+					//console.log("$scope.resultSubCategory"+$scope.resultSubCategory);
+					//console.log("$scope.resultSubCategory length:"+$scope.resultSubCategory.length);
+					//console.log("sub cat"+$scope.selectedsubCat);
+				} 
+			});
+			*/
+			$scope.bookingState.selectedNewsPaper = "Times of India";
+			$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
+		    	.success(function(data){
+		    	$scope.tab=true;
+			    setDiscRates(data.discRates);
+			    SetRates(data.rates);
+		});
+       }
 		$scope.onSubcategorySelect = function(selectedsubCat){
 			$scope.subcategory = selectedsubCat;
+			$scope.selectedsubCat = selectedsubCat;
 			console.log("selectedsubCat: "+$scope.subcategory);
 		}
 		$scope.checkForSubCategorySelect = function(){

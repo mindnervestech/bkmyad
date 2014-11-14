@@ -154,8 +154,8 @@
 			    		<option value="">--Please Select Subcategory--</option>
 			    	</select> -->
 			    	
-			    	<select class="mnt-select" style="margin-top: 1%;" ng-model="bookingState.selectedNewsPaper" ng-change="onNewspaperSelect()">
-			    		<option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option>
+			    	<select class="mnt-select" style="margin-top: 1%;"  ng-model="bookingState.selectedNewsPaper" ng-change="onNewspaperSelect()">
+			    		<option ng-repeat="newspaper in bookingRequest.newspapers"  value="{{newspaper}}" ng-selected="$index == 0" >{{newspaper}}</option>
 			    		<option value="">--Please Select Newspaper--</option>
 			    	</select>
 			    	<img src="/NewDesign/images/np-icon.jpg" style="width: 6%;"/>
