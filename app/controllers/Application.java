@@ -658,8 +658,8 @@ public class Application extends Controller {
        String message=form.get("message");
        
       
-       final String username=play.Play.application().configuration().getString("username");
-       final String password=play.Play.application().configuration().getString("password");
+       final String username="support@arihantbooking.com";
+       final String password="Adschela@123";
       
        
 		Properties props = new Properties();
@@ -680,8 +680,8 @@ public class Application extends Controller {
 			Message feedback = new MimeMessage(session);
 			feedback.setFrom(new InternetAddress(username));
 			feedback.setRecipients(Message.RecipientType.TO,
-			InternetAddress.parse("yogesh_337@yahoo.com"));
-			feedback.setSubject("Your Ad Details ");
+			InternetAddress.parse(username));
+			feedback.setSubject("Feedback Given by some user");
 			//message.setText();
 			 
 			 BodyPart messageBodyPart = new MimeBodyPart();
