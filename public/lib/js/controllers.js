@@ -1616,7 +1616,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		s = s.replace('.',". ");
 		s = s.replace(',',", ");
 		s = s.replace('/',"/ ");
-		s = s.replace('\\',"\\ ");
+		s = s.replace('\\'," \\ ");
 		return s.split(' ').length;
 	}
 	
