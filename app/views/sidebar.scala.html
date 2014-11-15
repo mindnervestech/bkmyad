@@ -1,7 +1,7 @@
 @(beData:String)
 
 <div  id="sidebar">	
-	<ul class="nav nav-list bs-docs-sidenav" style="display: block;text-align: center;padding-top: 10%;padding-bottom: 5%;margin-left: 12%;background-color: #fc9a24;" ng-controller="SidebarController">
+	<ul class="nav nav-list bs-docs-sidenav" style="display: block;text-align: center;padding-top: 10%;padding-bottom: 5%;width: 280px;background-color: #fc9a24;" ng-controller="SidebarController">
 										
  		<a data-ng-click="rc.sampleWizard.moveTo(2)"   style="cursor: pointer;"><strong style="color: white;"> {{carts.length}} Ads In Your Cart  </strong></a>
 		<li style="border:0"> &nbsp;</li>
@@ -9,7 +9,7 @@
 		<div ng-repeat="cart in carts" style="padding: 5px;">
 		  <div class="btn-group" style="box-shadow: -3px 3px 16px -1px #ccc;padding-bottom: 1%;padding-top: 1%;border-bottom: 1px solid rgb(238, 238, 238);">
   			<div  style="height: 50px;max-width: 90%;min-width: 90%;float: left;margin-right: -6%;">
-  				<p style="margin:0px; font-size: 13px;">{{cart.newspaper}} - {{cart.location |limitTo:15}}</p>
+  				<p style="margin:0px; font-size: 13px;">{{cart.newspaper}} - {{cart.location |limitTo:14}}</p>
   				<p ng-show="cart.total == 0" style="margin:0px; font-size: 11px;padding-left: 3%;">({{cart.rate}} on Rs {{cart.freeUnit}} {{cart.unit}} , Total Rs  {{cart.fullTotal}} )</p>
   				<p ng-show="cart.total != 0" style="margin:0px; font-size: 11px;">(Total: Rs{{cart.total}})</p>
   			</div>

@@ -1611,12 +1611,12 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		s = s.replace(/(^\s*)|(\s*$)/gi,"");
 		s = s.replace(/[ ]{2,}/gi," ");
 		s = s.replace(/\n /,"\n");
-		s = s.replace('@'," @ ");
-		s = s.replace('-',"-");
-		s = s.replace('.',".");
-		s = s.replace(',',",");
-		s = s.replace('/',"/");
-		s = s.replace('\\',"\\");
+		s = s.replace('@',"@ ");
+		s = s.replace('-',"- ");
+		s = s.replace('.',". ");
+		s = s.replace(',',", ");
+		s = s.replace('/',"/ ");
+		s = s.replace('\\',"\\ ");
 		return s.split(' ').length;
 	}
 	
@@ -2342,7 +2342,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				noOfImpression: 1,
 				dates: [],
 				mainCategoty: $scope.bookingState.selectedMainCategoty,
-				subcategory : $scope.subcategory,
+				subcategory : $scope.selectedsubCat,
 				isHindi:true,
 				onbgColorchange:'',
 				onBorderSelected:'No',
