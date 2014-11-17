@@ -9,7 +9,30 @@ angular.module('adschela').controller("FooterController",['$scope',function($sco
 }]);
 
 
-angular.module('adschela').controller("IndexController",['$scope',function($scope){
+
+angular.module('adschela').controller("IndexController",['$scope','$http',function($scope,$http){
+	
+
+
+		$('#userInfopopup').modal();
+	
+		$scope.sendMailAboutGuestuser =  function(tempuserName,tempuserMobnumber){
+			$scope.tempuserName = tempuserName;
+			$scope.tempuserMobnumber = tempuserMobnumber;
+			$('#userInfopopup').modal('hide');
+		
+			$http.get('sendMailAboutTempUserInfo/'+$scope.tempuserName+'/'+$scope.tempuserMobnumber)
+			.success(function(data){
+				if(data) {
+					$scope.result = data;
+					if($scope.result == 'success'){
+						
+						}
+					
+				} 
+			});
+			
+		}
 	$scope.txtpasswords = 'password';
 	$scope.nplist = [
 	                 {name:"Times of India",img:"/NewDesign/np-logos/toi.jpg"},
