@@ -69,6 +69,7 @@ GET     /viewAllOrders                        controllers.ViewAllOrdersControlle
 GET     /viewAllRegisteredUser                 controllers.ViewAllRegisteredUserController.index()
 GET     /logout                             controllers.Application.Logout()      
 GET     /getforgotpass/:email                       controllers.Application.forgotpassword(email :String)
+GET      /redirectTo                             controllers.RedirectController.index()
                         
 # Map static resources from the /public folder to the /assets URL path
 GET /css/*file                     controllers.Assets.at(path="/public/app/css", file)

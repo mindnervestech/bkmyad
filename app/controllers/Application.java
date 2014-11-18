@@ -626,11 +626,13 @@ public class Application extends Controller {
 	    		session().put("emailId",existingUser.email );
 	    		session().put("userName", existingUser.name);
 	    		session().put("userRole", existingUser.role);
+	    		 response().setCookie("cookie", "cookieSet", 3600 );
 	    	    return redirect("/adminPanel");	
 	    	}else {
 	    		    session().clear();
 		    		session().put("emailId",existingUser.email );
 		    		session().put("userName", existingUser.name);
+		    		response().setCookie("cookie", "cookieSet", 3600 );
 	    		    return redirect("/");
 	    	}
 	    }
@@ -643,7 +645,6 @@ public class Application extends Controller {
     @Transactional
     public static Result  getUserInfo() {
     	String username = session().get("userRole");
-    	//System.out.println("username"+username);
     	Map<String, Object> map = new HashMap<String, Object>();
 		map.put("username", username);
 		return ok(Json.toJson(map));

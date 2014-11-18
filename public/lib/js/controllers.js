@@ -8,16 +8,23 @@ angular.module('adschela').controller("HeaderController",['$scope',function($sco
 angular.module('adschela').controller("FooterController",['$scope',function($scope){
 }]);
 
-angular.module('adschela').controller("IndexController",['$scope','$http',function($scope,$http){
+angular.module('adschela').controller("IndexController",['$scope','$http','$cookieStore','$interval',function($scope,$http,$cookieStore,$interval){
 	
-
-
-		$('#userInfopopup').modal();
 	
-		$scope.sendMailAboutGuestuser =  function(tempuserName,tempuserMobnumber){
-			$scope.tempuserName = tempuserName;
-			$scope.tempuserMobnumber = tempuserMobnumber;
-			$('#userInfopopup').modal('hide');
+	    if($scope.cookie ==  '' || (angular.isUndefined($scope.cookie))){
+			 $('#userInfopopup').modal();
+	    }
+	    /*$interval(function(){
+	        $scope.message="This DIV is refreshed  time.";
+	        $cookieStore.remove('cookie');
+	      },3600000);*/
+	    // var exp = new Date(now.getTime() + secs*1000);
+		//$cookieStore.remove('getCookie');
+		 
+	    $scope.sendMailAboutGuestuser =  function(tempuserName,tempuserMobnumber){
+		$scope.tempuserName = tempuserName;
+		$scope.tempuserMobnumber = tempuserMobnumber;
+		$('#userInfopopup').modal('hide');
 		
 			$http.get('sendMailAboutTempUserInfo/'+$scope.tempuserName+'/'+$scope.tempuserMobnumber)
 			.success(function(data){
@@ -1712,7 +1719,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
                 	total_unit = countWords(text);
                 } else {
                 	if ($scope.selectedCartItemOnPopUp.unit == "Line") {
-                    	total_unit = Math.ceil(text.length / 18);
+                    	total_unit = Math.ceil(text.length / 20);
                     }
                 }
                 
@@ -1760,6 +1767,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	$scope.orderIdPer = $cookies.orderId;
 	$scope.orderIdStatus = $cookies.orderId;
 	$scope.name;
+	$scope.cookie = $cookies.cookie;
+	
 	console.log(" $scope.lastVal"+ $scope.orderIdPer);
 	 if(!($scope.orderIdStatus == '') ){
 	    	$http.get("checkforOrderStatus/"+$scope.orderIdStatus)

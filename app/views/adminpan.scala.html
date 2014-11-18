@@ -7,7 +7,7 @@
     <link href="newtheme/style.css" rel="stylesheet"/>
 	<link href="newtheme/assets/js/google-code-prettify/prettify.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <script src='bower_components/angular/jquery.min.js'></script>
+   <!--  <script src='bower_components/angular/jquery.min.js'></script>
 	<script src='bower_components/angular/angular.js'></script>
 	<script src='bower_components/angular-resource/angular-resource.js'></script>
 	<script src='bower_components/angular-route/angular-route.js'></script>
@@ -35,10 +35,13 @@
     <script src="assets/js/bootstrap-popover.js"></script>
     <script src="assets/js/bootstrap-button.js"></script>
     <script src="assets/js/bootstrap-collapse.js"></script>
-    <!-- <script src="assets/js/bootstrap-carousel.js"></script> -->
+    <script src="assets/js/bootstrap-carousel.js"></script>
     <script src="assets/js/bootstrap-typeahead.js"></script>
     <script src="assets/js/bootstrap-affix.js"></script>
-    <script src="assets/js/jquery.lightbox-0.5.js"></script>
+    <script src="assets/js/jquery.lightbox-0.5.js"></script> -->
+
+
+
 	<script src="assets/js/bootsshoptgl.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
@@ -47,8 +50,13 @@
 	<link href="css/form-element-style.css" rel="stylesheet" type="text/css" /> <!-CSS sheet for designers form element->
 	<link href="css/main-syle.css" rel="stylesheet" type="text/css" />
 	<link href="css/jquery.jscrollpane.css" rel="stylesheet" type="text/css" media="all" />
+	
+	
+	<script src='lib/js/app.js'></script>
+	<script src='lib/js/controllers.js'></script>
+
 	<link href="css/datetimepicker.css"></script>
-	<body class="mnt-body" ng-app="adschela" ng-controller="ApplicationController">
+	<body class="mnt-body" ng-app="adschela" ng-controller="">
 	
 		<div class="container mnt-container">
 			  <div class="navbar navbar-fixed-top" >
@@ -83,7 +91,7 @@
 				<div class="clr"></div>
 			</header>	 
 	
-	  <div id="mainBody" class="container" ng-view="" >
+	  <div id="mainBody" class="container" ng-view="" ng-if='!(@session().containsKey("userName"))' >
 	 <!-- <div data-ng-include data-src="'..app/header.html'"></div>  -->
 	<ul class="nav nav-tabs" role="tablist" id="myTab" >
 		  <li><a href="/addBasicRate" role="tab" data-toggle="tab" style="cursor: pointer;">Ad Basic Rate </a></li>
