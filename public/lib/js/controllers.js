@@ -8,8 +8,6 @@ angular.module('adschela').controller("HeaderController",['$scope',function($sco
 angular.module('adschela').controller("FooterController",['$scope',function($scope){
 }]);
 
-
-
 angular.module('adschela').controller("IndexController",['$scope','$http',function($scope,$http){
 	
 
@@ -213,6 +211,14 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 	var totalPages;
 	$scope.isChosen = false;
 	
+	$http.get('getUserInfo')
+	.success(function(data){
+		if(data) {
+			$scope.username = data.username;
+			console.log("$scope.username"+$scope.username);
+		} 
+	});
+	
 	$scope.searchForm= {
             from : new Date(),
             to : new Date()
@@ -355,7 +361,13 @@ angular.module('adschela').controller('AddStateCityController',function($scope, 
             to : new Date()
 
 	}
-
+	$http.get('getUserInfo')
+	.success(function(data){
+		if(data) {
+			$scope.username = data.username;
+			console.log("$scope.username"+$scope.username);
+		} 
+	});
 	
 	$scope.State = StateCityService.StateCityInfo.get({Statename:$scope.Statename,currentPage:currentPage},function(response) {
 		totalPages = $scope.State.totalPages;
@@ -549,6 +561,14 @@ angular.module('adschela').controller('AddNewspaperController',function($scope, 
 
 	}
 
+	$http.get('getUserInfo')
+	.success(function(data){
+		if(data) {
+			$scope.username = data.username;
+			console.log("$scope.username"+$scope.username);
+		} 
+	});
+	
 	$scope.Newspaper = NewpaperService.NewspaperInfo.get({Nameofthenewspaper:$scope.Nameofthenewspaper,currentPage:currentPage},function(response) {
 		totalPages = $scope.Newspaper.totalPages;
 		currentPage = $scope.Newspaper.currentPage;
@@ -731,6 +751,14 @@ angular.module('adschela').controller('ViewAllRegisterUserController',function($
 	var totalPages;
 	$scope.isChosen = false;
 	
+	$http.get('getUserInfo')
+	.success(function(data){
+		if(data) {
+			$scope.username = data.username;
+			console.log("$scope.username"+$scope.username);
+		} 
+	});
+	
 	$scope.searchForm= {
             from : new Date(),
             to : new Date()
@@ -845,6 +873,15 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 	var currentPage = 1;
 	var totalPages;
 	$scope.isChosen = false;
+	
+	
+	$http.get('getUserInfo')
+	.success(function(data){
+		if(data) {
+			$scope.username = data.username;
+			console.log("$scope.username"+$scope.username);
+		} 
+	});
 	
 	$scope.searchForm= {
             from : new Date(),
@@ -1002,6 +1039,14 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 
 	}
 
+	$http.get('getUserInfo')
+	.success(function(data){
+		if(data) {
+			$scope.username = data.username;
+			console.log("$scope.username"+$scope.username);
+		} 
+	});
+	
 	
 	$scope.BasicRate = BasicRateService.BasicRateInfo.get({City:$scope.City,Category:$scope.category,currentPage:currentPage},function(response) {
 		totalPages = $scope.BasicRate.totalPages;
@@ -1264,6 +1309,14 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
 		var currentPage = 1;
 		var totalPages;
 		$scope.isChosen = false;
+		
+		$http.get('getUserInfo')
+		.success(function(data){
+			if(data) {
+				$scope.username = data.username;
+				console.log("$scope.username"+$scope.username);
+			} 
+		});
 		
 		$scope.searchForm= {
 	            from : new Date(),

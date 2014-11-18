@@ -625,9 +625,9 @@ public class Application extends Controller {
 	    		session().clear();
 	    		session().put("emailId",existingUser.email );
 	    		session().put("userName", existingUser.name);
-	    		return redirect("/adminPanel");	
+	    		session().put("userRole", existingUser.role);
+	    	    return redirect("/adminPanel");	
 	    	}else {
-	    	
 	    		    session().clear();
 		    		session().put("emailId",existingUser.email );
 		    		session().put("userName", existingUser.name);
@@ -639,6 +639,18 @@ public class Application extends Controller {
 	    	return redirect("/");
 	    }
     }
+    
+    @Transactional
+    public static Result  getUserInfo() {
+    	String username = session().get("userRole");
+    	//System.out.println("username"+username);
+    	Map<String, Object> map = new HashMap<String, Object>();
+		map.put("username", username);
+		return ok(Json.toJson(map));
+	     
+    }
+    
+    
     @Transactional
     public static Result  Logout() {
     	   response().discardCookie("orderId");

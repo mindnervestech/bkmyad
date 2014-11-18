@@ -13,11 +13,12 @@
 	<link href="css/datetimepicker.css"></script>
 	<script type="text/javascript" src="../assets/app/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
 </head>
-<body ng-init="searchViewAllOrderData()">
+<body ng-init="searchViewAllOrderData()"  ng-show = "username != ''">
+
    <!--container begin-->
-    <section id="container">
+    <section id="container" ng-show = "username !=  null " >
     	<section class="contentpanel">
-        	<h4>All users Order Details</h4>
+        	<h4 >All users Order Details</h4>
         	 <a href="/logout"  style="cursor: pointer ;float: left;width: 100%;text-align: right;">Logout</a>
              <!--Advance search fildes begin-->
         	<section class="dadsrch">

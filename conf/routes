@@ -12,7 +12,6 @@ POST    /saveSignUp                            controllers.Application.SaveSignU
 GET	/make-booking.html					   controllers.MakeBookingController.index()
 GET	/getRatesByNewspaper/:newspaper/:Category	controllers.MakeBookingController.getRatesByNewspaper(newspaper:String,Category:String)
 GET  /sendMailAboutTempUserInfo/:tempuserName/:tempuserMobnumber  controllers.TempGuestUserController.sendMailAboutTempUserInfo(tempuserName :String,tempuserMobnumber :String)
-
 GET     /getBasicRateByLocationAndCategory/:Location/:Category   controllers.MakeBookingController.getBasicRateByLocationAndCategory(Location:String,Category:String)
 GET     /checkusercreadientals/:Username/:Password               controllers.MakeBookingController.checkUserNameandPassword(Username:String,Password:String)
 GET     /getOrderDetailsByOrderId/:orderIdPer            controllers.MakeBookingController.getOrderDetailsByOrderId(orderIdPer:String)
@@ -44,6 +43,8 @@ GET	/deleteBasicRate/:id		           controllers.AddbasicRateController.deleteBa
 GET  /deleteDiscountRate/:id       controllers.AddPackageController.deleteDiscountRate(id :String)
 GET     /getCategory							controllers.AddbasicRateController.getCategory
 GET     /getStatename							controllers.AddbasicRateController.getStatename
+GET     /getUserInfo                          controllers.Application.getUserInfo()
+
 GET    /getAllCityOfState                     controllers.AddPackageController.getAllCityOfState()
 GET     /getCityname/:state					    controllers.AddbasicRateController.getCityname(state:String)
 POST    /saveNewpaper                           controllers.AddNewspaperController.saveNewpaper
