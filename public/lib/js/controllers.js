@@ -8,19 +8,13 @@ angular.module('adschela').controller("HeaderController",['$scope',function($sco
 angular.module('adschela').controller("FooterController",['$scope',function($scope){
 }]);
 
-angular.module('adschela').controller("IndexController",['$scope','$http','$cookieStore','$interval',function($scope,$http,$cookieStore,$interval){
-	
-	
+angular.module('adschela').controller("IndexController",['$scope','$http','$cookieStore','$cookies','$interval',function($scope,$http,$cookieStore,$interval,$cookies){
+
+	    $scope.setCookie();
 	    if($scope.cookie ==  '' || (angular.isUndefined($scope.cookie))){
 			 $('#userInfopopup').modal();
 	    }
-	    /*$interval(function(){
-	        $scope.message="This DIV is refreshed  time.";
-	        $cookieStore.remove('cookie');
-	      },3600000);*/
-	    // var exp = new Date(now.getTime() + secs*1000);
-		//$cookieStore.remove('getCookie');
-		 
+	    
 	    $scope.sendMailAboutGuestuser =  function(tempuserName,tempuserMobnumber){
 		$scope.tempuserName = tempuserName;
 		$scope.tempuserMobnumber = tempuserMobnumber;
@@ -1768,7 +1762,21 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	$scope.orderIdStatus = $cookies.orderId;
 	$scope.name;
 	$scope.cookie = $cookies.cookie;
-	
+	console.log($scope.cookie);
+	$scope.setCookie = function(){
+		 $('#userInfopopup').hide();
+		console.log($scope.cookie);
+		if($scope.cookie == '' || angular.isUndefined($scope.cookie)){
+	    	$http.get('getUserInfo')
+	    	.success(function(data){
+	    		if(data) {
+	    			if(data != ''){
+	    				 $scope.cookie = $cookies.cookie;
+	    			}
+	    		} 
+	    	});
+	    }
+	}
 	console.log(" $scope.lastVal"+ $scope.orderIdPer);
 	 if(!($scope.orderIdStatus == '') ){
 	    	$http.get("checkforOrderStatus/"+$scope.orderIdStatus)
