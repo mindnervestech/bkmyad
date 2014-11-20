@@ -1,16 +1,11 @@
 <html class="mnt-html"  xmlns="http://www.w3.org/1999/xhtml">
 
-	<body class="mnt-body" onclick="redirect()>
-                 <div class="span12" style="margin-bottom: 1%;" >
-					<a href="" id="location" onclick="redirect()"><img src="assets/img/New_logo.gif"   style="float:left;height: 87px;"alt="Bootsshop"/></a>
+	<body class="mnt-body" >
+                 		<div class="span12" style="margin-bottom: 1%;" >
+					<a href= "" onclick="window.top.location='http://www.arihantbooking.com';return false; target="_top"" <img src="assets/img/New_logo.gif"   style="float:left;height: 87px;"alt="Bootsshop"/>
 				 <div>
-					<a href="" id= "imagelocation" onclick="redirect()" > <img src="assets/img/Fone-Number.gif"   style="float:left;"alt="Bootsshop"/></a>
+					<img src="assets/img/Fone-Number.gif"   style="float:left;"alt="Bootsshop"/>
 	</body>
-	<script>
-	function  redirect(){
-	console.log("here");
-		 window.location="http://www.arihantbooking.com";
-	}
-	</script>
+	
 
 </html>
