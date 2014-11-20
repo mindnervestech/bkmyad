@@ -1,6 +1,6 @@
 
 @(ordedrdata: List[viewmodel.ComposedAdSaveVMInvoice])
-
+@main("") {
 <br />
 <br />
 <p><ul> 
@@ -56,9 +56,22 @@
 			      <!--  <td><label>Tick Selected: </label> </td>
 			       <td> {{invoice.Tick}} </td> -->
 			       <td> @ComposedAdSaveVMInvoice.getPublishDate() </lable></td>
-			       <td>BgColor: <font ng-if="@ComposedAdSaveVMInvoice.getBgcolor() == ''">No</font><font ng-if="@ComposedAdSaveVMInvoice.getBgcolor() != ''">@ComposedAdSaveVMInvoice.getBgcolor()</font> <br> 
-			       Border:@ComposedAdSaveVMInvoice.getBorder()<br>Tick: <font ng-if="@ComposedAdSaveVMInvoice.getTick() == 'true' ">No</font><font  ng-if="@ComposedAdSaveVMInvoice.getTick() == 'false' ">Yes</font> <br>No Of Words/Line: @ComposedAdSaveVMInvoice.getNumberOfWords()<br>Total Extra Cost:@ComposedAdSaveVMInvoice.getTotalExtraCost() + @ComposedAdSaveVMInvoice.getTotalUnitCost()</lable></td>
-			       <td> @ComposedAdSaveVMInvoice.getTotalCost() </lable></td>
+			       <td>BgColor: 
+			       @if(ComposedAdSaveVMInvoice.getBgcolor().isEmpty){
+			       <font >No</font> } else{
+			       <font > @ComposedAdSaveVMInvoice.getBgcolor()</font> 
+			       }               
+			      
+			        <br> 
+			          Border:@ComposedAdSaveVMInvoice.getBorder()<br>Tick: 
+			          @if(ComposedAdSaveVMInvoice.getTick() == "true") {
+   						  <font>No</font>
+						} else {
+   						 <font>Yes </font>
+						}
+			          
+			           <br>No Of Words/Line: @ComposedAdSaveVMInvoice.getNumberOfWords()<br>Total Extra Cost:@(ComposedAdSaveVMInvoice.getTotalExtraCost()  + ComposedAdSaveVMInvoice.getExtraCost())</lable></td>
+			       <td>@ComposedAdSaveVMInvoice.getTotalCost() </lable></td>
 			</span>
 			 </tr>
 			
@@ -67,5 +80,7 @@
 </div>
 
 } 
+
+}
 </ul>
 </p>

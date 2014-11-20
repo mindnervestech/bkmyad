@@ -1825,6 +1825,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 						totalExtraCost :orderListuser.totalExtraCost ,
 						totalUnitCost:orderListuser.totalUnitCost,
 						noOfImpression:orderListuser.noOfImpression,
+						extraCost: 0,	
 						dates : orderListuser.dates,
 						mainCategoty:orderListuser.mainCategoty,
 						subcategory : orderListuser.subcategory,
@@ -2000,6 +2001,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		fromCart.nobgColor=fromScreen.nobgColor;
 		fromCart.totalExtraCost = fromScreen.totalExtraCost;
 		fromCart.totalUnitCost = fromScreen.totalUnitCost;
+		fromCart.extraCost = fromScreen.extraCost;
 		fromCart.noOfImpression = fromScreen.noOfImpression;
 		fromCart.extraUnit = fromScreen.extraUnit;
 		fromCart.completenessStatus=fromScreen.completenessStatus;
@@ -2432,6 +2434,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				fullTotal: 0,
 				totalExtraCost : 0,
 				totalUnitCost: 0,
+				extraCost: 0,
 				noOfImpression: 1,
 				dates: [],
 				mainCategoty: $scope.bookingState.selectedMainCategoty,
@@ -2470,6 +2473,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			fullTotal: 0,
 			totalExtraCost : 0,
 			totalUnitCost: 0,
+			extraCost: 0,
 			noOfImpression: 1,
 			dates: [],
 			mainCategoty: $scope.bookingState.selectedMainCategoty,

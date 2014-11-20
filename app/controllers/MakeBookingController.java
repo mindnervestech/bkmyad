@@ -507,6 +507,7 @@ import com.google.common.collect.Lists;
 	    public String extraFortickInPer;
 	    public String  packageSelected;
 		
+	public float extraCost;
 		
 	    //public float FinalTotal = 0;
 		
@@ -694,6 +695,7 @@ import com.google.common.collect.Lists;
 	    	  cds.packageType = cartItem.get(i).packageSelected;
 	    			  
 	    	  
+ 				cds.extraCost = cartItem.get(i).extraCost;
 	    	  Date date = new Date();
 	    	  cds.orderDate = sdf.format(date);//current date i.e. order date saved here
 	    	  

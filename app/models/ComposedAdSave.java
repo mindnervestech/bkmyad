@@ -56,6 +56,7 @@ public class ComposedAdSave{
 	   public String  adbookedId;
 	   public String packageType ="";
 	   
+ 		public float extraCost;
 	   public String getAdbookedId() {
 		return adbookedId;
 	}

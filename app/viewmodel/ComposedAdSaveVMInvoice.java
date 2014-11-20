@@ -43,6 +43,8 @@ public class ComposedAdSaveVMInvoice {
 	   public String bgColorSelect; 
 	   public String  adbookedId;
 	   
+	   public float extraCost;
+	   
 	   public ComposedAdSaveVMInvoice(ComposedAdSave composedAdSave) {
 	    	this.OrderID=composedAdSave.OrderID;
 	    	this.orderDate=composedAdSave.orderDate;
@@ -64,12 +66,20 @@ public class ComposedAdSaveVMInvoice {
 	    	this.totalUnitCost  = composedAdSave.totalUnitCost;
 	    	 
 	    	this.numberOfWords = composedAdSave.numberOfWords;
-	    	
+	    	this.extraCost = composedAdSave.extraCost;
 	    	System.out.println("this.Subcategory"+this.Subcategory);
 	    	System.out.println("this.paymentOption"+this.paymentOption);
 	    	
 	    	
 	    }
+
+	public float getExtraCost() {
+		return extraCost;
+	}
+
+	public void setExtraCost(float extraCost) {
+		this.extraCost = extraCost;
+	}
 
 	public String getOrderID() {
 		return OrderID;
