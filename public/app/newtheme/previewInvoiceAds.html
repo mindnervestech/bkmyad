@@ -55,7 +55,7 @@
 			       <td> {{invoice.Tick}} </td> -->
 			       
 			       <td><span  ng-repeat="dateUI in c.dates">{{dateUI |date:'MM/dd/yyyy'}} </span><br/></td>
-			       <td>BgColor: <font ng-if="c.nobgColor ==  false">Yes</font><font ng-if="c.nobgColor == true"> No</font><br> Border: {{c.onBorderSelected}}<br>Tick: <font ng-if="c.notickforAd ==  true"> No</font><font  ng-if="c.Tick == false "> Yes</font><br>No of Words/Line:  <font ng-if="c.numberOfWords>0">{{c.numberOfWords}} </font><font ng-if ="c.totalUnit>0">{{c.totalUnit}}</font><br>Total Extra Cost:{{c.totalExtraCost + c.extraCost}}</lable></td>
+			       <td>BgColor: <font ng-if="c.nobgColor ==  false">Yes</font><font ng-if="c.nobgColor == true"> No</font><br> Border: {{c.onBorderSelected}}<br>Tick: <font ng-if="c.notickforAd ==  true"> No</font><font  ng-if="c.notickforAd == false "> Yes</font><br>No of Words/Line:  <font ng-if="c.numberOfWords>0">{{c.numberOfWords}} </font><font ng-if ="c.totalUnit>0">{{c.totalUnit}}</font><br>Total Extra Cost:{{c.totalExtraCost + c.extraCost}}</lable></td>
 			       </div>
 			       <td style="width:22%"> र. {{c.fullTotal}} </lable></td>
 		     	
