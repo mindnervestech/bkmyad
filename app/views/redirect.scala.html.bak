@@ -2,9 +2,9 @@
 
 	<body class="mnt-body" onclick="redirect()>
                  <div class="span12" style="margin-bottom: 1%;" >
-					<img src="assets/img/New_logo.gif"   style="float:left;height: 87px;"alt="Bootsshop"/>
+					<a href="" id="location" onclick="redirect()"><img src="assets/img/New_logo.gif"   style="float:left;height: 87px;"alt="Bootsshop"/></a>
 				 <div>
-					<img src="assets/img/Fone-Number.gif"   style="float:left;"alt="Bootsshop"/>
+					<a href="" id= "imagelocation" onclick="redirect()" > <img src="assets/img/Fone-Number.gif"   style="float:left;"alt="Bootsshop"/></a>
 	</body>
 	<script>
 	function  redirect(){
