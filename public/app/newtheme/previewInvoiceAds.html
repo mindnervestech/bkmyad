@@ -12,7 +12,7 @@
      <img src="assets/img/Logo Arihant Booking.jpg" />
 		     <table style="margin-left: 2%;">
 		      <tr>
-		     <!--  <td><label style="color:blue">Order ID : </label></td><td><span style="font-weight:bold">{{headerItem.OrderID}}</span></td> -->
+			      <!--  <td><label style="color:blue">Order ID : </label></td><td><span style="font-weight:bold">{{headerItem.OrderID}}</span></td> -->
 			       <td><label style="color:blue">Order Date </label> </td><td><span style="font-weight:bold">{{orderdate |date:'MM/dd/yyyy'}}</span></td>
 			  </tr>
 			   <tr><!-- Nameofthenewspaper ,TotalCost,Bgcolor,,numberOfWords, -->
@@ -41,19 +41,8 @@
 
 			   <tr style="height: 140px";>
 			       <td style="width: 22%;">{{c.newspaper}}/{{c.mainCategoty}}/ {{c.subcategory}}<br/>{{c.location}}</lable></td>
-			   <!--   <td style="width: 30%;"> {{c.description}}</lable></td>  -->
-			        <!-- <td style="width: 30%;" ng-bind-html="to_trusted(c.description)"></lable></td>
-			         -->
-			            		 
-				<td >
-				 <span> {{c.description}}</span>
-				<span  ng-if="selectYourAd == 'displayClassified'" style="width:100%; float:left;" ng-show="c.descriptionHeader != ''"  ng-style="{'background-color':c.headerColor}" ng-bind-html="to_trusted(c.descriptionHeader)">
-				</span>
-					<span  ng-if="selectYourAd == 'displayClassified'" style="width:100%; float:left;"  ng-show="c.descriptionBody!=''"  ng-style="{'background-color':c.bodyColor}"
-				      ng-bind-html="to_trusted(c.descriptionBody)"></span>
-				      <span ng-if="selectYourAd == 'displayClassified'" style="width:100%; float:left;" ng-show="c.descriptionFooter !=''" ng-style="{'background-color':c.footerColor}"
-				      ng-bind-html="to_trusted(c.descriptionFooter)"></span>
-				</td> 
+			       <td style="width: 30%;"> {{c.description}}</lable></td>
+			       
 			  <!-- <tr>
 			      <td><label>BgColor Selected : </label></td>
 			      <td> {{invoice.Bgcolor}}</td>

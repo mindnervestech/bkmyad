@@ -56,21 +56,7 @@ public class ComposedAdSave{
 	   public String  adbookedId;
 	   public String packageType ="";
 	   
-	   public String footerDescption = " ";
-	   public String headerDescption= " ";
-	   public String bodyDescription= " "; 
-	   public String footerColor= " ";
-	   public String bodyColor= " ";
-	   public String headerColor= " ";  
-	   public String adType= " ";
-	   //public String widthSelected;
-	   
-	   public String   colorAd= " ";
-	   public String BWAd= " ";
-	   public String imageAd= " ";
-	   public String adSizeSelect= " ";
-	   public float extraCost;
-	   
+ 		public float extraCost;
 	   public String getAdbookedId() {
 		return adbookedId;
 	}

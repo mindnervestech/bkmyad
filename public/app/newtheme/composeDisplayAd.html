@@ -25,7 +25,7 @@
             color: red;
         }
         .ngdialog-content{
-        	height:auto !important;
+        	height:470px !important;
         }
          .colorpicker{
         	z-index: 20000 !important;
@@ -36,10 +36,10 @@
 			position: fixed;
 		}
     </style>
-<!-- <link href="/WebResource.axd?d=eELOVr57-x406Xc75zGi2tprCqY3dldlhtntpI7SiWifW2awJvad0Zw_fiz0Owz-B7zVwkz8xQlml33cPpS0PHPymYTskVfDmGrAvFbI-b__PCIB7ITYVBP4PXdUbPaXOJSO6g2&amp;t=635216696627194188" type="text/css" rel="stylesheet" /><link href="/WebResource.axd?d=6D5sCqIWT_1AL4YT4rDd3JfMclNQawjIUJC2rP1IjvGNa5vI2SVvrh4yXZKd_5BOMOIiPxz8Xxd_0beRQJudvR3xv1Ch0isx6BfxOl4IVXZmS-ZQyJKCuB9ve_fsSjP3Gz7HVOd-dsXigyQMoHhsX3m0yVs1&amp;t=635216696627194188" type="text/css" rel="stylesheet" /><link href="/WebResource.axd?d=M-lLY-IZ1ekCIzcitSQ1v993WsqoKOApMnM7fMXUHgU-RrQAZZDSxINPihZd6L6uGu_Ny5hF-QRiDtHP7rdBHhgUCCjTagO_KEMvjGqPqVhQ_XmKoPbyWGsfx0IA7OWQ18Xmkw2&amp;t=635216696627194188" type="text/css" rel="stylesheet" /></head> -->
+<link href="/WebResource.axd?d=eELOVr57-x406Xc75zGi2tprCqY3dldlhtntpI7SiWifW2awJvad0Zw_fiz0Owz-B7zVwkz8xQlml33cPpS0PHPymYTskVfDmGrAvFbI-b__PCIB7ITYVBP4PXdUbPaXOJSO6g2&amp;t=635216696627194188" type="text/css" rel="stylesheet" /><link href="/WebResource.axd?d=6D5sCqIWT_1AL4YT4rDd3JfMclNQawjIUJC2rP1IjvGNa5vI2SVvrh4yXZKd_5BOMOIiPxz8Xxd_0beRQJudvR3xv1Ch0isx6BfxOl4IVXZmS-ZQyJKCuB9ve_fsSjP3Gz7HVOd-dsXigyQMoHhsX3m0yVs1&amp;t=635216696627194188" type="text/css" rel="stylesheet" /><link href="/WebResource.axd?d=M-lLY-IZ1ekCIzcitSQ1v993WsqoKOApMnM7fMXUHgU-RrQAZZDSxINPihZd6L6uGu_Ny5hF-QRiDtHP7rdBHhgUCCjTagO_KEMvjGqPqVhQ_XmKoPbyWGsfx0IA7OWQ18Xmkw2&amp;t=635216696627194188" type="text/css" rel="stylesheet" /></head>
 
    
-<div rc-wizard="composeWizard" rc-disabled="rc.firstForm.submitInProgress" style="min-height: 290px">
+<div rc-wizard="composeWizard" rc-disabled="rc.firstForm.submitInProgress">
       <ul class="nav rc-nav-wizard">
               <li class="active" style="float:left;margin-right: 2%;">
                 <a class="active" href="#select-Ad" data-toggle="tab">
@@ -67,170 +67,47 @@
               </li>
             </ul>
     <div  class="tab-content">
-    
-	
-	<form class="tab-pane active" id="select-Ad" name="select-AdForm" rc-step novalidate>
-	<div>
-	 <lable>Select an Ad template from below (colour or b/w)</lable><br />
-	 <lable style="font-weight:bold" >Select Color Mode :</lable>
-         <input type="radio" name="adChoose" ng-model = "selectedCartItemOnPopUp.colorAd" value="colorAd"  style="margin-left: 2%;"ng-change="onColorAdChoose(selectedCartItemOnPopUp.colorAd)">Color Ad
-         <input type="radio" name="adChoose" ng-model="selectedCartItemOnPopUp.colorAd" value="BWAd" style="margin-left:24%" ng-change="onBWAdChoose(selectedCartItemOnPopUp.BWAd)">B/W Ad<br>
-   </div>
-   <div><lable ><font size="0">Note: Colour Ads are generally more expensive than B/w Ads. On template selection you can customize the text, font, colours & images as per your requirement.</font></lable></div>	
-	<div ng-show="showColorAd">
-    <table style="width: 100%;margin-top: 2%;float: left">
+	<form class="tab-pane active" id="select-Ad" name="select-AdForm" rc-step novalidate>	
+    <table style="width: 100%; margin-top: 2%;float: left;">
      <tr>
-     <td valign="top">
-      <img id="Image1" src="assets/image/matrimonial1.gif" style="width:115px;height: 300px;border-width:0px;" />
+     <td valign="top" >
+      <img id="Image1" src="assets/image/displayc1.JPG" style="width:115px;height: 300px;border-width:0px;" />
        <br />
-       <input type="radio" name="img" value="1" ng-model="selectedCartItemOnPopUp.imageAd"  ng-change="onSelectImageforAd(selectedCartItemOnPopUp.imageAd);" style="margin-left: 34%;"><br> 
+       <input type="radio" name="img" value="1" ng-model="imageAd"  ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;"><br> 
      </td>
      <td valign="top"  >
-     <img id="Image2" src="assets/image/matrimonial2.gif"style="border-width:0px;height: 300px;width:115px;" />
+     <img id="Image2" src="assets/image/displayc2.JPG"style="border-width:0px;height: 300px;width:115px;" />
      <br />
-     <input type="radio" name="img" value="2" ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(selectedCartItemOnPopUp.imageAd);" style="margin-left: 34%;"><br> 
+     <input type="radio" name="img" value="2" ng-model="imageAd" ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;"><br> 
      </td>
     <td valign="top" >
-      <img id="Image3" src="assets/image/matrimonial3.gif" style="border-width:0px;height: 300px;width:115px;" />
+      <img id="Image3" src="assets/image/displayc3.JPG" style="border-width:0px;height: 300px;width:115px;" />
       <br />
-      <input type="radio" name="img" value="3"  ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(selectedCartItemOnPopUp.imageAd);" style="margin-left: 34%;" ><br> 
+      <input type="radio" name="img" value="3"  ng-model="imageAd" ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;" ><br> 
      </td>
+                                        
    <td valign="top"  >
-    <img id="Image4" src="assets/image/matrimonial4.gif" style="border-width:0px;height: 300px;width:115px;" />
+    <img id="Image4" src="assets/image/displayc4.JPG" style="border-width:0px;height: 300px;width:115px;" />
     <br />
-   <input type="radio" name="img" value="4" ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(selectedCartItemOnPopUp.imageAd);" style="margin-left: 34%;"><br> 
+   <input type="radio" name="img" value="4" ng-model="imageAd" ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;"><br> 
     </td>
                                            
  </tr>
  </table>
-
-</div>
-
-   <div ng-show="showBWAd">
-		    <table style="width: 100%; margin-top: 2%;float: left;">
-		     <tr>
-		     <td valign="top">
-		      <img id="Image1" src="assets/image/matrimonial1_cd.gif" style="width:115px;height: 300px;border-width:0px;" />
-		       <br />
-		       <input type="radio" name="img" value="1" ng-model="selectedCartItemOnPopUp.imageAd"  ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;"><br> 
-		     </td>
-		     <td valign="top"  >
-		     <img id="Image2" src="assets/image/matrimonial2_cd.gif"style="border-width:0px;height: 300px;width:115px;" />
-		     <br />
-		     <input type="radio" name="img" value="2" ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;"><br> 
-		     </td>
-		    <td valign="top" >
-		      <img id="Image3" src="assets/image/matrimonial3_cd.gif" style="border-width:0px;height: 300px;width:115px;" />
-		      <br />
-		      <input type="radio" name="img" value="3"  ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;" ><br> 
-		     </td>
-		                                        
-		  <td valign="top"  >
-		    <img id="Image4" src="assets/image/matrimonial4_cd.gif" style="border-width:0px;height: 300px;width:115px;" />
-		    <br />
-		   <input type="radio" name="img" value="4" ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;"><br> 
-		    </td>
-		 </tr>
-		 </table>
-   </div>
- </form>                                                                      
+  </form>                                                                      
  
  
 <form class="tab-pane" method="post" id="create-ad" name="select-AdForm" rc-step novalidate>	
+ <div style="width:46%;margin-left:0%;float: left;">
+<textarea id="tinymce"  data-ui-tinymce='tinymceOptions' data-ng-model="selectedAdbodyTextOnPopUp.description">
+<div id="matrimonial2_cd_body" style="padding: 0pt 2px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; overflow:hidden;" align="center"><p><span style="font-size: 14px;">Need alliance match for Gujarat based  				Gupta Boy 25/6”. Runs own business. Girl should be well educated homely,tall &amp; b/ful. <span style="font-weight: bold; text-decoration: underline;">Caste no bar</span></span><br><span style="font-weight: bold; font-size: 14px;">E-mail ID<br>9855529362<br>Ph: 26667291</span></p></div>
+
+</textarea>
+</div>
 <div>
-		<div style="width: 40%;float: left;">
-		
-		 <div ng-show="descriptionHeader" id="descriptionHeader"  style="width:100%;margin-left:0%;float: left;margin-bottom: 2%;">
-		<textarea id="tinymce"  data-ui-tinymce='tinymceOptions' data-ng-model="selectedCartItemOnPopUp.descriptionHeader">
-			
-		
-		</textarea>
-		</div>
-		<div id="headerColor" ng-show="headerColor" >
-		<label style="float: left;">Change Header Color</label>
-		<select name="thelist" ng-model="selectedCartItemOnPopUp.headerColor" ng-change="onColorHeaderChange()" style="width: 26%;margin-left: 8%;">
-		  <option>RED</option>
-		  <option>GREEN</option>
-		  <option>BLUE</option>
-		  <option>YELLOW</option>
-		  <option>WHITE</option>
-		   
-		</select> 
-		<br />
-		</div>
-		
-		 <div ng-show="descriptionBody" id="descriptionBody" style="width:100%;margin-left:0%;float: left;margin-bottom: 2%;">
-		<textarea id="tinymceBody"  data-ui-tinymce='tinymceOptionsBody' data-ng-model="selectedCartItemOnPopUp.descriptionBody" ng-change="tinymceOptionsSelect()">
-		<div id="matrimonial2_cd_body" style="padding: 0pt 2px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; overflow:hidden;" align="center"><p><span style="font-size: 14px;">Need alliance match for Gujarat based  				Gupta Boy 25/6”. Runs own business. Girl should be well educated homely,tall &amp; b/ful. <span style="font-weight: bold; text-decoration: underline;">Caste no bar</span></span><br><span style="font-weight: bold; font-size: 14px;">E-mail ID<br>9855529362<br>Ph: 26667291</span></p></div>
-		
-		</textarea>
-		</div>	
-		<div id="bodyColor"  ng-show="bodyColor" >
-		<label style="float: left;">Change Body Color</label>
-		<select name="thelist" ng-model="selectedCartItemOnPopUp.bodyColor" ng-change="onColorBodyChange()" style="width: 26%;margin-left: 8%;">
-		  <option>RED</option>
-		  <option>GREEN</option>
-		  <option>BLUE</option>
-		  <option>YELLOW</option>
-		  <option>WHITE</option>
-		  
-		</select>  
-		</div>
-		
-		 <div ng-show="descriptionFooter" id="descriptionFooter" style="width:100%;margin-left:0%;float: left;margin-bottom: 2%;">
-			<textarea id="tinymceFooter"  data-ui-tinymce='tinymceOptionsFooter' data-ng-model="selectedCartItemOnPopUp.descriptionFooter">
-			<div id="matrimonial2_cd_body" style="padding: 0pt 2px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; overflow:hidden;" align="center"><p><span style="font-size: 14px;">Need alliance match for Gujarat based  				Gupta Boy 25/6”. Runs own business. Girl should be well educated homely,tall &amp; b/ful. <span style="font-weight: bold; text-decoration: underline;">Caste no bar</span></span><br><span style="font-weight: bold; font-size: 14px;">E-mail ID<br>9855529362<br>Ph: 26667291</span></p></div>
-		
-			</textarea>
-		</div>
-		<div id="footerColor" ng-show="footerColor">
-			<label style="float: left;">Change Footer Color</label>
-			<select name="thelist"   ng-model="selectedCartItemOnPopUp.footerColor" ng-change="onColorFooterChange()" style="width: 26%;margin-left: 8%;">
-			  <option>RED</option>
-			  <option>GREEN</option>
-			  <option>BLUE</option>
-			  <option>YELLOW</option>
-			  <option>WHITE</option>
-			  
-			</select> 
-			<br />
-		</div>
-		
-		<div>
-		</div>
+
 
 </div>
-<div style="width: 60%; float :left;">
-	
-		<div>&nbsp;&nbsp;
-		    <lable>Specify Ad Width </lable>
-			<input type="radio" name="adWidth" value="firstColumn" ng-model="selectedCartItemOnPopUp.adSizeSelect" ng-click="onFirstColumnSelected()">1  Column
-			<input type="radio" name="adWidth" value="secondColumn" style="margin-left:12%" ng-model="selectedCartItemOnPopUp.adSizeSelect" ng-click="onSecondColumnSelected()">2 Column
-	   </div>
-		<!-- <input type="textarea" name="headerTextArea" style="height:150px" data-ng-model="selectedAdbodyTextOnPopUp.descriptionBody" /> -->
-  <div style="width:100%">
-		
-		<div style="width: 50%;float: left;">
-		<div id= "adPreview" style="border:1px solid black;;width:70%;margin-left:55%;margin-top: 245px;" ng-style="{borderColor: myColor}">
-			
-			<div id="descriptionHeaderText" style="" ng-style="{'background-color':selectedCartItemOnPopUp.headerColor}" ng-model="selectedCartItemOnPopUp.descriptionHeader">
-			   <!--  <span id="descriptionHeaderText1" name="descriptionHeaderText"></span><br/> -->
-			</div>
-			 <div  id="descriptionBodyText" style=""  ng-style="{'background-color': selectedCartItemOnPopUp.bodyColor}" ng-model="selectedCartItemOnPopUp.descriptionBody">
-			    <!-- <span id="descriptionBodyText1" name="descriptionBodyText"></span><br/> -->
-			</div>
-			<div id="descriptionFooterText" ng-model="selectedCartItemOnPopUp.descriptionFooter" style="" ng-style="{'background-color': selectedCartItemOnPopUp.footerColor}">
-			  <!--   <span id="descriptionFooterText1" name="descriptionFooterText"></span><br/> -->
-			</div>
-	  </div>
-	  </div>
-	  
-	</div>
-	</div>
-</div>
-<!--  <input colorpicker="hex" type="text" ng-model="your_model" />
- <input colorpicker colorpicker-parent="true" type="text" ng-model="your_model" />
- -->
 <!-- <input  style="background-color: {{hexPicker.color1}};width: 20%;margin-left: 20%;" type="text">
 <br />
 <button colorpicker  ng-model="hexPicker.color1" style="width: 20%;float: left;margin-left: 20%;"> Header Color</button>
@@ -246,268 +123,173 @@
 <!-- style="width: 6%;margin-left: 9%;" --> 
 
 </div>
-
+<div>
+<!-- <label>Change Header Color</label>
+<select name="thelist" ng-model="colorChange.header" ng-change="onColorHeaderChange(colorChange)" style="width: 4%;margin-left: 8%;">
+  <option>RED</option>
+  <option>GREEN</option>
+  <option>BLUE</option>
+  <option>YELLOW</option>
+  <option>WHITE</option>
+  
+</select> 
+<br />
+<label>Change Body Color</label>
+<select name="thelist" ng-model="colorChange" ng-change="onColorBodyChange(colorChange)" style="width: 4%;margin-left: 8%;">
+  <option>RED</option>
+  <option>GREEN</option>
+  <option>BLUE</option>
+  <option>YELLOW</option>
+  <option>WHITE</option>
+  
+</select>  -->
+</div>
 
 </form>           
 
    <form class="tab-pane" id="extra-toping" name="extra-topingForm" rc-step novalidate>
                       
-                   			<table width="450" border="0" cellpadding="0" cellspacing="0">
-				<tbody >
-					<tr>
-						<td align="left" valign="middle" width="450">
-						<label 
-						 ng-if='((selectedCartItemOnPopUp.extraForBackgroudInPer > 0 || selectedCartItemOnPopUp.extraForBackgroud > 0) || (selectedCartItemOnPopUp.extraForBorder  > 0 || selectedCartItemOnPopUp.extraForBorderInPer > 0)  )'>BackGround Color and Ad Border Color will increase Cost</label>
-							<!-- <div ng-if='selectedCartItemOnPopUp.extraForBackgroud > 0 || selectedCartItemOnPopUp.extraForBackgroudInPer > 0' 
-								style="width: 200px; float: left;margin-right: 7% !important; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
-								<center>
-									<table width="180" border="0" cellpadding="0" cellspacing="0">
-										<tbody >
-											<tr >
-												<td width="180" height="20"
-													style="border-bottom: 5px double #666666; font-size: 10pt; font-family: Calibri;">
-													<b> Select Ad Background Color</b> Background Color Extra:
-													<span>{{selectedCartItemOnPopUp.extraForBackgroud==0?selectedCartItemOnPopUp.extraForBackgroudInPer + "(%)":selectedCartItemOnPopUp.extraForBackgroud}}</span>
-													<br /> 
-												</td>
-											</tr>
-											<tr>
-												<td width="480" style="height: 20px;" align="left"
-													valign="top">
-													<table border="0" cellpadding="0" cellspacing="0"
-														width="180">
-														<tbody>
-															<tr  >
-																<td width="36" height="15" align="center"
-																	valign="middle"><span style="font-size: 8pt;"><input
-																		id="rbnn" type="radio" name="a" value="lemonchiffons"
-																		ng-model="selectedCartItemOnPopUp.onbgColorchange" ng-disabled="selectedCartItemOnPopUp.nobgColor"></span>
-																</td>
-																<td width="36" height="15" align="center"
-																	valign="middle"><span style="font-size: 8pt"><input
-																		id="rbny" type="radio" name="a" value="gold"
-																		ng-model="selectedCartItemOnPopUp.onbgColorchange" ng-disabled="selectedCartItemOnPopUp.nobgColor" ></span>
-																</td>
-																<td width="36" height="15" align="center"
-																	valign="middle"><span style="font-size: 8pt"><input
-																		id="rbnp" type="radio" name="a" value="lightpink"
-																		ng-model="selectedCartItemOnPopUp.onbgColorchange" ng-disabled="selectedCartItemOnPopUp.nobgColor"></span>
-																</td>
-																<td width="36" height="15" align="center"
-																	valign="middle"><span style="font-size: 8pt"><input
-																		id="rbng" type="radio" name="a" value="darkkhaki"
-																		ng-model="selectedCartItemOnPopUp.onbgColorchange" ng-disabled="selectedCartItemOnPopUp.nobgColor"></span>
-																</td>
-																<td width="36" height="15" align="center"
-																	valign="middle"><span style="font-size: 8pt"><input
-																		id="rbns" type="radio" name="a" value="lightsteelblue"
-																		ng-model="selectedCartItemOnPopUp.onbgColorchange" ng-disabled="selectedCartItemOnPopUp.nobgColor"></span>
-																</td>
-															</tr>
-															<tr  >
-																<td width="36" height="15" align="center"
-																	valign="middle">
-																	<div id="Panel5"
-																		style="background-color: LemonChiffon; height: 15px; width: 15px;">
-
-
-																	</div>
-																</td>
-																<td width="36" height="15" align="center"
-																	valign="middle">
-																	<div id="pnl1"
-																		style="background-color: Gold; height: 15px; width: 15px;">
-																	</div>
-																</td>
-																<td width="36" height="15" align="center"
-																	valign="middle">
-																	<div id="Panel2"
-																		style="background-color: LightPink; height: 15px; width: 15px;">
-																	</div>
-																</td>
-																<td width="36" height="15" align="center"
-																	valign="middle">
-																	<div id="Panel3"
-																		style="background-color: DarkKhaki; height: 15px; width: 15px;">
-																	</div>
-																</td>
-																<td width="36" height="15" align="center"
-																	valign="middle">
-																	<div id="Panel4"
-																		style="background-color: LightSteelBlue; height: 15px; width: 15px;">
-																	</div>
-																</td>
-															</tr>
-															<tr >
-																<td colspan="5"><input type="checkbox"
-																	name="noBackGroundcolor"
-																	value="nobgcolor"
-																	ng-model="selectedCartItemOnPopUp.nobgColor"
-																	ng-change="onNoBgcolorSelected();"><span
-																	style="font-size: 10pt; font-family: Calibri;">
-																	No Background Color</span></td>
-															</tr>
-														</tbody>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</center>
-							</div> -->
-							<div ng-if='selectedCartItemOnPopUp.extraForBorder > 0 || selectedCartItemOnPopUp.extraForBorderInPer > 0'
-								style="width: 200px; height: 100px; float: left; padding-right: 10px; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
-								<center>
-									<table width="140" border="0" cellpadding="0" cellspacing="0">
-										<tbody >
-											<tr >
-												<td width="140" height="20"
-													style="border-bottom: 5px double #666666; font-size: 9pt; font-family: Calibri;">
-													<b>Select Ad Border</b><br /> Border Extra: <span>{{selectedCartItemOnPopUp.extraForBorder==0?selectedCartItemOnPopUp.extraForBorderInPer + "(%)":selectedCartItemOnPopUp.extraForBorder}}</span>
-
-												</td>
-											</tr>
-											<tr>
-												<td width="140" height="20">
-													<table id="rbnborder" border="0"
-														style="font-family: Calibri; font-size: 9pt">
-														<tbody>
-															<tr >
-																<td><input id="rbnborder_0" type="radio"
-																	name="rbnborder" value="No"
-																	ng-model="selectedCartItemOnPopUp.onBorderSelected"
-																	ng-change="onBorderselected();"><label
-																	for="rbnborder_0">No</label></td>
-																<td><input id="rbnborder_1" type="radio"
-																	name="rbnborder" value="Yes"
-																	ng-model="selectedCartItemOnPopUp.onBorderSelected"
-																	ng-change="onBorderselected();"><label
-																	for="rbnborder_1">Yes</label></td>
-															</tr>
-														</tbody>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</center>
-							</div>
-							<div ng-if='selectedCartItemOnPopUp.extraFortick > 0 || selectedCartItemOnPopUp.extraFortickInPer > 0'
-								style="width: 200px; height: 100px; float: left; padding-right: 10px; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0; margin-right: 55%;">
-								<center>
-									<table width="140" border="0" cellpadding="0" cellspacing="0">
-										<tbody >
-											<tr >
-												<td width="140" height="20"
-													style="border-bottom: 5px double #666666; font-size: 9pt; font-family: Calibri;">
-													<b>Select Tick For Ad </b><br /> Tick Extra: 
-													<span>{{selectedCartItemOnPopUp.extraFortick==0?selectedCartItemOnPopUp.extraFortickInPer + "(%)":selectedCartItemOnPopUp.extraFortick}}</span>
-												</td>
-											</tr>
-											<tr>
-												<td width="140" height="20">
-													<table id="rbnborder" border="0"
-														style="font-family: Calibri; font-size: 9pt">
-														<tbody>
-															<tr >
-																<td><input type="checkbox"
-																	name="noTickForAd"
-																	value="notickforAd"
-																	ng-model="selectedCartItemOnPopUp.notickforAd"
-																	ng-change="onNoTickSelected();"><span
-																	style="font-size: 10pt; font-family: Calibri;">
-																	No Tick For Ad</span></td>
-																
-															</tr>
-														</tbody>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</center>
-							</div>
-							
-						</td>
-					</tr>
-					<tr>
-						<td align="left" valign="middle" width="450">
-							<table border="0" cellpadding="0" cellspacing="0" class="style2">
-								<tbody>
-									<tr>
-									
-									
-										<td align="right" valign="top" width="250">&nbsp;</td>
-									</tr>
-
-									<tr>
-										<br />
-									
-									</tr>
-								</tbody>
-							</table>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-        <div  ng-if='!((selectedCartItemOnPopUp.extraForBackgroudInPer > 0 || selectedCartItemOnPopUp.extraForBackgroud > 0) || (selectedCartItemOnPopUp.extraForBorder  > 0 || selectedCartItemOnPopUp.extraForBorderInPer > 0)  )' style="color:red" >No Topping Available </div>
-
+                    <table width="450" border="0" cellpadding="0" cellspacing="0">
+                                                        <tbody><tr>
+                                                            <td align="left" valign="middle" width="450">
+                                                                <div style="width: 200px; height: 70px; float: left; margin: 5px auto; border-radius: 7px;
+                                                                    border: Solid 1px #EBDBAA; background-color: #F0F0F0">
+                                                                    <center>
+                                                                        <table width="180" border="0" cellpadding="0" cellspacing="0">
+                                                                            <tbody><tr>
+                                                                                <td width="180" height="20" style="border-bottom: 5px double #666666; font-size: 10pt;
+                                                                                    font-family: Calibri;">
+                                                                                    Select Ad Background Color
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td width="180" style="height: 20px;" align="left" valign="top">
+                                                                                    <table border="0" cellpadding="0" cellspacing="0" width="180">
+                                                                                        <tbody><tr>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbnn" type="radio" name="a" value="rbnn" onclick="javascript:setTimeout('__doPostBack(\'rbnn\',\'\')', 0)"></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbny" type="radio" name="a" value="rbny" onclick="javascript:setTimeout('__doPostBack(\'rbny\',\'\')', 0)"></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbnp" type="radio" name="a" value="rbnp" onclick="javascript:setTimeout('__doPostBack(\'rbnp\',\'\')', 0)"></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbng" type="radio" name="a" value="rbng" onclick="javascript:setTimeout('__doPostBack(\'rbng\',\'\')', 0)"></span>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <span style="font-size: 8pt"><input id="rbns" type="radio" name="a" value="rbns" onclick="javascript:setTimeout('__doPostBack(\'rbns\',\'\')', 0)"></span>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <div id="Panel5" style="background-color:LemonChiffon;height:15px;width:15px;">
+			
+                                                                                                
+		</div>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <div id="pnl1" style="background-color:Gold;height:15px;width:15px;">
+			
+                                                                                                
+		</div>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <div id="Panel2" style="background-color:LightPink;height:15px;width:15px;">
+			
+                                                                                                
+		</div>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <div id="Panel3" style="background-color:DarkKhaki;height:15px;width:15px;">
+			
+                                                                                                
+		</div>
+                                                                                            </td>
+                                                                                            <td width="36" height="15" align="center" valign="middle">
+                                                                                                <div id="Panel4" style="background-color:LightSteelBlue;height:15px;width:15px;">
+			
+                                                                                                
+		</div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody></table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody></table>
+                                                                    </center>
+                                                                </div>
+                                                                <div style="width: 200px; height: 70px; float: right; padding-right: 10px; margin: 5px auto;
+                                                                    border-radius: 7px; border: Solid 1px #EBDBAA; background-color: #F0F0F0">
+                                                                    <center>
+                                                                        <table width="140" border="0" cellpadding="0" cellspacing="0">
+                                                                            <tbody><tr>
+                                                                                <td width="140" height="20" style="border-bottom: 5px double #666666; font-size: 9pt;
+                                                                                    font-family: Calibri;">
+                                                                                    Ad Border
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td width="140" height="20">
+                                                                                    <table id="rbnborder" border="0" style="font-family: Calibri; font-size: 9pt">
+			<tbody><tr>
+				<td><input id="rbnborder_0" type="radio" name="rbnborder" value="No" checked="checked"><label for="rbnborder_0">No</label></td><td><input id="rbnborder_1" type="radio" name="rbnborder" value="Yes" onclick="javascript:setTimeout('__doPostBack(\'rbnborder$1\',\'\')', 0)"><label for="rbnborder_1">Yes</label></td>
+			</tr>
+		</tbody></table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody></table>
+                                                                    </center>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left" valign="middle" width="450">
+                                                                <table border="0" cellpadding="0" cellspacing="0" class="style2">
+                                                                    <tbody><tr>
+                                                                        <td align="left" valign="top">
+                                                                            <a id="LinkButton1" href="javascript:__doPostBack('LinkButton1','')" style="font-family: Calibri; font-size: 8pt; color: #FF3300">No Backgrund Color</a>
+                                                                        </td>
+                                                                        <td align="right" valign="top" width="250">
+                                                                            &nbsp;
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="left" valign="top">
+                                                                            <span id="Label2" class="style3">Background Color  Extra</span>
+                                                                            &nbsp;<span id="lblExtracost" class="style3" style="color:Red;"></span>
+                                                                            &nbsp;
+                                                                            
+                                                                        </td>
+                                                                        <td align="right" valign="top" width="250">
+                                                                            <span id="Label5" class="style3">Border Extra</span>
+                                                                            &nbsp;<span id="lblExtrabordercost" class="style3" style="color:Red;"></span>
+                                                                            &nbsp;
+                                                                            &nbsp;
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody></table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody></table>
+                      
               </form>
               
               <form class="tab-pane" id="select-date" name="select-dateForm"  rc-step novalidate>
-                    <!--   <img src="http://www.releasemyad.com/images/small_straight_arrow.png" id="CatIdImg1" style="vertical-align:middle;" border="0">
-                     -->  <div id="_datepicker" ></div>
+                      <img src="http://www.releasemyad.com/images/small_straight_arrow.png" id="CatIdImg1" style="vertical-align:middle;" border="0">
+                      <div id="_datepicker" ></div>
               </form>
-
-  
-	  <!--  COST CALCULATING VIEW BOX -->
-	  
-   <div class="price-box"  ng-show="rc.composeWizard.currentIndex >= 1"
-			style="border: 4px solid #fc9a24;position: absolute;left: 56%;box-shadow: 0px 0px 0px 0px #65BDDF;margin-top: 0;top: 85px;">
-			<div style="background-color: #fc9a24;">
-				<p
-					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px; color: white; line-height: 0.8;">{{selectedCartItemOnPopUp.newspaper}}-{{
-					selectedCartItemOnPopUp.location|limitTo:15}}</p>
-				<p
-					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px;color: white; ">
-					(Rs {{selectedCartItemOnPopUp.classifiedrate}} per
-					{{selectedCartItemOnPopUp.freeUnit}} {{selectedCartItemOnPopUp.unit}})
-					<div style="font-size: 9pt;text-align: center;font-family: Calibri;line-height: 0.8;padding-bottom: 5%; color: white;"> (Rs
-					{{selectedCartItemOnPopUp.extra}} Extra per {{selectedCartItemOnPopUp.unit}} )
-					</div>
-				</p>
-			</div>
-			<div
-				style="box-shadow: -3px 3px 16px -1px #ccc; margin-left: 2%;padding-left: 2%; height: 132px; padding-top: 2%; padding-bottom: 1%; padding-top: 1%; border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%; width: 96%; margin-left: 2%">
-				<p
-					style="  margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
-					Total: {{selectedCartItemOnPopUp.fullTotal}}</p>
-				<p
-					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
-					{{selectedCartItemOnPopUp.unit}}: 
-					{{selectedCartItemOnPopUp.totalUnit}}</p>
-				<p
-					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
-					Extra Unit: {{selectedCartItemOnPopUp.extraUnit}}</p>
-			</div>
-		</div>
-	
-
-
-
  </div>
- 		
-	</div>
+ 
 
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <div class="form-group">
-              <div class="pull-right" style="margin: -6%;margin-right: 0%;margin-top: -3%;">
+              <div class="pull-right" style="margin: -6%;margin-right: 0%;">
                 <a class="btn btn-default"  ng-click="rc.composeWizard.backward()"
                    ng-show="rc.composeWizard.currentIndex > rc.composeWizard.firstIndex" >Back</a> 
-                    <a class="btn btn-default"  ng-click="rc.composeWizard.backward()"
-                   ng-show="rc.composeWizard.currentIndex == 1" >Change Layout</a> 
                 <a class="btn btn-primary" ng-click="onComposeDisplayAdStepChange()" ng-show="rc.composeWizard.currentIndex < rc.composeWizard.navigationLength">Continue</a>
-                 <a class="btn btn-primary" ng-click="onComposeDisplayAdDone();" 
+                 <a class="btn btn-primary" ng-click="onComposeDisplayAdDone();closeThisDialog()" 
                    ng-show="rc.composeWizard.currentIndex == rc.composeWizard.navigationLength">Complete</a> 
               </div>                           
                          

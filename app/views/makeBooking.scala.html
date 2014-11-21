@@ -3,16 +3,7 @@
 <div class="row" ng-init='init(@Html(beData))'>
 
 	<div class="span9">
-	<div style="display:none">
-			<font>Select Ad :</font>
-			<img src="NewDesign/np-logos/img-txtad-small.gif" alt="Smiley face" >
-			<input type="radio" name="selectAd" value="textClasified"  ng-model ="selectYourAd" ng-change = "onAdChange(selectYourAd)">Text Classified <lable style="font-size:10px">(Simple Text. Charges per line/ word)</lable>
-		    <img src="NewDesign/np-logos/img-displayad-small.gif" alt="Smiley face" >
-		    <input type="radio" name="selectAd" value="displayClassified" ng-model="selectYourAd" ng-change = "onAdChange(selectYourAd)">Display Classified
-		    <lable style="font-size:10px">(Include image, colour, font variation to your ad)</lable>
-	</div>
-	<br />
-	<br />
+	
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 mnt-shadow-deco">
           <div rc-wizard="sampleWizard" rc-disabled="rc.firstForm.submitInProgress">
            
@@ -357,16 +348,7 @@
                   </td>
                   <td style="width: 18%;">
               <!--     <span ng-show="" style="color:red;font-size: 11pt;font-family: Calibri;">Click to Compose</span> -->
-                  <span  >
-                  <button ng-class="(c.dates.length == 0 || c.description == '') ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeAd(c)'>ComposeAds <i class="icon-edit"></i></button>
-                  </span>
-                  <span ng-if="selectYourAd == 'displayClassified'">
-                  <button id ="composeDispAd" ng-class="(c.dates.length == 0 || c.description == '') ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeDispAd(c)'>ComposeDispAds <i class="icon-edit"></i></button>
-                  </span>
-                  
-                  </td>
-                   
-                  
+                  <button ng-class="(c.dates.length == 0 || c.description == '') ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeAd(c)'>ComposeAds <i class="icon-edit"></i></button></td>
                  <td> <button class="btn btn-success" ng-click='previewAds(c)' style="width: 100px;">Preview<i class="icon-edit"></i></button></td>
                   <td>{{c.rate}} / {{c.freeUnit}} {{c.unit}}</td>
                   <td> र. {{c.fullTotal}}</td>
