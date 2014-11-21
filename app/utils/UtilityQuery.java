@@ -22,7 +22,8 @@ public class UtilityQuery {
 			+ "ExtracostperSqcm,"
 			+ "Extraborderper,"
 			+ "Extrabgper,"
-			+ "Tickper ";
+			+ "Tickper, "
+			+ "clasifiedadrate ";
 	private static final String QUERY1 = "SELECT BasicRateID,"
 			+ "City,"
 			+ "Newspaperdetails.Nameofthenewspaper,"
@@ -36,7 +37,8 @@ public class UtilityQuery {
 			+ "ExtracostperSqcm,"
 			+ "Extraborderper,"
 			+ "Extrabgper,"
-			+ "Tickper ";
+			+ "Tickper,"
+			+ "clasifiedadrate";
 	@Transactional	
 	public static List<Object[]> getBasicRates(String city,String newspaper,String Category) {
           Query q = JPA.em().createNativeQuery(QUERY1 +
@@ -107,13 +109,13 @@ public class UtilityQuery {
      
      public static List<Object[]> getBasicRateByNewspaperAndCategory(String newspaper,String Category) {
       	
-     	  Query q = JPA.em().createNativeQuery(QUERY1 +
+     	 /* Query q = JPA.em().createNativeQuery(QUERY1 +
      				"FROM Basicrate INNER JOIN Newspaperdetails ON (Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) " +
      				"where Basicrate.Nameofthenewspaper= ?1 and Basicrate.Category= ?2");
-     	         
+     	*/
+     	  Query q = JPA.em().createNativeQuery("SELECT BasicRateID,City,Newspaperdetails.Nameofthenewspaper,Textaddrate,BasicratesperText,Exstracostperline,Beforebookingdate,Border,Backcolor,Tick,ExtracostperSqcm,Extraborderper,Extrabgper,Tickper,clasifiedadrate FROM Basicrate INNER JOIN Newspaperdetails ON Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper where Basicrate.Nameofthenewspaper =?1 and Basicrate.Category= ?2");
      	         q.setParameter(1, newspaper);
      	         q.setParameter(2, Category);
-     	         
      	         List<Object[]> list = (List<Object[]>)q.getResultList();
      	         return list;
   	  
@@ -121,9 +123,9 @@ public class UtilityQuery {
      
      public static List<Object[]>  getDiscountRateByNewspaperAndCategory (String newspaper,String Category) {
     	 
-    	  Query q = JPA.em().createNativeQuery("SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,Dtotalprice,BasicratesperText,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,ExtracostperSqcm,Extrabgper,Extraborderper,Tickper " +
+    	  Query q = JPA.em().createNativeQuery("SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,Dtotalprice,BasicratesperText,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,ExtracostperSqcm,Extrabgper,Extraborderper,Tickper,ClasifiedadRate " +
      				"FROM Discountprice INNER JOIN Newspaperdetails ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) " +
-     			"where Discountprice.Nameofthenewspaper= ?1 and Discountprice.Category= ?2");
+     			     "where Discountprice.Nameofthenewspaper= ?1 and Discountprice.Category= ?2");
    	                   q.setParameter(1, newspaper);
    	                   q.setParameter(2, Category);
    	                  List<Object[]> listDiscount = (List<Object[]>)q.getResultList();
@@ -133,12 +135,14 @@ public class UtilityQuery {
      
      public static List<Object[]> getBasicRateByLocationAndCategory(String city,String Category) {
        	
-    	
-    	  Query q = JPA.em().createNativeQuery(QUERY2 +
+    	 /* Query q = JPA.em().createNativeQuery(QUERY2 +
     				"FROM Basicrate INNER JOIN Newspaperdetails ON (Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) " +
     				"where Basicrate.City= ?1 and Basicrate.Category= ?2");
+    	         */
     	         
-    	         q.setParameter(1, city);
+    	 Query q = JPA.em().createNativeQuery("SELECT BasicRateID,City,Basicrate.Nameofthenewspaper,Textaddrate,BasicratesperText,Exstracostperline,Beforebookingdate,Border,Backcolor,Tick,	ExtracostperSqcm,Extraborderper, Extrabgper,Tickper,clasifiedadrate FROM Basicrate INNER JOIN Newspaperdetails ON Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper  where Basicrate.City = ?1  and Basicrate.Category = ?2");
+    	 
+    	      q.setParameter(1, city);
     	         q.setParameter(2, Category);
     	         List<Object[]> list = (List<Object[]>)q.getResultList();
     	         return list;
@@ -157,7 +161,7 @@ public class UtilityQuery {
 	
   }
      public static List<Object[]>  getDetailsByOrderId(String orderIdPer) {
-     	  Query q = JPA.em().createQuery("SELECT OID,OrderID,Nameofthenewspaper,City,Adtext,TickRate,Bgcolor,BgcolorRate,Border,BorderCost,PublishDate,BasicRate,TotalCost,Category,numberOfWords,orderDate,freeunit,extra,totalExtraCost,totalUnitCost,noOfImpression,rate,bgColorSelect,Tick,adbookedId,Extraborderper,Extrabgper,Tickper,Subcategory,numberOfWords FROM ComposedAdSave  where OrderId = ?1");
+     	  Query q = JPA.em().createQuery("SELECT OID,OrderID,Nameofthenewspaper,City,Adtext,TickRate,Bgcolor,BgcolorRate,Border,BorderCost,PublishDate,BasicRate,TotalCost,Category,numberOfWords,orderDate,freeunit,extra,totalExtraCost,totalUnitCost,noOfImpression,rate,bgColorSelect,Tick,adbookedId,Extraborderper,Extrabgper,Tickper,Subcategory,numberOfWords,footerDescption,headerDescption,bodyDescription,footerColor,bodyColor,headerColor,adType,colorAd,imageAd,adSizeSelect FROM ComposedAdSave  where OrderId = ?1");
      	         q.setParameter(1, orderIdPer);
      	        
      	         List<Object[]> list = (List<Object[]>)q.getResultList();
