@@ -100,7 +100,7 @@ import com.google.common.collect.Lists;
                 }
                 rates.add(Rate.byId(rs[0].toString())
         				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
-        				.withAmountAndFreeUnit(rs[3].toString(),letter,number,rs[14].toString())
+        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
         				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),
         						rs[11].toString(),rs[12].toString(),rs[13].toString(),
         						rs[10].toString()) );
@@ -124,7 +124,7 @@ import com.google.common.collect.Lists;
 				
              discRates.add(DiscountRate.byId(discntRate[0].toString())
         	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
-        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number,discntRate[14].toString())
+        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
         	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
      }
 		
@@ -147,7 +147,7 @@ import com.google.common.collect.Lists;
            	String dates[] = str.split(",");   
 	    
                 orderListuser.add(OrderList.byId(ol[24].toString())
-                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString()), ol[25].toString(),ol[26].toString(), ol[27].toString(),ol[28].toString(),(int) ol[29],ol[30].toString(),ol[31].toString(),ol[32].toString(),ol[33].toString(),ol[34].toString(),ol[35].toString(),ol[36].toString(),ol[37].toString(),ol[38].toString(),ol[39].toString()));
+                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString()), ol[25].toString(),ol[26].toString(), ol[27].toString(),ol[28].toString(),(int) ol[29]));
         	}
 	    	Map<String,Object> map = new HashMap<String, Object>();
 			map.put("orderListuser",orderListuser);
@@ -183,7 +183,7 @@ import com.google.common.collect.Lists;
 	                            		
 	                rates.add(Rate.byId(rs[0].toString())
 	        				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
-	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number,rs[14].toString())
+	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
 	        				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),
 	        						rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()) );
 	        	}
@@ -207,7 +207,7 @@ import com.google.common.collect.Lists;
 					
 	             discRates.add(DiscountRate.byId(discntRate[0].toString())
 	        	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
-	        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number,discntRate[14].toString())
+	        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
 	        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
          }
 				
@@ -285,18 +285,6 @@ import com.google.common.collect.Lists;
 	    public String extraForBackgroudInPer;
 	    public String extraFortickInPer;
 	    public int numberOfWords;
-	   
-	    public String  descriptionFooter;
-	    public String  descriptionHeader;
-	    public String  descriptionBody;
-	    public String footerColor;
-	    public String  bodyColor;
-	    public String headerColor;
-	    public String adType;
-	    public String  colorAd;
-	    public String  imageAd;
-	    public String  adSizeSelect;
-	   // public float extraCost;
 		
 	    public static OrderList byId(String id) {
 			 OrderList orderList = new OrderList();
@@ -305,9 +293,7 @@ import com.google.common.collect.Lists;
 	        }
 		   public  OrderList cancelOrderDetails(String OrderId,String newspaper,String  location ,String description, String extraFortick , String onbgColorchange ,String extraForBackgroud,
 				   String onBorderSelected , String extraForBorder , String []  dates,String unit , String  fullTotal,  String mainCategoty ,  String totalUnit , String adbookedDate,
-				   String freeunit, float extra, float totalExtraCost ,float totalUnitCost, int noOfImpression, float rate, boolean bgColorSelect ,boolean notickforAd ,String extraForBorderInPer,String extraForBackgroudInPer,String  extraFortickInPer, String subcategory, int  numberOfWords
-    			  ,String descriptionFooter,String descriptionHeader, String descriptionBody,String footerColor,String bodyColor,String headerColor,String adType,String colorAd,String imageAd,String adSizeSelect){
-			
+				   String freeunit, float extra, float totalExtraCost ,float totalUnitCost, int noOfImpression, float rate, boolean bgColorSelect ,boolean notickforAd ,String extraForBorderInPer,String extraForBackgroudInPer,String  extraFortickInPer, String subcategory, int  numberOfWords){
 			   this.OrderId=OrderId;
 			   this.newspaper=newspaper;
 			   this.location=location;
@@ -337,17 +323,6 @@ import com.google.common.collect.Lists;
 			   this.extraFortickInPer = extraFortickInPer;
 			   this.subcategory = subcategory;
 			   this.numberOfWords = numberOfWords;
-			  
-			   this.descriptionFooter = descriptionFooter;
-			   this.descriptionHeader = descriptionHeader;
-			   this.descriptionBody = descriptionBody;
-			   this.footerColor = footerColor;
-			   this.bodyColor = bodyColor;
-			   this.headerColor = headerColor;
-			   this.adType = adType;
-			   this.colorAd = colorAd;
-			   this.imageAd = imageAd;
-			   this.adSizeSelect = adSizeSelect;
 			   return this;
 		   }
 	}
@@ -381,7 +356,6 @@ import com.google.common.collect.Lists;
         public Boolean isSelected;
         public String  packageSelected = "P";
         public int numberOfWords;
-        public String ClasifiedadRate;
        
         public static DiscountRate byId(String id) {
         	DiscountRate discountRate = new DiscountRate();
@@ -395,12 +369,11 @@ import com.google.common.collect.Lists;
             return this;
         }
 
-        public DiscountRate withAmountAndFreeUnit(String dTotalPrice, String unit,String freeUnit, String ClasifiedadRate ) {
+        public DiscountRate withAmountAndFreeUnit(String dTotalPrice, String unit,String freeUnit) {
         	this.dTotalPrice = dTotalPrice;
         	this.unit = unit;
             this.freeUnit = freeUnit;
-            this.ClasifiedadRate= ClasifiedadRate;
-            System.out.println("disccount rrate"+ClasifiedadRate);
+           
             return this;
         }
 
@@ -451,7 +424,6 @@ import com.google.common.collect.Lists;
         public Boolean isSelected;
         public String  packageSelected = "B";
 	     public String subcategory;	
-	     public String classifiedrate;
         public static Rate byId(String id) {
             Rate rate = new Rate();
             rate.id = id;
@@ -464,12 +436,10 @@ import com.google.common.collect.Lists;
             return this;
         }
 
-        public Rate withAmountAndFreeUnit(String amount, String unit,String  freeUnit, String classifiedrate) {
+        public Rate withAmountAndFreeUnit(String amount, String unit,String  freeUnit) {
         	this.rate = amount;
         	this.unit = unit;
             this.freeUnit=freeUnit;
-            this.classifiedrate = classifiedrate;
-            System.out.println(" this.classifiedrate"+ this.classifiedrate);
             return this;
         }
 
@@ -536,18 +506,8 @@ import com.google.common.collect.Lists;
 	    public String extraForBackgroudInPer;
 	    public String extraFortickInPer;
 	    public String  packageSelected;
-	    public String bodyColor;
-	    public String headerColor;
-	    public String footerColor;
-	    public String descriptionFooter;
-	    public String descriptionHeader;
-	    public String descriptionBody;
-	    
-	    public String   colorAd;
-	    public String BWAd;
-	    public String imageAd;
-	    public String adSizeSelect;
-	    public float extraCost;
+		
+	public float extraCost;
 		
 	    //public float FinalTotal = 0;
 		
@@ -734,22 +694,8 @@ import com.google.common.collect.Lists;
 	    	  cds.adbookedId = cartItem.get(i).id;
 	    	  cds.packageType = cartItem.get(i).packageSelected;
 	    			  
-	    	  cds.headerColor = cartItem.get(i).headerColor;
-	    	  cds.bodyColor = cartItem.get(i).bodyColor;
-	    	  cds.footerColor  = cartItem.get(i).footerColor;
 	    	  
-	    	  cds.footerDescption = cartItem.get(i).descriptionFooter;
-	    	  cds.headerDescption = cartItem.get(i).descriptionHeader;
-	    	  cds.bodyDescription = cartItem.get(i).descriptionBody;
-	    	  
-	    	  cds.colorAd = cartItem.get(i).colorAd;
-	  	      cds.BWAd = cartItem.get(i).BWAd;
-	  	      cds.imageAd = cartItem.get(i).imageAd;
-	  	      cds. adSizeSelect = cartItem.get(i).adSizeSelect;
-	  	     // cds.widthSelected = cartItem.get(i).
-	    	  
-	  	      
-	  	      cds.extraCost = cartItem.get(i).extraCost;
+ 				cds.extraCost = cartItem.get(i).extraCost;
 	    	  Date date = new Date();
 	    	  cds.orderDate = sdf.format(date);//current date i.e. order date saved here
 	    	  
