@@ -44,7 +44,6 @@ var app = angular.module('adschela',
                         	        templateUrl: 'manageAnnouncements.html',
                         	        controller: 'ShowAnnouncementController'
                         	      })
-                        	                            	      
                           	      .when('/termsAndConditions', {
                         	        templateUrl: 'TermsandConditions.html',
                         	         controller: 'TermsandConditionsController'

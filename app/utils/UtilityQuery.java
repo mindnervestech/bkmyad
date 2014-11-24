@@ -142,7 +142,6 @@ public class UtilityQuery {
     	         q.setParameter(2, Category);
     	         List<Object[]> list = (List<Object[]>)q.getResultList();
     	         return list;
- 	
    }
      public static List<Object[]> getDiscountRateByLocationAndCategory(String city,String Category) {
        
