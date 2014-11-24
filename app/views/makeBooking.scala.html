@@ -356,15 +356,13 @@
                   </td>
                   <td style="width: 18%;">
               <!--     <span ng-show="" style="color:red;font-size: 11pt;font-family: Calibri;">Click to Compose</span> -->
-                  <span  ng-if="selectYourAd == 'displayClassified'" >
+                  <span  ng-if="selectYourAd == 'textClasified'" >
                   <button ng-class="(c.dates.length == 0 || c.description == '') ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeAd(c)'>ComposeAds <i class="icon-edit"></i></button>
                   </span>
                   <span ng-if="selectYourAd == 'displayClassified'">
                   <button id ="composeDispAd" ng-class="(c.dates.length == 0 || c.description == '') ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeDispAd(c)'>ComposeDispAds <i class="icon-edit"></i></button>
                   </span>
-                  
                   </td>
-                   
                   
                  <td> <button class="btn btn-success" ng-click='previewAds(c)' style="width: 100px;">Preview<i class="icon-edit"></i></button></td>
                   <td>{{c.rate}} / {{c.freeUnit}} {{c.unit}}</td>
