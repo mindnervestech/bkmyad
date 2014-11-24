@@ -44,7 +44,6 @@ var app = angular.module('adschela',
                         	        templateUrl: 'manageAnnouncements.html',
                         	        controller: 'ShowAnnouncementController'
                         	      })
-                        	                            	      
                           	      .when('/termsAndConditions', {
                         	        templateUrl: 'TermsandConditions.html',
                         	         controller: 'TermsandConditionsController'
@@ -77,7 +76,7 @@ var app = angular.module('adschela',
                           	        templateUrl: 'E-NewsPaper.html',
                           	        controller: 'ENewsPaperController'
                           	      })
-                          	       .when('/dispClassified', {
+                          	      .when('/dispClassified', {
                           	        templateUrl: 'dispFrame.html',
                           	        controller: 'dispclassifiedcontroller'
                           	      })

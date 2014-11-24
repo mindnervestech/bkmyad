@@ -3,7 +3,7 @@
 <div class="row" ng-init='init(@Html(beData))'>
 
 	<div class="span9">
-	<div style="display:none">
+	<div >
 			<font>Select Ad :</font>
 			<img src="NewDesign/np-logos/img-txtad-small.gif" alt="Smiley face" >
 			<input type="radio" name="selectAd" value="textClasified"  ng-model ="selectYourAd" ng-change = "onAdChange(selectYourAd)">Text Classified <lable style="font-size:10px">(Simple Text. Charges per line/ word)</lable>
@@ -233,7 +233,6 @@
      								 <span>{{discountRate.location}} - Rs {{discountRate.dTotalPrice}}  {{discountRate.freeUnit}}/
 			    					  {{discountRate.unit}} </span>
 			    				</div>	
-			    				
 			    			</li>
 			    			</div>
 			    		</ul>
@@ -357,7 +356,7 @@
                   </td>
                   <td style="width: 18%;">
               <!--     <span ng-show="" style="color:red;font-size: 11pt;font-family: Calibri;">Click to Compose</span> -->
-                  <span  >
+                  <span  ng-if="selectYourAd == 'displayClassified'" >
                   <button ng-class="(c.dates.length == 0 || c.description == '') ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeAd(c)'>ComposeAds <i class="icon-edit"></i></button>
                   </span>
                   <span ng-if="selectYourAd == 'displayClassified'">
