@@ -12,6 +12,8 @@ POST    /saveSignUp                            controllers.Application.SaveSignU
 GET	/make-booking.html					   controllers.MakeBookingController.index()
 GET	/getRatesByNewspaper/:newspaper/:Category	controllers.MakeBookingController.getRatesByNewspaper(newspaper:String,Category:String)
 GET  /sendMailAboutTempUserInfo/:tempuserName/:tempuserMobnumber  controllers.TempGuestUserController.sendMailAboutTempUserInfo(tempuserName :String,tempuserMobnumber :String)
+GET /sendMailAboutClassifiedAd/:tempuserName/:tempuserMobnumber/:tempuserNote     controllers.TempGuestUserController.sendMailAboutClassifiedAd(tempuserName :String,tempuserMobnumber :String,tempuserNote :String)   
+
 GET     /getBasicRateByLocationAndCategory/:Location/:Category   controllers.MakeBookingController.getBasicRateByLocationAndCategory(Location:String,Category:String)
 GET     /checkusercreadientals/:Username/:Password               controllers.MakeBookingController.checkUserNameandPassword(Username:String,Password:String)
 GET     /getOrderDetailsByOrderId/:orderIdPer            controllers.MakeBookingController.getOrderDetailsByOrderId(orderIdPer:String)
@@ -92,7 +94,7 @@ GET /index.html           controllers.Assets.at(path="/public", file="app/index.
 GET /AboutUs.html   controllers.Assets.at(path="/public", file="app/AboutUs.html")
 #GET /addisplay.html          controllers.Assets.at(path="/public", file="app/addisplay.html")
 #GET /Affiliatedlogin.html     controllers.Assets.at(path="/public", file="app/Affiliatedlogin.html")
-#GET /Blog.html     controllers.Assets.at(path="/public", file="app/Blog.html")
+GET /Blog.html     controllers.Assets.at(path="/public", file="app/Blog.html")
 GET /Contact.html     controllers.Assets.at(path="/public", file="app/Contact.html")
 #GET /Default.html     controllers.Assets.at(path="/public", file="app/Default.html")
 #GET /demo.html     controllers.Assets.at(path="/public", file="app/demo.html")

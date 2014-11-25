@@ -15,4 +15,14 @@ public class TempGuestUserController extends Controller {
 		return ok("success");
 		
 	}
+	@Transactional
+	public static Result sendMailAboutClassifiedAd(String tempuserName , String tempuserMobnumber,String tempuserNote){
+		SendMailUtility  sendMailUtility =  new SendMailUtility();
+		sendMailUtility.sendMailAboutClassifiedAd(tempuserName,tempuserMobnumber,tempuserNote);
+
+		return ok("success");
+		
+	}
+	
+
 }

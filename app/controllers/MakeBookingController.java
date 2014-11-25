@@ -75,7 +75,7 @@ import com.google.common.collect.Lists;
 	   }
 	 }
 	    @Transactional
-	    public static Result getBasicRateByLocationAndCategory(String Location,String Category) {
+	    public static Result getBasicRateByLocationAndCategory(String Location,String Category ) {
 	    	List<Object[]> rates1 = UtilityQuery.getBasicRateByLocationAndCategory(Location.trim(),Category.trim()); 
 	    	List<Object[]> discountRates = UtilityQuery.getDiscountRateByLocationAndCategory(Location.trim(),Category.trim());
 			List<DiscountRate> discRates = Lists.newArrayList();
@@ -400,7 +400,7 @@ import com.google.common.collect.Lists;
         	this.unit = unit;
             this.freeUnit = freeUnit;
             this.ClasifiedadRate= ClasifiedadRate;
-            System.out.println("disccount rrate"+ClasifiedadRate);
+          //  System.out.println("disccount rrate"+ClasifiedadRate);
             return this;
         }
 
@@ -469,7 +469,7 @@ import com.google.common.collect.Lists;
         	this.unit = unit;
             this.freeUnit=freeUnit;
             this.classifiedrate = classifiedrate;
-            System.out.println(" this.classifiedrate"+ this.classifiedrate);
+           // System.out.println(" this.classifiedrate"+ this.classifiedrate);
             return this;
         }
 

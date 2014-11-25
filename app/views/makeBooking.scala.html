@@ -3,14 +3,14 @@
 <div class="row" ng-init='init(@Html(beData))'>
 
 	<div class="span9">
-	<div >
+	<!-- <div >
 			<font>Select Ad :</font>
 			<img src="NewDesign/np-logos/img-txtad-small.gif" alt="Smiley face" >
 			<input type="radio" name="selectAd" value="textClasified"  ng-model ="selectYourAd" ng-change = "onAdChange(selectYourAd)">Text Classified <lable style="font-size:10px">(Simple Text. Charges per line/ word)</lable>
 		    <img src="NewDesign/np-logos/img-displayad-small.gif" alt="Smiley face" >
 		    <input type="radio" name="selectAd" value="displayClassified" ng-model="selectYourAd" ng-change = "onAdChange(selectYourAd)">Display Classified
 		    <lable style="font-size:10px">(Include image, colour, font variation to your ad)</lable>
-	</div>
+	</div> -->
 	<br />
 	<br />
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 mnt-shadow-deco">
@@ -59,7 +59,31 @@
             <div class="tab-content" style="margin-left: 10px;">
               
               <form class="tab-pane active" id="first" name="firstForm"   rc-step novalidate>
-                     
+             <div style="border: 2px solid black; float:left;width:98%">
+					<font style="float: left;font-size: 20px;">Select Ad Type :&nbsp;&nbsp;</font>
+					<div style="float: left;width: 40%;">
+					    
+								<img src="NewDesign/np-logos/img-txtad-small.gif" alt="Smiley face"  style="float: left;">
+								
+						<div>		
+					    		&nbsp;&nbsp;<input type="radio" name="selectAd" value="textClasified"  ng-model ="selectYourAd" ng-change = "onAdChange(selectYourAd)">&nbsp;&nbsp;<lable style="font-weight: bold;">Text Classified </lable>
+					    </div>
+						<div>
+							&nbsp;&nbsp;<lable style="font-size:10px">(Simple Text. Charges per line/ word)</lable> 
+                        </div>					
+					</div>
+				    <div style="float: left;width: 40%;">
+					    
+					   
+				      <img src="NewDesign/np-logos/img-displayad-small.gif" alt="Smiley face" style="float: left;">
+				         <div>
+				       &nbsp;&nbsp; <input type="radio" name="selectAd" value="displayClassified" ng-model="selectYourAd" ng-change = "onAdChange(selectYourAd)">&nbsp;&nbsp;<lable style="font-weight: bold;">Display Classified</lable>
+						</div>
+				 	    <div>
+				 	    	&nbsp;&nbsp;<lable style="font-size:10px">(Include image, colour, font variation to your ad)</lable>
+			           </div>
+			       </div>
+		     </div>
                 <div class="tab-pane active" id="blockView">
 				<ul class="thumbnails">
 					<li ng-repeat="cat in bookingRequest.categories" class="span3">
@@ -77,6 +101,8 @@
 			     </ul>
 				<hr class="soft">
 				</div>
+				
+				
               </form>
               
               
@@ -279,7 +305,6 @@
      								 <span>{{rate.newspaper}} - Rs {{rate.rate}} {{rate.freeUnit}}/
 			    					{{rate.unit}} </span>
 			    				</div>	
-			    				
 			    			</li>
 			    			</div>
 			    		</ul>
