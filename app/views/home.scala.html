@@ -1,14 +1,14 @@
 
 		<div style="margin-left: 7%;">
-		<h2>Book Advertisements for Indian Newspapers Instantly!</h2>
+		<h1>Book Advertisements for Indian Newspapers Instantly!</h1>
 		</div>
 		 <div   class="homCar pull-left" style="width: 20%; margin-left:6%;">
-         
+         <div style="height:40px;background-color: #D7EDFB;"> </div>
          <a href="#/make-booking.html/0"  >
-           <div style="border: 4px solid #D7EDFB" >
+           <div style="border: 4px solid #D7EDFB;height:180px;margin-top:2%;" >
             <carousel interval="carousel.interval" >
 		      <slide ng-repeat="slide in slides" active="slide.active">
-		        <img class="carousel-img" ng-src="{{slide.image}}" style="margin:auto;">
+		        <img class="custom-img" ng-src="{{slide.image}}" style="margin:auto;">
 		        </slide>
 		      </carousel>
 		       </div>
@@ -31,11 +31,12 @@
 		  </div>
 		 
 		  <div   class="homCar pull-left" style="width: 20%;margin-left:8%;">
+		    <div style="height:40px;background-color: #D7EDFB;"> </div>
            <a  href="" ng-click="onClassifiedClicked()"  >
-           <div style="border: 4px solid #D7EDFB">
+           <div style="border: 4px solid #D7EDFB;height:180px;margin-top:2%;">
             <carousel interval="carousel.interval" >
 		      <slide ng-repeat="slide in clasifiedsImages" active="slide.active">
-		        <img class="carousel-img" ng-src="{{slide.image}}" style="margin:auto;">
+		        <img class="custom-img" ng-src="{{slide.image}}" style="margin:auto;">
 		        </slide>
 		      </carousel>
 		           
@@ -56,13 +57,13 @@
 		 </div>
 		  </div>
 		   <div   class="homCar pull-left" style="width: 20%;margin-left:8%;">
-           
            <a href=""  >
-            <div style="border: 4px solid #D7EDFB">
+  			<div style="height:40px;background-color: #D7EDFB;"> </div>
+            <div style="border: 4px solid #D7EDFB;height:180px;margin-top:2%;">
            
             <carousel interval="carousel.interval" >
 		      <slide ng-repeat="slide in dispAds" active="slide.active">
-		        <img class="carousel-img" ng-src="{{slide.image}}" style="margin:auto;">
+		        <img class="custom-img" ng-src="{{slide.image}}" style="margin:auto;">
 		        </slide>
 		      </carousel>	
 		     <!-- <div>
@@ -97,9 +98,8 @@
 		  
 		 <div style="float: left;" class="index_intro">
     
-    <div class="index_intro_heading" style="margin-top:4%;"><span style="font-size:24px;color:#1597EA">Simplifying Newspaper Advertising</span></div><br />
-   <p>ArihantBooking is the easiest way to book Classified &amp; Display Advertisements for Times of India, Hindustan Times, Hindu, Mid-Day, ABP &amp; all other leading newspaper publications! Now book Matrimonial, Property, Recruitment Newspaper Ads at lowest rates.  <strong>ArihantBooking</strong> is India's simplest classified booking service! Through our service you can book classified Ads for all leading Indian Newspapers  at no extra charges!.We are fully accredited by the Indian Newspaper Society (I.N.S.) - the primary governing body for all media publications. We enjoy Full Accreditation recognition from the I.N.S. - an honour only allocated to select few</p></div>
-		 
+    <div class="index_intro_heading" style="margin-top:4%;"><span style="font-size:24px;color:#1597EA">Why Us</span></div><br />
+   <p><strong>ArihantBooking.com</strong> is an user friendly on line portal for booking Classified and Display advertisement for Times of India , The Hindu ,Hindustan Hindi, Hindustan Times , Amar Ujala , Dainik Jagran , ABP , Telegraph, Daily Thanthi, and all leading newspaper of India at guaranteed best prices. Be it Matrimonial , Property , Recruitment , Personal  or Name Change Ads at <strong> ArihantBooking.com</strong> ,you can book you advertisement in any Indian newspaper instantly at great prices . We do not give fake discounts , we only believe in giving the you great service at best possible rates .</p>	 
 		  <!-- <div  class="homCar pull-left" style="width: 20%;margin-left:8%;border: 4px solid #D7EDFB">
         <div class="newspaper"><strong>198+</strong> Newspapers </div>
         <div class="offer"><strong>2,093+</strong> Offers</div>
@@ -200,8 +200,8 @@
 			          </div>   
 			          <div style="" >
 		                <label>Note</label>
-		               
-				           <textarea rows="4" cols="50" style="width: 100%" name="tempuserNote" data-ng-model="tempuserNote" ></textarea>
+				           <textarea rows="4" cols="50" style="width: 100%" name="tempuserNote" data-ng-model="tempuserNote" placeholder=" Example  Newspaper : Times Of India  ; Ad Size: 3*5 ,&nbsp;&nbsp;&nbsp;&nbsp;Ad Category : Matrimonial,&nbsp;&nbsp;&nbsp;&nbsp;Ad Content: Your Ad content,&nbsp;&nbsp;&nbsp;&nbsp;Publish Date :Your Ad publish date." ></textarea>
+			        <label> Please mention Newspaper , Ad Size ,Ad Category,Ad content,Publish date , We will call you back in minutes .</label>
 			          </div>    
 					    
 		   </div>
@@ -238,6 +238,11 @@ right: 0;
 	background-color: white;
 	width: 264px;
 	height: 39px;
+}
+
+.custom-img {
+height: auto !important;
+width: auto !important;
 }
 /* .label{
 margin-bottom: 5px !important;
