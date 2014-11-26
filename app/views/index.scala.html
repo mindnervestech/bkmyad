@@ -103,27 +103,42 @@
 			<a href="#/ourBlogs">Blog</a>
 		 </div> -->
 		<div class="span11">
-			<h5>SUPPORT</h5>
-			<a href="#/" style="float:left;margin-right: 2%;">Advertising Policy</a>
-			<a href="#/privacyPolicy" style="float:left;margin-right: 2%;">Privacy Policy </a> 
-				 <a href="#/deClaimer" style="float:left;margin-right: 2%;">Disclaimer</a> 
-			<a href="#/termsAndConditions" style="float:left;margin-right: 2%;">Terms and Conditions</a>  
-		
-		<!-- 	<a href="#/paymentGateway">Payment Gateway </a>  
+		<div style="float:left">
+			<h5>Quick Links___________</h5>
+			<a href="#/aboutUs" >About Us</a>
+		    <a href="#/contactUs" >Contact Us</a>
+			<!-- <a href="#/" style="float:left;margin-right: 2%;">Advertising Policy</a>
 			 -->
-				<a href="#/" style="float:left;margin-right: 2%;">FAQ's </a>
-					<a href="#/" style="float:left;margin-right: 2%;">Feedback </a>  
-		<!-- 	<a href="#/help">How to Book an Ad</a> -->
+			 <a href="#/privacyPolicy" style="float:left;margin-right: 2%;">Privacy Policy </a> 
+			<!--  <a href="#/deClaimer" style="float:left;margin-right: 2%;">Disclaimer</a> 
+			 <a href="#/termsAndConditions" style="float:left;margin-right: 2%;">Terms and Conditions</a>  
+		 -->
+		<!-- <a href="#/paymentGateway">Payment Gateway </a>  -->
+				<!-- <a href="#/" style="float:left;margin-right: 2%;">FAQ's </a>
+					<a href="#/" style="float:left;margin-right: 2%;">Feedback </a>  -->		
+					<!-- 	<a href="#/help">How to Book an Ad</a> -->
 			<a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a>
 			<a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a>
-	<!-- 		<a href="#/help">How to Book an Ad</a> -->
-			<a href="#/ourBlogs"style="float:left ;margin-right: 2%;">Blog</a>
+			<!-- <a href="#/help">How to Book an Ad</a> -->
+			<a href="#/ourBlogs">Blog</a>
 		 </div>
-		<!-- <div class="span3 custom_span">
-			<h5>ONLINE BANKING</h5>
-			<a href="#/textClassifiedAd">Text Classified Ad</a> 
-			<a href="#/dispClassified">Classified Display Ad</a>  
-			<a href="#/dispAds">Display Ads</a>  
+		 <div class="span3 ">
+			<div style="margin-left: 38%;">
+			<h5>Follow Us____________</h5>
+			<a href="https://www.facebook.com/ArihantBooking"><img  class="img_custom" src="/NewDesign/homepagesImages/facebook.jpg" /></a> 
+			<a href="https://twitter.com/arihantbooking" ><img class="img_custom" src="/NewDesign/homepagesImages/twiiter.jpg" style="margin-left: 2%;" /></a>  
+			<a href="https://www.linkedin.com/company/arihantbooking" style="margin-left: 2%;""><img class="img_custom" src="/NewDesign/homepagesImages/linkedin.png" style="margin-left: 2%;"/></a>  
+			<!-- <a href="#/readENewspaper">Read E News paper</a> 
+			<a href="#/">View Ad Rate In Various Newspapers</a> 
+		    --> 
+		    </div>
+		 </div>
+		 </div>
+		<!--  <div class="span3 ">
+			<h5>Follow Us</h5>
+			<a href="https://www.facebook.com/ArihantBooking">Text Classified Ad</a> 
+			<a href="https://twitter.com/arihantbooking">Classified Display Ad</a>  
+			<a href="https://www.linkedin.com/company/arihantbooking">Display Ads</a>  
 			<a href="#/readENewspaper">Read E News paper</a> 
 			<a href="#/">View Ad Rate In Various Newspapers</a> 
 		    
@@ -264,6 +279,10 @@
 
 .btn{
 cursor: default;
+}
+.img_custom{
+height: 30px;
+float: left;
 }
 </style>
 

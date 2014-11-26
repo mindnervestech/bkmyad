@@ -119,32 +119,73 @@
 		  </div>
 		 -->  	
 		  
-	<div class="row">
+	<div class="row" >
 	<!-- <div data-ng-include data-src="'sidebar.html'">
 	
 	</div> -->
 	
-	<div class="span12" style="margin-top: 8%;">
-	<div>
+	<div class="span12" >
+	<div >
 		<!-- <h3>New Products </h3> -->
-		<div class="row-fluid">
-		<div id="myCarousel1"  >
+		<div  class="row-fluid">
+		<div id="myCarousel1" style=" background-color: #888888;" >
             <div class="carousel-inner" style="height: inherit;">
-              <div class="item active">
+              <div id="slideflash" class="item active" style="margin-left: 5%;margin-top: 2%;">
 				  <ul class="thumbnails">					 
 					<li ng-repeat="np in nplist"  class="span3" style="height: 150px;">
-					  <div class="thumbnail" ng-model="bookingState.selectedNewsPaper" ng-click="onfirestNewspaperSelect(np)">
-					  <!-- 	<a href="#/make-booking.html/0"> -->
-						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/></a>
-						<div class="caption"  value="{{np.name}}">
-						  <h5>{{np.name}}</h5>
-						</div>
-					<!-- 	</a> -->	
-					  </div>
+					   <div class="thumbnail" ng-model="bookingState.selectedNewsPaper" ng-click="onfirestNewspaperSelect(np)">
+					   <!-- 	<a href="#/make-booking.html/0">  -->
+						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/><!-- </a> -->
+						 <div class="caption"  value="{{np.name}}">
+						   <h5>{{np.name}}</h5>
+						 </div>
+				 	</a>	
+					   </div>
 					</li>
-					
+					<li ng-repeat="np in nplist"  class="span3" style="height: 150px;">
+					   <div class="thumbnail" ng-model="bookingState.selectedNewsPaper" ng-click="onfirestNewspaperSelect(np)">
+					   	<!-- <a href="#/make-booking.html/0"> --> 
+						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/><!-- </a> -->
+						 <div class="caption"  value="{{np.name}}">
+						   <h5>{{np.name}}</h5>
+						 </div>
+				 	</a>	
+					   </div>
+					</li>
 				  </ul>
 		  	  </div>
+		  </div>
+		 </div>		  
+		</div>
+	</div>
+  </div><!--Span End  -->
+</div><!--Row end  -->
+
+<div class="row" >
+	<!-- <div data-ng-include data-src="'sidebar.html'">
+	
+	</div> -->
+	
+	<div class="span12" style="margin-top: 2%;">
+	<div >
+		<!-- <h3>New Products </h3> -->
+		<div  class="row-fluid">
+		<div id="myCarousel1"  >
+		<div> <h4>Book Newspaper Ads for</h4></div>
+            <div class="carousel-inner" style="height: inherit;">
+              <div  class="item active" style=" background-color: #888888;">
+				  <ul >					 
+					<li ng-repeat="np in nplist"  class="span3" >
+					  <!--  <div class="thumbnail" ng-model="bookingState.selectedNewsPaper" ng-click="onfirestNewspaperSelect(np)">
+					   	<a href="#/make-booking.html/0"> 
+						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/></a> -->
+						 	<div class="caption"  value="{{np.name}}">
+						   <a href="#/make-booking.html/0"> <label>{{np.name}}</label></a>
+						 </div>
+					   </div>
+					</li>
+				  </ul>
+		  	  <!-- </div> -->
 		  </div>
 		 </div>		  
 		</div>
@@ -215,7 +256,12 @@
 		 
 		
 	</div>
-	
+	<script type="text/javascript">
+	$(function() {
+		$('#slideflash').vTicker();
+		});
+
+	</script>
 	
 <style>
 .span3{
