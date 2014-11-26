@@ -128,30 +128,30 @@
 	<div >
 		<!-- <h3>New Products </h3> -->
 		<div  class="row-fluid">
-		<div id="myCarousel1" style=" background-color: #888888;" >
-            <div class="carousel-inner" style="height: inherit;">
+		<div id="myCarousel1" style=" background-color: #ccc;" >
+            <div class="carousel-inner" style="height: 125px;">
               <div id="slideflash" class="item active" style="margin-left: 5%;margin-top: 2%;">
 				  <ul class="thumbnails">					 
 					<li ng-repeat="np in nplist"  class="span3" style="height: 150px;">
 					   <div class="thumbnail" ng-model="bookingState.selectedNewsPaper" ng-click="onfirestNewspaperSelect(np)">
 					   <!-- 	<a href="#/make-booking.html/0">  -->
 						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/><!-- </a> -->
-						 <div class="caption"  value="{{np.name}}">
-						   <h5>{{np.name}}</h5>
+						 <div class="padding"  value="{{np.name}}">
+						  <!--  <h5>{{np.name}}</h5> -->
 						 </div>
 				 	</a>	
 					   </div>
 					</li>
 					<li ng-repeat="np in nplist"  class="span3" style="height: 150px;">
 					   <div class="thumbnail" ng-model="bookingState.selectedNewsPaper" ng-click="onfirestNewspaperSelect(np)">
-					   	<!-- <a href="#/make-booking.html/0"> --> 
-						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/><!-- </a> -->
-						 <div class="caption"  value="{{np.name}}">
+					   	<a href="#/make-booking.html/0"> 
+						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/></a>
+						 <div class="padding"  value="{{np.name}}">
 						   <h5>{{np.name}}</h5>
 						 </div>
 				 	</a>	
 					   </div>
-					</li>
+					</li> 
 				  </ul>
 		  	  </div>
 		  </div>
@@ -179,8 +179,8 @@
 					  <!--  <div class="thumbnail" ng-model="bookingState.selectedNewsPaper" ng-click="onfirestNewspaperSelect(np)">
 					   	<a href="#/make-booking.html/0"> 
 						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/></a> -->
-						 	<div class="caption"  value="{{np.name}}">
-						   <a href="#/make-booking.html/0"> <label>{{np.name}}</label></a>
+						  	<div class="caption"  value="{{np.name}}">
+						  <a href="#/make-booking.html/0">{{np.name}}</a>
 						 </div>
 					   </div>
 					</li>
@@ -289,6 +289,9 @@ right: 0;
 .custom-img {
 height: auto !important;
 width: auto !important;
+}
+.padding{
+padding: 4px !important;
 }
 /* .label{
 margin-bottom: 5px !important;
