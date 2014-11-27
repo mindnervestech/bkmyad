@@ -114,6 +114,8 @@ GET /AddPackageRate.html    controllers.Assets.at(path="/public", file="app/AddP
 GET /view-all-orders.html   controllers.Assets.at(path="/public", file="app/ViewAllOrders.html") 
 GET  /view-all-registeruser.html    controllers.Assets.at(path="/public", file="app/ViewAllRegisteredUser.html") 
 GET     /googleed553c82028553d6.html controllers.Assets.at(path="/public", file="googleed553c82028553d6.html")
+GET   /sitemap.xml    controllers.Assets.at(path="/public", file = "sitemap.xml")
+
 GET /ccavenue/:orderId	controllers.CCAvenueController.ccavenue(orderId:String)
 POST /redirect	controllers.CCAvenueController.redirect()
 #GET  /redirectTest controllers.CCAvenueController.redirectTest()

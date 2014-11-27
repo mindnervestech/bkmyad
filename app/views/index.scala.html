@@ -5,16 +5,14 @@
 
 @main("") {
 	<body class="mnt-body">
-		<div class="container mnt-container">
+		<div class="container mnt-container" style="margin-top: 0%;padding-top: 0px;">
          	<input type="hidden" ng-model="txtUsername" ng-init='setSession("@session().get("userName")")' value='@session().get("emailId")'/>
-			<header id="header" style="width: 100%;display: block;">
+			<header id="header" style="width: 100%;display: block;padding:0px;">
 				<div class="row">
-				<div class="span12" style="margin-bottom: 1%;" >
+				<div class="span12" style="margin-bottom: 0%;" >
 					<a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 87px;"alt="Bootsshop"/></a>
 				<div>
-			
 					<a href="#"><img src="assets/img/Fone-Number.gif"   style="float:left"alt="Bootsshop"/></a>
-				
 				</div>
 				</div>
 				</div>
@@ -73,6 +71,18 @@
                 </div>
               </div><!-- /navbar-inner -->
             </div>
+            <!-- google analytics start here -->
+           <script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			  ga('create', 'UA-57146221-1', 'auto');
+			  ga('send', 'pageview');
+
+			</script>
+ 			<!-- google analytics end here -->
+            
             <!-- For chat  -->
             <!--Start of Zopim Live Chat Script-->
 	      <script type="text/javascript">
@@ -214,8 +224,6 @@
 
 
  <div class="modal hide" id="mySignUp" style="z-index: 10000;width: 30%;left: 58%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  	
-    
       <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
         <button type="button" class="close" data-dismiss="modal">
         <span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
@@ -373,16 +381,6 @@ $(document).ready(function(){
 });
 </script>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-55111096-2', 'auto');
-  ga('send', 'pageview');
-
-</script>
 
 
 
@@ -393,7 +391,6 @@ _atrk_opts = { atrk_acct:"5hSGi1a8Dy00gO", domain:"arihantbooking.com",dynamic: 
 </script>
 <noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=5hSGi1a8Dy00gO" style="display:none" height="1" width="1" alt="" /></noscript>
 <!-- End Alexa Certify Javascript -->  
-
 </script>
 </html>
 
