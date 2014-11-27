@@ -101,7 +101,23 @@
 	  
 	  <!-- Footer ------------------------------------------------------ -->
 <hr class="soft" style= "width:90%; margin-left:5%">
-<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 1%;">
+<div class="row" style="background-color:#878887;margin: 0%;padding: 1%;">
+<div style="float: left;width: 33%;"><h5>Contact</h5>
+	<div><h5>07536066711</h5></div>
+</div>
+<div style="float: left;width: 22%;margin-left: 5%">
+<h5>Follow Us</h5>
+			<a href="https://www.facebook.com/ArihantBooking"><img  class="img_custom" src="/NewDesign/homepagesImages/bg-facebook.png" style="background-color: #3b5998;width: 33px;cursor: pointer;float: left;margin-right: 1%;" /></a> 
+			<a href="https://twitter.com/arihantbooking" ><img class="img_custom" src="/NewDesign/homepagesImages/bg-twitter.png" style="margin-left: 2%;background-color: #00aced;width: 33px;cursor: pointer;float: left;margin-right: 1%;" /></a>  
+			<a href="https://www.linkedin.com/company/arihantbooking" style="margin-left: 2%;""><img class="img_custom" src="/NewDesign/homepagesImages/lbg inked.jpg" style="margin-left: 2%;width: 33px;cursor: pointer;float: left;margin-right: 1%;"/></a>  
+			<!-- <a href="#/readENewspaper">Read E News paper</a> 
+			<a href="#/">View Ad Rate In Various Newspapers</a> 
+		    --> 
+
+</div>
+<div style="float: left;width: 18%;margin-left: 13%;"><h5>Payment</h5></div>
+</div>
+<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 1%;background-color:#ccc">
 	<div class="row" style="margin-left:1%">
 		<!-- <div class="span3 custom_span">
 			<h5>HOME</h6>
@@ -113,13 +129,16 @@
 			<a href="#/ourBlogs">Blog</a>
 		 </div> -->
 		<div class="span11">
-		<div style="float:left">
-			<h5>Quick Links</h5>
-			<a href="#/aboutUs" >About Us</a>
-		    <a href="#/contactUs" >Contact Us</a>
+		<div style="float:left;width:100%;background-color:#ccc">
+		
+		
+		<span style="float: left;width:25%;"><a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 40px; width:100%"alt="Bootsshop"/></a></span>
+			<!-- <h5>Quick Links</h5> -->
+			<span style="float: left;width:7%;"><a href="#/aboutUs" >About Us</a></span>
+		    <span style="float: left;width:7%;"><a href="#/contactUs" >Contact Us</a></span>
 			<!-- <a href="#/" style="float:left;margin-right: 2%;">Advertising Policy</a>
 			 -->
-			 <a href="#/privacyPolicy" style="float:left;margin-right: 2%;">Privacy Policy </a> 
+			 <span style="float: left;width:7%;"><a href="#/privacyPolicy" style="float:left;margin-right: 2%;">Privacy Policy </a></span> 
 			<!--  <a href="#/deClaimer" style="float:left;margin-right: 2%;">Disclaimer</a> 
 			 <a href="#/termsAndConditions" style="float:left;margin-right: 2%;">Terms and Conditions</a>  
 		 -->
@@ -127,22 +146,26 @@
 				<!-- <a href="#/" style="float:left;margin-right: 2%;">FAQ's </a>
 					<a href="#/" style="float:left;margin-right: 2%;">Feedback </a>  -->		
 					<!-- 	<a href="#/help">How to Book an Ad</a> -->
-			<a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a>
-			<a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a>
+			<span style="float: left;"><a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a></span>
+			<span style="float: left;"><a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a></span>
 			<!-- <a href="#/help">How to Book an Ad</a> -->
-			<a href="#/ourBlogs">Blog</a>
-		 </div>
+			<span style="float: left;;"><a href="#/ourBlogs">Blog</a></span>
+			<span style="font-size: 10px;  float: left;width:50%;margin-left:2%">
+			 Copyright © 2014 - 2015 www.ArihantBooking.com, All Rights Reserved.
+			</span>
+			
+		<!--  </div>
 		 <div class="span3 ">
 			<div style="margin-left: 38%;">
 			<h5>Follow Us</h5>
 			<a href="https://www.facebook.com/ArihantBooking"><img  class="img_custom" src="/NewDesign/homepagesImages/bg-facebook.png" style="background-color: #3b5998;width: 33px;cursor: pointer;float: left;margin-right: 1%;" /></a> 
 			<a href="https://twitter.com/arihantbooking" ><img class="img_custom" src="/NewDesign/homepagesImages/bg-twitter.png" style="margin-left: 2%;background-color: #00aced;width: 33px;cursor: pointer;float: left;margin-right: 1%;" /></a>  
 			<a href="https://www.linkedin.com/company/arihantbooking" style="margin-left: 2%;""><img class="img_custom" src="/NewDesign/homepagesImages/lbg inked.jpg" style="margin-left: 2%;width: 33px;cursor: pointer;float: left;margin-right: 1%;"/></a>  
-			<!-- <a href="#/readENewspaper">Read E News paper</a> 
+			<a href="#/readENewspaper">Read E News paper</a> 
 			<a href="#/">View Ad Rate In Various Newspapers</a> 
-		    --> 
+		    
 		    </div>
-		 </div>
+		 </div> -->
 		 </div>
 		<!--  <div class="span3 ">
 			<h5>Follow Us</h5>
@@ -167,8 +190,8 @@
 </div>
 <div id="left3" style="line-height:15px;">
 		<!--Jagbir Singh Sir,Akash Shinde,Pankaj Muneshwar  -->
-      <P style="text-align: center;font-size: 10px; margin: 0px 0 0px !important;">Copyright © 2014 - 2015 www.ArihantBooking.com, All Rights Reserved.</P>
-      <!-- <P style="text-align: center;font-size: 10px; margin: 0px 0 0px !important;">Designed and Developed by  <a href= "" onclick="window.top.location='http://www.mindnerves.com';return false;" target="_top">MindNerves Technology</a></P>
+     <!--  <P style="text-align: center;font-size: 10px; margin: 0px 0 0px !important;">Copyright © 2014 - 2015 www.ArihantBooking.com, All Rights Reserved.</P>
+      --> <!-- <P style="text-align: center;font-size: 10px; margin: 0px 0 0px !important;">Designed and Developed by  <a href= "" onclick="window.top.location='http://www.mindnerves.com';return false;" target="_top">MindNerves Technology</a></P>
   -->   </div>
     <!-- Le javascript
     ================================================== -->
