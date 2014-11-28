@@ -5,7 +5,7 @@
 
 @main("") {
 	<body class="mnt-body">
-		<div class="container mnt-container" style="margin-top: 0%;padding-top: 0px;">
+		<div class="container mnt-container" style="margin-top: 0%;padding-top: 0px;box-shadow: 10px 3px 5px 6px #ccc;">
          	<input type="hidden" ng-model="txtUsername" ng-init='setSession("@session().get("userName")")' value='@session().get("emailId")'/>
 			<header id="header" style="width: 100%;display: block;padding:0px;">
 				<div class="row">
@@ -101,7 +101,7 @@
 	  
 	  <!-- Footer ------------------------------------------------------ -->
 <hr class="soft" style= "width:90%; margin-left:5%">
-<div class="row" style="background-color:#878887;margin: 0%;padding: 1%;">
+	<div class="row" style="background-color:#878887;margin: 0%;padding: 1%;">
 <div style="float: left;width: 33%;"><h5>Contact</h5>
 	<div><h5>07536066711</h5></div>
 </div>
@@ -115,7 +115,9 @@
 		    --> 
 
 </div>
-<div style="float: left;width: 18%;margin-left: 13%;"><h5>Payment</h5></div>
+<div style="float: left;width: 18%;margin-left: 13%;"><h5>Payment</h5>
+<img class="img_custom" src="/NewDesign/homepagesImages/3d-secure-logos.png" style="margin-left: 2%;background-color: #00aced;width: 150px;cursor: pointer;float: left;margin-right: 1%;" />
+</div>
 </div>
 <div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 1%;background-color:#ccc">
 	<div class="row" style="margin-left:1%">

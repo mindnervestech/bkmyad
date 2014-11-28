@@ -86,12 +86,9 @@ public class UtilityQuery {
    	  Query q = JPA.em().createNativeQuery(QUERY1 +
    				"FROM Basicrate INNER JOIN Newspaperdetails ON (Basicrate.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) " +
    				"where Basicrate.City= ?1");
-   	         
    	         q.setParameter(1, city);
-   	         
    	         List<Object[]> list = (List<Object[]>)q.getResultList();
    	         return list;
-	
   }
      
      public static List<Object[]> getBasicRateByCategory(String Category) {

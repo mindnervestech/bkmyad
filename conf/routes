@@ -46,7 +46,6 @@ GET  /deleteDiscountRate/:id       controllers.AddPackageController.deleteDiscou
 GET     /getCategory							controllers.AddbasicRateController.getCategory
 GET     /getStatename							controllers.AddbasicRateController.getStatename
 GET     /getUserInfo                          controllers.Application.getUserInfo()
-
 GET    /getAllCityOfState                     controllers.AddPackageController.getAllCityOfState()
 GET     /getCityname/:state					    controllers.AddbasicRateController.getCityname(state:String)
 POST    /saveNewpaper                           controllers.AddNewspaperController.saveNewpaper
@@ -72,7 +71,7 @@ GET     /viewAllRegisteredUser                 controllers.ViewAllRegisteredUser
 GET     /logout                             controllers.Application.Logout()      
 GET     /getforgotpass/:email                       controllers.Application.forgotpassword(email :String)
 GET      /redirectTo                             controllers.RedirectController.index()
-                        
+
 # Map static resources from the /public folder to the /assets URL path
 GET /css/*file                     controllers.Assets.at(path="/public/app/css", file)
 GET /lib/*file                     controllers.Assets.at(path="/public/lib", file)
@@ -85,7 +84,6 @@ GET /bower_components/*file		    controllers.Assets.at(path="/public/bower_compo
 GET /newtheme/*file			     	controllers.Assets.at(path="/public/app/newtheme", file)
 GET /assets/*file			    	controllers.Assets.at(path="/public/app/newtheme/assets", file)
 GET /Jquery/*file			    	controllers.Assets.at(path="/public/app/Jquery", file)
-
 
 #HTML - ONLY FOR STATIC HTMLs, IF HTMLS NEED TO BE TEMPLATIZED MAP it as Controllers
 GET /header.html          controllers.Assets.at(path="/public", file="app/header.html")

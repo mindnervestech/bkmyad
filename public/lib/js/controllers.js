@@ -408,7 +408,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 	 	function computeRateByUnit() {
 		console.log("calculating count.");
 		dTotalPrice = parseInt($scope.selectedCartItemOnPopUp.dTotalPrice);
-		rate = parseInt($scope.selectedCartItemOnPopUp.classifiedrate); //base rate for ad.
+		rate = parseInt($scope.selectedCartItemOnPopUp.rate); //base rate for ad.
 		var freeUnit = parseInt($scope.selectedCartItemOnPopUp.freeUnit); //total allowed free units.
         var unitLot = parseInt($scope.selectedCartItemOnPopUp.unitVal); //???
         var text = $('#adPreview').text().trim();
@@ -562,7 +562,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 			document.getElementById('adPreview').style.height = 250 + 'px';
 		}else{
 			$scope.selectedCartItemOnPopUp.adSizeSelect = "secondColumn";
-			document.getElementById('adPreview').style.width = 120 + '%';
+			document.getElementById('adPreview').style.width = 100 + '%';
 			document.getElementById('adPreview').style.height = 90 + 'px';
 		}
  		
