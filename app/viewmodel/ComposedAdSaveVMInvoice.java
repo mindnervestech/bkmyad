@@ -64,7 +64,6 @@ public class ComposedAdSaveVMInvoice {
 	    	
 	    	this.totalExtraCost = composedAdSave.totalExtraCost;
 	    	this.totalUnitCost  = composedAdSave.totalUnitCost;
-	    	 
 	    	this.numberOfWords = composedAdSave.numberOfWords;
 	    	this.extraCost = composedAdSave.extraCost;
 	    	System.out.println("this.Subcategory"+this.Subcategory);
