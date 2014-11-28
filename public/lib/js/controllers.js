@@ -9,17 +9,60 @@ angular.module('adschela').controller("FooterController",['$scope',function($sco
 }]);
 
 angular.module('adschela').controller("IndexController",['$scope','$http','$cookieStore','$cookies','$interval',function($scope,$http,$cookieStore,$interval,$cookies){
-
+	$scope.showFieldError = false;
+	    $scope.showError = false;
+	$scope.onClassifiedClicked = function(){
+		console.log("onClassifiedClicked");
+		 $('#classifiedUserInfo').modal();
+	}
+	
 	    $scope.setCookie();
 	    if($scope.cookie ==  '' || (angular.isUndefined($scope.cookie))){
 			 $('#userInfopopup').modal();
 	    }
 	    
+	    $scope.sendMailAboutClassifiedAd = function(tempuserName,tempuserMobnumber,tempuserNote){
+	    	
+	    	$scope.tempuserName = tempuserName;
+			$scope.tempuserMobnumber = tempuserMobnumber;
+	    	$scope.tempuserNote = tempuserNote;
+	    	if($scope.tempuserName == "" || $scope.tempuserMobnumber == "" || (angular.isUndefined($scope.tempuserMobnumber))|| (angular.isUndefined($scope.tempuserName))){
+	    		$scope.showFieldError = true; 
+	    	}
+	    	console.log("$scope.tempuserName"+$scope.tempuserName);
+	    	
+			/*if($scope.tempuserNote == "" || (angular.isUndefined($scope.tempuserNote))){
+				$scope.tempuserNote ="Not Given";
+			}*/
+			if((!angular.isUndefined($scope.tempuserMobnumber))|| (!angular.isUndefined($scope.tempuserName))||(!angular.isUndefined($scope.tempuserNote)) ){
+		    { $scope.showFieldError = false;
+		    	$('#classifiedUserInfo').modal('hide');
+		   // $('#classifiedUserInfo').modal();
+			$http.get('sendMailAboutClassifiedAd/'+$scope.tempuserName+'/'+$scope.tempuserMobnumber+'/'+$scope.tempuserNote)
+			.success(function(data){
+				if(data) {
+					$scope.result = data;
+					if($scope.result == 'success'){
+						console.log($scope.result);
+						}
+					
+				} 
+			});
+		    }
+	    }
+	    }
 	    $scope.sendMailAboutGuestuser =  function(tempuserName,tempuserMobnumber){
 		$scope.tempuserName = tempuserName;
 		$scope.tempuserMobnumber = tempuserMobnumber;
-		$('#userInfopopup').modal('hide');
 		
+		if((angular.isUndefined($scope.tempuserMobnumber))|| (angular.isUndefined($scope.tempuserName))){
+		     $scope.showError = true;
+		}		
+		if((!angular.isUndefined($scope.tempuserMobnumber))|| (!angular.isUndefined($scope.tempuserName))){
+			$('#userInfopopup').modal('hide');		
+			$scope.showError = false;
+			$scope.setCookie();
+			
 			$http.get('sendMailAboutTempUserInfo/'+$scope.tempuserName+'/'+$scope.tempuserMobnumber)
 			.success(function(data){
 				if(data) {
@@ -32,6 +75,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 			});
 			
 		}
+	    }
 	$scope.txtpasswords = 'password';
 	$scope.nplist = [
 	                 {name:"Times of India",img:"/NewDesign/np-logos/toi.jpg"},
@@ -116,11 +160,8 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 			interval : 6000
 	}
     $scope.slides = [{
-	      	image: '/NewDesign/images/classified-ad.jpg'
-	    	},
-		    {
-			      image: '/NewDesign/images/all-np-1.jpg'
-			},
+	      	image: '/NewDesign/homepagesImages/CT 1.jpg'
+	    	}
 	    	/*{
 		      image: '/NewDesign/images/classified-ad-2.jpg'
 		    },
@@ -136,9 +177,56 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 		    {
 			      image: '/NewDesign/images/classified-ad-4.jpg'
 			},*/
-		    {
+		   /* {
 			      image: '/NewDesign/images/banner11.jpg'
-			}
+			}*/
+		    ];
+	
+	
+	 $scope.dispAds = [{
+	      	image: '/NewDesign/homepagesImages/Ds 1.jpg'
+	    	}
+	    	/*{
+		      image: '/NewDesign/images/classified-ad-2.jpg'
+		    },
+		    {
+			      image: '/NewDesign/images/all-np-2.jpg'
+			},
+		    {
+			      image: '/NewDesign/images/classified-ad-3.jpg'
+			},
+		    {
+			      image: '/NewDesign/images/all-np-3.jpg'
+			},
+		    {
+			      image: '/NewDesign/images/classified-ad-4.jpg'
+			},*/
+		   /* {
+			      image: '/NewDesign/images/banner11.jpg'
+			}*/
+		    ];
+	 $scope.clasifiedsImages = [{
+	      	image: '/NewDesign/homepagesImages/CD 1.jpg'
+	    	}
+		    
+	    	/*{
+		      image: '/NewDesign/images/classified-ad-2.jpg'
+		    },
+		    {
+			      image: '/NewDesign/images/all-np-2.jpg'
+			},
+		    {
+			      image: '/NewDesign/images/classified-ad-3.jpg'
+			},
+		    {
+			      image: '/NewDesign/images/all-np-3.jpg'
+			},
+		    {
+			      image: '/NewDesign/images/classified-ad-4.jpg'
+			},*/
+		    /*{
+			      image: '/NewDesign/images/banner11.jpg'
+			}*/
 		    ];
 	  
 }]);

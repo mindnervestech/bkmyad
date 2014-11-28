@@ -263,4 +263,46 @@ public class SendMailUtility {
 		  throw new RuntimeException(e);
 	}
 	}
+
+
+	public void sendMailAboutClassifiedAd(String tempuserName,
+			String tempuserMobnumber, String tempuserNote) {
+		// TODO Auto-generated method stub
+		System.out.println("in send mail class ");
+		final String username = "support@arihantbooking.com";
+		final String password = "Adschela@123";
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props,
+		  new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		  });
+	try {
+	     	//send a   mail to support regrading the temporly visitor user.
+				Message message = new MimeMessage(session);
+				message.setFrom(new InternetAddress("Rajan_Jain"));
+			  	message.addRecipients(Message.RecipientType.CC, InternetAddress.parse("support@arihantbooking.com"));
+				//set msg text body
+				 message.setSubject( "Classified ad Display ad ");
+				 BodyPart messageBodyPart = new MimeBodyPart();
+	             //set the msg body text.	 
+				 messageBodyPart.setText("\n Name is: "+tempuserName+"\n\nMobile Number : "+tempuserMobnumber+"\n\nNote Given is: "+tempuserNote);
+		         // Create a multipart message
+		         Multipart multipart = new MimeMultipart();
+		         // Set text message part
+		         multipart.addBodyPart(messageBodyPart);
+		         message.setContent(multipart);
+			     Transport.send(message);
+	}catch (Exception e) {
+			e.printStackTrace();
+		  throw new RuntimeException(e);
+	}
+		
+	}
 	}
