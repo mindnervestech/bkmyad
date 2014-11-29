@@ -4,7 +4,7 @@
 <html class="mnt-html" ng-app="adschela" ng-controller="ApplicationController" xmlns="http://www.w3.org/1999/xhtml">
 
 @main("") {
-	<body class="mnt-body">
+	<body class="mnt-body"  style="overflow-x: hidden">
 		<div class="container mnt-container" style="margin-top: 0%; width: 100%;margin-left: 0px;padding-top: 0px;box-shadow: 10px 3px 5px 6px #ccc;padding-left: 0px; *">
          	<input type="hidden" ng-model="txtUsername" ng-init='setSession("@session().get("userName")")' value='@session().get("emailId")'/>
 			<header id="header" style="width: 100%;display: block;padding:0px;">
@@ -97,12 +97,12 @@
 	
 			</header>	
 	
-	  <div id="mainBody" class="container" ng-view=""></div>
+	  <div id="mainBody" class="container" ng-view="" style="min-height: 500px;"></div>
 	  
 	  <!-- Footer ------------------------------------------------------ -->
 <hr class="soft" style= "width: 100%;margin-left: 0%;margin: 0px;">
-	<div class="row" style="background-color:#878887;margin: 0%;padding: 1%;">
-<div style="float: left;width: 33%;"><h5>Contact</h5>
+	<!-- <div class="row" style="background-color:#878887;margin: 0%;padding: 1%;margin-left: 0%;">
+<div style="float: left;width: 33%;margin-left: 2%;"><h5>Contact</h5>
 	<div><h5>07536066711</h5></div>
 </div>
 <div style="float: left;width: 22%;margin-left: 5%">
@@ -110,16 +110,16 @@
 			<a href="https://www.facebook.com/ArihantBooking"><img  class="img_custom" src="/NewDesign/homepagesImages/bg-facebook.png" style="background-color: #3b5998;width: 33px;cursor: pointer;float: left;margin-right: 1%;" /></a> 
 			<a href="https://twitter.com/arihantbooking" ><img class="img_custom" src="/NewDesign/homepagesImages/bg-twitter.png" style="margin-left: 2%;background-color: #00aced;width: 33px;cursor: pointer;float: left;margin-right: 1%;" /></a>  
 			<a href="https://www.linkedin.com/company/arihantbooking" style="margin-left: 2%;""><img class="img_custom" src="/NewDesign/homepagesImages/lbg inked.jpg" style="margin-left: 2%;width: 33px;cursor: pointer;float: left;margin-right: 1%;"/></a>  
-			<!-- <a href="#/readENewspaper">Read E News paper</a> 
+			<a href="#/readENewspaper">Read E News paper</a> 
 			<a href="#/">View Ad Rate In Various Newspapers</a> 
-		    --> 
+		    
 
 </div>
 <div style="float: left;width: 18%;margin-left: 13%;"><h5>Payment</h5>
 <img class="img_custom" src="/NewDesign/homepagesImages/3d-secure-logos.png" style="margin-left: 2%;background-color: #00aced;width: 150px;cursor: pointer;float: left;margin-right: 1%;" />
 </div>
-</div>
-<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 1%;background-color:#ccc">
+</div> -->
+<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 0%;background-color:#ccc">
 	<div class="row" style="margin-left:1%">
 		<!-- <div class="span3 custom_span">
 			<h5>HOME</h6>
@@ -133,28 +133,28 @@
 		<div class="span11">
 		<div style="float:left;width:100%;background-color:#ccc">
 		
-		
-		<span style="float: left;width:25%;"><a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 40px; width:100%"alt="Bootsshop"/></a></span>
+		<div >
+		<span style="float: left;width:25%;margin-right: 21%;"><a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 40px; width:100%"alt="Bootsshop"/></a></span>
 			<!-- <h5>Quick Links</h5> -->
-			<span style="float: left;width:7%;"><a href="#/aboutUs" >About Us</a></span>
-		    <span style="float: left;width:7%;"><a href="#/contactUs" >Contact Us</a></span>
+			<div style=" margin:0 auto;" >
+			<span style="float: left;width:5%;"><a href="#/aboutUs" >About Us</a></span>
+		    <span style="float: left;width:6%;"><a href="#/contactUs" >Contact Us</a></span>
+		    <span style="float: left;width:9%;"><a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a></span>
+			<span style="float: left;width:7%;"><a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a></span>
+			<span style="float: left;width:5%;"><a href="#/ourBlogs">Blog</a></span>
+			</div>
 			<!-- <a href="#/" style="float:left;margin-right: 2%;">Advertising Policy</a>
 			 -->
-			 <span style="float: left;width:7%;"><a href="#/privacyPolicy" style="float:left;margin-right: 2%;">Privacy Policy </a></span> 
-			<!--  <a href="#/deClaimer" style="float:left;margin-right: 2%;">Disclaimer</a> 
+			<!--  <span style="float: left;width:7%;"><a href="#/privacyPolicy" style="float:left;margin-right: 2%;">Privacy Policy </a></span> 
+		 -->	<!--  <a href="#/deClaimer" style="float:left;margin-right: 2%;">Disclaimer</a> 
 			 <a href="#/termsAndConditions" style="float:left;margin-right: 2%;">Terms and Conditions</a>  
 		 -->
 		<!-- <a href="#/paymentGateway">Payment Gateway </a>  -->
 				<!-- <a href="#/" style="float:left;margin-right: 2%;">FAQ's </a>
 					<a href="#/" style="float:left;margin-right: 2%;">Feedback </a>  -->		
 					<!-- 	<a href="#/help">How to Book an Ad</a> -->
-			<span style="float: left;"><a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a></span>
-			<span style="float: left;"><a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a></span>
 			<!-- <a href="#/help">How to Book an Ad</a> -->
-			<span style="float: left;;"><a href="#/ourBlogs">Blog</a></span>
-			<span style="font-size: 10px;  float: left;width:50%;margin-left:2%">
-			 Copyright &copy; 2014 - 2015 www.ArihantBooking.com, All Rights Reserved.
-			</span>
+			</div>
 			
 		<!--  </div>
 		 <div class="span3 ">
@@ -168,7 +168,13 @@
 		    
 		    </div>
 		 </div> -->
+		 <div>
+		 <span style="font-size: 10px;  float: left;width:50%;margin-left:46%">
+			 Copyright  &copy;  2014 - 2015 www.ArihantBooking.com, All Rights Reserved.
+			</span>
 		 </div>
+		 </div>
+		 
 		<!--  <div class="span3 ">
 			<h5>Follow Us</h5>
 			<a href="https://www.facebook.com/ArihantBooking">Text Classified Ad</a> 
