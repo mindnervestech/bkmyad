@@ -57,7 +57,7 @@
                     	    <td>{{ancmt.userEmailId}}</td>
                     	   <!--  <td>{{ancmt.Category}}</td>
                     	    <td>{{ancmt.Nameofthenewspaper}}</td> -->
-                            <td>{{ancmt.TotalCost}}</td>
+                            <td>{{ancmt.TotalCost | setDecimal:2}}</td>
                             <td><font ng-if="ancmt.cc_orderNo != null">{{ancmt.cc_orderNo}}</font><font ng-if="ancmt.cc_orderNo == null">Pending</font></td>
                            <!--   cc_bid,cc_orderNo,cc_category,bank_name,bankMsg -->
                          
@@ -199,8 +199,9 @@
 			      <!--  <td><label>Tick Selected: </label> </td>
 			       <td> {{invoice.Tick}} </td> -->
 			       <td> {{invoice.PublishDate}} </lable></td>
-			       <td>BgColor: <font ng-if="invoice.Bgcolor == ''">No</font><font ng-if="invoice.Bgcolor != ''">{{invoice.Bgcolor}}</font> <br> Border: {{invoice.Border}}<br>Tick: <font ng-if="invoice.Tick == 'true'">No</font><font  ng-if="invoice.Tick == 'false'">Yes</font> <br>No Of Words/Line :{{invoice.numberOfWords}}<br>Total Extra Cost:{{invoice.totalExtraCost + invoice.extraCost}}</lable></td>
-			       <td> र.{{invoice.TotalCost}} </lable></td>
+			       <td>BgColor: <font ng-if="invoice.Bgcolor == ''">No</font><font ng-if="invoice.Bgcolor != ''">{{invoice.Bgcolor}}</font> <br> Border: {{invoice.Border}}<br>Tick: <font ng-if="invoice.Tick == 'true'">No</font><font  ng-if="invoice.Tick == 'false'">Yes</font> <br>No  Of Extra Words/Line :<span ng-if ="invoice.numberOfWords - invoice.freeunit > 0 ">{{invoice.numberOfWords - invoice.freeunit}}</span><span ng-if ="invoice.numberOfWords - invoice.freeunit <= 0 ">0</span><br>Total Extra Cost:{{invoice.totalExtraCost + invoice.extraCost | setDecimal:2}}</lable></td>
+			       
+			       <td> र.{{invoice.TotalCost |setDecimal:2}} </lable></td>
 			</span>
 			 </tr>
 			
