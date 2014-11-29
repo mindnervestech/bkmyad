@@ -683,12 +683,12 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 	//Change the AdTextSize 3*5 size 
 	$scope.onFirstColumnSelected = function(){
 	document.getElementById('adPreview').style.width = 70 + '%';
-	document.getElementById('adPreview').style.height = 70 + '%';
+	document.getElementById('adPreview').style.height = 90 + '%';
 	}
 	//Change the ad text Size to 5*3
 	$scope.onSecondColumnSelected = function(){
 		document.getElementById('adPreview').style.width = 90 + '%';
-		document.getElementById('adPreview').style.height = 30 + '%';
+		document.getElementById('adPreview').style.height = 50 + '%';
 		
 	}
 	//initilize the tinyMCE Body option.

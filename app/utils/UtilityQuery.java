@@ -83,7 +83,7 @@ public class UtilityQuery {
       	
            Query q = JPA.em().createNativeQuery("SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,Dtotalprice,BasicratesperText,Exstracostperline,Beforebookingdate,Border,Backcolor,Tick,ExtracostperSqcm " +
 			"FROM discountprice INNER JOIN Newspaperdetails ON (discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) " +
-			"where Edition like ?1 and discountprice.Nameofthenewspaper= ?2 and discountprice.Category= ?3 ");
+			"where Edition like ?1 and discountprice.Nameofthenewspaper= ?2 and discountprice.Category= ?3");
 	
           q.setParameter(1, city);
           q.setParameter(2, newspaper);

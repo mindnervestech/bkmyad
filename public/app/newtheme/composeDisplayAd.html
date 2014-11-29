@@ -26,6 +26,7 @@
         }
         .ngdialog-content{
         	height:auto !important;
+        	top: -140px ;
         }
          .colorpicker{
         	z-index: 20000 !important;
@@ -39,7 +40,7 @@
 <!-- <link href="/WebResource.axd?d=eELOVr57-x406Xc75zGi2tprCqY3dldlhtntpI7SiWifW2awJvad0Zw_fiz0Owz-B7zVwkz8xQlml33cPpS0PHPymYTskVfDmGrAvFbI-b__PCIB7ITYVBP4PXdUbPaXOJSO6g2&amp;t=635216696627194188" type="text/css" rel="stylesheet" /><link href="/WebResource.axd?d=6D5sCqIWT_1AL4YT4rDd3JfMclNQawjIUJC2rP1IjvGNa5vI2SVvrh4yXZKd_5BOMOIiPxz8Xxd_0beRQJudvR3xv1Ch0isx6BfxOl4IVXZmS-ZQyJKCuB9ve_fsSjP3Gz7HVOd-dsXigyQMoHhsX3m0yVs1&amp;t=635216696627194188" type="text/css" rel="stylesheet" /><link href="/WebResource.axd?d=M-lLY-IZ1ekCIzcitSQ1v993WsqoKOApMnM7fMXUHgU-RrQAZZDSxINPihZd6L6uGu_Ny5hF-QRiDtHP7rdBHhgUCCjTagO_KEMvjGqPqVhQ_XmKoPbyWGsfx0IA7OWQ18Xmkw2&amp;t=635216696627194188" type="text/css" rel="stylesheet" /></head> -->
 
    
-<div rc-wizard="composeWizard" rc-disabled="rc.firstForm.submitInProgress" style="min-height: 290px">
+<div rc-wizard="composeWizard" rc-disabled="rc.firstForm.submitInProgress" style="min-height: 250px">
       <ul class="nav rc-nav-wizard">
               <li class="active" style="float:left;margin-right: 2%;">
                 <a class="active" href="#select-Ad" data-toggle="tab">
@@ -66,6 +67,7 @@
                 </a>
               </li>
             </ul>
+            <hr style="margin:0%" >
     <div  class="tab-content">
     
 	
@@ -197,18 +199,20 @@
 			</select> 
 			<br />
 		</div> 
+<hr >
 </div>
 <div style="width: 50%; float :left;">
-		<div style="float:left;width: 45%;border: 1px solid black">&nbsp;&nbsp;
-		    <lable>Specify Ad Width </lable>
-			<input type="radio" name="adWidth" value="firstColumn" ng-model="selectedCartItemOnPopUp.adSizeSelect" ng-click="onFirstColumnSelected()">1  Column
-			<input type="radio" name="adWidth" value="secondColumn" style="margin-left:12%" ng-model="selectedCartItemOnPopUp.adSizeSelect" ng-click="onSecondColumnSelected()">2 Column
+<hr />
+		<div style="float:left;width: 100%;">&nbsp;&nbsp;
+		    <lable style="font-weight:bold;">Specify Ad Width&nbsp;&nbsp; </lable>
+			<input type="radio" name="adWidth" value="firstColumn" ng-model="selectedCartItemOnPopUp.adSizeSelect" ng-click="onFirstColumnSelected()">&nbsp;&nbsp;1  Column
+			<input type="radio" name="adWidth" value="secondColumn" style="margin-left:12%" ng-model="selectedCartItemOnPopUp.adSizeSelect" ng-click="onSecondColumnSelected()">&nbsp;&nbsp;2 Column
 	   </div>
 		<!-- <input type="textarea" name="headerTextArea" style="height:150px" data-ng-model="selectedAdbodyTextOnPopUp.descriptionBody" /> -->
   <div style="width:100%;float: right;">
 		
-		<div style="float: left;height: 250px;width: 35%;;">
-		<div id= "adPreview" style="border: 1px solid black;width: 100%;float: right;margin-top: 10%;height: 90px;" ng-style="{borderColor: myColor}">
+		<div style="float: left;height: 250px;width: 90%;">
+		<div id= "adPreview" style="float: right;margin-top: 10%;" ng-style="{borderColor: myColor}">
 			
 			<div id="descriptionHeaderText" style="" ng-style="{'background-color':selectedCartItemOnPopUp.headerColor}" ng-model="selectedCartItemOnPopUp.descriptionHeader">
 			   <!--  <span id="descriptionHeaderText1" name="descriptionHeaderText"></span><br/> -->
@@ -460,7 +464,8 @@
 	  <!--  COST CALCULATING VIEW BOX -->
 	  
    <div class="price-box"  ng-show="rc.composeWizard.currentIndex >= 1"
-			style="border: 4px solid #fc9a24;position: inherit;box-shadow: 0px 0px 0px 0px #65BDDF;top: 50%;float:right">
+			style="border: 4px solid #fc9a24;position: inherit;margin-right: 10%;
+			box-shadow: 0px 0px 0px 0px #65BDDF;top: 50%;float:right">
 			<div style="background-color: #fc9a24;">
 				<p
 					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px; color: white; line-height: 0.8;">{{selectedCartItemOnPopUp.newspaper}}-{{
