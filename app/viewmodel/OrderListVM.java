@@ -15,7 +15,6 @@ public class OrderListVM {
 	public String bank_name;
 	public String bankMsg;
 	
-	   
 	   public OrderListVM(Order order) {
 	    	this.orderId=order.orderId;
 	    	this.cc_orderNo=order.cc_orderNo;

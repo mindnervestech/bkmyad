@@ -2956,9 +2956,16 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	
 		
 		//console.log($scope.selectYourAd);
-		$scope.onAdChange();
-		
-		
+		//$scope.onAdChange();
+		/*$scope.onAdChange  =  function(selectYourAd){
+			$scope.selectYourAd  =  selectYourAd;
+			DeleteAllBasicRateCartItem();
+			console.log($scope.selectYourAd);
+			$($('.backcolo')[0]).find('.Internal input:checked').trigger('click');
+			$($('.backcolo')[1]).find('.Internal input:checked').trigger('click');
+		//	$scope.onNewspaperSelect();
+		}
+		*/
 		//retriving the cookies value if any cookies values(orderId)  is present on local.
 		$scope.orderIdPer = $cookies.orderId;
 		$scope.orderIdStatus = $cookies.orderId;
@@ -3088,7 +3095,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			});
 			*/
 			$scope.bookingState.selectedNewsPaper = "Times of India";
-			$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
+			$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty+'/'+$scope.selectYourAd)
 		    	.success(function(data){
 		    	$scope.tab=true;
 			    setDiscRates(data.discRates);
@@ -3164,7 +3171,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	}
 	
 	$scope.onCitySelect =function(){
-		$http.get("getBasicRateByLocationAndCategory/"+$scope.bookingState.selectedCity+'/'+$scope.bookingState.selectedMainCategoty)
+		$http.get("getBasicRateByLocationAndCategory/"+$scope.bookingState.selectedCity+'/'+$scope.bookingState.selectedMainCategoty+'/'+$scope.selectYourAd)
 		.success(function(data){
 			$scope.tab=true;
 			SetRates(data.rates);
@@ -3176,7 +3183,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	 console.log("$scope.orderIdPer"+$scope.orderIdPer);
 
 	 $scope.onNewspaperSelect = function() {
-		$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
+		$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty+'/'+$scope.selectYourAd)
 				.success(function(data){
 					$scope.tab=true;
 					    setDiscRates(data.discRates);
@@ -3184,6 +3191,16 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				});
 	}
 	
+	/* $scope.onNewspaperSelectInit = function() {
+		 $scope.bookingState.selectedNewsPaper = "Times of India";
+			$http.get("getRatesByNewspaper/"+$scope.bookingState.selectedNewsPaper+'/'+$scope.bookingState.selectedMainCategoty)
+					.success(function(data){
+						$scope.tab=true;
+						    setDiscRates(data.discRates);
+						    SetRates(data.rates);
+					});
+		}
+	 */
     function NewDiscountCartItem(discountRate) {
 		return discountCartItem = {
 				id:discountRate.id,	

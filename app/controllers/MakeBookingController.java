@@ -75,7 +75,9 @@ import com.google.common.collect.Lists;
 	   }
 	 }
 	    @Transactional
-	    public static Result getBasicRateByLocationAndCategory(String Location,String Category ) {
+	    public static Result getBasicRateByLocationAndCategory(String Location,String Category , String selectYourAd) {
+	    	if("textClasified".equals(selectYourAd)){
+	    		System.out.println("in text");
 	    	List<Object[]> rates1 = UtilityQuery.getBasicRateByLocationAndCategory(Location.trim(),Category.trim()); 
 	    	List<Object[]> discountRates = UtilityQuery.getDiscountRateByLocationAndCategory(Location.trim(),Category.trim());
 			List<DiscountRate> discRates = Lists.newArrayList();
@@ -100,7 +102,7 @@ import com.google.common.collect.Lists;
                 }
                 rates.add(Rate.byId(rs[0].toString())
         				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
-        				.withAmountAndFreeUnit(rs[3].toString(),letter,number,rs[14].toString())
+        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
         				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),
         						rs[11].toString(),rs[12].toString(),rs[13].toString(),
         						rs[10].toString()) );
@@ -121,19 +123,77 @@ import com.google.common.collect.Lists;
 
                }
             }
-				
              discRates.add(DiscountRate.byId(discntRate[0].toString())
         	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
-        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number,discntRate[14].toString())
+        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
         	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
      }
-		
-	Map<String,Object> map = new HashMap<String, Object>();
-	map.put("rates", rates);
-    map.put("discRates", discRates);
-	System.out.println(Json.toJson(map));
-	return ok(Json.toJson(map));
+			Map<String,Object> map = new HashMap<String, Object>();
+			map.put("rates", rates);
+		    map.put("discRates", discRates);
+			System.out.println(Json.toJson(map));
+			return ok(Json.toJson(map));
+	   }else  if ("displayClassified".equals(selectYourAd)){System.out.println("inn classified");
+	    		List<Object[]> rates1 = UtilityQuery.getBasicRateByLocationAndCategoryForDisplay(Location.trim(),Category.trim()); 
+		    	List<Object[]> discountRates = UtilityQuery.getDiscountRateByLocationAndCategoryForDisplay(Location.trim(),Category.trim());
+				List<DiscountRate> discRates = Lists.newArrayList();
+		    	List<Rate> rates = Lists.newArrayList();
+	            
+				for(Object[] rs :rates1) {
+	        		
+	        		String str; 
+	            	str=rs[4].toString();
+	             	String number = "";
+	                String letter = "";
+	            
+	                for (int i = 0; i < str.length(); i++) {
+	                       char a = str.charAt(i);
+	                       if (Character.isDigit(a)) {
+	                             number = number + a;
 
+	                       } else if (Character.isAlphabetic(a)) {
+	                             letter = letter + a;
+
+	               }
+	                }
+	                rates.add(Rate.byId(rs[0].toString())
+	        				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
+	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
+	        				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),
+	        						rs[11].toString(),rs[12].toString(),rs[13].toString(),
+	        						rs[10].toString()) );
+	        	}
+				for(Object[] discntRate: discountRates ){
+					String str; 
+	            	str=discntRate[4].toString();
+	           	    String number = "";
+	                String letter = "";
+	            
+	                for (int i = 0; i < str.length(); i++) {
+	                       char a = str.charAt(i);
+	                       if (Character.isDigit(a)) {
+	                             number = number + a;
+
+	                       } else if (Character.isAlphabetic(a)) {
+	                             letter = letter + a;
+
+	               }
+	            }
+					
+	             discRates.add(DiscountRate.byId(discntRate[0].toString())
+	        	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
+	        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
+	        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
+	     }
+			
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("rates", rates);
+	    map.put("discRates", discRates);
+		System.out.println(Json.toJson(map));
+		return ok(Json.toJson(map));
+	    		
+	    	}
+         return null;
 	    }
 	    
 	    
@@ -155,8 +215,11 @@ import com.google.common.collect.Lists;
 	    }
 	    
 	@Transactional
-	public static Result getRatesByNewspaper(String newspaper,String Category) {
+	public static Result getRatesByNewspaper(String newspaper,String Category,String selectYourAd) {
 		// get the data for discount
+		//System.out.println("selectYourAd:"+selectYourAd);
+		String selectYourAd1 = selectYourAd.trim();
+       	if("textClasified".equals(selectYourAd1) ){
 		List<Object[]> rates1 = UtilityQuery.getBasicRateByNewspaperAndCategory(newspaper.trim(),Category.trim());
 		List<Object[]> discountRates = UtilityQuery.getDiscountRateByNewspaperAndCategory(newspaper.trim(),Category.trim());
 		
@@ -183,7 +246,7 @@ import com.google.common.collect.Lists;
 	                            		
 	                rates.add(Rate.byId(rs[0].toString())
 	        				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
-	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number,rs[14].toString())
+	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
 	        				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),
 	        						rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()) );
 	        	}
@@ -207,7 +270,7 @@ import com.google.common.collect.Lists;
 					
 	             discRates.add(DiscountRate.byId(discntRate[0].toString())
 	        	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
-	        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number,discntRate[14].toString())
+	        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
 	        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
          }
 				
@@ -215,6 +278,68 @@ import com.google.common.collect.Lists;
 		map.put("rates", rates);
 		map.put("discRates", discRates);
 		return ok(Json.toJson(map));
+       	}else if ("displayClassified".equals(selectYourAd.trim())){
+       		System.out.println("displayClassified:"+selectYourAd);
+       		List<Object[]> rates1 = UtilityQuery.getBasicRateByNewspaperAndCategoryForDisplay(newspaper.trim(),Category.trim());
+    		List<Object[]> discountRates = UtilityQuery.getDiscountRateByNewspaperAndCategoryForDisplay(newspaper.trim(),Category.trim());
+    		
+    		List<DiscountRate> discRates = Lists.newArrayList();
+    		List<Rate> rates = Lists.newArrayList();
+                      
+    				for(Object[] rs :rates1) {
+    	        		
+    	        		String str; 
+    	            	str=rs[4].toString();
+    	           	    String number = "";
+    	                String letter = "";
+    	            
+    	                for (int i = 0; i < str.length(); i++) {
+    	                       char a = str.charAt(i);
+    	                       if (Character.isDigit(a)) {
+    	                             number = number + a;
+
+    	                       } else if (Character.isAlphabetic(a)) {
+    	                             letter = letter + a;
+
+    	               }
+    	                }
+    	                            		
+    	                rates.add(Rate.byId(rs[0].toString())
+    	        				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
+    	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
+    	        				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),
+    	        						rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()) );
+    	        	}
+    			
+    				for(Object[] discntRate: discountRates ){
+    					String str; 
+    	            	str=discntRate[4].toString();
+    	           	    String number = "";
+    	                String letter = "";
+    	            
+    	                for (int i = 0; i < str.length(); i++) {
+    	                       char a = str.charAt(i);
+    	                       if (Character.isDigit(a)) {
+    	                             number = number + a;
+
+    	                       } else if (Character.isAlphabetic(a)) {
+    	                             letter = letter + a;
+
+    	               }
+    	            }
+    					
+    	             discRates.add(DiscountRate.byId(discntRate[0].toString())
+    	        	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
+    	        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
+    	        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
+             }
+    				
+    		Map<String,Object> map = new HashMap<String, Object>();
+    		map.put("rates", rates);
+    		map.put("discRates", discRates);
+    		return ok(Json.toJson(map));	
+       	}
+       	return null; 
 	}
 	 // check for order Status when page is refreshed.
     @Transactional
@@ -381,7 +506,6 @@ import com.google.common.collect.Lists;
         public Boolean isSelected;
         public String  packageSelected = "P";
         public int numberOfWords;
-        public String ClasifiedadRate;
        
         public static DiscountRate byId(String id) {
         	DiscountRate discountRate = new DiscountRate();
@@ -395,12 +519,11 @@ import com.google.common.collect.Lists;
             return this;
         }
 
-        public DiscountRate withAmountAndFreeUnit(String dTotalPrice, String unit,String freeUnit, String ClasifiedadRate ) {
+        public DiscountRate withAmountAndFreeUnit(String dTotalPrice, String unit,String freeUnit) {
         	this.dTotalPrice = dTotalPrice;
         	this.unit = unit;
             this.freeUnit = freeUnit;
-            this.ClasifiedadRate= ClasifiedadRate;
-          //  System.out.println("disccount rrate"+ClasifiedadRate);
+           
             return this;
         }
 
@@ -451,7 +574,6 @@ import com.google.common.collect.Lists;
         public Boolean isSelected;
         public String  packageSelected = "B";
 	     public String subcategory;	
-	     public String classifiedrate;
         public static Rate byId(String id) {
             Rate rate = new Rate();
             rate.id = id;
@@ -464,12 +586,10 @@ import com.google.common.collect.Lists;
             return this;
         }
 
-        public Rate withAmountAndFreeUnit(String amount, String unit,String  freeUnit, String classifiedrate) {
+        public Rate withAmountAndFreeUnit(String amount, String unit,String  freeUnit) {
         	this.rate = amount;
         	this.unit = unit;
             this.freeUnit=freeUnit;
-            this.classifiedrate = classifiedrate;
-           // System.out.println(" this.classifiedrate"+ this.classifiedrate);
             return this;
         }
 
