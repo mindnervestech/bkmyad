@@ -13,19 +13,18 @@ import play.mvc.Result;
 import views.html.addsiplay;
 
 public class AdDisplayController extends Controller {
-	
-	
-	 @Transactional
+
+	@Transactional
 	public static Result index() {
-		 //get the list of adcategory
+		// get the list of adcategory
 		List<Adcategory> listcategory = Adcategory.getAllArticles();
-    	//get the list of news paper
-    	List<String> listNewspaper = Newspaperdetails.getNameofallenewspaper();
-    	Map<String,Object> map  = new HashMap<String,Object>();
-    	map.put("categories", listcategory);
-    	map.put("newspapers", listNewspaper);
-    	return ok(addsiplay.render(Json.stringify(Json.toJson(map))));
-	
+		// get the list of news paper
+		List<String> listNewspaper = Newspaperdetails.getNameofallenewspaper();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("categories", listcategory);
+		map.put("newspapers", listNewspaper);
+		return ok(addsiplay.render(Json.stringify(Json.toJson(map))));
+
 	}
-	
+
 }

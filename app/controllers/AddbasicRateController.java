@@ -25,13 +25,13 @@ import play.mvc.Result;
 import viewmodel.BasicrateVM;
 import views.html.addbasicrate;
 
-public class AddbasicRateController extends Controller{
+public class AddbasicRateController extends Controller {
 
-	//addbasicrate.render()
-	 public static Result index() {
-	        return ok(addbasicrate.render());
-	    }
-	    
+	// addbasicrate.render()
+	public static Result index() {
+		return ok(addbasicrate.render());
+	}
+
 	@Transactional
 	public static Result getBasicrate(String City, String Category ,int currentPage) {
 		long totalPages = Basicrate.getAllAnnouncementsTotal(City,Category, 50);

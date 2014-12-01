@@ -207,7 +207,7 @@ import com.google.common.collect.Lists;
            	String dates[] = str.split(",");   
 	    
                 orderListuser.add(OrderList.byId(ol[24].toString())
-                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString()), ol[25].toString(),ol[26].toString(), ol[27].toString(),ol[28].toString(),(int) ol[29],ol[30].toString(),ol[31].toString(),ol[32].toString(),ol[33].toString(),ol[34].toString(),ol[35].toString(),ol[36].toString(),ol[37].toString(),ol[38].toString(),ol[39].toString()));
+                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString()), ol[25].toString(),ol[26].toString(), ol[27].toString(),ol[28].toString(),(int) ol[29],ol[30].toString(),ol[31].toString(),ol[32].toString(),ol[33].toString(),ol[34].toString(),ol[35].toString(),ol[36].toString(),ol[37].toString(),ol[38].toString(),ol[39].toString(),ol[40].toString()));
         	}
 	    	Map<String,Object> map = new HashMap<String, Object>();
 			map.put("orderListuser",orderListuser);
@@ -422,6 +422,7 @@ import com.google.common.collect.Lists;
 	    public String  imageAd;
 	    public String  adSizeSelect;
 	   // public float extraCost;
+	    public String adSelectedType;
 		
 	    public static OrderList byId(String id) {
 			 OrderList orderList = new OrderList();
@@ -431,8 +432,8 @@ import com.google.common.collect.Lists;
 		   public  OrderList cancelOrderDetails(String OrderId,String newspaper,String  location ,String description, String extraFortick , String onbgColorchange ,String extraForBackgroud,
 				   String onBorderSelected , String extraForBorder , String []  dates,String unit , String  fullTotal,  String mainCategoty ,  String totalUnit , String adbookedDate,
 				   String freeunit, float extra, float totalExtraCost ,float totalUnitCost, int noOfImpression, float rate, boolean bgColorSelect ,boolean notickforAd ,String extraForBorderInPer,String extraForBackgroudInPer,String  extraFortickInPer, String subcategory, int  numberOfWords
-    			  ,String descriptionFooter,String descriptionHeader, String descriptionBody,String footerColor,String bodyColor,String headerColor,String adType,String colorAd,String imageAd,String adSizeSelect){
-			
+    			  ,String descriptionFooter,String descriptionHeader, String descriptionBody,String footerColor,String bodyColor,String headerColor,String adType,String colorAd,String imageAd,String adSizeSelect, String adSelectedType){
+			   
 			   this.OrderId=OrderId;
 			   this.newspaper=newspaper;
 			   this.location=location;
@@ -473,6 +474,7 @@ import com.google.common.collect.Lists;
 			   this.colorAd = colorAd;
 			   this.imageAd = imageAd;
 			   this.adSizeSelect = adSizeSelect;
+			   this.adSelectedType = adSelectedType;
 			   return this;
 		   }
 	}
@@ -662,7 +664,7 @@ import com.google.common.collect.Lists;
 	    public String descriptionFooter;
 	    public String descriptionHeader;
 	    public String descriptionBody;
-	    
+	    public String adSelectedType;
 	    public String   colorAd;
 	    public String BWAd;
 	    public String imageAd;
@@ -767,7 +769,6 @@ import com.google.common.collect.Lists;
         String  emailId = session().get("emailId"); 
 	    @Transactional
 	    public static Result  saveComposeyourAd() {
-	  
 		 JsonNode json = request().body().asJson();
 	     //JsonNode nodes = json.path("data");
 	     System.out.println(" json value :: "+json.toString());
@@ -867,18 +868,18 @@ import com.google.common.collect.Lists;
 	  	      cds.imageAd = cartItem.get(i).imageAd;
 	  	      cds. adSizeSelect = cartItem.get(i).adSizeSelect;
 	  	     // cds.widthSelected = cartItem.get(i).
-	    	  
-	  	      
+	  	         
+	  	      //ad type save here
+	  	      cds.adSelectedType =  json.get("adSelectedType").asText();
+	  	      System.out.println("ad type"+cds.adSelectedType);
 	  	      cds.extraCost = cartItem.get(i).extraCost;
 	    	  Date date = new Date();
-	    	  cds.orderDate = sdf.format(date);//current date i.e. order date saved here
+	    	  cds.orderDate = sdf.format(date);//current date i.e. order placed date saved here
 	    	  
 	    	  //cartItem.get(i).nobgColor=   'true' means it is not selected ;
 	    	  //cartItem.get(i).notickforAd = 'true' means it is not selected ;
-	    	  
 	    	  if( cartItem.get(i).onBorderSelected.equals("No") && cartItem.get(i).nobgColor.equals("true")  && cartItem.get(i).notickforAd.equals("true") ) {
 	    		  cds.TotalCost =(cartItem.get(i).rate + ((cartItem.get(i).extra) * (cartItem.get(i).extraUnit))) * cartItem.get(i).dates.length;
-	    	    
 	    	  }
 	    	  else if( cartItem.get(i).onBorderSelected.equals("No") && cartItem.get(i).nobgColor.equals("true")  && cartItem.get(i).notickforAd.equals("false")){
 	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraFortick + ((cartItem.get(i).extra) * (cartItem.get(i).extraUnit)) ) * cartItem.get(i).dates.length;

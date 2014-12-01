@@ -1,89 +1,92 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
- <head>
- 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
- 	
-    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Rationale' rel='stylesheet' type='text/css'>
-	<link href="css/style-admin.css" rel="stylesheet" type="text/css" />
-	<link href="css/form-element-style.css" rel="stylesheet" type="text/css" /> <!-CSS sheet for designers form element->
-	<link href="css/main-syle.css" rel="stylesheet" type="text/css" />
-	<link href="css/jquery.jscrollpane.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="css/datetimepicker.css"></script>
-	<script type="text/javascript" src="../assets/app/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
-</head>
-<body ng-init="searchViewAllOrderData()"  ng-show = "username != ''">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-   <!--container begin-->
-    <section id="container" ng-show = "username !=  null " >
-    	<section class="contentpanel">
-        	<h4 >All users Order Details</h4>
-        	 <a href="/logout"  style="cursor: pointer ;float: left;width: 100%;text-align: right;">Logout</a>
-             <!--Advance search fildes begin-->
-        	<section class="dadsrch">
-            	<section class="heading"><h2></h2></section>
-                <section class="dadsrchdiv">
-                	<input name="title" type="text" ng-model="nameOfthenewspaper" class="" style="height:32px ;" ng-keyup="$event.keyCode == 13 ? searchViewAllOrderData(1,nameOfthenewspaper) : null"><input name="" type="button" class="btngray" value="Search" ng-click="searchViewAllOrderData(1,nameOfthenewspaper)">
-                </section>
-            </section>
-            <!--Advance search fildes end-->
-            <!--  <section class="dactperform">
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One'
+	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web'
+	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rationale'
+	rel='stylesheet' type='text/css'>
+<link href="css/style-admin.css" rel="stylesheet" type="text/css" />
+<link href="css/form-element-style.css" rel="stylesheet" type="text/css" />
+<!-CSS sheet for designers form element->
+<link href="css/main-syle.css" rel="stylesheet" type="text/css" />
+<link href="css/jquery.jscrollpane.css" rel="stylesheet" type="text/css"
+	media="all" />
+<link href="css/datetimepicker.css">
+</script>
+<script type="text/javascript"
+	src="../assets/app/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+</head>
+<body ng-init="searchViewAllOrderData()" ng-show="username != ''">
+
+	<!--container begin-->
+	<section id="container" ng-show="username !=  null "> <section
+		class="contentpanel">
+	<h4>All users Order Details</h4>
+	<a href="/logout"
+		style="cursor: pointer; float: left; width: 100%; text-align: right;">Logout</a>
+	<!--Advance search fildes begin--> <section class="dadsrch">
+	<section class="heading">
+	<h2></h2>
+	</section> <section class="dadsrchdiv"> <input name="title" type="text"
+		ng-model="nameOfthenewspaper" class="" style="height: 32px;"
+		ng-keyup="$event.keyCode == 13 ? searchViewAllOrderData(1,nameOfthenewspaper) : null">
+	<input name="" type="button" class="btngray" value="Search"
+		ng-click="searchViewAllOrderData(1,nameOfthenewspaper)"> </section> </section> <!--Advance search fildes end-->
+	<!--  <section class="dactperform">
                 <section class="left">
              		<input name="" type="button" value="Create" class="btnblue" ng-click="setDates()" data-toggle="modal"  />
            		</section>
-           	</section>	 -->
-            <!--grid begin-->
-         	<section class="dgridinfo dactcln">
-                <table ng-table="tableParams">
-                	<thead>
-                    	<tr>
-                    	     <th><a>Order Id</a></th> 
-                    	     <th><a>Order Date</a></th> 
-                    	    <!--   <th><a>Published Date</a></th> -->
-                              <th><a>Email Id </a></th>
-                             <!--  <th><a>Category</a></th> 
+           	</section>	 --> <!--grid begin--> <section
+		class="dgridinfo dactcln">
+	<table ng-table="tableParams">
+		<thead>
+			<tr>
+				<th><a>Order Id</a></th>
+				<th><a>Order Date</a></th>
+				<!--   <th><a>Published Date</a></th> -->
+				<th><a>Email Id </a></th>
+				<!--  <th><a>Category</a></th> 
                               <th><a>Newspaper</a></th> -->
-                             <th><a>Total Cost</a></th>
-                             <th><a>Status</a></th>
-                             <th><a>View Details</a></th>
-                        <tr>
-                    </thead>
-                	<tbody>
-                    	<tr ng-repeat="ancmt in viewAllOrder.results">
-                    	<td>{{ancmt.OrderID}}</td> 
-                    	     <td>{{ancmt.orderDate |  date:'MM/dd/yyyy'}}</td> 
-                    	  <!--   <td>{{ancmt.PublishDate |limitTo:22}}</td> -->
-                    	    <td>{{ancmt.userEmailId}}</td>
-                    	   <!--  <td>{{ancmt.Category}}</td>
+				<th><a>Total Cost</a></th>
+				<th><a>Status</a></th>
+				<th><a>View Details</a></th>
+			<tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="ancmt in viewAllOrder.results">
+				<td>{{ancmt.OrderID}}</td>
+				<td>{{ancmt.orderDate | date:'MM/dd/yyyy'}}</td>
+				<!--   <td>{{ancmt.PublishDate |limitTo:22}}</td> -->
+				<td>{{ancmt.userEmailId}}</td>
+				<!--  <td>{{ancmt.Category}}</td>
                     	    <td>{{ancmt.Nameofthenewspaper}}</td> -->
-                            <td>{{ancmt.TotalCost | setDecimal:2}}</td>
-                            <td><font ng-if="ancmt.cc_orderNo != null">{{ancmt.cc_orderNo}}</font><font ng-if="ancmt.cc_orderNo == null">Pending</font></td>
-                           <!--   cc_bid,cc_orderNo,cc_category,bank_name,bankMsg -->
-                         
-                            <td> <input name="" type="button" value="View Details" ng-click="setInvoiceData(ancmt)" data-toggle="modal"  /></td>
-                           </tr>
-                    	</tbody>
-                </table>
-        	</section>
-        	
-           
-            
-            <section class="dpaging">
-            	 <h4>{{pageNumber}}/{{pageSize}}</h4> 
-            	<span class="dpagingright">
-                	<a href="" class="dpagingprv" ng-click="onPrev(nameOfthenewspaper)">Prev</a>
-                	<a href="" class="dpagingnxt" ng-click="onNext(nameOfthenewspaper)">Next</a>
-                </span>
-            </section>
-        </div>     
-        </section>
-    </section>
-    
-  </div>
-				
-		  <!-- Update Modal -->
-		<!--
+				<td>{{ancmt.TotalCost | setDecimal:2}}</td>
+				<td><font ng-if="ancmt.cc_orderNo != null">{{ancmt.cc_orderNo}}</font><font
+					ng-if="ancmt.cc_orderNo == null">Pending</font></td>
+				<!--   cc_bid,cc_orderNo,cc_category,bank_name,bankMsg -->
+
+				<td><input name="" type="button" value="View Details"
+					ng-click="setInvoiceData(ancmt)" data-toggle="modal" /></td>
+			</tr>
+		</tbody>
+	</table>
+	</section> <section class="dpaging">
+	<h4>{{pageNumber}}/{{pageSize}}</h4>
+	<span class="dpagingright"> <a href="" class="dpagingprv"
+		ng-click="onPrev(nameOfthenewspaper)">Prev</a> <a href=""
+		class="dpagingnxt" ng-click="onNext(nameOfthenewspaper)">Next</a>
+	</span> </section>
+	</div>
+	</section> </section>
+
+	</div>
+
+	<!-- Update Modal -->
+	<!--
 		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false"  style="width: 65%;left: 41%;">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -147,90 +150,130 @@
 		</table>
 		</div>
 		</div></div></div> -->
-		
-		<div class="modal hide" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false"  style="width: 65%;left: 41%; height: 555px !important;  overflow:scroll !important;">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Invoice Details</h4>
-		      </div>
-       <div>
-     <img src="assets/img/Logo Arihant Booking.jpg" />
-		     <table style="margin-left: 2%;">
-		      <tr>
-			       <td><label style="color:blue">Order ID  </label></td><td><span style="font-weight:bold">{{inVoiceHeader.OrderID}}</span></td>
-			       <td><label style="color:blue;margin-left: 80px;">Order Date </label> </td><td><span style="font-weight:bold">{{inVoiceHeader.orderDate}}</span></td>
-			  </tr>
-			   <tr><!-- Nameofthenewspaper ,TotalCost,Bgcolor,,numberOfWords, -->
-			        <td><label style="color:blue">Client Name  </label> </td><td>&nbsp;&nbsp; <span style="font-weight:bold">{{inVoiceHeader.userEmailId}}</span></td>
-			       <td><label style="color:blue;margin-left: 80px;"> Payment Mode </label>  </td><td>&nbsp;&nbsp;<span style="font-weight:bold" ng-if="inVoiceHeader.paymentOption == 'cc'">Online</span></td>
-			  </tr>
-			  <tr>
-			  <td><label style="color:blue">Address </label> </td>
-			  <td><span style="font-weight:bold">{{addressDetails.fullName}},{{addressDetails.address}} , {{addressDetails.city}} ,{{addressDetails.state}} ,{{addressDetails.pinCode}} </span></td>
-			  <td><label style="color:blue;margin-left: 80px;">Mobile Number </label> </td>
-			   <td><span style="font-weight:bold">&nbsp;&nbsp;{{addressDetails.mobile}}</span></td>
-			  </tr>
-		 </table>
-     </div>
-		     
-		      <div class="modal-body" data ng-repeat="invoice in orderData">
-		      <table border="1" style="width: 900px;float: left; ">
-		      <tr>
-		         <td style="width: 22%;color:blue;"><label> <center>NewsPaper/Category/Sub Category/City</center> </label> </td>
-		         <td style="width: 24%%;color:blue"><center><label>Ad Text</label></center> </td>
-		         <td style="width: 22%;color:blue;"><label><center>Published Date</center></label> </td>
-		         <td style="width: 22%;color:blue;"><label><center>Enhancements</center></label> </td>
-		         <td style="width: 22%;color:blue;"><label><center>Total Cost </center></label></td>
-			   </tr>
-			   <tr style="height: 140px";>
-			       <td >{{invoice.Nameofthenewspaper}}/{{invoice.Category}}/ <font ng-if= "invoice.Subcategory == null ">Not Selected</font><font ng-if= "invoice.Subcategory != ''">{{invoice.Subcategory}}</font>/<br/>{{invoice.City}}</lable></td>
-			       <td > {{invoice.Adtext}}</lable></td>
-			       
-			  <!-- <tr>
+
+	<div class="modal hide" id="myModal2" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" data-backdrop="false"
+		style="width: 65%; left: 41%; height: 555px !important; overflow: scroll !important;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Invoice Details</h4>
+				</div>
+				<div>
+					<img src="assets/img/Logo Arihant Booking.jpg" />
+					<table style="margin-left: 2%;">
+						<tr>
+							<td><label style="color: blue">Order ID </label></td>
+							<td><span style="font-weight: bold">{{inVoiceHeader.OrderID}}</span></td>
+							<td><label style="color: blue; margin-left: 80px;">Order
+									Date </label></td>
+							<td><span style="font-weight: bold">{{inVoiceHeader.orderDate}}</span></td>
+						</tr>
+						<tr>
+							<!-- Nameofthenewspaper ,TotalCost,Bgcolor,,numberOfWords, -->
+							<td><label style="color: blue">Client Name </label></td>
+							<td>&nbsp;&nbsp; <span style="font-weight: bold">{{inVoiceHeader.userEmailId}}</span></td>
+							<td><label style="color: blue; margin-left: 80px;">
+									Payment Mode </label></td>
+							<td>&nbsp;&nbsp;<span style="font-weight: bold"
+								ng-if="inVoiceHeader.paymentOption == 'cc'">Online</span></td>
+						</tr>
+						<tr>
+							<td><label style="color: blue">Address </label></td>
+							<td><span style="font-weight: bold">{{addressDetails.fullName}},{{addressDetails.address}}
+									, {{addressDetails.city}} ,{{addressDetails.state}}
+									,{{addressDetails.pinCode}} </span></td>
+							<td><label style="color: blue; margin-left: 80px;">Mobile
+									Number </label></td>
+							<td><span style="font-weight: bold">&nbsp;&nbsp;{{addressDetails.mobile}}</span></td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="modal-body" data ng-repeat="invoice in orderData">
+					<table border="1" style="width: 900px; float: left;">
+						<tr>
+							<td style="width: 22%; color: blue;"><label>
+									<center>NewsPaper/Category/Sub Category/City</center>
+							</label></td>
+							<td style="width: 24%%; color: blue"><center>
+									<label>Ad Text</label>
+								</center></td>
+							<td style="width: 22%; color: blue;"><label><center>Published
+										Date</center></label></td>
+							<td style="width: 22%; color: blue;"><label><center>Enhancements</center></label>
+							</td>
+							<td style="width: 22%; color: blue;"><label><center>Total
+										Cost</center></label></td>
+						</tr>
+						<tr style="height: 140px";>
+							<td>{{invoice.Nameofthenewspaper}}/{{invoice.Category}}/ <font
+								ng-if="invoice.Subcategory == null ">Not Selected</font><font
+								ng-if="invoice.Subcategory != ''">{{invoice.Subcategory}}</font>/<br />{{invoice.City}}</lable></td>
+							<!-- <td>{{invoice.Adtext}}</lable></td> -->
+								<td>
+							<span ng-if="invoice.adSelectedType == 'textClasified'">{{invoice.Adtext}}</span>
+							<span ng-if="invoice.adSelectedType == 'displayClassified'"
+								ng-bind-html="to_trusted(invoice.headerDescption)"
+								ng-style="{'background-color':invoice.headerColor}" style="float:left;width:100%;"></span> <span
+								ng-bind-html="to_trusted(invoice.bodyDescription)" ng-if="invoice.adSelectedType == 'displayClassified'"
+								ng-style="{'background-color':invoice.bodyColor}" style="float:left;width:100%;"></span> <span
+								ng-bind-html="to_trusted(invoice.footerDescption)"ng-if="invoice.adSelectedType == 'displayClassified'"
+								ng-style="{'background-color':invoice.footerColor}" style="float:left;width:100%;"></span>
+								</td>
+							<!-- <tr>
 			      <td><label>BgColor Selected : </label></td>
 			      <td> {{invoice.Bgcolor}}</td>
 			       <td><label>Border Selected: </label> </td>
 			       <td>{{invoice.Border}}
 			      </td>
 			  </tr> -->
-			  
-			      <!--  <td><label>Tick Selected: </label> </td>
+
+							<!--  <td><label>Tick Selected: </label> </td>
 			       <td> {{invoice.Tick}} </td> -->
-			       <td> {{invoice.PublishDate}} </lable></td>
-			       <td>BgColor: <font ng-if="invoice.Bgcolor == ''">No</font><font ng-if="invoice.Bgcolor != ''">{{invoice.Bgcolor}}</font> <br> Border: {{invoice.Border}}<br>Tick: <font ng-if="invoice.Tick == 'true'">No</font><font  ng-if="invoice.Tick == 'false'">Yes</font> <br>No  Of Extra Words/Line :<span ng-if ="invoice.numberOfWords - invoice.freeunit > 0 ">{{invoice.numberOfWords - invoice.freeunit}}</span><span ng-if ="invoice.numberOfWords - invoice.freeunit <= 0 ">0</span><br>Total Extra Cost:{{invoice.totalExtraCost + invoice.extraCost | setDecimal:2}}</lable></td>
-			       
-			       <td> र.{{invoice.TotalCost |setDecimal:2}} </lable></td>
-			</span>
-			 </tr>
-		        </table>
-		       
-		      </div>
-		    </div>
-		     <table  border="1" style="float: right;margin-right: 2%;">
-		         <tr>
-			 		<td style="width:38%;">
-			 		<label style="color:blue" >Grand Total :</label>
-			 		</td> <td style="width:38%;">
-			 		र.{{grantTotal}}
-			 		</td>
-			 </tr>
-		        </table>
-		  </div>
+							<td>{{invoice.PublishDate}} </lable></td>
+							<td>BgColor: <font ng-if="invoice.Bgcolor == ''">No</font><font
+								ng-if="invoice.Bgcolor != ''">{{invoice.Bgcolor}}</font> <br>
+								Border: {{invoice.Border}}<br>Tick: <font
+								ng-if="invoice.Tick == 'true'">No</font><font
+								ng-if="invoice.Tick == 'false'">Yes</font> <br>No Of Extra
+								Words/Line :<span
+								ng-if="invoice.numberOfWords - invoice.freeunit > 0 ">{{invoice.numberOfWords
+									- invoice.freeunit}}</span><span
+								ng-if="invoice.numberOfWords - invoice.freeunit <= 0 ">0</span><br>Total
+								Extra Cost:{{invoice.totalExtraCost + invoice.extraCost |
+								setDecimal:2}}</lable></td>
+
+							<td>र.{{invoice.TotalCost |setDecimal:2}} </lable></td>
+							</span>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<table border="1" style="float: right; margin-right: 2%;">
+				<tr>
+					<td style="width: 38%;"><label style="color: blue">Grand
+							Total :</label></td>
+					<td style="width: 38%;">र.{{grantTotal}}</td>
+				</tr>
+			</table>
 		</div>
-		  <script type="text/javascript">
-    $(function(){
-      $('#myModal2').slimScroll({
-          color: 'red'
-      });
-    });
-</script>
-<style>
-	.ngdialog-content {
-		width:53% !important;
-	}
-	</style>  
-  </body>
- 
-  </html>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			$('#myModal2').slimScroll({
+				color : 'red'
+			});
+		});
+	</script>
+	<style>
+.ngdialog-content {
+	width: 53% !important;
+}
+</style>
+</body>
+
+</html>

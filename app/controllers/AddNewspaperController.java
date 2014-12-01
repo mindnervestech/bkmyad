@@ -55,10 +55,10 @@ public class AddNewspaperController extends Controller{
 		newspaperdetails.save();
 		return ok();
 	}
-	
+
 	@Transactional
 	public static Result deleteNewpaper(String id) {
-		Newspaperdetails newspaperdetails =  Newspaperdetails.findById(id);
+		Newspaperdetails newspaperdetails = Newspaperdetails.findById(id);
 		newspaperdetails.delete();
 		return ok();
 	}
@@ -89,53 +89,48 @@ public class AddNewspaperController extends Controller{
 	}
 	
 
-    @Transactional
-	public static Result getNewspaper()
-	{
-		List<String> listnewspaper=Newspaperdetails.getAllnewspaperString();
+	@Transactional
+	public static Result getNewspaper() {
+		List<String> listnewspaper = Newspaperdetails.getAllnewspaperString();
 		List<Map> list = new ArrayList<>();
-		for(String newspaperdetails : listnewspaper){
-			Map<String,String> map = new HashMap<String, String>();
-		
+		for (String newspaperdetails : listnewspaper) {
+			Map<String, String> map = new HashMap<String, String>();
+
 			map.put("newspapers", newspaperdetails);
 			list.add(map);
 		}
-		
+
 		return ok(Json.toJson(list));
 	}
-    
-        
-    @Transactional
-	public static Result getStatename()
-	{
-		List<String> listcname=State.getallstateString();
+
+	@Transactional
+	public static Result getStatename() {
+		List<String> listcname = State.getallstateString();
 		List<Map> list = new ArrayList<>();
-		for(String state : listcname){
-			Map<String,String> map = new HashMap<String, String>();
-			
+		for (String state : listcname) {
+			Map<String, String> map = new HashMap<String, String>();
+
 			map.put("Statename", state);
 			list.add(map);
 		}
-		
+
 		return ok(Json.toJson(list));
 	}
-    
-    @Transactional
-    public static Result getCityname(String state){
-    	List<String> listcity = City.getallcity(state); 
-    	List<Map> list = new ArrayList<>();
-    	if(!listcity.isEmpty()) {
-    		Iterable<String> subCats = Splitter.on(",").split(listcity.get(0));
-    		for(String city : subCats){
-    			Map<String,String> map = new HashMap<String, String>();
-    			map.put("cityname", city);
-    			list.add(map);
-    		}
-    		return ok(Json.toJson(list));
-    	}
-    	return ok();
-    }
-    
-	
-	
+
+	@Transactional
+	public static Result getCityname(String state) {
+		List<String> listcity = City.getallcity(state);
+		List<Map> list = new ArrayList<>();
+		if (!listcity.isEmpty()) {
+			Iterable<String> subCats = Splitter.on(",").split(listcity.get(0));
+			for (String city : subCats) {
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("cityname", city);
+				list.add(map);
+			}
+			return ok(Json.toJson(list));
+		}
+		return ok();
+	}
+
 }

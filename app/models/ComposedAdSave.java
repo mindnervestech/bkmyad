@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Query;
-
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 
@@ -69,7 +68,11 @@ public class ComposedAdSave{
 	   public String BWAd= "not set";
 	   public String imageAd= "not set";
 	   public String adSizeSelect= "not set";
+	   public String adSelectedType = "textClasified".trim(); 
 	   public float extraCost = 0;
+	  
+	   
+	   
 	   
 	   public String getAdbookedId() {
 		return adbookedId;

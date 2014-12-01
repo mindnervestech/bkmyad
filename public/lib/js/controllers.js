@@ -356,13 +356,10 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 	}
 	
 	$scope.a=false ;
-	
-	
 	$('body').on('blur','#translationArea',function(e) {
 		console.log("capture focus out area... ");
 		computeRateByUnit();
 	});
-	
 	$scope.selectedCartItemOnPopUp.isHindi=false;
 	$scope.transliterateDone = function(data) {
 		console.log("$scope.selectedCartItemOnPopUp.isHindi " + $scope.selectedCartItemOnPopUp.isHindi);
@@ -565,7 +562,6 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 			document.getElementById('adPreview').style.width = 100 + '%';
 			document.getElementById('adPreview').style.height = 90 + 'px';
 		}
- 		
 		//console.log("adSelect Size:"$scope.selectedCartItemOnPopUp.adSizeSelect);
 		$scope.descriptionHeader = false;
 		$scope.descriptionBody = false;
@@ -2508,6 +2504,10 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			    		     $scope.tab=true;
 			    			 setCancelOrderIdData(data.orderListuser);
 			    			 PersistanceOrderItemDetails(data.orderListuser);
+			    				 for(var i=0;i<data.orderListuser.length;i++){
+			    				 $scope.selectYourAd = data.orderListuser[i].adSelectedType;
+			    			 }
+			    			 console.log("data obtained ordr:"+JSON.stringify(data.orderListuser));
 			    			});
 			    		}
 			});
@@ -2523,6 +2523,13 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		}
 		
 	 }
+		//set if the no ad is selected (Default)
+		if(angular.isUndefined($scope.selectYourAd ) || $scope.selectYourAd =="") {
+			//console.log('inside function');
+			$scope.selectYourAd  = "textClasified";
+		}
+		
+		
 		 function  PersistanceOrderItem (orderListuser) {
 				return cartItem = {
 						id:orderListuser.id,	
@@ -2783,6 +2790,11 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	$scope.updateCartItem = function (c) {
 		ComposeAd(c);
 	}
+	
+	$scope.updateDisplayCartItem = function (c) {
+		ComposeDispAd(c);
+	}
+	
 	$scope.selectedCartItemOnPopUp = {};
 	SetSelectedCartItemOnPopUp = function(c) {
 		$scope.selectedCartItemOnPopUp = angular.copy(c);
@@ -3369,7 +3381,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				carts: $scope.carts,
 				address:$scope.address,
 				email:$scope.userId,
-				modeOfPayment:$scope.modeOfPayment
+				modeOfPayment:$scope.modeOfPayment,
+				adSelectedType:$scope.selectYourAd
 			}
 		}).success(function(data){
 			

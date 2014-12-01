@@ -5,73 +5,93 @@ import models.Order;
 
 public class ComposedAdSaveVMInvoice {
 	public Long OID;
-	   public String IpAddress;
-	   public String  OrderID;
-	   public String Nameofthenewspaper;
-	   public String City;
-	   public String Adtext;
-	   public String TotalNoofline;
-	   public String Linecost;
-	   public String Tick;
-	   public float TickRate;
-	   public String Bgcolor;
-	   public float BgcolorRate;
-	   public String Border;
-	   public float BorderCost;
-       public String Noofads;
-	    public String PublishDate;
-	   public String BasicRate;
-	   public float TotalCost;
-	   public String Guid;
-	   public String Extraborderper;
-	   public String Extrabgper;
-	   public String Tickper;
-	   public String  Category;
-	   public String  Subcategory;
-	   public int numberOfWords;
-	   public String paymentOption;
-	   public String userEmailId;
-	   public String Offer;
-	   public String Enhancement;
-	   public String orderDate;
-	   public String freeunit;
-	   public float extra;
-	   public float totalExtraCost;
-	   public float totalUnitCost;
-	   public int noOfImpression;
-	   public float rate;
-	   public String bgColorSelect; 
-	   public String  adbookedId;
-	   
-	   public float extraCost;
-	   
-	   public ComposedAdSaveVMInvoice(ComposedAdSave composedAdSave) {
-	    	this.OrderID=composedAdSave.OrderID;
-	    	this.orderDate=composedAdSave.orderDate;
-	    	this.userEmailId=composedAdSave.userEmailId;
-	    	this.Adtext=composedAdSave.Adtext;
-	    	this.Nameofthenewspaper=composedAdSave.Nameofthenewspaper;
-	    	this.TotalCost=composedAdSave.TotalCost;
-	    	this.Bgcolor = composedAdSave.Bgcolor;
-	    	this.Border = composedAdSave.Border;
-	    	this.PublishDate = composedAdSave.PublishDate;
-	    	this.numberOfWords = composedAdSave.numberOfWords;
-	    	this.paymentOption = composedAdSave.paymentOption;
-	    	this.Tick = composedAdSave.Tick;
-	    	this.Category = composedAdSave.Category;
-	    	this.City = composedAdSave.City;
-	    	this.Subcategory = composedAdSave.Subcategory;
-	    	
-	    	this.totalExtraCost = composedAdSave.totalExtraCost;
-	    	this.totalUnitCost  = composedAdSave.totalUnitCost;
-	    	this.numberOfWords = composedAdSave.numberOfWords;
-	    	this.extraCost = composedAdSave.extraCost;
-	    	this.freeunit =  composedAdSave.freeunit;
-	    	System.out.println("this.Subcategory"+this.Subcategory);
-	    	System.out.println("this.paymentOption"+this.paymentOption);
-	    	
-	    	
-	    }
+	public String IpAddress;
+	public String OrderID;
+	public String Nameofthenewspaper;
+	public String City;
+	public String Adtext;
+	public String TotalNoofline;
+	public String Linecost;
+	public String Tick;
+	public float TickRate;
+	public String Bgcolor;
+	public float BgcolorRate;
+	public String Border;
+	public float BorderCost;
+	public String Noofads;
+	public String PublishDate;
+	public String BasicRate;
+	public float TotalCost;
+	public String Guid;
+	public String Extraborderper;
+	public String Extrabgper;
+	public String Tickper;
+	public String Category;
+	public String Subcategory;
+	public int numberOfWords;
+	public String paymentOption;
+	public String userEmailId;
+	public String Offer;
+	public String Enhancement;
+	public String orderDate;
+	public String freeunit;
+	public float extra;
+	public float totalExtraCost;
+	public float totalUnitCost;
+	public int noOfImpression;
+	public float rate;
+	public String bgColorSelect;
+	public String adbookedId;
+
+	public String footerDescption = "not set";
+	public String headerDescption = "not set";
+	public String bodyDescription = "not set";
+	public String footerColor = "not set";
+	public String bodyColor = "not set ";
+	public String headerColor = "not set";
+	public String adType = "not set ";
+	// public String widthSelected;
+
+	public String colorAd = "not set";
+	public String BWAd = "not set";
+	public String imageAd = "not set";
+	public String adSizeSelect = "not set";
+	 public String adSelectedType = "textClasified";
+	public float extraCost;
+
+	public ComposedAdSaveVMInvoice(ComposedAdSave composedAdSave) {
+		this.OrderID = composedAdSave.OrderID;
+		this.orderDate = composedAdSave.orderDate;
+		this.userEmailId = composedAdSave.userEmailId;
+		this.Adtext = composedAdSave.Adtext;
+		this.Nameofthenewspaper = composedAdSave.Nameofthenewspaper;
+		this.TotalCost = composedAdSave.TotalCost;
+		this.Bgcolor = composedAdSave.Bgcolor;
+		this.Border = composedAdSave.Border;
+		this.PublishDate = composedAdSave.PublishDate;
+		this.numberOfWords = composedAdSave.numberOfWords;
+		this.paymentOption = composedAdSave.paymentOption;
+		this.Tick = composedAdSave.Tick;
+		this.Category = composedAdSave.Category;
+		this.City = composedAdSave.City;
+		this.Subcategory = composedAdSave.Subcategory;
+
+		this.totalExtraCost = composedAdSave.totalExtraCost;
+		this.totalUnitCost = composedAdSave.totalUnitCost;
+		this.numberOfWords = composedAdSave.numberOfWords;
+		this.extraCost = composedAdSave.extraCost;
+		this.freeunit = composedAdSave.freeunit;
+		System.out.println("this.Subcategory" + this.Subcategory);
+		System.out.println("this.paymentOption" + this.paymentOption);
+		this.headerDescption = composedAdSave.headerDescption;
+		this.bodyDescription = composedAdSave.bodyDescription;
+		this.footerDescption = composedAdSave.footerDescption;
+		this.footerColor = composedAdSave.footerColor;
+		this.bodyColor = composedAdSave.bodyColor;
+		this.headerColor = composedAdSave.headerColor;
+		this.adSelectedType = composedAdSave.adSelectedType;
+
+	}
 
 	public float getExtraCost() {
 		return extraCost;
@@ -150,7 +170,7 @@ public class ComposedAdSaveVMInvoice {
 	}
 
 	public void setCategory(String category) {
-		
+
 		Category = category;
 	}
 
@@ -161,7 +181,7 @@ public class ComposedAdSaveVMInvoice {
 	public void setSubcategory(String subcategory) {
 		Subcategory = subcategory;
 	}
-	
+
 	public int getNumberOfWords() {
 		return numberOfWords;
 	}
@@ -189,7 +209,7 @@ public class ComposedAdSaveVMInvoice {
 	public float getTotalExtraCost() {
 		return totalExtraCost;
 	}
-	
+
 	public String getCity() {
 		return City;
 	}
@@ -217,5 +237,5 @@ public class ComposedAdSaveVMInvoice {
 	public void setUserEmailId(String userEmailId) {
 		this.userEmailId = userEmailId;
 	}
-	  
+
 }

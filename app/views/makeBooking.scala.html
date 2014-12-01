@@ -3,7 +3,7 @@
 <div class="row" ng-init='init(@Html(beData))'>
 
 	<div class="span9">
-	<!-- <div >
+		<!-- <div >
 			<font>Select Ad :</font>
 			<img src="NewDesign/np-logos/img-txtad-small.gif" alt="Smiley face" >
 			<input type="radio" name="selectAd" value="textClasified"  ng-model ="selectYourAd" ng-change = "onAdChange(selectYourAd)">Text Classified <lable style="font-size:10px">(Simple Text. Charges per line/ word)</lable>
@@ -11,437 +11,462 @@
 		    <input type="radio" name="selectAd" value="displayClassified" ng-model="selectYourAd" ng-change = "onAdChange(selectYourAd)">Display Classified
 		    <lable style="font-size:10px">(Include image, colour, font variation to your ad)</lable>
 	</div> -->
-	<br />
-	<br />
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3 mnt-shadow-deco">
-          <div rc-wizard="sampleWizard" rc-disabled="rc.firstForm.submitInProgress">
-           
-           <ul class="nav rc-nav-wizard" style="background-color: #f9f9f9;margin-bottom: 1%;">
-           
-              <li class="active" style="float:left;">
-                <a class="active custom-font" href="#first" ng-click="rc.sampleWizard.first()" data-toggle="tab" style="float: left;height: 17px;border: 0px solid black;">
-                  <!-- <span class="badge">1</span> -->
-                  <span >Select Category</span>
-                </a>
-                <span class="breadcrumb_arrow"></span>
-              </li>
-              
-                 <li style="float:left;">
-                <a class="custom-font" href="#second" ng-click="rc.sampleWizard.moveTo(1)" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
-                 <!--  <span class="badge">2</span> -->
-                  <span>Pick Your Package</span>
-                </a>
-                <span class="breadcrumb_arrow"></span>
-              </li>
-              <li style="float:left;">
-                <a class="custom-font" href="#third"  data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
-                 <!--  <span class="badge">3</span> -->
-                  <span>Ads Summary</span>
-                </a>
-                <span class="breadcrumb_arrow"></span>
-              </li> 
-               <li style="float:left;" ng-if="name == ''">
-                <a class="custom-font" href="#fourth" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
-                 <!--  <span class="badge">3</span> -->
-                  <span>Login</span>
-                 </a>
-                  <span class="breadcrumb_arrow"></span>
-              </li>
-              <li style="float:left;">
-                <a class="custom-font" href="#fifth" data-toggle="tab"  style="float: left;height: 17px;border: 0px solid black;">
-                 <!--  <span class="badge">3</span> -->
-                  <span>Payment Details</span>
-                </a>
-              </li>
-             
-            </ul>
-            <!-- <span id="loading-id"><img src="images/loading.gif"/></span> -->
-            <div class="tab-content" style="margin-left: 10px;">
-              
-              <form class="tab-pane active" id="first" name="firstForm"   rc-step novalidate>
-             <div style="border: 2px solid black; float:left;width:98%">
-					<font style="float: left;font-size: 20px;">Select Ad Type :&nbsp;&nbsp;</font>
-					<div style="float: left;width: 40%;">
-					    
-								<img src="NewDesign/np-logos/img-txtad-small.gif" alt="Smiley face"  style="float: left;">
-								
-						<div>		
-					    		&nbsp;&nbsp;<input type="radio" name="selectAd" value="textClasified"  ng-model ="selectYourAd" ng-change = "onAdChange(selectYourAd)">&nbsp;&nbsp;<lable style="font-weight: bold;">Text Classified </lable>
-					    </div>
+		<br /> <br />
+		<div class="col-xs-12 col-sm-6 col-sm-offset-3 mnt-shadow-deco">
+			<div rc-wizard="sampleWizard"
+				rc-disabled="rc.firstForm.submitInProgress">
+
+				<ul class="nav rc-nav-wizard"
+					style="background-color: #f9f9f9; margin-bottom: 1%;">
+
+					<li class="active" style="float: left;"><a
+						class="active custom-font" href="#first"
+						ng-click="rc.sampleWizard.first()" data-toggle="tab"
+						style="float: left; height: 17px; border: 0px solid black;"> <!-- <span class="badge">1</span> -->
+							<span>Select Category</span>
+					</a> <span class="breadcrumb_arrow"></span></li>
+
+					<li style="float: left;"><a class="custom-font" href="#second"
+						ng-click="rc.sampleWizard.moveTo(1)" data-toggle="tab"
+						style="float: left; height: 17px; border: 0px solid black;"> <!--  <span class="badge">2</span> -->
+							<span>Pick Your Package</span>
+					</a> <span class="breadcrumb_arrow"></span></li>
+					<li style="float: left;"><a class="custom-font" href="#third"
+						data-toggle="tab"
+						style="float: left; height: 17px; border: 0px solid black;"> <!--  <span class="badge">3</span> -->
+							<span>Ads Summary</span>
+					</a> <span class="breadcrumb_arrow"></span></li>
+					<li style="float: left;" ng-if="name == ''"><a
+						class="custom-font" href="#fourth" data-toggle="tab"
+						style="float: left; height: 17px; border: 0px solid black;"> <!--  <span class="badge">3</span> -->
+							<span>Login</span>
+					</a> <span class="breadcrumb_arrow"></span></li>
+					<li style="float: left;"><a class="custom-font" href="#fifth"
+						data-toggle="tab"
+						style="float: left; height: 17px; border: 0px solid black;"> <!--  <span class="badge">3</span> -->
+							<span>Payment Details</span>
+					</a></li>
+
+				</ul>
+				<!-- <span id="loading-id"><img src="images/loading.gif"/></span> -->
+				<div class="tab-content" style="margin-left: 10px;">
+
+					<form class="tab-pane active" id="first" name="firstForm" rc-step
+						novalidate>
+						<div style="border: 2px solid black; float: left; width: 98%">
+							<font style="float: left; font-size: 20px;">Select Ad Type
+								:&nbsp;&nbsp;</font>
+							<div style="float: left; width: 40%;">
+
+								<img src="NewDesign/np-logos/img-txtad-small.gif"
+									alt="Smiley face" style="float: left;">
+
+								<div>
+									&nbsp;&nbsp;<input type="radio" name="selectAd"
+										value="textClasified" ng-model="selectYourAd"
+										ng-change="onAdChange(selectYourAd)">&nbsp;&nbsp;
+									<lable style="font-weight: bold;">Text Classified </lable>
+								</div>
+								<div>
+									&nbsp;&nbsp;
+									<lable style="font-size:10px">(Simple Text. Charges per
+									line/ word)</lable>
+								</div>
+							</div>
+							<div style="float: left; width: 40%;">
+
+
+								<img src="NewDesign/np-logos/img-displayad-small.gif"
+									alt="Smiley face" style="float: left;">
+								<div>
+									&nbsp;&nbsp; <input type="radio" name="selectAd"
+										value="displayClassified" ng-model="selectYourAd"
+										ng-change="onAdChange(selectYourAd)">&nbsp;&nbsp;
+									<lable style="font-weight: bold;">Display Classified</lable>
+								</div>
+								<div>
+									&nbsp;&nbsp;
+									<lable style="font-size:10px">(Include image, colour,
+									font variation to your ad)</lable>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane active" id="blockView">
+							<ul class="thumbnails">
+								<li ng-repeat="cat in bookingRequest.categories" class="span3">
+									<div class="thumbnail" ng-click="onCatSelected(cat)">
+										<a> <img style="max-width: 35%;"
+											class="img-circle img-thumbnail" src="Category/{{cat}}.jpg"
+											alt=""></a>
+										<div class="caption">
+											<p>{{cat}}</p>
+
+										</div>
+									</div>
+								</li>
+							</ul>
+							<hr class="soft">
+						</div>
+
+
+					</form>
+
+
+					<form class="tab-pane" id="second" name="secondForm" rc-step>
+						<div style="margin: 1%;">
+							Category : {{bookingState.selectedMainCategoty}} <u><lable
+									ng-click="onChangeCetegory();"
+									style="cursor: pointer;margin-left: 5%;color: #65BDDF;">Change</lable></u>
+							<lable ng-if="resultSubCategory.length != 0"
+								style="margin-left: 10%;">Sub Category: </lable>
+							<select ng-show="resultSubCategory.length != 0"
+								ng-model="selectedsubCat"
+								ng-change="onSubcategorySelect(selectedsubCat)"
+								class="mnt-select" style="margin-top: 1%;">
+								<option ng-repeat="scat in resultSubCategory">{{scat}}</option>
+								<option value="">--Please Select Subcategory--</option>
+							</select>
+						</div>
+						<tabset> <tab ng-click="tabchange()"
+							heading="Select Your Newspaper"> <!--  <p>{{checkMatrimonial}}</p> -->
+						<div ng-show="checkMatrimonial">
+							<select class="mnt-select" style="margin-top: 1%;">
+								<!-- <option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option> -->
+								<option value="">--Select Cast--</option>
+								<option selected="selected" value="1">Agarwal</option>
+								<option value="2">Agarwal- Bisa</option>
+								<option value="3">Bahai</option>
+								<option value="4">Bari</option>
+								<option value="5">Brahmin</option>
+								<option value="6">Chandravanshi Kshatriya</option>
+								<option value="7">Chaurasia</option>
+								<option value="8">Ckp</option>
+								<option value="9">Dhobi</option>
+								<option value="10">Garhwali</option>
+								<option value="11">Gsb</option>
+								<option value="12">Gujar</option>
+								<option value="13">Gujarati Patidar</option>
+								<option value="14">Gujarati Vaishnav</option>
+								<option value="15">Gurjjar</option>
+								<option value="16">Jain</option>
+								<option value="17">Jaiswal</option>
+								<option value="18">Jaiswal (Raj)</option>
+								<option value="19">Jatav</option>
+								<option value="20">Kashyap</option>
+								<option value="21">Kayastha</option>
+								<option value="22">Khatri</option>
+								<option value="23">Khukhrain</option>
+								<option value="24">Kshatriya</option>
+								<option value="25">Kumauni</option>
+								<option value="26">Kurmi</option>
+								<option value="27">Kutchi</option>
+								<option value="28">Lingayat</option>
+								<option value="29">Mahajan</option>
+								<option value="30">Maheshwari</option>
+								<option value="31">Mallah</option>
+								<option value="32">Maurya</option>
+								<option value="33">Mina</option>
+								<option value="34">Mogaveera</option>
+								<option value="35">Pal</option>
+								<option value="36">Panchar Sutar</option>
+								<option value="37">Pasi</option>
+								<option value="38">Paswan</option>
+								<option value="39">Prajapati</option>
+								<option value="40">Punjabi</option>
+								<option value="41">Sahu-Teli</option>
+								<option value="42">Saini</option>
+								<option value="43">Saryuparin</option>
+								<option value="44">Shivhare</option>
+								<option value="45">Swarnkar</option>
+								<option value="46">Vaish</option>
+								<option value="47">Varshney</option>
+								<option value="48">Vishwakarma Panchal</option>
+								<option value="49">Yadav</option>
+							</select> <select class="mnt-select" style="margin-top: 1%;">
+								<!-- <option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option> -->
+								<option value="">--Select Age--</option>
+								<option selected="selected" value="1">18-21 Age</option>
+								<option value="2">22-29 Age</option>
+								<option value="3">30-39 Age</option>
+								<option value="4">40-49 Age</option>
+								<option value="5">50-59 Age</option>
+
+							</select>
+						</div>
+						<!-- <select ng-show="resultSubCategory.length != 0" ng-model="selectedsubCat" ng-change = "onSubcategorySelect(selectedsubCat)"class="mnt-select" style="margin-top: 1%;">
+			    		 <option ng-repeat="scat in resultSubCategory" >{{scat}}</option>
+			    		<option value="">--Please Select Subcategory--</option>
+			    	</select> --> <select class="mnt-select" style="margin-top: 1%;"
+							ng-model="bookingState.selectedNewsPaper"
+							ng-change="onNewspaperSelect()">
+							<option ng-repeat="newspaper in bookingRequest.newspapers"
+								value="{{newspaper}}" ng-selected="$index == 0">{{newspaper}}</option>
+							<option value="">--Please Select Newspaper--</option>
+						</select> <img src="/NewDesign/images/np-icon.jpg" style="width: 6%;" />
+						<div class="well">
+
+							<tabset> <!-- class="icon-search" --> <tab> <img
+								data-ng-show="carts.length > 0"
+								data-ng-click="checkForSubCategorySelect()"
+								class="mnt-proceed-btn" src="images/proceed-button.png" /> <tab-heading>
+							<i class="icon-tags"></i> Basic Rate </tab-heading>
+
+							<div ng-show="rates.length > 0 && tab" class="backcolo">
+
+								<ul ng-show="rates.length > 0">
+									<div class="Internal">
+										<li ng-repeat="rate in rates" class="pillboxes custom-pill">
+											<div style="padding: 1px;">
+												<span> <input ng-click="rateClicked($event,rate)"
+													ng-model="rate.isSelected" style="margin: 1px"
+													ng-disable="disableBasicRateChkbox" type="checkbox">
+												</span> <span>{{rate.location}} - Rs {{rate.rate}}
+													{{rate.freeUnit}} / {{rate.unit}} </span>
+											</div>
+
+										</li>
+									</div>
+								</ul>
+							</div>
+							<div ng-show="rates.length == 0" class="alert alert-block">
+								No Rates Available !</div>
+							</tab> <tab> <tab-heading> </tab-heading> </tab> </tabset>
+						</div>
 						<div>
-							&nbsp;&nbsp;<lable style="font-size:10px">(Simple Text. Charges per line/ word)</lable> 
-                        </div>					
-					</div>
-				    <div style="float: left;width: 40%;">
-					    
-					   
-				      <img src="NewDesign/np-logos/img-displayad-small.gif" alt="Smiley face" style="float: left;">
-				         <div>
-				       &nbsp;&nbsp; <input type="radio" name="selectAd" value="displayClassified" ng-model="selectYourAd" ng-change = "onAdChange(selectYourAd)">&nbsp;&nbsp;<lable style="font-weight: bold;">Display Classified</lable>
+							<img src="/NewDesign/images/or.gif" style="width: 100%;" />
 						</div>
-				 	    <div>
-				 	    	&nbsp;&nbsp;<lable style="font-size:10px">(Include image, colour, font variation to your ad)</lable>
-			           </div>
-			       </div>
-		     </div>
-                <div class="tab-pane active" id="blockView">
-				<ul class="thumbnails">
-					<li ng-repeat="cat in bookingRequest.categories" class="span3">
-					  <div class="thumbnail" ng-click="onCatSelected(cat)">
-						<a >
-						<img style="max-width: 35%;" class="img-circle img-thumbnail" src="Category/{{cat}}.jpg" alt=""></a>
-						<div class="caption">
-						  <p> 
-							{{cat}} 
-						  </p>
-						  
+						<div class="well">
+
+							<tabset> <!-- class="icon-search" --> <tab> <tab-heading>
+							<i class="icon-tags"></i> Package Rate </tab-heading>
+							<div ng-show="discRates.length > 0" class="backcolo">
+								<ul ng-show="discRates.length > 0">
+									<div class="Internal">
+										<li ng-repeat="discountRate in discRates"
+											class="pillboxes custom-pill">
+											<div style="padding: 1px;">
+												<span> <input
+													ng-click="discountRateClicked($event,discountRate)"
+													ng-model="discountRate.isSelected" style="margin: 1px"
+													ng-disabled="disablePackageCheckBox" type="checkbox">
+												</span> <span>{{discountRate.location}} - Rs
+													{{discountRate.dTotalPrice}} {{discountRate.freeUnit}}/
+													{{discountRate.unit}} </span>
+											</div>
+										</li>
+									</div>
+								</ul>
+							</div>
+							<div ng-show="discRates.length == 0" class="alert alert-block">
+								No Rates Available !</div>
+							</tab> <tab> <tab-heading></tab> </tabset>
 						</div>
-					  </div>
-					</li>
-			     </ul>
-				<hr class="soft">
-				</div>
-				
-				
-              </form>
-              
-              
-              <form class="tab-pane" id="second" name="secondForm"  rc-step>
-              <div style="margin: 1%;">
-                	 Category : {{bookingState.selectedMainCategoty}} 
-                	      <u><lable ng-click="onChangeCetegory();" style="cursor: pointer;margin-left: 5%;color: #65BDDF;">Change</lable></u>
-                	  <lable ng-if="resultSubCategory.length != 0" style="margin-left: 10%;">Sub Category: </lable>
-                	 <select ng-show="resultSubCategory.length != 0" ng-model="selectedsubCat" ng-change = "onSubcategorySelect(selectedsubCat)"class="mnt-select" style="margin-top: 1%;">
-			    		 <option ng-repeat="scat in resultSubCategory" >{{scat}}</option>
-			    		<option value="">--Please Select Subcategory--</option>
-			    	</select>
-                	 </div>
-                <tabset>
-			    <tab ng-click="tabchange()" heading="Select Your Newspaper">
-			   <!--  <p>{{checkMatrimonial}}</p> -->
-			    <div ng-show="checkMatrimonial">
-			     <select class="mnt-select" style="margin-top: 1%;">
-			    		<!-- <option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option> -->
-			    		<option value="">--Select Cast--</option>
-			    		<option selected="selected" value="1">Agarwal</option>
-						<option value="2">Agarwal- Bisa</option>
-		    			<option value="3">Bahai</option>
-						<option value="4">Bari</option>
-						<option value="5">Brahmin</option>
-			    		<option value="6">Chandravanshi Kshatriya</option>
-						<option value="7">Chaurasia</option>
-						<option value="8">Ckp</option>
-						<option value="9">Dhobi</option>
-						<option value="10">Garhwali</option>
-						<option value="11">Gsb</option>
-						<option value="12">Gujar</option>
-					    <option value="13">Gujarati Patidar</option>
-						<option value="14">Gujarati Vaishnav</option>
-						<option value="15">Gurjjar</option>
-						<option value="16">Jain</option>
-						<option value="17">Jaiswal</option>
-						<option value="18">Jaiswal (Raj)</option>
-						<option value="19">Jatav</option>
-						<option value="20">Kashyap</option>
-						<option value="21">Kayastha</option>
-						<option value="22">Khatri</option>
-						<option value="23">Khukhrain</option>
-						<option value="24">Kshatriya</option>
-						<option value="25">Kumauni</option>
-						<option value="26">Kurmi</option>
-						<option value="27">Kutchi</option>
-						<option value="28">Lingayat</option>
-						<option value="29">Mahajan</option>
-						<option value="30">Maheshwari</option>
-						<option value="31">Mallah</option>
-						<option value="32">Maurya</option>
-						<option value="33">Mina</option>
-						<option value="34">Mogaveera</option>
-						<option value="35">Pal</option>
-						<option value="36">Panchar Sutar</option>
-						<option value="37">Pasi</option>
-						<option value="38">Paswan</option>
-						<option value="39">Prajapati</option>
-						<option value="40">Punjabi</option>
-				    	<option value="41">Sahu-Teli</option>
-						<option value="42">Saini</option>
-					    <option value="43">Saryuparin</option>
-						<option value="44">Shivhare</option>
-					    <option value="45">Swarnkar</option>
-						<option value="46">Vaish</option>
-						<option value="47">Varshney</option>
-						<option value="48">Vishwakarma Panchal</option>
-						<option value="49">Yadav</option>
-			    	</select>
-			    	 <select class="mnt-select" style="margin-top: 1%;">
-			    		<!-- <option ng-repeat="newspaper in bookingRequest.newspapers" value="{{newspaper}}">{{newspaper}}</option> -->
-			    		<option value="">--Select Age--</option>
-			    		<option selected="selected" value="1">18-21 Age</option>
-		<option value="2">22-29 Age</option>
-		<option value="3">30-39 Age</option>
-		<option value="4">40-49 Age</option>
-		<option value="5">50-59 Age</option>
-		
-			    	</select>
-			    	</div>
-			    	<!-- <select ng-show="resultSubCategory.length != 0" ng-model="selectedsubCat" ng-change = "onSubcategorySelect(selectedsubCat)"class="mnt-select" style="margin-top: 1%;">
-			    		 <option ng-repeat="scat in resultSubCategory" >{{scat}}</option>
-			    		<option value="">--Please Select Subcategory--</option>
-			    	</select> -->
-			    	
-			    	<select class="mnt-select" style="margin-top: 1%;"  ng-model="bookingState.selectedNewsPaper" ng-change="onNewspaperSelect()">
-			    		<option ng-repeat="newspaper in bookingRequest.newspapers"  value="{{newspaper}}" ng-selected="$index == 0" >{{newspaper}}</option>
-			    		<option value="">--Please Select Newspaper--</option>
-			    	</select>
-			    	<img src="/NewDesign/images/np-icon.jpg" style="width: 6%;"/>
-			    	<div class="well">
-			    	
-			    	  <tabset>
-			    	   <!-- class="icon-search" -->
-			    	  <tab>
-			    	<img data-ng-show="carts.length > 0"  data-ng-click="checkForSubCategorySelect()" class="mnt-proceed-btn" src="images/proceed-button.png"/>
-            
-			    	   <tab-heading>
-                        <i class="icon-tags"></i> Basic Rate
-                       </tab-heading>
-			    	   
-			    	   <div ng-show="rates.length > 0 && tab" class="backcolo">
-			    	  
-			    		<ul ng-show="rates.length > 0" >
-			    		<div class="Internal">
-			    			<li ng-repeat="rate in rates" class="pillboxes custom-pill" >
-			    				<div  style="padding: 1px;">
-			    					 <span>
-        								<input ng-click="rateClicked($event,rate)" 
-        								ng-model="rate.isSelected" 
-        								style="margin: 1px" ng-disable="disableBasicRateChkbox"  type="checkbox">
-     								 </span>
-     								 <span>{{rate.location}} - Rs {{rate.rate}} {{rate.freeUnit}} / 
-			    					{{rate.unit}} </span>
-			    				</div>	
-			    				
-			    			</li>
-			    			</div>
-			    		</ul>
-			    		</div>
-			    		<div ng-show="rates.length == 0" class="alert alert-block">
-			    			No Rates Available !
-			    		</div>
-			    	   </tab>
-			    	   <tab>
-			    	   <tab-heading>
-                       </tab-heading>
-			    	   </tab>
-			    	  </tabset>
-			    	</div>
-			    	<div>
-			    	<img src="/NewDesign/images/or.gif" style="width: 100%;"/>
-			    	 </div>
-			    		<div class="well">
-			    	
-			    	  <tabset>
-			    	   <!-- class="icon-search" -->
-			    	   
-			    	  <tab>
-			    	   <tab-heading>
-                        <i class="icon-tags"></i> Package Rate 
-                       </tab-heading>
-			    	   <div ng-show="discRates.length > 0" class="backcolo">
-			    		<ul ng-show="discRates.length > 0">
-			    		<div class="Internal">
-			    			<li ng-repeat="discountRate in discRates" class="pillboxes custom-pill">
-			    				<div  style="padding: 1px;">
-			    					 <span >
-        								<input ng-click="discountRateClicked($event,discountRate)" 
-        								ng-model="discountRate.isSelected" style="margin: 1px" 
-        								ng-disabled="disablePackageCheckBox" type="checkbox">
-     								 </span>
-     								 <span>{{discountRate.location}} - Rs  {{discountRate.dTotalPrice}}  {{discountRate.freeUnit}}/
-			    					  {{discountRate.unit}} </span>
-			    				</div>	
-			    			</li>
-			    			</div>
-			    		</ul>
-			    		</div>
-			    		<div ng-show="discRates.length == 0" class="alert alert-block">
-			    			No Rates Available !
-			    		</div>
-			    	   </tab>
-			    	   <tab>
-			    	   <tab-heading>
-                   
-			    	   </tab>
-			    	  </tabset>
-			    	</div>
-			    	
-			    </tab>
-			    <tab ng-click="tabchange()" heading="Target by specific City">
-			    	<select class="mnt-select" style="margin-top: 1%" ng-model="bookingState.selectedState" ng-change="onStateSelect(bookingState.selectedState)">
-			    		<option ng-repeat="state in bookingRequest.locations" value="{{state}}">{{state}}</option>
-			    		<option value="">--Please Select State--</option>
-			    	</select>
-			    	<select class="mnt-select" style="margin-top: 1%" ng-model="bookingState.selectedCity" ng-change="onCitySelect()">
-			    		<option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
-			    		<option value="">--Please Select City--</option>
-			    	</select>
-			    	<!-- TODO: take this image to local -->
-			    	<img style="height: 56px;width: 5%;" src="images/aTqeyyyBc.png" alt="">
-			    	
-			    	<div class="well">
-			    	
-			    	  <tabset>
-			    	   <tab>
-			    	   <tab-heading>
-			    	   <i class="icon-tags"></i> Basic Rate
-                     </tab-heading>
-			    	   <div ng-show="rates.length > 0 && tab " class="backcolo">
-			    		<ul ng-show="rates.length > 0" >
-			    		<div class="Internal">
-			    			<li ng-repeat="rate in rates" class="pillboxes custom-pill">
-			    				<div  style="padding: 1px;">
-			    					 <span >
-        								<input ng-click="rateClicked1($event,rate)" ng-model="rate.isSelected" style="margin: 1px"  type="checkbox">
-     								 </span>
-     								 <span>{{rate.newspaper}} - Rs {{rate.rate}} {{rate.freeUnit}}/
-			    					{{rate.unit}} </span>
-			    				</div>	
-			    			</li>
-			    			</div>
-			    		</ul>
-			    		</div>
-			    		<div ng-show="rates.length == 0" class="alert alert-block">
-			    			No Rates Available !
-			    		</div>
-			    	   </tab>
-			    	   <tab>
-			    	   <tab-heading>
-                        <i class="icon-gift"></i> Package Rates
-                     </tab-heading>
-			    	  
-			    	   <div ng-show="discRates.length > 0" class="backcolo">
-			    		<ul ng-show="discRates.length > 0">
-			    		<div class="Internal">
-			    			<li ng-repeat="discountRate in discRates" class="pillboxes custom-pill">
-			    				<div  style="padding: 1px;">
-			    					 <span >
-        								<input style="margin: 1px" ng-click="discountRateTargetByCityClicked($event,discountRate)" ng-model="discountRate.selected" type="checkbox">
-     								 </span>
-     								 <span>{{discountRate.location}} - Rs {{discountRate.dTotalPrice}} {{discountRate.freeUnit}} /
-			    					{{discountRate.unit}} </span>
-			    				</div>	
-			    			</li>
-			    			</div>
-			    		</ul>
-			    		</div>
-			    		<div ng-show="discRates.length == 0" class="alert alert-block">
-			    			No Rates Available !
-			    		</div>
-			    	   </tab>
-			    	  </tabset>
-			    	</div>
-			    	
-			    </tab>
-			    
-			  </tabset>
-			  <!--TODO: Take image to local  -->
-		<!-- 	  rc.sampleWizard.forward() -->
-			  <img data-ng-show="carts.length > 0"  data-ng-click="checkForSubCategorySelect()" class="mnt-proceed-btn" src="images/proceed-button.png"/>
-              </form>
-              <p ng-show="errorDesc" style="color:red">Please compose all your pending Ad before proceding </p>
-              <!--  <p style="color:red">{{errorDesc}}</p> -->
-               <p ng-show="errorDate" style="color:red">Please compose all your pending Ad before proceding </p>
-              <form class="tab-pane" id="third" name="thirdForm" rc-step novalidate >
-                <h3 class="pull-left">Compose Your Ad</h3>
-                <img class="pull-left" style="width: 4%;" src="/NewDesign/images/np-compose.jpg" >
-                <table class="table table-bordered" style="font-size: 13px;">
-              <thead>
-                <tr>
-                  <th>Category</th>
-                  <th>City/Newspaper</th>
-                  <th>Description</th>
-                  <th>Published Date</th>
-                  <th>Compose/Update</th>
-                  <th> Preview Ads</th>
-				  <th>Price/Unit</th>
-                  <th>Total</th>
-				</tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="c in carts">
-                  <td>{{c.mainCategoty}}</td>
-                  <td>{{c.location |limitTo:15}} - {{c.newspaper}}</td>
-                  <td><span ng-show="c.description == '' " style="color:red">Not set</span>
-                  <span tooltip="{{c.description}}"  ng-bind="c.description|limitTo:40" ></span><a ng-click="composeAd(c)" style="cursor: pointer;color: blue;">...</a></td>
-                                    
-                  <td><!-- <a href="http://www.w3schools.com">Visit W3Schools.com!</a> -->
-                  	<span ng-show="c.dates.length == 0" style="color:red">Not set</span>
-                  	<span ng-repeat="cd in c.dates" class="dates-coll label label-warning" 
-                       data-ng-bind="formatDate(cd)"></span>
-                  </td>
-                  <td style="width: 18%;">
-              <!--     <span ng-show="" style="color:red;font-size: 11pt;font-family: Calibri;">Click to Compose</span> -->
-                  <span  ng-if="selectYourAd == 'textClasified'" >
-                  <button ng-class="(c.dates.length == 0 || c.description == '') ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeAd(c)'>ComposeAds <i class="icon-edit"></i></button>
-                  </span>
-                  <span ng-if="selectYourAd == 'displayClassified'">
-                  <button id ="composeDispAd" ng-class="(c.dates.length == 0 || c.description == '') ? 'btn btn-danger' :'btn btn-success'"  ng-click='composeDispAd(c)'>ComposeAds <i class="icon-edit"></i></button>
-                  </span>
-                  </td>
-                  
-                 <td> <button class="btn btn-success" ng-click='previewAds(c)' style="width: 100px;">Preview<i class="icon-edit"></i></button></td>
-                  <td>{{c.rate}} / {{c.freeUnit}} {{c.unit}}</td>
-                  <td> र. {{c.fullTotal}}</td>
-                </tr>
-				
-				</tbody>
-            </table>
-            <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward();"
-                   data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex" style="margin-left: 77%;margin-top: 1%;">Back</a>
-            <button ng-click="checkForAdDetailsFilled();" class= "btn btn-primary" style="float: right;/* padding: 0%; */margin: 1%"> Continue</button>
-           <!--  <a class="btn btn-default" ng-click="rc.composeWizard.backward();"
+
+						</tab> <tab ng-click="tabchange()" heading="Target by specific City">
+						<select class="mnt-select" style="margin-top: 1%"
+							ng-model="bookingState.selectedState"
+							ng-change="onStateSelect(bookingState.selectedState)">
+							<option ng-repeat="state in bookingRequest.locations"
+								value="{{state}}">{{state}}</option>
+							<option value="">--Please Select State--</option>
+						</select> <select class="mnt-select" style="margin-top: 1%"
+							ng-model="bookingState.selectedCity" ng-change="onCitySelect()">
+							<option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+							<option value="">--Please Select City--</option>
+						</select> <!-- TODO: take this image to local --> <img
+							style="height: 56px; width: 5%;" src="images/aTqeyyyBc.png"
+							alt="">
+
+						<div class="well">
+
+							<tabset> <tab> <tab-heading> <i
+								class="icon-tags"></i> Basic Rate </tab-heading>
+							<div ng-show="rates.length > 0 && tab " class="backcolo">
+								<ul ng-show="rates.length > 0">
+									<div class="Internal">
+										<li ng-repeat="rate in rates" class="pillboxes custom-pill">
+											<div style="padding: 1px;">
+												<span> <input ng-click="rateClicked1($event,rate)"
+													ng-model="rate.isSelected" style="margin: 1px"
+													type="checkbox">
+												</span> <span>{{rate.newspaper}} - Rs {{rate.rate}}
+													{{rate.freeUnit}}/ {{rate.unit}} </span>
+											</div>
+										</li>
+									</div>
+								</ul>
+							</div>
+							<div ng-show="rates.length == 0" class="alert alert-block">
+								No Rates Available !</div>
+							</tab> <tab> <tab-heading> <i class="icon-gift"></i>
+							Package Rates </tab-heading>
+
+							<div ng-show="discRates.length > 0" class="backcolo">
+								<ul ng-show="discRates.length > 0">
+									<div class="Internal">
+										<li ng-repeat="discountRate in discRates"
+											class="pillboxes custom-pill">
+											<div style="padding: 1px;">
+												<span> <input style="margin: 1px"
+													ng-click="discountRateTargetByCityClicked($event,discountRate)"
+													ng-model="discountRate.selected" type="checkbox">
+												</span> <span>{{discountRate.location}} - Rs
+													{{discountRate.dTotalPrice}} {{discountRate.freeUnit}} /
+													{{discountRate.unit}} </span>
+											</div>
+										</li>
+									</div>
+								</ul>
+							</div>
+							<div ng-show="discRates.length == 0" class="alert alert-block">
+								No Rates Available !</div>
+							</tab> </tabset>
+						</div>
+
+						</tab> </tabset>
+						<!--TODO: Take image to local  -->
+						<!-- 	  rc.sampleWizard.forward() -->
+						<img data-ng-show="carts.length > 0"
+							data-ng-click="checkForSubCategorySelect()"
+							class="mnt-proceed-btn" src="images/proceed-button.png" />
+					</form>
+					<p ng-show="errorDesc" style="color: red">Please compose all
+						your pending Ad before proceding</p>
+					<!--  <p style="color:red">{{errorDesc}}</p> -->
+					<p ng-show="errorDate" style="color: red">Please compose all
+						your pending Ad before proceding</p>
+					<form class="tab-pane" id="third" name="thirdForm" rc-step
+						novalidate>
+						<h3 class="pull-left">Compose Your Ad</h3>
+						<img class="pull-left" style="width: 4%;"
+							src="/NewDesign/images/np-compose.jpg">
+						<table class="table table-bordered" style="font-size: 13px;">
+							<thead>
+								<tr>
+									<th>Category</th>
+									<th>City/Newspaper</th>
+									<th>Description</th>
+									<th>Published Date</th>
+									<th>Compose/Update</th>
+									<th>Preview Ads</th>
+									<th>Price/Unit</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="c in carts">
+									<td>{{c.mainCategoty}}</td>
+									<td>{{c.location |limitTo:15}} - {{c.newspaper}}</td>
+									<td><span ng-show="c.description == '' "
+										style="color: red">Not set</span> <span
+										tooltip="{{c.description}}" ng-bind="c.description|limitTo:40"></span><a
+										ng-click="composeAd(c)" style="cursor: pointer; color: blue;">...</a></td>
+
+									<td>
+										<!-- <a href="http://www.w3schools.com">Visit W3Schools.com!</a> -->
+										<span ng-show="c.dates.length == 0" style="color: red">Not
+											set</span> <span ng-repeat="cd in c.dates"
+										class="dates-coll label label-warning"
+										data-ng-bind="formatDate(cd)"></span>
+									</td>
+									<td style="width: 18%;">
+										<!--     <span ng-show="" style="color:red;font-size: 11pt;font-family: Calibri;">Click to Compose</span> -->
+										<span ng-if="selectYourAd == 'textClasified'">
+											<button
+												ng-class="(c.dates.length == 0 || c.description == '') ? 'btn btn-danger' :'btn btn-success'"
+												ng-click='composeAd(c)'>
+												ComposeAds <i class="icon-edit"></i>
+											</button>
+									</span> <span ng-if="selectYourAd == 'displayClassified'">
+											<button id="composeDispAd"
+												ng-class="(c.dates.length == 0 || c.description == '') ? 'btn btn-danger' :'btn btn-success'"
+												ng-click='composeDispAd(c)'>
+												ComposeAds <i class="icon-edit"></i>
+											</button>
+									</span>
+									</td>
+
+									<td>
+										<button class="btn btn-success" ng-click='previewAds(c)'
+											style="width: 100px;">
+											Preview<i class="icon-edit"></i>
+										</button>
+									</td>
+									<td>{{c.rate}} / {{c.freeUnit}} {{c.unit}}</td>
+									<td>र. {{c.fullTotal}}</td>
+								</tr>
+
+							</tbody>
+						</table>
+						<a class="btn btn-default" class="btn btn-primary"
+							class="btn btn-primary"
+							data-ng-click="rc.sampleWizard.backward();"
+							data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex"
+							style="margin-left: 77%; margin-top: 1%;">Back</a>
+						<button ng-click="checkForAdDetailsFilled();"
+							class="btn btn-primary"
+							style="float: right; /* padding: 0%; */ margin: 1%">
+							Continue</button>
+						<!--  <a class="btn btn-default" ng-click="rc.composeWizard.backward();"
 				ng-show="rc.composeWizard.currentIndex = rc.composeWizard.firstIndex">Back</a> -->
-              </form>
-            
-              
-              
-     <form class="tab-pane"  id="fourth" name="fourthForm"  rc-step>
-               <!-- messagee shown when user are valid  -->
-            <div style="float: left;" > 
-             
-              <b>Email:</b>&nbsp;&nbsp;  <input type="email" ng-model="userId" name="username" id="username"  required="true" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <p ng-show="alreadyRegister" style="color:red">Already Registered ! Please login with Username And Password </p>
-            
-              <p ng-show="result" style="color:red">Please enter valid credentials</p>
-              </div>
-              <div ng-show="showFieldsVar" > &nbsp;&nbsp;
-                  <b>Password:</b>&nbsp;&nbsp;   <input type="password" name="password" id="password" ng-model="userpass" name="password" required="true">
-                  <!-- <div style="margin-left: 45%;"s>
+					</form>
+
+
+
+					<form class="tab-pane" id="fourth" name="fourthForm" rc-step>
+						<!-- messagee shown when user are valid  -->
+						<div style="float: left;">
+
+							<b>Email:</b>&nbsp;&nbsp; <input type="email" ng-model="userId"
+								name="username" id="username" required="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<p ng-show="alreadyRegister" style="color: red">Already
+								Registered ! Please login with Username And Password</p>
+
+							<p ng-show="result" style="color: red">Please enter valid
+								credentials</p>
+						</div>
+						<div ng-show="showFieldsVar">
+							&nbsp;&nbsp; <b>Password:</b>&nbsp;&nbsp; <input type="password"
+								name="password" id="password" ng-model="userpass"
+								name="password" required="true">
+							<!-- <div style="margin-left: 45%;"s>
                   <input type="checkbox" name="remberuser" value="remember">
                   <span style="font-size: 9pt;font-family: Calibri;">Remember me</span>&nbsp;&nbsp;&nbsp;
                   <a href="Forgotpassword.html" style="font-size: 9pt;font-family: Calibri;">Forgot your password?</a>&nbsp;&nbsp;&nbsp;&nbsp;<br />
                  </div> -->
-              </div>
-               <br />
-              <div style="width: 100%;float: left;">    
-              <input type="radio" name="chk" value="No" ng-model="userwithoutaccount" ng-click="showfieldsonlyusername();" style="margin-left:7%;"><b >&nbsp;Continue without password</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="chk" value="Yes" ng-model="userwithoutaccount" ng-click="showfields();"><b>&nbsp; I have an arihantbooking acount  </b> <br>
-                  <div>
-                  <span style="font-size: 9pt;font-family: Calibri;margin-left: 12%;">(Don't have account yet)</span>
-                  <span style="font-size: 9pt;font-family: Calibri;margin-left: 25%;"></span><br>
-                 </div>
-                  </div><br />
-                  <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" ng-click="rc.sampleWizard.moveTo(2)"
-                    style="margin-left: 76%;margin-top: 1%;">Back</a>
-                 <input class="btn btn-primary" type="submit" value="Continue" data-ng-click="checkForUsernameAndPassword()"style="background-color: #0044cc;margin-left: 7%;margin: 1%;float:right;"> 
-      </form>
-              
-      <form class="tab-pane" id="fifth" name="fifthForm"  rc-submit="completeWizard()" rc-step>
-	     	<!-- <div style="float: left;width: 48%;margin-bottom: 2%;" > <input type="radio" name="chk" value="cod" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showHomeShipingDetails();" style="margin-left:7%;"><b >&nbsp;Collect cash form home</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</div>
+						<br />
+						<div style="width: 100%; float: left;">
+							<input type="radio" name="chk" value="No"
+								ng-model="userwithoutaccount"
+								ng-click="showfieldsonlyusername();" style="margin-left: 7%;"><b>&nbsp;Continue
+								without password</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="chk" value="Yes"
+								ng-model="userwithoutaccount" ng-click="showfields();"><b>&nbsp;
+								I have an arihantbooking acount </b> <br>
+							<div>
+								<span
+									style="font-size: 9pt; font-family: Calibri; margin-left: 12%;">(Don't
+									have account yet)</span> <span
+									style="font-size: 9pt; font-family: Calibri; margin-left: 25%;"></span><br>
+							</div>
+						</div>
+						<br /> <a class="btn btn-default" class="btn btn-primary"
+							class="btn btn-primary" ng-click="rc.sampleWizard.moveTo(2)"
+							style="margin-left: 76%; margin-top: 1%;">Back</a> <input
+							class="btn btn-primary" type="submit" value="Continue"
+							data-ng-click="checkForUsernameAndPassword()"
+							style="background-color: #0044cc; margin-left: 7%; margin: 1%; float: right;">
+					</form>
+
+					<form class="tab-pane" id="fifth" name="fifthForm"
+						rc-submit="completeWizard()" rc-step>
+						<!-- <div style="float: left;width: 48%;margin-bottom: 2%;" > <input type="radio" name="chk" value="cod" data-ng-checked="checked" ng-model="modeOfPayment" ng-click="showHomeShipingDetails();" style="margin-left:7%;"><b >&nbsp;Collect cash form home</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                    </div> -->
-                    <!--  <div style="float: left;width: 100%; margin-bottom: 2%;"  > <input type="radio" name="chk"  value="cc" ng-checked="true" ng-model="modeOfPayment" data-ng-init="showDebitShipingDetails();"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<!--  <div style="float: left;width: 100%; margin-bottom: 2%;"  > <input type="radio" name="chk"  value="cc" ng-checked="true" ng-model="modeOfPayment" data-ng-init="showDebitShipingDetails();"><b >&nbsp;Credit/Debit card   </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div> -->
-                  <!--  <div align="center"  ng-show="showHomeshipping" >
+						<!--  <div align="center"  ng-show="showHomeshipping" >
 			
 		
 	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Full Name *:</p> <input type="text" ng-model="address.fullName" name="fullName" /><br/>
@@ -463,70 +488,106 @@
 			<br/>
           
 		  </div> -->
-        
-         
-	   <div align="center"  data-ng-init="showDebitShipingDetails();"  >
-	    <div ng-if= "name != ''"	data-ng-init="showAddressDetails()">
-	    </div>
-	   <p ng-show='checkAllField' style="color: red">Please Fill All Details </p>
-	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Full Name *:</p> <input type="text" ng-model="address.fullName" id="fullName" name="fullName" required/><br/>
-     <!-- <p ng-show='checkFullName' style="color: red">Please Enter FullName in proper Format </p> -->
-      </div>
-	  <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;">	Shipping Address *:</p> <textarea ng-model="address.shippingAddress" id="shippingAddress" name="shippingAddress" row ="3" required ></textarea> 
-      <!--  <p ng-show='checkShippingAddress' style="color: red">Please Enter ShippingAddress in proper Format </p> -->
-      </div>
-      <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;"> State/Region/Province *: </p><input type="text" ng-model="address.state" id="state"  name="state"  required/><br/>
-     <!--  <p ng-show='checkState' style="color: red">Please Enter State in proper Format </p> -->
-      </div>
-      <div style="width: 45%;float: left;margin-bottom: 2%;">	<p style="float: left;width: 35%;text-align: left;">City *: </p><input type="text"  id="city" name="city" ng-model="address.city" required  />
-      <!-- <p ng-show='checkCity' style="color: red">Please Enter City in proper Format </p> -->
-      </div>
-      <div style="width: 45%;float: left;margin-bottom: 2%;">	<p style="float: left;width: 35%;text-align: left;">Pincode *:</p> <input type="text" ng-model="address.pinCode"  minlength="6"  maxlength="6" id="pinCode" name="pinCode"  required />
-    <!--   <p ng-show='checkPincode' style="color: red">Please Enter Pincode in proper Format </p> -->
-     </div>
-	 <div style="width: 45%;float: left">	<p style="float: left;width: 35%;text-align: left;;">Mobile *: </p><input type="text" ng-model="address.mobile"  id="mobile" name="mobile"  minlength="10"  maxlength="10"  required  />
-    <!--  <p ng-show='checkMobile' style="color: red">Please Enter Mobile in proper Format </p> -->
-     </div>
-      <div style="float: left;width: 100%;">
-		  <a class="btn btn-primary" ng-bind="modeOfPayment == 'cod' ? 'Submit Order': 'Continue For Payment'" data-ng-click="onCartSubmit();" 
-                 data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength" style="float:right; margin: 1%; margin-right: 3%;"></a>
-              <a class="btn btn-primary" data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength" class="btn btn-success" ng-click='previewInvoiceAd(carts)' style="width: 154px;px; float: right;margin-top: 1%;"> Preview Ads <i class="icon-edit"></i></a>
-      
-		   <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward();"
-                   data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex" style="float: right; margin: 1%; margin-right: 2%;">Back</a>
-      </div>
-     <!--  <div>
+
+
+						<div align="center" data-ng-init="showDebitShipingDetails();">
+							<div ng-if="name != ''" data-ng-init="showAddressDetails()">
+							</div>
+							<p ng-show='checkAllField' style="color: red">Please Fill All
+								Details</p>
+							<div style="width: 45%; float: left">
+								<p style="float: left; width: 35%; text-align: left;">Full
+									Name *:</p>
+								<input type="text" ng-model="address.fullName" id="fullName"
+									name="fullName" required /><br />
+								<!-- <p ng-show='checkFullName' style="color: red">Please Enter FullName in proper Format </p> -->
+							</div>
+							<div style="width: 45%; float: left">
+								<p style="float: left; width: 35%; text-align: left;">
+									Shipping Address *:</p>
+								<textarea ng-model="address.shippingAddress"
+									id="shippingAddress" name="shippingAddress" row="3" required></textarea>
+								<!--  <p ng-show='checkShippingAddress' style="color: red">Please Enter ShippingAddress in proper Format </p> -->
+							</div>
+							<div style="width: 45%; float: left">
+								<p style="float: left; width: 35%; text-align: left;">
+									State/Region/Province *:</p>
+								<input type="text" ng-model="address.state" id="state"
+									name="state" required /><br />
+								<!--  <p ng-show='checkState' style="color: red">Please Enter State in proper Format </p> -->
+							</div>
+							<div style="width: 45%; float: left; margin-bottom: 2%;">
+								<p style="float: left; width: 35%; text-align: left;">City
+									*:</p>
+								<input type="text" id="city" name="city" ng-model="address.city"
+									required />
+								<!-- <p ng-show='checkCity' style="color: red">Please Enter City in proper Format </p> -->
+							</div>
+							<div style="width: 45%; float: left; margin-bottom: 2%;">
+								<p style="float: left; width: 35%; text-align: left;">Pincode
+									*:</p>
+								<input type="text" ng-model="address.pinCode" minlength="6"
+									maxlength="6" id="pinCode" name="pinCode" required />
+								<!--   <p ng-show='checkPincode' style="color: red">Please Enter Pincode in proper Format </p> -->
+							</div>
+							<div style="width: 45%; float: left">
+								<p style="float: left; width: 35%; text-align: left;">Mobile
+									*:</p>
+								<input type="text" ng-model="address.mobile" id="mobile"
+									name="mobile" minlength="10" maxlength="10" required />
+								<!--  <p ng-show='checkMobile' style="color: red">Please Enter Mobile in proper Format </p> -->
+							</div>
+							<div style="float: left; width: 100%;">
+								<a class="btn btn-primary"
+									ng-bind="modeOfPayment == 'cod' ? 'Submit Order': 'Continue For Payment'"
+									data-ng-click="onCartSubmit();"
+									data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength"
+									style="float: right; margin: 1%; margin-right: 3%;"></a> <a
+									class="btn btn-primary"
+									data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength"
+									class="btn btn-success" ng-click='previewInvoiceAd(carts)'
+									style="width: 154px; px; float: right; margin-top: 1%;">
+									Preview Ads <i class="icon-edit"></i>
+								</a> <a class="btn btn-default" class="btn btn-primary"
+									class="btn btn-primary"
+									data-ng-click="rc.sampleWizard.backward();"
+									data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex"
+									style="float: right; margin: 1%; margin-right: 2%;">Back</a>
+							</div>
+							<!--  <div>
          <button data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength" class="btn btn-success" ng-click='previewInvoiceAd(carts)' style="width: 100px;">Preview <i class="icon-edit"></i></button>
       </div> -->
-      <div id="ccIframe" data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength || showIframe">
-      </div> 
-		  </div>
-		  <br/>
-		  
-		   <!-- <a class="btn btn-primary" ng-bind="modeOfPayment == 'cod' ? 'Submit Order': 'Continue For Payment'" data-ng-click="onCartSubmit();" 
+							<div id="ccIframe"
+								data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength || showIframe">
+							</div>
+						</div>
+						<br />
+
+						<!-- <a class="btn btn-primary" ng-bind="modeOfPayment == 'cod' ? 'Submit Order': 'Continue For Payment'" data-ng-click="onCartSubmit();" 
                  data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength" style="margin-left: 30%;"></a> -->
-	 </form>
-             </div>
-             
-            <div class="form-group" style="margin-top: 2%;">
-              <div class="pull-right">
-                <!-- <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward();"
+					</form>
+				</div>
+
+				<div class="form-group" style="margin-top: 2%;">
+					<div class="pull-right">
+						<!-- <a class="btn btn-default" class="btn btn-primary" class="btn btn-primary" data-ng-click="rc.sampleWizard.backward();"
                    data-ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a> -->
-                 
-                <!-- <a  data-loading-text="Please Wait..." data-ng-click="rc.sampleWizard.forward()" 
+
+						<!-- <a  data-loading-text="Please Wait..." data-ng-click="rc.sampleWizard.forward()" 
                    data-ng-show="(rc.sampleWizard.currentIndex != 0 ) && (rc.sampleWizard.currentIndex  < rc.sampleWizard.navigationLength)">Continue</a>
                  -->
-            <!--  <a class="btn btn-primary" ng-bind="modeOfPayment == 'cod' ? 'Submit Order': 'Continue For Payment'" data-ng-click="onCartSubmit();" 
-                 data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength"></a> --> <!-- " -->
-              </div>
-            </div>
-          </div>
-         </div>
+						<!--  <a class="btn btn-primary" ng-bind="modeOfPayment == 'cod' ? 'Submit Order': 'Continue For Payment'" data-ng-click="onCartSubmit();" 
+                 data-ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength"></a> -->
+						<!-- " -->
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div data-ng-include data-src="'sidebar.html'" style="float:right">
+	<div data-ng-include data-src="'sidebar.html'" style="float: right">
 	</div>
 </div>
-  
+
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -591,6 +652,28 @@ $(document).ready(function(){
    });
 });
 </script>
+
+<!-- <!-- Google Code for Compose Ad Conversion Page -->
+<!-- <script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 967317757;
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "xW_iCPq17lcQ_bGgzQM";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript"
+	src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+	<div style="display: inline;">
+		<img height="1" width="1" style="border-style: none;" alt=""
+			src="//www.googleadservices.com/pagead/conversion/967317757/?label=xW_iCPq17lcQ_bGgzQM&amp;guid=ON&amp;script=0" />
+	</div>
+</noscript> 
+ -->
 <script type="text/ng-template" id="composeAd"> 
 	<div rc-wizard="composeAdWizard" rc-disabled="rc.firstForm.submitInProgress">
     	<ul class="nav rc-nav-wizard">
@@ -637,7 +720,7 @@ $(document).ready(function(){
 				
     </div>      
 </script>
- 
+
 
 
 <style>
@@ -645,103 +728,134 @@ $(document).ready(function(){
 	width: 160px !important;
 	height: 130px;
 }
-.caption{
+
+.caption {
 	min-height: 50px;
 }
 
-.nav-pills > .active > a, .nav-pills > .active > a:hover {
-color: #ffffff;
-background-color: #fc9a24;
+.nav-pills>.active>a,.nav-pills>.active>a:hover {
+	color: #ffffff;
+	background-color: #fc9a24;
 }
+
 .thumbnail:hover {
-border: 1px solid #8BD8FF;
-background: #65BDDF;
+	border: 1px solid #8BD8FF;
+	background: #65BDDF;
 }
 
-.redcolor{
- color:red;
-}
-.setborder{
-border: 1px solid;
-background-color:{{selectedcolor}}
+.redcolor {
+	color: red;
 }
 
-.selectcolor{
-background-color:{{selectedcolor}}
+.setborder {
+	border: 1px solid;
+	background-color: {{selectedcolor
 }
 
-.nav > li > a:hover >   {
-text-decoration: none;
-background-color: #fbb450;
-
+}
+}
+.selectcolor {
+	background-color: {{selectedcolor
 }
 
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
-background-color: #65BDDF;
+}
 }
 .nav
+>
+li
+>
+a
+:hover
+>
 {
-margin-bottom: 0px;
+text-decoration
+:
+ 
+none
+;
+
+
+background-color
+:
+ 
+#fbb450
+;
+
+
+
 }
-.backcolo
-{
-  background-color: #65BDDF;
-   float: left;
-   padding:0.5%;
-   width: 98%;
-} 
-.Internal{
-    background-color:white; 
-    float: left; 
-    width: 98%;
-    padding-top: 2%;
-	padding-left: 2%;
-}
-.custom-pill:hover { 
-    background-color: #EFF8F8;
+.nav-tabs>.active>a,.nav-tabs>.active>a:hover {
+	background-color: #65BDDF;
 }
 
-.tooltip{
+.nav {
+	margin-bottom: 0px;
+}
+
+.backcolo {
+	background-color: #65BDDF;
+	float: left;
+	padding: 0.5%;
+	width: 98%;
+}
+
+.Internal {
+	background-color: white;
+	float: left;
+	width: 98%;
+	padding-top: 2%;
+	padding-left: 2%;
+}
+
+.custom-pill:hover {
+	background-color: #EFF8F8;
+}
+
+.tooltip {
 	background: white !important;
 	color: black !important;
 }
 
-ul{
+ul {
 	margin: 0 0 0px 0px;
 }
 
 .breadcrumb_arrow {
-background: url("images/Quikr_Sprite.1234567891.png") no-repeat transparent -112px 0;
-width: 26px;
-height: 35px;
-float: left;
-}
-.custom-font{
-color: #000000;
-font-weight: bolder;
-font-size: larger;
+	background: url("images/Quikr_Sprite.1234567891.png") no-repeat
+		transparent -112px 0;
+	width: 26px;
+	height: 35px;
+	float: left;
 }
 
-
-.nav-pills > .active > a, .nav-pills > .active > a:hover {
-color: #65BDDF;
-font-weight: bolder;
-font-size: larger;
-background-color: transparent;
+.custom-font {
+	color: #000000;
+	font-weight: bolder;
+	font-size: larger;
 }
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover{
+
+.nav-pills>.active>a,.nav-pills>.active>a:hover {
+	color: #65BDDF;
+	font-weight: bolder;
+	font-size: larger;
+	background-color: transparent;
+}
+
+.nav-tabs>.active>a,.nav-tabs>.active>a:hover {
 	border: 1px solid #65BDDF;
 }
-th{
+
+th {
 	background-color: #f9f9f9;
 }
-.custom-pill{
+
+.custom-pill {
 	padding: 5px;
-	font: 14px Arial,Helvetica,sans-serif;
+	font: 14px Arial, Helvetica, sans-serif;
 	font-weight: bold;
 }
-.thumbnails > li {
 
-margin-left: 15px;
+.thumbnails>li {
+	margin-left: 15px;
 }
 </style>
