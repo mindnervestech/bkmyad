@@ -16,10 +16,10 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 		 $('#classifiedUserInfo').modal();
 	}
 	
-	    $scope.setCookie();
+	    /*$scope.setCookie();
 	    if($scope.cookie ==  '' || (angular.isUndefined($scope.cookie))){
 			 $('#userInfopopup').modal();
-	    }
+	    }*/
 	    
 	    $scope.sendMailAboutClassifiedAd = function(tempuserName,tempuserMobnumber,tempuserNote){
 	    	
