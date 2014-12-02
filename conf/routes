@@ -9,7 +9,7 @@ GET     /Booknewspaperaddonlinee43a.html       controllers.Application.Booknewsp
 GET 	/textClassifiedController.html		   controllers.TextClassifiedController.index()
 GET	/sidebar.html						   controllers.SideBarController.index()
 POST    /saveSignUp                            controllers.Application.SaveSignUp()
-GET	/make-booking.html					   controllers.MakeBookingController.index()
+GET	/compose-classified-Ad					   controllers.MakeBookingController.index()
 GET	/getRatesByNewspaper/:newspaper/:Category	controllers.MakeBookingController.getRatesByNewspaper(newspaper:String,Category:String)
 GET  /sendMailAboutTempUserInfo/:tempuserName/:tempuserMobnumber  controllers.TempGuestUserController.sendMailAboutTempUserInfo(tempuserName :String,tempuserMobnumber :String)
 GET /sendMailAboutClassifiedAd/:tempuserName/:tempuserMobnumber/:tempuserNote     controllers.TempGuestUserController.sendMailAboutClassifiedAd(tempuserName :String,tempuserMobnumber :String,tempuserNote :String)   

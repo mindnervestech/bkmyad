@@ -98,7 +98,7 @@
 			      <!--  <td><label>Tick Selected: </label> </td>
 			       <td> {{invoice.Tick}} </td> -->
 			       <td> {{invoice.PublishDate}} </lable></td>
-			       <td>BgColor: <font ng-if="invoice.Bgcolor == ''">No</font><font ng-if="invoice.Bgcolor != ''">{{invoice.Bgcolor}}</font> <br> Border: {{invoice.Border}}<br>Tick: <font ng-if="invoice.Tick == 'true' ">No</font><font  ng-if="invoice.Tick == 'false' ">Yes</font> <br>No Of Words/Line  {{invoice.numberOfWords}}<br>Total Extra Cost:{{invoice.totalExtraCost + invoice.totalUnitCost}}</lable></td>
+			       <td>BgColor: <font ng-if="invoice.Bgcolor == ''">No</font><font ng-if="invoice.Bgcolor != ''">{{invoice.Bgcolor}}</font> <br> Border: {{invoice.Border}}<br>Tick: <font ng-if="invoice.Tick == 'true' ">No</font><font  ng-if="invoice.Tick == 'false' ">Yes</font> <br>No Of Words/Line  {{invoice.numberOfWords}}<br>Total Extra Cost:{{invoice.totalExtraCost + invoice.extraCost}}</lable></td>
 			       <td> र.{{invoice.TotalCost}} </lable></td>
 			</span>
 			 </tr>
