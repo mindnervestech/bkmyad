@@ -1801,7 +1801,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
                 	total_unit = countWords(text);
                 } else {
                 	if ($scope.selectedCartItemOnPopUp.unit == "Line") {
-                    	total_unit = Math.ceil(text.length / 20);
+                    	total_unit = Math.ceil(text.length / 22);
                     }
                 }
                 
