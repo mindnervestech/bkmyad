@@ -1,6 +1,11 @@
 package controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,6 +17,12 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.zip.Adler32;
 
+import javax.imageio.ImageIO;
+
+import net.coobird.thumbnailator.Thumbnails;
+
+import org.apache.commons.io.FilenameUtils;
+
 import models.Adcategory;
 import models.AddressDetails;
 import models.Basicrate;
@@ -21,12 +32,19 @@ import models.Newspaperdetails;
 import models.Order;
 import models.State;
 import models.User;
+import play.Play;
 import play.data.DynamicForm;
+import play.data.Form;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.Controller;
+import play.mvc.Http;
+import play.mvc.Http.MultipartFormData;
 import play.mvc.Result;
+import play.mvc.Http.MultipartFormData.FilePart;
+import scala.Array;
+import scala.util.parsing.json.JSONObject;
 import utils.SendMailUtility;
 import utils.UtilityQuery;
 import viewmodel.CCAvenueDefaultVM;
@@ -34,7 +52,10 @@ import viewmodel.NewspaperVM;
 import viewmodel.Rate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -105,7 +126,7 @@ import com.google.common.collect.Lists;
         				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
         				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),
         						rs[11].toString(),rs[12].toString(),rs[13].toString(),
-        						rs[10].toString()) );
+        						rs[10].toString(),rs[14].toString()) );
         	}
 			for(Object[] discntRate: discountRates ){
 				String str; 
@@ -126,7 +147,7 @@ import com.google.common.collect.Lists;
              discRates.add(DiscountRate.byId(discntRate[0].toString())
         	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
         	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
-        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
+        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString(),discntRate[14].toString()) );
      }
 			Map<String,Object> map = new HashMap<String, Object>();
 			map.put("rates", rates);
@@ -161,7 +182,7 @@ import com.google.common.collect.Lists;
 	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
 	        				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),
 	        						rs[11].toString(),rs[12].toString(),rs[13].toString(),
-	        						rs[10].toString()) );
+	        						rs[10].toString(),rs[14].toString()) );
 	        	}
 				for(Object[] discntRate: discountRates ){
 					String str; 
@@ -183,9 +204,8 @@ import com.google.common.collect.Lists;
 	             discRates.add(DiscountRate.byId(discntRate[0].toString())
 	        	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
 	        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
-	        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
+	        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString(),discntRate[14].toString()) );
 	     }
-			
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("rates", rates);
 	    map.put("discRates", discRates);
@@ -207,7 +227,7 @@ import com.google.common.collect.Lists;
            	String dates[] = str.split(",");   
 	    
                 orderListuser.add(OrderList.byId(ol[24].toString())
-                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString()), ol[25].toString(),ol[26].toString(), ol[27].toString(),ol[28].toString(),(int) ol[29],ol[30].toString(),ol[31].toString(),ol[32].toString(),ol[33].toString(),ol[34].toString(),ol[35].toString(),ol[36].toString(),ol[37].toString(),ol[38].toString(),ol[39].toString(),ol[40].toString()));
+                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString()), ol[25].toString(),ol[26].toString(), ol[27].toString(),ol[28].toString(),(int) ol[29],ol[30].toString(),ol[31].toString(),ol[32].toString(),ol[33].toString(),ol[34].toString(),ol[35].toString(),ol[36].toString(),ol[37].toString(),ol[38].toString(),ol[39].toString(),ol[40].toString(),ol[41].toString(),ol[42].toString(),ol[43].toString(),ol[44].toString()));
         	}
 	    	Map<String,Object> map = new HashMap<String, Object>();
 			map.put("orderListuser",orderListuser);
@@ -248,7 +268,7 @@ import com.google.common.collect.Lists;
 	        				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
 	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
 	        				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),
-	        						rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()) );
+	        						rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString(),rs[14].toString()) );
 	        	}
 			
 				for(Object[] discntRate: discountRates ){
@@ -271,7 +291,7 @@ import com.google.common.collect.Lists;
 	             discRates.add(DiscountRate.byId(discntRate[0].toString())
 	        	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
 	        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
-	        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
+	        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString(),discntRate[14].toString()) );
          }
 				
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -282,12 +302,9 @@ import com.google.common.collect.Lists;
        		System.out.println("displayClassified:"+selectYourAd);
        		List<Object[]> rates1 = UtilityQuery.getBasicRateByNewspaperAndCategoryForDisplay(newspaper.trim(),Category.trim());
     		List<Object[]> discountRates = UtilityQuery.getDiscountRateByNewspaperAndCategoryForDisplay(newspaper.trim(),Category.trim());
-    		
     		List<DiscountRate> discRates = Lists.newArrayList();
     		List<Rate> rates = Lists.newArrayList();
-                      
     				for(Object[] rs :rates1) {
-    	        		
     	        		String str; 
     	            	str=rs[4].toString();
     	           	    String number = "";
@@ -308,7 +325,7 @@ import com.google.common.collect.Lists;
     	        				.withCityAndNewspaper(rs[1].toString(),rs[2].toString())
     	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
     	        				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),
-    	        						rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString()) );
+    	        						rs[8].toString(),rs[9].toString(),rs[11].toString(),rs[12].toString(),rs[13].toString(),rs[10].toString(),rs[14].toString()) );
     	        	}
     			
     				for(Object[] discntRate: discountRates ){
@@ -331,7 +348,7 @@ import com.google.common.collect.Lists;
     	             discRates.add(DiscountRate.byId(discntRate[0].toString())
     	        	.withCityAndNewspaper(discntRate[1].toString(),discntRate[2].toString())
     	        	.withAmountAndFreeUnit(discntRate[3].toString(),letter,number)
-    	        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString()) );
+    	        	.withOverUnit(discntRate[5].toString(), discntRate[6].toString(),discntRate[7].toString(),discntRate[8].toString(),discntRate[9].toString(),discntRate[10].toString(),discntRate[11].toString(),discntRate[12].toString(),discntRate[13].toString(),discntRate[14].toString()) );
              }
     				
     		Map<String,Object> map = new HashMap<String, Object>();
@@ -423,6 +440,11 @@ import com.google.common.collect.Lists;
 	    public String  adSizeSelect;
 	   // public float extraCost;
 	    public String adSelectedType;
+	    //for disp user defined ad
+	    public String otherWidth;
+	    public String height;
+	    public String originalFileName;
+	    public String freewords;
 		
 	    public static OrderList byId(String id) {
 			 OrderList orderList = new OrderList();
@@ -432,7 +454,7 @@ import com.google.common.collect.Lists;
 		   public  OrderList cancelOrderDetails(String OrderId,String newspaper,String  location ,String description, String extraFortick , String onbgColorchange ,String extraForBackgroud,
 				   String onBorderSelected , String extraForBorder , String []  dates,String unit , String  fullTotal,  String mainCategoty ,  String totalUnit , String adbookedDate,
 				   String freeunit, float extra, float totalExtraCost ,float totalUnitCost, int noOfImpression, float rate, boolean bgColorSelect ,boolean notickforAd ,String extraForBorderInPer,String extraForBackgroudInPer,String  extraFortickInPer, String subcategory, int  numberOfWords
-    			  ,String descriptionFooter,String descriptionHeader, String descriptionBody,String footerColor,String bodyColor,String headerColor,String adType,String colorAd,String imageAd,String adSizeSelect, String adSelectedType){
+    			  ,String descriptionFooter,String descriptionHeader, String descriptionBody,String footerColor,String bodyColor,String headerColor,String adType,String colorAd,String imageAd,String adSizeSelect, String adSelectedType,String otherWidth,String height, String originalFileName,String freewords){
 			   
 			   this.OrderId=OrderId;
 			   this.newspaper=newspaper;
@@ -475,6 +497,10 @@ import com.google.common.collect.Lists;
 			   this.imageAd = imageAd;
 			   this.adSizeSelect = adSizeSelect;
 			   this.adSelectedType = adSelectedType;
+			   this.otherWidth = otherWidth;
+			   this.height = height;
+			   this.originalFileName =originalFileName; 
+			   this.freewords = freewords;
 			   return this;
 		   }
 	}
@@ -508,7 +534,7 @@ import com.google.common.collect.Lists;
         public Boolean isSelected;
         public String  packageSelected = "P";
         public int numberOfWords;
-       
+        public String freewords;
         public static DiscountRate byId(String id) {
         	DiscountRate discountRate = new DiscountRate();
         	discountRate.id = id;
@@ -532,7 +558,7 @@ import com.google.common.collect.Lists;
         public DiscountRate withOverUnit(String extraCostperLine,
         		String border,String backColor,String specialDiscount,     	
         		String extraFortick,String extraCostpersqcm,String extraForBackgroudInPer,
-        		String extraForBorderInPer,String extraFortickInPer) {
+        		String extraForBorderInPer,String extraFortickInPer,String freewords) {
         	
         	
         	this.extraCostperLine=extraCostperLine;//extra for line
@@ -544,11 +570,12 @@ import com.google.common.collect.Lists;
             this.extraForBackgroudInPer=extraForBackgroudInPer;
             this.extraForBorderInPer=extraForBorderInPer;
             this.extraFortickInPer=extraFortickInPer;
-           
+            this.freewords = freewords;
             return this;
       }
 	
 }
+	
 	
 	// 200 for first 20 words, 15 / 2 words 
 	@JsonIgnoreProperties(ignoreUnknown=true)
@@ -575,7 +602,9 @@ import com.google.common.collect.Lists;
         public String extraFortickInPer;
         public Boolean isSelected;
         public String  packageSelected = "B";
-	     public String subcategory;	
+	    public String subcategory;	
+	    public String freewords;
+	    
         public static Rate byId(String id) {
             Rate rate = new Rate();
             rate.id = id;
@@ -598,7 +627,7 @@ import com.google.common.collect.Lists;
         public Rate withOverUnit(String extra,String cutOfBookingDate,
         		String extraForBorder,String extraForBackgroud, String	extraFortick,
         		String extraForBorderInPer,String extraForBackgroudInPer, String extraFortickInPer,
-        		String extraCostpersqcm) {
+        		String extraCostpersqcm,String freewords) {
             this.extra = extra;
             this.cutOfBookingDate=cutOfBookingDate;
             this.extraForBorder=extraForBorder;
@@ -608,6 +637,7 @@ import com.google.common.collect.Lists;
             this.extraForBackgroudInPer=extraForBackgroudInPer;
             this.extraFortickInPer=extraFortickInPer;
             this.extraCostpersqcm=extraCostpersqcm;
+            this.freewords = freewords;
             return this;
       }
 	
@@ -670,7 +700,14 @@ import com.google.common.collect.Lists;
 	    public String imageAd;
 	    public String adSizeSelect;
 	    public float extraCost;
-		
+	   
+	    //for dispplay user defined ad.
+	    public int otherWidth;
+	    public int height;
+	    public String freewords;
+		/*//to store the image path 
+	    public String originalFileName;
+	    */
 	    //public float FinalTotal = 0;
 		
 		public CartItem() {};
@@ -764,27 +801,60 @@ import com.google.common.collect.Lists;
 			this.mobile = mobile;
 			this.userid=userid;
 		}
-	
 	}
         String  emailId = session().get("emailId"); 
-	    @Transactional
-	    public static Result  saveComposeyourAd() {
-		 JsonNode json = request().body().asJson();
-	     //JsonNode nodes = json.path("data");
-	     System.out.println(" json value :: "+json.toString());
-	     
-	     ObjectMapper objectMapper = new ObjectMapper();
+        public static void createDir(String rootDir) {
+	        File file3 = new File(rootDir);
+	        if (!file3.exists()) {
+	                file3.mkdirs();
+	        }
+		}	
+        final static String rootDir = Play.application().configuration().getString("adimage.storage.path");
+  	  static {
+        createRootDir();
+  }
+
+  public static void createRootDir() {
+        File file = new File(rootDir);
+        if (!file.exists()) {
+                file.mkdir();
+        }
+  }
+  
+ /* @Transactional
+  public static class DisplayCartItem {
+    	 public List<CartItemDisp> carts =  new ArrayList<>() ;
+         public Address address;
+    	 public String email;
+    	 public String modeOfPayment;
+    	 public String adSelectedType; 
+    	}
+      */
+        @Transactional
+	    public static Result  saveComposeyourAd() throws JsonProcessingException, IOException {
+        	  DynamicForm form = DynamicForm.form().bindFromRequest();
+ 		     System.out.println(form.get("carts"));
+ 		     
+ 		    ObjectMapper mapper = new ObjectMapper();
+		     //JSONObject json = (JSONObject) JSONSerializer.toJSON(data);        
+		     JsonNode jsonAddress =  mapper.readTree(form.get("address"));
+		     JsonNode jsonEmail = Json.toJson(form.get("email"));
+		     JsonNode jsonAdSelect = Json.toJson(form.get("adSelectedType"));
+		     JsonNode jsonmodeOfPayment = Json.toJson(form.get("modeOfPayment"));
+		     
+		     JsonNode actualObj = mapper.readTree(form.get("carts"));
+ 		     
+        	ObjectMapper objectMapper = new ObjectMapper();
 	     AddressDetails addressDetails =new AddressDetails();
 	     List<CartItem> cartItem ;
-	     
 	     String emailId;
-	     if(json.has("email")) {
-	      emailId= json.get("email").asText();
+	     if(jsonEmail.asText() != null) {
+	    	 emailId= jsonEmail.asText();
+	    	 //System.out.println("json1.getFile"+json1.getFile("email").toString());
 	     } else {
 	    	 emailId = session().get("emailId"); 
 	     }
-	     
-	     String modeOfPayment=json.get("modeOfPayment").asText();
+	     String modeOfPayment=jsonmodeOfPayment.asText();
 	     String orderId = UUID.randomUUID().toString();
 	    
 	     long order =  orderId.hashCode();
@@ -795,89 +865,89 @@ import com.google.common.collect.Lists;
 	    
 	     float amount = 0;
 	     List<ComposedAdSave> composedAdSaves = new ArrayList<>();
-	     try {
-	    	 cartItem = objectMapper.readValue(json.get("carts").traverse(),
-	    			 new com.fasterxml.jackson.core.type.TypeReference<List<CartItem>>() {});
-	         for(int i=0; i < cartItem.size(); i++) {
-	        	 ComposedAdSave cds=new ComposedAdSave();
-	          cds.Category=cartItem.get(i).mainCategoty;
-	          cds.Subcategory=cartItem.get(i).subcategory;
-	          cds.Nameofthenewspaper=cartItem.get(i).newspaper;   //location saved here
-	    	  cds.City=cartItem.get(i).location;//paper name saved here
- 	    	  cds.Adtext=cartItem.get(i).description;
-	    	  cds.TotalCost=cartItem.get(i).fullTotal;
-	    	  cds.OrderID = orderId;
-	    	  cds.BorderCost=cartItem.get(i).extraForBorder;
-	    	  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
-	    	  cds.Extrabgper = cartItem.get(i).extraForBackgroudInPer;
-	    	  cds.Extraborderper =cartItem.get(i).extraForBorderInPer;
-	    	  cds.Tickper = cartItem.get(i).extraFortickInPer;
-	    	  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//save dates in DB
-	    	  Calendar c = Calendar.getInstance();
-	    	  cds.PublishDate="";
-	    	  for( int j =0; j < cartItem.get(i).dates.length; j++){
-	    		  try {
-					Date dt = sdf.parse(cartItem.get(i).dates[j]);
-					c.setTime(dt);
-					cds.PublishDate+=c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DATE)+",";
-					
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-	    	  }
-	    	  
-	    	  cds.BasicRate=cartItem.get(i).unit;
-	    	  cds.numberOfWords=cartItem.get(i).totalUnit;
-	    	  cds.userEmailId=emailId;
-	    	  cds.paymentOption=modeOfPayment;
-	    	  cds.Border=cartItem.get(i).onBorderSelected;
-	    	 //to handle  null values
-	    	  if(cartItem.get(i).onbgColorchange == null){
-	    		  cds.Bgcolor= "true";
-	    	  }else{
-	    		  cds.Bgcolor=cartItem.get(i).onbgColorchange;
-	    	  }
-	    	 
-	    	  if(cartItem.get(i).notickforAd == null){
-	    		  cds.Tick = "true";
-	    	  }else{
-	    		  cds.Tick = cartItem.get(i).notickforAd;
-	    	  }
-	    	  
-	    	  cds.TickRate = cartItem.get(i).extraFortick;
-	    	  cds.extra =  cartItem.get(i).extra;
-	    	  cds.freeunit = cartItem.get(i).freeUnit;
-	    	  cds.totalExtraCost = cartItem.get(i).totalExtraCost;
-	    	  cds.totalUnitCost = cartItem.get(i).totalUnitCost;
-	    	  cds.noOfImpression = cartItem.get(i).noOfImpression;
-	    	  cds.rate = cartItem.get(i).rate;
-	    	  cds.bgColorSelect = cartItem.get(i).nobgColor;
-	    	  cds.adbookedId = cartItem.get(i).id;
-	    	  cds.packageType = cartItem.get(i).packageSelected;
-	    			  
-	    	  cds.headerColor = cartItem.get(i).headerColor;
-	    	  cds.bodyColor = cartItem.get(i).bodyColor;
-	    	  cds.footerColor  = cartItem.get(i).footerColor;
-	    	  
-	    	  cds.footerDescption = cartItem.get(i).descriptionFooter;
-	    	  cds.headerDescption = cartItem.get(i).descriptionHeader;
-	    	  cds.bodyDescription = cartItem.get(i).descriptionBody;
-	    	  
-	    	  cds.colorAd = cartItem.get(i).colorAd;
-	  	      cds.BWAd = cartItem.get(i).BWAd;
-	  	      cds.imageAd = cartItem.get(i).imageAd;
-	  	      cds. adSizeSelect = cartItem.get(i).adSizeSelect;
-	  	     // cds.widthSelected = cartItem.get(i).
-	  	         
-	  	      //ad type save here
-	  	      cds.adSelectedType =  json.get("adSelectedType").asText();
-	  	      System.out.println("ad type"+cds.adSelectedType);
-	  	      cds.extraCost = cartItem.get(i).extraCost;
-	    	  Date date = new Date();
-	    	  cds.orderDate = sdf.format(date);//current date i.e. order placed date saved here
-	    	  
-	    	  //cartItem.get(i).nobgColor=   'true' means it is not selected ;
-	    	  //cartItem.get(i).notickforAd = 'true' means it is not selected ;
+	     /*cartItem = objectMapper.readValue(json.get("carts").traverse(),
+				 new com.fasterxml.jackson.core.type.TypeReference<CartItem>() {});
+		*/ 
+		 cartItem = mapper.convertValue(actualObj, mapper.getTypeFactory().constructCollectionType(List.class, CartItem.class));
+		 
+		 for(int i=0; i < cartItem.size(); i++) {
+			 ComposedAdSave cds=new ComposedAdSave();
+		  cds.Category=cartItem.get(i).mainCategoty;
+		  cds.Subcategory=cartItem.get(i).subcategory;
+		  cds.Nameofthenewspaper=cartItem.get(i).newspaper;   //location saved here
+		  cds.City=cartItem.get(i).location;//paper name saved here
+		  cds.Adtext=cartItem.get(i).description;
+		  cds.TotalCost=cartItem.get(i).fullTotal;
+		  cds.OrderID = orderId;
+		  cds.BorderCost=cartItem.get(i).extraForBorder;
+		  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
+		  cds.Extrabgper = cartItem.get(i).extraForBackgroudInPer;
+		  cds.Extraborderper =cartItem.get(i).extraForBorderInPer;
+		  cds.Tickper = cartItem.get(i).extraFortickInPer;
+		 // System.out.println("cartItem.get(i).extraFortickInPer"+cartItem.get(i).extraFortickInPer);
+		  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//save dates in DB
+		  Calendar c = Calendar.getInstance();
+		  cds.PublishDate="";
+		 for( int j =0; j < cartItem.get(i).dates.length; j++){
+			  try {
+				Date dt = sdf.parse(cartItem.get(i).dates[j]);
+				c.setTime(dt);
+				cds.PublishDate+=c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DATE)+",";
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		  }
+		  cds.BasicRate=cartItem.get(i).unit;
+		  cds.numberOfWords=cartItem.get(i).totalUnit;
+		  cds.userEmailId=emailId;
+		  cds.paymentOption=modeOfPayment;
+		  cds.Border=cartItem.get(i).onBorderSelected;
+		 //to handle  null values
+		  if(cartItem.get(i).onbgColorchange == null){
+			  cds.Bgcolor= "true";
+		  }else{
+			  cds.Bgcolor=cartItem.get(i).onbgColorchange;
+		  }
+		 
+		  if(cartItem.get(i).notickforAd == null){
+			  cds.Tick = "true";
+		  }else{
+			  cds.Tick = cartItem.get(i).notickforAd;
+		  }
+		  
+		  cds.TickRate = cartItem.get(i).extraFortick;
+		  cds.extra =  cartItem.get(i).extra;
+		  cds.freeunit = cartItem.get(i).freeUnit;
+		  cds.totalExtraCost = cartItem.get(i).totalExtraCost;
+		  cds.totalUnitCost = cartItem.get(i).totalUnitCost;
+		  cds.noOfImpression = cartItem.get(i).noOfImpression;
+		  cds.rate = cartItem.get(i).rate;
+		  cds.bgColorSelect = cartItem.get(i).nobgColor;
+		  cds.adbookedId = cartItem.get(i).id;
+		  cds.packageType = cartItem.get(i).packageSelected;
+		  cds.headerColor = cartItem.get(i).headerColor;
+		  cds.bodyColor = cartItem.get(i).bodyColor;
+		  cds.footerColor  = cartItem.get(i).footerColor;
+		  cds.footerDescption = cartItem.get(i).descriptionFooter;
+		  cds.headerDescption = cartItem.get(i).descriptionHeader;
+		  cds.bodyDescription = cartItem.get(i).descriptionBody;
+		  cds.colorAd = cartItem.get(i).colorAd;
+		  cds.BWAd = cartItem.get(i).BWAd;
+		  cds.imageAd = cartItem.get(i).imageAd;
+		  cds. adSizeSelect = cartItem.get(i).adSizeSelect;
+		  cds.freewords = cartItem.get(i).freewords;
+				  
+		 // cds.widthSelected = cartItem.get(i).
+		     
+		  //ad type save here
+		  cds.adSelectedType =  jsonAdSelect.asText();
+		  System.out.println("ad type"+cds.adSelectedType);
+		  cds.extraCost = cartItem.get(i).extraCost;
+		  Date date = new Date();
+		  cds.orderDate = sdf.format(date);//current date i.e. order placed date saved here
+		  //cartItem.get(i).nobgColor=   'true' means it is not selected ;
+		  //cartItem.get(i).notickforAd = 'true' means it is not selected ;
 	    	  if( cartItem.get(i).onBorderSelected.equals("No") && cartItem.get(i).nobgColor.equals("true")  && cartItem.get(i).notickforAd.equals("true") ) {
 	    		  cds.TotalCost =(cartItem.get(i).rate + ((cartItem.get(i).extra) * (cartItem.get(i).extraUnit))) * cartItem.get(i).dates.length;
 	    	  }
@@ -909,21 +979,12 @@ import com.google.common.collect.Lists;
 	    		  cds.TotalCost =(cartItem.get(i).rate + cartItem.get(i).extraForBackgroud + cartItem.get(i).extraFortick +((cartItem.get(i).extra) * (cartItem.get(i).extraUnit))) * cartItem.get(i).dates.length;
 	    		 
 	    	  }
-	    	  amount = amount +  cds.TotalCost;
-	    	  
-	    	  composedAdSaves.add(cds);
-	    	  //JPA.em().persist(cds);
-	    	   }
-	     } catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		 
+		  amount = amount +  cds.TotalCost;
+		  System.out.println("amount :"+amount);
+		  composedAdSaves.add(cds);
+	
+		   }
 	     
 	     Order o = new Order();
 	     o.orderId = orderId;
@@ -935,8 +996,605 @@ import com.google.common.collect.Lists;
 	     
 	     Address address;
 	     try {
-			address = objectMapper.readValue(json.get("address").traverse(),Address.class);
-	    	addressDetails.pinCode=address.pinCode;
+			//address = objectMapper.readValue(json.get("address").traverse(),Address.class);
+	    	 address = objectMapper.readValue(jsonAddress.traverse(),Address.class);
+	    	 addressDetails.pinCode=address.pinCode;
+	    	addressDetails.fullName=address.fullName;
+	    	addressDetails.address=address.shippingAddress;
+	    	addressDetails.city=address.city;
+	    	addressDetails.state=address.state;
+	    	addressDetails.mobile=address.mobile;
+	    	addressDetails.userEmailid=emailId;
+	    	addressDetails.orderId = orderId;
+	    	JPA.em().persist(addressDetails);
+		} catch (JsonParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JsonMappingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	     response().setCookie("orderId", orderId);
+	     if(!modeOfPayment.equalsIgnoreCase("cod")) {
+			//return ok(routes.CCAvenueController.ccavenue(orderId.trim()).url());
+	    	return redirect(routes.CCAvenueController.ccavenue(orderId.trim()));
+	     }
+		 return ok(orderId);
+	 }
+    public class CountryInfoResponse {
+        	   @JsonProperty("carts")
+        	   private List<CartItem> cartItems; 
+        	   //getter - setter
+     }
+        
+        
+    
+        @Transactional
+	    public static Result  saveUserDisplayComposeyourAd() throws JsonProcessingException, IOException {
+		
+        	  DynamicForm form = DynamicForm.form().bindFromRequest();
+        	  FilePart picture =  request().body().asMultipartFormData().getFile("file");
+	 		 createDir(rootDir);
+	 		 String originalFileName = null;
+	 		 String fileName = picture.getFilename();
+	 		 ObjectMapper objectMapper = new ObjectMapper();
+		     AddressDetails addressDetails =new AddressDetails();
+		     //List<CartItem> cartItem;
+		     String emailId;
+		     System.out.println(form.get("carts"));
+		     JsonNode json = Json.toJson(form.get("carts"));
+		     ObjectMapper mapper = new ObjectMapper();
+		     JsonNode jsonAddress =  mapper.readTree(form.get("address"));
+		     JsonNode jsonEmail = Json.toJson(form.get("email"));
+		     JsonNode jsonAdSelect = Json.toJson(form.get("adSelectedType"));
+		     JsonNode jsonmodeOfPayment = Json.toJson(form.get("modeOfPayment"));
+		     JsonNode actualObj = mapper.readTree(form.get("carts"));
+		     if(jsonEmail != null) {
+		    	 emailId= jsonEmail.asText();
+		    	 //System.out.println("json1.getFile"+json1.getFile("email").toString());
+		     } else {
+		    	 emailId = session().get("emailId"); 
+		     }
+		     String modeOfPayment=jsonmodeOfPayment.asText();
+		     String orderId = UUID.randomUUID().toString();
+		     long order =  orderId.hashCode();
+		     //orderId = orderId.substring(orderId.lastIndexOf("-") + 1);
+	         order = Math.abs(order);//convert to positive if hashcode is obtained  negitive.
+		     orderId = Long.toString(order);//convert order id to String. 
+		     float amount = 0;
+		     List<ComposedAdSave> composedAdSaves = new ArrayList<>();
+		     List<CartItem> cartItem = mapper.convertValue(actualObj, mapper.getTypeFactory().constructCollectionType(List.class, CartItem.class));
+			 for(int i=0; i < cartItem.size(); i++) {
+				 if(FilenameUtils.getExtension(fileName).equals("jpg")){
+			 		 String ThumbnailImage = rootDir + File.separator +orderId+"."+FilenameUtils.getExtension(fileName);
+			         originalFileName = rootDir + File.separator +orderId+"."+FilenameUtils.getExtension(fileName);
+			          File src = picture.getFile();
+			          OutputStream out = null;
+			          BufferedImage image = null;
+			          File f = new File(ThumbnailImage);
+			          System.out.println(originalFileName);
+			          try {
+			                         BufferedImage originalImage = ImageIO.read(src);
+			                         Thumbnails.of(originalImage)
+			                             .size(220, 220)
+			                             .toFile(f);
+			                             File _f = new File(originalFileName);
+			                             Thumbnails.of(originalImage).scale(1.0).
+			                             toFile(_f);
+			          } catch (FileNotFoundException e) {
+			                  e.printStackTrace();
+			          } catch (IOException e) {
+			                  e.printStackTrace();
+			          } finally {
+			                  try {
+			                          if(out != null) out.close();
+			                  } catch (IOException e) {
+			                          e.printStackTrace();
+			                  }
+			          }
+			  		File filepath = new File(originalFileName);
+//			  		System.out.println("filepath:"+filepath);
+			  		
+			 	}else{
+			 		System.out.println("in else");
+			 		String fileNameDoc = null;
+			 		String filenamedbpath = null;
+			 		
+			 		play.mvc.Http.MultipartFormData.FilePart docFile;
+			 		play.mvc.Http.MultipartFormData body = request().body()
+			 				.asMultipartFormData();
+			 		docFile = body.getFile("file");
+
+			 		if (docFile != null) {
+			 			fileNameDoc = docFile.getFilename();
+			 			File file = docFile.getFile();
+			 			final String FILE_PATH = Play.application().configuration()
+			 					.getString("storage.path");
+			 			File f = new File(FILE_PATH + fileNameDoc);
+			 			filenamedbpath = FILE_PATH + File.separator + fileNameDoc;
+			 			try {
+							Files.copy(file.toPath(), f.toPath(),
+									java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			 			flash("Success", "File Uploaded successfully");
+			 	}
+			 	}
+				 
+			  ComposedAdSave cds=new ComposedAdSave();
+			  cds.Category=cartItem.get(i).mainCategoty;
+			  cds.Subcategory=cartItem.get(i).subcategory;
+			  cds.Nameofthenewspaper=cartItem.get(i).newspaper;   //location saved here
+			  cds.City=cartItem.get(i).location;//paper name saved here
+			  cds.Adtext=cartItem.get(i).description;
+			  cds.TotalCost=cartItem.get(i).fullTotal;
+			  cds.OrderID = orderId;
+			  cds.BorderCost=cartItem.get(i).extraForBorder;
+			  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
+			  cds.Extrabgper = cartItem.get(i).extraForBackgroudInPer;
+			  cds.Extraborderper =cartItem.get(i).extraForBorderInPer;
+			  cds.Tickper = cartItem.get(i).extraFortickInPer;
+			 // System.out.println("cartItem.get(i).extraFortickInPer"+cartItem.get(i).extraFortickInPer);
+			  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//save dates in DB
+			  Calendar c = Calendar.getInstance();
+			  cds.PublishDate="";
+			 for( int j =0; j < cartItem.get(i).dates.length; j++){
+				  try {
+					Date dt = sdf.parse(cartItem.get(i).dates[j]);
+					c.setTime(dt);
+					cds.PublishDate+=c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DATE)+",";
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			  }
+			  cds.BasicRate=cartItem.get(i).unit;
+			  cds.numberOfWords=cartItem.get(i).totalUnit;
+			  cds.userEmailId=emailId;
+			  cds.paymentOption=modeOfPayment;
+			  cds.Border=cartItem.get(i).onBorderSelected;
+			 //to handle  null values
+			  if(cartItem.get(i).onbgColorchange == null){
+				  cds.Bgcolor= "true";
+			  }else{
+				  cds.Bgcolor=cartItem.get(i).onbgColorchange;
+			  }
+			 
+			  if(cartItem.get(i).notickforAd == null){
+				  cds.Tick = "true";
+			  }else{
+				  cds.Tick = cartItem.get(i).notickforAd;
+			  }
+			  cds.TickRate = cartItem.get(i).extraFortick;
+			  cds.extra =  cartItem.get(i).extra;
+			  cds.freeunit = cartItem.get(i).freeUnit;
+			  cds.totalExtraCost = cartItem.get(i).totalExtraCost;
+			  cds.totalUnitCost = cartItem.get(i).totalUnitCost;
+			  cds.noOfImpression = cartItem.get(i).noOfImpression;
+			  cds.rate = cartItem.get(i).rate;
+			  cds.bgColorSelect = cartItem.get(i).nobgColor;
+			  cds.adbookedId = cartItem.get(i).id;
+			  cds.packageType = cartItem.get(i).packageSelected;
+
+			  cds.headerColor = cartItem.get(i).headerColor;
+			  cds.bodyColor = cartItem.get(i).bodyColor;
+			  cds.footerColor  = cartItem.get(i).footerColor;
+			  
+			  cds.footerDescption = cartItem.get(i).descriptionFooter;
+			  cds.headerDescption = cartItem.get(i).descriptionHeader;
+			  cds.bodyDescription = cartItem.get(i).descriptionBody;
+			  
+			  cds.colorAd = cartItem.get(i).colorAd;
+			  cds.BWAd = cartItem.get(i).BWAd;
+			  cds.imageAd = cartItem.get(i).imageAd;
+			  cds. adSizeSelect = cartItem.get(i).adSizeSelect;
+			  //ad type save here
+			  cds.adSelectedType =  jsonAdSelect.asText();
+			  System.out.println("ad type"+cds.adSelectedType);
+			  cds.extraCost = cartItem.get(i).extraCost;
+	  	      //for user defined ad (disply classified ad)
+	  	      cds.otherWidth = Integer.toString(cartItem.get(i).otherWidth);
+	  	      cds.height = Integer.toString(cartItem.get(i).height);
+	  	      cds.originalFileName = originalFileName;
+	  	      cds.freewords = cartItem.get(i).freewords;
+			  Date date = new Date();
+			  cds.orderDate = sdf.format(date);//current date i.e. order placed date saved here
+			  System.out.println("width"+cartItem.get(i).otherWidth);
+			  System.out.println("height"+cartItem.get(i).height);
+			  cds.TotalCost = (cartItem.get(i).rate *(((cartItem.get(i).otherWidth))) * (((cartItem.get(i).height))) * (cartItem.get(i).dates.length));
+			  amount = amount +  cds.TotalCost;
+			  System.out.println("amount :"+amount);
+			  composedAdSaves.add(cds);
+			 }
+		     Order o = new Order();
+		     o.orderId = orderId;
+		     o.email = emailId;
+		     o.total = amount;
+		     o.orderDate = new Date();
+		     o.composedAd = composedAdSaves;
+		     JPA.em().persist(o);
+		     Address address;
+		     try {
+				address = objectMapper.readValue(jsonAddress.traverse(),Address.class);
+		    	addressDetails.pinCode=address.pinCode;
+		    	addressDetails.fullName=address.fullName;
+		    	addressDetails.address=address.shippingAddress;
+		    	addressDetails.city=address.city;
+		    	addressDetails.state=address.state;
+		    	addressDetails.mobile=address.mobile;
+		    	addressDetails.userEmailid=emailId;
+		    	addressDetails.orderId = orderId;
+		    	JPA.em().persist(addressDetails);
+			} catch (JsonParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (JsonMappingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		     response().setCookie("orderId", orderId);
+		     if(!modeOfPayment.equalsIgnoreCase("cod")) {
+				//return ok(routes.CCAvenueController.ccavenue(orderId.trim()).url());
+		    	return redirect(routes.CCAvenueController.ccavenue(orderId.trim()));
+		     }
+			 return ok(orderId);
+		 
+	 }
+        @Transactional
+	    public static Result  saveDisplayColorComposeyourAd() throws JsonProcessingException, IOException {
+        	 DynamicForm form = DynamicForm.form().bindFromRequest();
+ 		   
+ 		     String originalFileName = null;
+	 		 String fileName = null;
+ 		     ObjectMapper mapper = new ObjectMapper();
+		     //JSONObject json = (JSONObject) JSONSerializer.toJSON(data);        
+		     JsonNode jsonAddress =  mapper.readTree(form.get("address"));
+		     JsonNode jsonEmail = Json.toJson(form.get("email"));
+		     JsonNode jsonAdSelect = Json.toJson(form.get("adSelectedType"));
+		     JsonNode jsonmodeOfPayment = Json.toJson(form.get("modeOfPayment"));
+		     JsonNode actualObj = mapper.readTree(form.get("carts"));
+		     ObjectMapper objectMapper = new ObjectMapper();
+    	     AddressDetails addressDetails =new AddressDetails();
+    	     List<CartItem> cartItem ;
+	     String emailId;
+	     if(jsonEmail.asText() != null) {
+	    	 emailId= jsonEmail.asText();
+	    	 //System.out.println("json1.getFile"+json1.getFile("email").toString());
+	     } else {
+	    	 emailId = session().get("emailId"); 
+	     }
+	     String modeOfPayment=jsonmodeOfPayment.asText();
+	     String orderId = UUID.randomUUID().toString();
+	     long order =  orderId.hashCode();
+	     //orderId = orderId.substring(orderId.lastIndexOf("-") + 1);
+         order = Math.abs(order);//convert to positive if hashcode is obtained  negitive.
+	     orderId = Long.toString(order);//convert order id to String. 
+	     float amount = 0;
+	     List<ComposedAdSave> composedAdSaves = new ArrayList<>();
+	     /*cartItem = objectMapper.readValue(json.get("carts").traverse(),
+				 new com.fasterxml.jackson.core.type.TypeReference<CartItem>() {});
+		*/ 
+		 cartItem = mapper.convertValue(actualObj, mapper.getTypeFactory().constructCollectionType(List.class, CartItem.class));
+		 for(int i=0; i < cartItem.size(); i++) {
+			
+			 FilePart picture =  request().body().asMultipartFormData().getFile("file");
+			 fileName = picture.getFilename();
+			 if(FilenameUtils.getExtension(fileName).equals("jpg")){
+				 
+				 String ThumbnailImage = rootDir + File.separator +orderId+"."+FilenameUtils.getExtension(fileName);
+		          originalFileName = rootDir + File.separator +orderId+"."+FilenameUtils.getExtension(fileName);
+		          File src = picture.getFile();
+		          OutputStream out = null;
+		          BufferedImage image = null;
+		          File f = new File(ThumbnailImage);
+		          System.out.println(originalFileName);
+		          try {
+		                         BufferedImage originalImage = ImageIO.read(src);
+		                         Thumbnails.of(originalImage)
+		                             .size(220, 220)
+		                             .toFile(f);
+		                             File _f = new File(originalFileName);
+		                             Thumbnails.of(originalImage).scale(1.0).
+		                             toFile(_f);
+		          } catch (FileNotFoundException e) {
+		                  e.printStackTrace();
+		          } catch (IOException e) {
+		                  e.printStackTrace();
+		          } finally {
+		                  try {
+		                          if(out != null) out.close();
+		                  } catch (IOException e) {
+		                          e.printStackTrace();
+		                  }
+		          }
+		  		File filepath = new File(originalFileName);
+		  		System.out.println("filepath:"+filepath);
+		  		
+		 	}else{
+		 		System.out.println("in else");
+		 		String fileNameDoc = null;
+		 		String filenamedbpath = null;
+		 		
+		 		play.mvc.Http.MultipartFormData.FilePart docFile;
+		 		play.mvc.Http.MultipartFormData body = request().body()
+		 				.asMultipartFormData();
+		 		docFile = body.getFile("file");
+
+		 		if (docFile != null) {
+		 			fileNameDoc = docFile.getFilename();
+		 			File file = docFile.getFile();
+		 			final String FILE_PATH = Play.application().configuration()
+		 					.getString("storage.path");
+		 			File f = new File(FILE_PATH + fileNameDoc);
+		 			filenamedbpath = FILE_PATH + File.separator + fileNameDoc;
+		 			try {
+						Files.copy(file.toPath(), f.toPath(),
+								java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		 			flash("Success", "File Uploaded successfully");
+		 	}
+		 	}
+			 
+			 ComposedAdSave cds=new ComposedAdSave();
+		  cds.Category=cartItem.get(i).mainCategoty;
+		  cds.Subcategory=cartItem.get(i).subcategory;
+		  cds.Nameofthenewspaper=cartItem.get(i).newspaper;   //location saved here
+		  cds.City=cartItem.get(i).location;//paper name saved here
+		  cds.Adtext=cartItem.get(i).description;
+		  cds.TotalCost=cartItem.get(i).fullTotal;
+		  cds.OrderID = orderId;
+		  cds.BorderCost=cartItem.get(i).extraForBorder;
+		  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
+		  cds.Extrabgper = cartItem.get(i).extraForBackgroudInPer;
+		  cds.Extraborderper =cartItem.get(i).extraForBorderInPer;
+		  cds.Tickper = cartItem.get(i).extraFortickInPer;
+		 // System.out.println("cartItem.get(i).extraFortickInPer"+cartItem.get(i).extraFortickInPer);
+		  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//save dates in DB
+		  Calendar c = Calendar.getInstance();
+		  cds.PublishDate="";
+		 for( int j =0; j < cartItem.get(i).dates.length; j++){
+			  try {
+				Date dt = sdf.parse(cartItem.get(i).dates[j]);
+				c.setTime(dt);
+				cds.PublishDate+=c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DATE)+",";
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		  }
+		  cds.BasicRate=cartItem.get(i).unit;
+		  cds.numberOfWords=cartItem.get(i).totalUnit;
+		  cds.userEmailId=emailId;
+		  cds.paymentOption=modeOfPayment;
+		  cds.Border=cartItem.get(i).onBorderSelected;
+		 //to handle  null values
+		  if(cartItem.get(i).onbgColorchange == null){
+			  cds.Bgcolor= "true";
+		  }else{
+			  cds.Bgcolor=cartItem.get(i).onbgColorchange;
+		  }
+		  if(cartItem.get(i).notickforAd == null){
+			  cds.Tick = "true";
+		  }else{
+			  cds.Tick = cartItem.get(i).notickforAd;
+		  }
+		  cds.TickRate = cartItem.get(i).extraFortick;
+		  cds.extra =  cartItem.get(i).extra;
+		  cds.freeunit = cartItem.get(i).freeUnit;
+		  cds.totalExtraCost = cartItem.get(i).totalExtraCost;
+		  cds.totalUnitCost = cartItem.get(i).totalUnitCost;
+		  cds.noOfImpression = cartItem.get(i).noOfImpression;
+		  cds.rate = cartItem.get(i).rate;
+		  cds.bgColorSelect = cartItem.get(i).nobgColor;
+		  cds.adbookedId = cartItem.get(i).id;
+		  cds.packageType = cartItem.get(i).packageSelected;
+		  cds.headerColor = cartItem.get(i).headerColor;
+		  cds.bodyColor = cartItem.get(i).bodyColor;
+		  cds.footerColor  = cartItem.get(i).footerColor;
+		  cds.footerDescption = cartItem.get(i).descriptionFooter;
+		  cds.headerDescption = cartItem.get(i).descriptionHeader;
+		  cds.bodyDescription = cartItem.get(i).descriptionBody;
+		  cds.colorAd = cartItem.get(i).colorAd;
+		  cds.BWAd = cartItem.get(i).BWAd;
+		  cds.imageAd = cartItem.get(i).imageAd;
+		  cds. adSizeSelect = cartItem.get(i).adSizeSelect;
+		  cds.originalFileName = originalFileName;
+		  cds.freewords = cartItem.get(i).freewords;
+		  //ad type save here
+		  cds.adSelectedType =  jsonAdSelect.asText();
+		  System.out.println("ad type"+cds.adSelectedType);
+		  cds.extraCost = cartItem.get(i).extraCost;
+		  cds.otherWidth = Integer.toString(cartItem.get(i).otherWidth);
+  	      cds.height = Integer.toString(cartItem.get(i).height);
+		  Date date = new Date();
+		  cds.orderDate = sdf.format(date);//current date i.e. order placed date saved here
+		  cds.TotalCost = (cartItem.get(i).rate *(((cartItem.get(i).otherWidth))) * (((cartItem.get(i).height))) * (cartItem.get(i).dates.length));
+		  amount = amount +  cds.TotalCost;
+		  System.out.println("amount :"+amount);
+		  composedAdSaves.add(cds);
+
+		  //JPA.em().persist(cds);
+		   }
+	     
+	     Order o = new Order();
+	     o.orderId = orderId;
+	     o.email = emailId;
+	     o.total = amount;
+	     o.orderDate = new Date();
+	     o.composedAd = composedAdSaves;
+	     JPA.em().persist(o);
+	     
+	     Address address;
+	     try {
+			//address = objectMapper.readValue(json.get("address").traverse(),Address.class);
+	    	 address = objectMapper.readValue(jsonAddress.traverse(),Address.class);
+	    	 addressDetails.pinCode=address.pinCode;
+	    	addressDetails.fullName=address.fullName;
+	    	addressDetails.address=address.shippingAddress;
+	    	addressDetails.city=address.city;
+	    	addressDetails.state=address.state;
+	    	addressDetails.mobile=address.mobile;
+	    	addressDetails.userEmailid=emailId;
+	    	addressDetails.orderId = orderId;
+	    	JPA.em().persist(addressDetails);
+		} catch (JsonParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (JsonMappingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	     response().setCookie("orderId", orderId);
+	     if(!modeOfPayment.equalsIgnoreCase("cod")) {
+			//return ok(routes.CCAvenueController.ccavenue(orderId.trim()).url());
+	    	return redirect(routes.CCAvenueController.ccavenue(orderId.trim()));
+	     }
+		 return ok(orderId);
+	 }
+        
+        @Transactional
+	    public static Result  saveDisplayHTMLAd() throws JsonProcessingException, IOException {
+        	  DynamicForm form = DynamicForm.form().bindFromRequest();
+ 		     System.out.println(form.get("carts"));
+ 		     
+ 		    ObjectMapper mapper = new ObjectMapper();
+		     //JSONObject json = (JSONObject) JSONSerializer.toJSON(data);        
+		     JsonNode jsonAddress =  mapper.readTree(form.get("address"));
+		     JsonNode jsonEmail = Json.toJson(form.get("email"));
+		     JsonNode jsonAdSelect = Json.toJson(form.get("adSelectedType"));
+		     JsonNode jsonmodeOfPayment = Json.toJson(form.get("modeOfPayment"));
+		     
+		     JsonNode actualObj = mapper.readTree(form.get("carts"));
+ 		     
+        	ObjectMapper objectMapper = new ObjectMapper();
+	     AddressDetails addressDetails =new AddressDetails();
+	     List<CartItem> cartItem ;
+	     String emailId;
+	     if(jsonEmail.asText() != null) {
+	    	 emailId= jsonEmail.asText();
+	    	 //System.out.println("json1.getFile"+json1.getFile("email").toString());
+	     } else {
+	    	 emailId = session().get("emailId"); 
+	     }
+	     String modeOfPayment=jsonmodeOfPayment.asText();
+	     String orderId = UUID.randomUUID().toString();
+	    
+	     long order =  orderId.hashCode();
+         order = Math.abs(order);//convert to positive if hashcode is obtained  negitive.
+	     orderId = Long.toString(order);//convert order id to String. 
+	     float amount = 0;
+	     List<ComposedAdSave> composedAdSaves = new ArrayList<>();
+	     /*cartItem = objectMapper.readValue(json.get("carts").traverse(),
+				 new com.fasterxml.jackson.core.type.TypeReference<CartItem>() {});
+		*/ 
+		 cartItem = mapper.convertValue(actualObj, mapper.getTypeFactory().constructCollectionType(List.class, CartItem.class));
+		 for(int i=0; i < cartItem.size(); i++) {
+			 ComposedAdSave cds=new ComposedAdSave();
+		  cds.Category=cartItem.get(i).mainCategoty;
+		  cds.Subcategory=cartItem.get(i).subcategory;
+		  cds.Nameofthenewspaper=cartItem.get(i).newspaper;   //location saved here
+		  cds.City=cartItem.get(i).location;//paper name saved here
+		  cds.Adtext=cartItem.get(i).description;
+		  cds.TotalCost=cartItem.get(i).fullTotal;
+		  cds.OrderID = orderId;
+		  cds.BorderCost=cartItem.get(i).extraForBorder;
+		  cds.BgcolorRate=cartItem.get(i).extraForBackgroud;
+		  cds.Extrabgper = cartItem.get(i).extraForBackgroudInPer;
+		  cds.Extraborderper =cartItem.get(i).extraForBorderInPer;
+		  cds.Tickper = cartItem.get(i).extraFortickInPer;
+		 // System.out.println("cartItem.get(i).extraFortickInPer"+cartItem.get(i).extraFortickInPer);
+		  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//save dates in DB
+		  Calendar c = Calendar.getInstance();
+		  cds.PublishDate="";
+		 for( int j =0; j < cartItem.get(i).dates.length; j++){
+			  try {
+				Date dt = sdf.parse(cartItem.get(i).dates[j]);
+				c.setTime(dt);
+				cds.PublishDate+=c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DATE)+",";
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		  }
+		  cds.BasicRate=cartItem.get(i).unit;
+		  cds.numberOfWords=cartItem.get(i).totalUnit;
+		  cds.userEmailId=emailId;
+		  cds.paymentOption=modeOfPayment;
+		  cds.Border=cartItem.get(i).onBorderSelected;
+		 //to handle  null values
+		  if(cartItem.get(i).onbgColorchange == null){
+			  cds.Bgcolor= "true";
+		  }else{
+			  cds.Bgcolor=cartItem.get(i).onbgColorchange;
+		  }
+		 
+		  if(cartItem.get(i).notickforAd == null){
+			  cds.Tick = "true";
+		  }else{
+			  cds.Tick = cartItem.get(i).notickforAd;
+		  }
+		  
+		  cds.TickRate = cartItem.get(i).extraFortick;
+		  cds.extra =  cartItem.get(i).extra;
+		  cds.freeunit = cartItem.get(i).freeUnit;
+		  cds.totalExtraCost = cartItem.get(i).totalExtraCost;
+		  cds.totalUnitCost = cartItem.get(i).totalUnitCost;
+		  cds.noOfImpression = cartItem.get(i).noOfImpression;
+		  cds.rate = cartItem.get(i).rate;
+		  cds.bgColorSelect = cartItem.get(i).nobgColor;
+		  cds.adbookedId = cartItem.get(i).id;
+		  cds.packageType = cartItem.get(i).packageSelected;
+		  cds.headerColor = cartItem.get(i).headerColor;
+		  cds.bodyColor = cartItem.get(i).bodyColor;
+		  cds.footerColor  = cartItem.get(i).footerColor;
+		  cds.footerDescption = cartItem.get(i).descriptionFooter;
+		  cds.headerDescption = cartItem.get(i).descriptionHeader;
+		  cds.bodyDescription = cartItem.get(i).descriptionBody;
+		  cds.colorAd = cartItem.get(i).colorAd;
+		  cds.BWAd = cartItem.get(i).BWAd;
+		  cds.imageAd = cartItem.get(i).imageAd;
+		  cds. adSizeSelect = cartItem.get(i).adSizeSelect;
+		  cds.freewords = cartItem.get(i).freewords;
+		  cds.otherWidth = Integer.toString(cartItem.get(i).otherWidth);
+  	      cds.height = Integer.toString(cartItem.get(i).height);
+		 // cds.widthSelected = cartItem.get(i).
+		     
+		  //ad type save here
+		  cds.adSelectedType =  jsonAdSelect.asText();
+		  System.out.println("ad type"+cds.adSelectedType);
+		  cds.extraCost = cartItem.get(i).extraCost;
+		  Date date = new Date();
+		  cds.orderDate = sdf.format(date);//current date i.e. order placed date saved here
+		  cds.TotalCost = (cartItem.get(i).rate *(((cartItem.get(i).otherWidth))) * (((cartItem.get(i).height))) * (cartItem.get(i).dates.length));
+		  amount = amount +  cds.TotalCost;
+		  System.out.println("amount :"+amount);
+		  composedAdSaves.add(cds);
+		   }
+	     Order o = new Order();
+	     o.orderId = orderId;
+	     o.email = emailId;
+	     o.total = amount;
+	     o.orderDate = new Date();
+	     o.composedAd = composedAdSaves;
+	     JPA.em().persist(o);
+	     Address address;
+	     try {
+			//address = objectMapper.readValue(json.get("address").traverse(),Address.class);
+	    	 address = objectMapper.readValue(jsonAddress.traverse(),Address.class);
+	    	 addressDetails.pinCode=address.pinCode;
 	    	addressDetails.fullName=address.fullName;
 	    	addressDetails.address=address.shippingAddress;
 	    	addressDetails.city=address.city;

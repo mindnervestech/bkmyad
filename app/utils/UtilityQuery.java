@@ -21,7 +21,8 @@ public class UtilityQuery {
 			+ "ExtracostperSqcm,"
 			+ "Extraborderper,"
 			+ "Extrabgper,"
-			+ "Tickper ";
+			+ "Tickper, "
+			+ "freewords ";;
 	private static final String QUERY3 = "SELECT BasicRateID,"
 			+ "City,"
 			+ "Basicrate.Nameofthenewspaper,"
@@ -35,7 +36,8 @@ public class UtilityQuery {
 			+ "ExtracostperSqcm,"
 			+ "Extraborderper,"
 			+ "Extrabgper,"
-			+ "Tickper ";
+			+ "Tickper, "
+			+ "freewords ";
 	
 	private static final String QUERY1 = "SELECT BasicRateID,"
 			+ "City,"
@@ -50,7 +52,8 @@ public class UtilityQuery {
 			+ "ExtracostperSqcm,"
 			+ "Extraborderper,"
 			+ "Extrabgper,"
-			+ "Tickper ";
+			+ "Tickper,"
+			+ "freewords ";
 	private static final String QUERY4 = "SELECT BasicRateID,"
 			+ "City,"
 			+ "Newspaperdetails.Nameofthenewspaper,"
@@ -64,7 +67,8 @@ public class UtilityQuery {
 			+ "ExtracostperSqcm,"
 			+ "Extraborderper,"
 			+ "Extrabgper,"
-			+ "Tickper ";
+			+ "Tickper ,"
+			+ "freewords ";
 	@Transactional	
 	public static List<Object[]> getBasicRates(String city,String newspaper,String Category) {
           Query q = JPA.em().createNativeQuery(QUERY1 +
@@ -162,7 +166,7 @@ public class UtilityQuery {
 		Query q = JPA
 				.em()
 				.createNativeQuery(
-						"SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,Dtotalprice,BasicratesperText,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,ExtracostperSqcm,Extrabgper,Extraborderper,Tickper "
+						"SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,Dtotalprice,BasicratesperText,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,ExtracostperSqcm,Extrabgper,Extraborderper,Tickper,freewords "
 								+ "FROM Discountprice INNER JOIN Newspaperdetails ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) "
 								+ "where Discountprice.Nameofthenewspaper= ?1 and Discountprice.Category= ?2 and Discountprice.Dtotalprice > 0 ");
 		q.setParameter(1, newspaper);
@@ -220,7 +224,7 @@ public class UtilityQuery {
 		Query q = JPA
 				.em()
 				.createNativeQuery(
-						"SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,Dtotalprice,BasicratesperText,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,ExtracostperSqcm,Extrabgper,Extraborderper,Tickper "
+						"SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,Dtotalprice,BasicratesperText,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,ExtracostperSqcm,Extrabgper,Extraborderper,Tickper,freewords "
 								+ "FROM Discountprice INNER JOIN Newspaperdetails ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) "
 								+ "where Discountprice.Cities like ?1 and Discountprice.Category = ?2 and  Discountprice.Dtotalprice > 0");
 
@@ -237,7 +241,7 @@ public class UtilityQuery {
 		Query q = JPA
 				.em()
 				.createNativeQuery(
-						"SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,ClasifiedadRate,BasicratesperText,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,ExtracostperSqcm,Extrabgper,Extraborderper,Tickper "
+						"SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,ClasifiedadRate,BasicratesperText,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,ExtracostperSqcm,Extrabgper,Extraborderper,Tickper,freewords "
 								+ "FROM Discountprice INNER JOIN Newspaperdetails ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) "
 								+ "where Discountprice.Nameofthenewspaper like ?1 and Discountprice.Category = ?2 and Discountprice.ClasifiedadRate > 0");
 
@@ -254,7 +258,7 @@ public class UtilityQuery {
 		Query q = JPA
 				.em()
 				.createNativeQuery(
-						"SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,ClasifiedadRate,BasicratesperText,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,ExtracostperSqcm,Extrabgper,Extraborderper,Tickper "
+						"SELECT Did,Edition,Newspaperdetails.Nameofthenewspaper,ClasifiedadRate,BasicratesperText,Exstracostperline,Border,Backcolor,SpecialDiscount,Tick,ExtracostperSqcm,Extrabgper,Extraborderper,Tickper,freewords "
 								+ "FROM Discountprice INNER JOIN Newspaperdetails ON (Discountprice.Nameofthenewspaper=Newspaperdetails.Nameofthenewspaper) "
 								+ "where Discountprice.Cities like ?1 and Discountprice.Category = ?2 and Discountprice.ClasifiedadRate > 0");
 
@@ -269,7 +273,7 @@ public class UtilityQuery {
 		Query q = JPA
 				.em()
 				.createQuery(
-						"SELECT OID,OrderID,Nameofthenewspaper,City,Adtext,TickRate,Bgcolor,BgcolorRate,Border,BorderCost,PublishDate,BasicRate,TotalCost,Category,numberOfWords,orderDate,freeunit,extra,totalExtraCost,totalUnitCost,noOfImpression,rate,bgColorSelect,Tick,adbookedId,Extraborderper,Extrabgper,Tickper,Subcategory,numberOfWords,footerDescption,headerDescption,bodyDescription,footerColor,bodyColor,headerColor,adType,colorAd,imageAd,adSizeSelect,adSelectedType  FROM ComposedAdSave  where OrderId = ?1");
+						"SELECT OID,OrderID,Nameofthenewspaper,City,Adtext,TickRate,Bgcolor,BgcolorRate,Border,BorderCost,PublishDate,BasicRate,TotalCost,Category,numberOfWords,orderDate,freeunit,extra,totalExtraCost,totalUnitCost,noOfImpression,rate,bgColorSelect,Tick,adbookedId,Extraborderper,Extrabgper,Tickper,Subcategory,numberOfWords,footerDescption,headerDescption,bodyDescription,footerColor,bodyColor,headerColor,adType,colorAd,imageAd,adSizeSelect,adSelectedType,otherWidth,height,originalFileName,freewords  FROM ComposedAdSave  where OrderId = ?1");
 		q.setParameter(1, orderIdPer);
 
 		List<Object[]> list = (List<Object[]>) q.getResultList();

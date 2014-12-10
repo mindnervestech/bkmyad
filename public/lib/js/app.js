@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('adschela',
 		['ngResource','ngRoute','ngDialog','ui.bootstrap','ui.bootstrap.transition','ui.bootstrap.tpls',
-		 'rcWizard', 'rcForm', 'rcDisabledBootstrap','ngCookies','ui.tinymce'])
+		 'rcWizard', 'rcForm', 'rcDisabledBootstrap','ngCookies','ui.tinymce','angularFileUpload'])
                            .config(function ($routeProvider) {
                         	    $routeProvider
                         	      .when('/', {
@@ -12,8 +12,8 @@ var app = angular.module('adschela',
                         	        templateUrl: 'textClassifiedController.html',
                         	        controller: 'TextClassifiedController'
                         	      })
-                        	      .when('/make-booking.html/:id', {
-                        	        templateUrl: 'make-booking.html',
+                        	      .when('/compose-classified-Ad/:id', {
+                        	        templateUrl: 'compose-classified-Ad',
                         	        controller: 'MakeBookingController'
                         	      })
                         	      .when('/aboutUs', {

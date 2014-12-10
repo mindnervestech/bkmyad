@@ -44,7 +44,7 @@ public class Basicrate {
 		public String Tickper="0";
 		public String ExtracostperSqcm="0";
 		public String Statename;
-				
+		public String freewords = "22";		
 		
 		@Transactional
 	    public static long getAllAnnouncementsTotal(String City, String Category, int rowsPerPage) {

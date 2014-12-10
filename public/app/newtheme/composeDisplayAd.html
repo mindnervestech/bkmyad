@@ -4,7 +4,6 @@
     <!-- End -->
     <link href="css/display.css" rel="stylesheet" type="text/css" />
 
-
     <style type="text/css">
         .divModalBackground
         {
@@ -40,46 +39,139 @@
 <!-- <link href="/WebResource.axd?d=eELOVr57-x406Xc75zGi2tprCqY3dldlhtntpI7SiWifW2awJvad0Zw_fiz0Owz-B7zVwkz8xQlml33cPpS0PHPymYTskVfDmGrAvFbI-b__PCIB7ITYVBP4PXdUbPaXOJSO6g2&amp;t=635216696627194188" type="text/css" rel="stylesheet" /><link href="/WebResource.axd?d=6D5sCqIWT_1AL4YT4rDd3JfMclNQawjIUJC2rP1IjvGNa5vI2SVvrh4yXZKd_5BOMOIiPxz8Xxd_0beRQJudvR3xv1Ch0isx6BfxOl4IVXZmS-ZQyJKCuB9ve_fsSjP3Gz7HVOd-dsXigyQMoHhsX3m0yVs1&amp;t=635216696627194188" type="text/css" rel="stylesheet" /><link href="/WebResource.axd?d=M-lLY-IZ1ekCIzcitSQ1v993WsqoKOApMnM7fMXUHgU-RrQAZZDSxINPihZd6L6uGu_Ny5hF-QRiDtHP7rdBHhgUCCjTagO_KEMvjGqPqVhQ_XmKoPbyWGsfx0IA7OWQ18Xmkw2&amp;t=635216696627194188" type="text/css" rel="stylesheet" /></head> -->
 
    
-<div rc-wizard="composeWizard" rc-disabled="rc.firstForm.submitInProgress" style="min-height: 250px">
-      <ul class="nav rc-nav-wizard">
+<div rc-wizard="composeWizard" rc-disabled="rc.firstForm.submitInProgress" style="min-height: 230px">
+      <ul class="nav rc-nav-wizard" >
               <li class="active" style="float:left;margin-right: 2%;">
                 <a class="active" href="#select-Ad" data-toggle="tab">
                   <span class="badge">1</span>
-                  <span>Select Ad </span>
+                  <span>Select your Ad</span>
                 </a>
               </li>
-               <li style="float:left;margin-right: 2%;">
+                <li style="float:left;margin-right: 2%;">
                 <a href="#create-ad" data-toggle="tab">
                   <span class="badge">2</span>
                   <span>Create your Ad </span>
                 </a>
               </li>
-              <li style="float:left;margin-right: 2%;">
+            <!--   <li style="float:left;margin-right: 2%;">
                 <a href="#extra-toping" data-toggle="tab">
                   <span class="badge">3</span>
                   <span>Extra Toping</span>
                 </a>
-              </li>
+              </li> -->
               <li style="float:left;margin-right: 2%;">
                 <a href="#select-date" data-toggle="tab">
-                  <span class="badge">4</span>
+                  <span class="badge">3</span>
                   <span>Select Date</span>
                 </a>
               </li>
             </ul>
-            <hr style="margin:0%" >
-    <div  class="tab-content">
-    
-	
+     <hr style="margin:0%" >
+     <div  class="tab-content">
 	<form class="tab-pane active" id="select-Ad" name="select-AdForm" rc-step novalidate>
-	<div>
+			<div style="margin-bottom: 1%;">
+				<span><span style = "font-weight:bold">Compose Your Ad OR</span>  
+			<button class="btn" style="margin-left: 25%;margin-top: 1%;" type="button" ng-click="onNoTemplateSelected()"></button>
+			<button type="button" class="btn btn-primary" ng-click="onNoTemplateSelected()">Upload Template</button>
+			</div>
+			<div  ng-if  ="uploadyourAdSelect == 'userType'" >
+			<div ng-show="notemplateSelected  ==  true">
+			<div>
+				<aside class="pic-box"></aside>
+				<aside class="pic-dtls">
+					<span class="pic-btn"> <input
+						ng-file-select="selectGeneralPicImage($files)" name="" type="file" />
+					</span><span ><button type="button" style="margin-left: 0%;  ng-click="savegeneralPic()">&nbsp;Upload </button></span> <span class="pic-hints" style="font-size:12px">Maximum size 1 MB docx,doc,JPG,
+						GIF, PNG.</span><!-- <label>iamge uploaded</label>
+						<span ng-model="selectedCartItemOnPopUp.originalFileName">
+						<img data-ng-src="/getImageById/{{selectedCartItemOnPopUp.OrderId}}" style="height:100px; width :100px" alt="">
+						</span> -->
+				</aside>
+			</div>
+			<hr >
+			<div>
+			</div>
+			<div style="width:100%;">
+				<div style="float: left; width: 26%;" ng-show="defaultWidth">
+					Width: <input type="radio" name="defaultWidth"
+						ng-model="selectedCartItemOnPopUp.otherWidth" value="3"
+						style="margin-left: 2%;" ng-change="selectDefaultWidth()">&nbsp;3&nbsp;cm
+				</div>
+				<div style="float: left; width: 10%;">
+					 <input type="radio" name="defaultWidth"
+						ng-model="selectedCartItemOnPopUp.otherWidth" value="4"
+						style="margin-left: 2%;" ng-change="selectOtherWidth()">&nbsp;Custom
+				</div>
+			
+			<div ng-show="otherWidth" style="float:left;width: 10%;">
+					<!--  <input type="radio" name="defaultWidth"
+						ng-model="selectedCartItemOnPopUp.otherWidth"ng-change="selectOtherWidth()" value="4"
+						style="margin-left: 2%;" ng-change="selectOtherWidth()">4 &nbsp;cm
+				 <input type="radio" name="defaultWidth"
+						ng-model="selectedCartItemOnPopUp.otherWidth" value="5"
+						style="margin-left: 2%;" ng-change="selectOtherWidth()">5 &nbsp;cm
+				 <input type="radio" name="defaultWidth"
+						ng-model="selectedCartItemOnPopUp.otherWidth" value="6"
+						style="margin-left: 2%;" ng-change="selectOtherWidth()">6 &nbsp;cm
+				 <input type="radio" name="defaultWidth"
+						ng-model="selectedCartItemOnPopUp.otherWidth" value="7"
+						style="margin-left: 2%;" ng-change="selectOtherWidth()">7 &nbsp;cm
+				 <input type="radio" name="defaultWidth"
+						ng-model="selectedCartItemOnPopUp.otherWidth" value="8"
+						style="margin-left: 2%;" ng-change="selectOtherWidth()">8 &nbsp;cm
+				
+						 <input type="radio" name="defaultWidth"
+						ng-model="selectedCartItemOnPopUp.otherWidth" value="9"
+						style="margin-left: 2%;" ng-change="selectOtherWidth()">9 &nbsp;cm
+				 <input type="radio" name="defaultWidth"
+						ng-model="selectedCartItemOnPopUp.otherWidth" value="10"
+						style="margin-left: 2%;" ng-change="selectOtherWidth()">10 &nbsp;cm
+				 <input type="radio" name="defaultWidth"
+						ng-model="selectedCartItemOnPopUp.otherWidth" value="11"
+						style="margin-left: 2%;" ng-change="selectOtherWidth()">11 &nbsp;cm
+				 <input type="radio" name="defaultWidth"
+						ng-model="selectedCartItemOnPopUp.otherWidth" value="12"
+						style="margin-left: 2%;" ng-change="selectOtherWidth()">12 &nbsp;cm
+				 -->
+					<select style="width: 100%;">
+					  <option ng-model="selectedCartItemOnPopUp.otherWidth"ng-change="selectOtherWidth()" value="5">5&nbsp;cm</option>
+					  <option ng-model="selectedCartItemOnPopUp.otherWidth"ng-change="selectOtherWidth()" value="6">6&nbsp;cm</option>
+					  <option ng-model="selectedCartItemOnPopUp.otherWidth"ng-change="selectOtherWidth()" value="7">7&nbsp;cm</option>
+					  <option ng-model="selectedCartItemOnPopUp.otherWidth"ng-change="selectOtherWidth()" value="8">8&nbsp;cm</option>
+					  <option ng-model="selectedCartItemOnPopUp.otherWidth"ng-change="selectOtherWidth()" value="9">9&nbsp;cm</option>
+					  <option ng-model="selectedCartItemOnPopUp.otherWidth"ng-change="selectOtherWidth()" value="10">10&nbsp;cm</option>
+					  <option ng-model="selectedCartItemOnPopUp.otherWidth"ng-change="selectOtherWidth()" value="11">11&nbsp;cm</option>
+					  <option ng-model="selectedCartItemOnPopUp.otherWidth"ng-change="selectOtherWidth()" value="12">12&nbsp;cm</option>
+					</select>
+						</div>
+						<div>
+				
+    </div>
+		</div>
+		<div style="margin-right: 70%;margin-top: 10%;">
+					Height: <input style="width: 20%;" type="text"
+						name="height" ng-model="selectedCartItemOnPopUp.height">&nbsp;cm<br />
+				</div>
+			</div>
+		</div>
+<div class="ng-scope">
+							<img src="/NewDesign/images/or.gif" style="width: 100%;">
+						</div>
+	<div style="margin-top: 1%;" ng-if  ="uploadyourAdSelect == 'userType'">
+	<span style="margin-left: 43%;"><button type="button" class="btn btn-primary"  ng-click="onTemplateSelected()">Select Template</button></span>
+	
+	</div>
+	<div ng-show="templateSelect == true"> 
+	<div  ng-if  ="uploadyourAd == 'templateSelect'">
+	<div >
 	 <lable>Select an Ad template from below (colour or b/w)</lable><br />
 	 <lable style="font-weight:bold" >Select Color Mode :</lable>
          <input type="radio" name="adChoose" ng-model = "selectedCartItemOnPopUp.colorAd" value="colorAd"  style="margin-left: 2%;"ng-change="onColorAdChoose(selectedCartItemOnPopUp.colorAd)">Color Ad
          <input type="radio" name="adChoose" ng-model="selectedCartItemOnPopUp.colorAd" value="BWAd" style="margin-left:24%" ng-change="onBWAdChoose(selectedCartItemOnPopUp.BWAd)">B/W Ad<br>
    </div>
-   <div><lable ><font size="0">Note: Colour Ads are generally more expensive than B/w Ads. On template selection you can customize the text, font, colours & images as per your requirement.</font></lable></div>	
-	<div ng-show="showColorAd">
+   <div><lable ><font size="0">Note: Colour Ads are generally more expensive than B/w Ads. On template selection you can customize the text, font, colours & images as per your requirement.</font></lable></div>
+	
+	 <div ng-show="showColorAd">
     <table style="width: 100%;margin-top: 2%;float: left">
      <tr>
      <td valign="top">
@@ -88,26 +180,29 @@
        <input type="radio" name="img" value="1" ng-model="selectedCartItemOnPopUp.imageAd"  ng-change="onSelectImageforAd(selectedCartItemOnPopUp.imageAd);" style="margin-left: 34%;"><br> 
      </td>
      <td valign="top"  >
-     <img id="Image2" src="assets/image/matrimonial2.gif"style="border-width:0px;height: 300px;width:115px;" />
+     <img id="Image2" src="assets/image/matrimonial2.gif"style="border-width:0px;height: 300px;width:110px;" />
      <br />
      <input type="radio" name="img" value="2" ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(selectedCartItemOnPopUp.imageAd);" style="margin-left: 34%;"><br> 
      </td>
     <td valign="top" >
-      <img id="Image3" src="assets/image/matrimonial3.gif" style="border-width:0px;height: 300px;width:115px;" />
+      <img id="Image3" src="assets/image/matrimonial3.gif" style="border-width:0px;height: 300px;width:110px;" />
       <br />
       <input type="radio" name="img" value="3"  ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(selectedCartItemOnPopUp.imageAd);" style="margin-left: 34%;" ><br> 
      </td>
    <td valign="top"  >
-    <img id="Image4" src="assets/image/matrimonial4.gif" style="border-width:0px;height: 300px;width:115px;" />
+    <img id="Image4" src="assets/image/matrimonial4.gif" style="border-width:0px;height: 300px;width:110px;" />
     <br />
    <input type="radio" name="img" value="4" ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(selectedCartItemOnPopUp.imageAd);" style="margin-left: 34%;"><br> 
     </td>
-                                           
+    
+     <td valign="top"  >
+    <img id="Image4" src="assets/image/recruitment4.gif" style="border-width:0px;height: 300px;width:110px;" />
+    <br />
+   <input type="radio" name="img" value="5" ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(selectedCartItemOnPopUp.imageAd);" style="margin-left: 34%;"><br> 
+    </td>
  </tr>
  </table>
-
 </div>
-
    <div ng-show="showBWAd">
 		    <table style="width: 100%; margin-top: 2%;float: left;">
 		     <tr>
@@ -117,122 +212,213 @@
 		       <input type="radio" name="img" value="1" ng-model="selectedCartItemOnPopUp.imageAd"  ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;"><br> 
 		     </td>
 		     <td valign="top"  >
-		     <img id="Image2" src="assets/image/matrimonial2_cd.gif"style="border-width:0px;height: 300px;width:115px;" />
+		     <img id="Image2" src="assets/image/matrimonial2_cd.gif"style="border-width:0px;height: 300px;width:110px;" />
 		     <br />
 		     <input type="radio" name="img" value="2" ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;"><br> 
 		     </td>
 		    <td valign="top" >
-		      <img id="Image3" src="assets/image/matrimonial3_cd.gif" style="border-width:0px;height: 300px;width:115px;" />
+		      <img id="Image3" src="assets/image/matrimonial3_cd.gif" style="border-width:0px;height: 300px;width:110px;" />
 		      <br />
 		      <input type="radio" name="img" value="3"  ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;" ><br> 
 		     </td>
 		                                        
 		  <td valign="top"  >
-		    <img id="Image4" src="assets/image/matrimonial4_cd.gif" style="border-width:0px;height: 300px;width:115px;" />
+		    <img id="Image4" src="assets/image/matrimonial4_cd.gif" style="border-width:0px;height: 300px;width:110px;" />
+		    <br />
+		   <input type="radio" name="img" value="4" ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;"><br> 
+		    </td>
+		                                            
+		  <td valign="top"  >
+		    <img id="Image4" src="assets/image/recruitment4_cd.gif" style="border-width:0px;height: 300px;width:110px;" />
 		    <br />
 		   <input type="radio" name="img" value="4" ng-model="selectedCartItemOnPopUp.imageAd" ng-change="onSelectImageforAd(imageAd);" style="margin-left: 34%;"><br> 
 		    </td>
 		 </tr>
 		 </table>
    </div>
+   </div>
+   </div>
  </form>                                                                      
  
  
-<form class="tab-pane" method="post" id="create-ad" name="select-AdForm" rc-step novalidate>	
-<div>
-		<div style="width: 100%;float: left;">
-		
-		 <div ng-show="descriptionHeader" id="descriptionHeader"  style="width:30%;margin-left:0%;float: left;margin-bottom: 2%;">
-		<textarea id="tinymce"  data-ui-tinymce='tinymceOptions' data-ng-model="selectedCartItemOnPopUp.descriptionHeader">
+ <form class="tab-pane" method="post" id="create-ad" name="select-AdForm" rc-step novalidate>
+			<div>
+				<div style="width: 100%; float: left;">
+
+					<div ng-show="descriptionHeader" id="descriptionHeader"
+						style="width: 30%; margin-left: 0%; float: left; margin-bottom: 2%;">
+						<textarea id="tinymce" data-ui-tinymce='tinymceOptions'
+							data-ng-model="selectedCartItemOnPopUp.descriptionHeader">
 		</textarea>
-		</div>
-		 <div ng-show="descriptionBody" id="descriptionBody" style="width:30%;margin-left:2%;float: left;margin-bottom: 2%;">
-		<textarea id="tinymceBody"  data-ui-tinymce='tinymceOptionsBody' data-ng-model="selectedCartItemOnPopUp.descriptionBody" ng-change="tinymceOptionsSelect()">
-		<div id="matrimonial2_cd_body" style="padding: 0pt 2px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; overflow:hidden;" align="center"><p><span style="font-size: 14px;">Need alliance match for Gujarat based  				Gupta Boy 25/6”. Runs own business. Girl should be well educated homely,tall &amp; b/ful. <span style="font-weight: bold; text-decoration: underline;">Caste no bar</span></span><br><span style="font-weight: bold; font-size: 14px;">E-mail ID<br>9855529362<br>Ph: 26667291</span></p></div>
+					</div>
+					<div ng-show="descriptionBody" id="descriptionBody"
+						style="width: 30%; margin-left: 2%; float: left; margin-bottom: 2%;">
+						<textarea id="tinymceBody" data-ui-tinymce='tinymceOptionsBody'
+							data-ng-model="selectedCartItemOnPopUp.descriptionBody"
+							ng-change="tinymceOptionsSelect()">
+		<div id="matrimonial2_cd_body"
+								style="padding: 0pt 2px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; overflow: hidden;"
+								align="center">
+								<p>
+									<span style="font-size: 14px;">Need alliance match for Gujarat based  				Gupta Boy 25/6”. Runs own business. Girl should be well educated homely,tall &amp; b/ful. <span
+										style="font-weight: bold; text-decoration: underline;">Caste no bar</span></span><br><span
+										style="font-weight: bold; font-size: 14px;">E-mail ID<br>9855529362<br>Ph: 26667291</span>
+								</p>
+							</div>
 		</textarea>
-		</div>	
-		 <div ng-show="descriptionFooter" id="descriptionFooter" style="width:30%;margin-left:2%;float: left;margin-bottom: 2%;">
-			<textarea id="tinymceFooter"  data-ui-tinymce='tinymceOptionsFooter' data-ng-model="selectedCartItemOnPopUp.descriptionFooter">
-			<div id="matrimonial2_cd_body" style="padding: 0pt 2px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; overflow:hidden;" align="center"><p><span style="font-size: 14px;">Need alliance match for Gujarat based  				Gupta Boy 25/6”. Runs own business. Girl should be well educated homely,tall &amp; b/ful. <span style="font-weight: bold; text-decoration: underline;">Caste no bar</span></span><br><span style="font-weight: bold; font-size: 14px;">E-mail ID<br>9855529362<br>Ph: 26667291</span></p></div>
+					</div>
+					<div ng-show="descriptionFooter" id="descriptionFooter"
+						style="width: 30%; margin-left: 2%; float: left; margin-bottom: 2%;">
+						<textarea id="tinymceFooter"
+							data-ui-tinymce='tinymceOptionsFooter'
+							data-ng-model="selectedCartItemOnPopUp.descriptionFooter">
+			<div id="matrimonial2_cd_body"
+								style="padding: 0pt 2px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; overflow: hidden;"
+								align="center">
+								<p>
+									<span style="font-size: 14px;">Need alliance match for Gujarat based  				Gupta Boy 25/6”. Runs own business. Girl should be well educated homely,tall &amp; b/ful. <span
+										style="font-weight: bold; text-decoration: underline;">Caste no bar</span></span><br><span
+										style="font-weight: bold; font-size: 14px;">E-mail ID<br>9855529362<br>Ph: 26667291</span>
+								</p>
+							</div>
 		
 			</textarea>
-		</div>
-		
-		
-		<div>
-		</div>
+					</div>
 
-</div>
-<div >
- <div id="headerColor" ng-show="headerColor" style="float: left;width: 30%;">
-		<label style="float: left;width: 100%;">Change Header Color</label>
-		<select name="thelist" ng-model="selectedCartItemOnPopUp.headerColor" ng-change="onColorHeaderChange()" style="width: 26%;margin-left: 8%;">
-		  <option>RED</option>
-		  <option>GREEN</option>
-		  <option>BLUE</option>
-		  <option>YELLOW</option>
-		  <option>WHITE</option>
-		   
-		</select> 
-		<br />
-		</div>
-<div id="bodyColor"  ng-show="bodyColor" style="float: left;width: 30%;">
-		<label style="float: left;width: 100%;">Change Body Color</label>
-		<select name="thelist" ng-model="selectedCartItemOnPopUp.bodyColor" ng-change="onColorBodyChange()" style="width: 26%;margin-left: 8%;">
-		  <option>RED</option>
-		  <option>GREEN</option>
-		  <option>BLUE</option>
-		  <option>YELLOW</option>
-		  <option>WHITE</option>
-		  
-		</select>  
-		</div> 
-<div id="footerColor" ng-show="footerColor" style="float: left;width: 30%;">
-			<label style="float: left;width: 100%;">Change Footer Color</label>
-			<select name="thelist"   ng-model="selectedCartItemOnPopUp.footerColor" ng-change="onColorFooterChange()" style="width: 26%;margin-left: 8%;">
-			  <option>RED</option>
-			  <option>GREEN</option>
-			  <option>BLUE</option>
-			  <option>YELLOW</option>
-			  <option>WHITE</option>
-			  
-			</select> 
-			<br />
-		</div> 
-<hr >
-</div>
-<div style="width: 50%; float :left;">
-<hr />
-		<div style="float:left;width: 100%;">&nbsp;&nbsp;
-		    <lable style="font-weight:bold;">Specify Ad Width&nbsp;&nbsp; </lable>
-			<input type="radio" name="adWidth" value="firstColumn" ng-model="selectedCartItemOnPopUp.adSizeSelect" ng-click="onFirstColumnSelected()">&nbsp;&nbsp;1  Column
-			<input type="radio" name="adWidth" value="secondColumn" style="margin-left:12%" ng-model="selectedCartItemOnPopUp.adSizeSelect" ng-click="onSecondColumnSelected()">&nbsp;&nbsp;2 Column
-	   </div>
-		<!-- <input type="textarea" name="headerTextArea" style="height:150px" data-ng-model="selectedAdbodyTextOnPopUp.descriptionBody" /> -->
-  <div style="width:100%;float: right;">
-		
-		<div style="float: left;height: 250px;width: 90%;">
-		<div id= "adPreview" style="float: right;margin-top: 10%;" ng-style="{borderColor: myColor}">
-			
-			<div id="descriptionHeaderText" style="white-space: wrap;word-wrap: break-word;" ng-style="{'background-color':selectedCartItemOnPopUp.headerColor}" ng-model="selectedCartItemOnPopUp.descriptionHeader">
-			   <!--  <span id="descriptionHeaderText1" name="descriptionHeaderText"></span><br/> -->
+
+					<div></div>
+
+				</div>
+				<div>
+					<div id="headerColor" ng-show="headerColor"
+						style="float: left; width: 30%;">
+						<label style="float: left; width: 100%;">Change Header
+							Color</label> <select name="thelist"
+							ng-model="selectedCartItemOnPopUp.headerColor"
+							ng-change="onColorHeaderChange()"
+							style="width: 26%; margin-left: 8%;">
+							<option>RED</option>
+							<option>GREEN</option>
+							<option>BLUE</option>
+							<option>YELLOW</option>
+							<option>WHITE</option>
+						</select> <br />
+					</div>
+					<div id="bodyColor" ng-show="bodyColor"
+						style="float: left; width: 30%;">
+						<label style="float: left; width: 100%;">Change Body Color</label>
+						<select name="thelist"
+							ng-model="selectedCartItemOnPopUp.bodyColor"
+							ng-change="onColorBodyChange()"
+							style="width: 26%; margin-left: 8%;">
+							<option>RED</option>
+							<option>GREEN</option>
+							<option>BLUE</option>
+							<option>YELLOW</option>
+							<option>WHITE</option>
+
+						</select>
+					</div>
+					<div id="footerColor" ng-show="footerColor"
+						style="float: left; width: 30%;">
+						<label style="float: left; width: 100%;">Change Footer
+							Color</label> <select name="thelist"
+							ng-model="selectedCartItemOnPopUp.footerColor"
+							ng-change="onColorFooterChange()"
+							style="width: 26%; margin-left: 8%;">
+							<option>RED</option>
+							<option>GREEN</option>
+							<option>BLUE</option>
+							<option>YELLOW</option>
+							<option>WHITE</option>
+
+						</select> <br />
+					</div>
+
+				</div>
+
+				<div style="width: 50%; float: left;">
+					<hr style="margin: 0%">
+					<div style="float: left; width: 100%;">
+						&nbsp;&nbsp;
+						<lable style="font-weight:bold;">Specify Ad
+						Width&nbsp;&nbsp; </lable>
+						<input type="radio" name="adWidth" value="firstColumn"
+							ng-model="selectedCartItemOnPopUp.adSizeSelect"
+							ng-click="onFirstColumnSelected()">&nbsp;&nbsp;1 Column <input
+							type="radio" name="adWidth" value="secondColumn"
+							style="margin-left: 12%"
+							ng-model="selectedCartItemOnPopUp.adSizeSelect"
+							ng-click="onSecondColumnSelected()">&nbsp;&nbsp;2 Column
+					</div>
+					<hr />
+					<div ng-show="showImageUploadOption">
+						<div>
+							<aside class="pic-box"></aside>
+							<aside class="pic-dtls">
+							
+								<span class="pic-btn"> <input
+									ng-file-select="selectGeneralPicImage($files)" name=""
+									type="file" />
+								</span> <span class="pic-hints" style="font-size: 12px;">Maximum
+									size 1 MB JPG, GIF, PNG.</span>
+							</aside>
+						</div>
+						<div>
+							<button type="button" ng-click="savegeneralPic()">Upload</button>
+						</div>
+					</div>
+
+					<!-- <input type="textarea" name="headerTextArea" style="height:150px" data-ng-model="selectedAdbodyTextOnPopUp.descriptionBody" />
+				 -->	
+				 <div style="width: 100%; float:left;margin-left: 70%;"> <button class="btn btn-success" data-toggle="modal" ng-click="preViewColorAd()"
+											style="width: 100px;">
+											Preview<i class="icon-edit"></i>
+										</button></div>
+				<!--  <div style="width: 100%; float: right;">
+						<hr style="margin: 0%">
+						<div style="float: left; height: 250px; width: 90%;">
+							<div id="adPreview" style="float: right; margin-top: 10%;clear: both;"
+								ng-style="{borderColor: myColor}">
+								 <div style="" ng-show="showImagePreview">
+								<img data-ng-src="{{img}}" alt="Smiley face" alt=""
+										style="height: 50px; width: 240px" ng-if="selectedCartItemOnPopUp.originalFileName == '' ">
+										<span ng-if="selectedCartItemOnPopUp.originalFileName != '' " >
+										<label style="font-weight:bold;"> Your Ad Image uploaded: </label> <span
+										    ng-model="selectedCartItemOnPopUp.originalFileName"> <img
+											data-ng-src="/getImageById/{{selectedCartItemOnPopUp.OrderId}}"
+											style="height: 50px; width: 200px" alt="">
+									     </span>
+
+								</div>
+								<div id="descriptionHeaderText"
+									style="white-space: wrap; word-wrap: break-word;"
+									ng-style="{'background-color':selectedCartItemOnPopUp.headerColor}"
+									ng-model="selectedCartItemOnPopUp.descriptionHeader">
+									 <span id="descriptionHeaderText1" name="descriptionHeaderText"></span><br/>
+								</div>
+								<div id="descriptionBodyText"
+									style="white-space: wrap; word-wrap: break-word;"
+									ng-style="{'background-color': selectedCartItemOnPopUp.bodyColor}"
+									ng-model="selectedCartItemOnPopUp.descriptionBody">
+									<span id="descriptionBodyText1" name="descriptionBodyText"></span><br/>
+								</div>
+								<div id="descriptionFooterText"
+									ng-model="selectedCartItemOnPopUp.descriptionFooter"
+									style="white-space: wrap; word-wrap: break-word;"
+									ng-style="{'background-color': selectedCartItemOnPopUp.footerColor}">
+									  <span id="descriptionFooterText1" name="descriptionFooterText"></span><br/>
+								</div>
+							</div>
+						</div>
+
+					</div> -->
+				</div>
 			</div>
-			 <div  id="descriptionBodyText" style="white-space: wrap;word-wrap: break-word;"  ng-style="{'background-color': selectedCartItemOnPopUp.bodyColor}" ng-model="selectedCartItemOnPopUp.descriptionBody">
-			    <!-- <span id="descriptionBodyText1" name="descriptionBodyText"></span><br/> -->
-			</div>
-			<div id="descriptionFooterText" ng-model="selectedCartItemOnPopUp.descriptionFooter" style="white-space: wrap;word-wrap: break-word;" ng-style="{'background-color': selectedCartItemOnPopUp.footerColor}">
-			  <!--   <span id="descriptionFooterText1" name="descriptionFooterText"></span><br/> -->
-			</div>
-	  </div>
-	  </div>
-	  
-	</div>
-	</div>
-</div>
-<!--  <input colorpicker="hex" type="text" ng-model="your_model" />
+		<!-- 	 <input colorpicker="hex" type="text" ng-model="your_model" />
  <input colorpicker colorpicker-parent="true" type="text" ng-model="your_model" />
- -->
-<!-- <input  style="background-color: {{hexPicker.color1}};width: 20%;margin-left: 20%;" type="text">
+
+<input  style="background-color: {{hexPicker.color1}};width: 20%;margin-left: 20%;" type="text">
 <br />
 <button colorpicker  ng-model="hexPicker.color1" style="width: 20%;float: left;margin-left: 20%;"> Header Color</button>
 
@@ -244,14 +430,13 @@
 <br /> -->
 <div >
 
-<!-- style="width: 6%;margin-left: 9%;" --> 
 
 </div>
 
 
 </form>           
 
-   <form class="tab-pane" id="extra-toping" style="float:left" name="extra-topingForm" rc-step novalidate>
+  <!--  <form class="tab-pane" id="extra-toping" style="float:left" name="extra-topingForm" rc-step novalidate>
                       
                    			<table width="450" border="0" cellpadding="0" cellspacing="0">
 				<tbody >
@@ -259,7 +444,7 @@
 						<td align="left" valign="middle" width="450">
 						<label 
 						 ng-if='((selectedCartItemOnPopUp.extraForBackgroudInPer > 0 || selectedCartItemOnPopUp.extraForBackgroud > 0) || (selectedCartItemOnPopUp.extraForBorder  > 0 || selectedCartItemOnPopUp.extraForBorderInPer > 0)  )'>BackGround Color and Ad Border Color will increase Cost</label>
-							<!-- <div ng-if='selectedCartItemOnPopUp.extraForBackgroud > 0 || selectedCartItemOnPopUp.extraForBackgroudInPer > 0' 
+						 	<div ng-if='selectedCartItemOnPopUp.extraForBackgroud > 0 || selectedCartItemOnPopUp.extraForBackgroudInPer > 0' 
 								style="width: 200px; float: left;margin-right: 7% !important; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
 								<center>
 									<table width="180" border="0" cellpadding="0" cellspacing="0">
@@ -355,7 +540,7 @@
 										</tbody>
 									</table>
 								</center>
-							</div> -->
+							</div>
 							<div ng-if='selectedCartItemOnPopUp.extraForBorder > 0 || selectedCartItemOnPopUp.extraForBorderInPer > 0'
 								style="width: 200px; height: 100px; float: left; padding-right: 10px; margin: 5px auto; border-radius: 7px; border: Solid 1px #65BDDF; background-color: #F0F0F0">
 								<center>
@@ -418,7 +603,6 @@
 																	ng-change="onNoTickSelected();"><span
 																	style="font-size: 10pt; font-family: Calibri;">
 																	No Tick For Ad</span></td>
-																
 															</tr>
 														</tbody>
 													</table>
@@ -436,14 +620,10 @@
 							<table border="0" cellpadding="0" cellspacing="0" class="style2">
 								<tbody>
 									<tr>
-									
-									
 										<td align="right" valign="top" width="250">&nbsp;</td>
 									</tr>
-
 									<tr>
 										<br />
-									
 									</tr>
 								</tbody>
 							</table>
@@ -452,20 +632,34 @@
 				</tbody>
 			</table>
         <div  ng-if='!((selectedCartItemOnPopUp.extraForBackgroudInPer > 0 || selectedCartItemOnPopUp.extraForBackgroud > 0) || (selectedCartItemOnPopUp.extraForBorder  > 0 || selectedCartItemOnPopUp.extraForBorderInPer > 0)  )' style="color:red" >No Topping Available </div>
-
-              </form>
-              
+              </form>  -->
               <form class="tab-pane" id="select-date" name="select-dateForm" style="float:left" rc-step novalidate>
                     <!--   <img src="http://www.releasemyad.com/images/small_straight_arrow.png" id="CatIdImg1" style="vertical-align:middle;" border="0">
-                     -->  <div id="_datepicker" ></div>
-              </form>
+                     -->
+			<div id="_datepicker" style="width:100%;overflow: auto; float:left;">	</div>
+			<div style="width:49%;overflow: auto; float:left;"  >
+				<div style="width:90%"ng-if="uploadyourAdSelect == 'userType' ">
+					<img data-ng-src="{{img}}" alt="Smiley face" alt=""
+						style="height: 150px; width: 300px">
+				</div>
+				<div  ng-if="uploadyourAdSelect == 'userType' ">
+				<span ng-if="selectedCartItemOnPopUp.originalFileName != '' " >
+					<label style="font-weight:bold;"> Your Ad Image uploaded: </label> <span
+					    ng-model="selectedCartItemOnPopUp.originalFileName"> <img
+						data-ng-src="/getImageById/{{selectedCartItemOnPopUp.OrderId}}"
+						style="height: 300px; width: 300px" alt="">
+				</span>
+				</span>
+				</div>
+			</div>
+		</form>
 
   
 	  <!--  COST CALCULATING VIEW BOX -->
 	  
-   <div class="price-box"  ng-show="rc.composeWizard.currentIndex >= 1"
+    <div class="price-box"  ng-show="rc.composeWizard.currentIndex >= 1"
 			style="border: 4px solid #fc9a24;position: inherit;margin-right: 10%;
-			box-shadow: 0px 0px 0px 0px #65BDDF;top: 50%;float:right">
+			box-shadow: 0px 0px 0px 0px #65BDDF;top: 50%;float:right"  ng-if  ="uploadyourAd == 'templateSelect' && imageAd == 'undefined'">
 			<div style="background-color: #fc9a24;">
 				<p
 					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px; color: white; line-height: 0.8;">{{selectedCartItemOnPopUp.newspaper}}-{{
@@ -492,7 +686,67 @@
 					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
 					Extra Unit: {{selectedCartItemOnPopUp.extraUnit}}</p>
 			</div>
-		</div>
+		</div> 
+				
+					<div class="price-box"  ng-show="rc.composeWizard.currentIndex >= 2 "
+			style="border: 4px solid #fc9a24;position: inherit;margin-right: 10%;
+			box-shadow: 0px 0px 0px 0px #65BDDF;top: 50%;float:right" ng-if = "uploadyourAd == 'templateSelect' && imageAd != 'undefined'" >
+			<div style="background-color: #fc9a24;">
+				<p
+					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px; color: white; line-height: 0.8;">{{selectedCartItemOnPopUp.newspaper}}-{{
+					selectedCartItemOnPopUp.location|limitTo:15}}</p>
+				<p
+					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px;color: white; ">
+					(Rs {{selectedCartItemOnPopUp.rate}} per sqcm
+				<!-- 	{{selectedCartItemOnPopUp.freeUnit}} {{selectedCartItemOnPopUp.unit}} -->)
+					<!-- <div style="font-size: 9pt;text-align: center;font-family: Calibri;line-height: 0.8;padding-bottom: 5%; color: white;"> (Rs
+					{{selectedCartItemOnPopUp.extra}} Extra per {{selectedCartItemOnPopUp.unit}} )
+					</div> -->
+				</p>
+			</div>
+			<div
+				style="box-shadow: -3px 3px 16px -1px #ccc; margin-left: 2%;padding-left: 2%; height: 132px; padding-top: 2%; padding-bottom: 1%; padding-top: 1%; border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%; width: 96%; margin-left: 2%">
+				<p
+					style="  margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+					Total: {{selectedCartItemOnPopUp.fullTotal}}</p>
+				 <p
+					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+					Width:&nbsp;&nbsp; {{selectedCartItemOnPopUp.otherWidth}} &nbsp;cm</p>
+				<p
+					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+					Height:&nbsp;&nbsp; {{selectedCartItemOnPopUp.height |setDecimal:0}} &nbsp;cm</p>
+			</div> 
+		</div> 
+	
+		 <div class="price-box"  ng-show="rc.composeWizard.currentIndex >= 1"
+			style="border: 4px solid #fc9a24;position: inherit;margin-right: 10%;
+			box-shadow: 0px 0px 0px 0px #65BDDF;top: 50%;float:right" ng-if = "uploadyourAdSelect == 'userType'" >
+			<div style="background-color: #fc9a24;">
+				<p
+					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px; color: white; line-height: 0.8;">{{selectedCartItemOnPopUp.newspaper}}-{{
+					selectedCartItemOnPopUp.location|limitTo:15}}</p>
+				<p
+					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px;color: white; ">
+					(Rs {{selectedCartItemOnPopUp.rate}} per sqcm
+					{{selectedCartItemOnPopUp.freeUnit}} {{selectedCartItemOnPopUp.unit}})
+					<div style="font-size: 9pt;text-align: center;font-family: Calibri;line-height: 0.8;padding-bottom: 5%; color: white;"> (Rs
+					{{selectedCartItemOnPopUp.extra}} Extra per {{selectedCartItemOnPopUp.unit}} )
+					</div>
+				</p>
+			</div>
+			<div
+				style="box-shadow: -3px 3px 16px -1px #ccc; margin-left: 2%;padding-left: 2%; height: 132px; padding-top: 2%; padding-bottom: 1%; padding-top: 1%; border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%; width: 96%; margin-left: 2%">
+				<p
+					style="  margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+					Total: {{selectedCartItemOnPopUp.fullTotal}}</p>
+				 <p
+					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+					Width:&nbsp;&nbsp; {{selectedCartItemOnPopUp.otherWidth}} &nbsp;cm</p>
+				<p
+					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+					Height:&nbsp;&nbsp; {{selectedCartItemOnPopUp.height}} &nbsp;cm</p>
+			</div> 
+		</div> 
 	
 
 
@@ -500,15 +754,14 @@
  </div>
  		
 	</div>
-
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <div class="form-group">
               <div class="pull-right" style="margin: -6%;margin-right: 0%;margin-top: -3%;">
-                <a class="btn btn-default"  ng-click="rc.composeWizard.backward()"
+                <a class="btn btn-default"  ng-click="onBackButtonClicked()"
                    ng-show="rc.composeWizard.currentIndex > rc.composeWizard.firstIndex" >Back</a> 
-                    <a class="btn btn-default"  ng-click="rc.composeWizard.backward()"
+                     <a class="btn btn-default"  ng-click="rc.composeWizard.backward()"
                    ng-show="rc.composeWizard.currentIndex == 1" >Change Layout</a> 
-                <a class="btn btn-primary" ng-click="onComposeDisplayAdStepChange()" ng-show="rc.composeWizard.currentIndex < rc.composeWizard.navigationLength">Continue</a>
+                 <a class="btn btn-primary" ng-click="onComposeDisplayAdStepChange()" ng-show="rc.composeWizard.currentIndex < rc.composeWizard.navigationLength">Continue</a>
                  <a class="btn btn-primary" ng-click="onComposeDisplayAdDone();" 
                    ng-show="rc.composeWizard.currentIndex == rc.composeWizard.navigationLength">Complete</a> 
               </div>                           
@@ -522,8 +775,90 @@
         <input type="hidden" name="hfcostcm" id="hfcostcm" />
             -->
 </div>
+<div class="modal fade" id="adColorPreview"  data-backdrop="false" style="min-height: 500px;">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Your Ad Preview</h4>
+		      </div>
+		      <div style="width: 50%; float: left;">
+						<hr style="margin: 0%">
+						<div style="float: left; height: 250px; width: 90%;">
+							<div id="adPreview" style="float: LEFT; margin-top: 10%;margin-left:20%"
+								ng-style="{borderColor: myColor}">
+								 <div style="" ng-show="showImagePreview">
+								<img data-ng-src="{{img}}" alt="Smiley face" alt=""
+										style="height: 50px; width: 240px" ng-if="selectedCartItemOnPopUp.originalFileName == '' ">
+										<span ng-if="selectedCartItemOnPopUp.originalFileName != '' " >
+									<!-- 	<label style="font-weight:bold;"> Your Ad Image uploaded: </label> --> <span
+										    ng-model="selectedCartItemOnPopUp.originalFileName"> <img
+											data-ng-src="/getImageById/{{selectedCartItemOnPopUp.OrderId}}"
+											style="height: 50px; width: 200px" alt="">
+									     </span>
 
-
-
-
+								</div>
+								<div id="descriptionHeaderText"
+									style="white-space: wrap; word-wrap: break-word;"
+									ng-style="{'background-color':selectedCartItemOnPopUp.headerColor}"
+									ng-model="selectedCartItemOnPopUp.descriptionHeader" data-ng-src="">{{selectedCartItemOnPopUp.descriptionHeader}}
+									 <span id="descriptionHeaderText1" name="descriptionHeaderText"></span><br/>
+									 <span></span>
+								</div>
+								<div id="descriptionBodyText"
+									style="white-space: wrap; word-wrap: break-word;"
+									ng-style="{'background-color': selectedCartItemOnPopUp.bodyColor}"
+									ng-model="selectedCartItemOnPopUp.descriptionBody" data-ng-src="">{{selectedCartItemOnPopUp.descriptionBody}}
+									<span id="descriptionBodyText1" name="descriptionBodyText"></span><br/>
+								</div>
+								<div id="descriptionFooterText"
+									ng-model="selectedCartItemOnPopUp.descriptionFooter"
+									style="white-space: wrap; word-wrap: break-word;"
+									ng-bind-html="to_trusted({{selectedCartItemOnPopUp.descriptionFooter}})" 
+									ng-style="{'background-color': selectedCartItemOnPopUp.footerColor}" data-ng-src="">
+									  <span id="descriptionFooterText1" name="descriptionFooterText"></span><br/>
+								</div>
+								<div style="margin-top: 10%;">
+						      			<button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+						        		<button type="button" class="btn btn-default" data-dismiss="modal">Edit</button>
+						        </div>
+							</div>
+						</div>
+				
+					</div>
+					
+			<div class="price-box"  ng-show="rc.composeWizard.currentIndex >= 1"
+			style="border: 4px solid #fc9a24;position: inherit;margin-right: 10%;
+			box-shadow: 0px 0px 0px 0px #65BDDF;top: 50%;float:right" ng-if = "uploadyourAd == 'templateSelect' && imageAd != 'undefined'" >
+			<div style="background-color: #fc9a24;">
+				<p
+					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px; color: white; line-height: 0.8;">{{selectedCartItemOnPopUp.newspaper}}-{{
+					selectedCartItemOnPopUp.location|limitTo:15}}</p>
+				<p
+					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px;color: white; ">
+					(Rs {{selectedCartItemOnPopUp.rate}} per sqcm
+				<!-- 	{{selectedCartItemOnPopUp.freeUnit}} {{selectedCartItemOnPopUp.unit}} -->)
+					<!-- <div style="font-size: 9pt;text-align: center;font-family: Calibri;line-height: 0.8;padding-bottom: 5%; color: white;"> (Rs
+					{{selectedCartItemOnPopUp.extra}} Extra per {{selectedCartItemOnPopUp.unit}} )
+					</div> -->
+				</p>
+			</div>
+			<div
+				style="box-shadow: -3px 3px 16px -1px #ccc; margin-left: 2%;padding-left: 2%; height: 132px; padding-top: 2%; padding-bottom: 1%; padding-top: 1%; border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%; width: 96%; margin-left: 2%">
+				<p
+					style="  margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+					Total: {{selectedCartItemOnPopUp.fullTotal}}</p>
+				 <p
+					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+					Width:&nbsp;&nbsp; {{selectedCartItemOnPopUp.otherWidth}} &nbsp;cm</p>
+				<p
+					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+					Height:&nbsp;&nbsp; {{selectedCartItemOnPopUp.height | setDecimal:0}} &nbsp;cm</p>
+			</div> 
+		</div> 
+	 
+					
+		    </div>
+		  </div>
+</div>
  

@@ -15,7 +15,8 @@
   			</div>
   			<div style="height: 50px;" >
   				<span ng-hide = 'rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength' class="pull-left" ng-click="removeFromCart(cart)"><i class="icon-remove" style="cursor: pointer;"></i></span>
-  				<span ng-hide = 'rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength' class="pull-left" ng-click="updateCartItem(cart)"><i class="icon-edit" style="cursor: pointer;"></i></span>
+  				<span ng-hide = 'rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength' ng-if ="selectYourAd == 'textClasified'"class="pull-left" ng-click="updateCartItem(cart)"><i class="icon-edit" style="cursor: pointer;"></i></span>
+  		    	<span ng-hide = 'rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength' ng-if ="selectYourAd == 'displayClassified'" class="pull-left" ng-click="updateDisplayCartItem(cart)"><i class="icon-edit" style="cursor: pointer;"></i></span>
   			</div>
   		</div>
 		</div>

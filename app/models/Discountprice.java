@@ -44,7 +44,7 @@ public class Discountprice {
 		public String Cities;
 		//public String packageName;
 		public String notes= "Not Set";
-		
+		public String freewords;	
 		
 		public static List<Object[]> getfewdiscount(String nname,String cname) {
 			Query q = JPA.em().createNativeQuery("SELECT Discountprice.Nameofthenewspaper,Edition,Tbasicprice,Ttotalprice,BasicratesperText,Toffpercentage,Category " +

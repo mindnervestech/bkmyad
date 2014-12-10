@@ -25,13 +25,13 @@ import play.mvc.Result;
 import viewmodel.BasicrateVM;
 import views.html.addbasicrate;
 
-public class AddbasicRateController extends Controller {
+public class AddbasicRateController extends Controller{
 
-	// addbasicrate.render()
-	public static Result index() {
-		return ok(addbasicrate.render());
-	}
-
+	//addbasicrate.render()
+	 public static Result index() {
+	        return ok(addbasicrate.render());
+	    }
+	    
 	@Transactional
 	public static Result getBasicrate(String City, String Category ,int currentPage) {
 		long totalPages = Basicrate.getAllAnnouncementsTotal(City,Category, 50);
@@ -107,7 +107,12 @@ public class AddbasicRateController extends Controller {
         }else{
         	basicrate.Tickper=form.get("tickPercentage"); 
         }
-        
+        if(form.get("freewords") == null || form.get("freewords") == "" ){
+    		basicrate.freewords= "22";
+    	}else{
+    		basicrate.freewords=form.get("freewords");
+    		System.out.println("basicrate.freewords"+basicrate.freewords);
+    	}
         basicrate.SpecialDiscount=form.get("SpecialDiscount");
     	basicrate.Category=categoryUnique[i].trim();//.replaceAll("[^\\p{L}\\p{Nd}]+", "");
     	basicrate.Category = basicrate.Category.replace("[","");
@@ -175,7 +180,12 @@ public class AddbasicRateController extends Controller {
         }else{
         	basicrate.Tickper=form.get("Tickper"); 
         }
-        
+        if(form.get("freewords") == null || form.get("freewords") == ""){
+        	basicrate.freewords ="22";
+        	
+        }else{
+        	basicrate.freewords=form.get("freewords"); 
+        }
         basicrate.SpecialDiscount=form.get("SpecialDiscount");
     	basicrate.ExtracostperSqcm=form.get("ExtracostperSqcm");
     	basicrate.Statename=form.get("Statename");

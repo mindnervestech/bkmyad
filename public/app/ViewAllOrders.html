@@ -223,6 +223,9 @@
 								ng-style="{'background-color':invoice.bodyColor}" style="float:left;width:100%;"></span> <span
 								ng-bind-html="to_trusted(invoice.footerDescption)"ng-if="invoice.adSelectedType == 'displayClassified'"
 								ng-style="{'background-color':invoice.footerColor}" style="float:left;width:100%;"></span>
+								
+								
+								
 								</td>
 							<!-- <tr>
 			      <td><label>BgColor Selected : </label></td>
@@ -262,6 +265,95 @@
 			</table>
 		</div>
 	</div>
+	
+	
+	
+	<div class="modal hide" id="myModelDispImage" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" data-backdrop="false"
+		style="width: 65%; left: 41%; height: 555px !important; overflow: scroll !important;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Invoice Details</h4>
+				</div>
+				<div>
+					<img src="assets/img/Logo Arihant Booking.jpg" />
+					<table style="margin-left: 2%;">
+						<tr>
+							<td><label style="color: blue">Order ID </label></td>
+							<td><span style="font-weight: bold">{{inVoiceHeader.OrderID}}</span></td>
+							<td><label style="color: blue; margin-left: 80px;">Order
+									Date </label></td>
+							<td><span style="font-weight: bold">{{inVoiceHeader.orderDate}}</span></td>
+						</tr>
+						<tr>
+							<!-- Nameofthenewspaper ,TotalCost,Bgcolor,,numberOfWords, -->
+							<td><label style="color: blue">Client Name </label></td>
+							<td>&nbsp;&nbsp; <span style="font-weight: bold">{{inVoiceHeader.userEmailId}}</span></td>
+							<td><label style="color: blue; margin-left: 80px;">
+									Payment Mode </label></td>
+							<td>&nbsp;&nbsp;<span style="font-weight: bold"
+								ng-if="inVoiceHeader.paymentOption == 'cc'">Online</span></td>
+						</tr>
+						<tr>
+							<td><label style="color: blue">Address </label></td>
+							<td><span style="font-weight: bold">{{addressDetails.fullName}},{{addressDetails.address}}
+									, {{addressDetails.city}} ,{{addressDetails.state}}
+									,{{addressDetails.pinCode}} </span></td>
+							<td><label style="color: blue; margin-left: 80px;">Mobile
+									Number </label></td>
+							<td><span style="font-weight: bold">&nbsp;&nbsp;{{addressDetails.mobile}}</span></td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="modal-body" data ng-repeat="invoice in orderData">
+					<table border="1" style="width: 900px; float: left;">
+						<tr>
+							<td style="width: 22%; color: blue;"><label>
+									<center>NewsPaper/Category/Sub Category/City</center>
+							</label></td>
+							<td style="width: 24%%; color: blue"><center>
+									<label>Ad Text</label>
+								</center></td>
+							<td style="width: 22%; color: blue;"><label><center>Published
+										Date</center></label></td>
+							<!-- <td style="width: 22%; color: blue;"><label><center>Enhancements</center></label>
+							</td> -->
+							<td style="width: 22%; color: blue;"><label><center>Total
+										Cost</center></label></td>
+						</tr>
+					 	<tr style="height: 140px";>
+							<td>{{invoice.Nameofthenewspaper}}/{{invoice.Category}}/ <font
+								ng-if="invoice.Subcategory == null ">Not Selected</font><font
+								ng-if="invoice.Subcategory != ''">{{invoice.Subcategory}}</font>/<br />{{invoice.City}}</lable></td>
+							<td>
+							<span>
+							<img
+						data-ng-src="/getImageById/{{invoice.OrderID}}"
+						style="height: 200px; width: 300px" alt=""></span></td>
+							<td>{{invoice.PublishDate}} </lable></td>
+							
+							<td>र.{{invoice.TotalCost |setDecimal:2}}</td>
+							
+						</tr>
+					</table>
+				</div>
+			</div>
+			<table border="1" style="float: right; margin-right: 2%;">
+				<tr>
+					<td style="width: 38%;"><label style="color: blue">Grand
+							Total :</label></td>
+					<td style="width: 38%;">र.{{grantTotal}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	
 	<script type="text/javascript">
 		$(function() {
 			$('#myModal2').slimScroll({

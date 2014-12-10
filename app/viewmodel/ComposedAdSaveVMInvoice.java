@@ -58,7 +58,9 @@ public class ComposedAdSaveVMInvoice {
 	public String adSizeSelect = "not set";
 	 public String adSelectedType = "textClasified";
 	public float extraCost;
-
+	public String originalFileName;
+	// public String  OrderID;
+	
 	public ComposedAdSaveVMInvoice(ComposedAdSave composedAdSave) {
 		this.OrderID = composedAdSave.OrderID;
 		this.orderDate = composedAdSave.orderDate;
@@ -90,6 +92,8 @@ public class ComposedAdSaveVMInvoice {
 		this.bodyColor = composedAdSave.bodyColor;
 		this.headerColor = composedAdSave.headerColor;
 		this.adSelectedType = composedAdSave.adSelectedType;
+		this.originalFileName = composedAdSave.originalFileName;
+		//this.OrderID = composedAdSave.OrderID;
 
 	}
 

@@ -70,10 +70,13 @@ public class ComposedAdSave{
 	   public String adSizeSelect= "not set";
 	   public String adSelectedType = "textClasified".trim(); 
 	   public float extraCost = 0;
+	   //hegight and width in cm;
+	   public String otherWidth = "1";
+	   public String height = "1";
+	   public String originalFileName = "Image not Uploaded";
+	   //used to define  number of words free for each paper 
+	   public String freewords;
 	  
-	   
-	   
-	   
 	   public String getAdbookedId() {
 		return adbookedId;
 	}
@@ -290,7 +293,27 @@ public class ComposedAdSave{
 	    return (List<ComposedAdSave>)q.getResultList();
 	    }
 
-	    public static ComposedAdSave findById(Long id) {
+	    
+	    
+	    public static String findImagePath(String OrderId) {
+			try{
+				return (String) JPA.em().createNativeQuery("select  c.originalFileName from ComposedAdSave c where c.OrderId = ?1").setParameter(1, OrderId).getSingleResult();
+			}
+			catch(Exception ex){
+				return null;
+			}
+	    }
+
+	    
+	    public String getOriginalFileName() {
+			return originalFileName;
+		}
+
+		public void setOriginalFileName(String originalFileName) {
+			this.originalFileName = originalFileName;
+		}
+
+		public static ComposedAdSave findById(Long id) {
 	    	Query query = JPA.em().createQuery("Select a from ComposedAdSave a where a.OID = ?1");
 			query.setParameter(1, id);
 	    	return (ComposedAdSave) query.getSingleResult();

@@ -9,7 +9,7 @@ GET     /Booknewspaperaddonlinee43a.html       controllers.Application.Booknewsp
 GET 	/textClassifiedController.html		   controllers.TextClassifiedController.index()
 GET	/sidebar.html						   controllers.SideBarController.index()
 POST    /saveSignUp                            controllers.Application.SaveSignUp()
-GET	/make-booking.html					   controllers.MakeBookingController.index()
+GET	/compose-classified-Ad					   controllers.MakeBookingController.index()
 GET	/getRatesByNewspaper/:newspaper/:Category/:selectYourAd	controllers.MakeBookingController.getRatesByNewspaper(newspaper:String,Category:String,selectYourAd:String)
 GET  /sendMailAboutTempUserInfo/:tempuserName/:tempuserMobnumber  controllers.TempGuestUserController.sendMailAboutTempUserInfo(tempuserName :String,tempuserMobnumber :String)
 GET /sendMailAboutClassifiedAd/:tempuserName/:tempuserMobnumber/:tempuserNote     controllers.TempGuestUserController.sendMailAboutClassifiedAd(tempuserName :String,tempuserMobnumber :String,tempuserNote :String)   
@@ -17,6 +17,7 @@ GET     /getBasicRateByLocationAndCategory/:Location/:Category/:selectYourAd   c
 GET     /checkusercreadientals/:Username/:Password               controllers.MakeBookingController.checkUserNameandPassword(Username:String,Password:String)
 GET     /getOrderDetailsByOrderId/:orderIdPer            controllers.MakeBookingController.getOrderDetailsByOrderId(orderIdPer:String)
 GET     /checkforOrderStatus/:orderIdStatus              controllers.MakeBookingController.checkforOrderStatus(orderIdStatus:String)
+GET     /getImageById/:id                                controllers.GetImageController.getImagePath(id :String)
 GET     /getcity/:statename						controllers.MakeBookingController.getcity(statename:String)
 POST    /checkSignIn                           controllers.Application.CheckSignIn() 
 GET     /checkAlreadyExitUser/:userId           controllers.UservalidationController.CheckAlreadyExitUser(userId:String)
@@ -27,7 +28,10 @@ GET     /dispFrame.html                        controllers.DispFrameController.i
 GET     /getSubCategoty/:cname					controllers.Application.getSubCategoty(cname:String)
 GET     /getNewspaper							controllers.AddbasicRateController.getNewspaper()
 POST    /submit-cart                            controllers.MakeBookingController.saveComposeyourAd()
-POST    /sendfeedbacks                          controllers.Application.sendFeedback()
+POST   /submit-cartUserDisplayAd                    controllers.MakeBookingController.saveUserDisplayComposeyourAd()
+POST   /submit-cartColorDisplayAd               controllers.MakeBookingController.saveDisplayColorComposeyourAd()
+POST /submit-cartDisplayHTMLAd                      controllers.MakeBookingController.saveDisplayHTMLAd()
+#POST    /sendfeedbacks                          controllers.Application.sendFeedback()
 GET	   /getBasicrate/:City/:Category/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,Category :String,currentPage :Integer)
 GET /getDiscountRate/:City/:Category/:currentPage	controllers.AddPackageController.getDiscountRate(City :String,Category :String, currentPage :Integer)
 GET  /viewAllOrdersForAdmin/:City/:currentPage	controllers.ViewAllOrdersController.viewAllOrdersForAdmin(City :String,currentPage :Integer)
@@ -70,6 +74,8 @@ GET     /viewAllRegisteredUser                 controllers.ViewAllRegisteredUser
 GET     /logout                             controllers.Application.Logout()      
 GET     /getforgotpass/:email                       controllers.Application.forgotpassword(email :String)
 GET      /redirectTo                             controllers.RedirectController.index()
+
+POST /savegeneralImg            controllers.UploadImageFileController.savegeneralImg()
 
 # Map static resources from the /public folder to the /assets URL path
 GET /css/*file                     controllers.Assets.at(path="/public/app/css", file)

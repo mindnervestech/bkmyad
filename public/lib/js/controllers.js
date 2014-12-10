@@ -15,11 +15,19 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 		console.log("onClassifiedClicked");
 		 $('#classifiedUserInfo').modal();
 	}
+	$scope.footerCheck();
+		
 	
-	    $scope.setCookie();
+	$scope.imgageHeight = $scope.imgageHeight;
+	if( $scope.imgageHeight != "" ||angular.isUndefined($scope.imgageHeight)){
+	document.getElementById("imagetag").style.marginRight = 30 +"%" ;
+	}else{
+		document.getElementById("imagetag").style.marginRight = 20 +"%" ;
+	}
+	    /*$scope.setCookie();
 	    if($scope.cookie ==  '' || (angular.isUndefined($scope.cookie))){
 			 $('#userInfopopup').modal();
-	    }
+	    }*/
 	    
 	    $scope.sendMailAboutClassifiedAd = function(tempuserName,tempuserMobnumber,tempuserNote){
 	    	
@@ -31,6 +39,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 	    	}
 	    	console.log("$scope.tempuserName"+$scope.tempuserName);
 	    	
+	    	document.getElementById("myDiv").style.marginRight = 50 +'%';
 			/*if($scope.tempuserNote == "" || (angular.isUndefined($scope.tempuserNote))){
 				$scope.tempuserNote ="Not Given";
 			}*/
@@ -257,13 +266,92 @@ angular.module('adschela').controller("HelpController",['$scope',function($scope
 	
 }]);
 
-
-
-
-
-angular.module('adschela').controller("ComposeDisplayAdController",['$scope',function($scope){
+angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$upload','$timeout',function($scope,$upload,$timeout,$modal, $http, $filter){
 	//make the color display ad visible default  disable the B/W ad.
-    $scope.showColorAd = true;
+	$scope.defaultWidth = true;
+	$scope.otherWidth = false;
+	/*$scope.preViewColorAd = function(){
+		preViewColorAd($scope);
+	}*/
+	
+	
+	$scope.preViewColorAd = function() {
+		$('#adColorPreview').modal();
+	}
+	
+	$scope.selectDefaultWidth = function(){
+		$scope.otherWidth = false;
+	    $scope.selectedCartItemOnPopUp.defaultWidth = "3"
+	    console.log("$scope.selectedCartItemOnPopUp.defaultWidth"+$scope.selectedCartItemOnPopUp.defaultWidth);
+	}
+	
+	$scope.onBackButtonClicked = function(){
+		 if($scope.uploadyourAdSelect == "userType"){
+			   $scope.rc.composeWizard.moveTo(0);
+		   }else{
+			   $scope.rc.composeWizard.backward();
+		   }
+	}
+
+	$scope.file ='';
+	$scope.selectedFiles = [];
+							$scope.selectGeneralPicImage = function($files) {
+								file = $files[0];
+								/* generalPic = $generalPic[0]; */
+								if ($scope.selectedFiles.length == 0) {
+									$scope.tempSelectedFiles = [];
+								}
+								$scope.selectedFiles.push($files);
+								$scope.tempSelectedFiles.push($files);
+							    $scope.file = $files[0];
+								var $previewImage = $files[0];
+							    var fileSize = $previewImage.size; // size in kb
+								console.log(fileSize);
+								fileSize = fileSize / 1048576; // size in mb
+								console.log(fileSize);
+								if (fileSize > 0.5) {
+									$scope.isSuccess = true;
+									// file = null;
+								}
+								if (window.FileReader
+										&& $previewImage.type.indexOf('image') > -1) {
+									var fileReader = new FileReader();
+									fileReader.readAsDataURL($files[0]);
+									var loadFile = function(fileReader, index) {
+										fileReader.onload = function(e) {
+											$timeout(function() {
+												$scope.img = e.target.result;
+												/*$scope.dataUrls
+														.push(e.target.result);*/
+											});
+										}
+									}(fileReader, 0);
+
+								}
+							};
+
+	
+	$scope.savegeneralPic = function(){	
+	    	//$scope.savegeneral.supplierCode = supplierCode;
+	  	   $scope.upload = $upload.upload({
+	             url: '/savegeneralImg', 
+	             method:'post',
+	             fileFormDataName: 'file',
+	             file:file,
+	            
+	     }).progress(function(evt) {
+	             console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+	     }).success(function(data, status, headers, config) {
+	    	 console.log(data);   
+	    	 console.log(data);
+	            $scope.imgpathretrived = data;
+	           //console.log("img"+ $scope.img);
+	           
+	     }); 
+	  	 
+	     }
+	
+	$scope.showColorAd = true;
 	$scope.colorAd = "colorAd";
 	$scope.showBWAd = false;
 	$scope.text = " ";
@@ -273,38 +361,31 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 	$scope.selectedCartItemOnPopUp = GetSelectedCartItemOnPopUp();
 	var borderSelected;
 	var totalCost;
-	
 	var borderColor;
 	var backgroundColor;
 	var borderColorInPer;
 	var backgroundColorInPer;
 	var extracostFortick;
 	var extracostFortickInPer;
-	
 	var rate;
 	var checkColorSelected;
 	var savenameofcolorSelected;
 	var extracostFortick;
-	
     var bgColorSelected = $scope.selectedCartItemOnPopUp.onbgColorchange;
 	borderColor = parseInt($scope.selectedCartItemOnPopUp.extraForBorder);
 	backgroundColor = parseInt($scope.selectedCartItemOnPopUp.extraForBackgroud);
 	extracostFortick =  parseInt($scope.selectedCartItemOnPopUp.extraFortick);
-	
 	borderColorInPer = parseInt($scope.selectedCartItemOnPopUp.extraForBorderInPer);
 	backgroundColorInPer = parseInt($scope.selectedCartItemOnPopUp.extraForBackgroudInPer);
 	extracostFortickInPer =  parseInt($scope.selectedCartItemOnPopUp.extraFortickInPer);
-
 	
-	
-	if ($scope.selectedCartItemOnPopUp.onBorderSelected == null || $scope.selectedCartItemOnPopUp.onBorderSelected == '') {
+	/*if ($scope.selectedCartItemOnPopUp.onBorderSelected == null || $scope.selectedCartItemOnPopUp.onBorderSelected == '') {
 		$scope.selectedCartItemOnPopUp.onBorderSelected='No';
-	}
-	
+	}*/
 	$scope.descFocusOut = function(event) {
 		console.log(event);
 	}
-	
+	/*
 	$scope.onBorderselected = function(){
 		if($scope.selectedCartItemOnPopUp.onBorderSelected == 'Yes') {
 			upRate(borderColor,borderColorInPer);
@@ -312,8 +393,8 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 			downRate(borderColor,borderColorInPer);
 		}
 		ReTotal();
-	}
-	$scope.selectedCartItemOnPopUp.notickforAd=$scope.selectedCartItemOnPopUp.notickforAd;
+	}*/
+	/*$scope.selectedCartItemOnPopUp.notickforAd=$scope.selectedCartItemOnPopUp.notickforAd;
 	$scope.onNoTickSelected = function(){
 		
 		if($scope.selectedCartItemOnPopUp.notickforAd){
@@ -324,7 +405,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 		}
 		ReTotal();
 	}
-	
+	*/
 	/*$scope.onNoBgcolorSelected=function(){
 		  if($scope.selectedCartItemOnPopUp.nobgColor) { 
 			  downRate(backgroundColor, backgroundColorInPer); 
@@ -338,7 +419,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 		  ReTotal(); 
 	}*/
 	
-	function downRate(inValue, inPer) {
+	/*function downRate(inValue, inPer) {
 		if(inValue != 0) {
 			 $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost - inValue;
 		 } else if (inPer != 0){
@@ -353,7 +434,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 		} else if (inPer != 0){
 			  $scope.selectedCartItemOnPopUp.totalExtraCost = $scope.selectedCartItemOnPopUp.totalExtraCost + $scope.selectedCartItemOnPopUp.totalUnitCost * ((inPer)/(100));
 		} 
-	}
+	}*/
 	
 	$scope.a=false ;
 	$('body').on('blur','#translationArea',function(e) {
@@ -409,6 +490,17 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 		var freeUnit = parseInt($scope.selectedCartItemOnPopUp.freeUnit); //total allowed free units.
         var unitLot = parseInt($scope.selectedCartItemOnPopUp.unitVal); //???
         var text = $('#adPreview').text().trim();
+        /*if($scope.uploadyourAdSelect == "userType"){
+	    	text = "User Uploaded Ad";
+	    	var height = parseInt($scope.selectedCartItemOnPopUp.height);
+        	console.log("height"+height);
+        	var width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
+        	console.log("width"+width);
+        	totalCost = rate * width * height;
+        	//console.log(totalCost);
+	    }*/
+        
+        //text = "sbcd";
         console.log(text);
         console.log("text in compute rate"+text.length);
             if (text != '') {
@@ -425,10 +517,31 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
                 		var replaced = text.replace(/ /g, '');
                 		replaced = replaced.trim();
                 		console.log(replaced.length);
-                		total_unit = Math.ceil(replaced.length / 20);
+                		total_unit = Math.ceil(replaced.length / 22);
                     }
                 }
-                if (total_unit > freeUnit) {
+                
+                if($scope.uploadyourAdSelect == "userType"){
+         	    	//text = "User Uploaded Ad";
+                	$scope.selectedCartItemOnPopUp.otherWidth = "4";
+                	console.log("in user type")
+            		var height = parseInt($scope.selectedCartItemOnPopUp.height);
+            		console.log(height);
+                 	var width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
+                 	totalCost = rate * width * height;
+                 	console.log(totalCost);
+         	    }else if ($scope.uploadyourAd == 'templateSelect'){
+         	    	$scope.selectedCartItemOnPopUp.otherWidth = "4";
+         	    	var  width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
+         	    	$scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
+         	    	var  height = parseInt($scope.selectedCartItemOnPopUp.height);
+                 	console.log("height"+height);
+                   //var width = parseInt($scope.width);
+                 	console.log("width"+width);
+         	    	totalCost = rate * height * width ;	
+         	    }
+                
+                /*          if (total_unit > freeUnit) {
                    //var extraUnitCost = $scope.selectedCartItemOnPopUp.extra;
                    var costt = parseInt($scope.selectedCartItemOnPopUp.extra);
                    extraUnit = total_unit - freeUnit;
@@ -441,9 +554,26 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
                    }
                 }
                 else {
-                	totalCost = rate;
+                	//totalCost = rate;	
                 	console.log("in totle cost"+totalCost);
-                }
+                	 if($scope.uploadyourAdSelect == "userType"){
+             	    	//text = "User Uploaded Ad";
+                		$scope.height = parseInt($scope.selectedCartItemOnPopUp.height);
+                     	console.log("height"+height);
+                     	$scope.width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
+                     	console.log("width"+width);
+                     	totalCost = rate * width * height;
+                     	console.log(totalCost);
+             	    }else if ($scope.uploadyourAd == 'templateSelect'){
+             	        $scope.width = "4";
+             	    	$scope.height = parseInt($scope.height);
+                     	console.log("height"+height);
+                     	
+                     	$scope.width = parseInt($scope.width);
+                     	console.log("width"+width);
+             	    	totalCost = rate * height * width ;	
+             	    }
+                }*/
               /*  if ($scope.selectedCartItemOnPopUp.unit == "Line") {
                 	total_unit = Math.ceil(text.length / 23);
                 }*/
@@ -462,10 +592,8 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 		return moment(cd).format('DD/MM/YYYY');
 	}
 	
-	
 	//select the firstColumn (Ad(3*5)) default.
 	$scope.firstColumn = "firstColumn";
-	
 	//hide and show the ad types
     $scope.onColorAdChoose = function(colorAd){
 		console.log("in hide and show");
@@ -474,9 +602,8 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 		$scope.colorAd = colorAd;
 		$scope.showColorAd = true;
 		$scope.showBWAd = false;
-
 		computeRateByUnit();
-	    upRate(backgroundColor, backgroundColorInPer)
+	   // upRate(backgroundColor, backgroundColorInPer)
 		ReTotal();
 	}
 
@@ -485,7 +612,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
     if(angular.isUndefined($scope.selectedCartItemOnPopUp.colorAd) || $scope.selectedCartItemOnPopUp.colorAd == ""){
     	$scope.selectedCartItemOnPopUp.colorAd = "colorAd";
     	 computeRateByUnit();
-    	 upRate(backgroundColor, backgroundColorInPer)
+    //	 upRate(backgroundColor, backgroundColorInPer)
 		 ReTotal();
     }
    
@@ -507,16 +634,10 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 		$scope.showColorAd = false;
 		$scope.showBWAd = true;
 	     computeRateByUnit();
-	      downRate(backgroundColor, backgroundColorInPer)
+	      //downRate(backgroundColor, backgroundColorInPer)
 		ReTotal();
     }
     
-	/*$scope.selectedAdbodyTextOnPopUp = {
-			descriptionFooter: "",
-			descriptionBody:"",
-			descriptionHeader:""
-	};*/
-	
 	// on select image for ad   
 	$scope.onSelectImageforAd = function(selectImageForAdId){
 		$scope.imageAd = $scope.selectedCartItemOnPopUp.imageAd;
@@ -550,17 +671,25 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 		$scope.footerColor = $scope.selectedCartItemOnPopUp.footerColor;
 		//console.log("$scope.footerColor"+$scope.footerColor);
 	}
-	
 	//on next clicked on the composeaddisplay popup  ad controller 
 	$scope.onComposeDisplayAdStepChange = function(){
-		if(angular.isUndefined($scope.selectedCartItemOnPopUp.adSizeSelect) || $scope.selectedCartItemOnPopUp.adSizeSelect == "firstColumn"){
+		 //InitDatepicker();
+		// $scope.rc.composeWizard.forward();
+	   if($scope.uploadyourAdSelect == "userType"){
+    		 InitDatepicker();
+			 computeRateByUnit();
+			 $scope.rc.composeWizard.moveTo(2);
+	   }else{
+		   	$scope.rc.composeWizard.forward();
+	   }
+			if(angular.isUndefined($scope.selectedCartItemOnPopUp.adSizeSelect) || $scope.selectedCartItemOnPopUp.adSizeSelect == "firstColumn"){
 			$scope.selectedCartItemOnPopUp.adSizeSelect = "firstColumn";
-			document.getElementById('adPreview').style.width = 50 + '%';
-			document.getElementById('adPreview').style.height = 250 + 'px';
+			document.getElementById('adPreview').style.width = 4 + 'cm';
+			document.getElementById('adPreview').style.height = 188.97 + 'px';
 		}else{
 			$scope.selectedCartItemOnPopUp.adSizeSelect = "secondColumn";
-			document.getElementById('adPreview').style.width = 100 + '%';
-			document.getElementById('adPreview').style.height = 90 + 'px';
+			document.getElementById('adPreview').style.width = 4 + 'cm';
+			document.getElementById('adPreview').style.height = 188.97 + 'px';
 		}
 		//console.log("adSelect Size:"$scope.selectedCartItemOnPopUp.adSizeSelect);
 		$scope.descriptionHeader = false;
@@ -577,15 +706,19 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 	    //console.log("selectImageForAdId"+selectImageForAdId);
 		//Enable only the body,footer TextEditor
 		if($scope.selectedCartItemOnPopUp.imageAd == 1){
+			$scope.showImagePreview = false; 
 			$scope.descriptionBody = true;
+			$scope.showImageUploadOption = false;
 			$scope.descriptionFooter = true;
 			$scope.descriptionBodyText = true;
 			$scope.descriptionFooterText = true;
-			if($scope.rc.composeWizard.currentIndex  == 1){
-			/*if ($scope.selectedCartItemOnPopUp.descriptionHeader == "" || $scope.selectedCartItemOnPopUp.descriptionBody == ""){
-				alert("please fill all add details");
+			$scope.imageId = $scope.selectedCartItemOnPopUp.imageAd;
+			$scope.selectUrlForAdStore($scope.imageId);
+			if($scope.rc.composeWizard.currentIndex  == 2){
+			if ($scope.selectedCartItemOnPopUp.descriptionHeader == "" || $scope.selectedCartItemOnPopUp.descriptionBody == ""){
+				//alert("Please Fill all ad details");
 				$scope.checkAllAdField();
-			}*/	
+			}	
 			}
 			//assign the text to adPreview
     		document.getElementById('descriptionBodyText').innerHTML = tinyMCE.get('tinymceBody').getContent();
@@ -597,19 +730,24 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 			}
 		}else if($scope.selectedCartItemOnPopUp.imageAd == 2){
 			//Enable only the body,Header TextEditor
+			$scope.showImagePreview = false; 
+			$scope.showImageUploadOption = false;
 			$scope.descriptionHeader = true;
 			$scope.descriptionBody = true;
 			$scope.descriptionHeaderText = true;
 			$scope.descriptionBodyText = true;
+			$scope.imageId = $scope.selectedCartItemOnPopUp.imageAd;
+			$scope.selectUrlForAdStore($scope.imageId);
 			//assign header and body text Ad preview
-			if($scope.rc.composeWizard.currentIndex == 1){
+			if($scope.rc.composeWizard.currentIndex == 2){
 			if ($scope.selectedCartItemOnPopUp.descriptionBody == "" || $scope.selectedCartItemOnPopUp.descriptionFooter == "" ){
-						alert("please fill all add details")
+						//alert("please fill all add details")
 						$scope.checkAllAdField();
 					}    		
 			}
+			document.getElementById('descriptionHeaderText').innerHTML = tinyMCE.activeEditor.getContent();
 			document.getElementById('descriptionBodyText').innerHTML = tinyMCE.get('tinymceBody').getContent();
-    		document.getElementById('descriptionFooterText').innerHTML = tinyMCE.get('tinymceFooter').getContent();
+    	//	document.getElementById('descriptionFooterText').innerHTML = tinyMCE.get('tinymceFooter').getContent();
 			
 			if($scope.selectedCartItemOnPopUp.colorAd == "colorAd"){
 			$scope.headerColor = true;
@@ -618,10 +756,14 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 			
 		}else if($scope.selectedCartItemOnPopUp.imageAd == 3){
 			//Enable All TextEditor
+			$scope.showImagePreview = false; 
+			$scope.showImageUploadOption = false;
 			console.log("$scope.selectedCartItemOnPopUp.imageAd"+$scope.selectedCartItemOnPopUp.imageAd);
 			$scope.descriptionHeader = true;
 			$scope.descriptionBody = true;
 			$scope.descriptionFooter = true;
+			$scope.imageId = $scope.selectedCartItemOnPopUp.imageAd;
+			$scope.selectUrlForAdStore($scope.imageId);
 			console.log($scope.selectedCartItemOnPopUp.description);
 			$scope.descriptionHeaderText = true;
 			$scope.descriptionBodyText = true;
@@ -635,7 +777,58 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
     		if ( tinyMCE.activeEditor.getContent() == "" ||
     				tinyMCE.get('tinymceBody').getContent() == "" ||
     				tinyMCE.get('tinymceFooter').getContent() == "" ){
-    			    alert("Please fill all Ad details");
+    			    //alert("Please fill all Ad details");
+    			     //used to move to step(1) current step
+    			  //  $scope.checkAllAdField();
+    		}
+    		}
+    		if($scope.selectedCartItemOnPopUp.colorAd == "colorAd"){
+			$scope.footerColor = true;
+			$scope.headerColor = true;
+			$scope.bodyColor  = true;
+			}
+		}else if($scope.selectedCartItemOnPopUp.imageAd == 4){
+			//Enable only the body,footer
+			$scope.showImagePreview = false; 
+			$scope.showImageUploadOption = false;
+			$scope.descriptionBody = true;
+			$scope.descriptionFooter = true;
+			$scope.descriptionBodyText = true;
+			$scope.descriptionFooterText = true;
+			$scope.imageId = $scope.selectedCartItemOnPopUp.imageAd;
+			$scope.selectUrlForAdStore($scope.imageId);
+           // Add the Body section 
+    		document.getElementById('descriptionBodyText').innerHTML = tinyMCE.get('tinymceBody').getContent();
+    		document.getElementById('descriptionFooterText').innerHTML = tinyMCE.get('tinymceFooter').getContent();
+			if($scope.selectedCartItemOnPopUp.colorAd == "colorAd"){
+			$scope.footerColor = true;
+			$scope.bodyColor = true;
+		}
+		}else if($scope.selectedCartItemOnPopUp.imageAd == 5){
+			//Enable All TextEditor
+			$scope.showImagePreview = true; 
+			$scope.showImageUploadOption = true;//enable the image uploadear
+			console.log("$scope.selectedCartItemOnPopUp.imageAd"+$scope.selectedCartItemOnPopUp.imageAd);
+			$scope.imageId = $scope.selectedCartItemOnPopUp.imageAd;
+			$scope.descriptionHeader = true;
+			$scope.descriptionBody = true;
+			$scope.descriptionFooter = true;
+			console.log($scope.selectedCartItemOnPopUp.description);
+			$scope.descriptionHeaderText = true;
+			$scope.descriptionBodyText = true;
+			$scope.descriptionFooterText = true;
+			
+			$scope.selectUrlForAdStore($scope.imageId);
+			// display the a;; section of adPreview
+			document.getElementById('descriptionHeaderText').innerHTML = tinyMCE.activeEditor.getContent();
+    		document.getElementById('descriptionBodyText').innerHTML = tinyMCE.get('tinymceBody').getContent();
+    		document.getElementById('descriptionFooterText').innerHTML = tinyMCE.get('tinymceFooter').getContent();
+    		
+    		if($scope.rc.composeWizard.currentIndex   == 2){
+    		if ( tinyMCE.activeEditor.getContent() == "" ||
+    				tinyMCE.get('tinymceBody').getContent() == "" ||
+    				tinyMCE.get('tinymceFooter').getContent() == "" ){
+    			  //  alert("Please fill all Ad details");
     			     //used to move to step(1) current step
     			    $scope.checkAllAdField();
     			  
@@ -647,30 +840,13 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 			$scope.headerColor = true;
 			$scope.bodyColor  = true;
 			}
-		}else if($scope.selectedCartItemOnPopUp.imageAd == 4){
-			//Enable only the body,footer
-			$scope.descriptionBody = true;
-			$scope.descriptionFooter = true;
-			
-			$scope.descriptionBodyText = true;
-			$scope.descriptionFooterText = true;
-           // Add the Body section 
-    		document.getElementById('descriptionBodyText').innerHTML = tinyMCE.get('tinymceBody').getContent();
-    		document.getElementById('descriptionFooterText').innerHTML = tinyMCE.get('tinymceFooter').getContent();
-			
-			if($scope.selectedCartItemOnPopUp.colorAd == "colorAd"){
-			$scope.footerColor = true;
-			$scope.bodyColor = true;
-		}
 		}
 		if($scope.selectedCartItemOnPopUp.imageAd == "" || angular.isUndefined($scope.selectedCartItemOnPopUp.imageAd)){
 			alert("Please Select the Ad ");
 		}
-		
 		if( !(angular.isUndefined($scope.selectedCartItemOnPopUp.imageAd)) && (!$scope.selectedCartItemOnPopUp.imageAd == "")){
-		
-			$scope.rc.composeWizard.forward();
-			 if($scope.rc.composeWizard.currentIndex == 2) {
+			/*$scope.rc.composeWizard.forward();*/
+			 if($scope.rc.composeWizard.currentIndex == 1) {
 					InitDatepicker();
 				}
 		}
@@ -678,71 +854,45 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 	
 	//Change the AdTextSize 3*5 size 
 	$scope.onFirstColumnSelected = function(){
-	document.getElementById('adPreview').style.width = 70 + '%';
-	document.getElementById('adPreview').style.height = 90 + '%';
+	document.getElementById('adPreview').style.width = 4 + 'cm';
+	document.getElementById('adPreview').style.height = 188.97 + 'px';
 	}
 	//Change the ad text Size to 5*3
 	$scope.onSecondColumnSelected = function(){
-		document.getElementById('adPreview').style.width = 90 + '%';
-		document.getElementById('adPreview').style.height = 50 + '%';
+		document.getElementById('adPreview').style.width = 8 + 'cm';
+		document.getElementById('adPreview').style.height = 188.97 + 'px';
 		
 	}
 	//initilize the tinyMCE Body option.
 	$scope.tinymceOptionsBody = {
 			//selector: "textarea",
 			//descriptionHeader,descriptionBody,descriptionFooter
-			 setup: function(ed) {
+			setup: function(ed) {
 			    	ed.on('change', function(e) {
 			    		console.log("changing this..");
 			    		console.log('change event', e);
 			        	document.getElementById('descriptionBodyText').innerHTML = tinyMCE.get('tinymceBody').getContent();
 			    		var ed = tinyMCE.activeEditor;
 			    	    ed.getBody().style.backgroundColor  = $scope.selectedCartItemOnPopUp.bodyColor; /* dark green text */
-			    	    
-			    	  	 computeRateByUnit();
-			    	    //var text = $scope.selectedCartItemOnPopUp.descriptionHeader + " " +$scope.selectedCartItemOnPopUp.descriptionBody + " " +$scope.selectedCartItemOnPopUp.descriptionFooter; 
-			    	  //  var text = $('#adPreview').text().trim();
-			    	    //console.log("")
-			    	    // text=  $scope.to_trusted(text);
-			    	  //   console.log("Text Combined"+text);
-			    		// total_unit = countWords(text);
-			    	    
-			    	    /*function countWords(){
-			    			//s = $scope.selectedCartItemOnPopUp.descriptionHeader + " " +$scope.selectedCartItemOnPopUp.descriptionBody + " " +$scope.selectedCartItemOnPopUp.descriptionFooter;
-			    	    	s = $('#adPreview').text().trim();
-			    	    	s = s.replace(/(^\s*)|(\s*$)/gi,"");
-			    			s = s.replace(/[ ]{2,}/gi," ");
-			    			s = s.replace(/\n /,"\n");
-			    			s = s.replace('@'," @ ");
-			    			s = s.replace('-'," - ");
-			    			s = s.replace('.'," . ");
-			    			s = s.replace(/ /g,'');
-			    			
-			    			s = s.replace(/<[^>]+>/gm, '');//remove html tags
-			    			s = s.replace(/(&nbsp;)*///g,'');//remove spaces code
-			    			
-			    			//s = s.replace("\\<.*?\\>", "");//remove the html content
-			    			//s = s.replace("\\<.*?\\>", "");//remove the html content
-			    			//return s.split(' ').length;
-			    		//}*/
-			    	   // console.log("total_unit"+total_unit);
-			    	   // computeRateByUnit();
-			    	   // $scope.text = text;
-			    	   // $scope.total_unit = total_unit;
-			    	   
 			    	    $scope.selectedCartItemOnPopUp.colorBody = $scope.bodyColor;
-			    		console.log("$scope.selectedCartItemOnPopUp.bodyColor"+$scope.selectedCartItemOnPopUp.bodyColor);
+			    	    console.log($("#adPreview").get(0).scrollHeight);
+			    	    $scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
+			    		computeRateByUnit();
+			    	    console.log( $scope.selectedCartItemOnPopUp.height); 
+			    	    console.log("$scope.selectedCartItemOnPopUp.bodyColor"+$scope.selectedCartItemOnPopUp.bodyColor);
 			    	});
 			    },
 			    forced_root_block : false,
 			    force_br_newlines : false,
 			    force_p_newlines : false,
 			    menubar : false,
+			    theme_advanced_font_sizes: "4px,6px,8px,10px,12px,14px,16px",
+			    font_size_style_values: "6px,8px,10px,12px,14px,16px",
 			plugins: [
 			"advlist autolink lists link image charmap print preview anchor",
 			"textcolor"
 			],
-			toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify |forecolor backcolor"
+			toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify |forecolor backcolor | fontsizeselect"
 		}
 	
 	
@@ -755,50 +905,23 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 			    		document.getElementById('descriptionFooterText').innerHTML = tinyMCE.get('tinymceFooter').getContent();
 			    		var ed = tinyMCE.activeEditor;
 			    	    ed.getBody().style.backgroundColor  = $scope.selectedCartItemOnPopUp.footerColor;
-			    	  	 computeRateByUnit();
-			    	    
-			    	    /*  console.log("$scope.selectedAdbodyTextOnPopUp.descriptionHeader:"+$scope.selectedCartItemOnPopUp.descriptionHeader);
-			    	    console.log("$scope.selectedAdbodyTextOnPopUp.descriptionBody:"+$scope.selectedCartItemOnPopUp.descriptionBody);
-			    	  //  var text = $scope.selectedCartItemOnPopUp.descriptionHeader + " " +$scope.selectedCartItemOnPopUp.descriptionBody + " " +$scope.selectedCartItemOnPopUp.descriptionFooter; 
-			    	    var text = $('#adPreview').text().trim();
-			    	  //  text=  $scope.to_trusted(text);
-			    	    console.log("Text Combined"+text);
-			    		total_unit = countWords(text);
-			    		
-			    	    function countWords(){
-			    			//s = $scope.selectedCartItemOnPopUp.descriptionHeader + " " +$scope.selectedCartItemOnPopUp.descriptionBody + " " +$scope.selectedCartItemOnPopUp.descriptionFooter;
-			    	    	s = $('#adPreview').text().trim();
-			    	    	s = s.replace(/(^\s*)|(\s*$)/gi,"");
-			    			console.log("s1:"+s.length);
-			    	    	s = s.replace(/[ ]{2,}/gi," ");
-			    			s = s.replace(/\n /,"\n");
-			    			s = s.replace('@'," @ ");
-			    			s = s.replace('-'," - ");
-			    			s = s.replace('.'," . ");
-			    			s = s.replace(/ /g,'');
-			    			s = s.replace(/<[^>]+>/gm, '');//remove html tags
-			    			s = s.replace(/(&nbsp;)*///g,'');//remove spaces code
-			    			
-			    			//s = s.replace("\\<.*?\\>", "");//remove the html content
-			    			//s = s.replace("\\<.*?\\>", "");//remove the html content
-			    		//	return s.split(' ').length;
-			    		//}*/
-			    	   // console.log("total_unit"+total_unit);
-			    	   // computeRateByUnit();
-			    	   //// $scope.text = text;
-			    	   // $scope.total_unit = total_unit;
-			    	    
+			    	    console.log( $("#adPreview").get(0).scrollHeight);
+			    	    $scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
+			    	console.log( $scope.selectedCartItemOnPopUp.height);  	 
+			    	computeRateByUnit();
 			    	});
 			    },
 			    forced_root_block : false,
 			    force_br_newlines : false,
 			    force_p_newlines : false,
 			    menubar : false,
+			    theme_advanced_font_sizes: "4px,6px,8px,10px,12px,14px,16px",
+			    font_size_style_values: "6px,8px,10px,12px,14px,16px",
 			plugins: [
 			"advlist autolink lists link image charmap print preview anchor",
 			"textcolor"
 			],
-			toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify |forecolor backcolor"
+			toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify |forecolor backcolor | fontsizeselect"
 		}
 	
 	
@@ -813,61 +936,25 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope',fun
 			            // tinyMCE.activeEditor.dom.setStyle(tinyMCE.activeEditor.dom.select('p'), 'backgroundColor', $scope.headerColor);
 			             var ed = tinyMCE.activeEditor;
 				    	 ed.getBody().style.backgroundColor  = $scope.selectedCartItemOnPopUp.headerColor;
-				    	  
+				    	 console.log($("#adPreview").get(0).scrollHeight);
+				    	 $scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
+			         	 console.log( $scope.selectedCartItemOnPopUp.height); 
 				    	 computeRateByUnit();
-				    	 //var text = $scope.selectedCartItemOnPopUp.descriptionHeader + " " +$scope.selectedCartItemOnPopUp.descriptionBody + " " +$scope.selectedCartItemOnPopUp.descriptionFooter; 
-				    	//  var text = $('#adPreview').text().trim();
-				    	    //text=  $scope.to_trusted(text);
-				    	//    console.log("Text Combined"+text);
-				    	//	total_unit = countWords($('#adPreview').text().trim());
-				    	    
-				    	/*    function countWords(){
-				    			//s = $scope.selectedCartItemOnPopUp.descriptionHeader + " " +$scope.selectedCartItemOnPopUp.descriptionBody + " " +$scope.selectedCartItemOnPopUp.descriptionFooter;
-				    			s = $('#adPreview').text().trim();
-				    			
-				    			s = s.replace(/ /g,'');
-				    			console.log("s1:"+s.length);
-				    			s = s.replace(/<[^>]+>/gm, '');//remove html tags
-				    			console.log("s2:"+s.length);
-				    			s = s.replace(/(&nbsp;)*///g,'');//remove spaces code
-				    		//	console.log("s3:"+s.length);
-				    			
-				    		//	s = s.replace(/(^\s*)|(\s*$)/gi,"");
-				    		////	console.log("s4:"+s.length);
-				    	    //	s = s.replace(/[ ]{2,}/gi," ");
-				    	    //	console.log("s5:"+s.length);
-				    		//	s = s.replace(/\n /,"\n");
-				    		//	console.log("s6:"+s.length);
-				    		//	s = s.replace('@'," @ ");
-				    		//	console.log("s7:"+s.length);
-				    		//	s = s.replace('-'," - ");
-				    		//	console.log("s8:"+s.length);
-				    		//	s = s.replace('.'," . ");
-				    		//	console.log("s9:"+s.length);
-				    			//computeRateByUnit();
-					    	 //   $scope.text = $('#adPreview').text().trim();
-//					    	    /total_unit = countWords($('#adPreview').text().trim());
-				    		//	return s.length;
-				    			 
-				    		//}
-//*/				    	 //   console.log("total_unit"+total_unit);
-				    	  //  computeRateByUnit();
-				    	  //  $scope.text = $('#adPreview').text().trim();
-				    	  //  $scope.total_unit = total_unit;
-				    	    //console.log("Header Text: "+$scope.selectedAdbodyTextOnPopUp.descriptionHeader);
-			    	});
+				    	});
 			 },
 			    forced_root_block : false,
 			    force_br_newlines : false,
 			    force_p_newlines : false,
 			    strong : false,
 			    menubar : false,
+			    theme_advanced_font_sizes: "4px,6px,8px,10px,12px,14px,16px",
+			    font_size_style_values: "6px,8px,10px,12px,14px,16px",
 			    
 			plugins: [
 			"advlist autolink lists link image charmap print preview anchor",
 			"textcolor"
 			],
-			toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify |forecolor backcolor"
+			toolbar: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify |forecolor backcolor | fontsizeselect"
 			}
 }]);
 
@@ -980,7 +1067,6 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 	};
 
 	$scope.addNewCategory = function() {
-				
 		$scope.searchForm.from = new Date();
 		$scope.searchForm.to = new Date();
 		$scope.icon_id = "";
@@ -1004,7 +1090,6 @@ angular.module('adschela').controller('AddCategorySubcatController',function($sc
 	$scope.setDeleteId = function(Id) {
 		$scope.deleteId = Id.CSID;
 		$scope.deletedCID = Id.CID;
-	
 		$('#myModal3').modal();
 	};
 	$scope.onNext = function(cname) {
@@ -1218,7 +1303,6 @@ angular.module('adschela').controller("MyAccountController",['$scope','$http','n
 			 }
 		  console.log(" $scope.result invoice"+JSON.stringify($scope.orderData));
 		});
-	    
 	   //get the adderess to  show on the invoice
 	    $http.get("getaddressDetailsofUser")
 		 .success(function(data){
@@ -1588,7 +1672,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
     //used to convert html unsafe code to plain text 
 	$scope.to_trusted = function(html_code) {
 	    return $sce.trustAsHtml(html_code);
-	    console.log("in ntrusted");s
+	    console.log("in ntrusted");
 	}
 	
 	
@@ -1670,6 +1754,16 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 				//	 console.log("$scope.grantTotal"+$scope.grantTotal);
 				 }
 				 $scope.inVoiceHeader = data.results[0];
+				 console.log("data"+JSON.stringify(data.results[0]));
+				 $scope.userUploadedAd = data.results[0].originalFileName;
+				 console.log($scope.userUploadedAd);
+				 if($scope.userUploadedAd == 'Image not Uploaded' ||  $scope.userUploadedAd == null || $scope.userUploadedAd == ''){
+					// $('#myModelDispImage').modal();
+					 $('#myModal2').modal();
+				 }else{
+				console.log("in mymodel");
+					 $('#myModelDispImage').modal();
+				 }
 			 }
 //		  console.log(" $scope.result invoice"+JSON.stringify($scope.orderData));
 		});
@@ -1684,8 +1778,12 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 		});
 	    
 	   // $scope.invoiceDetails( $scope.orderData,$scope.inVoiceHeader,$scope.addressDetails);
+	    	/*if($scope.userUploadedAd == 'Image not Uploaded'){
+				 $('#myModal2').modal();
+			 }else{
+				 $('#myModelDispImage').modal();
+			 }*/
 	 		
-	 		$('#myModal2').modal();
 	 				
 	 	};
 	/*$scope.setData = function(ancmt) {
@@ -2406,6 +2504,8 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
         var freeUnit = parseInt($scope.selectedCartItemOnPopUp.freeUnit); //total allowed free units.
         var unitLot = parseInt($scope.selectedCartItemOnPopUp.unitVal); //???
         var text = $scope.selectedCartItemOnPopUp.description;
+        var freewords = parseInt($scope.selectedCartItemOnPopUp.freewords);
+        console.log("freewords:"+freewords)
             if (text != '') {
                 var total_unit;
                 var extraUnit;
@@ -2414,7 +2514,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
                 	total_unit = countWords(text);
                 } else {
                 	if ($scope.selectedCartItemOnPopUp.unit == "Line") {
-                    	total_unit = Math.ceil(text.length / 20);
+                    	total_unit = Math.ceil(text.length / freewords);
                     }
                 }
                 
@@ -2444,7 +2544,6 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
                 	$scope.selectedCartItemOnPopUp.extraUnit = extraUnit;
                 	ReTotal();
               });
-               
             }
             console.log($scope.selectedCartItemOnPopUp);
 	}
@@ -2464,8 +2563,50 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	$scope.name;
 	$scope.cookie = $cookies.cookie;
 	$scope.selectYourAd = "";
+	$scope.uploadyourAd = "templateSelect";
+   	$scope.uploadyourAdSelect = "";
+   	$scope.notemplateSelected = false;
+	$scope.templateSelect = true;
+	//$scope.notemplateSelected;
+	$scope.imageAd = 'undefined';
+	$scope.setImageIdUndefined = function(){
+		$scope.imageAd = 'undefined';
+	}
+	$scope.selectUrlForAdStore = function(imageId){
+		$scope.imageAd = imageId;
+	}
+	$scope.onTemplateSelected =  function(){
+		console.log("in temp"+$scope.selectedCartItemOnPopUp.flag);
+		$scope.uploadyourAd = "templateSelect";
+		$scope.uploadyourAdSelect = "";
+		$scope.notemplateSelected = false;
+		$scope.templateSelect =  true;
+	}
 	
+	$scope.onNoTemplateSelected =  function(){
+	//	$scope.selectedCartItemOnPopUp.flag = "isUserUpload";
+		console.log("in temp"+$scope.selectedCartItemOnPopUp.flag);
+		$scope.uploadyourAd = '';
+		$scope.notemplateSelected = true;
+		$scope.templateSelect = false;
+		$scope.uploadyourAdSelect = "userType";
+		console.log($scope.uploadyourAdSelect);
+	}
 	
+	$scope.selectOtherWidth = function(){
+		$scope.defaultWidth = true;
+		$scope.otherWidth = true;
+		$scope.showImageUploadOption = false;
+		$scope.showImagePreview = false; 
+		//$scope.selectedCartItemOnPopUp.otherWidth = "3";
+		console.log("$scope.selectedCartItemOnPopUp.otherWidth"+$scope.selectedCartItemOnPopUp.otherWidth);
+	
+	}
+	//$scope.uploadyourAd = "templateSelect";
+   		
+	$scope.footerCheck =  function(){
+	$scope.imgageHeight = $cookies.PLAY_SESSION;
+	}
 	console.log($scope.cookie);
 	$scope.checkAllAdField =  function(){
 		 $scope.rc.composeWizard.moveTo(1);
@@ -2475,6 +2616,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.selectYourAd  =  selectYourAd;
 		DeleteAllBasicRateCartItem();
 		console.log($scope.selectYourAd);
+		$scope.setImageIdUndefined();
 		$($('.backcolo')[0]).find('.Internal input:checked').trigger('click');
 		$($('.backcolo')[1]).find('.Internal input:checked').trigger('click');
 	}
@@ -2533,6 +2675,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		 function  PersistanceOrderItem (orderListuser) {
 				return cartItem = {
 						id:orderListuser.id,	
+						OrderId:orderListuser.OrderId,
 						hashKey: orderListuser.$$hashKey,	
 						location: orderListuser.location,
 						newspaper: orderListuser.newspaper,
@@ -2546,6 +2689,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 						extraForBorder:orderListuser.extraForBorder,
 						extraFortick:orderListuser.extraFortick,
 						completenessStatus:'please fill details',
+						freewords:orderListuser.freewords,
 						description:orderListuser.description,
 						total: 0,
 						fullTotal: orderListuser.fullTotal,
@@ -2575,6 +2719,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 						BWAd: orderListuser.colorAd,
 						imageAd:orderListuser.imageAd,
 						adSizeSelect:orderListuser.adSizeSelect,
+						otherWidth:orderListuser.otherWidth,
+						height:orderListuser.height,
+						originalFileName:orderListuser.originalFileName,
 						startDate:moment().add(2,'days').format("DD/MM/YYYY")
 				    }
 				}
@@ -2759,7 +2906,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		fromCart.BWAd = fromScreen.BWAd;
 		fromCart.imageAd = fromScreen.imageAd;
 		fromCart.adSizeSelect  = fromScreen.adSizeSelect;
-		
+		fromCart.otherWidth  = fromScreen.otherWidth;
+		fromCart.height  = fromScreen.height;
+		fromCart.originalFileName  = fromScreen.originalFileName;
 		if(fromCart.dates.length == 0){
 			fromCart.completenessStatus=true;
 		}else if (fromCart.description==''){
@@ -2877,9 +3026,12 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	ComposeAd = function(c, scope) {
 		SetSelectedCartItemOnPopUp(c);
 		ngDialog.open({
+			//template: 'newtheme/composeDisplayAd.html',
+		   //controller:'ComposeDisplayAdController',
 			template: 'newtheme/composeAd.html',
+			scope:$scope,
 			controller:'ComposeAdController',
-			className: 'ngdialog-theme-default'
+			 className: 'ngdialog-theme-default'
 		});
 	}
 	
@@ -2888,7 +3040,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		ngDialog.open({
 			template: 'newtheme/composeDisplayAd.html',
 		   controller:'ComposeDisplayAdController',
-			//template: 'newtheme/composeAd.html',
+		   scope:$scope,
+		   //template: 'newtheme/composeAd.html',
 			//controller:'ComposeAdController',
 			 className: 'ngdialog-theme-default'
 		});
@@ -2953,8 +3106,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		}
 	}]);
 
-	angular.module('adschela').controller("MakeBookingController",['$scope','$http','$cookies','$cookieStore','ngDialog','$routeParams','$timeout',
-                                                               function($scope,$http,$cookies,$cookieStore,ngDialog,$routeParams,$timeout){
+	angular.module('adschela').controller("MakeBookingController",['$scope','$http','$cookies','$cookieStore','ngDialog','$routeParams','$timeout','$upload',
+                                                               function($scope,$http,$cookies,$cookieStore,ngDialog,$routeParams,$timeout,$upload){
 		$scope.showFieldsVar = false;
 		$scope.userId;
 		$scope.selectedsubCategoty="";
@@ -2965,7 +3118,10 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.modeOfPayment='cc';
 		$scope.disablePackageCheckBox=false;
 		$scope.disableBasicRateChkbox=false;
-	
+				
+		$scope.chkCategorySelectedforAD = function(){
+			console.log("ghghg");
+		}
 		
 		//console.log($scope.selectYourAd);
 		//$scope.onAdChange();
@@ -2995,6 +3151,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			$scope.carts;
 			$scope.errorDesc=false;
 			$scope.errorDate=false;
+			 $scope.rc.sampleWizard.forward();
 			angular.forEach($scope.carts, function(value, key) {
 			if(value.description == '' ){
 				$scope.errorDesc=true;	
@@ -3003,8 +3160,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				 $scope.errorDate=true;
 			}
 	   });
-		if (! $scope.carts.length ==0){
-		if(!$scope.errorDate && !$scope.errorDesc) {
+		if ($scope.carts.length ==0){
+		if($scope.errorDate && $scope.errorDesc) {
 	     $scope.rc.sampleWizard.forward();
 		}
 	 }
@@ -3085,6 +3242,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		.success(function(data){
 			if(data) {
 				$scope.resultSubCategory = data;
+				$scope.selectedMainCategoty = $scope.bookingState.selectedMainCategoty;
 				console.log("$scope.resultSubCategory length:"+$scope.resultSubCategory.length);
 				console.log("sub cat"+$scope.selectedsubCat);
 			} else {
@@ -3233,6 +3391,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				extraFortickInPer:discountRate.extraFortickInPer,
 				completenessStatus:'please fill details',
 				packageSelected:discountRate.packageSelected,
+				freewords:discountRate.freewords,
 				description: '',
 				total: 0, 
 				fullTotal: 0,
@@ -3272,6 +3431,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			extraFortickInPer:rate.extraFortickInPer,
 			packageSelected:rate.packageSelected,
 			completenessStatus:'please fill details',
+			freewords:rate.freewords,
 			description: '',
 			total: 0,
 			fullTotal: 0,
@@ -3297,6 +3457,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			BWAd: '',
 			imageAd:'',
 			adSizeSelect:'',
+			otherWidth:'',
+			height:'',
+			originalFileName:'',
 			startDate:moment().add(2, 'days').format("DD/MM/YYYY")
 	    }
 	}
@@ -3368,7 +3531,6 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	}
 	 
 	$scope.composeDispAd = function(c){
-		
 		ComposeDispAd(c,$scope);
 	}
  	$scope.onCartSubmit = function() {
@@ -3388,17 +3550,133 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			
 			$scope.showIframe = true;
 			$("#ccIframe").html(data);
-			/*if($scope.modeOfPayment === 'cod') {
+			if($scope.modeOfPayment === 'cod') {
 				
 			} else {
 				window.location = data;
-			}*/
+			}
 			
 		});
 	
            }else{
+       		$scope.checkAllField=true;
+       	}*/
+     	//console.log("uoload"+$scope.uploadyourAd);
+     	//console.log("upload ad select"+$scope.uploadyourAdSelect);
+     	//$scope.uploadyourAdSelect = "userType";
+     	
+     	
+         if($scope.uploadyourAdSelect == "userType"){
+           if((!$scope.address.fullName == '') && (!$scope.address.shippingAddress == '') && (!$scope.address.state == '') &&(!$scope.address.pinCode == '') &&(!$scope.address.city == '') &&(!$scope.address.mobile == '')){  
+     		$scope.upload = $upload.upload({
+     			url : '/submit-cartUserDisplayAd',
+     			method : 'POST',
+     			data:{
+    				carts: $scope.carts,
+    				address:$scope.address,
+    				email:$scope.userId,
+    				modeOfPayment:$scope.modeOfPayment,
+    				adSelectedType:$scope.selectYourAd
+    			},
+     			fileFormDataName : 'file',
+     			file :file
+     			}).progress(function(evt) {
+     			console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+     			}).success(function(data) {
+     			$scope.showIframe = true;
+     			console.log("inn if template");
+     			$("#ccIframe").html(data);
+    			/*if($scope.modeOfPayment === 'cod') {
+    			} else {
+    				window.location = data;
+    			}*/
+     			});
+           }else{
 		$scope.checkAllField=true;
 	}
+    }else if ($scope.uploadyourAd == "templateSelect" && $scope.imageAd == 'undefined'){
+    	console.log("in else ");
+    	if((!$scope.address.fullName == '') && (!$scope.address.shippingAddress == '') && (!$scope.address.state == '') &&(!$scope.address.pinCode == '') &&(!$scope.address.city == '') &&(!$scope.address.mobile == '')){  
+    		$scope.upload = $upload.upload({
+     			url : '/submit-cart',
+     			method : 'POST',
+     			data:{
+    				carts: $scope.carts,
+    				address:$scope.address,
+    				email:$scope.userId,
+    				modeOfPayment:$scope.modeOfPayment,
+    				adSelectedType:$scope.selectYourAd
+    			}
+     			}).progress(function(evt) {
+     			console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+     			}).success(function(data) {
+     			$scope.showIframe = true;
+     			console.log("inn if template");
+     			$("#ccIframe").html(data);
+    			/*if($scope.modeOfPayment === 'cod') {
+    			} else {
+    				window.location = data;
+    			}*/
+     			});
+           }else{
+       		$scope.checkAllField=true;
+       	}
+    }else if ($scope.uploadyourAd == "templateSelect" &&  $scope.imageAd == '5' ){
+    	if((!$scope.address.fullName == '') && (!$scope.address.shippingAddress == '') && (!$scope.address.state == '') &&(!$scope.address.pinCode == '') &&(!$scope.address.city == '') &&(!$scope.address.mobile == '')){  
+     		$scope.upload = $upload.upload({
+     			url : '/submit-cartColorDisplayAd',
+     			method : 'POST',
+     			data:{
+    				carts: $scope.carts,
+    				address:$scope.address,
+    				email:$scope.userId,
+    				modeOfPayment:$scope.modeOfPayment,
+    				adSelectedType:$scope.selectYourAd
+    			},
+     			fileFormDataName : 'file',
+     			file :file
+     			}).progress(function(evt) {
+     			console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+     			}).success(function(data) {
+     			$scope.showIframe = true;
+     			console.log("inn if template");
+     			$("#ccIframe").html(data);
+    			/*if($scope.modeOfPayment === 'cod') {
+    			} else {
+    				window.location = data;
+    			}*/
+     			});
+           }else{
+		$scope.checkAllField=true;
+	}
+    }else if($scope.uploadyourAd == "templateSelect" &&  $scope.imageAd == '1' || $scope.imageAd == '2' ||$scope.imageAd == '3' ||$scope.imageAd == '4'){
+    	if((!$scope.address.fullName == '') && (!$scope.address.shippingAddress == '') && (!$scope.address.state == '') &&(!$scope.address.pinCode == '') &&(!$scope.address.city == '') &&(!$scope.address.mobile == '')){  
+    		$scope.upload = $upload.upload({
+     			url : '/submit-cartDisplayHTMLAd',
+     			method : 'POST',
+     			data:{
+    				carts: $scope.carts,
+    				address:$scope.address,
+    				email:$scope.userId,
+    				modeOfPayment:$scope.modeOfPayment,
+    				adSelectedType:$scope.selectYourAd
+    			}
+     			}).progress(function(evt) {
+     			console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+     			}).success(function(data) {
+     			$scope.showIframe = true;
+     			console.log("inn if template");
+     			$("#ccIframe").html(data);
+    			/*if($scope.modeOfPayment === 'cod') {
+    			} else {
+    				window.location = data;
+    			}*/
+     			});
+           }else{
+       		$scope.checkAllField=true;
+       	}
+    	
+    }
   }
 	
 	if($routeParams.id == 2){
@@ -3410,7 +3688,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	
 	
 
-	app.filter('setDecimal', function ($filter) {
+app.filter('setDecimal', function ($filter) {
 	    return function (input, places) {
 	        if (isNaN(input)) return input;
 	        // If we want 1 decimal place, we want to mult/div by 10

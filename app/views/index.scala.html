@@ -1,57 +1,50 @@
 @(message: String)
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html class="mnt-html" ng-app="adschela"
-	ng-controller="ApplicationController"
-	xmlns="http://www.w3.org/1999/xhtml">
+<html class="mnt-html" ng-app="adschela" ng-controller="ApplicationController" xmlns="http://www.w3.org/1999/xhtml">
 
 @main("") {
-<body class="mnt-body" style="overflow-x: hidden">
-	<div class="container mnt-container"
-		style="margin-top: 0%; width: 100%; margin-left: 0px; padding-top: 0px; box-shadow: 10px 3px 5px 6px #ccc; padding-left: 0px;">
-		<input type="hidden" ng-model="txtUsername"
-			ng-init='setSession("@session().get("userName")")'
-			value='@session().get("emailId")' />
-		<header id="header" style="width: 100%;display: block;padding:0px;">
-		<div class="row">
-			<div class="span12" style="margin-bottom: 0%;">
-				<a href="#"><img src="assets/img/New_logo.gif"
-					style="float: left; height: 87px;" alt="Bootsshop" /></a>
+	<body class="mnt-body"  style="overflow-x: hidden">
+		<div class="container mnt-container" style="margin-top: 0%; width: 100%;margin-left: 0px;padding-top: 0px;box-shadow: 10px 3px 5px 6px #ccc;padding-left: 0px; *">
+         	<input type="hidden" ng-model="txtUsername" ng-init='setSession("@session().get("userName")")' value='@session().get("emailId")'/>
+			<header id="header" style="width: 100%;display: block;padding:0px;">
+				<div class="row">
+				<div class="span12" style="margin-bottom: 0%;" >
+					<a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 87px;"alt="Bootsshop"/></a>
 				<div>
-					<a href="#"><img src="assets/img/Fone-Number.gif"
-						style="float: left" alt="Bootsshop" /></a>
+					<a href="#"><img src="assets/img/Toll-Free.gif"   style="float:left"alt="Bootsshop"/></a>
 				</div>
-			</div>
-		</div>
-		<div class="clr"></div>
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<a id="logoM" href="#"> <!-- <img src="" alt="Bootsshop"/> -->
-					</a> <a data-target="#sidebar" data-toggle="collapse"
-						class="btn btn-navbar"> <span class="icon-bar"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a>
-					<div class="nav-collapse">
-						<ul class="nav" style="width: 98%;">
-							<li class=""><a href="#">Home </a></li>
-							<!--  <li class=""><a href="special_offer.html">Specials Offer</a></li> -->
-							<!--  <li class=""><a href="#/aboutUs" >About Us</a></li>
+				</div>
+				</div>
+				<div class="clr"></div>
+				<div class="navbar navbar-fixed-top" >
+              <div class="navbar-inner">
+                <div class="container">
+                 <a id="logoM" href="#"><!-- <img src="" alt="Bootsshop"/> --></a>
+					<a data-target="#sidebar" data-toggle="collapse" class="btn btn-navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </a>
+                  <div class="nav-collapse">
+                    <ul class="nav" style="width:98%;">
+					  <li class=""><a href="#">Home	</a></li>
+					 <!--  <li class=""><a href="special_offer.html">Specials Offer</a></li> -->
+					 <!--  <li class=""><a href="#/aboutUs" >About Us</a></li>
 					  <li class=""><a href="#/contactUs" >Contact Us</a></li>
-					 -->
-							<li class="" ng-show="name != ''"><a href="#/myAccount">My
-									Ads</a></li>
-							<li class="" ng-show="name != ''" style="float: right;"><a
-								href="/logout">Logout</a></li>
-							<li ng-show="name == ''"><a ng-click="Login()"
-								data-toggle="modal" style="cursor: pointer;">Login </a></li>
-							<li ng-show="name == ''"><a ng-click="Register()"
-								data-toggle="modal" style="cursor: pointer;">Register </a></li>
-							<li ng-show="name != ''"
-								style="float: right; /* width: 40%; */ padding-top: 1%;">
-								Welcome: {{name}}</li>
-							<div class="pull-right" style="width: 26%; margin-right: 1%;">
-								<!-- <div style="width: 65%;  float: left;">
+					 -->  <li class=""  ng-show="name != ''"><a href="#/myAccount">My Ads</a></li> 
+					  <li class=""  ng-show="name != ''" style="float: right;"><a href="/logout">Logout</a></li> 
+					  <li ng-show="name == ''"  >
+					  <a   ng-click="Login()" data-toggle="modal" style="cursor: pointer;" >Login </a>
+					  </li>
+					 <li ng-show="name == ''">
+						<a  ng-click="Register()" data-toggle="modal" style="cursor: pointer;">Register </a>						
+					 </li>
+					 <li  ng-show="name != ''" style="float: right;/* width: 40%; */padding-top: 1%;">
+						Welcome: 	{{name}}					
+					 </li>
+					 <div class="pull-right" style="width: 26%;margin-right: 1%;"> 
+				<!-- <div style="width: 65%;  float: left;">
 				<table>
                                         <tr>
                                        
@@ -63,27 +56,23 @@
                                         </tr>
                                     </table>
 				</div> -->
-								<div style="float: right;">
-									<a href="#/make-booking.html/2" id="cartinheader"
-										style="cursor: pointer;"> <strong
-										class="btn btn-mini btn-warning"> <i
-											class="icon-shopping-cart icon-white"></i> [ {{carts.length}}
-											]
-									</strong></a> <span class="btn btn-mini active" style="font-size: 12px;">
-										&#2352;.{{FinalTotal}}</span>
-									<!-- <span class="btn btn-mini">&pound;</span>
+				<div style="float: right;">
+				  	<a href="#/compose-classified-Ad/2" id="cartinheader"  style="cursor: pointer;">
+					<strong class="btn btn-mini btn-warning" >  
+					<i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </strong></a>
+					<span class="btn btn-mini active" style="font-size: 12px;"> &#2352;.{{FinalTotal}}</span>
+					<!-- <span class="btn btn-mini">&pound;</span>
 					<span class="btn btn-mini">&euro;</span>  -->
-								</div>
-							</div>
-						</ul>
-
 					</div>
-					<!-- /.nav-collapse -->
 				</div>
-			</div>
-			<!-- /navbar-inner -->
-		</div>
-		<!-- google analytics start here --> <script>
+					</ul>
+					
+                  </div><!-- /.nav-collapse -->
+                </div>
+              </div><!-- /navbar-inner -->
+            </div>
+            <!-- google analytics start here -->
+           <script>
 			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -91,8 +80,12 @@
 			  ga('create', 'UA-57146221-1', 'auto');
 			  ga('send', 'pageview');
 
-			</script> <!-- google analytics end here --> <!-- For chat  --> <!--Start of Zopim Live Chat Script-->
-		<script type="text/javascript">
+			</script>
+ 			<!-- google analytics end here -->
+            
+            <!-- For chat  -->
+            <!--Start of Zopim Live Chat Script-->
+	      <script type="text/javascript">
 	      window.$zopim||(function(d,s){var z=$zopim=function(c){
 	       z._.push(c)},$=z.s=
 	       d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
@@ -143,10 +136,9 @@ var google_remarketing_only = false;
 <img class="img_custom" src="/NewDesign/homepagesImages/3d-secure-logos.png" style="margin-left: 2%;background-color: #00aced;width: 150px;cursor: pointer;float: left;margin-right: 1%;" />
 </div>
 </div> -->
-			<div id="footerSection"
-				style="border: Solid 1px #EBDBAA; margin-bottom: 0%; background-color: #ccc">
-				<div class="row" style="margin-left: 1%">
-					<!-- <div class="span3 custom_span">
+<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 0%;background-color:#ccc">
+	<div class="row" style="margin-left:1%">
+		<!-- <div class="span3 custom_span">
 			<h5>HOME</h6>
 			<a href="#/aboutUs">About Us</a>
 			<a href="#/ourClient">Our Client</a> 
@@ -155,41 +147,33 @@ var google_remarketing_only = false;
 			<a ng-if='!(@session().containsKey("userName"))' ng-click="Register()" data-toggle="modal">Register</a>
 			<a href="#/ourBlogs">Blog</a>
 		 </div> -->
-					<div class="span11">
-						<div style="float: left; width: 100%; background-color: #ccc">
-
-							<div>
-								<span style="float: left; width: 25%; margin-right: 21%;"><a
-									href="#"><img src="assets/img/New_logo.gif"
-										style="float: left; height: 40px; width: 100%" alt="Bootsshop" /></a></span>
-								<!-- <h5>Quick Links</h5> -->
-								<div style="margin: 0 auto;">
-									<span style="float: left; width: 5%;"><a
-										href="#/aboutUs">About Us</a></span> <span
-										style="float: left; width: 6%;"><a href="#/contactUs">Contact
-											Us</a></span> <span style="float: left; width: 9%;"><a
-										ng-if='!(@session().containsKey("userName"))' href="#myModal"
-										data-toggle="modal">Registered User</a></span> <span
-										style="float: left; width: 7%;"><a
-										ng-if='!(@session().containsKey("userName"))' href="#mySignUp"
-										data-toggle="modal">Guest user</a></span> <span
-										style="float: left; width: 5%;"><a href="#/ourBlogs">Blog</a></span>
-								</div>
-								<!-- <a href="#/" style="float:left;margin-right: 2%;">Advertising Policy</a>
+		<div class="span11">
+		<div style="float:left;width:100%;background-color:#ccc">
+		
+		<div >
+		<span id="imagetag"style="float: left;width:25%;margin-right: 21%;"><a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 40px; width:100%"alt="Bootsshop"/></a></span>
+			<!-- <h5>Quick Links</h5> -->
+			<div style=" margin:0 auto;" >
+			<span style="float: left;width:5%;"><a href="#/aboutUs" >About Us</a></span>
+		    <span style="float: left;width:6%;"><a href="#/contactUs" >Contact Us</a></span>
+		    <span style="float: left;width:9%;"><a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a></span>
+			<span style="float: left;width:7%;"><a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a></span>
+			<span style="float: left;width:5%;"><a href="#/ourBlogs">Blog</a></span>
+			</div>
+			<!-- <a href="#/" style="float:left;margin-right: 2%;">Advertising Policy</a>
 			 -->
-								<!--  <span style="float: left;width:7%;"><a href="#/privacyPolicy" style="float:left;margin-right: 2%;">Privacy Policy </a></span> 
-		 -->
-								<!--  <a href="#/deClaimer" style="float:left;margin-right: 2%;">Disclaimer</a> 
+			<!--  <span style="float: left;width:7%;"><a href="#/privacyPolicy" style="float:left;margin-right: 2%;">Privacy Policy </a></span> 
+		 -->	<!--  <a href="#/deClaimer" style="float:left;margin-right: 2%;">Disclaimer</a> 
 			 <a href="#/termsAndConditions" style="float:left;margin-right: 2%;">Terms and Conditions</a>  
 		 -->
-								<!-- <a href="#/paymentGateway">Payment Gateway </a>  -->
-								<!-- <a href="#/" style="float:left;margin-right: 2%;">FAQ's </a>
-					<a href="#/" style="float:left;margin-right: 2%;">Feedback </a>  -->
-								<!-- 	<a href="#/help">How to Book an Ad</a> -->
-								<!-- <a href="#/help">How to Book an Ad</a> -->
-							</div>
-
-							<!--  </div>
+		<!-- <a href="#/paymentGateway">Payment Gateway </a>  -->
+				<!-- <a href="#/" style="float:left;margin-right: 2%;">FAQ's </a>
+					<a href="#/" style="float:left;margin-right: 2%;">Feedback </a>  -->		
+					<!-- 	<a href="#/help">How to Book an Ad</a> -->
+			<!-- <a href="#/help">How to Book an Ad</a> -->
+			</div>
+			
+		<!--  </div>
 		 <div class="span3 ">
 			<div style="margin-left: 38%;">
 			<h5>Follow Us</h5>
@@ -201,15 +185,14 @@ var google_remarketing_only = false;
 		    
 		    </div>
 		 </div> -->
-							<div>
-								<span
-									style="font-size: 10px; float: left; width: 50%; margin-left: 46%">
-									Copyright &copy; 2014 - 2015 www.ArihantBooking.com, All Rights
-									Reserved. </span>
-							</div>
-						</div>
-
-						<!--  <div class="span3 ">
+		 <div>
+		 <span style="font-size: 10px;  float: left;width:50%;margin-left:46%">
+			 Copyright  &copy;  2014 - 2015 www.ArihantBooking.com, All Rights Reserved.
+			</span>
+		 </div>
+		 </div>
+		 
+		<!--  <div class="span3 ">
 			<h5>Follow Us</h5>
 			<a href="https://www.facebook.com/ArihantBooking">Text Classified Ad</a> 
 			<a href="https://twitter.com/arihantbooking">Classified Display Ad</a>  
@@ -218,163 +201,144 @@ var google_remarketing_only = false;
 			<a href="#/">View Ad Rate In Various Newspapers</a> 
 		    
 		 </div> -->
-
-						<!-- <div  class="span3 custom_span" >
+		
+		<!-- <div  class="span3 custom_span" >
 			<h5>USER LOGIN </h5>
 			<a href="#/affilatedLogin">Afiilated Login</a>
 				<a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a>
 			<a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a>
 			
 		 </div>  -->
-					</div>
-					<!--  <hr class="soft" style=" padding-left: -12%;width: 90%;margin-left: 5%;"/>
+	 </div>
+	<!--  <hr class="soft" style=" padding-left: -12%;width: 90%;margin-left: 5%;"/>
 	<p class="pull-right">&copy; Boot'sshop</p> -->
-				</div>
-				<div id="left3" style="line-height: 15px;">
-					<!--Jagbir Singh Sir,Akash Shinde,Pankaj Muneshwar  -->
-					<!--  <P style="text-align: center;font-size: 10px; margin: 0px 0 0px !important;">Copyright © 2014 - 2015 www.ArihantBooking.com, All Rights Reserved.</P>
-      -->
-					<!-- <P style="text-align: center;font-size: 10px; margin: 0px 0 0px !important;">Designed and Developed by  <a href= "" onclick="window.top.location='http://www.mindnerves.com';return false;" target="_top">MindNerves Technology</a></P>
-  -->
-				</div>
-				<!-- Le javascript
+</div>
+<div id="left3" style="line-height:15px;">
+		<!--Jagbir Singh Sir,Akash Shinde,Pankaj Muneshwar  -->
+     <!--  <P style="text-align: center;font-size: 10px; margin: 0px 0 0px !important;">Copyright © 2014 - 2015 www.ArihantBooking.com, All Rights Reserved.</P>
+      --> <!-- <P style="text-align: center;font-size: 10px; margin: 0px 0 0px !important;">Designed and Developed by  <a href= "" onclick="window.top.location='http://www.mindnerves.com';return false;" target="_top">MindNerves Technology</a></P>
+  -->   </div>
+    <!-- Le javascript
     ================================================== -->
-				<!-- Placed at the end of the document so the pages load faster -->
-				<script type="text/javascript">
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script type="text/javascript">
     $(function() {
         $('#gallery a').lightBox();
     });
     </script>
+	
 
 
+	  
+	
+<!-- sign in popup begins -->
+
+<div class="modal hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:100000;" >
+  	  <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
+        <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+         <h4>Login </h4>
+         <h6 id="login_error" style="color:red;">Seems you have entered wrong details.</h6>
+      </div>
+      
+      <form name="aspnetForm" method="post" action="/checkSignIn" id="aspnetForm" class="form-horizontal">
+       <div class="modal-body" style="overflow: hidden;">
+       <div class="control-group">
+	    <label class="control-label" for="inputEmail">Email</label>
+	    <div class="controls">
+	      <input name="txtUsername" type="text" ng-model="email"  id="txtUsername"  placeholder="Email Id" />
+	    </div>
+	   </div>
+	   <div class="control-group">
+	    <label class="control-label" for="inputPassword">Password</label>
+	    <div class="controls">
+	      <input name="txtpwd" type="password" id="txtpwd" placeholder="Password" />
+	    </div>
+	   </div>
+	   <a ng-click=forgotpass(email) style="margin-left: 30%;cursor: pointer;">Forgot your password?</a>
+	   <label ng-show="Send" style="color: green;margin-left: 64%;">Password Send On Your Mail </label>
+	   </div>
+	   <div class="modal-footer">
+    	<button type="submit" class="btn btn-primary">Login</button>
+  	   </div>
+	</form>
+	
+ </div>
+
+<!--  sign in popUp  end -->
 
 
-
-				<!-- sign in popup begins -->
-
-				<div class="modal hide" id="myModal" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true"
-					style="z-index: 100000;">
-					<div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">&times;</span><span class="sr-only"></span>
-						</button>
-						<h4>Login</h4>
-						<h6 id="login_error" style="color: red;">Seems you have
-							entered wrong details.</h6>
-					</div>
-
-					<form name="aspnetForm" method="post" action="/checkSignIn"
-						id="aspnetForm" class="form-horizontal">
-						<div class="modal-body" style="overflow: hidden;">
-							<div class="control-group">
-								<label class="control-label" for="inputEmail">Email</label>
-								<div class="controls">
-									<input name="txtUsername" type="text" ng-model="email"
-										id="txtUsername" placeholder="Email Id" />
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="inputPassword">Password</label>
-								<div class="controls">
-									<input name="txtpwd" type="password" id="txtpwd"
-										placeholder="Password" />
-								</div>
-							</div>
-							<a ng-click=forgotpass(email)
-								style="margin-left: 30%; cursor: pointer;">Forgot your
-								password?</a> <label ng-show="Send"
-								style="color: green; margin-left: 64%;">Password Send On
-								Your Mail </label>
-						</div>
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-primary">Login</button>
-						</div>
-					</form>
-
-				</div>
-
-				<!--  sign in popUp  end -->
+<!-- sign up opop up begin -->
 
 
-				<!-- sign up opop up begin -->
+ <div class="modal hide" id="mySignUp" style="z-index: 10000;width: 30%;left: 58%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
+        <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
+        
+      </div>
 
-
-				<div class="modal hide" id="mySignUp"
-					style="z-index: 10000; width: 30%; left: 58%;" tabindex="-1"
-					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-header" style="border-bottom: 0px solid #e5e5e5;">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">&times;</span><span class="sr-only"></span>
-						</button>
-
-					</div>
-
-					<form name="signUpForm" method="post" action="/saveSignUp"
-						id="signUpForm">
-						<div class="modal-body"
-							style="overflow: hidden; left: 64%; width: 90%;">
-							<div style="text-align: right">
-								<!--     <input type="image" name="ctl00$ibtnclose1" id="ctl00_ibtnclose1" src="images/close_pop.png" border="0" /> -->
-							</div>
-							<div
-								style="color: #65BDDF; font-weight: bold; font-family: Calibri; font-size: 25px; text-align: center; margin-bottom: 15px">
-								SignUp Form</div>
-							<fieldset class="textboxnew" style="padding-left: 10%;">
-								<label> <span class="custom-lable">Full Name</span> <input
-									name="txtUserids" type="text" id="txtUserids" autocomplete="on"
-									placeholder="Full Name" required />
-								</label> <label> <span class="custom-lable">Email</span> <input
-									name="txtEmail" type="text" id="txtEmail" placeholder="Email"
-									required /> <span id="userEmailIdError"
-									style="display: none; color: green; margin-left: 1%;">
-										Available </span> <span id="userEmailId"
-									style="display: none; color: red; margin-left: 1%;">
-										Email Id already exists </span>
-								</label> <label> <span class="custom-lable">Password</span> <input
-									name="txtpasswords" type="password" id="txtpasswords"
-									ng-model="txtpasswords" ng-required="" placeholder="Password" />
-								</label> <label> <span class="custom-lable">Confirm
-										Password</span> <input name="txtconfirmpassword" type="password"
-									id="txtconfirmpassword" ng-model="txtconfirmpassword"
-									ng-required="" pw-check="txtpasswords"
-									placeholder="Confirm Password" />
-
-								</label>
-								<div class="msg-block" ng-show="signUpForm.$error">
-									<span class="msg-error"
-										ng-show="signUpForm.txtconfirmpassword.$error.pwmatch"
-										style="margin-left: 26%; color: red"> Passwords don't
-										match. </span>
-								</div>
-								<label> <span class="custom-lable">Mobile No</span> <input
-									name="txtMobileno" type="text" id="txtMobileno"
-									placeholder="Mobile No" autocomplete="on" required />
-								</label> &nbsp;<span id="ctl00_lblmsg"><font color="Red"></font></span>
-								<br /> <input type="submit" class="btn btn-success"
-									name="signupform" value="Submit"
-									style="cursor: pointer; margin-left: 25%;" />
-							</fieldset>
-						</div>
-					</form>
-				</div>
-
-
-				<!--sign up pop up ends  -->
-
-
-
-			</div>
-</body>
+<form name="signUpForm" method="post" action="/saveSignUp" id="signUpForm">
+      <div class="modal-body" style="overflow: hidden;left: 64%;width: 90%;">
+       <div style="text-align: right">
+                <!--     <input type="image" name="ctl00$ibtnclose1" id="ctl00_ibtnclose1" src="images/close_pop.png" border="0" /> --></div>
+                <div style="color: #65BDDF; font-weight: bold; font-family: Calibri; font-size: 25px;
+                    text-align: center;margin-bottom: 15px">
+                    SignUp Form</div>
+                <fieldset class="textboxnew" style="padding-left: 10%;">
+                    <label>
+                        <span class="custom-lable">Full Name</span>
+                        <input name="txtUserids" type="text" id="txtUserids" autocomplete="on" placeholder="Full Name"  required/>
+                            </label>
+                    <label>
+                        <span class="custom-lable">Email</span>
+                        <input name="txtEmail" type="text" id="txtEmail" placeholder="Email"  required/>
+                       
+                        <span id="userEmailIdError" style="display: none;color: green;margin-left: 1%;"> Available  </span>
+                    	<span id="userEmailId" style="display: none;color: red;margin-left: 1%;"> Email Id already exists  </span>
+                   </label>
+                    <label>
+                        <span class="custom-lable">Password</span>
+                        
+                        <input name="txtpasswords" type="password" id="txtpasswords"  ng-model="txtpasswords" ng-required="" placeholder="Password" />
+           </label>
+                    <label>
+                        <span class="custom-lable">Confirm Password</span>
+                        <input name="txtconfirmpassword" type="password" id="txtconfirmpassword"  ng-model="txtconfirmpassword" ng-required="" pw-check="txtpasswords" placeholder="Confirm Password" />
+                        
+            </label><div class="msg-block" ng-show="signUpForm.$error">
+	                <span class="msg-error" ng-show="signUpForm.txtconfirmpassword.$error.pwmatch" style="margin-left: 26%; color:red">
+		                 Passwords don't match.
+	                     </span>
+                   </div>
+                    <label>
+                        <span class="custom-lable">Mobile No</span>
+                        <input name="txtMobileno" type="text" id="txtMobileno" placeholder="Mobile No" autocomplete="on" required />
+            </label>
+                    &nbsp;<span id="ctl00_lblmsg"><font color="Red"></font></span>
+                    <br />
+                    <input type="submit" class="btn btn-success" name="signupform" value="Submit"   style="cursor: pointer;margin-left: 25%;" />
+                </fieldset>
+            </div>
+      </form>
+    </div>
+ 
+  
+<!--sign up pop up ends  -->
+	  
+	  
+	  
+</div>	  
+</body>	  
 }
 <style>
-.btn {
-	cursor: default;
-}
 
-.img_custom {
-	height: 30px;
-	float: left;
+.btn{
+cursor: default;
+}
+.img_custom{
+height: 30px;
+float: left;
 }
 </style>
 
@@ -473,12 +437,8 @@ $(document).ready(function(){
 _atrk_opts = { atrk_acct:"5hSGi1a8Dy00gO", domain:"arihantbooking.com",dynamic: true};
 (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
 </script>
-<noscript>
-	<img
-		src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=5hSGi1a8Dy00gO"
-		style="display: none" height="1" width="1" alt="" />
-</noscript>
-<!-- End Alexa Certify Javascript -->
+<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=5hSGi1a8Dy00gO" style="display:none" height="1" width="1" alt="" /></noscript>
+<!-- End Alexa Certify Javascript -->  
 </script>
 </html>
 
