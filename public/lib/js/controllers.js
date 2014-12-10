@@ -2777,7 +2777,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	}
 
 	$scope.setSession = function(d){
-		console.log(d);
+		console.log("name is :"+d);
 		$scope.name = d;
 	} 
 	
@@ -3047,6 +3047,15 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		});
 		
 	}
+	
+	/*preViewColorAd = function(scope){
+		ngDialog.open({
+			template: 'newtheme/previewDisplayColorAd.html',
+		    scope:$scope,
+			className: 'ngdialog-theme-default'
+		});
+		
+	}*/
 	
 	//close the ng-dialog
 	closeDialog =function(){
@@ -3536,7 +3545,11 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
  	$scope.onCartSubmit = function() {
      	//SubmitCart();
      	$scope.checkAllField=false;
-     	if((!$scope.address.fullName == '') && (!$scope.address.shippingAddress == '') && (!$scope.address.state == '') &&(!$scope.address.pinCode == '') &&(!$scope.address.city == '') &&(!$scope.address.mobile == '')){  
+     	var mobileVar = $("#mobile").hasClass("ng-valid");
+     	console.log("emailVar:"+mobileVar);
+     	var pinCodeVar = $("#pinCode").hasClass("ng-valid");
+     	console.log("pinCodeVar:"+pinCodeVar);
+/*if((!$scope.address.fullName == '') && (!$scope.address.shippingAddress == '') && (!$scope.address.state == '') &&(!$scope.address.pinCode == '') &&(!$scope.address.city == '') &&(!$scope.address.mobile == '')){  
      	    
      	    $http({method:"POST",url:"/submit-cart",
 			data:{
