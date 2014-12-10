@@ -273,8 +273,13 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 	/*$scope.preViewColorAd = function(){
 		preViewColorAd($scope);
 	}*/
-	
-	
+	$scope.closePreviewAd = function(){
+		$('#adColorPreview').modal('hide');
+		//document.getElementById('adPreview').style.height = $("#adPreview").get(0).scrollHeight;
+		$scope.heightPer = (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
+		console.log("height:"+$scope.heightPer); 
+		console.log($("#adPreview"));
+	}
 	$scope.preViewColorAd = function() {
 		$('#adColorPreview').modal();
 	}
@@ -534,7 +539,11 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
          	    }else if ($scope.uploadyourAd == 'templateSelect'){
          	    	$scope.selectedCartItemOnPopUp.otherWidth = "4";
          	    	var  width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
-         	    	$scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
+         	    	$scope.selectedCartItemOnPopUp.height =  (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
+         	    	//$scope.height = ($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight);
+         	    if($scope.selectedCartItemOnPopUp.height == 0){
+         	    	$scope.selectedCartItemOnPopUp.height = $scope.heightPer;
+         	    }
          	    	var  height = parseInt($scope.selectedCartItemOnPopUp.height);
                  	console.log("height"+height);
                    //var width = parseInt($scope.width);
@@ -658,19 +667,18 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 	
 	//on header color change
 	$scope.onColorHeaderChange = function(){
-		$scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
+		$scope.selectedCartItemOnPopUp.height =  (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
 		$scope.headerColor=	$scope.selectedCartItemOnPopUp.headerColor;
 	}
 
 	$scope.onColorBodyChange = function(){
-		$scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
+		$scope.selectedCartItemOnPopUp.height =   (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
 		console.log("$scope.selectedCartItemOnPopUp.colorBody"+$scope.selectedCartItemOnPopUp.colorBody);
 		$scope.bodyColor = $scope.selectedCartItemOnPopUp.bodyColor;
 	}  
 	
-	
 	$scope.onColorFooterChange = function(){
-		$scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
+		$scope.selectedCartItemOnPopUp.height =  (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
 		console.log($scope.selectedCartItemOnPopUp.footerColor);
 		$scope.footerColor = $scope.selectedCartItemOnPopUp.footerColor;
 		//console.log("$scope.footerColor"+$scope.footerColor);
@@ -721,7 +729,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 			if($scope.rc.composeWizard.currentIndex  == 2){
 			if ($scope.selectedCartItemOnPopUp.descriptionHeader == "" || $scope.selectedCartItemOnPopUp.descriptionBody == ""){
 				//alert("Please Fill all ad details");
-				$scope.checkAllAdField();
+				//$scope.checkAllAdField();
 			}	
 			}
 			//assign the text to adPreview
@@ -746,7 +754,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 			if($scope.rc.composeWizard.currentIndex == 2){
 			if ($scope.selectedCartItemOnPopUp.descriptionBody == "" || $scope.selectedCartItemOnPopUp.descriptionFooter == "" ){
 						//alert("please fill all add details")
-						$scope.checkAllAdField();
+						//$scope.checkAllAdField();
 					}    		
 			}
 			document.getElementById('descriptionHeaderText').innerHTML = tinyMCE.activeEditor.getContent();
@@ -834,8 +842,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
     				tinyMCE.get('tinymceFooter').getContent() == "" ){
     			  //  alert("Please fill all Ad details");
     			     //used to move to step(1) current step
-    			    $scope.checkAllAdField();
-    			  
+    			  //  $scope.checkAllAdField();
     		}
     		}
     		
@@ -879,9 +886,11 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 			    		var ed = tinyMCE.activeEditor;
 			    	    ed.getBody().style.backgroundColor  = $scope.selectedCartItemOnPopUp.bodyColor; /* dark green text */
 			    	    $scope.selectedCartItemOnPopUp.colorBody = $scope.bodyColor;
+			    	    console.log( $scope.selectedCartItemOnPopUp.height);
 			    	    console.log($("#adPreview").get(0).scrollHeight);
-			    	    $scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
-			    		computeRateByUnit();
+			    	    $scope.selectedCartItemOnPopUp.height =  (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
+			    	    $scope.height = ($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight);
+			    	    computeRateByUnit();
 			    	    console.log( $scope.selectedCartItemOnPopUp.height); 
 			    	    console.log("$scope.selectedCartItemOnPopUp.bodyColor"+$scope.selectedCartItemOnPopUp.bodyColor);
 			    	});
@@ -909,9 +918,12 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 			    		document.getElementById('descriptionFooterText').innerHTML = tinyMCE.get('tinymceFooter').getContent();
 			    		var ed = tinyMCE.activeEditor;
 			    	    ed.getBody().style.backgroundColor  = $scope.selectedCartItemOnPopUp.footerColor;
+			    	    console.log( $scope.selectedCartItemOnPopUp.height);
 			    	    console.log( $("#adPreview").get(0).scrollHeight);
-			    	    $scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
-			    	console.log( $scope.selectedCartItemOnPopUp.height);  	 
+			    	    //$scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
+			    	    $scope.selectedCartItemOnPopUp.height =  (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
+			    	    $scope.height = ($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight);
+			    	    console.log( $scope.selectedCartItemOnPopUp.height);  	 
 			    	computeRateByUnit();
 			    	});
 			    },
@@ -940,9 +952,11 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 			            // tinyMCE.activeEditor.dom.setStyle(tinyMCE.activeEditor.dom.select('p'), 'backgroundColor', $scope.headerColor);
 			             var ed = tinyMCE.activeEditor;
 				    	 ed.getBody().style.backgroundColor  = $scope.selectedCartItemOnPopUp.headerColor;
-				    	 console.log($("#adPreview").get(0).scrollHeight);
-				    	 $scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
-			         	 console.log( $scope.selectedCartItemOnPopUp.height); 
+				    	 //console.log($("#adPreview").get(0).scrollHeight);
+				    	  $scope.selectedCartItemOnPopUp.height =  (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
+ 				    	 // $scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
+				    	  $scope.height = ($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight);
+				    	  console.log($scope.selectedCartItemOnPopUp.height); 
 				    	 computeRateByUnit();
 				    	});
 			 },
@@ -2613,9 +2627,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	$scope.imgageHeight = $cookies.PLAY_SESSION;
 	}
 	console.log($scope.cookie);
-	$scope.checkAllAdField =  function(){
+	/*$scope.checkAllAdField =  function(){
 		 $scope.rc.composeWizard.moveTo(1);
-	}
+	}*/
 	
 	$scope.onAdChange  =  function(selectYourAd){
 		$scope.selectYourAd  =  selectYourAd;
