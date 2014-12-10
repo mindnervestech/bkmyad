@@ -1761,7 +1761,7 @@ angular.module('adschela').controller('ViewAllOrdersController',function($scope,
 				 console.log("data"+JSON.stringify(data.results[0]));
 				 $scope.userUploadedAd = data.results[0].originalFileName;
 				 console.log($scope.userUploadedAd);
-				 if($scope.userUploadedAd == 'Image not Uploaded' ||  $scope.userUploadedAd == null || $scope.userUploadedAd == ''){
+				 if($scope.userUploadedAd === 'Image not Uploaded' ||  $scope.userUploadedAd == null || $scope.userUploadedAd == ''){
 					// $('#myModelDispImage').modal();
 					 $('#myModal2').modal();
 				 }else{
