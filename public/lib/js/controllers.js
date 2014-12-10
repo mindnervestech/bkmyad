@@ -501,6 +501,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 	    }*/
         
         //text = "sbcd";
+        console.log($("#adPreview").get(0).scrollHeight);
         console.log(text);
         console.log("text in compute rate"+text.length);
             if (text != '') {
@@ -3419,6 +3420,19 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				onBorderSelected:'No',
 				nobgColor:true,
 				notickforAd: true,
+				headerColor:'' ,
+				bodyColor: '',
+				footerColor:'',
+				descriptionHeader:'',
+				descriptionBody:'',	
+				descriptionFooter:'',
+				colorAd: '',
+				BWAd: '',
+				imageAd:'',
+				adSizeSelect:'',
+				otherWidth:'',
+				height:'',
+				originalFileName:'',
 				startDate:moment().add(2, 'days').format("DD/MM/YYYY")
 		    }
 		}
