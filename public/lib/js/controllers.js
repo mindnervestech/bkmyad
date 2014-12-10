@@ -657,16 +657,19 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 	
 	//on header color change
 	$scope.onColorHeaderChange = function(){
+		$scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
 		$scope.headerColor=	$scope.selectedCartItemOnPopUp.headerColor;
 	}
 
 	$scope.onColorBodyChange = function(){
+		$scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
 		console.log("$scope.selectedCartItemOnPopUp.colorBody"+$scope.selectedCartItemOnPopUp.colorBody);
 		$scope.bodyColor = $scope.selectedCartItemOnPopUp.bodyColor;
 	}  
 	
 	
 	$scope.onColorFooterChange = function(){
+		$scope.selectedCartItemOnPopUp.height =  (($("#adPreview").get(0).scrollHeight)/37.795276);
 		console.log($scope.selectedCartItemOnPopUp.footerColor);
 		$scope.footerColor = $scope.selectedCartItemOnPopUp.footerColor;
 		//console.log("$scope.footerColor"+$scope.footerColor);
