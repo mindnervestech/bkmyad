@@ -214,7 +214,7 @@
 								ng-if="invoice.Subcategory == null ">Not Selected</font><font
 								ng-if="invoice.Subcategory != ''">{{invoice.Subcategory}}</font>/<br />{{invoice.City}}</lable></td>
 							<!-- <td>{{invoice.Adtext}}</lable></td> -->
-								<td>
+								<td>{{invoice.adSelectedType}}
 							<span ng-if="invoice.adSelectedType == 'textClasified'">{{invoice.Adtext}}</span>
 							<span ng-if="invoice.adSelectedType == 'displayClassified'"
 								ng-bind-html="to_trusted(invoice.headerDescption)"
