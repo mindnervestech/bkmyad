@@ -501,7 +501,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 	    }*/
         
         //text = "sbcd";
-        console.log($("#adPreview").get(0).scrollHeight);
+        //console.log($("#adPreview").get(0).scrollHeight);
         console.log(text);
         console.log("text in compute rate"+text.length);
             if (text != '') {
