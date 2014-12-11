@@ -283,7 +283,6 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 	$scope.preViewColorAd = function() {
 		$('#adColorPreview').modal();
 	}
-	
 	$scope.selectDefaultWidth = function(){
 		$scope.otherWidth = false;
 	    $scope.selectedCartItemOnPopUp.defaultWidth = "3"
@@ -2651,6 +2650,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	
 	$scope.onAdChange  =  function(selectYourAd){
 		$scope.selectYourAd  =  selectYourAd;
+		$scope.uploadyourAd = "templateSelect";
 		DeleteAllBasicRateCartItem();
 		console.log($scope.selectYourAd);
 		$scope.setImageIdUndefined();
