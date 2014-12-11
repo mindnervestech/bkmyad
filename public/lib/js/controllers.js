@@ -495,15 +495,15 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 		var freeUnit = parseInt($scope.selectedCartItemOnPopUp.freeUnit); //total allowed free units.
         var unitLot = parseInt($scope.selectedCartItemOnPopUp.unitVal); //???
         var text = $('#adPreview').text().trim();
-        /*if($scope.uploadyourAdSelect == "userType"){
+        if($scope.uploadyourAdSelect == "userType"){
 	    	text = "User Uploaded Ad";
 	    	var height = parseInt($scope.selectedCartItemOnPopUp.height);
         	console.log("height"+height);
         	var width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
         	console.log("width"+width);
         	totalCost = rate * width * height;
-        	//console.log(totalCost);
-	    }*/
+        	console.log(totalCost);
+	    }
         
         //text = "sbcd";
         //console.log($("#adPreview").get(0).scrollHeight);
@@ -668,6 +668,9 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 	//on header color change
 	$scope.onColorHeaderChange = function(){
 		$scope.selectedCartItemOnPopUp.height =  (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
+		if($scope.selectedCartItemOnPopUp.height == 0){
+ 	    	$scope.selectedCartItemOnPopUp.height = $scope.heightPer;
+ 	    }
 		$scope.headerColor=	$scope.selectedCartItemOnPopUp.headerColor;
 	}
 
@@ -675,12 +678,18 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 		$scope.selectedCartItemOnPopUp.height =   (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
 		console.log("$scope.selectedCartItemOnPopUp.colorBody"+$scope.selectedCartItemOnPopUp.colorBody);
 		$scope.bodyColor = $scope.selectedCartItemOnPopUp.bodyColor;
+		if($scope.selectedCartItemOnPopUp.height == 0){
+ 	    	$scope.selectedCartItemOnPopUp.height = $scope.heightPer;
+ 	    }
 	}  
 	
 	$scope.onColorFooterChange = function(){
 		$scope.selectedCartItemOnPopUp.height =  (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
 		console.log($scope.selectedCartItemOnPopUp.footerColor);
 		$scope.footerColor = $scope.selectedCartItemOnPopUp.footerColor;
+		if($scope.selectedCartItemOnPopUp.height == 0){
+ 	    	$scope.selectedCartItemOnPopUp.height = $scope.heightPer;
+ 	    }
 		//console.log("$scope.footerColor"+$scope.footerColor);
 	}
 	//on next clicked on the composeaddisplay popup  ad controller 
