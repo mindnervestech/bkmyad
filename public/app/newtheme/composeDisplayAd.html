@@ -151,7 +151,12 @@
 		<div style="margin-right: 70%;margin-top: 10%;">
 					Height: <input style="width: 20%;" type="text"
 						name="height" ng-model="selectedCartItemOnPopUp.height">&nbsp;cm<br />
+						
 				</div>
+				 <div style="margin-left: 45%;margin-bottom: 2%;"> <button class="btn btn-success" data-toggle="modal" ng-click="previewUserUploadedColorAd()"
+											style="width: 100px;">
+											Preview<i class="icon-edit"></i>
+										</button></div>
 			</div>
 		</div>
 <div class="ng-scope">
@@ -637,7 +642,7 @@
                     <!--   <img src="http://www.releasemyad.com/images/small_straight_arrow.png" id="CatIdImg1" style="vertical-align:middle;" border="0">
                      -->
 			<div id="_datepicker" style="width:100%;overflow: auto; float:left;">	</div>
-			<div style="width:49%;overflow: auto; float:left;"  >
+			<!-- <div style="width:49%;overflow: auto; float:left;"  >
 				<div style="width:90%"ng-if="uploadyourAdSelect == 'userType' ">
 					<img data-ng-src="{{img}}" alt="Smiley face" alt=""
 						style="height: 150px; width: 300px">
@@ -651,7 +656,7 @@
 				</span>
 				</span>
 				</div>
-			</div>
+			</div> -->
 		</form>
 
   
@@ -867,4 +872,37 @@
 </div>
 
 </div>
- 
+
+
+</div>
+
+<div class="modal fade" id="userAdUploadPreview" data-backdrop="false"
+	style="min-height: 500px;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Your Ad Preview</h4>
+			</div>
+			 <div style="width: 50%;overflow: auto;float: left;margin-left: 1%;margin-top: 14%;"  >
+				<div style="width:90%"ng-if="uploadyourAdSelect == 'userType' ">
+					<img data-ng-src="{{img}}" alt="Smiley face" alt=""
+						style="height: 150px; width: 300px">
+				</div>
+				<div  ng-if="uploadyourAdSelect == 'userType' " style="width:100%;">
+				<span ng-if="selectedCartItemOnPopUp.originalFileName != '' " >
+					<label style="font-weight:bold;"> Your Ad Image uploaded: </label> <span
+					    ng-model="selectedCartItemOnPopUp.originalFileName"> <img
+						data-ng-src="/getImageById/{{selectedCartItemOnPopUp.OrderId}}"
+						style="height: 150px; width: 300px" alt="">
+				</span>
+				</span>
+				</div>
+			</div>
+	  <div class="" style="margin-top: 58%;margin-left: 60%;">
+		      	<button type="button" class="btn btn-primary" data-ng-click="closeUserUploadedPreviewAd();">OK</button>
+		        <button type="button" class="btn btn-default" data-ng-click="closeUserUploadedPreviewAd()">Edit</button>
+		      </div>
+	
+</div>

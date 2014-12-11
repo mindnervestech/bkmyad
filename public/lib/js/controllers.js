@@ -273,6 +273,12 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 	/*$scope.preViewColorAd = function(){
 		preViewColorAd($scope);
 	}*/
+	$scope.previewUserUploadedColorAd = function(){
+		$('#userAdUploadPreview').modal();
+	}
+	$scope.closeUserUploadedPreviewAd = function(){
+		$('#userAdUploadPreview').modal('hide');
+	}
 	$scope.closePreviewAd = function(){
 		$('#adColorPreview').modal('hide');
 		//document.getElementById('adPreview').style.height = $("#adPreview").get(0).scrollHeight;
