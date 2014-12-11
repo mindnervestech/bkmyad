@@ -548,6 +548,7 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
          	    	$scope.selectedCartItemOnPopUp.height = $scope.heightPer;
          	    	console.log("in chk zero");
          	    	var  height = parseInt($scope.selectedCartItemOnPopUp.height);
+         	    	console.log("width:"+width+"height:"+height);
          	    	totalCost = rate * height * width;	
          	    }else{
          	    	$scope.selectedCartItemOnPopUp.otherWidth = "4";
