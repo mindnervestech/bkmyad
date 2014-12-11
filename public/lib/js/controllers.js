@@ -537,20 +537,28 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
                  	totalCost = rate * width * height;
                  	console.log(totalCost);
          	    }else if ($scope.uploadyourAd == 'templateSelect'){
-         	    	$scope.selectedCartItemOnPopUp.otherWidth = "4";
-         	    	var  width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
+         	    	/*$scope.selectedCartItemOnPopUp.otherWidth = "4";
+         	    	var  width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);*/
          	    	$scope.selectedCartItemOnPopUp.height =  (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
+         	    	console.log("template"+$scope.selectedCartItemOnPopUp.height);
          	    	//$scope.height = ($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight);
          	    if($scope.selectedCartItemOnPopUp.height == 0){
+         	    	$scope.selectedCartItemOnPopUp.otherWidth = "4";
+         	    	var  width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
          	    	$scope.selectedCartItemOnPopUp.height = $scope.heightPer;
-         	    }
+         	    	console.log("in chk zero");
+         	    	var  height = parseInt($scope.selectedCartItemOnPopUp.height);
+         	    	totalCost = rate * height * width;	
+         	    }else{
+         	    	$scope.selectedCartItemOnPopUp.otherWidth = "4";
+         	    	var  width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
          	    	var  height = parseInt($scope.selectedCartItemOnPopUp.height);
                  	console.log("height"+height);
                    //var width = parseInt($scope.width);
                  	console.log("width"+width);
          	    	totalCost = rate * height * width ;	
          	    }
-                
+         	    }
                 /*          if (total_unit > freeUnit) {
                    //var extraUnitCost = $scope.selectedCartItemOnPopUp.extra;
                    var costt = parseInt($scope.selectedCartItemOnPopUp.extra);
