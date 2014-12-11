@@ -775,90 +775,97 @@
         <input type="hidden" name="hfcostcm" id="hfcostcm" />
             -->
 </div>
-<div class="modal fade" id="adColorPreview"  data-backdrop="false" style="min-height: 500px;">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h4 class="modal-title" id="myModalLabel">Your Ad Preview</h4>
-		      </div>
-		      <div style="width: 50%; float: left;">
-						<hr style="margin: 0%">
-						<div style="float: left; height: 250px; width: 90%;">
-							<div id="adPreview" style="float: LEFT; margin-top: 10%;margin-left:20%"
-								ng-style="{borderColor: myColor}">
-								 <div style="" ng-show="showImagePreview">
-								<img data-ng-src="{{img}}" alt="Smiley face" alt=""
-										style="height: 50px; width: 240px" ng-if="selectedCartItemOnPopUp.originalFileName == '' ">
-										<span ng-if="selectedCartItemOnPopUp.originalFileName != '' " >
-									<!-- 	<label style="font-weight:bold;"> Your Ad Image uploaded: </label> --> <span
-										    ng-model="selectedCartItemOnPopUp.originalFileName"> <img
-											data-ng-src="/getImageById/{{selectedCartItemOnPopUp.OrderId}}"
-											style="height: 50px; width: 200px" alt="">
-									     </span>
-
-								</div>
-								<div id="descriptionHeaderText"
-									style="white-space: wrap; word-wrap: break-word;"
-									ng-style="{'background-color':selectedCartItemOnPopUp.headerColor}"
-									ng-model="selectedCartItemOnPopUp.descriptionHeader" data-ng-src="">{{selectedCartItemOnPopUp.descriptionHeader}}
-									 <span id="descriptionHeaderText1" name="descriptionHeaderText"></span><br/>
-									 <span></span>
-								</div>
-								<div id="descriptionBodyText"
-									style="white-space: wrap; word-wrap: break-word;"
-									ng-style="{'background-color': selectedCartItemOnPopUp.bodyColor}"
-									ng-model="selectedCartItemOnPopUp.descriptionBody" data-ng-src="">{{selectedCartItemOnPopUp.descriptionBody}}
-									<span id="descriptionBodyText1" name="descriptionBodyText"></span><br/>
-								</div>
-								<div id="descriptionFooterText"
-									ng-model="selectedCartItemOnPopUp.descriptionFooter"
-									style="white-space: wrap; word-wrap: break-word;"
-									ng-bind-html="to_trusted({{selectedCartItemOnPopUp.descriptionFooter}})" 
-									ng-style="{'background-color': selectedCartItemOnPopUp.footerColor}" data-ng-src="">
-									  <span id="descriptionFooterText1" name="descriptionFooterText"></span><br/>
-								</div>
-								<div style="margin-top: 10%;">
-						      			<button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
-						        		<button type="button" class="btn btn-default" data-dismiss="modal">Edit</button>
-						        </div>
-							</div>
-						</div>
+<div class="modal fade" id="adColorPreview" data-backdrop="false"
+	style="min-height: 500px;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Your Ad Preview</h4>
+			</div>
+			<div id="adPreview"
+				style="float: LEFT; margin-top: 10%; margin-left: 20%"
+				ng-style="{borderColor: myColor}">
+				<div style="" ng-show="showImagePreview">
+					<img data-ng-src="{{img}}" alt="Smiley face" alt=""
+						style="height: 50px; width: 240px"
+						ng-if="selectedCartItemOnPopUp.originalFileName == '' "> <span
+						ng-if="selectedCartItemOnPopUp.originalFileName != '' "> <!-- 	<label style="font-weight:bold;"> Your Ad Image uploaded: </label> -->
+						<span ng-model="selectedCartItemOnPopUp.originalFileName">
+							<img
+							data-ng-src="/getImageById/{{selectedCartItemOnPopUp.OrderId}}"
+							style="height: 50px; width: 200px" alt="">
+					</span>
+				</div>
+				<div id="descriptionHeaderText"
+					style="white-space: wrap; word-wrap: break-word;"
+					ng-style="{'background-color':selectedCartItemOnPopUp.headerColor}"
+					ng-model="selectedCartItemOnPopUp.descriptionHeader" data-ng-src="">
+					{{selectedCartItemOnPopUp.descriptionHeader}} <span
+						id="descriptionHeaderText1" name="descriptionHeaderText"></span><br />
+					<span></span>
+				</div>
+				<div id="descriptionBodyText"
+					style="white-space: wrap; word-wrap: break-word;"
+					ng-style="{'background-color': selectedCartItemOnPopUp.bodyColor}"
+					ng-model="selectedCartItemOnPopUp.descriptionBody" data-ng-src="">
+					{{selectedCartItemOnPopUp.descriptionBody}} <span
+						id="descriptionBodyText1" name="descriptionBodyText"></span><br />
+				</div>
+				<!-- <div id="descriptionFooterText"
+					style="white-space: wrap; word-wrap: break-word;"
+					ng-style="{'background-color': selectedCartItemOnPopUp.footerColor}"
+					ng-model="selectedCartItemOnPopUp.descriptionFooter" data-ng-src="">
+					{{selectedCartItemOnPopUp.descriptionFooter}} <span
+						id="descriptionFooterText1" name="descriptionFooterText"></span><br />
+				</div> -->
 				
-					</div>
-					
-			<div class="price-box"  ng-show="rc.composeWizard.currentIndex >= 1"
+				<div id="descriptionFooterText"
+					style="white-space: wrap; word-wrap: break-word;"
+					ng-style="{'background-color': selectedCartItemOnPopUp.footerColor}"
+					ng-model="selectedCartItemOnPopUp.descriptionFooter" data-ng-src="">
+					{{selectedCartItemOnPopUp.descriptionFooter}} <span
+						id="descriptionFooterText1" name="descriptionFooterText"></span><br />
+				</div>
+			</div>
+
+			
+		<div class="price-box"  ng-show="rc.composeWizard.currentIndex >= 1"
 			style="border: 4px solid #fc9a24;position: inherit;margin-right: 10%;
 			box-shadow: 0px 0px 0px 0px #65BDDF;top: 50%;float:right" ng-if = "uploadyourAd == 'templateSelect' && imageAd != 'undefined'" >
-			<div style="background-color: #fc9a24;">
-				<p
-					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px; color: white; line-height: 0.8;">{{selectedCartItemOnPopUp.newspaper}}-{{
-					selectedCartItemOnPopUp.location|limitTo:15}}</p>
-				<p
-					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px;color: white; ">
-					(Rs {{selectedCartItemOnPopUp.rate}} per sqcm
-				<!-- 	{{selectedCartItemOnPopUp.freeUnit}} {{selectedCartItemOnPopUp.unit}} -->)
-					<!-- <div style="font-size: 9pt;text-align: center;font-family: Calibri;line-height: 0.8;padding-bottom: 5%; color: white;"> (Rs
+		<div style="background-color: #fc9a24;">
+			<p
+				style="text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px; color: white; line-height: 0.8;">{{selectedCartItemOnPopUp.newspaper}}-{{
+				selectedCartItemOnPopUp.location|limitTo:15}}</p>
+			<p
+				style="text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px; color: white;">
+				(Rs {{selectedCartItemOnPopUp.rate}} per sqcm
+				<!-- 	{{selectedCartItemOnPopUp.freeUnit}} {{selectedCartItemOnPopUp.unit}} -->
+				)
+				<!-- <div style="font-size: 9pt;text-align: center;font-family: Calibri;line-height: 0.8;padding-bottom: 5%; color: white;"> (Rs
 					{{selectedCartItemOnPopUp.extra}} Extra per {{selectedCartItemOnPopUp.unit}} )
 					</div> -->
-				</p>
-			</div>
-			<div
-				style="box-shadow: -3px 3px 16px -1px #ccc; margin-left: 2%;padding-left: 2%; height: 132px; padding-top: 2%; padding-bottom: 1%; padding-top: 1%; border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%; width: 96%; margin-left: 2%">
-				<p
-					style="  margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
-					Total: {{selectedCartItemOnPopUp.fullTotal}}</p>
-				 <p
-					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
-					Width:&nbsp;&nbsp; {{selectedCartItemOnPopUp.otherWidth}} &nbsp;cm</p>
-				<p
-					style=" margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
-					Height:&nbsp;&nbsp; {{selectedCartItemOnPopUp.height | setDecimal:0}} &nbsp;cm</p>
-			</div> 
-		</div> 
-	 
-					
-		    </div>
-		  </div>
+			</p>
+		</div>
+		<div
+			style="box-shadow: -3px 3px 16px -1px #ccc; margin-left: 2%; padding-left: 2%; height: 132px; padding-top: 2%; padding-bottom: 1%; padding-top: 1%; border-bottom: 1px solid rgb(238, 238, 238); margin-top: 7%; width: 96%; margin-left: 2%">
+			<p style="margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+				Total: {{selectedCartItemOnPopUp.fullTotal}}</p>
+			<p style="margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+				Width:&nbsp;&nbsp; {{selectedCartItemOnPopUp.otherWidth}} &nbsp;cm</p>
+			<p style="margin: 0 0 0px; font-size: 9pt; font-family: Calibri;">
+				Height:&nbsp;&nbsp; {{selectedCartItemOnPopUp.height |
+				setDecimal:0}} &nbsp;cm</p>
+		</div>
+	</div>
+	
+	  <div class="" style="margin-top: 58%;margin-left: 24%;">
+		      	<button type="button" class="btn btn-primary" data-ng-click="closePreviewAd();">OK</button>
+		        <button type="button" class="btn btn-default" data-ng-click="closePreviewAd()">Edit</button>
+		      </div>
+	
+</div>
+
 </div>
  
