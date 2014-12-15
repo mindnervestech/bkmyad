@@ -3473,7 +3473,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				otherWidth:'',
 				height:'',
 				originalFileName:'',
-				startDate:moment().add(2, 'days').format("DD/MM/YYYY")
+				startDate:moment().add(discountRate.Allow, 'days').format("DD/MM/YYYY")
 		    }
 		}
 
@@ -3526,7 +3526,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			otherWidth:'',
 			height:'',
 			originalFileName:'',
-			startDate:moment().add(2, 'days').format("DD/MM/YYYY")
+			startDate:moment().add(rate.Allow, 'days').format("DD/MM/YYYY")
 	    }
 	}
 	

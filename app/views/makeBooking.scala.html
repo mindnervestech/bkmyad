@@ -217,11 +217,11 @@
 									<div class="Internal">
 										<li ng-repeat="rate in rates" class="pillboxes custom-pill">
 											<div style="padding: 1px;">
-												<span> <input ng-click="rateClicked($event,rate)"
+												<label><span> <input ng-click="rateClicked($event,rate)"
 													ng-model="rate.isSelected" style="margin: 1px"
 													ng-disable="disableBasicRateChkbox" type="checkbox">
-												</span> <span>{{rate.location}} - Rs {{rate.rate}}
-													{{rate.freeUnit}} / {{rate.unit}} </span>
+												</span> <span style="font-weight:bold;">{{rate.location}} - Rs {{rate.rate}}
+													{{rate.freeUnit}} / {{rate.unit}} </span></label>
 											</div>
 
 										</li>
@@ -245,13 +245,13 @@
 										<li ng-repeat="discountRate in discRates"
 											class="pillboxes custom-pill">
 											<div style="padding: 1px;">
-												<span> <input
+												<label><span> <input
 													ng-click="discountRateClicked($event,discountRate)"
 													ng-model="discountRate.isSelected" style="margin: 1px"
 													ng-disabled="disablePackageCheckBox" type="checkbox">
-												</span> <span>{{discountRate.location}} - Rs
+												</span> <span style="font-weight:bold;">{{discountRate.location}} - Rs
 													{{discountRate.dTotalPrice}} {{discountRate.freeUnit}}/
-													{{discountRate.unit}} </span>
+													{{discountRate.unit}} </span></label>
 											</div>
 										</li>
 									</div>
@@ -286,11 +286,13 @@
 									<div class="Internal">
 										<li ng-repeat="rate in rates" class="pillboxes custom-pill">
 											<div style="padding: 1px;">
+											<label>
 												<span> <input ng-click="rateClicked1($event,rate)"
 													ng-model="rate.isSelected" style="margin: 1px"
 													type="checkbox">
-												</span> <span>{{rate.newspaper}} - Rs {{rate.rate}}
+												</span> <span style="font-weight:bold;">{{rate.newspaper}} - Rs {{rate.rate}}
 													{{rate.freeUnit}}/ {{rate.unit}} </span>
+											</label>
 											</div>
 										</li>
 									</div>
@@ -307,12 +309,13 @@
 										<li ng-repeat="discountRate in discRates"
 											class="pillboxes custom-pill">
 											<div style="padding: 1px;">
-												<span> <input style="margin: 1px"
+											<label>	<span> <input style="margin: 1px"
 													ng-click="discountRateTargetByCityClicked($event,discountRate)"
 													ng-model="discountRate.selected" type="checkbox">
-												</span> <span>{{discountRate.location}} - Rs
+												</span> <span style="font-weight:bold;"> {{discountRate.location}} - Rs
 													{{discountRate.dTotalPrice}} {{discountRate.freeUnit}} /
 													{{discountRate.unit}} </span>
+											</label>
 											</div>
 										</li>
 									</div>
@@ -340,7 +343,7 @@
 						<h3 class="pull-left">Compose Your Ad</h3>
 						<img class="pull-left" style="width: 4%;"
 							src="/NewDesign/images/np-compose.jpg">
-						<table class="table table-bordered" style="font-size: 13px;">
+						<table class="table table-bordered" style="font-size: 13px;float:left;">
 							<thead>
 								<tr>
 									<th>Category</th>
