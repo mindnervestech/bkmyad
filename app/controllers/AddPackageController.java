@@ -117,15 +117,21 @@ public class AddPackageController  extends Controller{
 			}else{
 				discountprice.Tickper= form.get("tickPercentage");
 			}
-			
-			//discountprice.Category=form.get("Category");
-			discountprice.Category=categoryUnique[i].trim();
-			discountprice.Category = discountprice.Category.replace("[","");
-			discountprice.Category = discountprice.Category.replace("]","");
-			discountprice.Category = discountprice.Category.replace("\"",""); 
-			
-			discountprice.ExtracostperSqcm=form.get("ExtracostperSqcm");
-			
+			if (form.get("freewords") == null
+					|| form.get("freewords") == "") {
+				discountprice.freewords = "22";
+			} else {
+				discountprice.freewords = form.get("freewords");
+			}
+
+			// discountprice.Category=form.get("Category");
+			discountprice.Category = categoryUnique[i].trim();
+			discountprice.Category = discountprice.Category.replace("[", "");
+			discountprice.Category = discountprice.Category.replace("]", "");
+			discountprice.Category = discountprice.Category.replace("\"", "");
+
+			discountprice.ExtracostperSqcm = form.get("ExtracostperSqcm");
+
 			JsonNode arrNode = json.get("City");
 			String cities = null;
 			if (arrNode.isArray()) {
@@ -240,6 +246,11 @@ public class AddPackageController  extends Controller{
             	 discountprice.Tickper = form.get("Tickper");
              }
 			
+		if (form.get("freewords") == null || form.get("freewords") == "") {
+			discountprice.freewords = "22";
+		} else {
+			discountprice.freewords = form.get("freewords");
+		}
 			
 			JsonNode arrNode = json.get("Cities");
 			String cities = null;

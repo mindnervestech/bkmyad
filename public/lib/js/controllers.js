@@ -1793,6 +1793,8 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
         var freeUnit = parseInt($scope.selectedCartItemOnPopUp.freeUnit); //total allowed free units.
         var unitLot = parseInt($scope.selectedCartItemOnPopUp.unitVal); //???
         var text = $scope.selectedCartItemOnPopUp.description;
+        var freewords = parseInt($scope.selectedCartItemOnPopUp.freewords);
+        console.log("freewords:"+freewords)
             if (text != '') {
                 var total_unit;
                 var extraUnit;
@@ -1801,7 +1803,7 @@ angular.module('adschela').controller('AddBasicRateController',function($scope, 
                 	total_unit = countWords(text);
                 } else {
                 	if ($scope.selectedCartItemOnPopUp.unit == "Line") {
-                    	total_unit = Math.ceil(text.length / 22);
+                    	total_unit = Math.ceil(text.length / freewords);
                     }
                 }
                 
@@ -1907,6 +1909,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 						extraForBorder:orderListuser.extraForBorder,
 						extraFortick:orderListuser.extraFortick,
 						completenessStatus:'please fill details',
+						freewords:orderListuser.freewords,
 						description:orderListuser.description,
 						total: 0,
 						fullTotal: orderListuser.fullTotal,
@@ -2517,6 +2520,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				extraFortickInPer:discountRate.extraFortickInPer,
 				completenessStatus:'please fill details',
 				packageSelected:discountRate.packageSelected,
+				freewords:discountRate.freewords,
 				description: '',
 				total: 0, 
 				fullTotal: 0,
@@ -2532,7 +2536,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				onBorderSelected:'No',
 				nobgColor:true,
 				notickforAd: true,
-				startDate:moment().add(2, 'days').format("DD/MM/YYYY")
+				startDate:moment().add(discountRate.Allow, 'days').format("DD/MM/YYYY")
 		    }
 		}
 
@@ -2556,6 +2560,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			extraFortickInPer:rate.extraFortickInPer,
 			packageSelected:rate.packageSelected,
 			completenessStatus:'please fill details',
+			freewords:rate.freewords,
 			description: '',
 			total: 0,
 			fullTotal: 0,
@@ -2571,7 +2576,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			onBorderSelected:'No',
 			nobgColor:true,
 			notickforAd: true,
-			startDate:moment().add(2, 'days').format("DD/MM/YYYY")
+			startDate:moment().add(rate.Allow, 'days').format("DD/MM/YYYY")
 	    }
 	}
 	

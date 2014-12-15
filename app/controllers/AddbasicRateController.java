@@ -107,7 +107,12 @@ public class AddbasicRateController extends Controller{
         }else{
         	basicrate.Tickper=form.get("tickPercentage"); 
         }
-        
+        if(form.get("freewords") == null || form.get("freewords") == "" ){
+    		basicrate.freewords= "22";
+    	}else{
+    		basicrate.freewords=form.get("freewords");
+    		
+    	}
         basicrate.SpecialDiscount=form.get("SpecialDiscount");
     	basicrate.Category=categoryUnique[i].trim();//.replaceAll("[^\\p{L}\\p{Nd}]+", "");
     	basicrate.Category = basicrate.Category.replace("[","");
@@ -175,7 +180,12 @@ public class AddbasicRateController extends Controller{
         }else{
         	basicrate.Tickper=form.get("Tickper"); 
         }
-        
+        if(form.get("freewords") == null || form.get("freewords") == ""){
+        	basicrate.freewords ="22";
+        	
+        }else{
+        	basicrate.freewords=form.get("freewords"); 
+        }
         basicrate.SpecialDiscount=form.get("SpecialDiscount");
     	basicrate.ExtracostperSqcm=form.get("ExtracostperSqcm");
     	basicrate.Statename=form.get("Statename");

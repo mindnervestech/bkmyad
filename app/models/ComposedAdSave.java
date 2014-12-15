@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Query;
-
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 
@@ -56,7 +55,28 @@ public class ComposedAdSave{
 	   public String  adbookedId;
 	   public String packageType ="";
 	   
- 		public float extraCost;
+	   public String footerDescption = "not set";
+	   public String headerDescption= "not set";
+	   public String bodyDescription= "not set"; 
+	   public String footerColor= "not set";
+	   public String bodyColor= "not set ";
+	   public String headerColor= "not set";  
+	   public String adType= "not set ";
+	   //public String widthSelected;
+	   
+	   public String   colorAd= "not set";
+	   public String BWAd= "not set";
+	   public String imageAd= "not set";
+	   public String adSizeSelect= "not set";
+	   public String adSelectedType = "textClasified".trim(); 
+	   public float extraCost = 0;
+	   //hegight and width in cm;
+	   public String otherWidth = "1";
+	   public String height = "1";
+	   public String originalFileName = "Image not Uploaded";
+	   //used to define  number of words free for each paper 
+	   public String freewords = "22";
+	  
 	   public String getAdbookedId() {
 		return adbookedId;
 	}

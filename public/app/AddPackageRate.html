@@ -61,6 +61,7 @@
                             <th><a>Bg/Br/Tick(%)</a></th>
                             <th><a>Category</a></th>
                             <th><a>Notes</a></th>
+                            <th><a>Free Words</a></th>
                             <th><a>Update</a></th>
                             <th><a>Delete</a></th>
                         <tr>
@@ -77,6 +78,7 @@
                             <td> {{ancmt.Extraborderper}}/{{ancmt.Extrabgper}}/{{ancmt.Tickper}}</td>
                             <td>{{ancmt.Category}}</td>
                             <td>{{ancmt.notes |  limitTo:24}}</td>
+                             <td>{{ancmt.freewords}}</td>
                            <!--  <td>{{ancmt.ExtracostperSqcm}}</td> -->
                             <td> <input name="" type="button" value="Update" ng-click="updatePackageRate(ancmt)" data-toggle="modal"  /></td>
                             <td><input name="" type="button" value="Delete" ng-click="setPackageDeleteId(ancmt,newspaperName,category)" data-toggle="modal" /></td>
@@ -188,6 +190,8 @@
 			        <tr>
 			        	<td><label>SpecialDiscount</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="SpecialDiscount" style="width:50%;height: 70%;" data-ng-model="formData.SpecialDiscount" required></textarea></td>
+			            <td><label>Free Words</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="freewords" style="width:50%;height: 70%;" data-ng-model="formData.freewords" required></textarea></td>
 			        	    </tr>
 			        <tr>
 			        
@@ -318,9 +322,11 @@
 			      
 			      </tr>
 			        <tr>
-			        	<td><label>SpecialDiscount</label></td>
+			        	<td><label>Special Discount</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="SpecialDiscount" style="width:50%;height: 70%;" data-ng-model="ancmtData.SpecialDiscount" required></textarea></td>
-			        	   </tr>
+			            <td><label>Free Words</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="freewords" style="width:50%;height: 70%;" data-ng-model="ancmtData.freewords" required></textarea></td>
+			      </tr>
 			       <tr>
 			       <td><label>Tick</label></td>
 			     <!--    	<td style="height: 60px;"><textarea type="text" name="Tick" style="width:70%;height: 70%;" data-ng-model="ancmtData.Tick" required></textarea></td>

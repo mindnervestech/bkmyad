@@ -23,7 +23,7 @@ public class BasicrateVM {
      public String Tickper;
      public String ExtracostperSqcm;
      public String Statename;
-    
+    public String freewords;
     public BasicrateVM(Basicrate basicrate) {
     	this.BasicRateID=basicrate.BasicRateID;
     	this.Nameofthenewspaper=basicrate.Nameofthenewspaper;
@@ -44,7 +44,7 @@ public class BasicrateVM {
     	this.Extrabgper = basicrate.Extrabgper;
     	this.Extraborderper = basicrate.Extraborderper;
     	this.Tickper = basicrate.Tickper;
-    	
+    	this.freewords = basicrate.freewords;
     }
     
     

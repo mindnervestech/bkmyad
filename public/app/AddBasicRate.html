@@ -54,7 +54,7 @@
                             <th><a>Bg/Br/Tick(Rs)</a></th>
                             <th><a>Bg/Br/Tick(%)</a></th>
                             <th><a>Category</a></th>
-                           <!--   <th><a>Extra</a></th> -->
+                           <th><a>Free Words</a></th> 
                            <!--  <th><a>Tickper</a></th> -->
                             <th><a>Update</a></th>
                             <th><a>Delete</a></th>
@@ -69,7 +69,7 @@
                             <td>{{ancmt.Backcolor}}/{{ancmt.Border}}/{{ancmt.Tick}}</td>
                             <td>{{ancmt.Extrabgper}}/{{ancmt.Extraborderper}}/{{ancmt.Tickper}} </td>
                             <td>{{ancmt.Category}}</td>
-                          <!--   <td>{{ancmt.ExtracostperSqcm}}</td> -->
+                           <td>{{ancmt.freewords}}</td> 
                            <!--  <td>{{ancmt.Tickper}}</td> -->
                             <td> <input name="" type="button" value="Update" ng-click="setData(ancmt)" data-toggle="modal"  /></td>
                             <td><input name="" type="button" value="Delete" ng-click="setDeleteId(ancmt,nameOfTheNewspaper,category)" data-toggle="modal" /></td>
@@ -202,6 +202,8 @@
 			        	 -->
 			        	<td><label>ExtraCostperSqcm</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="ExtracostperSqcm" style="width:70%;height: 70%;" data-ng-model="formData.ExtracostperSqcm" required></textarea></td>
+			           <td><label>Free Words</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="freewords" style="width:70%;height: 70%;" data-ng-model="formData.freewords" required></textarea></td>
 			        </tr>
 		        </table>
 		      </div>
@@ -329,6 +331,9 @@
 			        	 -->
 			        	<td><label>Extra Cost Sqcm</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="ExtracostperSqcm" style="width:70%;height: 70%;" data-ng-model="ancmtData.ExtracostperSqcm" required></textarea></td>
+			             <td><label>Free Words</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="freewords" style="width:70%;height: 70%;" data-ng-model="ancmtData.freewords" required></textarea></td>
+			       
 			        </tr>
 		        </table>
 		      </div>
