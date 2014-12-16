@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import play.data.validation.Constraints.Required;
 
 @Entity
-public class displayaddetails {
+public class DisplayAdDetails {
 	
 	
 	@Id
