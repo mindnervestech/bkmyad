@@ -770,6 +770,7 @@ public class Application extends Controller {
 		//String specialinstruction = form.get("instructiontxt");
 		String name = form.get("nametxt");
 		String email = form.get("emailtxt");
+		System.out.println("email"+email);
 		//String telestd = form.get("telstdtxt");
 	//	String telenum = form.get("telnotxt");
 		String mobilenum = form.get("mobtxt");
