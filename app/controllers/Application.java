@@ -785,8 +785,8 @@ public class Application extends Controller {
 					.getString("storage.path");
 			File f = new File(FILE_PATH + fileName);
 			filenamedbpath = FILE_PATH + File.separator + fileName;
-		/*	Files.copy(file.toPath(), f.toPath(),
-					java.nio.file.StandardCopyOption.REPLACE_EXISTING);*/
+			Files.copy(file.toPath(), f.toPath(),
+					java.nio.file.StandardCopyOption.REPLACE_EXISTING);
 			flash("Success", "File Uploaded successfully");
 		}
 
