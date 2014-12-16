@@ -782,7 +782,7 @@ public class Application extends Controller {
 			fileName = docFile.getFilename();
 			File file = docFile.getFile();
 			final String FILE_PATH = Play.application().configuration()
-					.getString("storage.path");
+					.getString("adimage.storage.path");
 			File f = new File(FILE_PATH + fileName);
 			filenamedbpath = FILE_PATH + File.separator + fileName;
 			Files.copy(file.toPath(), f.toPath(),
