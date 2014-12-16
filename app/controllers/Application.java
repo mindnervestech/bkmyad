@@ -21,7 +21,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import models.DisplayAdDetails;
+import models.displayaddetails;
 import models.User;
 import play.Play;
 import play.data.DynamicForm;
@@ -790,7 +790,7 @@ public class Application extends Controller {
 			flash("Success", "File Uploaded successfully");
 		}
 
-		DisplayAdDetails d = new DisplayAdDetails();
+		displayaddetails d = new displayaddetails();
 		d.adcategory = subcategory;
 		d.newspaper = ddlnewspaper;
 		d.releasedate = releaseDatetxt;
