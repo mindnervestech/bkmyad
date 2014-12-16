@@ -126,7 +126,7 @@ import com.google.common.collect.Lists;
         				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
         				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),
         						rs[11].toString(),rs[12].toString(),rs[13].toString(),
-        						rs[10].toString(),rs[14].toString(),(int) rs[15]));
+        						rs[10].toString(),rs[14].toString(),Integer.parseInt(rs[15].toString())));
         	}
 			for(Object[] discntRate: discountRates ){
 				String str; 
@@ -182,7 +182,7 @@ import com.google.common.collect.Lists;
 	        				.withAmountAndFreeUnit(rs[3].toString(),letter,number)
 	        				.withOverUnit(rs[5].toString(), rs[6].toString(),rs[7].toString(),rs[8].toString(),rs[9].toString(),
 	        						rs[11].toString(),rs[12].toString(),rs[13].toString(),
-	        						rs[10].toString(),rs[14].toString(),(int) rs[15]) );
+	        						rs[10].toString(),rs[14].toString(),Integer.parseInt(rs[15].toString())) );
 	        	}
 				for(Object[] discntRate: discountRates ){
 					String str; 

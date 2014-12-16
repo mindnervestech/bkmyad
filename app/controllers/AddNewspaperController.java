@@ -80,7 +80,7 @@ public class AddNewspaperController extends Controller{
 		newspaperdetails.BasicratesperText=newspaperdetailsFromFE.BasicratesperText;
 	//	newspaperdetails.BasicratesperClasified=newspaperdetailsFromFE.BasicratesperClasified;
 	//	newspaperdetails.Beforebookingdate=newspaperdetailsFromFE.Beforebookingdate;
-	//	newspaperdetails.Allow=newspaperdetailsFromFE.Allow;
+		newspaperdetails.Allow=newspaperdetailsFromFE.Allow;
 	//	newspaperdetails.Statename=newspaperdetailsFromFE.Statename;
     	
     	newspaperdetailsFromFE.merge();

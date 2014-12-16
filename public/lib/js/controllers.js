@@ -2612,6 +2612,38 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	$scope.templateSelect = true;
 	//$scope.notemplateSelected;
 	$scope.imageAd = 'undefined';
+	
+	
+	$scope.showSpecialOffer = function(){
+		$('#userInfopopup').modal();
+	}
+	
+	$scope.sendMailAboutuserInfo =  function(tempuserName,tempuserMobnumber){
+		$scope.tempuserName = tempuserName;
+		$scope.tempuserMobnumber = tempuserMobnumber;
+		
+		if((angular.isUndefined($scope.tempuserMobnumber))|| (angular.isUndefined($scope.tempuserName))){
+		     $scope.showError = true;
+		}		
+		if((!angular.isUndefined($scope.tempuserMobnumber))|| (!angular.isUndefined($scope.tempuserName))){
+			$('#userInfopopup').modal('hide');		
+			$scope.showError = false;
+			$scope.setCookie();
+			
+			$http.get('sendMailAboutTempUserInfo/'+$scope.tempuserName+'/'+$scope.tempuserMobnumber)
+			.success(function(data){
+				if(data) {
+					$scope.result = data;
+					if($scope.result == 'success'){
+						
+						}
+					
+				} 
+			});
+			
+		}
+	    }
+	
 	$scope.setImageIdUndefined = function(){
 		$scope.imageAd = 'undefined';
 	}
@@ -3257,9 +3289,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		
 	}
 	$scope.onChangeCetegory = function(){
-		$scope.subcategory = "";
+		//$scope.subcategory = "";
 		$scope.rc.sampleWizard.first();
-		$scope.selectedsubCat = " ";
+		//$scope.selectedsubCat = " ";
 	}
 	
 	$scope.showfields=function(showfieldstouser){
@@ -3340,8 +3372,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			console.log("length: sub category"+$scope.resultSubCategory.length);
 			//angular.isUndefined($scope.subcategory)
 			//$scope.subcategory == "" ||
-			
-			if($scope.resultSubCategory.length != 0){
+			$scope.rc.sampleWizard.forward();
+			/*if($scope.resultSubCategory.length != 0){
 				if($scope.selectedsubCat == " " || angular.isUndefined($scope.subcategory)){
 				alert("Please Select Sub-Category ");
 				}else{
@@ -3349,7 +3381,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				}
 			}else if($scope.resultSubCategory.length == 0 ){
 				$scope.rc.sampleWizard.forward();
-			}
+			}*/
 		}	
 	
 	}

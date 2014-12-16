@@ -37,9 +37,10 @@
                                     
                                 </td>
                                 <td class="input" style="width: 289px" valign="top">
-                                <select name="subCatId" id="subCatId" style="width: 250px;"  ng-model="catagoryName" ng-options="cat.cname as cat.cname for cat in resultCategory">
+                                <select name="subCatId" id="subCatId" style="width: 250px;"  ng-model="catagoryName">
+                                
 		<option value="">Select category</option>
-		
+		<option ng-repeat="cat in resultCategory">{{cat}}</option>
 		<!-- <option value="Antiques and Collectibles">Antiques and Collectibles</option>
 		<option value="Astrology">Astrology</option>
 		<option value="Barter">Barter</option>
@@ -148,7 +149,7 @@
                                     <input name="sizetxt" type="text" id="sizetxt" border="1" />
                                     <span class="style8">(H*W)</span></td>
                             </tr>
-                            <tr>
+                           <!--  <tr>
                                 <td class="fields" valign="top">
                                     Budget
                                 </td>
@@ -158,8 +159,8 @@
                                 <td class="input" style="width: 289px" valign="top">
                                     <input name="budgettxt" type="text" id="budgettxt" border="1" />
                                 </td>
-                            </tr>
-                            <tr>
+                            </tr> -->
+                           <!--  <tr>
                                 <td class="fields" valign="top">
                                     Ad Matter
                                 </td>
@@ -169,8 +170,8 @@
                                 <td class="input" style="width: 289px" valign="top">
                                     <textarea name="mattertxt" rows="2" cols="20" id="mattertxt"></textarea>
                                 </td>
-                            </tr>
-                            <tr>
+                            </tr> -->
+                           <!--  <tr>
                                 <td class="fields" valign="top">
                                     <span class="red-text" style="color: #FF0000">*</span><span class="red-text"> </span>
                                     Special Instruction
@@ -183,7 +184,7 @@
                                     <br />
                                     &nbsp;
                                      </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td class="fields" valign="top">
                                     <span class="red-text" style="color: #FF0000">*</span><span class="red-text"> </span>
@@ -213,7 +214,7 @@
                                   
                                 </td>
                             </tr>
-                            <tr>
+                           <!--  <tr>
                                 <td class="fields" valign="top">
                                     Telephone Number
                                 </td>
@@ -226,7 +227,7 @@
                                     <div>
                                         STD code &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number</div>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td class="fields" valign="top">
                                     <span class="red-text" style="color: #FF0000">*</span><span class="red-text"> </span>
@@ -292,9 +293,9 @@
                                 <img src="images/Online-Classified-Ads-alexsl1.png" alt="Display Ad" style="margin: 40px 0 0 0;
                                     width: 331px;" /><br />
                                 <div style="padding-top: 10px; width: 300px; margin: 0 0 0 15px;">
-                                    <span style="font: bold 22px trebuchet ms;">Display Ad</span> <span style="font: 12px Arial;">
+                                    <!-- <span style="font: bold 22px trebuchet ms;">Display Ad</span> <span style="font: 12px Arial;">
                                         available for <b>The Times of India Group, Eenadu , Dehradun Classified, Sandesh, The
-                                            Lokmat Group</b> newspapers only</span><br />
+                                            Lokmat Group</b> newspapers only</span><br /> --><br />
                                     <div style="font: 14px Arial; color: #707070; padding: 10px 0 0 20px;">
                                         How display ad is different from other classified ads?</div>
                                     <div style="font-size: 12px; padding: 2px 0 5px 20px; line-height: 22px;">

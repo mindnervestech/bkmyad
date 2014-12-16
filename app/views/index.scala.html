@@ -33,6 +33,9 @@
 					 <!--  <li class=""><a href="#/aboutUs" >About Us</a></li>
 					  <li class=""><a href="#/contactUs" >Contact Us</a></li>
 					 -->  <li class=""  ng-show="name != ''"><a href="#/myAccount">My Ads</a></li> 
+					  <li class=""><a href="" ng-click="showSpecialOffer();">Special Offers	</a></li>
+					  <li class=""><a href="#">Ad Samples	</a></li>
+					 <!--   <li class=""><a href="#">Home	</a></li> -->
 					  <li class=""  ng-show="name != ''" style="float: right;"><a href="/logout">Logout</a></li> 
 					  <li ng-show="name == ''"  >
 					  <a   ng-click="Login()" data-toggle="modal" style="cursor: pointer;" >Login </a>
@@ -326,7 +329,42 @@ var google_remarketing_only = false;
   
 <!--sign up pop up ends  -->
 	  
-	  
+	  <div class="modal fade" id="userInfopopup" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Get a chance to win
+					10 percent off coupon for Times of India Classifieds .</h4>
+			</div>
+			<div class="modal-body" id="">
+				<div ng-show="showError == true" style="color: red">Please
+					fill all details</div>
+
+				<div>
+					<div style="float: left; margin-right: 1%;">
+						<label>Your Name</label> <input type="text" name="tempuserName"
+							data-ng-model="tempuserName" required>
+					</div>
+
+					<div style="">
+						<label>Your Mobile Number</label> <input type="text"
+							name="tempuserMobnumber" data-ng-model="tempuserMobnumber"
+							required>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"
+						data-ng-click="sendMailAboutuserInfo(tempuserName,tempuserMobnumber)">Submit</button>
+					<button type="button" class="btn btn-default"
+						data-ng-click=setCookie()>Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 	  
 </div>	  
 </body>	  

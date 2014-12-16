@@ -95,7 +95,7 @@ GET /header.html          controllers.Assets.at(path="/public", file="app/header
 GET /footer.html          controllers.Assets.at(path="/public", file="app/footer.html")
 GET /index.html           controllers.Assets.at(path="/public", file="app/index.html")
 GET /AboutUs.html   controllers.Assets.at(path="/public", file="app/AboutUs.html")
-#GET /addisplay.html          controllers.Assets.at(path="/public", file="app/addisplay.html")
+GET /addisplay.html          controllers.Assets.at(path="/public", file="app/addisplay.html")
 #GET /Affiliatedlogin.html     controllers.Assets.at(path="/public", file="app/Affiliatedlogin.html")
 GET /Blog.html     controllers.Assets.at(path="/public", file="app/Blog.html")
 GET /Contact.html     controllers.Assets.at(path="/public", file="app/Contact.html")

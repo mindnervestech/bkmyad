@@ -765,13 +765,13 @@ public class Application extends Controller {
 		String ddlnewspaper = form.get("ddlnewspaper");
 		String releaseDatetxt = form.get("Datetxt");
 		String expectedsizetxt = form.get("sizetxt");
-		String budget = form.get("budgettxt");
-		String mattter = form.get("mattertxt");
-		String specialinstruction = form.get("instructiontxt");
+		//String budget = form.get("budgettxt");
+		//String mattter = form.get("mattertxt");
+		//String specialinstruction = form.get("instructiontxt");
 		String name = form.get("nametxt");
 		String email = form.get("emailtxt");
-		String telestd = form.get("telstdtxt");
-		String telenum = form.get("telnotxt");
+		//String telestd = form.get("telstdtxt");
+	//	String telenum = form.get("telnotxt");
 		String mobilenum = form.get("mobtxt");
 
 		play.mvc.Http.MultipartFormData body = request().body()
@@ -795,12 +795,12 @@ public class Application extends Controller {
 		d.newspaper = ddlnewspaper;
 		d.releasedate = releaseDatetxt;
 		d.expectedsize = expectedsizetxt;
-		d.budget = budget;
-		d.addmatter = mattter;
-		d.specialinstruction = specialinstruction;
+		d.budget = "not set";
+		d.addmatter = "not set";
+		d.specialinstruction = "not set";
 		d.name = name;
 		d.email = email;
-		d.telephonenum = telestd + "" + telenum;
+		d.telephonenum = "000" + "" + "0000";
 		d.mobilenum = mobilenum;
 		d.docfile = filenamedbpath;
 		// save form to the DB
@@ -842,7 +842,7 @@ public class Application extends Controller {
 					+ ddlnewspaper
 					+ "\nReleaseDateTxt: "
 					+ releaseDatetxt
-					+ "\nBudget:"
+					/*+ "\nBudget:"
 					+ budget
 					+ "\nAd Mattter :"
 					+ mattter
@@ -850,15 +850,15 @@ public class Application extends Controller {
 					+ telestd
 					+ "-"
 					+ telenum
-					+ ""
+					+ ""*/
 					+ "\nExpected Size: "
 					+ expectedsizetxt
 					+ "\n"
 					+ " Your Mobile Number: "
 					+ mobilenum
 					+ "\n"
-					+ "\nSpecial Instruction:  "
-					+ specialinstruction
+					/*+ "\nSpecial Instruction:  "
+					+ specialinstruction*/
 					+ "\n \n \nPlease find your atatchment below");
 
 			// Create a multipar message

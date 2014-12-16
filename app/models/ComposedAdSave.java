@@ -75,7 +75,7 @@ public class ComposedAdSave{
 	   public String height = "1";
 	   public String originalFileName = "Image not Uploaded";
 	   //used to define  number of words free for each paper 
-	   public String freewords;
+	   public String freewords = "22";
 	  
 	   public String getAdbookedId() {
 		return adbookedId;
