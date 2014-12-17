@@ -858,7 +858,7 @@ public class Application extends Controller {
 
 			// Now set the actual message
 			messageBodyPart.setText("Your Ad Display Details-  "
-					+ "\nSubcategory: "
+					+ "\nCategory: "
 					+ subcategory
 					+ "\nDDL News Paper: "
 					+ ddlnewspaper
