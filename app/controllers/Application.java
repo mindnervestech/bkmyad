@@ -754,11 +754,32 @@ public class Application extends Controller {
 		return redirect("/");
 	}
 
+	public static void createDir(String rootDir) {
+		File file3 = new File(rootDir);
+		if (!file3.exists()) {
+			file3.mkdirs();
+		}
+	}
+
+	final static String rootDir = Play.application().configuration()
+			.getString("adimage.storage.path");
+	static {
+		createRootDir();
+	}
+
+	public static void createRootDir() {
+		File file = new File(rootDir);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+	}
+	
 	// save the ad
 	@Transactional
 	public static Result SavedispAddDetails() throws IOException {
 		DynamicForm form = DynamicForm.form().bindFromRequest();
 		play.mvc.Http.MultipartFormData.FilePart docFile;
+		 createDir(rootDir);
 		String fileName = null;
 		String filenamedbpath = null;
 		String subcategory = form.get("subCatId");
@@ -782,11 +803,11 @@ public class Application extends Controller {
 		if (docFile != null) {
 			fileName = docFile.getFilename();
 			File file = docFile.getFile();
-			final String FILE_PATH = Play.application().configuration()
-					.getString("adimage.storage.path");
-			File f = new File(FILE_PATH + fileName);
-			filenamedbpath = FILE_PATH + File.separator + fileName;
-			Files.copy(file.toPath(), f.toPath(),
+			/*final String FILE_PATH = Play.application().configuration()
+					.getString("storage.path");*/
+			File f = new File(rootDir +File.separator + fileName);
+			filenamedbpath = rootDir + File.separator + fileName;
+	        Files.copy(file.toPath(), f.toPath(),
 					java.nio.file.StandardCopyOption.REPLACE_EXISTING);
 			flash("Success", "File Uploaded successfully");
 		}
@@ -801,7 +822,7 @@ public class Application extends Controller {
 		d.specialinstruction = "not set";
 		d.name = name;
 		d.email = email;
-		d.telephonenum = "000" + "" + "0000";
+		d.telephonenum = "0000" + "" + "0000";
 		d.mobilenum = mobilenum;
 		d.docfile = filenamedbpath;
 		// save form to the DB
