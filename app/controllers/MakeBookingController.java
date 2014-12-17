@@ -838,7 +838,7 @@ import com.google.common.collect.Lists;
         @Transactional
 	    public static Result  saveComposeyourAd() throws JsonProcessingException, IOException {
         	  DynamicForm form = DynamicForm.form().bindFromRequest();
- 		     System.out.println(form.get("carts"));
+ 		     System.out.println("carts value :"+form.get("carts"));
  		     
  		    ObjectMapper mapper = new ObjectMapper();
 		     //JSONObject json = (JSONObject) JSONSerializer.toJSON(data);        
@@ -847,7 +847,7 @@ import com.google.common.collect.Lists;
 		     JsonNode jsonAdSelect = Json.toJson(form.get("adSelectedType"));
 		     JsonNode jsonmodeOfPayment = Json.toJson(form.get("modeOfPayment"));
 		     
-		     JsonNode actualObj = mapper.readTree(form.get("carts"));
+		     JsonNode carts = mapper.readTree(form.get("carts"));
  		     
         	ObjectMapper objectMapper = new ObjectMapper();
 	     AddressDetails addressDetails =new AddressDetails();
@@ -873,7 +873,7 @@ import com.google.common.collect.Lists;
 	     /*cartItem = objectMapper.readValue(json.get("carts").traverse(),
 				 new com.fasterxml.jackson.core.type.TypeReference<CartItem>() {});
 		*/ 
-		 cartItem = mapper.convertValue(actualObj, mapper.getTypeFactory().constructCollectionType(List.class, CartItem.class));
+		 cartItem = mapper.convertValue(carts, mapper.getTypeFactory().constructCollectionType(List.class, CartItem.class));
 		 
 		 for(int i=0; i < cartItem.size(); i++) {
 			 ComposedAdSave cds=new ComposedAdSave();

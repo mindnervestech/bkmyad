@@ -3160,7 +3160,11 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
         	// TODO: If we dont put apply function , first time total is not applied on screen
         	$scope.$apply(function(){
         	var NumberOfDate = 0;
-        	$scope.selectedCartItemOnPopUp.dates = e.dates;
+        	$scope.selectedCartItemOnPopUp.dates = [];
+        	for(var i =0;i<=(e.dates.length)-1;i++){
+        		$scope.selectedCartItemOnPopUp.dates.push(moment(e.dates[i]).format("YYYY-MM-DD"));
+        	}
+        
         	$scope.selectedCartItemOnPopUp.noOfImpression = $scope.selectedCartItemOnPopUp.dates.length;
         	ReTotal();
         	});
