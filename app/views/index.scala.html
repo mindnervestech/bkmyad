@@ -36,8 +36,8 @@
 					 <!--  <li class=""><a href="#/aboutUs" >About Us</a></li>
 					  <li class=""><a href="#/contactUs" >Contact Us</a></li>
 					 -->  <li class=""  ng-show="name != ''"><a href="#/myAccount">My Ads</a></li> 
-					  <li class=""><a href="" ng-click="showSpecialOffer();">Special Offers	</a></li>
-					  <li class=""><a href="#">Ad Samples	</a></li>
+					  <li class=""><a  ng-click="showSpecialOffer();" data-toggle="modal"  style="cursor: pointer;">Special Offers	</a></li>
+					  <li class=""><a href="#" data-toggle="modal">Ad Samples	</a></li>
 					 <!--   <li class=""><a href="#">Home	</a></li> -->
 					  <li class=""  ng-show="name != ''" style="float: right;"><a href="/logout">Logout</a></li> 
 					  <li ng-show="name == ''"  >
@@ -332,7 +332,7 @@ var google_remarketing_only = false;
   
 <!--sign up pop up ends  -->
 	  
-	  <div class="modal fade" id="userInfopopup" tabindex="-1" role="dialog"
+	  <div class="modal fade" id="getUserInfoPopup" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -361,8 +361,8 @@ var google_remarketing_only = false;
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary"
 						data-ng-click="sendMailAboutuserInfo(tempuserName,tempuserMobnumber)">Submit</button>
-					<button type="button" class="btn btn-default"
-						data-ng-click=setCookie()>Cancel</button>
+					<!-- <button type="button" class="btn btn-default"
+						data-dismiss="modal">Cancel</button> -->
 				</div>
 			</div>
 		</div>

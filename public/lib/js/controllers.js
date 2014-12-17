@@ -2615,7 +2615,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	
 	
 	$scope.showSpecialOffer = function(){
-		$('#userInfopopup').modal();
+		$('#getUserInfoPopup').modal();
 	}
 	
 	$scope.sendMailAboutuserInfo =  function(tempuserName,tempuserMobnumber){
@@ -2626,9 +2626,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		     $scope.showError = true;
 		}		
 		if((!angular.isUndefined($scope.tempuserMobnumber))|| (!angular.isUndefined($scope.tempuserName))){
-			$('#userInfopopup').modal('hide');		
+			$('#getUserInfoPopup').modal('hide');		
 			$scope.showError = false;
-			$scope.setCookie();
+			//$scope.setCookie();
 			
 			$http.get('sendMailAboutTempUserInfo/'+$scope.tempuserName+'/'+$scope.tempuserMobnumber)
 			.success(function(data){
