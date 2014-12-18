@@ -71,8 +71,8 @@
 	<form class="tab-pane active" id="select-Ad" name="select-AdForm" rc-step novalidate>
 			<div style="margin-bottom: 1%;">
 				<span><span style = "font-weight:bold">Compose Your Ad OR</span>  
-			<button class="btn" style="margin-left: 25%;margin-top: 1%;" type="button" ng-click="onNoTemplateSelected()"></button>
-			<button type="button" class="btn btn-primary" ng-click="onNoTemplateSelected()">Upload Template</button>
+			<!-- <button class="btn" style="margin-left: 25%;margin-top: 1%;" type="button" ng-click="onNoTemplateSelected()"></button>
+		 -->	<button type="button" style="margin-left: 25%;margin-top: 1%;" class="btn btn-primary" ng-click="onNoTemplateSelected()">Upload Template</button>
 			</div>
 			<div  ng-if  ="uploadyourAdSelect == 'userType'" >
 			<div ng-show="notemplateSelected  ==  true">
@@ -790,8 +790,8 @@
 				<h4 class="modal-title" id="myModalLabel">Your Ad Preview</h4>
 			</div>
 			<div id="adPreview"
-				style="float: LEFT; margin-top: 10%; margin-left: 20%"
-				ng-style="{borderColor: myColor}">
+				style="float: LEFT; margin-top: 10%; margin-left: 20%; border:1px solid RED;"
+				ng-style="{borderColor: selectedCartItemOnPopUp.headerColor}">
 				<div style="" ng-show="showImagePreview">
 					<img data-ng-src="{{img}}" alt="Smiley face" alt=""
 						style="height: 50px; width: 240px"

@@ -111,7 +111,7 @@ public class AddbasicRateController extends Controller{
     		basicrate.freewords= "22";
     	}else{
     		basicrate.freewords=form.get("freewords");
-    		System.out.println("basicrate.freewords"+basicrate.freewords);
+    		
     	}
         basicrate.SpecialDiscount=form.get("SpecialDiscount");
     	basicrate.Category=categoryUnique[i].trim();//.replaceAll("[^\\p{L}\\p{Nd}]+", "");
