@@ -44,8 +44,8 @@
                           <!--   <th><a>Addedition</a></th>-->
                             <th><a>BasicratesperText</a></th> 
                             <th><a>BasicratesperClasified</a></th>
-                            <th><a>Beforebookingdate</a></th>
-                            <th><a>Allow</a></th>
+                           <!--  <th><a>Beforebookingdate</a></th> -->
+                            <th><a>Before Booking Date</a></th>
                             <th><a>Update</a></th>
                             <th><a>Delete</a></th>
                         <tr>
@@ -58,7 +58,7 @@
                            <!--  <td>{{ancmt.Addedition}}</td>-->
                             <td>{{ancmt.BasicratesperText}}</td> 
                             <td>{{ancmt.BasicratesperClasified}}</td>
-                            <td>{{ancmt.Beforebookingdate}}</td>
+                          <!--   <td>{{ancmt.Beforebookingdate}}</td> -->
                             <td>{{ancmt.Allow}}</td>
                             
                            
@@ -123,6 +123,10 @@
 			        <td><label>BasicratesperClasified</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="BasicratesperClasified" style="width:70%;height: 70%;" data-ng-model="formData.BasicratesperClasified" required></textarea></td>
 			             </tr>
+			             <tr>
+			        <td><label>Before Booking Date</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Allow" style="width:70%;height: 70%;" data-ng-model="formData.Allow" required></textarea></td>
+			             </tr>
 		        </table>
 		      </div>
 		      <div class="modal-footer">
@@ -159,6 +163,10 @@
 			         <tr>
 			             <td><label>BasicratesperText :</label></td>
 			        	<td style="height: 60px;"><textarea type="text" name="BasicratesperText" style="width:70%;height: 70%;" data-ng-model="ancmtData.BasicratesperText" required></textarea></td>
+			         </tr>
+			          <tr>
+			             <td><label>Before Booking Date :</label></td>
+			        	<td style="height: 60px;"><textarea type="text" name="Allow" style="width:70%;height: 70%;" data-ng-model="ancmtData.Allow" required></textarea></td>
 			         </tr>
 			      
 		        </table>

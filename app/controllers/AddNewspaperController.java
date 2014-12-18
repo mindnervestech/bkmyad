@@ -80,7 +80,7 @@ public class AddNewspaperController extends Controller{
 		newspaperdetails.BasicratesperText=newspaperdetailsFromFE.BasicratesperText;
 	//	newspaperdetails.BasicratesperClasified=newspaperdetailsFromFE.BasicratesperClasified;
 	//	newspaperdetails.Beforebookingdate=newspaperdetailsFromFE.Beforebookingdate;
-	//	newspaperdetails.Allow=newspaperdetailsFromFE.Allow;
+		newspaperdetails.Allow=newspaperdetailsFromFE.Allow;
 	//	newspaperdetails.Statename=newspaperdetailsFromFE.Statename;
     	
     	newspaperdetailsFromFE.merge();
@@ -89,10 +89,9 @@ public class AddNewspaperController extends Controller{
 	}
 	
 
-    @Transactional
-	public static Result getNewspaper()
-	{
-		List<String> listnewspaper=Newspaperdetails.getAllnewspaperString();
+	@Transactional
+	public static Result getNewspaper() {
+		List<String> listnewspaper = Newspaperdetails.getAllnewspaperString();
 		List<Map> list = new ArrayList<>();
 		for(String newspaperdetails : listnewspaper){
 			Map<String,String> map = new HashMap<String, String>();
@@ -103,12 +102,10 @@ public class AddNewspaperController extends Controller{
 		
 		return ok(Json.toJson(list));
 	}
-    
-        
-    @Transactional
-	public static Result getStatename()
-	{
-		List<String> listcname=State.getallstateString();
+
+	@Transactional
+	public static Result getStatename() {
+		List<String> listcname = State.getallstateString();
 		List<Map> list = new ArrayList<>();
 		for(String state : listcname){
 			Map<String,String> map = new HashMap<String, String>();

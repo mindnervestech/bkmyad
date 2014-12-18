@@ -77,8 +77,9 @@
                 	      <u><lable ng-click="onChangeCetegory();" style="cursor: pointer;margin-left: 5%;color: #65BDDF;">Change</lable></u>
                 	  <lable ng-if="resultSubCategory.length != 0" style="margin-left: 10%;">Sub Category: </lable>
                 	 <select ng-show="resultSubCategory.length != 0" ng-model="selectedsubCat" ng-change = "onSubcategorySelect(selectedsubCat)"class="mnt-select" style="margin-top: 1%;">
-			    		 <option ng-repeat="scat in resultSubCategory" >{{scat}}</option>
-			    		<option value="">--Please Select Subcategory--</option>
+			    									 <option  ng-selected="selected" >--Please Select Subcategory--</option>
+								<option  ng-selected="$index == 0" ng-repeat="scat in resultSubCategory">{{scat}}</option>
+							   
 			    	</select>
                 	 </div>
                 <tabset>
@@ -554,6 +555,25 @@ $(document).ready(function(){
    });
 });
 </script>
+
+<!-- Google Code for Compose Ad Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 967317757;
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "xW_iCPq17lcQ_bGgzQM";
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/967317757/?label=xW_iCPq17lcQ_bGgzQM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
 <script type="text/ng-template" id="composeAd"> 
 	<div rc-wizard="composeAdWizard" rc-disabled="rc.firstForm.submitInProgress">
     	<ul class="nav rc-nav-wizard">

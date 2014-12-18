@@ -1852,6 +1852,33 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	$scope.orderIdStatus = $cookies.orderId;
 	$scope.name;
 	$scope.cookie = $cookies.cookie;
+	$scope.showSpecialOffer = function(){
+		$('#getUserInfoPopup').modal();
+	}
+	
+	$scope.sendMailAboutuserInfo =  function(tempuserName,tempuserMobnumber){
+		$scope.tempuserName = tempuserName;
+		$scope.tempuserMobnumber = tempuserMobnumber;
+		
+		if((angular.isUndefined($scope.tempuserMobnumber))|| (angular.isUndefined($scope.tempuserName))){
+		     $scope.showError = true;
+		}		
+		if((!angular.isUndefined($scope.tempuserMobnumber))|| (!angular.isUndefined($scope.tempuserName))){
+			$('#getUserInfoPopup').modal('hide');		
+			$scope.showError = false;
+			//$scope.setCookie();
+			$http.get('sendMailAboutTempUserInfo/'+$scope.tempuserName+'/'+$scope.tempuserMobnumber)
+			.success(function(data){
+				if(data) {
+					$scope.result = data;
+					if($scope.result == 'success'){
+						
+						}
+				} 
+			});
+			
+		}
+	    }
 	console.log($scope.cookie);
 	$scope.setCookie = function(){
 		 $('#userInfopopup').hide();
@@ -2235,7 +2262,11 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
         	// TODO: If we dont put apply function , first time total is not applied on screen
         	$scope.$apply(function(){
         	var NumberOfDate = 0;
-        	$scope.selectedCartItemOnPopUp.dates = e.dates;
+        	$scope.selectedCartItemOnPopUp.dates = [];
+        	for(var i =0;i<=(e.dates.length)-1;i++){
+        		$scope.selectedCartItemOnPopUp.dates.push(moment(e.dates[i]).format("YYYY-MM-DD"));
+        	}
+        	console.log("date:"+$scope.selectedCartItemOnPopUp.dates);
         	$scope.selectedCartItemOnPopUp.noOfImpression = $scope.selectedCartItemOnPopUp.dates.length;
         	ReTotal();
         	});
@@ -2348,9 +2379,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		
 	}
 	$scope.onChangeCetegory = function(){
-		$scope.subcategory = "";
+		//$scope.subcategory = "";
 		$scope.rc.sampleWizard.first();
-		$scope.selectedsubCat = " ";
+		//$scope.selectedsubCat = " ";
 	}
 	
 	$scope.showfields=function(showfieldstouser){
@@ -2427,8 +2458,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			console.log("length: sub category"+$scope.resultSubCategory.length);
 			//angular.isUndefined($scope.subcategory)
 			//$scope.subcategory == "" ||
-			
-			if($scope.resultSubCategory.length != 0){
+			$scope.rc.sampleWizard.forward();
+			/*if($scope.resultSubCategory.length != 0){
 				if($scope.selectedsubCat == " " || angular.isUndefined($scope.subcategory)){
 				alert("Please Select Sub-Category ");
 				}else{
@@ -2436,7 +2467,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				}
 			}else if($scope.resultSubCategory.length == 0 ){
 				$scope.rc.sampleWizard.forward();
-			}
+			}*/
 		}	
 	
 	}
@@ -2536,7 +2567,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				onBorderSelected:'No',
 				nobgColor:true,
 				notickforAd: true,
-				startDate:moment().add(discountRate.Allow, 'days').format("DD/MM/YYYY")
+				startDate:moment().add(discountRate.Allow + 1, 'days').format("DD/MM/YYYY")
 		    }
 		}
 
@@ -2576,7 +2607,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			onBorderSelected:'No',
 			nobgColor:true,
 			notickforAd: true,
-			startDate:moment().add(rate.Allow, 'days').format("DD/MM/YYYY")
+			startDate:moment().add(rate.Allow + 1, 'days').format("DD/MM/YYYY")
 	    }
 	}
 	

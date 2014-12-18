@@ -719,25 +719,45 @@ public class Application extends Controller {
          	return redirect("/");
      }
     
-  
+	public static void createDir(String rootDir) {
+		File file3 = new File(rootDir);
+		if (!file3.exists()) {
+			file3.mkdirs();
+		}
+	}
+
+	final static String rootDir = Play.application().configuration()
+			.getString("adimage.storage.path");
+	static {
+		createRootDir();
+	}
+
+	public static void createRootDir() {
+		File file = new File(rootDir);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+	}
+	
     // save the ad 
     @Transactional
     public static Result  SavedispAddDetails() throws IOException {
         DynamicForm form = DynamicForm.form().bindFromRequest();
         play.mvc.Http.MultipartFormData.FilePart docFile;
-        String fileName=null;
+		 createDir(rootDir);
+		String fileName = null;
         String filenamedbpath=null;
         String subcategory  =	form.get("subCatId");
         String ddlnewspaper =	form.get("ddlnewspaper");
         String releaseDatetxt =	form.get("Datetxt");
         String expectedsizetxt=	form.get("sizetxt");
-        String budget   =	    form.get("budgettxt"); 
-        String mattter  =	    form.get("mattertxt");
-        String specialinstruction =	form.get("instructiontxt");
+		//String budget = form.get("budgettxt");
+		//String mattter = form.get("mattertxt");
+		//String specialinstruction = form.get("instructiontxt");
         String name =	        form.get("nametxt");
         String email=	        form.get("emailtxt");
-        String telestd =	    form.get("telstdtxt");
-        String telenum  =     	form.get("telnotxt");
+		//String telestd = form.get("telstdtxt");
+	//	String telenum = form.get("telnotxt");
         String mobilenum=	    form.get("mobtxt");
       
         play.mvc.Http.MultipartFormData body = request().body().asMultipartFormData();
@@ -746,83 +766,109 @@ public class Application extends Controller {
         if (docFile != null) {
           fileName = docFile.getFilename();
           File file = docFile.getFile();
-          final String FILE_PATH = Play.application().configuration().getString("storage.path");
-          File f=new File(FILE_PATH+fileName);
-          filenamedbpath = FILE_PATH+File.separator+fileName;
-          Files.copy(file.toPath(),f.toPath(),java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-          flash("Success", "File Uploaded successfully");
-        }
+			/*final String FILE_PATH = Play.application().configuration()
+					.getString("storage.path");*/
+			File f = new File(rootDir +File.separator + fileName);
+			filenamedbpath = rootDir + File.separator + fileName;
+	        Files.copy(file.toPath(), f.toPath(),
+					java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+			flash("Success", "File Uploaded successfully");
+		}
        
-       DisplayAdDetails d=new DisplayAdDetails();
-         	d.adcategory=subcategory;
-         	d.newspaper=ddlnewspaper;
-         	d.releasedate=releaseDatetxt;
-            d.expectedsize=expectedsizetxt;
-            d.budget=budget;
-         	d.addmatter=mattter;
-         	d.specialinstruction=specialinstruction;
-         	d.name=name;
-         	d.email=email;
-         	d.telephonenum=telestd+""+telenum;
-         	d.mobilenum=mobilenum;
-            d.docfile=filenamedbpath;
-            // save form to the DB
-            JPA.em().persist(d);
+		DisplayAdDetails d = new DisplayAdDetails();
+		d.adcategory = subcategory;
+		d.newspaper = ddlnewspaper;
+		d.releasedate = releaseDatetxt;
+		d.expectedsize = expectedsizetxt;
+		d.budget = "not set";
+		d.addmatter = "not set";
+		d.specialinstruction = "not set";
+		d.name = name;
+		d.email = email;
+		d.telephonenum = "0000" + "" + "0000";
+		d.mobilenum = mobilenum;
+		d.docfile = filenamedbpath;
+		// save form to the DB
+		JPA.em().persist(d);
+
              
-             
-             // send mail
-            final String username = "support@arihantbooking.com";
-     		final String password = "Adschela@123";
-      
-     		Properties props = new Properties();
-     		props.put("mail.smtp.auth", "true");
-     		props.put("mail.smtp.starttls.enable", "true");
-     		props.put("mail.smtp.host", "smtp.gmail.com");
-     		props.put("mail.smtp.port", "587");
-      
-     		Session session = Session.getInstance(props,
-     		  new javax.mail.Authenticator() {
-     			protected PasswordAuthentication getPasswordAuthentication() {
-     				return new PasswordAuthentication(username, password);
-     			}
-     		  });
-      
-     		try {
-      
-     			Message message = new MimeMessage(session);
-     			message.setFrom(new InternetAddress("Rajan_Jain"));
-     			message.setRecipients(Message.RecipientType.TO,
-     			InternetAddress.parse(email));
-     			message.setSubject("Your Ad Details ");
-     			//message.setText();
-     			 
-     			 BodyPart messageBodyPart = new MimeBodyPart();
+		// send mail
+		final String username = "support@arihantbooking.com";
+		final String password = "Adschela@123";
 
-     	         // Now set the actual message
-     	         messageBodyPart.setText("Your Ad Display Details-  "+"\nSubcategory: "+subcategory+"\nDDL News Paper: "+ddlnewspaper+"\nReleaseDateTxt: "+releaseDatetxt+"\nBudget:"+budget+"\nAd Mattter :" +mattter+"\nYour STD Number:"+telestd+"-"+telenum+""+"\nExpected Size: "+expectedsizetxt+"\n"+" Your Mobile Number: "+mobilenum+"\n"+"\nSpecial Instruction:  "+specialinstruction+"\n \n \nPlease find your atatchment below");
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
 
-     	         // Create a multipar message
-     	         Multipart multipart = new MimeMultipart();
+		Session session = Session.getInstance(props,
+				new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(username, password);
+					}
+				});
 
-     	         // Set text message part
-     	         multipart.addBodyPart(messageBodyPart);
+		try {
 
-     	         // Part two is attachment
-     	         messageBodyPart = new MimeBodyPart();
-     	         String filename = filenamedbpath;
-     	         DataSource source = new FileDataSource(filename);
-     	         messageBodyPart.setDataHandler(new DataHandler(source));
-     	         messageBodyPart.setFileName(filename);
-     	         multipart.addBodyPart(messageBodyPart);
-                 // Send the complete message parts
-     	         message.setContent(multipart);
-     		     Transport.send(message);
-          		} catch (MessagingException e) {
-     			  throw new RuntimeException(e);
-     		}
-             
-         	return redirect("/");
-     }
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("Rajan_Jain"));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse(email));
+			message.setSubject("Your Ad Details ");
+			// message.setText();
+
+			BodyPart messageBodyPart = new MimeBodyPart();
+
+			// Now set the actual message
+			messageBodyPart.setText("Your Ad Display Details-  "
+					+ "\nCategory: "
+					+ subcategory
+					+ "\nDDL News Paper: "
+					+ ddlnewspaper
+					+ "\nReleaseDateTxt: "
+					+ releaseDatetxt
+					/*+ "\nBudget:"
+					+ budget
+					+ "\nAd Mattter :"
+					+ mattter
+					+ "\nYour STD Number:"
+					+ telestd
+					+ "-"
+					+ telenum
+					+ ""*/
+					+ "\nExpected Size: "
+					+ expectedsizetxt
+					+ "\n"
+					+ " Your Mobile Number: "
+					+ mobilenum
+					+ "\n"
+					/*+ "\nSpecial Instruction:  "
+					+ specialinstruction*/
+					+ "\n \n \nPlease find your atatchment below");
+
+			// Create a multipar message
+			Multipart multipart = new MimeMultipart();
+
+			// Set text message part
+			multipart.addBodyPart(messageBodyPart);
+
+			// Part two is attachment
+			messageBodyPart = new MimeBodyPart();
+			String filename = filenamedbpath;
+			DataSource source = new FileDataSource(filename);
+			messageBodyPart.setDataHandler(new DataHandler(source));
+			messageBodyPart.setFileName(filename);
+			multipart.addBodyPart(messageBodyPart);
+			// Send the complete message parts
+			message.setContent(multipart);
+			Transport.send(message);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+
+		return redirect("/");
+	}
  
 }
   
