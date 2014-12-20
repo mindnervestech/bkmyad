@@ -3100,6 +3100,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	}
 	 
 	ComposeAd = function(c, scope) {
+		onComposeAdButtonClicked();
 		SetSelectedCartItemOnPopUp(c);
 		ngDialog.open({
 			//template: 'newtheme/composeDisplayAd.html',
