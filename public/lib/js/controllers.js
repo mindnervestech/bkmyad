@@ -160,7 +160,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 			interval : 6000
 	}
     $scope.slides = [{
-	      	image: '/NewDesign/homepagesImages/CT 1.jpg'
+	      	image: '/NewDesign/homepagesImages/Classified-Text-Ad.jpg'
 	    	}
 	    	/*{
 		      image: '/NewDesign/images/classified-ad-2.jpg'
@@ -184,7 +184,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 	
 	
 	 $scope.dispAds = [{
-	      	image: '/NewDesign/homepagesImages/Ds 1.jpg'
+	      	image: '/NewDesign/homepagesImages/Display-Ad.jpg'
 	    	}
 	    	/*{
 		      image: '/NewDesign/images/classified-ad-2.jpg'
@@ -206,7 +206,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 			}*/
 		    ];
 	 $scope.clasifiedsImages = [{
-	      	image: '/NewDesign/homepagesImages/CD 1.jpg'
+	      	image: '/NewDesign/homepagesImages/Classified-Display-Ad.jpg'
 	    	}
 		    
 	    	/*{
@@ -2228,6 +2228,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	 
 	ComposeAd = function(c, scope) {
 		SetSelectedCartItemOnPopUp(c);
+		onComposeAdButtonClicked();
 		ngDialog.open({
 			template: 'newtheme/composeAd.html',
 			controller:'ComposeAdController',
