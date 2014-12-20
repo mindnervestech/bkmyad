@@ -169,7 +169,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 			interval : 6000
 	}
     $scope.slides = [{
-	      	image: '/NewDesign/homepagesImages/CT 1.jpg'
+	      	image: '/NewDesign/homepagesImages/Classified-Text-Ad.jpg'
 	    	}
 	    	/*{
 		      image: '/NewDesign/images/classified-ad-2.jpg'
@@ -193,7 +193,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 	
 	
 	 $scope.dispAds = [{
-	      	image: '/NewDesign/homepagesImages/Ds 1.jpg'
+	      	image: '/NewDesign/homepagesImages/Display-Ad.jpg'
 	    	}
 	    	/*{
 		      image: '/NewDesign/images/classified-ad-2.jpg'
@@ -215,7 +215,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 			}*/
 		    ];
 	 $scope.clasifiedsImages = [{
-	      	image: '/NewDesign/homepagesImages/CD 1.jpg'
+	      	image: '/NewDesign/homepagesImages/Classified-Display-Ad.jpg'
 	    	}
 		    
 	    	/*{
@@ -287,7 +287,14 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
 		console.log($("#adPreview"));
 	}
 	$scope.preViewColorAd = function() {
+		ReTotal();
+		document.getElementById("descriptionHeaderText").style.borderColor = $scope.selectedCartItemOnPopUp.headerColor;
+		document.getElementById("descriptionBodyText").style.borderColor = $scope.selectedCartItemOnPopUp.headerColor;
+		document.getElementById("descriptionFooterText").style.borderColor = $scope.selectedCartItemOnPopUp.headerColor;
 		$('#adColorPreview').modal();
+		
+		computeRateByUnit();
+		
 	}
 	$scope.selectDefaultWidth = function(){
 		$scope.otherWidth = false;
@@ -539,31 +546,54 @@ angular.module('adschela').controller("ComposeDisplayAdController",['$scope','$u
             		var height = parseInt($scope.selectedCartItemOnPopUp.height);
             		console.log(height);
                  	var width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
-                 	totalCost = rate * width * height;
-                 	console.log(totalCost);
+                 	 if (height > 5) {
+                         //var extraUnitCost = $scope.selectedCartItemOnPopUp.extra;
+                         var costt = parseInt($scope.selectedCartItemOnPopUp.extraCostpersqcm);
+                         extraUnit =  height - 5;
+                         console.log("extraUnit " + extraUnit);
+                         totalCost = rate + (costt * (extraUnit));
+                      }else{
+                    	  totalCost = rate;	
+                      }
          	    }else if ($scope.uploadyourAd == 'templateSelect'){
-         	    	/*$scope.selectedCartItemOnPopUp.otherWidth = "4";
-         	    	var  width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);*/
+         	    
          	    	$scope.selectedCartItemOnPopUp.height =  (($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight)/37.795276);
          	    	console.log("template"+$scope.selectedCartItemOnPopUp.height);
-         	    	//$scope.height = ($("#descriptionHeaderText").get(0).scrollHeight + $("#descriptionBodyText").get(0).scrollHeight + $("#descriptionFooterText").get(0).scrollHeight);
-         	    if($scope.selectedCartItemOnPopUp.height == 0){
+         	    	if($scope.selectedCartItemOnPopUp.height == 0){
          	    	$scope.selectedCartItemOnPopUp.otherWidth = "4";
          	    	var  width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
          	    	$scope.selectedCartItemOnPopUp.height = $scope.heightPer;
-         	    	console.log("in chk zero");
          	    	var  height = parseInt($scope.selectedCartItemOnPopUp.height);
          	    	console.log("width:"+width+"height:"+height);
-         	    	totalCost = rate * height * width;	
+         	    	 if (height > 5) {
+                         //var extraUnitCost = $scope.selectedCartItemOnPopUp.extra;
+                         var costt = parseInt($scope.selectedCartItemOnPopUp.extraCostpersqcm);
+                         extraUnit =  height - 5;
+                         console.log("extraUnit " + extraUnit);
+                         totalCost = rate + (costt * (extraUnit + 1));
+                      }else{
+                    	  totalCost = rate;	
+                      }
+         	    	
+         	    	
          	    }else{
          	    	$scope.selectedCartItemOnPopUp.otherWidth = "4";
          	    	var  width = parseInt($scope.selectedCartItemOnPopUp.otherWidth);
          	    	var  height = parseInt($scope.selectedCartItemOnPopUp.height);
                  	console.log("height"+height);
                    //var width = parseInt($scope.width);
-                 	console.log("width"+width);
-         	    	totalCost = rate * height * width ;	
+                 	if (height > 5) {
+                        //var extraUnitCost = $scope.selectedCartItemOnPopUp.extra;
+                        var costt = parseInt($scope.selectedCartItemOnPopUp.extraCostpersqcm);
+                        extraUnit = (height - 5);
+                        console.log("extraUnit " + extraUnit);
+                        totalCost = rate + (costt * (extraUnit + 1));
+                     }else{
+                   	  totalCost = rate;	
+                     }	
          	    }
+         	    }else{
+         	    	totalCost = rate;	
          	    }
                 /*          if (total_unit > freeUnit) {
                    //var extraUnitCost = $scope.selectedCartItemOnPopUp.extra;
@@ -2757,6 +2787,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 						newspaper: orderListuser.newspaper,
 						rate:orderListuser.rate,
 						classifiedrate:orderListuser.ClasifiedadRate,
+						extraCostpersqcm:orderListuser.extraCostpersqcm, 
 						unit: orderListuser.unit,
 						unitVal: orderListuser.unitVal,
 						extra: orderListuser.extra,
@@ -3100,8 +3131,8 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	}
 	 
 	ComposeAd = function(c, scope) {
-		onComposeAdButtonClicked();
 		SetSelectedCartItemOnPopUp(c);
+		onComposeAdButtonClicked();
 		ngDialog.open({
 			//template: 'newtheme/composeDisplayAd.html',
 		   //controller:'ComposeDisplayAdController',
@@ -3208,7 +3239,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 		$scope.modeOfPayment='cc';
 		$scope.disablePackageCheckBox=false;
 		$scope.disableBasicRateChkbox=false;
-				
+		
 		$scope.chkCategorySelectedforAD = function(){
 			console.log("ghghg");
 		}
@@ -3468,7 +3499,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				location: discountRate.location,
 				newspaper: discountRate.newspaper,
 				rate: discountRate.dTotalPrice,
-				classifiedrate: discountRate.ClasifiedadRate,
+				extraCostpersqcm:discountRate.extraCostpersqcm,
 				unit: discountRate.unit,
 				unitVal: discountRate.unitVal,
 				extra: discountRate.extraCostperLine,
@@ -3510,7 +3541,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 				otherWidth:'',
 				height:'',
 				originalFileName:'',
-				startDate:moment().add(discountRate.Allow + 1, 'days').format("DD/MM/YYYY")
+				startDate:moment().add(discountRate.Allow + 1,'days').format("DD/MM/YYYY")
 		    }
 		}
 
@@ -3521,7 +3552,7 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 			location: rate.location,
 			newspaper: rate.newspaper,
 			rate: rate.rate,
-			classifiedrate: rate.classifiedrate,
+			extraCostpersqcm:rate.extraCostpersqcm,
 			unit: rate.unit,
 			unitVal: rate.unitVal,
 			extra: rate.extra,

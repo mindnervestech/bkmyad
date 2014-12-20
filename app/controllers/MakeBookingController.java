@@ -227,7 +227,7 @@ import com.google.common.collect.Lists;
            	String dates[] = str.split(",");   
 	    
                 orderListuser.add(OrderList.byId(ol[24].toString())
-                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString()), ol[25].toString(),ol[26].toString(), ol[27].toString(),ol[28].toString(),(int) ol[29],ol[30].toString(),ol[31].toString(),ol[32].toString(),ol[33].toString(),ol[34].toString(),ol[35].toString(),ol[36].toString(),ol[37].toString(),ol[38].toString(),ol[39].toString(),ol[40].toString(),ol[41].toString(),ol[42].toString(),ol[43].toString(),ol[44].toString()));
+                		       .cancelOrderDetails(ol[1].toString(), ol[2].toString(),ol[3].toString(),ol[4].toString(),ol[5].toString(),ol[6].toString(),ol[7].toString(),ol[8].toString(),ol[9].toString(),dates,ol[11].toString(),ol[12].toString(),ol[13].toString(),ol[14].toString(),ol[15].toString(),ol[16].toString(),(float) ol[17],(float) ol[18], (float) ol[19], (int) ol[20],(float) ol[21],Boolean.parseBoolean(ol[22].toString()),Boolean.parseBoolean(ol[23].toString()), ol[25].toString(),ol[26].toString(), ol[27].toString(),ol[28].toString(),(int) ol[29],ol[30].toString(),ol[31].toString(),ol[32].toString(),ol[33].toString(),ol[34].toString(),ol[35].toString(),ol[36].toString(),ol[37].toString(),ol[38].toString(),ol[39].toString(),ol[40].toString(),ol[41].toString(),ol[42].toString(),ol[43].toString(),ol[44].toString(),ol[45].toString()));
         	}
 	    	Map<String,Object> map = new HashMap<String, Object>();
 			map.put("orderListuser",orderListuser);
@@ -445,7 +445,8 @@ import com.google.common.collect.Lists;
 	    public String height;
 	    public String originalFileName;
 	    public String freewords;
-		
+	    public String extraCostpersqcm;
+	    
 	    public static OrderList byId(String id) {
 			 OrderList orderList = new OrderList();
 			 orderList.id = id;
@@ -454,7 +455,7 @@ import com.google.common.collect.Lists;
 		   public  OrderList cancelOrderDetails(String OrderId,String newspaper,String  location ,String description, String extraFortick , String onbgColorchange ,String extraForBackgroud,
 				   String onBorderSelected , String extraForBorder , String []  dates,String unit , String  fullTotal,  String mainCategoty ,  String totalUnit , String adbookedDate,
 				   String freeunit, float extra, float totalExtraCost ,float totalUnitCost, int noOfImpression, float rate, boolean bgColorSelect ,boolean notickforAd ,String extraForBorderInPer,String extraForBackgroudInPer,String  extraFortickInPer, String subcategory, int  numberOfWords
-    			  ,String descriptionFooter,String descriptionHeader, String descriptionBody,String footerColor,String bodyColor,String headerColor,String adType,String colorAd,String imageAd,String adSizeSelect, String adSelectedType,String otherWidth,String height, String originalFileName,String freewords){
+    			  ,String descriptionFooter,String descriptionHeader, String descriptionBody,String footerColor,String bodyColor,String headerColor,String adType,String colorAd,String imageAd,String adSizeSelect, String adSelectedType,String otherWidth,String height, String originalFileName,String freewords,String extraCostpersqcm){
 			   
 			   this.OrderId=OrderId;
 			   this.newspaper=newspaper;
@@ -485,7 +486,6 @@ import com.google.common.collect.Lists;
 			   this.extraFortickInPer = extraFortickInPer;
 			   this.subcategory = subcategory;
 			   this.numberOfWords = numberOfWords;
-			  
 			   this.descriptionFooter = descriptionFooter;
 			   this.descriptionHeader = descriptionHeader;
 			   this.descriptionBody = descriptionBody;
@@ -501,6 +501,7 @@ import com.google.common.collect.Lists;
 			   this.height = height;
 			   this.originalFileName =originalFileName; 
 			   this.freewords = freewords;
+			   this.extraCostpersqcm = extraCostpersqcm;
 			   return this;
 		   }
 	}
@@ -705,6 +706,7 @@ import com.google.common.collect.Lists;
 	    public String imageAd;
 	    public String adSizeSelect;
 	    public float extraCost;
+	    public String extraCostpersqcm;
 	   
 	    //for dispplay user defined ad.
 	    public int otherWidth;
@@ -1035,11 +1037,8 @@ import com.google.common.collect.Lists;
         	   //getter - setter
      }
         
-        
-    
         @Transactional
 	    public static Result  saveUserDisplayComposeyourAd() throws JsonProcessingException, IOException {
-		
         	  DynamicForm form = DynamicForm.form().bindFromRequest();
         	  FilePart picture =  request().body().asMultipartFormData().getFile("file");
 	 		 createDir(rootDir);
@@ -1210,7 +1209,16 @@ import com.google.common.collect.Lists;
 			  cds.orderDate = sdf.format(date);//current date i.e. order placed date saved here
 			  System.out.println("width"+cartItem.get(i).otherWidth);
 			  System.out.println("height"+cartItem.get(i).height);
-			  cds.TotalCost = (cartItem.get(i).rate *(((cartItem.get(i).otherWidth))) * (((cartItem.get(i).height))) * (cartItem.get(i).dates.length));
+			  
+			  cds.extraCostpersqcm = cartItem.get(i).extraCostpersqcm;
+			  System.out.println(" cds.extraCostpersqcm"+ cds.extraCostpersqcm);
+			  if(cartItem.get(i).height > 5){
+				  int extraHeight =  (cartItem.get(i).height - 5); 
+				  System.out.println("in if");
+				  cds.TotalCost = (cartItem.get(i).rate + (Integer.parseInt(cartItem.get(i).extraCostpersqcm)) * (extraHeight)) * (cartItem.get(i).dates.length);
+			  }else{
+				  cds.TotalCost = (cartItem.get(i).rate  * (cartItem.get(i).dates.length));
+			  }
 			  amount = amount +  cds.TotalCost;
 			  System.out.println("amount :"+amount);
 			  composedAdSaves.add(cds);
@@ -1421,13 +1429,19 @@ import com.google.common.collect.Lists;
 		  cds.extraCost = cartItem.get(i).extraCost;
 		  cds.otherWidth = Integer.toString(cartItem.get(i).otherWidth);
   	      cds.height = Integer.toString(cartItem.get(i).height);
+  	      cds.extraCostpersqcm = cartItem.get(i).extraCostpersqcm;
+		  if(cartItem.get(i).height > 5){
+			  int extraHeight =  (cartItem.get(i).height - 5); 
+			  cds.TotalCost = (cartItem.get(i).rate + ((Integer.parseInt(cartItem.get(i).extraCostpersqcm)) * (extraHeight + 1))) * (cartItem.get(i).dates.length);
+		  }else{
+			  cds.TotalCost = (cartItem.get(i).rate  * (cartItem.get(i).dates.length));
+		  }
 		  Date date = new Date();
 		  cds.orderDate = sdf.format(date);//current date i.e. order placed date saved here
-		  cds.TotalCost = (cartItem.get(i).rate *(((cartItem.get(i).otherWidth))) * (((cartItem.get(i).height))) * (cartItem.get(i).dates.length));
-		  amount = amount +  cds.TotalCost;
+		/*  cds.TotalCost = (cartItem.get(i).rate *(((cartItem.get(i).otherWidth))) * (((cartItem.get(i).height))) * (cartItem.get(i).dates.length));
+	*/	  amount = amount +  cds.TotalCost;
 		  System.out.println("amount :"+amount);
 		  composedAdSaves.add(cds);
-
 		  //JPA.em().persist(cds);
 		   }
 	     
@@ -1576,14 +1590,20 @@ import com.google.common.collect.Lists;
 		  cds.otherWidth = Integer.toString(cartItem.get(i).otherWidth);
   	      cds.height = Integer.toString(cartItem.get(i).height);
 		 // cds.widthSelected = cartItem.get(i).
-		     
 		  //ad type save here
 		  cds.adSelectedType =  jsonAdSelect.asText();
 		  System.out.println("ad type"+cds.adSelectedType);
 		  cds.extraCost = cartItem.get(i).extraCost;
 		  Date date = new Date();
 		  cds.orderDate = sdf.format(date);//current date i.e. order placed date saved here
-		  cds.TotalCost = (cartItem.get(i).rate *(((cartItem.get(i).otherWidth))) * (((cartItem.get(i).height))) * (cartItem.get(i).dates.length));
+		  /*cds.TotalCost = (cartItem.get(i).rate *(((cartItem.get(i).otherWidth))) * (((cartItem.get(i).height))) * (cartItem.get(i).dates.length));*/  
+		  cds.extraCostpersqcm = cartItem.get(i).extraCostpersqcm;
+		  if(cartItem.get(i).height > 5){
+			  int extraHeight =  (cartItem.get(i).height - 5); 
+			  cds.TotalCost = (cartItem.get(i).rate + ((Integer.parseInt(cartItem.get(i).extraCostpersqcm)) * (extraHeight  + 1))) * (cartItem.get(i).dates.length);
+		  }else{
+			  cds.TotalCost = (cartItem.get(i).rate  * (cartItem.get(i).dates.length));
+		  }
 		  amount = amount +  cds.TotalCost;
 		  System.out.println("amount :"+amount);
 		  composedAdSaves.add(cds);

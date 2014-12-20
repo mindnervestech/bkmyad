@@ -271,7 +271,7 @@ public class UtilityQuery {
 		Query q = JPA
 				.em()
 				.createQuery(
-						"SELECT OID,OrderID,Nameofthenewspaper,City,Adtext,TickRate,Bgcolor,BgcolorRate,Border,BorderCost,PublishDate,BasicRate,TotalCost,Category,numberOfWords,orderDate,freeunit,extra,totalExtraCost,totalUnitCost,noOfImpression,rate,bgColorSelect,Tick,adbookedId,Extraborderper,Extrabgper,Tickper,Subcategory,numberOfWords,footerDescption,headerDescption,bodyDescription,footerColor,bodyColor,headerColor,adType,colorAd,imageAd,adSizeSelect,adSelectedType,otherWidth,height,originalFileName,freewords  FROM ComposedAdSave  where OrderId = ?1");
+						"SELECT OID,OrderID,Nameofthenewspaper,City,Adtext,TickRate,Bgcolor,BgcolorRate,Border,BorderCost,PublishDate,BasicRate,TotalCost,Category,numberOfWords,orderDate,freeunit,extra,totalExtraCost,totalUnitCost,noOfImpression,rate,bgColorSelect,Tick,adbookedId,Extraborderper,Extrabgper,Tickper,Subcategory,numberOfWords,footerDescption,headerDescption,bodyDescription,footerColor,bodyColor,headerColor,adType,colorAd,imageAd,adSizeSelect,adSelectedType,otherWidth,height,originalFileName,freewords,extraCostpersqcm  FROM ComposedAdSave  where OrderId = ?1");
 		q.setParameter(1, orderIdPer);
 
 		List<Object[]> list = (List<Object[]>) q.getResultList();

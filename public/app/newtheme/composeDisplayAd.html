@@ -732,10 +732,10 @@
 					selectedCartItemOnPopUp.location|limitTo:15}}</p>
 				<p
 					style=" text-align: center; font-size: 9pt; font-family: Calibri; margin: 0 0 0px;color: white; ">
-					(Rs {{selectedCartItemOnPopUp.rate}} per sqcm
-					{{selectedCartItemOnPopUp.freeUnit}} {{selectedCartItemOnPopUp.unit}})
-					<div style="font-size: 9pt;text-align: center;font-family: Calibri;line-height: 0.8;padding-bottom: 5%; color: white;"> (Rs
-					{{selectedCartItemOnPopUp.extra}} Extra per {{selectedCartItemOnPopUp.unit}} )
+					(Rs {{selectedCartItemOnPopUp.rate}} 
+				<!-- 	{{selectedCartItemOnPopUp.freeUnit}} {{selectedCartItemOnPopUp.unit}} -->)
+					<div style="font-size: 9pt;text-align: center;font-family: Calibri;line-height: 0.8;padding-bottom: 5%; color: white;"> 
+					(Rs {{selectedCartItemOnPopUp.extraCostpersqcm}} per Extra cm)
 					</div>
 				</p>
 			</div>
@@ -785,13 +785,13 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">&times;</button>
+				<!-- <button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button> -->
 				<h4 class="modal-title" id="myModalLabel">Your Ad Preview</h4>
 			</div>
 			<div id="adPreview"
-				style="float: LEFT; margin-top: 10%; margin-left: 20%; border:1px solid RED;"
-				ng-style="{borderColor: selectedCartItemOnPopUp.headerColor}">
+				style="float: LEFT; margin-top: 10%; margin-left: 20%; "
+				>
 				<div style="" ng-show="showImagePreview">
 					<img data-ng-src="{{img}}" alt="Smiley face" alt=""
 						style="height: 50px; width: 240px"
@@ -804,7 +804,7 @@
 					</span>
 				</div>
 				<div id="descriptionHeaderText"
-					style="white-space: wrap; word-wrap: break-word;"
+					style="white-space: wrap; word-wrap: break-word;border:2px solid;"
 					ng-style="{'background-color':selectedCartItemOnPopUp.headerColor}"
 					ng-model="selectedCartItemOnPopUp.descriptionHeader" data-ng-src="">
 					{{selectedCartItemOnPopUp.descriptionHeader}} <span
@@ -812,7 +812,7 @@
 					<span></span>
 				</div>
 				<div id="descriptionBodyText"
-					style="white-space: wrap; word-wrap: break-word;"
+					style="white-space: wrap; word-wrap: break-word;border:2px solid;"
 					ng-style="{'background-color': selectedCartItemOnPopUp.bodyColor}"
 					ng-model="selectedCartItemOnPopUp.descriptionBody" data-ng-src="">
 					{{selectedCartItemOnPopUp.descriptionBody}} <span
@@ -827,7 +827,7 @@
 				</div> -->
 				
 				<div id="descriptionFooterText"
-					style="white-space: wrap; word-wrap: break-word;"
+					style="white-space: wrap; word-wrap: break-word;border:2px solid;"
 					ng-style="{'background-color': selectedCartItemOnPopUp.footerColor}"
 					ng-model="selectedCartItemOnPopUp.descriptionFooter" data-ng-src="">
 					{{selectedCartItemOnPopUp.descriptionFooter}} <span
@@ -848,9 +848,10 @@
 				(Rs {{selectedCartItemOnPopUp.rate}} per sqcm
 				<!-- 	{{selectedCartItemOnPopUp.freeUnit}} {{selectedCartItemOnPopUp.unit}} -->
 				)
-				<!-- <div style="font-size: 9pt;text-align: center;font-family: Calibri;line-height: 0.8;padding-bottom: 5%; color: white;"> (Rs
-					{{selectedCartItemOnPopUp.extra}} Extra per {{selectedCartItemOnPopUp.unit}} )
-					</div> -->
+				
+				 <div style="font-size: 9pt;text-align: center;font-family: Calibri;line-height: 0.8;padding-bottom: 5%; color: white;"> 
+				 (Rs {{selectedCartItemOnPopUp.extraCostpersqcm}} per Extra cm)
+					</div> 
 			</p>
 		</div>
 		<div

@@ -4,20 +4,33 @@
 </h2>
 </div>
 <a href="#/compose-classified-Ad/0">
-<div class="homCar pull-left" style="width: 20%; margin-left: 6%;">
+<!-- <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			front content
+		</div>
+		<div class="back">
+			back content
+		</div>
+	</div>
+</div> -->
+
+<div class="flip-container" style="width: 20%;
+margin-left: 8%;float: left;margin-top: 1%;">
 	<div
 		style="height: 40px; background-color: #D7EDFB; -webkit-appearance: button;">
 		<!-- <a href="#/compose-classified-Ad/0" class="" style=""> -->
-		<div style="margin-left: 9%; padding: 5%; font-weight: bold;">
+		<div style="margin-left: 4%; padding: 5%; font-weight: bold;">
 			Book Text
 				Classified Ad
 		</div><!-- </a> -->
 	</div>
-	
-		<div class= "bookClassifiedAdImgDiv"style="border: 4px solid #D7EDFB; height: 180px; margin-top: 2%;">
-			 <img
-				 ng-src="/NewDesign/homepagesImages/Classified-Text-Ad.jpg" style="margin: auto;">
-			
+	<div class="flipper">
+		<div class= "front"style="border: 4px solid #D7EDFB; height: 180px; margin-top: 2%;">
+			<carousel interval="carousel.interval"> <slide
+				ng-repeat="slide in slides" active="slide.active"> <img
+				class="custom-img" ng-src="{{slide.image}}" style="margin: auto;">
+			</slide> </carousel>
 		</div>
 	
 
@@ -26,7 +39,7 @@
 		      
 		       <a href="#/compose-classified-Ad/0"  class="btn btn-success" >Book Text Classified  Ad</a>
 		       </div> -->
-	<div style="margin-top: 0%">
+	<div class="back" style="margin-top: 0%">
 		<ul>
 			<!--  <span style="font-weight:bold;margin-left: 11%; ">Text Classified  Ad</li><br /> -->
 			<li style="font-size: 12px; margin-left: 0%">Ads are Economical
@@ -37,31 +50,35 @@
 				Tick , Border & Bold are applicable to increase visibility</li>
 		</ul>
 	</div>
+	</div>
 </div>
+
 </a>
 <a href="" ng-click="onClassifiedClicked()" class="" style="">
-<div class="homCar pull-left" style="width: 20%; margin-left: 8%;">
+<div class="flip-container" style="width: 20%;margin-left: 7%;float: left;margin-top: 1%;">
+	
 	<div
 		style="height: 40px; background-color: #D7EDFB; -webkit-appearance: button;">
 		
-		<div style="margin-left: 8%; padding: 5%; font-weight: bold;">
+		<div style="margin-left: 2%; padding: 5%; font-weight: bold;">
 			Book
 				Classified Display Ad
 		</div>
 	</div>
-	<a href="" ng-click="onClassifiedClicked()">
-		<div style="border: 4px solid #D7EDFB; height: 180px; margin-top: 2%;">
-		
-			<img class="custom-img" ng-src="/NewDesign/homepagesImages/Classified-Display-Ad.jpg"
-				style="margin: auto;"> 
+	<div class="flipper">
+		<div  class ="front" style="border: 4px solid #D7EDFB; height: 180px; margin-top: 2%;">
+			<carousel interval="carousel.interval"> <slide
+				ng-repeat="slide in clasifiedsImages" active="slide.active">
+			<img class="custom-img" ng-src="{{slide.image}}"
+				style="margin: auto;"> </slide> </carousel>
 
 		</div>
-	</a>
+
 	<!--  <div style="margin-left: 10%;margin-top: 4%;">
 		     		  <button type="buton" class="btn btn-large btn-success"><label>Classified Display </label></button> 
 		      			 <a href="" ng-click="onClassifiedClicked()" class="btn  btn-success" >Book  Classified Display Ad</a>
 		      </div> -->
-	<div style="margin-top: 2%">
+	<div class="back" style="margin-top: 2%">
 		<ul>
 			<!-- <li style="font-weight:bold; margin-left: 0%;">Classified Display </span><br />
 				  -->
@@ -74,18 +91,23 @@
 		</ul>
 	</div>
 </div>
+</div>
+
 </a>
 <a href="#/dispAds" style="">
-<div class="homCar pull-left" style="width: 20%; margin-left: 8%;">
+<div class="flip-container" style="width: 20%;margin-left: 64%;margin-top: 2%;">
+	<div class="flipper">
 	<div
 		style="height: 40px; background-color: #D7EDFB; -webkit-appearance: button;">
 		<div style="margin-left: 10%; padding: 5%; font-weight: bold;">
 			 Book Display Advertising
 		</div>
 	</div>
-	<div style="border: 4px solid #D7EDFB; height: 180px; margin-top: 2%;">
-		 <img
-			class="custom-img" ng-src="/NewDesign/homepagesImages/Display-Ad.jpg" style="margin: auto;">
+	<div class="front"style="border: 4px solid #D7EDFB; height: 180px; margin-top: 20%;">
+		<carousel interval="carousel.interval"> <slide
+			ng-repeat="slide in dispAds" active="slide.active"> <img
+			class="custom-img" ng-src="{{slide.image}}" style="margin: auto;">
+		</slide> </carousel>
 		<!-- <div>
 						 <span style="font-weight:bold; margin-left: 17%;">Display Advertising</span><br />
 						 <span style="font-size: 10px;margin-left: 2%">1.Creative design and Eye Catching</span><br />
@@ -102,7 +124,7 @@
 		    Book  Display Advertising</a> 
 		    </button>
 		     </div> -->
-	<div style="margin-top: 2%">
+	<div style="margin-top: 20%" class="back">
 		<ul>
 			<!-- <span style="font-weight:bold; margin-left: 11%;">Display Advertising</span><br />
 		 -->
@@ -115,7 +137,7 @@
 
 		</ul>
 	</div>
-
+</div>
 </div>
 </a>
 <div class="row">
@@ -146,7 +168,7 @@
 									</div>
 								</li> -->
 								<li  class="span3"
-									style="height: 150px; width: 100%;">
+									style="height: 150px; width: 87%;margin-top: 2%;">
 									
 									<img class="" src="NewDesign/homepagesImages/epaper.jpg" alt="" /></a>
 									<!-- <div class=" thumbnail "
@@ -172,14 +194,20 @@
 <!--Row end  -->
 <div style="float: left;" class="">
 
-	<div class="index_intro_heading" style="margin-top: 1%;">
-		<span style="font-size: 24px; color: #1597EA">Newspaper Advertising Made Simple</span>
+	<div class="index_intro_heading" style="margin-top: 1%;width: 87%;">
+		<span style="font-size: 24px; color: #1597EA;margin-left: 4%;">Newspaper Advertising Made Simple</span>
 		<hr style="color: black" style="margin:0%">
-	</div>
-	<p>
+
+	<p style="margin-left: 4%;">
 		Book Classified or Display Advertisement with us and we would offer you the best price in the market.<strong> Guaranteed Best Price and the Quick Service!!!</strong> If you get better prices anywhere then come back to us with the right information and the finalized Ad. We would do our best to offer you much better price and also do the quick online booking on the desired dates. !!
 		.
 	</p>
+
+	</div>
+	<!-- <p>
+		Book Classified or Display Advertisement with us and we would offer you the best price in the market.<strong> Guaranteed Best Price and the Quick Service!!!</strong> If you get better prices anywhere then come back to us with the right information and the finalized Ad. We would do our best to offer you much better price and also do the quick online booking on the desired dates. !!
+		.
+	</p> -->
 	<!-- <div  class="homCar pull-left" style="width: 20%;margin-left:8%;border: 4px solid #D7EDFB">
         <div class="newspaper"><strong>198+</strong> Newspapers </div>
         <div class="offer"><strong>2,093+</strong> Offers</div>
@@ -203,16 +231,15 @@
 	
 	</div> -->
 
-		<div class="row"
-			style="margin-top: 0%; margin-left: -4%; width: 108%;">
+		<div class="" style="">
 			<div>
 				<!-- <h3>New Products </h3> -->
-				<div class="row-fluid" style="background-color: #878887;">
+				<div class="row-fluid" style="background-color: #878887;width: 87%;padding: 0%;margin-left: 0%;;">
 					<div id="myCarousel1">
-						<div style="margin-left: 4%">
+						<div style="margin-left: 4%;">
 							<h4>Book Newspaper Ads for</h4>
 						</div>
-						<hr>
+						<hr style="width:101%;">
 						<div class="carousel-inner"
 							style="height: inherit; margin-left: 2%;">
 							<div class="item active" style="background-color: #888888;">
@@ -237,10 +264,10 @@
 		<!--Span End  -->
 	</div>
 	<!--Row end  -->
-	<hr style="margin:0%;">
+	<hr style="margin:0%;width:87%;">
 	<!-- Row start here -->
 	<div class="row"
-		style="background-color: #878887; margin: 0%; padding: 1%; width: 106%;margin-left: -4%;">
+		style="background-color: #878887; margin: 0%;margin-top: 0%;margin-left: 0%;width: 87%;">
 		<div style="float: left; width: 33%; margin-left: 2%;">
 			<h5>Contact</h5>
 			<div>
@@ -424,4 +451,44 @@
 /* .label{
 margin-bottom: 5px !important;
 } */
+
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 100%;
+	height: 250px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+
 </style>
