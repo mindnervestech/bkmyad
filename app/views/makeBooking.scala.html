@@ -12,7 +12,7 @@
 		    <input type="radio" name="selectAd" value="displayClassified" ng-model="selectYourAd" ng-change = "onAdChange(selectYourAd)">Display Classified
 		    <lable style="font-size:10px">(Include image, colour, font variation to your ad)</lable>
 	</div> -->
-		<br /> <br />
+		<!-- <br /> <br /> -->
 		<div class="col-xs-12 col-sm-6 col-sm-offset-3 mnt-shadow-deco">
 			<div rc-wizard="sampleWizard"
 				rc-disabled="rc.firstForm.submitInProgress">
@@ -126,7 +126,6 @@
 								class="mnt-select" style="margin-top: 1%;">
 								 <option  ng-selected="selected" >--Please Select Subcategory--</option>
 								<option  ng-selected="$index == 0" ng-repeat="scat in resultSubCategory">{{scat}}</option>
-							   
 							</select>
 						</div>
 						<tabset> <tab ng-click="tabchange()"
