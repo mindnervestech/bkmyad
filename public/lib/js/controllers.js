@@ -15,20 +15,20 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 		console.log("onClassifiedClicked");
 		 $('#classifiedUserInfo').modal();
 	}
-	$scope.footerCheck();
+	/*$scope.footerCheck();
 		
 	
-	$scope.imgageHeight = $scope.imgageHeight;
+	*//*$scope.imgageHeight = $scope.imgageHeight;
 	if( $scope.imgageHeight != "" ||angular.isUndefined($scope.imgageHeight)){
 	document.getElementById("imagetag").style.marginRight = 30 +"%" ;
 	}else{
 		document.getElementById("imagetag").style.marginRight = 20 +"%" ;
-	}
-	    /*$scope.setCookie();
+	}*/
+	   /* $scope.setCookie();
 	    if($scope.cookie ==  '' || (angular.isUndefined($scope.cookie))){
 			 $('#userInfopopup').modal();
-	    }*/
-	    
+	    }
+	    */
 	    $scope.sendMailAboutClassifiedAd = function(tempuserName,tempuserMobnumber,tempuserNote){
 	    	
 	    	$scope.tempuserName = tempuserName;
@@ -2709,9 +2709,9 @@ angular.module('adschela').controller("ApplicationController",['$scope','$http',
 	}
 	//$scope.uploadyourAd = "templateSelect";
    		
-	$scope.footerCheck =  function(){
+	/*$scope.footerCheck =  function(){
 	$scope.imgageHeight = $cookies.PLAY_SESSION;
-	}
+	}*/
 	console.log($scope.cookie);
 	/*$scope.checkAllAdField =  function(){
 		 $scope.rc.composeWizard.moveTo(1);

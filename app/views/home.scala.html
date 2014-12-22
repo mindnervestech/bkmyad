@@ -26,7 +26,7 @@ margin-left: 8%;float: left;margin-top: 1%;">
 		</div><!-- </a> -->
 	</div>
 	<div class="flipper">
-		<div class= "front"style="border: 4px solid #D7EDFB; height: 180px; margin-top: 2%;">
+		<div class= "front"style="border: 4px solid #D7EDFB; height: 190px; margin-top: 2%;">
 			<carousel interval="carousel.interval"> <slide
 				ng-repeat="slide in slides" active="slide.active"> <img
 				class="custom-img" ng-src="{{slide.image}}" style="margin: auto;">
@@ -66,7 +66,7 @@ margin-left: 8%;float: left;margin-top: 1%;">
 		</div>
 	</div>
 	<div class="flipper">
-		<div  class ="front" style="border: 4px solid #D7EDFB; height: 180px; margin-top: 2%;">
+		<div  class ="front" style="border: 4px solid #D7EDFB; height: 190px; margin-top: 2%;">
 			<carousel interval="carousel.interval"> <slide
 				ng-repeat="slide in clasifiedsImages" active="slide.active">
 			<img class="custom-img" ng-src="{{slide.image}}"
@@ -96,14 +96,15 @@ margin-left: 8%;float: left;margin-top: 1%;">
 </a>
 <a href="#/dispAds" style="">
 <div class="flip-container" style="width: 20%;margin-left: 64%;margin-top: 2%;">
-	<div class="flipper">
+	
 	<div
 		style="height: 40px; background-color: #D7EDFB; -webkit-appearance: button;">
 		<div style="margin-left: 10%; padding: 5%; font-weight: bold;">
 			 Book Display Advertising
 		</div>
 	</div>
-	<div class="front"style="border: 4px solid #D7EDFB; height: 180px; margin-top: 20%;">
+	<div class="flipper">
+	<div class="front"style="border: 4px solid #D7EDFB; height: 190px; margin-top: 1%;">
 		<carousel interval="carousel.interval"> <slide
 			ng-repeat="slide in dispAds" active="slide.active"> <img
 			class="custom-img" ng-src="{{slide.image}}" style="margin: auto;">
@@ -124,7 +125,7 @@ margin-left: 8%;float: left;margin-top: 1%;">
 		    Book  Display Advertising</a> 
 		    </button>
 		     </div> -->
-	<div style="margin-top: 20%" class="back">
+	<div style="margin-top: 1%" class="back">
 		<ul>
 			<!-- <span style="font-weight:bold; margin-left: 11%;">Display Advertising</span><br />
 		 -->
@@ -150,7 +151,7 @@ margin-left: 8%;float: left;margin-top: 1%;">
 			<!-- <h3>New Products </h3> -->
 			<div class="row-fluid">
 				<div id="myCarousel1" style="background-color:;">
-					<div class="carousel-inner" style="height: 80px;">
+					<div class="carousel-inner" style="height: 20px;">
 						<div id="slideflash" class="item active" style="margin-left: 0%;">
 							<ul >
 								<!-- <li ng-repeat="np in nplist" class="span3"
@@ -167,11 +168,11 @@ margin-left: 8%;float: left;margin-top: 1%;">
 										</a>
 									</div>
 								</li> -->
-								<li  class="span3"
+								<!-- <li  class="span3"
 									style="height: 150px; width: 87%;margin-top: 2%;">
 									
 									<img class="" src="NewDesign/homepagesImages/epaper.jpg" alt="" /></a>
-									<!-- <div class=" thumbnail "
+									<div class=" thumbnail "
 										ng-model="bookingState.selectedNewsPaper"
 										ng-click="onfirestNewspaperSelect(np)">
 											<a href="#/compose-classified-Ad/0"> 
@@ -180,8 +181,8 @@ margin-left: 8%;float: left;margin-top: 1%;">
 						   <h5>{{np.name}}</h5>
 						 </div>
 											</a>	
-									</div> -->
-								</li>
+									</div>
+								</li> -->
 							</ul>
 						</div>
 					</div>
@@ -192,7 +193,7 @@ margin-left: 8%;float: left;margin-top: 1%;">
 	<!--Span End  -->
 </div>
 <!--Row end  -->
-<div style="float: left;" class="">
+<!-- <div style="float: left;" class="">
 
 	<div class="index_intro_heading" style="margin-top: 1%;width: 87%;">
 		<span style="font-size: 24px; color: #1597EA;margin-left: 4%;">Newspaper Advertising Made Simple</span>
@@ -203,7 +204,7 @@ margin-left: 8%;float: left;margin-top: 1%;">
 		.
 	</p>
 
-	</div>
+	</div> -->
 	<!-- <p>
 		Book Classified or Display Advertisement with us and we would offer you the best price in the market.<strong> Guaranteed Best Price and the Quick Service!!!</strong> If you get better prices anywhere then come back to us with the right information and the finalized Ad. We would do our best to offer you much better price and also do the quick online booking on the desired dates. !!
 		.
@@ -234,7 +235,7 @@ margin-left: 8%;float: left;margin-top: 1%;">
 		<div class="" style="">
 			<div>
 				<!-- <h3>New Products </h3> -->
-				<div class="row-fluid" style="background-color: #878887;width: 87%;padding: 0%;margin-left: 0%;;">
+				<div class="row-fluid" style="ackground-color: white;width: 80%;padding: 0%;margin-left: 5%">
 					<div id="myCarousel1">
 						<div style="margin-left: 4%;">
 							<h4>Book Newspaper Ads for</h4>
@@ -249,8 +250,9 @@ margin-left: 8%;float: left;margin-top: 1%;">
 					   	<a href="#/compose-classified-Ad/0"> 
 						<img class="mnt-np-logo" ng-src="{{np.img}}" alt=""/></a> -->
 										<div class="caption" value="{{np.name}}">
-											<a href="#/compose-classified-Ad/0"><lable
-													style="color:white;">{{np.name}}</lable></a>
+											<a href="#/compose-classified-Ad/0">
+											<lable
+													style="color:blue;">{{np.name}}</lable></a>
 										</div>
 							</div>
 							</li>
@@ -264,9 +266,9 @@ margin-left: 8%;float: left;margin-top: 1%;">
 		<!--Span End  -->
 	</div>
 	<!--Row end  -->
-	<hr style="margin:0%;width:87%;">
+	<!-- <hr style="margin:0%;width:87%;"> -->
 	<!-- Row start here -->
-	<div class="row"
+	<!-- <div class="row"
 		style="background-color: #878887; margin: 0%;margin-top: 0%;margin-left: 0%;width: 87%;">
 		<div style="float: left; width: 33%; margin-left: 2%;">
 			<h5>Contact</h5>
@@ -286,9 +288,9 @@ margin-left: 8%;float: left;margin-top: 1%;">
 				style="margin-left: 2%;""><img class="img_custom"
 				src="/NewDesign/homepagesImages/lbg inked.jpg"
 				style="margin-left: 2%; width: 33px; cursor: pointer; float: left; margin-right: 1%;" /></a>
-			<!-- <a href="#/readENewspaper">Read E News paper</a> 
+			<a href="#/readENewspaper">Read E News paper</a> 
 			<a href="#/">View Ad Rate In Various Newspapers</a> 
-		    -->
+		   
 
 		</div>
 		<div style="float: left; width: 18%; margin-left: 13%;">
@@ -302,7 +304,7 @@ margin-left: 8%;float: left;margin-top: 1%;">
 	
 		
 		</div>
-	</div>
+	</div> -->
 	<!-- Row start here -->
 	<!-- <div class="row" style="background-color:#878887;margin: 0%;padding: 1%;">
 <div style="float: left;width: 33%;"><h5>Contact</h5>
@@ -321,6 +323,7 @@ margin-left: 8%;float: left;margin-top: 1%;">
 <div style="float: left;width: 18%;margin-left: 13%;"><h5>Payment</h5></div>
 </div> -->
 </div>
+<!-- </div> -->
 <div class="modal fade" id="userInfopopup" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
 	<div class="modal-dialog">
@@ -448,6 +451,8 @@ margin-left: 8%;float: left;margin-top: 1%;">
 	border: 1px solid white !important;
 	background-color: white !important;
 }
+
+
 /* .label{
 margin-bottom: 5px !important;
 } */

@@ -4,10 +4,10 @@
 <html class="mnt-html" ng-app="adschela" ng-controller="ApplicationController" xmlns="http://www.w3.org/1999/xhtml">
 
 @main("") {
-	<body class="mnt-body"  style="overflow-x: hidden;width: 80%;margin-left: 10%;">
+	<body class="mnt-body"  style="overflow-x: hidden;width: 100%;margin-left: 0%;">
 		<div class="container mnt-container" style="margin-top: 0%; width: 100%;margin-left: 0px;padding-top: 0px;box-shadow: 2px 3px 5px 6px #ccc;padding-left: 0px; *">
          	<input type="hidden" ng-model="txtUsername" ng-init='setSession("@session().get("userName")")' value='@session().get("emailId")'/>
-			<header id="header" style="width: 100%;display: block;padding:0px;">
+			<header id="header" style="width: 80%;display: block;padding: 0px;margin-left: 10%">
 				<div class="row">
 				<div class="span12" style="margin-bottom: 0%;" >
 					<a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 87px;"alt="Bootsshop"/></a>
@@ -128,7 +128,7 @@ var google_remarketing_only = false;
 			style="min-height: 500px;"></div>
 
 		<!-- Footer ------------------------------------------------------ -->
-		<hr class="soft" style="width: 100%; margin-left: 0%; margin: 0px;">
+	<!-- 	<hr class="soft" style="width: 100%; margin-left: 0%; margin: 0px;"> -->
 			<!-- <div class="row" style="background-color:#878887;margin: 0%;padding: 1%;margin-left: 0%;">
 <div style="float: left;width: 33%;margin-left: 2%;"><h5>Contact</h5>
 	<div><h5>07536066711</h5></div>
@@ -147,7 +147,7 @@ var google_remarketing_only = false;
 <img class="img_custom" src="/NewDesign/homepagesImages/3d-secure-logos.png" style="margin-left: 2%;background-color: #00aced;width: 150px;cursor: pointer;float: left;margin-right: 1%;" />
 </div>
 </div> -->
-<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 0%;background-color:#ccc">
+<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 0%;background-color:#ccc;width: 80%;margin-left: 9%;">
 	<div class="row" style="margin-left:1%">
 		<!-- <div class="span3 custom_span">
 			<h5>HOME</h6>
@@ -160,16 +160,32 @@ var google_remarketing_only = false;
 		 </div> -->
 		<div class="span11">
 		<div style="float:left;width: 92%;background-color:#ccc">
-		
-		<div >
-		<span id="imagetag"style="float: left;width:25%;margin-right: 21%;"><a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 40px; width:100%"alt="Bootsshop"/></a></span>
-			<!-- <h5>Quick Links</h5> -->
+		<div style="float: left; width: 20%; margin-left: 0%">
+			<h5>Follow Us</h5>
+			<a target="_blank" href="https://www.facebook.com/ArihantBooking"><img
+				class="img_custom" src="/NewDesign/homepagesImages/bg-facebook.png"
+				style="background-color: #3b5998; width: 33px; cursor: pointer; float: left; margin-right: 1%;" /></a>
+			<a target="_blank"  href="https://twitter.com/arihantbooking"><img
+				class="img_custom" src="/NewDesign/homepagesImages/bg-twitter.png"
+				style="margin-left: 2%; background-color: #00aced; width: 33px; cursor: pointer; float: left; margin-right: 1%;" /></a>
+			<a target="_blank"  href="https://www.linkedin.com/company/arihantbooking"
+				style="margin-left: 2%;""><img class="img_custom"
+				src="/NewDesign/homepagesImages/lbg inked.jpg"
+				style="margin-left: 2%; width: 33px; cursor: pointer; float: left; margin-right: 1%;" /></a>
+			<!-- <a href="#/readENewspaper">Read E News paper</a> 
+			<a href="#/">View Ad Rate In Various Newspapers</a> 
+		    -->
+
+		</div>
+		<div  style="width: 40%;float: left;margin-left:10%;margin-top: 2%;">
+	<!-- 	<span id="imagetg"style="float: left;width:25%;margin-right: 21%;"><a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 40px; width:100%"alt="Bootsshop"/></a></span>
+	 -->		<!-- <h5>Quick Links</h5> -->
 			<div style=" margin:0 auto;" >
-			<span style="float: left;width:5%;"><a href="#/aboutUs" >About Us</a></span>
-		    <span style="float: left;width:6%;"><a href="#/contactUs" >Contact Us</a></span>
-		    <span style="float: left;width:9%;"><a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a></span>
-			<span style="float: left;width:7%;"><a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a></span>
-			<span style="float: left;width:5%;"><a href="#/ourBlogs">Blog</a></span>
+			<span style="float: left;width:14%;"><a href="#/aboutUs" >About Us</a></span>
+		    <span style="float: left;width:15%;"><a href="#/contactUs" >Contact Us</a></span>
+		    <span style="float: left;width:22%;"><a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a></span>
+			<span style="float: left;width:16%;"><a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a></span>
+			<span style="float: left;width:12%;"><a href="#/ourBlogs">Blog</a></span>
 			</div>
 			<!-- <a href="#/" style="float:left;margin-right: 2%;">Advertising Policy</a>
 			 -->
@@ -183,7 +199,17 @@ var google_remarketing_only = false;
 					<!-- 	<a href="#/help">How to Book an Ad</a> -->
 			<!-- <a href="#/help">How to Book an Ad</a> -->
 			</div>
-			
+			<div style="float: right; width: 18%; margin-left: 0%;">
+			<h5 style="margin-left: 22%;">Payment</h5>
+			<img class="img_custom"
+				src="/NewDesign/homepagesImages/card_1.png"
+				style="margin-left: 2%; width: 75px; cursor: pointer; float: left; margin-right: 1%;" />
+		<img class="img_custom"
+				src="/NewDesign/homepagesImages/card_2.png"
+				style="margin-left: 0%;  width: 75px; cursor: pointer; float: left; margin-right: 1%;" />
+	
+		
+		</div>
 		<!--  </div>
 		 <div class="span3 ">
 			<div style="margin-left: 38%;">
@@ -197,7 +223,7 @@ var google_remarketing_only = false;
 		    </div>
 		 </div> -->
 		 <div>
-		 <span style="font-size: 10px;  float: left;width:50%;margin-left:46%">
+		 <span style="font-size: 10px;  float: left;width:50%;margin-left:27%">
 			 Copyright  &copy;  2014 - 2015 www.ArihantBooking.com, All Rights Reserved.
 			</span>
 		 </div>
