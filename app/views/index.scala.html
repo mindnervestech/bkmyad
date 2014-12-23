@@ -8,21 +8,21 @@
 		<div class="container mnt-container" style="margin-top: 0%; width: 100%;margin-left: 0px;padding-top: 0px;box-shadow: 2px 3px 5px 6px #ccc;padding-left: 0px; *">
          	<input type="hidden" ng-model="txtUsername" ng-init='setSession("@session().get("userName")")' value='@session().get("emailId")'/>
 			<header id="header" style="width: 100%;display: block;padding: 0px;margin-left: 0%;border-bottom: 0px solid #444 !important;
-margin-bottom: 0px !important;">
+				margin-bottom: 0px !important;">
 				<div class="row">
 				<div class="span12" style="margin-bottom: 0%;" >
-					<a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 87px;"alt="Bootsshop"/></a>
+					<a href="#"><img src="assets/img/Logo.jpg"   style="float:left ; height: 87px;"alt="Bootsshop"/></a>
 				<div>
-					<a href="#"><img src="assets/img/Toll-Free.gif"   style="float:left;margin-left: 20%;"alt="Bootsshop"/></a>
+					<a href="#"><label style="float:left;margin-left: 23%;margin-top: 4%;font-weight: bold;">For Booking Newspaper Ads Call 1800 270 5575 </label></a>
 				</div>
 				<div>
-					<label style="font-weight: bold;font-size: 27px;margin-top: 3%;float: left;margin-left: 0%">Guaranteed best prices</label>
+					<a href="#/contactUs"  class="btn btn-mini active ng-binding" style="font-weight: bold;margin-top: 4%;float: left;margin-left: 6%;color:white;">Contact Us</a>
 				</div>
 				</div>
 				</div>
 				<div class="clr"></div>
 				<div class="navbar navbar-fixed-top" >
-              <div class="navbar-inner">
+              <div class="navbar-inner" style="background:black;">
                 <div class="container">
                  <a id="logoM" href="#"><!-- <img src="" alt="Bootsshop"/> --></a>
 					<a data-target="#sidebar" data-toggle="collapse" class="btn btn-navbar">
@@ -32,27 +32,27 @@ margin-bottom: 0px !important;">
                   </a>
                   <div class="nav-collapse">
                     <ul class="nav" style="width:98%;margin-left: 7%;">
-					  <li class=""><a href="#">Home	</a></li>
+					  <li class=""><a href="#" style="color:white;">Home	</a></li>
 					 <!--  <li class=""><a href="special_offer.html">Specials Offer</a></li> -->
 					 <!--  <li class=""><a href="#/aboutUs" >About Us</a></li>
 					  <li class=""><a href="#/contactUs" >Contact Us</a></li>
-					 -->  <li class=""  ng-show="name != ''"><a href="#/myAccount">My Ads</a></li> 
-					  <li class=""><a  ng-click="showSpecialOffer();" data-toggle="modal"  style="cursor: pointer;">Special Offers	</a></li>
-					  <li class=""><a href="#" data-toggle="modal">Ad Samples	</a></li>
-					 <li class=""><a  href="#/contactUs" >Contact Us	</a></li>
-					
+					 -->  <li class=""  ng-show="name != ''"><a href="#/myAccount" style="color:white;">My Ads</a></li> 
+					  <li class=""><a  ng-click="showSpecialOffer();" data-toggle="modal"  style="cursor: pointer;color:white;">Special Offers	</a></li>
+					  <li class=""><a href="#" data-toggle="modal" style="color:white;">Ad Samples	</a></li>
+					<!--  <li class=""><a  href="#/contactUs"  style="color:white;">Contact Us	</a></li>
+				 -->	
 					 <!--   <li class=""><a href="#">Home	</a></li> -->
 					  <!-- <li class=""  ng-show="name != ''" style="float: right;"><a href="/logout">Logout</a></li> 
 					  --> <li ng-show="name == ''"  >
-					  <a   ng-click="Login()" data-toggle="modal" style="cursor: pointer;" >Login </a>
+					  <a   ng-click="Login()" data-toggle="modal" style="cursor: pointer;color:white;" >Login </a>
 					  </li>
 					 <li ng-show="name == ''">
-						<a  ng-click="Register()" data-toggle="modal" style="cursor: pointer;">Register </a>						
+						<a  ng-click="Register()" data-toggle="modal" style="cursor: pointer;color:white;">Register </a>						
 					 </li>
-					 <li  ng-show="name != ''" style="padding-top: 1%;margin-left: 12%;">
-						Welcome: 	{{name}}					
+					 <li  ng-show="name != ''" style="padding-top: 0%;margin-left: 9%;">
+						<a  href="#/contactUs"  style="color:white;">Welcome: 	{{name}}</a>					
 					 </li>
-					 <li class=""  ng-show="name != ''" style="margin-left:5%"><a href="/logout">Logout</a></li> 
+					 <li class=""  ng-show="name != ''" style="margin-left:5%"><a href="/logout"style="color:white;">Logout</a></li> 
 				
 					 <div class="pull-right" style="margin-right: 18%;"> 
 				<!-- <div style="width: 65%;  float: left;">
