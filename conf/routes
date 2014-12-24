@@ -31,7 +31,7 @@ POST    /submit-cart                            controllers.MakeBookingControlle
 POST   /submit-cartUserDisplayAd                    controllers.MakeBookingController.saveUserDisplayComposeyourAd()
 POST   /submit-cartColorDisplayAd               controllers.MakeBookingController.saveDisplayColorComposeyourAd()
 POST /submit-cartDisplayHTMLAd                      controllers.MakeBookingController.saveDisplayHTMLAd()
-#POST    /sendfeedbacks                          controllers.Application.sendFeedback()
+POST    /sendfeedbacks                          controllers.Application.sendFeedback()
 GET	   /getBasicrate/:City/:Category/:currentPage	controllers.AddbasicRateController.getBasicrate(City :String,Category :String,currentPage :Integer)
 GET /getDiscountRate/:City/:Category/:currentPage	controllers.AddPackageController.getDiscountRate(City :String,Category :String, currentPage :Integer)
 GET  /viewAllOrdersForAdmin/:City/:currentPage	controllers.ViewAllOrdersController.viewAllOrdersForAdmin(City :String,currentPage :Integer)
