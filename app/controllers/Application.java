@@ -667,11 +667,13 @@ public class Application extends Controller {
 				session().put("emailId", existingUser.email);
 				session().put("userName", existingUser.name);
 				session().put("userRole", existingUser.role);
+				flash("login_success", "Success");
 				return redirect("/adminPanel");
 			} else {
 				session().clear();
 				session().put("emailId", existingUser.email);
 				session().put("userName", existingUser.name);
+				flash("login_success", "Success");
 				return redirect("/");
 			}
 		} else {
@@ -694,7 +696,7 @@ public class Application extends Controller {
 	public static Result Logout() {
 		response().discardCookie("orderId");
 		session().clear();
-		flash("login_success", " Success");
+		flash("login_success", "Success");
 		return redirect("/");
 	}
 
