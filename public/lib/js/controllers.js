@@ -106,7 +106,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 	               /*  {name:"Navbharat Times",img:"/NewDesign/np-logos/navbharattimes.jpg"},*/
 	                 {name:"Rajasthan Patrika",img:"/NewDesign/np-logos/rajasthanpatrika.jpg"},
 	                 {name:"Prajavani",img:"/NewDesign/np-logos/prajavani.jpg"},
-	                 {name:"Udyavani Head",img:"/NewDesign/np-logos/udyavani-head.jpg"},
+	                 {name:"Udayavani",img:"/NewDesign/np-logos/udyavani-head.jpg"},
 /*	                 {name:"Kashmir Times",img:"/NewDesign/np-logos/Kashmir Times Logo.jpg"},
 	                 {name:"Dainik Sambad",img:"/NewDesign/np-logos/dainik sambad.jpg"},
 	                 {name:"Prothom alo",img:"/NewDesign/np-logos/prothom alo logo.jpg"},
@@ -148,7 +148,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 	                 {name:"Nai Dunia epaper",img:"/NewDesign/np-logos/naiduniaepaper.jpg"},
 /*	                 {name:"Prothom alo",img:"/NewDesign/np-logos/prothom alo logo.jpg"},
 */	                 {name:"Punjab Kesri",img:"/NewDesign/np-logos/punjabkesri.jpg"},
-	                 {name:"Punyanagari Big",img:"/NewDesign/np-logos/punyanagari-big.png"},
+	                /* {name:"Punyanagari Big",img:"/NewDesign/np-logos/punyanagari-big.png"},*/
 	                 {name:"Sakal",img:"/NewDesign/np-logos/sakal.jpg"},
 	                 {name:"Sakshi",img:"/NewDesign/np-logos/sakshi.jpg"},
 	                 {name:"Sambad",img:"/NewDesign/np-logos/sambad.jpg"},
@@ -162,7 +162,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 	                 {name:"The Tribune",img:"/NewDesign/np-logos/The-Tribune.png"},
 	                /* {name:"Navbharat",img:"/NewDesign/np-logos/Navbharat.jpg"},*/
 	                 {name:"Navbharat Times",img:"/NewDesign/np-logos/navbharattimes.jpg"},
-	                 {name:"Newbline",img:"/NewDesign/np-logos/newbline.png"},	                 	                 
+	               /*  {name:"Newbline",img:"/NewDesign/np-logos/newbline.png"},	*/                 	                 
 	                 {name:"Prabhat Khabar",img:"/NewDesign/np-logos/prabhatkhabar.jpg"}];
 	
 	$scope.carousel= {
