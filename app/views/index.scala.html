@@ -466,6 +466,9 @@ $(document).ready(function(){
  }else {
 	 $('#login_error').hide();
  }	
+ @if(flash.contains("login_success")) {
+	 $('#login_error').hide();
+ }	
  
  jQuery.validator.addMethod("lettersonly", function(value, element){ 
 			

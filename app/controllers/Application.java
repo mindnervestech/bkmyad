@@ -694,6 +694,7 @@ public class Application extends Controller {
 	public static Result Logout() {
 		response().discardCookie("orderId");
 		session().clear();
+		flash("login_success", " Success");
 		return redirect("/");
 	}
 
