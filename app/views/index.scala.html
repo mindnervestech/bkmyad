@@ -462,12 +462,8 @@ $(document).ready(function(){
 	
  @if(flash.contains("login_error")) {
 	 $('#myModal').modal('show');
-	 @if(flash.contains("login_success")) {
-		 $('#login_error').hide();
-	 }else{
-		 $('#login_error').show();
-	 }
-  }else {
+	 $('#login_error').show();
+ }else {
 	 $('#login_error').hide();
 	 window.alert(5 + 6);
  }	
