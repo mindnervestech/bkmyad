@@ -4,24 +4,25 @@
 <html class="mnt-html" ng-app="adschela" ng-controller="ApplicationController" xmlns="http://www.w3.org/1999/xhtml">
 
 @main("") {
-	<body class="mnt-body"  style="overflow-x: hidden">
-		<div class="container mnt-container" style="margin-top: 0%; width: 100%;margin-left: 0px;padding-top: 0px;box-shadow: 10px 3px 5px 6px #ccc;padding-left: 0px; *">
+	<body class="mnt-body"  style="overflow-x: hidden;width: 100%;margin-left: 0%;">
+		<div class="container mnt-container" style="margin-top: 0%; width: 100%;margin-left: 0px;padding-top: 0px;box-shadow: 2px 3px 5px 6px #ccc;padding-left: 0px; *">
          	<input type="hidden" ng-model="txtUsername" ng-init='setSession("@session().get("userName")")' value='@session().get("emailId")'/>
-			<header id="header" style="width: 100%;display: block;padding:0px;">
+			<header id="header" style="width: 100%;display: block;padding: 0px;margin-left: 0%;border-bottom: 0px solid #444 !important;
+				margin-bottom: 0px !important;">
 				<div class="row">
 				<div class="span12" style="margin-bottom: 0%;" >
-					<a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 87px;"alt="Bootsshop"/></a>
+					<a href="#"><img src="assets/img/Logo.jpg"   style="float:left ; height: 87px;margin-left: 10%;"alt="Bootsshop"/></a>
 				<div>
-					<a href="#"><img src="assets/img/Toll-Free.gif"   style="float:left"alt="Bootsshop"/></a>
+					<a href="#"><label style="float:left;margin-left: 10%;margin-top: 4%;font-weight: bold;">For Booking Newspaper Ads Call 1800 270 5575 </label></a>
 				</div>
 				<div>
-					<label style="font-weight:bold;font-weight: bold;font-size: 27px;margin-top: 3%;float: right;margin-right: 20%;">Guaranteed best prices</label>
+					<a href="#/contactUs"  class="btn btn-mini active ng-binding" style="font-weight: bold;margin-top: 4%;float: left;margin-left: 6%;color:white;">Contact Us</a>
 				</div>
 				</div>
 				</div>
 				<div class="clr"></div>
 				<div class="navbar navbar-fixed-top" >
-              <div class="navbar-inner">
+              <div class="navbar-inner" style="background:black;">
                 <div class="container">
                  <a id="logoM" href="#"><!-- <img src="" alt="Bootsshop"/> --></a>
 					<a data-target="#sidebar" data-toggle="collapse" class="btn btn-navbar">
@@ -30,26 +31,30 @@
                     <span class="icon-bar"></span>
                   </a>
                   <div class="nav-collapse">
-                    <ul class="nav" style="width:98%;">
-					  <li class=""><a href="#">Home	</a></li>
+                    <ul class="nav" style="width:98%;margin-left: 7%;">
+					  <li class=""><a href="#" style="color:white;">Home	</a></li>
 					 <!--  <li class=""><a href="special_offer.html">Specials Offer</a></li> -->
 					 <!--  <li class=""><a href="#/aboutUs" >About Us</a></li>
 					  <li class=""><a href="#/contactUs" >Contact Us</a></li>
-					 -->  <li class=""  ng-show="name != ''"><a href="#/myAccount">My Ads</a></li> 
-					  <li class=""><a  ng-click="showSpecialOffer();" data-toggle="modal"  style="cursor: pointer;">Special Offers	</a></li>
-					 
+					 -->  <li class=""  ng-show="name != ''"><a href="#/myAccount" style="color:white;">My Ads</a></li> 
+					  <li class=""><a  ng-click="showSpecialOffer();" data-toggle="modal"  style="cursor: pointer;color:white;">Special Offers	</a></li>
+					  <li class=""><a href="#" data-toggle="modal" style="color:white;">Ad Samples	</a></li>
+					<!--  <li class=""><a  href="#/contactUs"  style="color:white;">Contact Us	</a></li>
+				 -->	
 					 <!--   <li class=""><a href="#">Home	</a></li> -->
-					  <li class=""  ng-show="name != ''" style="float: right;"><a href="/logout">Logout</a></li> 
-					  <li ng-show="name == ''"  >
-					  <a   ng-click="Login()" data-toggle="modal" style="cursor: pointer;" >Login </a>
+					  <!-- <li class=""  ng-show="name != ''" style="float: right;"><a href="/logout">Logout</a></li> 
+					  --> <li ng-show="name == ''"  >
+					  <a   ng-click="Login()" data-toggle="modal" style="cursor: pointer;color:white;" >Login </a>
 					  </li>
 					 <li ng-show="name == ''">
-						<a  ng-click="Register()" data-toggle="modal" style="cursor: pointer;">Register </a>						
+						<a  ng-click="Register()" data-toggle="modal" style="cursor: pointer;color:white;">Register </a>						
 					 </li>
-					 <li  ng-show="name != ''" style="float: right;/* width: 40%; */padding-top: 1%;">
-						Welcome: 	{{name}}					
+					 <li  ng-show="name != ''" style="padding-top: 0%;margin-left: 10%;">
+						<a  href="#/contactUs"  style="color:white;">Welcome: 	{{name}}</a>					
 					 </li>
-					 <div class="pull-right" style="width: 26%;margin-right: 1%;"> 
+					 <li class=""  ng-show="name != ''" style="margin-left:5%"><a href="/logout"style="color:white;">Logout</a></li> 
+				
+					 <div class="pull-right" style="margin-right: 18%;"> 
 				<!-- <div style="width: 65%;  float: left;">
 				<table>
                                         <tr>
@@ -62,7 +67,8 @@
                                         </tr>
                                     </table>
 				</div> -->
-				<div style="float: right;">
+				
+				<div style="">
 				  	<a href="#/compose-classified-Ad/2" id="cartinheader"  style="cursor: pointer;">
 					<strong class="btn btn-mini btn-warning" >  
 					<i class="icon-shopping-cart icon-white"></i> [ {{carts.length}} ] </strong></a>
@@ -71,6 +77,8 @@
 					<span class="btn btn-mini">&euro;</span>  -->
 					</div>
 				</div>
+				<!-- <li class=""  ng-show="name != ''" style="margin-left:5%"><a href="/logout">Logout</a></li> 
+				 -->	 
 					</ul>
 					
                   </div><!-- /.nav-collapse -->
@@ -123,10 +131,12 @@ var google_remarketing_only = false;
 		</header>
 
 		<div id="mainBody" class="container" ng-view=""
-			style="min-height: 500px;"></div>
+			style="min-height: 500px;">
+			
+			</div>
 
 		<!-- Footer ------------------------------------------------------ -->
-		<hr class="soft" style="width: 100%; margin-left: 0%; margin: 0px;">
+	<!-- 	<hr class="soft" style="width: 100%; margin-left: 0%; margin: 0px;"> -->
 			<!-- <div class="row" style="background-color:#878887;margin: 0%;padding: 1%;margin-left: 0%;">
 <div style="float: left;width: 33%;margin-left: 2%;"><h5>Contact</h5>
 	<div><h5>07536066711</h5></div>
@@ -145,7 +155,7 @@ var google_remarketing_only = false;
 <img class="img_custom" src="/NewDesign/homepagesImages/3d-secure-logos.png" style="margin-left: 2%;background-color: #00aced;width: 150px;cursor: pointer;float: left;margin-right: 1%;" />
 </div>
 </div> -->
-<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 0%;background-color:#ccc">
+<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 0%;background-color:#ccc;width: 100%;margin-left: 0%;">
 	<div class="row" style="margin-left:1%">
 		<!-- <div class="span3 custom_span">
 			<h5>HOME</h6>
@@ -157,17 +167,33 @@ var google_remarketing_only = false;
 			<a href="#/ourBlogs">Blog</a>
 		 </div> -->
 		<div class="span11">
-		<div style="float:left;width:100%;background-color:#ccc">
-		
-		<div >
-		<span style="float: left;width:25%;margin-right: 21%;"><a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 40px; width:100%"alt="Bootsshop"/></a></span>
-			<!-- <h5>Quick Links</h5> -->
+		<div style="float:left;width: 100%;background-color:#ccc">
+		<div style="float: left; width: 20%; margin-left: 3%">
+			<h5>Follow Us</h5>
+			<a target="_blank" href="https://www.facebook.com/ArihantBooking"><img
+				class="img_custom" src="/NewDesign/homepagesImages/bg-facebook.png"
+				style="background-color: #3b5998; width: 33px; cursor: pointer; float: left; margin-right: 1%;" /></a>
+			<a target="_blank"  href="https://twitter.com/arihantbooking"><img
+				class="img_custom" src="/NewDesign/homepagesImages/bg-twitter.png"
+				style="margin-left: 2%; background-color: #00aced; width: 33px; cursor: pointer; float: left; margin-right: 1%;" /></a>
+			<a target="_blank"  href="https://www.linkedin.com/company/arihantbooking"
+				style="margin-left: 2%;""><img class="img_custom"
+				src="/NewDesign/homepagesImages/lbg inked.jpg"
+				style="margin-left: 2%; width: 33px; cursor: pointer; float: left; margin-right: 1%;" /></a>
+			<!-- <a href="#/readENewspaper">Read E News paper</a> 
+			<a href="#/">View Ad Rate In Various Newspapers</a> 
+		    -->
+
+		</div>
+		<div  style="width: 40%;float: left;margin-left:22%;margin-top: 2%;">
+	<!-- 	<span id="imagetg"style="float: left;width:25%;margin-right: 21%;"><a href="#"><img src="assets/img/New_logo.gif"   style="float:left ; height: 40px; width:100%"alt="Bootsshop"/></a></span>
+	 -->		<!-- <h5>Quick Links</h5> -->
 			<div style=" margin:0 auto;" >
-			<span style="float: left;width:5%;"><a href="#/aboutUs" >About Us</a></span>
-		    <span style="float: left;width:6%;"><a href="#/contactUs" >Contact Us</a></span>
-		    <span style="float: left;width:9%;"><a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a></span>
-			<span style="float: left;width:7%;"><a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a></span>
-			<span style="float: left;width:5%;"><a href="#/ourBlogs">Blog</a></span>
+			<span style="float: left;width:14%;"><a href="#/aboutUs" >About Us</a></span>
+		    <span style="float: left;width:15%;"><a href="#/contactUs" >Contact Us</a></span>
+		    <span style="float: left;width:22%;"><a ng-if='!(@session().containsKey("userName"))' href="#myModal" data-toggle="modal" >Registered User</a></span>
+			<span style="float: left;width:16%;"><a  ng-if='!(@session().containsKey("userName"))' href="#mySignUp" data-toggle="modal">Guest user</a></span>
+			<span style="float: left;width:12%;"><a href="#/ourBlogs">Blog</a></span>
 			</div>
 			<!-- <a href="#/" style="float:left;margin-right: 2%;">Advertising Policy</a>
 			 -->
@@ -181,7 +207,17 @@ var google_remarketing_only = false;
 					<!-- 	<a href="#/help">How to Book an Ad</a> -->
 			<!-- <a href="#/help">How to Book an Ad</a> -->
 			</div>
-			
+			<div style="float: right; width: 15%; margin-left: 0%;">
+			<h5 style="margin-left: 22%;">Payment</h5>
+			<img class="img_custom"
+				src="/NewDesign/homepagesImages/card_1.png"
+				style="margin-left: 2%; width: 75px; cursor: pointer; float: left; margin-right: 1%;" />
+		<img class="img_custom"
+				src="/NewDesign/homepagesImages/card_2.png"
+				style="margin-left: 0%;  width: 75px; cursor: pointer; float: left; margin-right: 1%;" />
+	
+		
+		</div>
 		<!--  </div>
 		 <div class="span3 ">
 			<div style="margin-left: 38%;">
@@ -194,8 +230,8 @@ var google_remarketing_only = false;
 		    
 		    </div>
 		 </div> -->
-		 <div>
-		 <span style="font-size: 10px;  float: left;width:50%;margin-left:46%">
+		 <div id="copyright">
+		 <span style="font-size: 10px;  float: left;width:52%;">
 			 Copyright  &copy;  2014 - 2015 www.ArihantBooking.com, All Rights Reserved.
 			</span>
 		 </div>
