@@ -20,7 +20,7 @@ angular.module('adschela').controller("IndexController",['$scope','$http','$cook
 	
 	//*$scope.imgageHeight = $scope.imgageHeight;
 	if( $scope.imgageHeight != "" ||angular.isUndefined($scope.imgageHeight)){
-	document.getElementById("copyright").style.marginLeft = 45 +"%" ;
+	document.getElementById("copyright").style.marginLeft = 37 +"%" ;
 	}else{
 		document.getElementById("copyright").style.marginLeft = 38 +"%" ;
 	}
