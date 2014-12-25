@@ -140,8 +140,8 @@ var google_remarketing_only = false;
 		</noscript>
 		</header>
 
-		<div id="mainBody" class="container" ng-view=""
-			style="min-height: 500px;">
+		<div style="min-height: 800px;min-width: 1000px;" id="mainBody" class="container" ng-view=""
+			>
 			
 			</div>
 
@@ -165,7 +165,7 @@ var google_remarketing_only = false;
 <img class="img_custom" src="/NewDesign/homepagesImages/3d-secure-logos.png" style="margin-left: 2%;background-color: #00aced;width: 150px;cursor: pointer;float: left;margin-right: 1%;" />
 </div>
 </div> -->
-<div  id="footerSection" style="border: Solid 1px #EBDBAA;margin-bottom: 0%;background-color:#ccc;width: 100%;margin-left: 0%;">
+<div  id="footerSection" style="position:relative;margin-top:500px;;border: Solid 1px #EBDBAA;margin-bottom: 0%;background-color:#ccc;width: 100%;margin-left: 0%;">
 	<div class="row" style="margin-left:1%">
 		<!-- <div class="span3 custom_span">
 			<h5>HOME</h6>
@@ -562,6 +562,12 @@ $(document).ready(function(){
 
 <!-- Start Alexa Certify Javascript -->
 <script type="text/javascript">
+window.setInterval(function(){
+	$("#footerSection").css({"position":"inherit","marginTop":"0"});
+	window.clearInterval();
+}, 1000);
+	
+
 _atrk_opts = { atrk_acct:"5hSGi1a8Dy00gO", domain:"arihantbooking.com",dynamic: true};
 (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
 </script>
