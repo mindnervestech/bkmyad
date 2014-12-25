@@ -9,14 +9,24 @@
          	<input type="hidden" ng-model="txtUsername" ng-init='setSession("@session().get("userName")")' value='@session().get("emailId")'/>
 			<header id="header" style="width: 100%;display: block;padding: 0px;margin-left: 0%;border-bottom: 0px solid #444 !important;
 				margin-bottom: 0px !important;">
-				<div class="row">
-				<div class="span12" style="margin-bottom: 0%;" >
-					<a href="#"><img src="assets/img/New Logo.jpg"   style="float:left ; height: 87px;margin-left: 11%;"alt="Bootsshop"/></a>
-				<div>
-					<a href="#"><label style="float:left;margin-left: 10%;margin-top: 4%;font-weight: bold;"><span style="font-size: 16px;">For Enquires Call</span> <span style="font-size: 25px;">1800 270 5575</span> </label></a>
-				</div>
-				<div>
-					<a href="#/contactUs"  class="btn btn-mini active ng-binding" style="font-weight: bold;margin-top: 4%;float: left;margin-left: 6%;color:white;cursor: pointer;font-size:15px;">Contact Us</a>
+    		<div class="container" style="width:100%;">
+			<div class="">
+				<div class="" style="margin-bottom: 0%;">
+					<div style="float: left;height:87px;margin-left: 10%;width: 30%;" >
+					<a href="#"><img src="assets/img/New Logo.jpg"
+						alt="Bootsshop" /></a>
+	             </div>
+					<div style="float: left; margin-left: 10%; margin-top: 4%; font-weight: bold;">
+						<a href="#"><label
+							><span
+								style="font-size: 16px; font-weight: bold;">For Enquires Call</span> <span
+								style="font-size: 25px; font-weight: bold;">1800 270 5575</span> </label></a>
+					</div>
+					<div style=" margin-top: 4%; float: left; margin-left: 4%;  ">
+						<a href="#/contactUs" class="btn btn-mini active ng-binding"
+							style="font-weight: bold;font-size: 15px;cursor: pointer;color: white; ">Contact
+							Us</a>
+					</div>
 				</div>
 				</div>
 				</div>
@@ -282,7 +292,7 @@ var google_remarketing_only = false;
         <button type="button" class="close" data-dismiss="modal">
         <span aria-hidden="true">&times;</span><span class="sr-only"></span></button>
          <h4>Login </h4>
-         <h6 id="login_error" style="color:red;">Seems you have entered wrong details.</h6>
+         <h6 id="login_error" style="color:red;">@flash.get("login_error")</h6>
       </div>
       
       <form name="aspnetForm" method="post" action="/checkSignIn" id="aspnetForm" class="form-horizontal">
@@ -448,10 +458,19 @@ float: left;
  
 </script>
  
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js">
 </script>
 
-
+<script type="text/javascript">
+$(document).ready(function(){
+ @if(flash.contains("login_error")) {
+	 $('#myModal').modal('show');
+	 $('#login_error').show();
+ }else{
+	 $('#login_error').hide();
+ } 
+});
+</script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -459,17 +478,16 @@ $(document).ready(function(){
 		$("#sidebar a").click();
 	});
 	
- @if(flash.contains("login_error")) {
+/*  @if(flash.contains("login_error")) {
 	 $('#myModal').modal('show');
 	 $('#login_error').show();
- }else {
+ }else{
 	 $('#login_error').hide();
- }	
- 
- jQuery.validator.addMethod("lettersonly", function(value, element){ 
-			
- return this.optional(element) || /^[a-z," "]+$/i.test(value);
+     window.alert("hi");
+ }  */
 
+ jQuery.validator.addMethod("lettersonly", function(value, element){ 
+ return this.optional(element) || /^[a-z," "]+$/i.test(value);
  }, "Letters and spaces only please");  
  
   $("#aspnetForm").validate({

@@ -635,7 +635,7 @@ public class Application extends Controller {
 	    	}
 	    }
 	    else {
-	    	flash("login_error", "Please check your username and password");
+			flash("login_error", "Seems you have entered wrong details.");
 	    	return redirect("/");
 	    }
     }
