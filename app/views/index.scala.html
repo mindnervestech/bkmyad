@@ -28,9 +28,9 @@
 							Us</a>
 					</div>
 				</div>
-				</div>
-				</div>
-				<div class="clr"></div>
+			</div>
+		</div>
+		<div class="clr"></div>
 				<div class="navbar navbar-fixed-top" >
               <div class="navbar-inner" style="background:black;">
                 <div class="container">
@@ -460,10 +460,20 @@ float: left;
  
 </script>
  
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js">
 </script>
 
-
+<script type="text/javascript">
+$(document).ready(function(){
+ @if(flash.contains("login_error")) {
+	 $('#myModal').modal('show');
+	 $('#login_error').show();
+ }else{
+	 $('#login_error').hide();
+     window.alert("hi");
+ } 
+});
+</script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -471,13 +481,13 @@ $(document).ready(function(){
 		$("#sidebar a").click();
 	});
 	
- @if(flash.contains("login_error")) {
+/*  @if(flash.contains("login_error")) {
 	 $('#myModal').modal('show');
-	// $('#login_error').show();
+	 $('#login_error').show();
  }else{
 	 $('#login_error').hide();
      window.alert("hi");
- } 
+ }  */
 
  jQuery.validator.addMethod("lettersonly", function(value, element){ 
 			
