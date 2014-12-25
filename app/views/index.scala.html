@@ -1,4 +1,4 @@
-@(message: String)
+	@(message: String)
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html class="mnt-html" ng-app="adschela" ng-controller="ApplicationController" xmlns="http://www.w3.org/1999/xhtml">
@@ -9,15 +9,25 @@
          	<input type="hidden" ng-model="txtUsername" ng-init='setSession("@session().get("userName")")' value='@session().get("emailId")'/>
 			<header id="header" style="width: 100%;display: block;padding: 0px;margin-left: 0%;border-bottom: 0px solid #444 !important;
 				margin-bottom: 0px !important;">
-				<div class="row">
-				<div class="span12" style="margin-bottom: 0%;width:100%;" >
-				
-					<a href="#"><img src="assets/img/New Logo.jpg"   style="float:left ; height: 87px;margin-left: 10%;"alt="Bootsshop"/></a>
-				<div>
-					<a href="#"><label style="float:left;margin-left: 10%;margin-top: 4%;font-weight: bold;"><span style="font-size: 16px;">For Enquires Call</span> <span style="font-size: 25px;">1800 270 5575</span> </label></a>
-				</div>
-				<div>
-					<a href="#/contactUs"  class="btn btn-mini active ng-binding" style="font-weight: bold;margin-top: 4%;float: left;margin-left: 6%;color:white;cursor: pointer;font-size:15px;">Contact Us</a>
+    		<div class="container" style="width:100%;">
+			<div class="">
+				<div class="" style="margin-bottom: 0%;">
+					<div style="float: left;height:87px;margin-left: 10%;width: 30%;" >
+					<a href="#"><img src="assets/img/New Logo.jpg"
+						
+						alt="Bootsshop" /></a>
+	             </div>
+					<div style="float: left; margin-left: 10%; margin-top: 4%; font-weight: bold;">
+						<a href="#"><label
+							><span
+								style="font-size: 16px; font-weight: bold;">For Enquires Call</span> <span
+								style="font-size: 25px; font-weight: bold;">1800 270 5575</span> </label></a>
+					</div>
+					<div style="font-weight: bold; margin-top: 4%; float: left; margin-left: 6%; color: white; cursor: pointer; font-size: 15px;">
+						<a href="#/contactUs" class="btn btn-mini active ng-binding"
+							>Contact
+							Us</a>
+					</div>
 				</div>
 				</div>
 				</div>
